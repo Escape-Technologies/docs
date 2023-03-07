@@ -1,0 +1,344 @@
+---
+sidebar_position: 4
+title: Sensitive Data Reference
+---
+
+# 🔣 Sensitive Data
+
+Escape scanners support a lot of different types of data. Here is a list of all the supported types, called `scalars`.
+
+:::tip Scalar properties
+Each scalar have a few key:
+
+- Possible names: The different names the field containing it could have in the graphql API.
+- Description: A short explaination of what it represent.
+- Patterns: A regex or a value that can be used to detect if a returned value is of this type.
+- Examples: Some examples of the scalar that can be used by Escape.
+- Parents: The graphQL types this scalar is compatible with.
+- Sensitivity: to which degree is this scalar a sensitive.
+:::
+
+***
+
+
+
+## Date time
+
+|Name|Description|Sensitivity|
+|----|-----------|-----------|
+|date|ISO 8601 date string|<span className="low-severity">LOW</span>|
+|datetime|ISO 8601 date and time string|<span className="low-severity">LOW</span>|
+|month|Month|<span className="low-severity">LOW</span>|
+|time|ISO 8601 time string|<span className="low-severity">LOW</span>|
+|timestamp|Timestamp|<span className="low-severity">LOW</span>|
+|year|Year|<span className="low-severity">LOW</span>|
+
+
+
+
+## Finance
+
+|Name|Description|Sensitivity|
+|----|-----------|-----------|
+|bank_account|International Bank Account Number|<span className="medium-severity">MEDIUM</span>|
+|bank_card|Credit Card Number|<span className="high-severity">HIGH</span>|
+|bitcoin|Bitcoin address|<span className="medium-severity">MEDIUM</span>|
+|currency_code|Currency Code ISO 4217|<span className="low-severity">LOW</span>|
+|cvv|Credit Card Verification Value|<span className="high-severity">HIGH</span>|
+|dash|Dash address|<span className="medium-severity">MEDIUM</span>|
+|e_commerce_indicator|e-Commerce Indicator|<span className="low-severity">LOW</span>|
+|ethereum|Ethereum address|<span className="medium-severity">MEDIUM</span>|
+|monero|Monero address|<span className="medium-severity">MEDIUM</span>|
+|us_bank_account_number|US Bank Account Number|<span className="medium-severity">MEDIUM</span>|
+|us_bank_routing_number|US Bank Routing Number|<span className="medium-severity">MEDIUM</span>|
+|us_zip_code|US ZIP Code|<span className="low-severity">LOW</span>|
+
+
+
+
+## Hash
+
+|Name|Description|Sensitivity|
+|----|-----------|-----------|
+|base64|base64 hash|<span className="low-severity">LOW</span>|
+|bcrypt|bCrypt hash|<span className="medium-severity">MEDIUM</span>|
+|md5|MD5 hash|<span className="medium-severity">MEDIUM</span>|
+|sha1|SHA1 hash|<span className="low-severity">LOW</span>|
+|sha256|SHA256 hash|<span className="low-severity">LOW</span>|
+
+
+
+
+## Personal
+
+|Name|Description|Sensitivity|
+|----|-----------|-----------|
+|country_code|Country Code|<span className="low-severity">LOW</span>|
+|driving_license|Driving License Number|<span className="medium-severity">MEDIUM</span>|
+|email|Email|<span className="medium-severity">MEDIUM</span>|
+|gender|Gender|<span className="low-severity">LOW</span>|
+|legal_name|Full legal name|<span className="low-severity">LOW</span>|
+|passport|Passport Number|<span className="medium-severity">MEDIUM</span>|
+|password|Password|<span className="high-severity">HIGH</span>|
+|phone|Phone Number|<span className="medium-severity">MEDIUM</span>|
+|street_address|Street Address|<span className="low-severity">LOW</span>|
+|zip_code|Zip Code|<span className="low-severity">LOW</span>|
+
+
+
+
+## Secrets
+
+|Name|Description|Sensitivity|
+|----|-----------|-----------|
+|adafruit_api_key|Adafruit API Key|<span className="high-severity">HIGH</span>|
+|adobe_client_id|Adobe Client ID (OAuth Web)|<span className="high-severity">HIGH</span>|
+|adobe_client_secret|Adobe Client Secret|<span className="high-severity">HIGH</span>|
+|age_secret_key|Age secret key|<span className="high-severity">HIGH</span>|
+|airtable_api_key|Airtable API Key|<span className="high-severity">HIGH</span>|
+|algolia_api_key|Algolia API Key|<span className="high-severity">HIGH</span>|
+|alibaba_access_key_id|Alibaba AccessKey ID|<span className="high-severity">HIGH</span>|
+|alibaba_secret_key|Alibaba Secret Key|<span className="high-severity">HIGH</span>|
+|asana_client_id|Asana Client ID|<span className="high-severity">HIGH</span>|
+|asana_client_secret|Asana Client Secret|<span className="high-severity">HIGH</span>|
+|atlassian_api_token|Atlassian API token|<span className="high-severity">HIGH</span>|
+|aws_access_token|AWS|<span className="high-severity">HIGH</span>|
+|beamer_api_token|Beamer API token|<span className="high-severity">HIGH</span>|
+|bitbucket_client_id|Bitbucket Client ID|<span className="high-severity">HIGH</span>|
+|bitbucket_client_secret|Bitbucket Client Secret|<span className="high-severity">HIGH</span>|
+|bittrex_access_key|Bittrex Access Key|<span className="high-severity">HIGH</span>|
+|bittrex_secret_key|Bittrex Secret Key|<span className="high-severity">HIGH</span>|
+|clojars_api_token|Clojars API token|<span className="high-severity">HIGH</span>|
+|codecov_access_token|Codecov Access Token|<span className="high-severity">HIGH</span>|
+|coinbase_access_token|Coinbase Access Token|<span className="high-severity">HIGH</span>|
+|confluent_access_token|Confluent Access Token|<span className="high-severity">HIGH</span>|
+|confluent_secret_key|Confluent Secret Key|<span className="high-severity">HIGH</span>|
+|contentful_delivery_api_token|Contentful delivery API token|<span className="high-severity">HIGH</span>|
+|databricks_api_token|Databricks API token|<span className="high-severity">HIGH</span>|
+|datadog_access_token|Datadog Access Token|<span className="high-severity">HIGH</span>|
+|digitalocean_access_token|DigitalOcean OAuth Access Token|<span className="high-severity">HIGH</span>|
+|digitalocean_pat|DigitalOcean Personal Access Token|<span className="high-severity">HIGH</span>|
+|digitalocean_refresh_token|DigitalOcean OAuth Refresh Token|<span className="high-severity">HIGH</span>|
+|discord_api_token|Discord API key|<span className="high-severity">HIGH</span>|
+|discord_client_id|Discord client ID|<span className="high-severity">HIGH</span>|
+|discord_client_secret|Discord client secret|<span className="high-severity">HIGH</span>|
+|doppler_api_token|Doppler API token|<span className="high-severity">HIGH</span>|
+|droneci_access_token|Droneci Access Token|<span className="high-severity">HIGH</span>|
+|dropbox_api_token|Dropbox API secret|<span className="high-severity">HIGH</span>|
+|dropbox_long_lived_api_token|Dropbox long lived API token|<span className="high-severity">HIGH</span>|
+|dropbox_short_lived_api_token|Dropbox short lived API token|<span className="high-severity">HIGH</span>|
+|duffel_api_token|Duffel API token|<span className="high-severity">HIGH</span>|
+|dynatrace_api_token|Dynatrace API token|<span className="high-severity">HIGH</span>|
+|easypost_api_token|EasyPost API token|<span className="high-severity">HIGH</span>|
+|easypost_test_api_token|EasyPost test API token|<span className="high-severity">HIGH</span>|
+|etsy_access_token|Etsy Access Token|<span className="high-severity">HIGH</span>|
+|facebook|Facebook|<span className="high-severity">HIGH</span>|
+|fastly_api_token|Fastly API key|<span className="high-severity">HIGH</span>|
+|finicity_api_token|Finicity API token|<span className="high-severity">HIGH</span>|
+|finicity_client_secret|Finicity Client Secret|<span className="high-severity">HIGH</span>|
+|finnhub_access_token|Finnhub Access Token|<span className="high-severity">HIGH</span>|
+|flickr_access_token|Flickr Access Token|<span className="high-severity">HIGH</span>|
+|flutterwave_encryption_key|Flutterwave Encryption Key|<span className="high-severity">HIGH</span>|
+|flutterwave_public_key|Finicity Public Key|<span className="high-severity">HIGH</span>|
+|flutterwave_secret_key|Flutterwave Secret Key|<span className="high-severity">HIGH</span>|
+|frameio_api_token|Frame.io API token|<span className="high-severity">HIGH</span>|
+|freshbooks_access_token|Freshbooks Access Token|<span className="high-severity">HIGH</span>|
+|gcp_api_key|GCP API key|<span className="high-severity">HIGH</span>|
+|generic_api_key|Generic API Key|<span className="high-severity">HIGH</span>|
+|github_app_token|GitHub App Token|<span className="high-severity">HIGH</span>|
+|github_fine_grained_pat|GitHub Fine-Grained Personal Access Token|<span className="high-severity">HIGH</span>|
+|github_oauth|GitHub OAuth Access Token|<span className="high-severity">HIGH</span>|
+|github_pat|GitHub Personal Access Token|<span className="high-severity">HIGH</span>|
+|github_refresh_token|GitHub Refresh Token|<span className="high-severity">HIGH</span>|
+|gitlab_pat|GitLab Personal Access Token|<span className="high-severity">HIGH</span>|
+|gitlab_ptt|GitLab Pipeline Trigger Token|<span className="high-severity">HIGH</span>|
+|gitlab_rrt|GitLab Runner Registration Token|<span className="high-severity">HIGH</span>|
+|gitter_access_token|Gitter Access Token|<span className="high-severity">HIGH</span>|
+|gocardless_api_token|GoCardless API token|<span className="high-severity">HIGH</span>|
+|grafana_api_key|Grafana api key (or Grafana cloud api key)|<span className="high-severity">HIGH</span>|
+|grafana_cloud_api_token|Grafana cloud api token|<span className="high-severity">HIGH</span>|
+|grafana_service_account_token|Grafana service account token|<span className="high-severity">HIGH</span>|
+|hashicorp_tf_api_token|HashiCorp Terraform user/org API token|<span className="high-severity">HIGH</span>|
+|heroku_api_key|Heroku API Key|<span className="high-severity">HIGH</span>|
+|hubspot_api_key|HubSpot API Token|<span className="high-severity">HIGH</span>|
+|intercom_api_key|Intercom API Token|<span className="high-severity">HIGH</span>|
+|jwt|JSON Web Token|<span className="high-severity">HIGH</span>|
+|kraken_access_token|Kraken Access Token|<span className="high-severity">HIGH</span>|
+|kucoin_access_token|Kucoin Access Token|<span className="high-severity">HIGH</span>|
+|kucoin_secret_key|Kucoin Secret Key|<span className="high-severity">HIGH</span>|
+|launchdarkly_access_token|Launchdarkly Access Token|<span className="high-severity">HIGH</span>|
+|linear_api_key|Linear API Token|<span className="high-severity">HIGH</span>|
+|linear_client_secret|Linear Client Secret|<span className="high-severity">HIGH</span>|
+|linkedin_client_id|LinkedIn Client ID|<span className="high-severity">HIGH</span>|
+|linkedin_client_secret|LinkedIn Client secret|<span className="high-severity">HIGH</span>|
+|lob_api_key|Lob API Key|<span className="high-severity">HIGH</span>|
+|lob_pub_api_key|Lob Publishable API Key|<span className="high-severity">HIGH</span>|
+|mailchimp_api_key|Mailchimp API key|<span className="high-severity">HIGH</span>|
+|mailgun_private_api_token|Mailgun private API token|<span className="high-severity">HIGH</span>|
+|mailgun_pub_key|Mailgun public validation key|<span className="high-severity">HIGH</span>|
+|mailgun_signing_key|Mailgun webhook signing key|<span className="high-severity">HIGH</span>|
+|mapbox_api_token|MapBox API token|<span className="high-severity">HIGH</span>|
+|mattermost_access_token|Mattermost Access Token|<span className="high-severity">HIGH</span>|
+|messagebird_api_token|MessageBird API token|<span className="high-severity">HIGH</span>|
+|messagebird_client_id|MessageBird client ID|<span className="high-severity">HIGH</span>|
+|microsoft_teams_webhook|Microsoft Teams Webhook|<span className="high-severity">HIGH</span>|
+|netlify_access_token|Netlify Access Token|<span className="high-severity">HIGH</span>|
+|new_relic_browser_api_token|New Relic ingest browser API token|<span className="high-severity">HIGH</span>|
+|new_relic_user_api_id|New Relic user API ID|<span className="high-severity">HIGH</span>|
+|new_relic_user_api_key|New Relic user API Key|<span className="high-severity">HIGH</span>|
+|npm_access_token|npm access token|<span className="high-severity">HIGH</span>|
+|nytimes_access_token|Nytimes Access Token|<span className="high-severity">HIGH</span>|
+|okta_access_token|Okta Access Token|<span className="high-severity">HIGH</span>|
+|plaid_api_token|Plaid API Token|<span className="high-severity">HIGH</span>|
+|plaid_client_id|Plaid Client ID|<span className="high-severity">HIGH</span>|
+|plaid_secret_key|Plaid Secret key|<span className="high-severity">HIGH</span>|
+|planetscale_api_token|PlanetScale API token|<span className="high-severity">HIGH</span>|
+|planetscale_oauth_token|PlanetScale OAuth token|<span className="high-severity">HIGH</span>|
+|planetscale_password|PlanetScale password|<span className="high-severity">HIGH</span>|
+|postman_api_token|Postman API token|<span className="high-severity">HIGH</span>|
+|prefect_api_token|Prefect API token|<span className="high-severity">HIGH</span>|
+|private_key|Private Key|<span className="high-severity">HIGH</span>|
+|pulumi_api_token|Pulumi API token|<span className="high-severity">HIGH</span>|
+|pypi_upload_token|PyPI upload token|<span className="high-severity">HIGH</span>|
+|rapidapi_access_token|RapidAPI Access Token|<span className="high-severity">HIGH</span>|
+|readme_api_token|Readme API token|<span className="high-severity">HIGH</span>|
+|rubygems_api_token|Rubygem API token|<span className="high-severity">HIGH</span>|
+|sendbird_access_id|Sendbird Access ID|<span className="high-severity">HIGH</span>|
+|sendbird_access_token|Sendbird Access Token|<span className="high-severity">HIGH</span>|
+|sendgrid_api_token|SendGrid API token|<span className="high-severity">HIGH</span>|
+|sendinblue_api_token|Sendinblue API token|<span className="high-severity">HIGH</span>|
+|sentry_access_token|Sentry Access Token|<span className="high-severity">HIGH</span>|
+|shippo_api_token|Shippo API token|<span className="high-severity">HIGH</span>|
+|shopify_access_token|Shopify access token|<span className="high-severity">HIGH</span>|
+|shopify_custom_access_token|Shopify custom access token|<span className="high-severity">HIGH</span>|
+|shopify_private_app_access_token|Shopify private app access token|<span className="high-severity">HIGH</span>|
+|shopify_shared_secret|Shopify shared secret|<span className="high-severity">HIGH</span>|
+|sidekiq_secret|Sidekiq Secret|<span className="high-severity">HIGH</span>|
+|sidekiq_sensitive_url|Sidekiq Sensitive URL|<span className="high-severity">HIGH</span>|
+|slack_access_token|Slack token|<span className="high-severity">HIGH</span>|
+|slack_web_hook|Slack Webhook|<span className="high-severity">HIGH</span>|
+|square_access_token|Square Access Token|<span className="high-severity">HIGH</span>|
+|squarespace_access_token|Squarespace Access Token|<span className="high-severity">HIGH</span>|
+|stripe_access_token|Stripe private token|<span className="high-severity">HIGH</span>|
+|sumologic_access_id|SumoLogic Access ID|<span className="high-severity">HIGH</span>|
+|sumologic_access_token|SumoLogic Access Token|<span className="high-severity">HIGH</span>|
+|telegram_bot_api_token|Telegram Bot API Token|<span className="high-severity">HIGH</span>|
+|travisci_access_token|Travis CI Access Token|<span className="high-severity">HIGH</span>|
+|twilio_api_key|Twilio API Key|<span className="high-severity">HIGH</span>|
+|twitch_api_token|Twitch API token|<span className="high-severity">HIGH</span>|
+|twitter_access_secret|Twitter Access Secret|<span className="high-severity">HIGH</span>|
+|twitter_access_token|Twitter Access Token|<span className="high-severity">HIGH</span>|
+|twitter_api_key|Twitter API Key|<span className="high-severity">HIGH</span>|
+|twitter_api_secret|Twitter API Secret|<span className="high-severity">HIGH</span>|
+|twitter_bearer_token|Twitter Bearer Token|<span className="high-severity">HIGH</span>|
+|typeform_api_token|Typeform API token|<span className="high-severity">HIGH</span>|
+|vault_batch_token|Vault Batch Token|<span className="high-severity">HIGH</span>|
+|vault_service_token|Vault Service Token|<span className="high-severity">HIGH</span>|
+|yandex_access_token|Yandex Access Token|<span className="high-severity">HIGH</span>|
+|yandex_api_key|Yandex API Key|<span className="high-severity">HIGH</span>|
+|yandex_aws_access_token|Yandex AWS Access Token|<span className="high-severity">HIGH</span>|
+|zendesk_secret_key|Zendesk Secret Key|<span className="high-severity">HIGH</span>|
+
+
+
+
+## Technology
+
+|Name|Description|Sensitivity|
+|----|-----------|-----------|
+|host|Host name (IP or DNS)|<span className="medium-severity">MEDIUM</span>|
+|ipv4|IPv4 address|<span className="medium-severity">MEDIUM</span>|
+|ipv6|IPv6 address|<span className="medium-severity">MEDIUM</span>|
+|json|JSON string|<span className="low-severity">LOW</span>|
+|language_iso_639_1|Language|<span className="low-severity">LOW</span>|
+|language_iso_639_2|Language ISO 639-2|<span className="low-severity">LOW</span>|
+|path|Disk or URL Path|<span className="low-severity">LOW</span>|
+|port|Port number|<span className="low-severity">LOW</span>|
+|protocol|Protocol|<span className="low-severity">LOW</span>|
+|secret|Secret|<span className="high-severity">HIGH</span>|
+|status_code|Status Code|<span className="low-severity">LOW</span>|
+|url|A URL as defined by RFC 1738|<span className="low-severity">LOW</span>|
+|uuid|Universally Unique Identifier|<span className="low-severity">LOW</span>|
+|version|Version Number|<span className="low-severity">LOW</span>|
+
+
+
+## Custom Sensitive Data Types
+
+It's possible to write custom scalar or override existing one using the escaperc:
+
+```JSON
+{
+    "scalars": {
+        "custom_scalar_identifier": { 
+            "description": **value**,
+            "examples": ['**value**'],
+            "names": ['**value**'],
+            "parents": ['ID | Int | String | Boolean | Float'],
+            "patterns": ['**value**'],
+            "sensitivity": 0 | 1 | 2 | 3,},
+    }
+}
+```
+
+
+
+### description
+
+The description for the scalar
+
+**Example**
+
+`{'description': '**value**'}`
+
+
+
+### examples
+
+Example of values for the scalar (used in the explore as default values). Careful values inputed here will be ignored by the checks
+
+**Example**
+
+`{'examples': ['**value**']}`
+
+
+
+### names
+
+The possible names for the scalar
+
+**Example**
+
+`{'names': ['**value**']}`
+
+
+
+### parents
+
+The graphql default type it's compatible with
+
+**Example**
+
+`{'parents': ['ID | Int | String | Boolean | Float']}`
+
+
+
+### patterns
+
+The possible values for the scalar (regex friendly) (used for the checks)
+
+**Example**
+
+`{'patterns': ['**value**']}`
+
+
+
+### sensitivity
+
+The sensitivity of the data
+Must be one of [0, 1, 2, 3]
+
+**Example**
+
+`{'sensitivity': '0 | 1 | 2 | 3'}`
+

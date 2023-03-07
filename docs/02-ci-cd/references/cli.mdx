@@ -1,0 +1,49 @@
+---
+sidebar_position: 3
+title: Command Line
+description: Use Escape in a command-line interface
+---
+
+import RequiredTag from '@site/src/components/RequiredTag';
+import TypeTag from '@site/src/components/TypeTag';
+
+
+## Basic example
+
+```bash
+export ESCAPE_APPLICATION_ID=<YOUR APPLICATION ID>
+export ESCAPE_API_KEY=<YOUR API KEY>
+
+npm i -g @escape.tech/action
+escape-action
+```
+
+## Available variables
+
+### `ESCAPE_APPLICATION_ID` <TypeTag type="string"/> <RequiredTag/> 
+
+The id of the application on Escape that will be scanned continuously.  
+You can find it in your [Escape application settings](https://app.escape.tech).
+
+### `ESCAPE_API_KEY` <TypeTag type="string"/> <RequiredTag/>
+
+Your API key on the Escape platform.  
+You can find it in your [Escape settings](https://app.escape.tech/user/profile/).
+
+
+### `TIMEOUT` <TypeTag type="number"/>
+The timeout of the job. If set to 0, the scan will be started, but the job will not wait for it to be finished before terminating. 
+
+The triggered scan will run asynchronously on Escape, and your team will be notified once it is done using your desired [notifications](/integrations) settings.
+
+### `CONFIGURATION_OVERRIDE` <TypeTag type="string"/>
+
+[See the configuration override section](/ci-cd/configuration-override).
+
+### `COMMIT_HASH` <TypeTag type="string"/>
+
+[See the commit identification section](/ci-cd/commit-sha).
+
+### `INTROSPECTION_FILE` <TypeTag type="path"/>
+
+[See the introspection update section](/ci-cd/introspection-update).
