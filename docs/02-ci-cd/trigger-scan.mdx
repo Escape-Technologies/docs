@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # 🏃‍♂️ Trigger a scan
 
-Including our security scans within the delivery flow of technical teams is a core part of Escape. 
+Including our security scans within the delivery flow of technical teams is a core part of Escape.
 
 :::caution
 Escape only runs one concurrent scan per application. If a scan is already running on one of your apps, we will cancel it before the CI job starts a new scan on your application.
@@ -90,7 +90,7 @@ export APPLICATION_ID=<YOUR APPLICATION ID>
 export API_KEY=<YOUR API KEY>
 
 curl -X POST \
--H 'Authorization: Key $API_KEY' \
+-H "Authorization: Key $API_KEY" \
 https://api-public.prod.cloud.escape.tech/applications/$APPLICATION_ID/start-scan
 ```
 
@@ -169,7 +169,7 @@ export APPLICATION_ID=<YOUR APPLICATION ID>
 export API_KEY=<YOUR API KEY>
 
 curl -X POST \
--H 'Authorization: Key $API_KEY' \
+-H "Authorization: Key $API_KEY" \
 https://api-public.prod.cloud.escape.tech/applications/$APPLICATION_ID/start-scan
 ```
 
