@@ -156,7 +156,7 @@ Otherwise, you can use the standalone [envelop plugin](https://www.npmjs.com/pac
 ```json
 {
     "checks": {
-        "Character limit (interceptor)": {
+        "complexity/character_limit_interceptor": {
             "skip": true
         }
     }

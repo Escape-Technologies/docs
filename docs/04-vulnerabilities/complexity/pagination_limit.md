@@ -32,7 +32,7 @@ To prevent such an attack, limit pagination variables.
 ```json
 {
     "checks": {
-        "Pagination limit": {
+        "complexity/pagination_limit": {
             "skip": true
         }
     }

@@ -94,7 +94,7 @@ See Hasura's detailed documentation for [authorization management](https://hasur
 ```json
 {
     "checks": {
-        "Secrets leaks": {
+        "access_control/secrets_leaks": {
             "skip": true
         }
     }

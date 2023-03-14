@@ -27,7 +27,7 @@ Disabled Debug mode.
 ```json
 {
     "checks": {
-        "Debug mode": {
+        "information_disclosure/debug_mode": {
             "skip": true
         }
     }

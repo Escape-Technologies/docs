@@ -28,7 +28,7 @@ Enforce strong typing in your GraphQL objects.
 ```json
 {
     "checks": {
-        "Undefined objects": {
+        "introspection/undefined_objects": {
             "skip": true
         }
     }

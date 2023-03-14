@@ -33,7 +33,7 @@ We recommend you to investigate two possible causes:
 ```json
 {
     "checks": {
-        "Unreachable server": {
+        "dos/unreachable_server": {
             "skip": true
         }
     }

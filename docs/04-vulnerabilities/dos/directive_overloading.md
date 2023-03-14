@@ -51,7 +51,7 @@ You can also use our [GraphQL Armor](https://github.com/Escape-Technologies/grap
 ```json
 {
     "checks": {
-        "Directive overloading": {
+        "dos/directive_overloading": {
             "skip": true
         }
     }

@@ -207,7 +207,7 @@ http.ListenAndServe(":8082", nil)
 ```json
 {
     "checks": {
-        "Security Headers": {
+        "http/security_headers": {
             "skip": true
         }
     }

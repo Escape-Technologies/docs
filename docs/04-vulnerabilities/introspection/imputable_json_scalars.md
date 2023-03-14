@@ -28,7 +28,7 @@ When possible, use typed input objects instead.
 ```json
 {
     "checks": {
-        "Imputable JSON scalars": {
+        "introspection/imputable_json_scalars": {
             "skip": true
         }
     }

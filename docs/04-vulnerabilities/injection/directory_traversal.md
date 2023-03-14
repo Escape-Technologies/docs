@@ -39,7 +39,7 @@ There are multiple ways to prevent directory traversal attacks:
 ```json
 {
     "checks": {
-        "Directory traversal": {
+        "injection/directory_traversal": {
             "skip": true
         }
     }

@@ -46,7 +46,7 @@ If you are using **Let's Encrypt** certificates, make sure to authorize HTTPS to
 ```json
 {
     "checks": {
-        "Unsecure HTTP": {
+        "http/unsecure_http": {
             "skip": true
         }
     }

@@ -53,7 +53,7 @@ Source: <https://www.apollographql.com/docs/apollo-server/requests/#batching>
 ```json
 {
     "checks": {
-        "Batch Limit": {
+        "complexity/batch_limit": {
             "skip": true
         }
     }

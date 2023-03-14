@@ -36,7 +36,7 @@ Ensure that `.git`, `.svn`, `.htaccess` metadata files are not deployed to the w
 ```json
 {
     "checks": {
-        "Source code disclosure": {
+        "information_disclosure/source_code_disclosure": {
             "skip": true
         }
     }

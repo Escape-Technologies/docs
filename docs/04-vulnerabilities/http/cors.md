@@ -74,7 +74,7 @@ API Gateway console > {your api gateway} > Resources > {your created resource} >
 ```json
 {
     "checks": {
-        "CORS": {
+        "http/cors": {
             "skip": true
         }
     }

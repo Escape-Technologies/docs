@@ -79,7 +79,7 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
 ```json
 {
     "checks": {
-        "Private fields": {
+        "access_control/private_fields": {
             "skip": true
         }
     }

@@ -85,7 +85,7 @@ Example:
 ```json
 {
     "checks": {
-        "Typing inconsistency": {
+        "introspection/typing_inconsistency": {
             "skip": true
         }
     }

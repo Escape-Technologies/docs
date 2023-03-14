@@ -27,7 +27,7 @@ The only way to prevent CRLF attacks is to carefully sanitize every message that
 ```json
 {
     "checks": {
-        "CRLF": {
+        "http/crlf": {
             "skip": true
         }
     }

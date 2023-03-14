@@ -27,7 +27,7 @@ Restrict access to the route, using an authentication middleware for example.
 ```json
 {
     "checks": {
-        "Public Unsafe Route": {
+        "access_control/public_unsafe_route": {
             "skip": true
         }
     }

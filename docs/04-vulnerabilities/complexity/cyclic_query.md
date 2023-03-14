@@ -92,7 +92,7 @@ With `graphene-django`, it is possible to implement a custom GraphQL backend to 
 ```json
 {
     "checks": {
-        "Cyclic query": {
+        "complexity/cyclic_query": {
             "skip": true
         }
     }

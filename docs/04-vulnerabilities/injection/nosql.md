@@ -37,7 +37,7 @@ Primary defenses:
 ```json
 {
     "checks": {
-        "NoSQL": {
+        "injection/nosql": {
             "skip": true
         }
     }

@@ -47,7 +47,7 @@ With Express.js, the `enforce-content-type` middleware can be used to block unwa
 ```json
 {
     "checks": {
-        "POST based CSRF": {
+        "request_forgery/post_based_csrf": {
             "skip": true
         }
     }

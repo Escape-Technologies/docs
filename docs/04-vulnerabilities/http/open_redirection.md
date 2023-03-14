@@ -26,7 +26,7 @@ This check looks at user-supplied input in query string parameters and POST data
 ```json
 {
     "checks": {
-        "Open redirection": {
+        "http/open_redirection": {
             "skip": true
         }
     }

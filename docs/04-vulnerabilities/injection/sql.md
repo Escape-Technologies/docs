@@ -41,7 +41,7 @@ Additional defenses:
 ```json
 {
     "checks": {
-        "SQL": {
+        "injection/sql": {
             "skip": true
         }
     }

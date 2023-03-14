@@ -80,7 +80,7 @@ In that case, make sure your production environment has `HASURA_GRAPHQL_DEV_MODE
 ```json
 {
     "checks": {
-        "Stack traceback": {
+        "information_disclosure/stack_traceback": {
             "skip": true
         }
     }

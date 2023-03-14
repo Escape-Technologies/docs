@@ -169,7 +169,7 @@ Hasura allows for manual query depth limit configuration directly in the securit
 ```json
 {
     "checks": {
-        "Depth limit": {
+        "complexity/depth_limit": {
             "skip": true
         }
     }

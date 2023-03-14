@@ -83,7 +83,7 @@ Hasura allows you to set a width (=node) limit.
 ```json
 {
     "checks": {
-        "Width limit": {
+        "complexity/width_limit": {
             "skip": true
         }
     }

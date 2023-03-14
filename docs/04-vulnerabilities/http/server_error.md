@@ -28,7 +28,7 @@ Make sure you also refer to the query we sent to the server to reproduce the iss
 ```json
 {
     "checks": {
-        "Server Error": {
+        "http/server_error": {
             "skip": true
         }
     }

@@ -238,7 +238,7 @@ Source: https://github.com/rmosolgo/graphql-ruby/blob/master/guides/schema/intro
 ```json
 {
     "checks": {
-        "Introspection": {
+        "information_disclosure/introspection": {
             "skip": true
         }
     }

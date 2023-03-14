@@ -35,7 +35,7 @@ To prevent command injection attacks:
 ```json
 {
     "checks": {
-        "Bash command": {
+        "injection/bash_command": {
             "skip": true
         }
     }

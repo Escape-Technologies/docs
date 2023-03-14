@@ -116,7 +116,7 @@ To learn more on AWS WAF, see: [AWS WAF](https://docs.aws.amazon.com/waf/latest/
 ```json
 {
     "checks": {
-        "GET based CSRF": {
+        "request_forgery/get_based_csrf": {
             "skip": true
         }
     }

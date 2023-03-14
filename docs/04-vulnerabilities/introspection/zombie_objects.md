@@ -29,7 +29,7 @@ Because they are not maintained nor patched, they are a **privileged vector of a
 ```json
 {
     "checks": {
-        "Zombie objects": {
+        "introspection/zombie_objects": {
             "skip": true
         }
     }

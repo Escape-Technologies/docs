@@ -53,7 +53,7 @@ Source:
 ```json
 {
     "checks": {
-        "GraphQL IDE": {
+        "information_disclosure/graphql_ide": {
             "skip": true
         }
     }

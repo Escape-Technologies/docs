@@ -94,7 +94,7 @@ There is no known remediation for StepZen.
 ```json
 {
     "checks": {
-        "Security timeout": {
+        "dos/security_timeout": {
             "skip": true
         }
     }

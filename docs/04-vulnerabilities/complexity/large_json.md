@@ -32,7 +32,7 @@ Limit the maximum size of a JSON that can be inputted.
 ```json
 {
     "checks": {
-        "Large JSON": {
+        "complexity/large_json": {
             "skip": true
         }
     }

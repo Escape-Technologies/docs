@@ -27,7 +27,7 @@ Implement a maximum recursion limit.
 ```json
 {
     "checks": {
-        "Recursive Fragment": {
+        "dos/recursive_fragment": {
             "skip": true
         }
     }

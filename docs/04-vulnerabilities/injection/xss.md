@@ -39,7 +39,7 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
 ```json
 {
     "checks": {
-        "XSS": {
+        "injection/xss": {
             "skip": true
         }
     }

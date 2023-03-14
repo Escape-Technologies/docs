@@ -65,7 +65,7 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
 ```json
 {
     "checks": {
-        "Private data": {
+        "access_control/private_data": {
             "skip": true
         }
     }

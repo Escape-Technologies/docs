@@ -111,7 +111,7 @@ Or, you can use the standalone [envelop plugin](https://www.npmjs.com/package/@e
 ```json
 {
     "checks": {
-        "Field suggestion": {
+        "information_disclosure/field_suggestion": {
             "skip": true
         }
     }

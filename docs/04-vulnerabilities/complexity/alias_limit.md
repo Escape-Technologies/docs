@@ -79,7 +79,7 @@ To learn more about complexity estimation, you can read: [Securing Your GraphQL 
 ```json
 {
     "checks": {
-        "Alias limit": {
+        "complexity/alias_limit": {
             "skip": true
         }
     }

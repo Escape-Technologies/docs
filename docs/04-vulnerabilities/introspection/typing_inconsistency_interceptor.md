@@ -27,7 +27,7 @@ Update your resolver to make the introspection type match the actual returned ty
 ```json
 {
     "checks": {
-        "Typing inconsistency (interceptor)": {
+        "introspection/typing_inconsistency_interceptor": {
             "skip": true
         }
     }

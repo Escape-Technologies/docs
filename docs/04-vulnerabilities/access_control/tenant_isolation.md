@@ -82,7 +82,7 @@ scalars : A list of scalar `fieldName`. A specific `scalarValue` of this field s
 ```json
 {
     "checks": {
-        "Tenant isolation": {
+        "access_control/tenant_isolation": {
             "skip": true
         }
     }

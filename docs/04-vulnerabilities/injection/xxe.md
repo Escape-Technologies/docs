@@ -36,7 +36,7 @@ If it is not possible to disable DTDs completely, disable external entities and 
 ```json
 {
     "checks": {
-        "XXE": {
+        "injection/xxe": {
             "skip": true
         }
     }

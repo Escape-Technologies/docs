@@ -53,7 +53,7 @@ To prevent circular introspection from being abused:
 ```json
 {
     "checks": {
-        "Circular introspection": {
+        "dos/circular_introspection": {
             "skip": true
         }
     }

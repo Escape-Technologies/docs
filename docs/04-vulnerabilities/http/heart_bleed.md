@@ -30,7 +30,7 @@ To effectively prevent HeartBleed attacks:
 ```json
 {
     "checks": {
-        "Heart Bleed": {
+        "http/heart_bleed": {
             "skip": true
         }
     }

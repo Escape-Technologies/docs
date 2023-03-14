@@ -33,7 +33,7 @@ The correct ways to prevent SSRF are:
 ```json
 {
     "checks": {
-        "SSRF": {
+        "request_forgery/ssrf": {
             "skip": true
         }
     }

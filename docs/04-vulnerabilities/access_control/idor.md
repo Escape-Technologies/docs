@@ -34,7 +34,7 @@ Change the argument to one that cannot be enumerated.
 ```json
 {
     "checks": {
-        "IDOR": {
+        "access_control/idor": {
             "skip": true
         }
     }

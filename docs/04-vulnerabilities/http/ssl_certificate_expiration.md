@@ -27,7 +27,7 @@ Purchase a new SSL certificate.
 ```json
 {
     "checks": {
-        "SSL certificate expiration": {
+        "http/ssl_certificate_expiration": {
             "skip": true
         }
     }

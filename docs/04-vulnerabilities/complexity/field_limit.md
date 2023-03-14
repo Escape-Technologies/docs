@@ -101,7 +101,7 @@ To learn how to implement it, check out [Hasura's Response Limiting guide](https
 ```json
 {
     "checks": {
-        "Field limit": {
+        "complexity/field_limit": {
             "skip": true
         }
     }

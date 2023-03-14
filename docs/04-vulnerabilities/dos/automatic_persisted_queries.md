@@ -108,7 +108,7 @@ Source: https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries.
 ```json
 {
     "checks": {
-        "Automatic Persisted Queries": {
+        "dos/automatic_persisted_queries": {
             "skip": true
         }
     }
