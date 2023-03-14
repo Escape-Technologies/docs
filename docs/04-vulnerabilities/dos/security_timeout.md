@@ -86,6 +86,23 @@ There is no known remediation for StepZen.
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Security timeout": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

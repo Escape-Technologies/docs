@@ -71,6 +71,23 @@ To learn more about complexity estimation, you can read: [Securing Your GraphQL 
 > CheckId: `complexity/alias_limit`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Alias limit": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

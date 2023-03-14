@@ -24,6 +24,23 @@ To prevent such an attack, limit pagination variables.
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Pagination limit": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

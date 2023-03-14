@@ -29,6 +29,23 @@ Primary defenses:
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "NoSQL": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

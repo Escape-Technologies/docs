@@ -19,6 +19,23 @@ Restrict access to the route, using an authentication middleware for example.
 > CheckId: `access_control/public_unsafe_route`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Public Unsafe Route": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

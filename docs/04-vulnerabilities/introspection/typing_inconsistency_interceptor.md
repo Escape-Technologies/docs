@@ -19,6 +19,23 @@ Update your resolver to make the introspection type match the actual returned ty
 > CheckId: `introspection/typing_inconsistency_interceptor`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Typing inconsistency (interceptor)": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

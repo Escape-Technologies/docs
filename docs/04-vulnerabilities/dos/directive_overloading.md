@@ -43,6 +43,23 @@ You can also use our [GraphQL Armor](https://github.com/Escape-Technologies/grap
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Directive overloading": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

@@ -18,6 +18,23 @@ This check looks at user-supplied input in query string parameters and POST data
 > CheckId: `http/open_redirection`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Open redirection": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

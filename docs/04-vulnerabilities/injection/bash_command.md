@@ -27,6 +27,23 @@ To prevent command injection attacks:
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Bash command": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

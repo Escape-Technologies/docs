@@ -22,6 +22,23 @@ To effectively prevent HeartBleed attacks:
 > CheckId: `http/heart_bleed`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Heart Bleed": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

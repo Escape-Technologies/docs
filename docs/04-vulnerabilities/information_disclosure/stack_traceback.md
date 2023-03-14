@@ -72,6 +72,23 @@ In that case, make sure your production environment has `HASURA_GRAPHQL_DEV_MODE
 > CheckId: `information_disclosure/stack_traceback`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Stack traceback": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

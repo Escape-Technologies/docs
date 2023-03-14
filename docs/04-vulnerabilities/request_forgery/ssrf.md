@@ -25,6 +25,23 @@ The correct ways to prevent SSRF are:
 > CheckId: `request_forgery/ssrf`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "SSRF": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

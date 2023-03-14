@@ -45,6 +45,23 @@ To prevent circular introspection from being abused:
 > CheckId: `dos/circular_introspection`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Circular introspection": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

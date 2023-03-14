@@ -38,6 +38,23 @@ If you are using **Let's Encrypt** certificates, make sure to authorize HTTPS to
 > CheckId: `http/unsecure_http`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Unsecure HTTP": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

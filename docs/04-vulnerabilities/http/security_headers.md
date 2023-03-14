@@ -199,6 +199,23 @@ http.ListenAndServe(":8082", nil)
 > CheckId: `http/security_headers`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Security Headers": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

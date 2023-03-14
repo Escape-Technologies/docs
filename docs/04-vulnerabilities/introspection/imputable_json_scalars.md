@@ -20,6 +20,23 @@ When possible, use typed input objects instead.
 > CheckId: `introspection/imputable_json_scalars`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Imputable JSON scalars": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

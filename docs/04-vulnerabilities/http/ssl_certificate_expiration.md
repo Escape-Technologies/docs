@@ -19,6 +19,23 @@ Purchase a new SSL certificate.
 > CheckId: `http/ssl_certificate_expiration`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "SSL certificate expiration": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

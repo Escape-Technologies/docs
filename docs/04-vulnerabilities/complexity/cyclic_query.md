@@ -84,6 +84,23 @@ With `graphene-django`, it is possible to implement a custom GraphQL backend to 
 > CheckId: `complexity/cyclic_query`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Cyclic query": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

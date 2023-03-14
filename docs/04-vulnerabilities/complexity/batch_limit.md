@@ -45,6 +45,23 @@ Source: <https://www.apollographql.com/docs/apollo-server/requests/#batching>
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Batch Limit": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

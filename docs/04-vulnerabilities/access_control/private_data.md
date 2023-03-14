@@ -57,6 +57,23 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Private data": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

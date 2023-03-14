@@ -26,6 +26,23 @@ Change the argument to one that cannot be enumerated.
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "IDOR": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

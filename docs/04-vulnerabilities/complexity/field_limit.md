@@ -93,6 +93,23 @@ To learn how to implement it, check out [Hasura's Response Limiting guide](https
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Field limit": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

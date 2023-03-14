@@ -45,6 +45,23 @@ Source:
 > CheckId: `information_disclosure/graphql_ide`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "GraphQL IDE": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

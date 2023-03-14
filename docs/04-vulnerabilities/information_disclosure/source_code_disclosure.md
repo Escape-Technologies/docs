@@ -28,6 +28,23 @@ Ensure that `.git`, `.svn`, `.htaccess` metadata files are not deployed to the w
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Source code disclosure": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

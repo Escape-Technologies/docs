@@ -30,6 +30,23 @@ The correct ways to prevent SSRF are:
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Partial SSRF": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

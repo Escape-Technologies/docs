@@ -20,6 +20,23 @@ Enforce strong typing in your GraphQL objects.
 > CheckId: `introspection/undefined_objects`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Undefined objects": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

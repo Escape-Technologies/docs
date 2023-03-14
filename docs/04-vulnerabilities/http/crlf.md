@@ -19,6 +19,23 @@ The only way to prevent CRLF attacks is to carefully sanitize every message that
 > CheckId: `http/crlf`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "CRLF": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

@@ -31,6 +31,23 @@ There are multiple ways to prevent directory traversal attacks:
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Directory traversal": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

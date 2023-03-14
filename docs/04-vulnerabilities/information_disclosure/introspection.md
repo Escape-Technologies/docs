@@ -230,6 +230,23 @@ Source: https://github.com/rmosolgo/graphql-ruby/blob/master/guides/schema/intro
 > CheckId: `information_disclosure/introspection`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Introspection": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

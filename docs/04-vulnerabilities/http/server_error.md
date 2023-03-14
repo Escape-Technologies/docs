@@ -20,6 +20,23 @@ Make sure you also refer to the query we sent to the server to reproduce the iss
 > CheckId: `http/server_error`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Server Error": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

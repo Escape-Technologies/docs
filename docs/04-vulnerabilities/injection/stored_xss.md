@@ -32,6 +32,23 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Stored XSS": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

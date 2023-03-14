@@ -66,6 +66,23 @@ API Gateway console > {your api gateway} > Resources > {your created resource} >
 > CheckId: `http/cors`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "CORS": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

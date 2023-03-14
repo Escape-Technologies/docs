@@ -86,6 +86,23 @@ See Hasura's detailed documentation for [authorization management](https://hasur
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Secrets leaks": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

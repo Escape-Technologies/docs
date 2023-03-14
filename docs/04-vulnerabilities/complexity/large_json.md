@@ -24,6 +24,23 @@ Limit the maximum size of a JSON that can be inputted.
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Large JSON": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

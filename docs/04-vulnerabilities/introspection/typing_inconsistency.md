@@ -77,6 +77,23 @@ Example:
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Typing inconsistency": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

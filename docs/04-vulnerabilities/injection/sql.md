@@ -33,6 +33,23 @@ Additional defenses:
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "SQL": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

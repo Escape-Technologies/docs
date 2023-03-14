@@ -161,6 +161,23 @@ Hasura allows for manual query depth limit configuration directly in the securit
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Depth limit": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

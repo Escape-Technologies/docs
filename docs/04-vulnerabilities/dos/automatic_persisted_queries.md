@@ -100,6 +100,23 @@ Source: https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries.
 > CheckId: `dos/automatic_persisted_queries`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Automatic Persisted Queries": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

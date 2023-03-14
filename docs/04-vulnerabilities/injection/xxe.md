@@ -28,6 +28,23 @@ If it is not possible to disable DTDs completely, disable external entities and 
 > CheckId: `injection/xxe`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "XXE": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

@@ -74,6 +74,19 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
 ### Examples
 
 
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Private fields": {
+            "skip": true
+        }
+    }
+}
+```
+
+
 #### Accessiblity of private objects in a GraphQL API for not authenticated users.
 
 ```

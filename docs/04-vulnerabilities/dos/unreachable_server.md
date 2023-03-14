@@ -25,6 +25,23 @@ We recommend you to investigate two possible causes:
 > CheckId: `dos/unreachable_server`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Unreachable server": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

@@ -103,6 +103,23 @@ Or, you can use the standalone [envelop plugin](https://www.npmjs.com/package/@e
 > CheckId: `information_disclosure/field_suggestion`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Field suggestion": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

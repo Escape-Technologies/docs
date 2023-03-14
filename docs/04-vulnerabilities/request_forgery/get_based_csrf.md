@@ -108,6 +108,23 @@ To learn more on AWS WAF, see: [AWS WAF](https://docs.aws.amazon.com/waf/latest/
 > CheckId: `request_forgery/get_based_csrf`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "GET based CSRF": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

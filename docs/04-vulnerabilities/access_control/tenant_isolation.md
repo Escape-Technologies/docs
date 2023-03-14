@@ -77,6 +77,19 @@ scalars : A list of scalar `fieldName`. A specific `scalarValue` of this field s
 ### Examples
 
 
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Tenant isolation": {
+            "skip": true
+        }
+    }
+}
+```
+
+
 #### Accessiblity of objects private instances for differents users
 
 ```

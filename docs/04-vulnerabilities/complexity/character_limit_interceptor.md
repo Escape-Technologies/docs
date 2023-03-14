@@ -148,6 +148,23 @@ Otherwise, you can use the standalone [envelop plugin](https://www.npmjs.com/pac
 
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Character limit (interceptor)": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

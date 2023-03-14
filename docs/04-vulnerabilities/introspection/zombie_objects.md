@@ -21,6 +21,23 @@ Because they are not maintained nor patched, they are a **privileged vector of a
 > CheckId: `introspection/zombie_objects`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Zombie objects": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

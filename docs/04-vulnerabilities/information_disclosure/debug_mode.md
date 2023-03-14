@@ -19,6 +19,23 @@ Disabled Debug mode.
 > CheckId: `information_disclosure/debug_mode`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Debug mode": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 

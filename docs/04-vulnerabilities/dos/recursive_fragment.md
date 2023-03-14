@@ -19,6 +19,23 @@ Implement a maximum recursion limit.
 > CheckId: `dos/recursive_fragment`
 
 
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "Recursive Fragment": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 
