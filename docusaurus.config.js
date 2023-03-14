@@ -43,6 +43,7 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
+          editUrl: 'https://github.com/Escape-Technologies/docs/edit/main/',
         },
         blog: false,
         theme: {
@@ -102,8 +103,12 @@ const config = {
             title: 'More',
             items: [
               {
+                label: 'Escape website',
+                href: 'https://escape.tech/'
+              },
+              {
                 label: 'Blog',
-                to: 'https://escape.tech/blog'
+                href: 'https://escape.tech/blog'
               }
             ]
           }
