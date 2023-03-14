@@ -1,9 +1,9 @@
 ---
 sidebar_position: 5
-title: Heart Bleed
+title: HeartBleed
 ---
 
-# Heart Bleed
+# HeartBleed
 
 ## Description
 
@@ -19,7 +19,7 @@ To effectively prevent HeartBleed attacks:
 
 ## Configuration
 
-> CheckId: `http/heart_bleed`
+> CheckId: `http/heartbleed`
 
 
 ### Examples
@@ -30,7 +30,7 @@ To effectively prevent HeartBleed attacks:
 ```json
 {
     "checks": {
-        "http/heart_bleed": {
+        "http/heartbleed": {
             "skip": true
         }
     }
