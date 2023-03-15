@@ -24,7 +24,7 @@ Escape will start every time a new feature branch or commit is merged on the tar
 When Escape notifies you of a new issue, you can either **revert** the concerned merge request manually or fix it in another merge request using Escape's remediations proposals (or by ignoring the issue). That way, you ensure **that no issue can reach your production**.
 
 <Tabs>
-  <TabItem value="github" label="Github Action" default>
+  <TabItem value="github" label="GitHub Action" default>
 
 ```yaml
 # https://github.com/Escape-Technologies/action
@@ -102,7 +102,7 @@ https://api-public.prod.cloud.escape.tech/applications/$APPLICATION_ID/start-sca
 In this case, a security scan will be triggered every time a commit on the targeted branch is pushed. This job will remain non-blocking: The scan will be started, but the CI job will not wait for it to be finished before terminating. The triggered scan will run asynchronously on Escape, and your team will be notified at the end of it, using your desired [integrations](/integrations) settings.
 
 <Tabs>
-  <TabItem value="github" label="Github Action" default>
+  <TabItem value="github" label="GitHub Action" default>
 
 ```yaml
 # https://github.com/Escape-Technologies/action

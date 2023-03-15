@@ -94,7 +94,7 @@ const config = {
                 href: 'https://discord.escape.tech'
               },
               {
-                label: 'Github',
+                label: 'GitHub',
                 href: 'https://github.com/escape-technologies'
               },
             ]
