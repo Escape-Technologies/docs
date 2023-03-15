@@ -11,7 +11,7 @@ You can use our security tools within your CI/CD flows, and we are constantly wo
 
 As of now, Escape scans can be triggered from the following usages:
 
-- [Github action](https://github.com/marketplace/actions/escape-graphql-security)
+- [GitHub action](https://github.com/marketplace/actions/escape-graphql-security)
 - Gitlab pipelines
 - Anywhere else using our [`npm` package](https://www.npmjs.com/package/@escape.tech/action)
 - Anywhere else using our public API
