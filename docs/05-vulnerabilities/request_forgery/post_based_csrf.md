@@ -29,7 +29,7 @@ With Express.js, the `enforce-content-type` middleware can be used to block unwa
  }))
  ```
 
- See: [enforce-content-type Github Repo](https://github.com/codepunkt/enforce-content-type).
+ See: [enforce-content-type GitHub Repo](https://github.com/codepunkt/enforce-content-type).
 
 
 </details>
