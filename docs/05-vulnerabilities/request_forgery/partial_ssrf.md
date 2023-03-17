@@ -46,6 +46,21 @@ The correct ways to prevent SSRF are:
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "request_forgery/partial_ssrf": {
+            "options": {
+                "skip_objects": []
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

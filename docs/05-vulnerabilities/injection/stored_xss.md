@@ -48,6 +48,21 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "injection/stored_xss": {
+            "options": {
+                "skip_objects": []
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

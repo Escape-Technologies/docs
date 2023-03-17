@@ -91,6 +91,21 @@ Hasura allows you to set a width (=node) limit.
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "complexity/width_limit": {
+            "options": {
+                "threshold": 20
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

@@ -102,6 +102,21 @@ See Hasura's detailed documentation for [authorization management](https://hasur
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "access_control/secrets_leaks": {
+            "options": {
+                "blacklist": []
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

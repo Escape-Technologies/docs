@@ -45,6 +45,21 @@ Primary defenses:
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "injection/nosql": {
+            "options": {
+                "skip_objects": []
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

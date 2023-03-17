@@ -102,6 +102,23 @@ There is no known remediation for StepZen.
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "dos/security_timeout": {
+            "options": {
+                "threshold_low": 1,
+                "threshold_medium": 2,
+                "threshold_high": 4
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

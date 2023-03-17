@@ -164,6 +164,21 @@ Otherwise, you can use the standalone [envelop plugin](https://www.npmjs.com/pac
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "complexity/character_limit_interceptor": {
+            "options": {
+                "threshold": 15500
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

@@ -40,6 +40,21 @@ To prevent such an attack, limit pagination variables.
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "complexity/pagination_limit": {
+            "options": {
+                "skip_objects": []
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

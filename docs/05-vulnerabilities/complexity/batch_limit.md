@@ -61,6 +61,21 @@ Source: <https://www.apollographql.com/docs/apollo-server/requests/#batching>
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "complexity/batch_limit": {
+            "options": {
+                "threshold": 15
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

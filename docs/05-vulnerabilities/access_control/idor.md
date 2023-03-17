@@ -42,6 +42,22 @@ Change the argument to one that cannot be enumerated.
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "access_control/idor": {
+            "options": {
+                "threshold_res": 0.8,
+                "threshold_enum": 0.6
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

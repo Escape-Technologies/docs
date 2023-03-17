@@ -44,6 +44,23 @@ Ensure that `.git`, `.svn`, `.htaccess` metadata files are not deployed to the w
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "information_disclosure/source_code_disclosure": {
+            "options": {
+                "size_threshold": 200,
+                "diff_threshold": 0.1,
+                "small_response_diff_threshold": 0.4
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

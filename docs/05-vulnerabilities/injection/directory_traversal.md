@@ -47,6 +47,21 @@ There are multiple ways to prevent directory traversal attacks:
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "injection/directory_traversal": {
+            "options": {
+                "skip_objects": []
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score
