@@ -87,6 +87,21 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "access_control/private_fields": {
+            "options": {
+                "empty_values_are_positive": false
+            }
+        }
+    }
+}
+```
+
+
 #### Accessiblity of private objects in a GraphQL API for not authenticated users.
 
 ```

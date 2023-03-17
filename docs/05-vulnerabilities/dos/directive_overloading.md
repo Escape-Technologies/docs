@@ -59,6 +59,21 @@ You can also use our [GraphQL Armor](https://github.com/Escape-Technologies/grap
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "dos/directive_overloading": {
+            "options": {
+                "threshold": 50
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

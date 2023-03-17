@@ -43,6 +43,21 @@ To prevent command injection attacks:
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "injection/bash_command": {
+            "options": {
+                "skip_objects": []
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

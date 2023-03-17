@@ -109,6 +109,21 @@ To learn how to implement it, check out [Hasura's Response Limiting guide](https
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "complexity/field_limit": {
+            "options": {
+                "threshold": 100
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

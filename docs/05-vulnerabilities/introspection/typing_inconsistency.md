@@ -93,6 +93,21 @@ Example:
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "introspection/typing_inconsistency": {
+            "options": {
+                "skip_objects": []
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

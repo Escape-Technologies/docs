@@ -177,6 +177,21 @@ Hasura allows for manual query depth limit configuration directly in the securit
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "complexity/depth_limit": {
+            "options": {
+                "threshold": 3
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

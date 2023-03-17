@@ -40,6 +40,21 @@ Limit the maximum size of a JSON that can be inputted.
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "complexity/large_json": {
+            "options": {
+                "skip_objects": []
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score

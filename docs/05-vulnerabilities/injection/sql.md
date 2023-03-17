@@ -49,6 +49,21 @@ Additional defenses:
 ```
 
 
+#### Check with all default options
+
+```json
+{
+    "checks": {
+        "injection/sql": {
+            "options": {
+                "skip_objects": []
+            }
+        }
+    }
+}
+```
+
+
 
 
 ## Score
