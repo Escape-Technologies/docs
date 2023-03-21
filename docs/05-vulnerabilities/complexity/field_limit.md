@@ -129,7 +129,7 @@ To learn how to implement it, check out [Hasura's Response Limiting guide](https
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-- OWASP: **[A03:2021](https://owasp.org/Top10/A03_2021-Injection/)**
+- OWASP: **[A04:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa4-unrestricted-resource-consumption.md)**
 - PCI DSS: **6.5.8**
 - CWE
   - **20**

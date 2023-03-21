@@ -43,7 +43,7 @@ To effectively prevent HeartBleed attacks:
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A06:2021](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)**
+- OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa7-security-misconfiguration.md)**
 
 - CWE
   - **118**

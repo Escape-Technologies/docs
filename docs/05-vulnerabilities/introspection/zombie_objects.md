@@ -42,7 +42,7 @@ Because they are not maintained nor patched, they are a **privileged vector of a
 ## Score
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
-
+- OWASP: **[A09:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa9-improper-assets-management.md)**
 - PCI DSS: **6.3.2**
 - CWE
   - **561**

@@ -78,7 +78,7 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A01:2021](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)**
+- OWASP: **[A03:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa3-broken-object-property-level-authorization.md)**
 - PCI DSS: **6.5.8**
 - CWE
   - **200**

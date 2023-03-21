@@ -40,7 +40,7 @@ Update your resolver to make the introspection type match the actual returned ty
 ## Score
 
 - Escape Severity: **<span className="info-severityom">INFO</span>**
-
+- OWASP: **[A03:2021](https://owasp.org/Top10/A03_2021-Injection/)**
 - PCI DSS: **6.5.8**
 - CWE
   - **389**

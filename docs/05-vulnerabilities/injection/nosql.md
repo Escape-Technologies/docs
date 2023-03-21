@@ -65,7 +65,7 @@ Primary defenses:
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A03:2021](https://owasp.org/Top10/A03_2021-Injection/)**
+- OWASP: **[A09:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa9-improper-assets-management.md)**
 - PCI DSS: **6.5.1**
 - CWE
   - **89**

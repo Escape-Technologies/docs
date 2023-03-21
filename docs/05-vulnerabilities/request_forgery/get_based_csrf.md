@@ -129,7 +129,7 @@ To learn more on AWS WAF, see: [AWS WAF](https://docs.aws.amazon.com/waf/latest/
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A05:2021](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)**
+- OWASP: **[A02:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa2-broken-authentication.md)**
 - PCI DSS: **6.5.9**
 - CWE
   - **345**

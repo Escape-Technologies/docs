@@ -60,7 +60,7 @@ With Express.js, the `enforce-content-type` middleware can be used to block unwa
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-- OWASP: **[A05:2021](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)**
+- OWASP: **[A02:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa2-broken-authentication.md)**
 - PCI DSS: **6.5.9**
 - CWE
   - **345**
