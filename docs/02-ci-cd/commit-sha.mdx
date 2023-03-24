@@ -10,8 +10,8 @@ Escape allows you to identify the commits on which a security scan was run. This
 When running a security scan from within a CI environment, Escape will save the commit SHA identification attached to the job, as well as the Git reference name and the committer email attached to this SHA. As of today, the list of supported CI environments includes:
 
 - CircleCI: Nothing to do, CircleCI provides the commit-related data, and we catch it.
-- Gitlab CI: Nothing to do, CircleCI provides the commit-related data, and we catch it.
-- Github actions: Nothing to do, CircleCI provides the commit-related data, and we catch it.
+- Gitlab CI: Nothing to do, Gitlab CI provides the commit-related data, and we catch it.
+- Github actions: Nothing to do, Github actions provides the commit-related data, and we catch it.
 - Manual sha identification when running Escape's CLI or directly calling the API.
 
 <Tabs>
