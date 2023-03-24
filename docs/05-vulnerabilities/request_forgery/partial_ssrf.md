@@ -1,5 +1,5 @@
 ---
-sidebar_position: 0
+sidebar_position: 33
 title: Partial SSRF
 ---
 
@@ -66,7 +66,7 @@ The correct ways to prevent SSRF are:
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A10:2021](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/)**
+- OWASP: **[A06:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa6-server-side-request-forgery.md)**
 
 - CWE
   - **441**

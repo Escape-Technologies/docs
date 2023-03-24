@@ -1,5 +1,5 @@
 ---
-sidebar_position: 22
+sidebar_position: 44
 title: Automatic Persisted Queries
 ---
 
@@ -121,7 +121,7 @@ Source: https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries.
 ## Score
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
-- OWASP: **[A05:2021](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)**
+- OWASP: **[A08:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa8-lack-of-protection-from-automated-threats.md)**
 - PCI DSS: **6.5.8**
 - CWE
   - **284**

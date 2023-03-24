@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 49
 title: Open redirection
 ---
 
@@ -39,7 +39,7 @@ This check looks at user-supplied input in query string parameters and POST data
 ## Score
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
-- OWASP: **[A05:2021](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)**
+- OWASP: **[A01:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa1-broken-object-level-authorization.md)**
 
 - CWE
   - **601**

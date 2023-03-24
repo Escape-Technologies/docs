@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 18
 title: Undefined objects
 ---
 
@@ -41,7 +41,7 @@ Enforce strong typing in your GraphQL objects.
 ## Score
 
 - Escape Severity: **<span className="info-severityom">INFO</span>**
-- OWASP: **[A06:2021](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)**
+- OWASP: **[A09:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa9-improper-assets-management.md)**
 
 - CWE
   - **758**

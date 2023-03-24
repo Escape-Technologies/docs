@@ -1,5 +1,5 @@
 ---
-sidebar_position: 33
+sidebar_position: 22
 title: Public Unsafe Route
 ---
 
@@ -40,7 +40,7 @@ Restrict access to the route, using an authentication middleware for example.
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-- OWASP: **[A01:2021](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)**
+- OWASP: **[A01:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa1-broken-object-level-authorization.md)**
 - PCI DSS: **6.5.8**
 - CWE
   - **200**

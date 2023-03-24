@@ -1,5 +1,5 @@
 ---
-sidebar_position: 14
+sidebar_position: 4
 title: Directive overloading
 ---
 
@@ -79,7 +79,7 @@ You can also use our [GraphQL Armor](https://github.com/Escape-Technologies/grap
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-- OWASP: **[A05:2021](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)**
+- OWASP: **[A08:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa8-lack-of-protection-from-automated-threats.md)**
 
 - CWE
   - **20**

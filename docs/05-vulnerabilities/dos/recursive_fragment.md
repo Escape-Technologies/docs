@@ -1,5 +1,5 @@
 ---
-sidebar_position: 45
+sidebar_position: 37
 title: Recursive Fragment
 ---
 
@@ -40,7 +40,7 @@ Implement a maximum recursion limit.
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-- OWASP: **[A05:2021](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)**
+- OWASP: **[A08:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa8-lack-of-protection-from-automated-threats.md)**
 
 - CWE
   - **20**
