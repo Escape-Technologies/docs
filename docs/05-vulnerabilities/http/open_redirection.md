@@ -1,5 +1,5 @@
 ---
-sidebar_position: 49
+sidebar_position: 7
 title: Open redirection
 ---
 

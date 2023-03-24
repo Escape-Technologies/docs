@@ -1,5 +1,5 @@
 ---
-sidebar_position: 39
+sidebar_position: 4
 title: Zombie objects
 ---
 

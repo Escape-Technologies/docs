@@ -1,5 +1,5 @@
 ---
-sidebar_position: 33
+sidebar_position: 2
 title: Partial SSRF
 ---
 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 47
+sidebar_position: 4
 title: Source code disclosure
 ---
 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 45
+sidebar_position: 3
 title: GraphQL IDE
 ---
 
