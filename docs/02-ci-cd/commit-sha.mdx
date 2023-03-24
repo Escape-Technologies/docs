@@ -7,11 +7,11 @@ title: Identify commits
 
 Escape allows you to identify the commits on which a security scan was run. This is useful for tracking the evolution of your application's security posture over time.
 
-When running a security scan from within a CI environment, Escape will save the commit SHA identification attached to the job. As of today, the list of supported CI environments includes:
+When running a security scan from within a CI environment, Escape will save the commit SHA identification attached to the job, as well as the Git reference name and the committer email attached to this SHA. As of today, the list of supported CI environments includes:
 
-- CircleCI: Nothing to do, CircleCI provides a commit SHA, and we catch it.
-- Gitlab CI: Nothing to do, CircleCI provides a commit SHA, and we catch it.
-- GitHub actions: Nothing to do, CircleCI provides a commit SHA, and we catch it.
+- CircleCI: Nothing to do, CircleCI provides the commit-related data, and we catch it.
+- Gitlab CI: Nothing to do, Gitlab CI provides the commit-related data, and we catch it.
+- Github actions: Nothing to do, Github actions provides the commit-related data, and we catch it.
 - Manual sha identification when running Escape's CLI or directly calling the API.
 
 <Tabs>
@@ -21,6 +21,8 @@ When running a security scan from within a CI environment, Escape will save the 
 export ESCAPE_APPLICATION_ID=<YOUR APPLICATION ID>
 export ESCAPE_API_KEY=<YOUR API KEY>
 export COMMIT_HASH=$(git rev-parse HEAD)
+export REF_NAME=$(git rev-parse --abbrev-ref HEAD)
+export USER_EMAIL=$(git log -1 --pretty=format:'%ae')
 
 npm i -g @escape.tech/action
 escape-action
@@ -33,10 +35,11 @@ escape-action
 export APPLICATION_ID=<YOUR APPLICATION ID>
 export API_KEY=<YOUR API KEY>
 
+
 curl -X POST \
 -H "Authorization: Key $API_KEY" \
 -H "Content-Type: application/json" \
--d "{ \"commitHash\": \"$(git rev-parse HEAD)\" }" \
+-d "{ \"commitHash\": \"$(git rev-parse HEAD)\", \"commitBranch\": \"$(git rev-parse --abbrev-ref HEAD)\", \"commitAuthor\": \"$(git log -1 --pretty=format:'%ae')\"  }" \
 https://api-public.prod.cloud.escape.tech/applications/$APPLICATION_ID/start-scan
 ```
 
