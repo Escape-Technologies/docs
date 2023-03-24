@@ -1,5 +1,5 @@
 ---
-sidebar_position: 42
+sidebar_position: 26
 title: Circular introspection
 ---
 
@@ -66,7 +66,7 @@ To prevent circular introspection from being abused:
 ## Score
 
 - Escape Severity: **<span className="info-severityom">INFO</span>**
-- OWASP: **[A05:2021](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)**
+- OWASP: **[A08:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa8-lack-of-protection-from-automated-threats.md)**
 - PCI DSS: **6.5.8**
 - CWE
   - **400**

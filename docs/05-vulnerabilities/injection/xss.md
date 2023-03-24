@@ -1,5 +1,5 @@
 ---
-sidebar_position: 43
+sidebar_position: 24
 title: XSS
 ---
 

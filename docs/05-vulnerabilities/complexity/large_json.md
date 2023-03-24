@@ -1,5 +1,5 @@
 ---
-sidebar_position: 37
+sidebar_position: 48
 title: Large JSON
 ---
 
@@ -60,7 +60,7 @@ Limit the maximum size of a JSON that can be inputted.
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-- OWASP: **[A05:2021](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)**
+- OWASP: **[A04:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa4-unrestricted-resource-consumption.md)**
 - PCI DSS: **6.5.8**
 - CWE
   - **20**

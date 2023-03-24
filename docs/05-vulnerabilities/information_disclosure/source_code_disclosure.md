@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 47
 title: Source code disclosure
 ---
 
@@ -66,7 +66,7 @@ Ensure that `.git`, `.svn`, `.htaccess` metadata files are not deployed to the w
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A05:2021](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)**
+- OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa7-security-misconfiguration.md)**
 
 - CWE
   - **200**

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 13
+sidebar_position: 9
 title: Tenant isolation
 ---
 
@@ -133,7 +133,7 @@ scalars : A list of scalar `fieldName`. A specific `scalarValue` of this field s
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A01:2021](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)**
+- OWASP: **[A05:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa5-broken-function-level-authorization.md)**
 - PCI DSS: **6.5.8**
 - CWE
   - **200**

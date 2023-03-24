@@ -1,5 +1,5 @@
 ---
-sidebar_position: 18
+sidebar_position: 14
 title: CORS
 ---
 
@@ -87,7 +87,7 @@ API Gateway console > {your api gateway} > Resources > {your created resource} >
 ## Score
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
-- OWASP: **[A05:2021](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)**
+- OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa7-security-misconfiguration.md)**
 - PCI DSS: **6.5.9**
 - CWE
   - **183**

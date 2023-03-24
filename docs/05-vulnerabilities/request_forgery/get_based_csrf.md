@@ -1,5 +1,5 @@
 ---
-sidebar_position: 31
+sidebar_position: 19
 title: GET based CSRF
 ---
 
@@ -14,6 +14,10 @@ Allowing API calls through `GET` requests can lead to CSRF attacks because cooki
 ## Remediation
 
 Forbid API calls through `GET` requests to prevent CSRF attacks.
+
+Note that CSRF is an attack vector that specifically target requests where the browser automatically provides authentication (typically through `Cookie` or `Basic` Authentication).
+
+Especially, if your application is attaching the credentials via an `Authorization` header then the browser can't automatically authenticate the requests, and CSRF isn't possible.
 
 
 <details>
@@ -129,7 +133,7 @@ To learn more on AWS WAF, see: [AWS WAF](https://docs.aws.amazon.com/waf/latest/
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A05:2021](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)**
+- OWASP: **[A02:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa2-broken-authentication.md)**
 - PCI DSS: **6.5.9**
 - CWE
   - **345**

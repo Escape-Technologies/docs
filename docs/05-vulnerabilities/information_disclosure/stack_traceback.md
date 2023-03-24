@@ -93,7 +93,7 @@ In that case, make sure your production environment has `HASURA_GRAPHQL_DEV_MODE
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-- OWASP: **[A05:2021](https://owasp.org/Top10/A05_2021-Security_Misconfiguration/)**
+- OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa7-security-misconfiguration.md)**
 - PCI DSS: **6.5.5**
 - CWE
   - **200**
