@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 0
 title: Typing inconsistency (interceptor)
 ---
 
@@ -40,7 +40,7 @@ Update your resolver to make the introspection type match the actual returned ty
 ## Score
 
 - Escape Severity: **<span className="info-severityom">INFO</span>**
-- OWASP: **[A03:2021](https://owasp.org/Top10/A03_2021-Injection/)**
+- OWASP: **[A08:2019](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa8-injection.md)**
 - PCI DSS: **6.5.8**
 - CWE
   - **389**

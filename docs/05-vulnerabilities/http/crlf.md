@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 1
 title: CRLF
 ---
 
@@ -40,7 +40,7 @@ The only way to prevent CRLF attacks is to carefully sanitize every message that
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-- OWASP: **[A03:2021](https://owasp.org/Top10/A03_2021-Injection/)**
+- OWASP: **[A08:2019](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa8-injection.md)**
 - PCI DSS: **6.5.1**
 - CWE
   - **93**

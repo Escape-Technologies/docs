@@ -1,9 +1,9 @@
 ---
-sidebar_position: 3
-title: Pagination missing
+sidebar_position: 0
+title: Pagination
 ---
 
-# Pagination missing
+# Pagination
 
 ## Description
 
@@ -17,7 +17,7 @@ Implement pagination on the specified queries.
 
 ## Configuration
 
-> CheckId: `complexity/pagination_missing`
+> CheckId: `complexity/pagination`
 
 ### Options
 
@@ -33,7 +33,7 @@ Implement pagination on the specified queries.
 ```json
 {
     "checks": {
-        "complexity/pagination_missing": {
+        "complexity/pagination": {
             "skip": true
         }
     }
@@ -46,7 +46,7 @@ Implement pagination on the specified queries.
 ```json
 {
     "checks": {
-        "complexity/pagination_missing": {
+        "complexity/pagination": {
             "options": {
                 "threshold": 25
             }
@@ -60,7 +60,7 @@ Implement pagination on the specified queries.
 
 ## Score
 
-- Escape Severity: **<span className="info-severityom">INFO</span>**
+- Escape Severity: **<span className="low-severity">LOW</span>**
 - OWASP: **[A08:2023](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa8-lack-of-protection-from-automated-threats.md)**
 - PCI DSS: **6.5.8**
 - CWE
