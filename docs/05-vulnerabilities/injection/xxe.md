@@ -1,5 +1,5 @@
 ---
-sidebar_position: 0
+sidebar_position: 3
 title: XXE
 ---
 
@@ -49,7 +49,7 @@ If it is not possible to disable DTDs completely, disable external entities and 
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A03:2021](https://owasp.org/Top10/A03_2021-Injection/)**
+- OWASP: **[A08:2019](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa8-injection.md)**
 - PCI DSS: **_6_5_1**
 - CWE
   - **610**

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 title: Directory traversal
 ---
 
@@ -67,7 +67,7 @@ There are multiple ways to prevent directory traversal attacks:
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A03:2021](https://owasp.org/Top10/A03_2021-Injection/)**
+- OWASP: **[A08:2019](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa8-injection.md)**
 - PCI DSS: **6.5.8**
 - CWE
   - **22**
