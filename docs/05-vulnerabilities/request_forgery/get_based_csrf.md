@@ -11,13 +11,13 @@ CSRF (Cross-Site Request Forgery) occurs when an external website has the abilit
 
 Allowing API calls through `GET` requests can lead to CSRF attacks because cookies are added automatically to GET requests made by the browser.
 
-## Remediation
-
-Forbid API calls through `GET` requests to prevent CSRF attacks.
-
 Note that CSRF is an attack vector that specifically target requests where the browser automatically provides authentication (typically through `Cookie` or `Basic` Authentication).
 
 Especially, if your application is attaching the credentials via an `Authorization` header then the browser can't automatically authenticate the requests, and CSRF isn't possible.
+
+## Remediation
+
+Forbid API calls through `GET` requests to prevent CSRF attacks.
 
 
 <details>
