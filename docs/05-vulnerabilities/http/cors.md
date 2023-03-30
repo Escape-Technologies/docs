@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: CORS
 ---
 
@@ -11,7 +11,7 @@ Attackers can exploit CORS (Cross-Origin Resource Sharing) misconfigurations on 
 
 ## Remediation
 
-Configure the 'Access-Control-Allow-Origin' HTTP header to a more restrictive set of domains, or remove all CORS headers entirely, to allow the web browser to enforce the Same Origin Policy (SOP) in a more restrictive manner.
+Configure the `Access-Control-Allow-Origin` HTTP header to a more restrictive set of domains, or remove all CORS headers entirely, to allow the web browser to enforce the Same Origin Policy (SOP) in a more restrictive manner.
 
 If your API is public and used in websites you don't control yourself, you want to allow any request origin and you can safely ignore this alert.
 
