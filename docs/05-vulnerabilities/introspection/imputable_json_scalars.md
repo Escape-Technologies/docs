@@ -7,8 +7,8 @@ title: Imputable JSON scalars
 
 ## Description
 
-Imputable JSON scalars are an arbitrary GraphQL scalar type that allow users to return JSON objects from the GraphQL schema.
-It is a **bad practice** and may represent an unhandled data leak risk for your application.
+Inputable JSON scalars are an arbitrary GraphQL scalar type that allow users to return JSON objects from the GraphQL schema.
+It is a weak typing **bad practice** and may represent an unhandled data leak risk for your application.
 
 ## Remediation
 

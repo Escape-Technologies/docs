@@ -15,15 +15,20 @@ Example: sending `getUser(id: null)` returns `{ success: false, message: "SQL Er
 
 Always avoid database or code error stack traces to be returned directly to the client.
 
+If you are working in a development or staging environment, error disclosure might happen on purpose.
+In that case, check if this is also the case in production by:
+- Using our cURL copy button to find the request that generated the stack trace.
+- Changing URL and authentication tokens to match your production environment.
+
 
 <details>
     <summary>Apollo</summary>
 
 Never allow database or code error stack traces to be returned directly to the client.
 
-This remediation is supported by our [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) middleware.
+This remediation is supported by our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware.
 
-When using Apollo you can also disable exception tracebacks in the response by either setting `NODE_ENV` to `production` or enforcing it:
+When using Apollo you can also set `NODE_ENV` to `production` or disable DEBUG mode:
 
 ```javascript
 const server = new ApolloServer({
@@ -32,14 +37,10 @@ const server = new ApolloServer({
 )}
 ````
 
-To learn more, you can read [Apollo's documentation on omitting stack traces](https://www.apollographql.com/docs/apollo-server/data/errors/#omitting-or-including-stacktrace).
-
-*Note: if you are working in a development or staging environment, error disclosure might happen on purpose.
+If you are working in a development or staging environment, error disclosure might happen on purpose.
 In that case, check if this is also the case in production by:
 - Using our cURL copy button to find the request that generated the stack trace.
 - Changing URL and authentication tokens to match your production environment.
-
-If the issue doesn't happen in production, you can safely ignore it.*
 
 
 </details>
@@ -47,8 +48,9 @@ If the issue doesn't happen in production, you can safely ignore it.*
 <details>
     <summary>Graphqlyoga</summary>
 
-Enable [error masking](https://www.the-guild.dev/graphql/yoga-server/docs/features/error-masking) to hide stack traces in production.
+This remediation is supported by our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware.
 
+When using Yoga you can also enable [error masking](https://www.the-guild.dev/graphql/yoga-server/docs/features/error-masking) to hide stack traces in production.
 Since it is enabled by default, you are probably missing the variable `NODE_ENV=production` in your production environment.
 
 

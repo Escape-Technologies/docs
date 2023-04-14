@@ -20,7 +20,7 @@ Disable or limit queries batching in your GraphQL engine.
 
 Disable query batching in `ApolloServer` constructor options.
 
-This remediation is supported by [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) middleware.
+Install our open source package [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) for Apollo.
 
 Otherwise, you can switch off batching in the `ApolloServer` constructor options.
 
@@ -31,6 +31,14 @@ const server = new ApolloServer({
 )}
 ```
 Source: <https://www.apollographql.com/docs/apollo-server/requests/#batching>
+
+
+</details>
+
+<details>
+    <summary>Graphqlyoga</summary>
+
+Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Yoga.
 
 
 </details>

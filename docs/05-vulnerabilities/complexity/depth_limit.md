@@ -59,20 +59,7 @@ Depth alone is often not enough to cover all abusive queries. For example, a que
 <details>
     <summary>Apollo</summary>
 
-This remediation is supported by our [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) middleware.
-
-You can also limit the depth of queries with the very light [graphql-depth-limit](https://www.npmjs.com/package/graphql-depth-limit) library.
-
-Check how deep legitimate queries should be and set a maximum depth accordingly.
-
-```javascript
-import depthLimit from 'graphql-depth-limit'
-
-const server = new ApolloServer({
-  // ...
-  validationRules: [depthLimit(5)]
-});
-```
+Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Apollo.
 
 Source: <https://escape.tech/blog/9-graphql-security-best-practices/>.
 
@@ -133,7 +120,7 @@ Source: https://github.com/webonyx/graphql-php/blob/master/docs/security.md#limi
 <details>
     <summary>Graphqlyoga</summary>
 
-This remediation is supported by our [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) middleware.
+Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Yoga.
 
 You can also use the standalone [envelop plugin](https://www.npmjs.com/package/@escape.tech/graphql-armor-max-depth).
 
