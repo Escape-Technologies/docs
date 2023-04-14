@@ -40,28 +40,15 @@ Response example:
 
 Adding a limit on request complexity is a much better alternative to disabling aliasing, which can trigger other issues.
 
-This remediation is supported by our [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) middleware.
+Install our open source package [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) for Apollo.
 
-When using Apollo, you can also add a module to compute the query complexity and set a threshold so that overly broad requests get canceled.
 
-For a user-friendly module which requires no schema modification whatsoever, check out the [graphql-validation-complexity](https://github.com/4Catalyzer/graphql-validation-complexity) module.
+</details>
 
-```javascript
-import { createComplexityLimitRule } from 'graphql-validation-complexity';
+<details>
+    <summary>Graphqlyoga</summary>
 
-const ComplexityLimitRule = createComplexityLimitRule(1000);
-
-const apolloServer = new ApolloServer({
-    ...
-    validationRules: [createComplexityLimitRule(1000)],
-});
-```
-
-For a more customizable module that lets you manually configure the cost of each field/type of your schema, take a look at the [graphql-cost-analysis](https://github.com/pa-bru/graphql-cost-analysis) module.
-
-This second option is best suited for a more realistic complexity estimator as all fields may not be equal in terms of complexity.
-
-To learn more about complexity estimation, you can read: [Securing Your GraphQL API from Malicious Queries](https://www.apollographql.com/blog/graphql/security/securing-your-graphql-api-from-malicious-queries/)
+Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Yoga.
 
 
 </details>

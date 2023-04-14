@@ -19,7 +19,7 @@ This should be handled by the GraphQL engine while parsing the document, otherwi
     <summary>Apollo</summary>
 
 Upgrade to GraphQL>=16.0.0 if you are not already up to date.
-You can also use our [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) middleware to limit the number of directives allowed in a query.
+You can also use our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware to limit the number of directives allowed in a query.
 
 
 </details>
@@ -28,7 +28,7 @@ You can also use our [GraphQL Armor](https://github.com/Escape-Technologies/grap
     <summary>Graphqlyoga</summary>
 
 Upgrade to GraphQL>=16.0.0 if you are not already up to date.
-You can also use our [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) middleware to limit the number of directives allowed in a query.
+You can also use our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware to limit the number of directives allowed in a query.
 
 
 </details>

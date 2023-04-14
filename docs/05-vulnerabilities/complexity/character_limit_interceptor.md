@@ -13,7 +13,7 @@ This could lead to potential *DoS attacks* or *information leakage*.
 ## Remediation
 
 Reject requests containing more than a certain number of characters.
-For instance, `3,000` is a coherent threshold for characters.
+For instance, `15000` is a coherent threshold for characters.
 
 This naïve approach will not prevent clever hackers from crafting costly requests if short field names are available.
 One should prefer the better but more difficult to implement "query complexity" method and set a complexity threshold instead.
@@ -22,24 +22,9 @@ One should prefer the better but more difficult to implement "query complexity" 
 <details>
     <summary>Apollo</summary>
 
-Reject requests containing more than a certain number of characters.
+Reject requests containing more than a certain number of characters. For instance, `15000` is a coherent threshold for characters.
 
-For instance, `3,000` is a coherent threshold for characters.
-
-This remediation is supported by [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) middleware.
-
-Otherwise, this is an example code for Apollo with Express.js:
-```javascript
-import bodyParser from "body-parser";
-...
-app.use(bodyParser.json({ limit : 3000, type : '*/*' }));
-```
-**Note:** If your application is designed to send big graphql queries, you might want to put a higher character limit.
-
-This naïve approach will not prevent clever hackers from crafting costly requests if short field names are available.
-One should additionally use the better but more difficult to implement "query complexity" method and set a complexity threshold.
-
-Source: <https://www.apollographql.com/blog/graphql/security/securing-your-graphql-api-from-malicious-queries/>
+Install our open source package [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) for Apollo.
 
 
 </details>
@@ -129,9 +114,9 @@ func main(){
 <details>
     <summary>Graphqlyoga</summary>
 
-Reject requests containing more than a certain number of characters.
+Reject requests containing more than a certain number of characters. For instance, `15000` is a coherent threshold for characters.
 
-This remediation is supported by [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) middleware.
+Install our open source package [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) for Yoga.
 
 Otherwise, you can use the standalone [envelop plugin](https://www.npmjs.com/package/@escape.tech/graphql-armor-character-limit) directly.
 
@@ -171,7 +156,7 @@ Otherwise, you can use the standalone [envelop plugin](https://www.npmjs.com/pac
     "checks": {
         "complexity/character_limit_interceptor": {
             "options": {
-                "threshold": 15500
+                "threshold": 15000
             }
         }
     }

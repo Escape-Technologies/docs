@@ -22,7 +22,7 @@ Disable Field Suggestion in production.
 <details>
     <summary>Apollo</summary>
 
-Block field suggestion is supported by [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) middleware.
+Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Apollo.
 
 
 </details>
@@ -91,7 +91,7 @@ func main(){
 <details>
     <summary>Graphqlyoga</summary>
 
-Block field suggestion is supported by [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) middleware.
+Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Yoga.
 
 Or, you can use the standalone [envelop plugin](https://www.npmjs.com/package/@escape.tech/graphql-armor-block-field-suggestions).
 
