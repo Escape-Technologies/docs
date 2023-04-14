@@ -246,20 +246,33 @@ Each scalar have a few key:
 
 |Name|Description|Sensitivity|
 |----|-----------|-----------|
+|cuid|Globally Unique Identifier|<span className="low-severity">LOW</span>|
+|did|Decentralized Identifiers|<span className="low-severity">LOW</span>|
+|hex_color_code|Hex Color Code|<span className="low-severity">LOW</span>|
+|hexadecimal|Hexadecimal|<span className="low-severity">LOW</span>|
 |host|Host name (IP or DNS)|<span className="medium-severity">MEDIUM</span>|
+|hsl|Hue, Saturation, Lightness|<span className="low-severity">LOW</span>|
+|hsla|Hue, Saturation, Lightness, Alpha|<span className="low-severity">LOW</span>|
+|ipc_patent|IPC Patent|<span className="medium-severity">MEDIUM</span>|
 |ipv4|IPv4 address|<span className="medium-severity">MEDIUM</span>|
 |ipv6|IPv6 address|<span className="medium-severity">MEDIUM</span>|
+|isbn|International Standard Book Number|<span className="low-severity">LOW</span>|
 |json|JSON string|<span className="low-severity">LOW</span>|
 |language_iso_639_1|Language|<span className="low-severity">LOW</span>|
 |language_iso_639_2|Language ISO 639-2|<span className="low-severity">LOW</span>|
+|locale|BCP 47 Locale|<span className="low-severity">LOW</span>|
+|mac|Mac Address|<span className="medium-severity">MEDIUM</span>|
+|mongo_db_object_id|Mongo DB Object ID|<span className="low-severity">LOW</span>|
 |path|Disk or URL Path|<span className="low-severity">LOW</span>|
 |port|Port number|<span className="low-severity">LOW</span>|
 |protocol|Protocol|<span className="low-severity">LOW</span>|
+|rgb|RGB Color Code|<span className="low-severity">LOW</span>|
+|rgba|RGBA Color Code|<span className="low-severity">LOW</span>|
 |secret|Secret|<span className="high-severity">HIGH</span>|
 |status_code|Status Code|<span className="low-severity">LOW</span>|
 |url|A URL as defined by RFC 1738|<span className="low-severity">LOW</span>|
 |uuid|Universally Unique Identifier|<span className="low-severity">LOW</span>|
-|version|Version Number|<span className="low-severity">LOW</span>|
+|version|Semver|<span className="low-severity">LOW</span>|
 
 
 
