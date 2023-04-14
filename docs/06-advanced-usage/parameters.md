@@ -36,7 +36,7 @@ You are able to manually configure a few things, such as permissions or environm
         },
         "complexity_mode": "low | medium | high | no_limit",
         "environment_mode": "dev | prod",
-        "speed_mode": "medium | slow | fast"
+        "speed_mode": "medium | fast"
     }
 }
 ```
@@ -139,12 +139,12 @@ Must be one of `['dev', 'prod']`
 
 The choosen speed of the explore
 
-Must be one of `['medium', 'slow', 'fast']`
+Must be one of `['medium', 'fast']`
 
 ```JSON
 {
     "params": {
-        "speed_mode": "medium | slow | fast"
+        "speed_mode": "medium | fast"
     }
 }
 ```
