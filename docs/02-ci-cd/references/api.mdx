@@ -4,7 +4,7 @@ title: Public API
 description: Use Escape's public API
 ---
 
-import TypeTag from '@site/src/components/TypeTag';
+import TypeTag from "@site/src/components/TypeTag";
 
 ## API base URL
 
@@ -13,6 +13,7 @@ Escape's REST public API can be reached at `https://api-public.prod.cloud.escape
 ## Authentication
 
 ### API key
+
 Pass your API via the `Authorization` header.
 You can find your API key in your [Escape settings](https://app.escape.tech/user/profile/).
 
@@ -28,6 +29,7 @@ https://api-public.prod.cloud.escape.tech/applications/$APPLICATION_ID/start-sca
 ```
 
 ## `GET /organization/:organizationId/applications`
+
 Retrieve the list of applications bound to an organization
 
 ### Request parameters
@@ -59,9 +61,7 @@ The ID of the organization on Escape. It can be found on [the organization secti
           "INFO": 3
         },
         "commitHash": "11fb1c9f83f371ca9c1e353ef9f16bc36934ab83",
-        "report": {
-          "letterScore": "F"
-        }
+        "betterThan": 0.7205479452054795
       },
       {
         "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
@@ -74,9 +74,7 @@ The ID of the organization on Escape. It can be found on [the organization secti
           "INFO": 2
         },
         "commitHash": "11fb1c9f83f371ca9c1e353ef9f16bc36934ab83",
-        "report": {
-          "letterScore": "F"
-        }
+        "betterThan": 0.7205479452054795
     ],
     "lastSuccessfulScan": {
       "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
@@ -88,13 +86,11 @@ The ID of the organization on Escape. It can be found on [the organization secti
         "INFO": 3
       },
       "commitHash": "11fb1c9f83f371ca9c1e353ef9f16bc36934ab83",
-      "report": {
-        "letterScore": "F"
-      }
+      "betterThan": 0.7205479452054795
     }
   }
 ]
-````
+```
 
 ## `GET /scans/:scanId`
 
@@ -108,7 +104,7 @@ The ID of the scan on Escape.
 
 ### Example response
 
-````json
+```json
 {
   "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
   "status": "SUCCESS",
@@ -174,16 +170,23 @@ The ID of the scan on Escape.
     ...,
   ]
 }
-````
+```
 
 ## `POST /application/:applicationId/start-scan`
+
 Start a new scan for the given application.
+
+### Request parameters
+
+#### `applicationId`
+
+The ID of the application on Escape.
 
 ### Request body parameters
 
 You can pass additional parameters via the request body.
 
-#### `configurationOverride`  <TypeTag type="string"/>
+#### `configurationOverride` <TypeTag type="string"/>
 
 [See the configuration override section](/ci-cd/configuration-override).
 
@@ -192,5 +195,34 @@ You can pass additional parameters via the request body.
 [See the commit identification section](/ci-cd/commit-sha).
 
 #### `introspection` <TypeTag type="string"/>
+
 The stringified JSON introspection.
 [See the introspection update section](/ci-cd/introspection-update).
+
+## `POST /applications/:applicationId/upload-introspection`
+
+Upload an introspection response or schema on Escape for a given application.
+
+### Request parameters
+
+#### `applicationId`
+
+The ID of the application on Escape.
+
+### Request body parameters
+
+Providing an introspection response within the body is mandatory
+
+#### `introspectionResponse` <TypeTag type="string"/>
+
+The stringified JSON introspection.
+[See the introspection update section](/ci-cd/introspection-update).
+
+### Example response
+
+```json
+{
+  "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
+  "applicationId": "5d1b0249-a6fd-4d64-997a-99675ca6afac"
+}
+```
