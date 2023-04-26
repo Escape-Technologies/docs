@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 title: Weak JSON typing
 ---
 
@@ -17,7 +17,7 @@ When possible, use typed input objects instead.
 
 ## Configuration
 
-> CheckId: `introspection/weak_json_typing`
+> CheckId: `schema/weak_json_typing`
 
 
 ### Examples
@@ -28,7 +28,7 @@ When possible, use typed input objects instead.
 ```json
 {
     "checks": {
-        "introspection/weak_json_typing": {
+        "schema/weak_json_typing": {
             "skip": true
         }
     }

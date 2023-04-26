@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: Zombie objects
 ---
 
@@ -18,7 +18,7 @@ Because they are not maintained nor patched, they are a **privileged vector of a
 
 ## Configuration
 
-> CheckId: `introspection/zombie_objects`
+> CheckId: `schema/zombie_objects`
 
 
 ### Examples
@@ -29,7 +29,7 @@ Because they are not maintained nor patched, they are a **privileged vector of a
 ```json
 {
     "checks": {
-        "introspection/zombie_objects": {
+        "schema/zombie_objects": {
             "skip": true
         }
     }

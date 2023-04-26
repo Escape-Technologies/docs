@@ -69,7 +69,7 @@ Example:
 
 ## Configuration
 
-> CheckId: `introspection/typing_inconsistency`
+> CheckId: `schema/typing_inconsistency`
 
 ### Options
 
@@ -85,7 +85,7 @@ Example:
 ```json
 {
     "checks": {
-        "introspection/typing_inconsistency": {
+        "schema/typing_inconsistency": {
             "skip": true
         }
     }
@@ -98,7 +98,7 @@ Example:
 ```json
 {
     "checks": {
-        "introspection/typing_inconsistency": {
+        "schema/typing_inconsistency": {
             "options": {
                 "skip_objects": []
             }
