@@ -5,13 +5,13 @@ title: Whitelist scanner requests
 
 # 🐼 Whitelist scanner requests
 
-## Using HTTP Header
-
 You might need to identify when the request you receive is coming from the security scanner.
 
 For instance, you probably don't want the many requests being sent to your server from the scanner to appear in your monitoring tool, or, you might want to enable the introspection of your server only to the security scanner on your staging environment.
 
-For this purpose, the scanner of Escape sends a secure token attached to every requests it sends. The header name is `x-escape-identifier` and its value is an identification token attached to your application.
+## Using the 'x-escape-identifier' HTTP Header
+
+Escape's scanner sends a secure token attached to every requests it sends. The header name is `x-escape-identifier` and its value is an identification token attached to your organisation.
 
 ```http
 x-escape-identifier: {{your-escape-identifier}}
@@ -19,7 +19,9 @@ x-escape-identifier: {{your-escape-identifier}}
 
 Thanks to this header you can detect incoming requests from the scanner in your server, to add any custom handling logic you might want on top of this.
 
-You can find this token on your scan page in the `CI/CD` section as `ESCAPE_APPLICATION_ID`.
+You can find this token in your [organization settings](https://app.escape.tech/organization/settings/).
+
+You should keep this token secret. If you think it has been compromised, you can regenerate it in your [organization settings](https://app.escape.tech/organization/settings/) using the `Revoke` button.
 
 ## Using Proxy
 
