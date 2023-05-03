@@ -1,9 +1,9 @@
 ---
-sidebar_position: 2
-title: Imputable JSON scalars
+sidebar_position: 3
+title: Weak JSON typing
 ---
 
-# Imputable JSON scalars
+# Weak JSON typing
 
 ## Description
 
@@ -17,7 +17,7 @@ When possible, use typed input objects instead.
 
 ## Configuration
 
-> CheckId: `introspection/imputable_json_scalars`
+> CheckId: `schema/weak_json_typing`
 
 
 ### Examples
@@ -28,7 +28,7 @@ When possible, use typed input objects instead.
 ```json
 {
     "checks": {
-        "introspection/imputable_json_scalars": {
+        "schema/weak_json_typing": {
             "skip": true
         }
     }

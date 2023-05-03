@@ -18,7 +18,7 @@ Because they are not maintained nor patched, they are a **privileged vector of a
 
 ## Configuration
 
-> CheckId: `introspection/zombie_objects`
+> CheckId: `schema/zombie_objects`
 
 
 ### Examples
@@ -29,7 +29,7 @@ Because they are not maintained nor patched, they are a **privileged vector of a
 ```json
 {
     "checks": {
-        "introspection/zombie_objects": {
+        "schema/zombie_objects": {
             "skip": true
         }
     }

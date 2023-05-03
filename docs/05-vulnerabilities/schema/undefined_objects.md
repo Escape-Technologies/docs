@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 title: Undefined objects
 ---
 
@@ -17,7 +17,7 @@ Enforce strong typing in your GraphQL objects.
 
 ## Configuration
 
-> CheckId: `introspection/undefined_objects`
+> CheckId: `schema/undefined_objects`
 
 
 ### Examples
@@ -28,7 +28,7 @@ Enforce strong typing in your GraphQL objects.
 ```json
 {
     "checks": {
-        "introspection/undefined_objects": {
+        "schema/undefined_objects": {
             "skip": true
         }
     }

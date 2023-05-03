@@ -16,7 +16,7 @@ Update your resolver to make the introspection type match the actual returned ty
 
 ## Configuration
 
-> CheckId: `introspection/typing_inconsistency_interceptor`
+> CheckId: `schema/typing_inconsistency_interceptor`
 
 
 ### Examples
@@ -27,7 +27,7 @@ Update your resolver to make the introspection type match the actual returned ty
 ```json
 {
     "checks": {
-        "introspection/typing_inconsistency_interceptor": {
+        "schema/typing_inconsistency_interceptor": {
             "skip": true
         }
     }
