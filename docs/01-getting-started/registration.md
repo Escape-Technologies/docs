@@ -9,7 +9,7 @@ description: Requirements and advices for registering onto the Escape security p
 The very first step to use Escape is to [create an account](https://app.escape.tech/register) on our security platform. As of today, we offer two methods for creating an account:
 
 1. `email/password` combination: You will have to confirm your email with an email that will be sent to this address
-2. `Google SSO`:You can register & login instantly using a google account. Since we do not allow `@gmail.com` addresses, you will be required to use a [Google Workspace](https://workspace.google.fr/) account.
+2. `Google SSO`: You can register & login instantly using a google account. Since we do not allow `@gmail.com` addresses, you will be required to use a [Google Workspace](https://workspace.google.fr/) account.
 3. `GitHub SSO`: You can register & login instantly using a GitHub account.
 
 ## Professional emails
