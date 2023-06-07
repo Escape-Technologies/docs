@@ -1,7 +1,6 @@
 ---
 title: Coming soon!
 description: The documentation you are looking for is not ready yet.
-sidebar: true
 ---
 
 import typewriter from './undraw_typewriter.png'
