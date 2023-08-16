@@ -1,0 +1,36 @@
+---
+sidebar_position: 5
+title: Private Tenant
+---
+
+import Image from '@theme/IdealImage';
+
+:::warning Disclaimer
+
+The private tenant runs on our servers. It is not possible to deploy Escape on your own servers.
+
+:::
+
+# What is a private tenant ?
+
+## Shared vs. private tenant
+
+A SaaS platform usually offers a shared infrastructure for multiple customers. In the case of Escape, this means that customers execute scans on the same underlying servers, and store their results on the same data stores.
+
+<Image img={require('./img/public-tenant.png')} alt="A architecture schema of a shared tenancy"/>
+
+Customers can also run Escape scans on their own instance of Escape. This does not mean the we will run scans on the customer's own servers, but that we will provision separate servers and data stores in our infrastructure for the customer.
+
+<Image img={require('./img/private-tenant.png')} alt="A architecture schema of a private tenancy"/>
+
+# What are the benefits of a private tenant ?
+
+- **Enhanced security**: Running a Escape on dedicated hardware improves security by eliminating potential malware infections and unauthorized data access from other tenants.
+- **Improved performance and reliability**: Customers in a private tenant have full access to infrastructure resources that can lead to better and more consistent performance.
+
+
+# Prerequisites
+
+Private tenants are deployed on AWS. Deployment to other cloud providers can be added, as needed. Escape fully manages the deployment process for you.
+
+If you are interested in other deployment options, contact your sales representative.
