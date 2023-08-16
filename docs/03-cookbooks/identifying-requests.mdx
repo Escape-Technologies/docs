@@ -23,14 +23,64 @@ You can find this token in your [organization settings](https://app.escape.tech/
 
 You should keep this token secret. If you think it has been compromised, you can regenerate it in your [organization settings](https://app.escape.tech/organization/settings/) using the `Revoke` button.
 
-## Using Proxy
+## Application behind a firewall
 
-If you want do scan an application behind a firewall, you may need to use our static ip proxy to access it.
+If your application is behind a firewall for security reasons, you might not be able to scan it by default with Escape.
+This section will help you to configure a secure route only accessible by Escape's scanner.
 
-Check the [Client](https://escape.tech/docs/advanced-usage/parameters#client) section of our Advanced Configuration documentation.
+### Using the Escape proxy
 
-All requests sent by the scanner will be sent to your application through this proxy.
-The following IPs are used :
+If you can whitelist some IPs in your firewall, you can use the Escape proxy to scan your application.
+
+To do so, you need to add the following parameter to your scan configuration :
+
+```json
+{
+    "params": {
+        "client": {
+            "proxy": {
+                "type": "escape"
+            }
+        }
+    }
+}
+```
+
+All requests sent by the scanner will be sent to your application through this proxy. The following IPs are used :
 
 - IPv4 : `163.172.168.233`
 - IPv6 : `2001:bc8:47a4:61f::1`
+
+Now you need to whitelist these IPs in your firewall.
+
+### Using a custom proxy
+
+If you can't whitelist IPs but you can deploy a service and expose it's IP, you can use a custom proxy to scan your application.
+
+First you will need to deploy a proxy that can access your API.
+For that you can use the [Escape proxy](https://github.com/Escape-Technologies/proxy) or any other proxy you want.
+You will also need to allow incoming trafic to this proxy in your firewall.
+
+Now you must have the following information :
+
+- `user` : the user allowed to connect to the proxy (your organization id if you use the Escape proxy)
+- `password` : the password of the user allowed to connect to the proxy (your api key if you use the Escape proxy)
+- `ip` : the ip to connect to your proxy
+- `port` : the port to connect to your proxy
+
+Then you can add the following parameter to your scan configuration :
+
+```json
+{
+    "params": {
+        "client": {
+            "proxy": {
+                "type": "http",
+                "target": "http://[user]:[password]@[ip]:[port]"
+            }
+        }
+    }
+}
+```
+
+Check the [Client](https://escape.tech/docs/advanced-usage/parameters#client) for more details.
