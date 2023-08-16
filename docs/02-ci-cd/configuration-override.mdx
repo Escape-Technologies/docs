@@ -2,21 +2,18 @@
 sidebar_position: 1
 title: Override configuration
 Description: Programmatically override the configuration used on a scan
-
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # 💥 Override configuration
 
-You can override the configuration of your application on Escape by passing a partial JSON configuration. This configuration will be merged with the one on Escape using the [deepmerge](https://github.com/RebeccaStevens/deepmerge-ts) algorithm.  
-
+You can override the configuration of your application on Escape by passing a partial JSON configuration. This configuration will be merged with the one on Escape using the [deepmerge](https://github.com/RebeccaStevens/deepmerge-ts) algorithm.
 
 :::info
 You can learn more about configuring your application on Escape [here](/advanced-usage/parameters).
 :::
-
 
 <Tabs>
   <TabItem value="github" label="GitHub Action" default>
@@ -38,6 +35,7 @@ jobs:
           application_id: ${{ secrets.ESCAPE_APPLICATION_ID }}
           api_key: ${{ secrets.ESCAPE_API_KEY }}
           configuration_override: '{"users":{"user1":{"auth":"schema1","headers":{"Authorization":"<YOUR_AUTH>"}}},"auth":{"schema1":{"tech":"manual"}}}'
+          # configuration_override_path: ./configuration_override.json # you can also use a file
 ```
 
   </TabItem>
@@ -52,6 +50,7 @@ Escape:
     - ESCAPE_APPLICATION_ID: $ESCAPE_APPLICATION_ID
     - ESCAPE_API_KEY: $ESCAPE_API_KEY
     - CONFIGURATION_OVERRIDE: '{"users":{"user1":{"auth":"schema1","headers":{"Authorization":"<YOUR_AUTH>"}}},"auth":{"schema1":{"tech":"manual"}}}'
+    -  # CONFIGURATION_OVERRIDE_PATH: ./configuration_override.json # you can also use a file
   image: node:alpine
   before_script:
     - npm install -g @escape.tech/action
@@ -72,6 +71,7 @@ Escape:
 export ESCAPE_APPLICATION_ID=<YOUR APPLICATION ID>
 export ESCAPE_API_KEY=<YOUR API KEY>
 export CONFIGURATION_OVERRIDE='{"users":{"user1":{"auth":"schema1","headers":{"Authorization":"<YOUR_AUTH>"}}},"auth":{"schema1":{"tech":"manual"}}}'
+# export CONFIGURATION_OVERRIDE_PATH="./configuration_override.json" # you can also use a file
 
 npm i -g @escape.tech/action
 escape-action
@@ -84,6 +84,7 @@ escape-action
 export APPLICATION_ID=<YOUR APPLICATION ID>
 export API_KEY=<YOUR API KEY>
 export CONFIGURATION_OVERRIDE='{"users":{"user1":{"auth":"schema1","headers":{"Authorization":"<YOUR_AUTH>"}}},"auth":{"schema1":{"tech":"manual"}}}'
+# export CONFIGURATION_OVERRIDE_PATH="./configuration_override.json" # you can also use a file
 
 curl -X POST \
 -H "Authorization: Key $API_KEY" \
