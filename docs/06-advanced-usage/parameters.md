@@ -160,7 +160,7 @@ The provided queries and mutations must be in a list under the key `hotstart`. Y
 ```JSON
 {
     "hotstart": [
-        "query { child(parentId: 'b63f4020-45f6-4f33-9747-32ac8f270097' ) { id name birthdate }}",
+        "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
         "query { bank(account: 1337) { id address }}"
     ]
 }
