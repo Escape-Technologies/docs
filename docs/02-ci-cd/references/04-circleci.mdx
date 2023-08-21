@@ -1,0 +1,87 @@
+---
+title: CircleCI
+description: Use Escape on CircleCI
+---
+
+import RequiredTag from "@site/src/components/RequiredTag";
+import TypeTag from "@site/src/components/TypeTag";
+
+## Basic example
+
+Here's how you can integrate Escape into your CircleCI pipeline using a `.circleci/config.yml` configuration:
+
+```yaml
+version: 2.1
+
+jobs:
+  deploy: 
+    docker:
+      - image: node:alpine
+    steps:
+      - checkout
+      # Your deployment steps here
+
+  escape_scan:
+    docker:
+      - image: node:alpine
+    steps:
+      - checkout
+      - run:
+          name: Install Escape CLI
+          command: |
+            npm install -g @escape.tech/action
+            npm show @escape.tech/action version
+      - run:
+          name: Run Escape Scan
+          command: escape-action
+      environment:
+        ESCAPE_APPLICATION_ID: $ESCAPE_APPLICATION_ID
+        ESCAPE_API_KEY: $ESCAPE_API_KEY
+
+workflows:
+  version: 2
+  deploy_and_scan:
+    jobs:
+      - deploy
+      - escape_scan:
+          requires:
+            - deploy
+          filters:
+            branches:
+              only: staging
+
+```
+
+## Available variables
+
+### `ESCAPE_APPLICATION_ID` <TypeTag type="string"/> <RequiredTag/>
+
+The id of the application on Escape that will be scanned continuously.  
+You can find it in your [Escape application settings](https://app.escape.tech).
+
+### `ESCAPE_API_KEY` <TypeTag type="string"/> <RequiredTag/>
+
+Your API key on the Escape platform.  
+You can find it in your [Escape settings](https://app.escape.tech/user/profile/).
+
+### `TIMEOUT` <TypeTag type="number"/>
+
+The timeout of the job. If set to 0, the scan will be started, but the job will not wait for it to be finished before terminating.
+
+The triggered scan will run asynchronously on Escape, and your team will be notified once it is done using your desired [notifications](/integrations) settings.
+
+### `CONFIGURATION_OVERRIDE` <TypeTag type="string"/>
+
+[See the configuration override section](/ci-cd/configuration-override).
+
+### `CONFIGURATION_OVERRIDE_PATH` <TypeTag type="string"/>
+
+[See the configuration override section](/ci-cd/configuration-override).
+
+### `COMMIT_HASH` <TypeTag type="string"/>
+
+[See the commit identification section](/ci-cd/commit-sha).
+
+### `INTROSPECTION_FILE` <TypeTag type="number"/>
+
+[See the introspection update section](/ci-cd/introspection-update).

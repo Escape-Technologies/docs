@@ -1,9 +1,0 @@
-{
-  "label": "🌎 Integrations",
-  "collapsed": false,
-  "link": {
-    "type": "generated-index",
-    "slug": "/integrations",
-    "description": "Escape integrates with your favorite developer tools. First usecase is to be notified of new security vulnerabilities as soon as they are decteted. The second usecase consist in exporting results in different formats."
-  }
-}
