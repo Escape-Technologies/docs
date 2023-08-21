@@ -1,0 +1,61 @@
+---
+sidebar_position: 3
+title: Tenant isolation and private data
+---
+
+GraphQL is a popular API technology that allows developers to build efficient and flexible APIs. It provides a powerful query language that allows clients to request only the data they need, reducing the amount of network traffic and improving performance. However, with the power and flexibility of GraphQL comes the responsibility to ensure proper data isolation and segregation, especially in multi-tenant environments.
+Tenant isolation and data segregation are critical aspects of any multi-tenant application where multiple customers or tenants share the same application instance. In such environments, ensuring that each tenant's data is isolated and segregated from other tenants' data is crucial.
+In GraphQL, this is even more problematic due to the graph nature of the API. Data can be accessed by multiple paths, sometimes that you're not even aware of, and all those paths must be secured the same!
+
+This blog post will cover 3 Escape's features essential for ensuring tenant isolation and data segregation in GraphQL APIs.
+
+## Tenant isolation: each user has their own secret garden!
+
+Tenant isolation is an important concept in multi-tenant applications. A multi-tenant application is a software application that serves multiple customers or tenants on the same instance of the application. These customers may have different data, different settings, and different permissions, and it's important to ensure that they are kept separate and isolated from each other.
+In the context of GraphQL, tenant isolation means that different users or tenants of the application should not be able to access the same GraphQL object instance or scalar field value.
+For example, let's say you have a GraphQL schema that exposes a User object, which has a field called email. If tenant isolation is not properly implemented, two different users could potentially access the same User object instance and see each other's email addresses. This is obviously a serious breach of privacy and security.
+At the GraphQL level, this can be implemented by requiring authentication for all GraphQL requests and then implementing role-based access control or other authorization mechanisms to ensure that each user can only see the data that they are allowed to see. In addition to these mechanisms, you can use GraphQL-specific techniques such as field-level resolvers to ensure that each tenant's data is isolated from other tenants. For example, you could implement a field-level resolver for the email field of the User object, which checks the user's authorization and only returns the email address if the user is authorized to see it.
+Overall, tenant isolation is a critical aspect of building secure and scalable multi-tenant applications with GraphQL. By implementing tenant isolation at different levels, you can ensure that each user or tenant is kept separate and can only access the data they are authorized to see.
+Escape offers advanced Tenant Isolation security tests to ensure at least 2 different users on your application should not access the same GraphQL object instance or the same scalar field value.
+
+It take 2 possible parameters:
+objects: A list of private objects. 2 different users should not access the same instance of this object. Each object instance is identified by its ID.
+scalars: A dictionary mentioning scalar fields inside their objects. 2 different users should not access the same value in those fields. 
+Here is the configuration that would test our example:
+"scalars": {'User': ['email']}
+
+## Private fields: not everyone is admin!
+
+In GraphQL, queries and mutations are used to retrieve and manipulate data on the server. Queries are used to fetch data, while mutations are used to modify data.
+However, sometimes certain queries and mutations may be used to fetch data or execute some actions that all users should not access. For example, an admin mutation may allow an admin user to perform actions such as creating or deleting users, which should not be accessible to regular users.
+To restrict access to certain queries and mutations in GraphQL, you can use authorization mechanisms such as authentication and permissions. Authentication involves verifying the identity of a user, usually by asking them to provide credentials such as a username and password. Once a user is authenticated, they can be granted certain permissions that determine what actions they can perform.
+For example, in the case of an admin mutation, only users with admin privileges should be able to access it. You can use permissions to restrict access to this mutation so only users with admin privileges can execute it.
+Here's an example of how this could be implemented in GraphQL:
+
+In this example, the createUser mutation is marked with a custom @auth directive, which requires that the user has an ADMIN role in order to execute it. The Role enumeration defines the possible roles that a user can have.
+When a user attempts to execute the createUser mutation, the GraphQL server checks their authentication status and their role. If they are not authenticated or do not have a ADMIN role, the mutation will be denied and an error message will be returned.
+In Escape the Private Field security test is suited for the following use cases, among many others:
+Your app contains Users with different roles. Some of those roles should not be able to execute specific queries or mutations or access certain fields in some objects.
+Some queries are mutations should not be public.
+
+## Private field security test takes one parameter
+
+user : A dictionary {objectName:[filedName]} representing object fields that the user is not supposed to have access to. public is the default unauthenticated user.
+and one option:
+empty_values_are_positive: Consider that the server returning a null value on a specific field is a security issue.
+In our previous example, let's say that Bob is a normal user (not ADMIN role). The following configuration would be adapted to test this use case:
+```
+{'Bob': {'mutations': ['createUser']}}
+```
+
+Private data: keep your information private
+
+In GraphQL, it's common for some specific data to be considered private or sensitive and only accessible to authorized users.
+Especially when you fixtured your application, you might already know that your user Bob should never access Alice's email: alice@example.com. Instead of creating multiple manual tests that are trying to get alice@example.com from Bob's account by all the paths that might lead to it, Escape does that automatically for you.
+
+Private data security test takes one parameter:
+user: An array specifying some scalar values in specific fields that the user should never access. The field can be set to a pattern .* to look for the scalar value in all the GraphQL applications.
+In our example, the following configuration would solve our problem:
+```
+{'Bob': {'.*': ['alice@example.com']}}
+```
