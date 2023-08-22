@@ -1,0 +1,45 @@
+---
+title: Improve scan coverage
+---
+
+# 🎯 Improve coverage
+
+## Improving your application coverage:
+
+The coverage statistic is available in the summary tab of successful scans. It measures the percentage of queries and mutations escape could perform among the full schema.
+
+### Set scan type to read & write:
+
+A read-only scan does not run mutations.
+
+This will be checked if the scan is indeed in read & write mode.
+
+The message: `In this scan, x% of operations were attempted.` will be displayed if less than 100% operations were attempted and the scan is not in read and write mode.
+
+### Provide authentication with enough permissions:
+
+You can provide custom authentication headers in your application configuration to allow escape to run authenticated operations.
+
+This will be checked if the application has headers configured and no operations were unauthorized or forbidden.
+
+The message: `In this scan. x% of operations were unauthorized or forbidden.` will be displayed if at least one operation was unauthorized/forbidden.
+
+### Make sure the scan is not rate limited:
+
+You can setup rate limit in your application settings [(learn more)](https://escape.tech/docs/advanced-usage/parameters#client), though it may have an impact on the scan coverage, as operation can be rate limited.
+
+This will be checked if no operations are rate limited.
+
+The message: `In this scan, x% of operations were discarded because of your rate limit configuration.` will be displayed if at least one operation was rate limited.
+
+### Avoid server errors:
+
+Your server might return some errors during the scan that prevents Escape from performing some operations. This can be due to a bug in your application or a misconfiguration.
+
+The message: `In this scan, x% of operations were discarded because of server errors.` will be displayed if at least one operation was rate limited.
+
+Learn more about Internal Server Errors (`500`), Bad Gateway (`502`), Service Unavailable (`503`), Gateway Timeout (`504`), and other server errors on [Mozzila's documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
+
+### Blacklisting operations
+
+Please be aware that **ignoring security checks or alerts** may decrease the coverage statistics of your application, as our scanner will skip those tests.

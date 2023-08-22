@@ -1,9 +1,0 @@
-{
-    "label": "\u2705 Vulnerabilities",
-    "collapsed": false,
-    "link": {
-        "type": "generated-index",
-        "slug": "/vulnerabilities",
-        "description": "Here are all the security checks that escape allows you to run and customize."
-    }
-}

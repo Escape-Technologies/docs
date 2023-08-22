@@ -1,0 +1,23 @@
+---
+title: Repeater Agent
+---
+
+:::warning WIP
+
+This feature is in Private Beta for Enterprise Customers. Contact us via email or your Private Slack Support Channel for more information.
+
+:::
+
+Escape's Repeater Agent allows you to scan scan Internal Apps behind your organization's firewall or VPN.
+
+This repeater creates a private tunnel between Escape and one of your servers.
+All the escape requests will comes from this server.
+
+Here is a schema of the infrastructure :
+
+![Escape repeater](./img/repeater.drawio.svg)
+
+First, the repeater client you have deployed locally will connect to the repeater manager (1).
+When you start a scan on escape, instead of sending the requests directly to your server, Escape will send them to the repeater manager (2).
+Your client will receive the requests and send them to your server (3 & 4).
+The results are sent back to Escape to allow you to see scans results.

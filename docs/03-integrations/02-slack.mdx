@@ -1,0 +1,32 @@
+---
+title: Slack notifications
+---
+
+# 👖 Slack notifications
+
+To configure a new Slack webhook and receive notifications of new vulnerabilities directly in your favorite channel, head to the [integrations page](https://app.escape.tech/integrations/) and click **Connect** in the **Slack** section.
+
+The page will ask you:
+
+1. What applications you want to receive notifications for.<br/>
+   You can select **All applications** if you want to receive notifications for all your applications, or select specific applications.
+2. A Slack webhook URL. ([See below how to get one.](#-get-a-slack-webhook-url))
+3. What kind of notifications you want to receive.<br/>
+   Escape can notify you of scan results and configuration issues.
+
+Click the **Save** and you're done!
+
+## 🪝 Get a Slack webhook URL
+
+1. [Create a new application on Slack API.](https://api.slack.com/apps/new)
+2. Select **Create from scratch**.
+   - App Name: `Escape Scan Report`
+   - Workspace: where you want to receive the notifications
+   - Click **Create App**
+3. Click **Incoming Webhooks** under Add features and functionality.
+   - Turn Incoming Webhooks toggle on
+   - Click **Add New Webhook to Workspace** at the bottom of the page
+   - Select the channel where you want to receive the notifications
+4. A new webhook URL will be generated, click **Copy** next to the URL, and past it on Escape's integrations page.
+
+If the procedure does not work or is outdated, please refer to [Slack's documentation](https://api.slack.com/messaging/webhooks#create-app) or [contact us](mailto:support@escape.tech).

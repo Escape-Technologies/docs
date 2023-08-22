@@ -1,0 +1,87 @@
+---
+title: Custom Payloads
+---
+
+# Custom Payload Injection in Escape 
+
+Escape provides users with the capability to inject custom payloads in its security scanner to ensure precision and thoroughness in testing. There are two main methods for this:
+
+1. **Hotstart Parameter**
+2. **Defining Custom Scalars (Data Types)**
+
+These customization methods improve scan quality by tailoring tests specifically to an application's needs. Let's dive into the details.
+
+## 1. Hotstart Parameter
+
+The `hotstart` parameter allows users to provide specific GraphQL query strings. This not only gives Escape more insight into the application's business logic but also aids in faster and more accurate scanning. 
+
+**Example**:
+
+```json
+{
+    "hotstart": [
+        "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
+        "query { bank(account: 1337) { id address }}"
+    ]
+}
+```
+
+## 2. Defining Custom Scalars (Data Types)
+
+Escape operates on a [comprehensive scalar architecture](/advanced-usage/data-types-reference), granting users the power to define their own data types or override existing ones via the `escaperc`
+
+### Structure for custom scalars:
+```json
+{
+    "scalars": {
+        "custom_scalar_identifier": { 
+            "description": "value",
+            "examples": ["value"],
+            "names": ["value"],
+            "parents": ["ID", "Int", "String", "Boolean", "Float"],
+            "patterns": ["value"],
+            "sensitivity": 0
+        }
+    }
+}
+```
+
+### Fields
+
+- `description`: Brief description for the scalar.
+- `examples`: Sample values for the scalar (used in the explore phase as default values). Be cautious: the scanner will ignore the checks for these values.
+- `names`: Possible names for the scalar.
+- `parents`: GraphQL's default type the scalar is compatible with.
+- `patterns`: Potential regex-friendly values for the scalar (utilized for the checks).
+- `sensitivity`: Data sensitivity level. Allowed values are `[0, 1, 2, 3]`. Values `2` and `3` will serve to raise sensitive data alerts in Escape.
+
+
+### Example
+
+This is how JWT is defined by default in Escape's engine: 
+
+```json 
+jwt:
+  description: JSON Web Token
+  examples:
+    - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+  names:
+    - jwt
+    - Token
+    - Authorization
+    - Authorisation
+    - Bearer
+  parents:
+    - String
+  patterns:
+    - eyJ(?:[a-zA-Z0-9_=]+)\.eyJ(?:[a-zA-Z0-9_=]+)\.(?:[a-zA-Z0-9_\-\+\/=]*)
+    - (?i)\b(ey[0-9a-z]{30,34}\.ey[0-9a-z-\/_]{30,500}\.[0-9a-zA-Z-\/_]{10,200}={0,2})(?:['|\"|\n|\r|\s|\x60|;]|$)
+  sensitivity: 3
+  ```
+
+
+:::info 🤖 Community Sharing
+If you've crafted some useful custom scalars, feel free to share them with our community on [Discord](https://discord.escape.tech/). Your contributions can assist others in refining their security checks.
+:::
+
+

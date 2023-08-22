@@ -1,0 +1,89 @@
+---
+title: Custom Access Control
+---
+
+# Advanced Access Control and Data Segregation testing 🛡️
+
+When dealing with GraphQL, ensuring proper data isolation and tenant segregation becomes paramount, especially in multi-tenant environments. Due to the versatile and interconnected nature of GraphQL, data can be accessed through multiple paths, necessitating secure strategies at every juncture.
+
+Escape provides you with powerful tools to ensure that data remains in its designated boundaries. This documentation will guide you through using Escape's features to enhance access control and maintain the sanctity of your data.
+
+## Tenant Isolation: Guarding Each User's Data 🌐
+
+In multi-tenant applications, where various customers share the same software instance, tenant isolation is non-negotiable. GraphQL brings its own set of challenges, where diverse users or tenants might unintentionally access shared GraphQL objects.
+
+For instance, consider a GraphQL schema exposing a `User` object with an `email` field. Without proper tenant isolation, there's potential for users to see others' email addresses - in some cases, a clear violation of privacy.
+
+Escape's advanced Tenant Isolation security tests ensure that separate users shouldn't access the same GraphQL object or scalar field value. The configuration allows for two parameters:
+
+- `objects`: List out private objects. Separate users shouldn't access the same object instance. Every object instance is discerned by its unique ID.
+- `scalars`: Define scalar fields within their encompassing objects. Separate users shouldn't access the same values in these fields.
+
+Example Configuration:
+```json
+{
+    "checks": {
+        "access_control/tenant_isolation": { 
+            "parameters":{ 
+                "scalars": {"User": ["email"]}
+            },
+        }
+    }
+}
+```
+
+
+## Private Fields: Setting Boundaries ⛔
+
+All users shouldn't have the same privileges. Some GraphQL queries or mutations, especially admin ones, should be accessible only to a privileged few. With authentication mechanisms in place, you can validate user identities. Permissions, on the other hand, ensure that users have access only to areas they're authorized for.
+
+In Escape, the **Private Field security test** addresses this concern. This test is especially suited when:
+
+- Users possess varying roles with certain roles restricted from executing specific queries, mutations, or accessing certain fields.
+- Certain queries and mutations are intended to remain non-public.
+
+
+The Private Field security test accepts:
+- `user`: A dictionary defining object fields which should be off-limits for a user. By default, the unauthenticated user is labeled as public.
+- `empty_values_are_positive` (optional): If the server returning a null value for a particular field is seen as a security risk.
+
+Example Configuration:
+
+```json
+{
+    "checks": {
+        "access_control/private_fields": { 
+            "parameters": { 
+                {"Bob": {"mutations": ["createUser"]}}
+            },
+            "options": {
+                "empty_values_are_positive": true,
+            }
+        }
+    }
+}
+```
+
+
+## Protecting Private Data 🕵️‍♂️
+
+Data sensitivity demands that certain GraphQL data remains accessible only to authorized users.
+
+Say, you're aware that Bob shouldn't access Alice's email: `alice@example.com`. Instead of setting up multiple manual tests to check this, Escape can automatically validate this for you with the Private Data security test.
+
+Configuration for this test requires:
+- `user`: An array detailing specific scalar values in distinct fields that should be inaccessible to the user. The field can be set as a pattern (e.g., `.*`) to probe for the scalar value throughout the GraphQL application.
+
+
+Example Configuration:
+```json
+{
+    "checks": {
+        "access_control/private_data": { 
+            "parameters": { 
+                {"Bob": {".*": ["alice@example.com"]}}
+            }
+        }
+    }
+}
+```
