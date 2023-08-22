@@ -1,0 +1,66 @@
+---
+title: Blacklist & Whitelist
+---
+
+# Directing Your Scan: Blacklist, Whitelist & Hotstart 🎯
+
+Gain finer control over how Escape interacts with your GraphQL operations by employing the Blacklist, Whitelist, and Hotstart features.
+
+## Blacklist 🚫
+
+Identify the GraphQL operations that you'd like Escape to skip during its security tests. By blacklisting certain operations, you can ensure these won't be evaluated during the scan.
+
+```json
+{
+    "params": {
+        "blacklist": {
+            "mutation": [
+                "**operationName**"
+            ],
+            "objects": [
+                "**objectName**"
+            ],
+            "query": [
+                "**queryName**"
+            ]
+        }
+    }
+}
+```
+
+## Whitelist ✅
+
+By employing a whitelist, you instruct Escape to focus its exploration phase solely on the specified operations. This can make the scan process faster, as Escape narrows its evaluation to just these queries.
+
+```json
+{
+    "params": {
+        {
+            "whitelist": [
+                "query { child(parentId: 'b63f4020-45f6-4f33-9747-32ac8f270097' ) { id name birthdate }}",
+                "query { bank(account: 1337) { id address }}"
+            ]
+        }
+    }
+}
+```
+
+
+## Hotstart 🚀
+
+Enhance the potency of your scans! By providing legitimate GraphQL query strings via the Hotstart feature, you arm Escape with deeper insights into your application's business logic. This enables Escape to operate with increased efficiency and precision.
+
+The queries and mutations you provide should be listed under the hotstart key. You have the freedom to provide multiple queries, with varying parameters and complexities.
+
+```json
+{
+    "params": {
+        {
+            "hotstart": [
+                "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
+                "query { bank(account: 1337) { id address }}"
+            ]
+        }
+    }
+}
+```
