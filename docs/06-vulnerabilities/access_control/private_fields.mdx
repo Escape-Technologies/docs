@@ -107,14 +107,14 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
 ```
 {
   "auth": {
-    "public": {                      #   
-      "tech": "public"               # Default value on a new application 
+    "public": {                      #
+      "tech": "public"               # Default value on a new application
     },                               #
     ... REDACTED AUTH ...
   },
-  "users": {                         
+  "users": {
     "public": {                      #
-      "auth": "public"               # Default value on a new application 
+      "auth": "public"               # Default value on a new application
     },                               #
     "exampleUser": {
       ... REDACTED AUTH ...
@@ -130,7 +130,7 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
       "public": {                    <--- Triggering on a "users" object key
         "Query": [                   <--- Object name
           "getUsersById",            <--- Field name
-          "getAllUsers"              # Here, the public user is not supposed to 
+          "getAllUsers"              # Here, the public user is not supposed to
                                      #  have access to the "getUsersById" and "getAllUsers" queries.
         ],
         "Mutation": [

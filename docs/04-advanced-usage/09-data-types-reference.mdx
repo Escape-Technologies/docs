@@ -1,21 +1,13 @@
 ---
-sidebar_position: 11
 title: Data Types Reference
 ---
 
-# 🔣 Sensitive Data
+# 🔣 Data Types Reference (Scalars)
 
-Escape scanners support a lot of different types of data. Here is a list of all the supported types, called `scalars`.
+Escape scanners support a lot of different types of data, named `scalars`. Here is a list of all the supported types. 
 
-:::tip Scalar properties
-Each scalar have a few key:
-
-- Possible names: The different names the field containing it could have in the graphql API.
-- Description: A short explaination of what it represent.
-- Patterns: A regex or a value that can be used to detect if a returned value is of this type.
-- Examples: Some examples of the scalar that can be used by Escape.
-- Parents: The graphQL types this scalar is compatible with.
-- Sensitivity: to which degree is this scalar a sensitive.
+:::tip 🌱 Custom Data Types
+To define your own Data Types (Scalars) and Payloads, check out the `Custom Payloads` documentation section.
 :::
 
 ***
@@ -69,6 +61,15 @@ Each scalar have a few key:
 
 
 
+## Payload
+
+|Name|Description|Sensitivity|
+|----|-----------|-----------|
+|xss_payload|XSS Payload|<span className="high-severity">HIGH</span>|
+
+
+
+
 ## Personal
 
 |Name|Description|Sensitivity|
@@ -77,7 +78,9 @@ Each scalar have a few key:
 |driving_license|Driving License Number|<span className="medium-severity">MEDIUM</span>|
 |email|Email|<span className="medium-severity">MEDIUM</span>|
 |gender|Gender|<span className="low-severity">LOW</span>|
+|latitude|Latitude geolocation|<span className="low-severity">LOW</span>|
 |legal_name|Full legal name|<span className="low-severity">LOW</span>|
+|longitude|Longitude geolocation|<span className="low-severity">LOW</span>|
 |passport|Passport Number|<span className="medium-severity">MEDIUM</span>|
 |password|Password|<span className="high-severity">HIGH</span>|
 |phone|Phone Number|<span className="medium-severity">MEDIUM</span>|
@@ -102,6 +105,7 @@ Each scalar have a few key:
 |asana_client_id|Asana Client ID|<span className="high-severity">HIGH</span>|
 |asana_client_secret|Asana Client Secret|<span className="high-severity">HIGH</span>|
 |atlassian_api_token|Atlassian API token|<span className="high-severity">HIGH</span>|
+|authress_service_client_access_key|Authress Service Client Access Key|<span className="high-severity">HIGH</span>|
 |aws_access_token|AWS|<span className="high-severity">HIGH</span>|
 |beamer_api_token|Beamer API token|<span className="high-severity">HIGH</span>|
 |bitbucket_client_id|Bitbucket Client ID|<span className="high-severity">HIGH</span>|
@@ -116,6 +120,7 @@ Each scalar have a few key:
 |contentful_delivery_api_token|Contentful delivery API token|<span className="high-severity">HIGH</span>|
 |databricks_api_token|Databricks API token|<span className="high-severity">HIGH</span>|
 |datadog_access_token|Datadog Access Token|<span className="high-severity">HIGH</span>|
+|defined_networking_api_token|Defined Networking API token|<span className="high-severity">HIGH</span>|
 |digitalocean_access_token|DigitalOcean OAuth Access Token|<span className="high-severity">HIGH</span>|
 |digitalocean_pat|DigitalOcean Personal Access Token|<span className="high-severity">HIGH</span>|
 |digitalocean_refresh_token|DigitalOcean OAuth Refresh Token|<span className="high-severity">HIGH</span>|
@@ -124,6 +129,7 @@ Each scalar have a few key:
 |discord_client_secret|Discord client secret|<span className="high-severity">HIGH</span>|
 |doppler_api_token|Doppler API token|<span className="high-severity">HIGH</span>|
 |droneci_access_token|Droneci Access Token|<span className="high-severity">HIGH</span>|
+|dropbox_api_key|Dropbox API secret/key|<span className="high-severity">HIGH</span>|
 |dropbox_api_token|Dropbox API secret|<span className="high-severity">HIGH</span>|
 |dropbox_long_lived_api_token|Dropbox long lived API token|<span className="high-severity">HIGH</span>|
 |dropbox_short_lived_api_token|Dropbox short lived API token|<span className="high-severity">HIGH</span>|
@@ -132,19 +138,20 @@ Each scalar have a few key:
 |easypost_api_token|EasyPost API token|<span className="high-severity">HIGH</span>|
 |easypost_test_api_token|EasyPost test API token|<span className="high-severity">HIGH</span>|
 |etsy_access_token|Etsy Access Token|<span className="high-severity">HIGH</span>|
-|facebook|Facebook|<span className="high-severity">HIGH</span>|
+|facebook_token|Facebook Access Token|<span className="high-severity">HIGH</span>|
 |fastly_api_token|Fastly API key|<span className="high-severity">HIGH</span>|
 |finicity_api_token|Finicity API token|<span className="high-severity">HIGH</span>|
 |finicity_client_secret|Finicity Client Secret|<span className="high-severity">HIGH</span>|
 |finnhub_access_token|Finnhub Access Token|<span className="high-severity">HIGH</span>|
 |flickr_access_token|Flickr Access Token|<span className="high-severity">HIGH</span>|
 |flutterwave_encryption_key|Flutterwave Encryption Key|<span className="high-severity">HIGH</span>|
-|flutterwave_public_key|Finicity Public Key|<span className="high-severity">HIGH</span>|
+|flutterwave_public_key|Flutterwave Public Key|<span className="high-severity">HIGH</span>|
 |flutterwave_secret_key|Flutterwave Secret Key|<span className="high-severity">HIGH</span>|
 |frameio_api_token|Frame.io API token|<span className="high-severity">HIGH</span>|
 |freshbooks_access_token|Freshbooks Access Token|<span className="high-severity">HIGH</span>|
 |gcp_api_key|GCP API key|<span className="high-severity">HIGH</span>|
-|generic_api_key|Generic API Key|<span className="high-severity">HIGH</span>|
+|gcp_service_account|Google (GCP) Service-account|<span className="high-severity">HIGH</span>|
+|generic_api_key|Token|<span className="high-severity">HIGH</span>|
 |github_app_token|GitHub App Token|<span className="high-severity">HIGH</span>|
 |github_fine_grained_pat|GitHub Fine-Grained Personal Access Token|<span className="high-severity">HIGH</span>|
 |github_oauth|GitHub OAuth Access Token|<span className="high-severity">HIGH</span>|
@@ -162,6 +169,8 @@ Each scalar have a few key:
 |heroku_api_key|Heroku API Key|<span className="high-severity">HIGH</span>|
 |hubspot_api_key|HubSpot API Token|<span className="high-severity">HIGH</span>|
 |intercom_api_key|Intercom API Token|<span className="high-severity">HIGH</span>|
+|intercom_client_secret|Intercom client secret/ID|<span className="high-severity">HIGH</span>|
+|ionic_api_token|Ionic API token|<span className="high-severity">HIGH</span>|
 |jwt|JSON Web Token|<span className="high-severity">HIGH</span>|
 |kraken_access_token|Kraken Access Token|<span className="high-severity">HIGH</span>|
 |kucoin_access_token|Kucoin Access Token|<span className="high-severity">HIGH</span>|
@@ -189,6 +198,9 @@ Each scalar have a few key:
 |npm_access_token|npm access token|<span className="high-severity">HIGH</span>|
 |nytimes_access_token|Nytimes Access Token|<span className="high-severity">HIGH</span>|
 |okta_access_token|Okta Access Token|<span className="high-severity">HIGH</span>|
+|openssh_pk|SSH private key|<span className="high-severity">HIGH</span>|
+|pgp_pk|PGP private key|<span className="high-severity">HIGH</span>|
+|pkcs8_pk|PKCS8 private key|<span className="high-severity">HIGH</span>|
 |plaid_api_token|Plaid API Token|<span className="high-severity">HIGH</span>|
 |plaid_client_id|Plaid Client ID|<span className="high-severity">HIGH</span>|
 |plaid_secret_key|Plaid Secret key|<span className="high-severity">HIGH</span>|
@@ -202,6 +214,7 @@ Each scalar have a few key:
 |pypi_upload_token|PyPI upload token|<span className="high-severity">HIGH</span>|
 |rapidapi_access_token|RapidAPI Access Token|<span className="high-severity">HIGH</span>|
 |readme_api_token|Readme API token|<span className="high-severity">HIGH</span>|
+|rsa_pk|RSA private key|<span className="high-severity">HIGH</span>|
 |rubygems_api_token|Rubygem API token|<span className="high-severity">HIGH</span>|
 |sendbird_access_id|Sendbird Access ID|<span className="high-severity">HIGH</span>|
 |sendbird_access_token|Sendbird Access Token|<span className="high-severity">HIGH</span>|
@@ -219,6 +232,8 @@ Each scalar have a few key:
 |slack_web_hook|Slack Webhook|<span className="high-severity">HIGH</span>|
 |square_access_token|Square Access Token|<span className="high-severity">HIGH</span>|
 |squarespace_access_token|Squarespace Access Token|<span className="high-severity">HIGH</span>|
+|ssh_dsa_pk|SSH (DSA) private key|<span className="high-severity">HIGH</span>|
+|ssh_ec_pk|SSH (EC) private key|<span className="high-severity">HIGH</span>|
 |stripe_access_token|Stripe private token|<span className="high-severity">HIGH</span>|
 |sumologic_access_id|SumoLogic Access ID|<span className="high-severity">HIGH</span>|
 |sumologic_access_token|SumoLogic Access Token|<span className="high-severity">HIGH</span>|
@@ -262,6 +277,7 @@ Each scalar have a few key:
 |language_iso_639_2|Language ISO 639-2|<span className="low-severity">LOW</span>|
 |locale|BCP 47 Locale|<span className="low-severity">LOW</span>|
 |mac|Mac Address|<span className="medium-severity">MEDIUM</span>|
+|mask|Mask Pattern|<span className="low-severity">LOW</span>|
 |mongo_db_object_id|Mongo DB Object ID|<span className="low-severity">LOW</span>|
 |path|Disk or URL Path|<span className="low-severity">LOW</span>|
 |port|Port number|<span className="low-severity">LOW</span>|
@@ -269,89 +285,11 @@ Each scalar have a few key:
 |rgb|RGB Color Code|<span className="low-severity">LOW</span>|
 |rgba|RGBA Color Code|<span className="low-severity">LOW</span>|
 |secret|Secret|<span className="high-severity">HIGH</span>|
+|slug|Slug|<span className="low-severity">LOW</span>|
+|ssh_url|SSH URL|<span className="medium-severity">MEDIUM</span>|
 |status_code|Status Code|<span className="low-severity">LOW</span>|
 |url|A URL as defined by RFC 1738|<span className="low-severity">LOW</span>|
 |uuid|Universally Unique Identifier|<span className="low-severity">LOW</span>|
 |version|Semver|<span className="low-severity">LOW</span>|
 
-
-
-## Custom Sensitive Data Types
-
-It's possible to write custom scalar or override existing one using the escaperc:
-
-```JSON
-{
-    "scalars": {
-        "custom_scalar_identifier": { 
-            "description": **value**,
-            "examples": ['**value**'],
-            "names": ['**value**'],
-            "parents": ['ID | Int | String | Boolean | Float'],
-            "patterns": ['**value**'],
-            "sensitivity": 0 | 1 | 2 | 3,},
-    }
-}
-```
-
-
-
-### description
-
-The description for the scalar
-
-**Example**
-
-`{'description': '**value**'}`
-
-
-
-### examples
-
-Example of values for the scalar (used in the explore as default values). Careful values inputed here will be ignored by the checks
-
-**Example**
-
-`{'examples': ['**value**']}`
-
-
-
-### names
-
-The possible names for the scalar
-
-**Example**
-
-`{'names': ['**value**']}`
-
-
-
-### parents
-
-The graphql default type it's compatible with
-
-**Example**
-
-`{'parents': ['ID | Int | String | Boolean | Float']}`
-
-
-
-### patterns
-
-The possible values for the scalar (regex friendly) (used for the checks)
-
-**Example**
-
-`{'patterns': ['**value**']}`
-
-
-
-### sensitivity
-
-The sensitivity of the data
-Must be one of [0, 1, 2, 3]
-
-**Example**
-
-`{'sensitivity': '0 | 1 | 2 | 3'}`
 
