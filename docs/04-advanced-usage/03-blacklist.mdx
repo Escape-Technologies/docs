@@ -8,7 +8,7 @@ Gain finer control over how Escape interacts with your GraphQL operations by emp
 
 ## Blacklist 🚫
 
-Identify the GraphQL operations that you'd like Escape to skip during its security tests. By blacklisting certain operations, you can ensure these won't be evaluated during the scan.
+Identify the GraphQL operations that you'd like Escape to skip during its security tests. By blacklisting certain operations, you can ensure these won't be evaluated during the scan. The `blacklist` parameter is part of the global `params` keys, referenced [here](/advanced-usage/parameters-reference).
 
 ```json
 {
@@ -34,14 +34,10 @@ By employing a whitelist, you instruct Escape to focus its exploration phase sol
 
 ```json
 {
-    "params": {
-        {
-            "whitelist": [
-                "query { child(parentId: 'b63f4020-45f6-4f33-9747-32ac8f270097' ) { id name birthdate }}",
-                "query { bank(account: 1337) { id address }}"
-            ]
-        }
-    }
+    "whitelist": [
+        "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
+        "query { bank(account: 1337) { id address }}"
+    ]
 }
 ```
 
@@ -54,13 +50,9 @@ The queries and mutations you provide should be listed under the hotstart key. Y
 
 ```json
 {
-    "params": {
-        {
-            "hotstart": [
-                "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
-                "query { bank(account: 1337) { id address }}"
-            ]
-        }
-    }
+    "hotstart": [
+        "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
+        "query { bank(account: 1337) { id address }}"
+    ]
 }
 ```

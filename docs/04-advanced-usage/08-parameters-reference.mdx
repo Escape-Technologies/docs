@@ -1,13 +1,10 @@
 ---
-sidebar_position: 10
 title: Parameters Reference
 ---
 
 # ⚙️ Parameters Reference
 
-Escape has a few parameters you can set as you please.
-
-You are able to manually configure a few things, such as permissions or environment_mode from your application (Advanced Settings) page.
+Here is the list of all available parameters under the `params` key. Some of them are detailed more thorougly in their dedicated documentation section.
 
 :::note JSON Schema example
 
@@ -49,7 +46,7 @@ You are able to manually configure a few things, such as permissions or environm
 
 ## Blacklist
 
-The operations that will be skipped by security tests.
+The operations that will be skipped by security tests. See more in the dedicated documentation section.
 
 ```JSON
 {
@@ -73,7 +70,7 @@ The operations that will be skipped by security tests.
 
 ## Client
 
-GraphQL Client parameters
+All parameters available in our `client`:
 
 ```JSON
 {
@@ -91,13 +88,13 @@ GraphQL Client parameters
 }
 ```
 
-**concurrent_connection**: The maximum size of the connections pool
+**concurrent_connection**: The maximum size of the connections pool.
 
-**concurrent_tasks**: The maximum number of parallel tasks
+**concurrent_tasks**: The maximum number of parallel tasks.
 
-**proxy**: The proxy to use for the requests. Please, get in touch with us if you need to whitelist our proxy ips.
+**proxy**: The Proxy to use for the requests. See more in the `Scan Internal APIs` documentation section.
 
-**request_timeout**: The maximum timeout for each request in seconds
+**request_timeout**: The maximum timeout duration for each request (in seconds). See more in the dedicated documentation section.
 
 **requests_per_minute**: The maximum number of request per minute. Which will be used on a per second window.
 
@@ -105,7 +102,7 @@ GraphQL Client parameters
 
 ## Complexity mode
 
-The choosen complexity
+The maximum query complexity the scan will attempt. Please note that the higher the complexity, the longer the scan will take.
 
 Must be one of `['low', 'medium', 'high', 'no_limit']`
 
@@ -121,7 +118,7 @@ Must be one of `['low', 'medium', 'high', 'no_limit']`
 
 ## Environment mode
 
-The choosen mode for the tested API
+The choosen mode for the tested API. `dev` mode is read-write and suited to development environment. `prod` mode is read-only and will reduce the number of tests performed and the scan coverage.
 
 Must be one of `['dev', 'prod']`
 
@@ -137,7 +134,7 @@ Must be one of `['dev', 'prod']`
 
 ## Speed mode
 
-The choosen speed of the explore
+The choosen speed of the scan. A `fast` mode will attempt less requests to your API and thus might lower the number of tests performed and the scan coverage. The speed mode does not impact the frequency of requests, which can be set in the `client.requests_per_minute` parameter.
 
 Must be one of `['medium', 'fast']`
 
@@ -149,32 +146,3 @@ Must be one of `['medium', 'fast']`
 }
 ```
 
-
-
-## Hotstart
-
-You are able to provide legitimate GraphQL query strings, to make it even more powerful. Escape will use these data to understand better the business logic of your application, and thus run faster and provide even more precise results.
-
-The provided queries and mutations must be in a list under the key `hotstart`. You can provide as many queries you want, with as many parameters you want, with the complexity you want.
-
-```JSON
-{
-    "hotstart": [
-        "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
-        "query { bank(account: 1337) { id address }}"
-    ]
-}
-```
-
-## Whitelist
-
-Escape will **restrict** exploration phase to only these queries, and thus run faster as well as restricted on theses queries.
-
-```JSON
-{
-    "whitelist": [
-        "query { child(parentId: 'b63f4020-45f6-4f33-9747-32ac8f270097' ) { id name birthdate }}",
-        "query { bank(account: 1337) { id address }}"
-    ]
-}
-```
