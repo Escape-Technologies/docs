@@ -134,7 +134,7 @@ Must be one of `['dev', 'prod']`
 
 ## Speed mode
 
-The choosen speed of the scan. A `fast` mode will attempt less requests to your API and thus might lower the number of tests performed and the scan coverage. The speed mode does not impact the frequency of requests, which can be set in the `client.requests_per_minute` parameter.
+The choosen speed of the scan. A `fast` mode will attempt less requests to your API and thus might lower the number of tests performed and the scan coverage. By default, the first scan of newly created apps are set to `fast` speed mode, and all the following to `medium`. The speed mode does not impact the frequency of requests, which can be set in the `client.requests_per_minute` parameter.
 
 Must be one of `['medium', 'fast']`
 
