@@ -1,0 +1,65 @@
+---
+title: Contextual Remediation
+description: Contextual Remediation for developers
+---
+
+import Image from '@theme/IdealImage';
+
+# Contextual Remediation
+
+Understanding vulnerabilities in isolation rarely provides a true understanding of an organization's security posture. With Escape's Contextual Remediation feature, vulnerabilities are not only detected but also analyzed and prioritized within the context of your organization's specific risks. This enables your team to focus on fixing what genuinely threatens your infrastructure.
+
+## Empowering Developers and Security Teams
+
+Escape's Contextual Remediation is built with a strong focus on assisting developers in building more secure applications. This feature serves as a bridge between the Security Team and developers, fostering a culture of shared responsibility for an organization's cybersecurity.
+
+<Image img={require('./img/remediation.png')} alt="reporting"/>
+
+## Features
+
+- **Prioritized Risk Assessment** with **Context-Aware Vulnerability Scoring**: Vulnerabilities are scored and categorized based on their actual risk to the organization, taking into account factors such as whether they can be reproduced with or without authentication, if the endpoint is publicly exposed on the internet, and if the API schema is public.
+- **Detailed Remediation Insights** Each remediation comes with a detailed explanation of why a particular vulnerability is a high, medium, or low risk in your specific context.
+- **Learn as You Fix**: The feature aims to educate developers about security best practices, so they not only fix vulnerabilities but also understand how to prevent similar issues in future development.
+- **cURL Reproduction**: For each detected vulnerability, a `cURL` command is provided in a reproducibility panel so that you can easily reproduce the issue and test the effectiveness of your remediations.
+- **Developer-Friendly Fixes**:  Remediations come with code snippets, designed to be easily understood and quickly implemented, making developers' lives easier and their code more secure. Code snippets are tailor-made for major GraphQL frameworks, including:
+  - [Agoo](https://github.com/ohler55/agoo)
+  - [Apollo](https://www.apollographql.com/)
+  - [Ariadne](https://ariadnegraphql.org/)
+  - [AWSAppSync](https://aws.amazon.com/appsync/)
+  - [Caliban](https://ghostdogpr.github.io/caliban/)
+  - [DGraph](https://dgraph.io/)
+  - [Directus](https://directus.io/)
+  - [Flutter](https://flutter.dev/)
+  - [Graphene](https://graphene-python.org/)
+  - [GraphQLAPIForWF](https://graphql-api.com/)
+  - [GraphQLGo](https://github.com/graphql-go/graphql)
+  - [GraphQLGopherGo](https://github.com/graph-gophers/graphql-go)
+  - [GraphQLJava](https://www.graphql-java.com/)
+  - [GraphQLPHP](https://webonyx.github.io/graphql-php/)
+  - [GraphQLYoga](https://github.com/prisma-labs/graphql-yoga)
+  - [Hasura](https://hasura.io/)
+  - [HyperGraphQL](http://hypergraphql.org/)
+  - [Jaal](https://github.com/appointy/jaal)
+  - [Juniper](https://github.com/graphql-rust/juniper)
+  - [Lacinia](https://lacinia.readthedocs.io/en/latest/)
+  - [Lighthouse](https://lighthouse-php.com/)
+  - [Mercurius](https://mercurius.dev/#/)
+  - [MorpheusGraphQL](https://morpheusgraphql.com/)
+  - [GOLGen](https://github.com/99designs/gqlgen)
+  - [Ruby](https://graphql-ruby.org/)
+  - [Sangria](http://sangria-graphql.org/)
+  - [Shopify](https://shopify.dev/api/admin-graphql/getting-started)
+  - [Stepzen](https://stepzen.com/)
+  - [Strawberry](https://strawberry.rocks/docs/guides/introduction)
+  - [Tartiflette](https://tartiflette.io/docs/tutorial/getting-started)
+  - [WPGraphQL](https://www.wpgraphql.com/)
+
+
+
+
+## Benefits
+
+- **Faster Remediation** with **targeted Fixes**: Prioritize and address vulnerabilities that matter the most to your specific organization.
+- **Developer Enablement**: With framework-specific code snippets and `cURL` commands for reproduction, developers can understand and fix vulnerabilities faster and more accurately.
+
+By enabling you to understand vulnerabilities in their true organizational context and offering actionable, developer-friendly remediation, Escape's Contextual Remediation feature significantly enhances your ability to respond to and mitigate security risks effectively.
