@@ -155,6 +155,62 @@ workflows:
 ```
   </TabItem>
 
+  <TabItem value="jenkins" label="Jenkins Pipeline">
+
+```javascript
+pipeline {
+    agent {
+        docker {
+            image 'node:alpine'
+        }
+    }
+    
+    environment {
+        ESCAPE_APPLICATION_ID = credentials('ESCAPE_APPLICATION_ID')
+        ESCAPE_API_KEY = credentials('ESCAPE_API_KEY')
+        SCHEMA_FILE = 'relative/path/to/schema/from/repo/root/schema.graphql'
+        // Alternatively, you can use INTROSPECTION_FILE for the schema
+        // INTROSPECTION_FILE = 'relative/path/to/schema/from/repo/root/introspection.json'
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm // Checkout the codebase from the SCM provider
+            }
+        }
+        
+        stage('Post-Deploy') {
+            when {
+                branch 'staging' // Only run on the 'staging' branch
+            }
+
+            steps {
+                script {
+                    // Install the Escape CLI tool
+                    sh 'npm install -g @escape.tech/action'
+                    
+                    // Show the installed Escape CLI version
+                    sh 'npm show @escape.tech/action version'
+                    
+                    // Run the Escape action
+                    sh 'escape-action'
+                }
+            }
+            
+            post {
+                always {
+                    // Configuration to allow failure
+                }
+            }
+        }
+    }
+}
+
+```
+
+  </TabItem>
+
 
   <TabItem value="cli" label="CLI">
 
