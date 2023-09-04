@@ -1,0 +1,62 @@
+---
+sidebar_position: 0
+title: Error type inconsistency
+---
+
+# Error type inconsistency
+
+## Description
+
+An error type inconsistency occurred.
+
+## Remediation
+
+An error type inconsistency can be caused by a misconfiguration of the GraphQL server.
+To fix this issue, return a contextual error type for each error instead of an Internal Server Error.
+
+For example, if the request fails during the validation phase, return a validation error.
+By default, it will return an Internal Server Error.
+
+
+## Configuration
+
+> CheckId: `http/error_type_inconsistency`
+
+
+### Examples
+
+
+#### Ignoring this check
+
+```json
+{
+    "checks": {
+        "http/error_type_inconsistency": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+- OWASP: **[A08:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-lack-of-protection-from-automated-threats.md)**
+
+- CWE
+  - **20**
+
+
+
+
+### CVSS
+
+- CVSS_VECTOR: **AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:U/RL:W/RC:C/CR:X/IR:X/AR:X/MAV:N/MAC:L/MPR:N/MUI:N/MS:U/MC:N/MI:N/MA:L**
+- CVSS_SCORE: **4.7**
+
+## References
+
+
