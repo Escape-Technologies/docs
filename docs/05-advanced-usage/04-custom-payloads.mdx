@@ -2,6 +2,8 @@
 title: Custom Payloads
 ---
 
+import BetaBadge from "@site/src/components/BetaBadge";
+
 # Custom Payload Injection 💉
 
 Escape provides users with the capability to inject custom payloads in its security scanner to ensure precision and thoroughness in testing. There are two main methods for this:
@@ -11,38 +13,113 @@ Escape provides users with the capability to inject custom payloads in its secur
 
 These customization methods improve scan quality by tailoring tests specifically to an application's needs. Let's dive into the details.
 
-## Method 1 - Using the Hotstart feature
+## Method 1 - Using custom security tests <BetaBadge />
 
-The `hotstart` parameter allows users to provide specific GraphQL query strings. This not only gives Escape more insight into the application's business logic but also aids in faster and more accurate scanning. 
+We provide a tool that allows you to send custom requests to any URLs within your organization. This utility is particularly useful for running static security assessments on your web applications, identifying regression bugs, or investigating specialized in-house security concerns.
+
+### Configuring a Static Security Assessment
+
+To initiate a new static security assessment, navigate to the Expert tab in your application settings.
+
+Below is a sample configuration that illustrates a static security assessment aimed at sending a GraphQL query to a specified endpoint. The assessment will then validate if the server's response status is 200.
+
+```json
+{
+  "custom_checks": [
+    {
+      "name": "Example-1",
+      "severity": "high",
+      "http": [
+        {
+          "user": "public",
+          "raw": "@Host: https://[REDACTED]\nPOST / HTTP/1.1\nHost: [REDACTED]\nContent-Type: application/json\nContent-Length: 194\n\n{\"query\":\"query {\n    debug(test: \\\"y\\\") {\n        id\n        username\n        credit_card {\n            belong_to {\n                id\n            }\n        }\n    }\n}\",\"variables\":{}}",
+          "matchers": [
+            {
+              "status": [200],
+              "part": "status"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "params": {
+}
+```
+
+To easily encode your raw request located in a req.txt file, execute the following Python command:
+
+```python
+cat req.txt | python -c "import sys; print(''.join(sys.stdin).replace('\n', '\\\\n').replace('\\\\\"', '\\\\\\\\\"').replace('\"', '\\\\\"'))"
+```
+
+### API
+
+The api is fairly inspired by the [Nuclei template engine](https://docs.nuclei.sh/template-guide/introduction).
+
+:::note JSON Schema example
+
+```
+{
+    "custom_checks": {
+        "name": "**value**",                                                            # The name of the check
+        "severity": "high | medium | low | info",                                       # The severity of the alert found
+        "http": {
+            "raw": "**value**",                                                         # The raw request to send
+            "user": "**value**",                                                        # The user to use for the request
+            "matchers": {
+                "part": "status | body | headers | headers_keys | headers_values",      # The part of the response to match
+                "regex": ["**value**", ...],                                            # Regexes to use for the match
+                "status": ["**value**", ...],                                           # Statuses to match
+                "words": ["**value**", ...],                                            # Words to match
+            }
+        }
+    }
+}
+```
+
+:::
+
+#### Special Commands
+
+Special commands should be placed at the beginning of the RAW request body.
+
+- @Host: Allows you to manually set the host for the request. Useful for forcing an HTTPS connection.
+- @timeout: Allows you to manually set the timeout duration for the request. The default timeout is 5 seconds.
+
+## Method 2 - Using the Hotstart feature
+
+The `hotstart` parameter allows users to provide specific GraphQL query strings. This not only gives Escape more insight into the application's business logic but also aids in faster and more accurate scanning.
 
 **Example**:
 
 ```json
 {
-    "hotstart": [
-        "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
-        "query { bank(account: 1337) { id address }}"
-    ]
+  "hotstart": [
+    "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
+    "query { bank(account: 1337) { id address }}"
+  ]
 }
 ```
 
-## Method 2 - Defining Custom Data Types (Scalars)
+## Method 3 - Defining Custom Data Types (Scalars)
 
 Escape operates on a [comprehensive scalar architecture](/advanced-usage/data-types-reference), granting users the power to define their own data types or override existing ones via the `escaperc`
 
 ### Structure for custom scalars:
+
 ```json
 {
-    "scalars": {
-        "custom_scalar_identifier": { 
-            "description": "value",
-            "examples": ["value"],
-            "names": ["value"],
-            "parents": ["ID", "Int", "String", "Boolean", "Float"],
-            "patterns": ["value"],
-            "sensitivity": 0
-        }
+  "scalars": {
+    "custom_scalar_identifier": {
+      "description": "value",
+      "examples": ["value"],
+      "names": ["value"],
+      "parents": ["ID", "Int", "String", "Boolean", "Float"],
+      "patterns": ["value"],
+      "sensitivity": 0
     }
+  }
 }
 ```
 
@@ -55,12 +132,11 @@ Escape operates on a [comprehensive scalar architecture](/advanced-usage/data-ty
 - `patterns`: Potential regex-friendly values for the scalar (utilized for the checks).
 - `sensitivity`: Data sensitivity level. Allowed values are `[0, 1, 2, 3]`. Values `2` and `3` will serve to raise sensitive data alerts in Escape.
 
-
 ### Example
 
-This is how JWT is defined by default in Escape's engine: 
+This is how JWT is defined by default in Escape's engine:
 
-```json 
+```json
 jwt:
   description: JSON Web Token
   examples:
@@ -77,13 +153,11 @@ jwt:
     - eyJ(?:[a-zA-Z0-9_=]+)\.eyJ(?:[a-zA-Z0-9_=]+)\.(?:[a-zA-Z0-9_\-\+\/=]*)
     - (?i)\b(ey[0-9a-z]{30,34}\.ey[0-9a-z-\/_]{30,500}\.[0-9a-zA-Z-\/_]{10,200}={0,2})(?:['|\"|\n|\r|\s|\x60|;]|$)
   sensitivity: 3
-  ```
-
+```
 
 :::info 🤖 Community Sharing
 If you've crafted some useful custom scalars, feel free to share them with our community on [Discord](https://discord.escape.tech/). Your contributions can assist others in refining their security checks.
 :::
-
 
 # Modifying current attacks
 
