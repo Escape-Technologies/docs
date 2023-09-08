@@ -1,13 +1,13 @@
 ---
-sidebar_position: 9
-title: Static security check
+sidebar_position: 6
+title: Custom security check
 ---
 
-# Static security check
+# Custom security check
 
 ## Description
 
-One or more security checks failed.
+A custom security check failed.
 
 ## Remediation
 
@@ -16,7 +16,7 @@ Get in touch with your security team.
 
 ## Configuration
 
-> CheckId: `http/static_security_check`
+> CheckId: `http/custom_security_check`
 
 
 ### Examples
@@ -27,7 +27,7 @@ Get in touch with your security team.
 ```json
 {
     "checks": {
-        "http/static_security_check": {
+        "http/custom_security_check": {
             "skip": true
         }
     }
