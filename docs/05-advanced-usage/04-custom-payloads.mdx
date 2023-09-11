@@ -83,9 +83,19 @@ The api is fairly inspired by the [Nuclei template engine](https://docs.nuclei.s
 
 #### Matchers
 
-You can attempt to match a specific part of the response using the `part` parameter. The following parts are available: - `status`: The status code of the response - `body`: The body of the response - `headers`: The headers (key and values) of the response - `headers_keys`: The keys of the headers of the response - `headers_values`: The values of the headers of the response
+You can attempt to match a specific part of the response using the `part` parameter. The following parts are available:
 
-You can use the following parameters to match the response: - `regex`: A list of regexes to match - `status`: A list of status codes to match - `words`: A list of words to match
+- `status`: The status code of the response
+- `body`: The body of the response
+- `headers`: The headers (key and values) of the response
+- `headers_keys`: The keys of the headers of the response
+- `headers_values`: The values of the headers of the response
+
+You can use the following parameters to match the response:
+
+- `regex`: A list of regexes to match
+- `status`: A list of status codes to match
+- `words`: A list of words to match
 
 If one of the matchers is successful, an alert will be raised, based on the severity of the check.
 
