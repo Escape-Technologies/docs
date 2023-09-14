@@ -8,6 +8,8 @@ This feature is in Private Beta for Enterprise Customers. Contact us via email o
 
 :::
 
+## Overview
+
 Escape's Repeater Agent allows you to scan scan Internal Apps behind your organization's firewall or VPN.
 
 This repeater creates a private tunnel between Escape and one of your servers.
@@ -21,3 +23,33 @@ First, the repeater client you have deployed locally will connect to the repeate
 When you start a scan on escape, instead of sending the requests directly to your server, Escape will send them to the repeater manager (2).
 Your client will receive the requests and send them to your server (3 & 4).
 The results are sent back to Escape to allow you to see scans results.
+
+## How to setup a repeater
+
+First, you need to connect to Escape and go to the repeater page.
+Here you can see the list of your active repeaters and add a new one.
+
+After creating a new repeater, you will be able to retrieve it's repeater id.
+
+You will now need to setup a repeater client on your server.
+For that, follow the readme of the [repeater client](https://github.com/Escape-Technologies/Repeater/).
+
+Once the client is setup, you can configure any of your applications like this :
+
+```json
+{
+  "params": {
+    "client": {
+      "proxy": {
+        "type": "repeater",
+        "target": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" // Put here your repeater id
+      }
+    }
+  },
+
+  // ...
+
+}
+```
+
+For more information about how to whitelist Escape scans, read the [Scan Internal APIs](/advanced-usage/internal-apis) page.
