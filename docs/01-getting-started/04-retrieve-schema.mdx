@@ -1,12 +1,14 @@
 ---
-title: Enable introspection
+title: How to get a schema
 ---
 
-# 🕵️ Enable introspection
+# GraphQL
 
-## Enabling the introspection on your application
+## 🕵️ Enable introspection
 
-### Using Apollo
+### Enabling the introspection on your application
+
+#### Using Apollo
 
 When creating a new instance of the `ApolloServer`, you have to provide an object describing your resolvers, and types definitions. This object can also include an `introspection` parameter.
 
@@ -53,7 +55,7 @@ const server = new ApolloServer({
 
 The value of the variable `ESCAPE_IDENTIFIER` could be contained in your environment or any secure storage you'd like.
 
-### Using NestJS
+#### Using NestJS
 
 NestJS provides a GraphQL module through the `@nestjs/graphql` package. The package is a wrapper around the Apollo GraphQL server, and it's usage is documented in the [NestJS related documentation](https://docs.nestjs.com/graphql/quick-start).
 
@@ -109,7 +111,7 @@ export class AppModule {}
 
 This will enable introspection by default, and disable it in every environment you decide to.
 
-#### Fine-tuning
+##### Fine-tuning
 
 Any of the options you pass to the `GraphQLModule.forRoot` method is part of the Apollo configuration object. Thus, you can re-use the [Apollo plugin method](/cookbooks/enabling-introspection#using-apollo) for a fine-tuned access control.
 
@@ -131,11 +133,11 @@ const secureIntrospection = ... // see the apollo technique documentation
 export class AppModule {}
 ```
 
-### Using Yoga
+#### Using Yoga
 
 Yoga plugin system is built with Envelop. Refer to the [Envelop section](#using-envelop) for more information.
 
-### Using Envelop
+#### Using Envelop
 
 Envelop provides a plugin `disable-introspection` that allows you to disable the introspection query. You can find more information about this plugin in the [Envelop documentation](https://www.envelop.dev/plugins/use-disable-introspection).
 
@@ -157,7 +159,7 @@ const getEnveloped = envelop({
 });
 ```
 
-## Retrieving your introspection schema manually
+### Retrieving your introspection schema manually
 
 GraphQL endpoints are [introspectable](https://graphql.org/learn/introspection/), meaning that one can query an API to get details about the API itself. This feature is enabled by default, but you may have disabled it in production. Escape needs these introspection details to scan your API, and can work with either a [schema file](#retrieving-a-graphql-schema) or an [introspection result](#sending-an-introspection-query). Read on to learn how to get these files.
 
@@ -282,3 +284,10 @@ curl --location 'https://example.com/graphql' \
 --data '{"query":"query IntrospectionQuery { __schema { queryType { name } mutationType { name } subscriptionType { name } types { ...FullType } directives { name description locations args { ...InputValue } } } } fragment FullType on __Type { kind name description fields(includeDeprecated: true) { name description args { ...InputValue } type { ...TypeRef } isDeprecated deprecationReason } inputFields { ...InputValue } interfaces { ...TypeRef } enumValues(includeDeprecated: true) { name description isDeprecated deprecationReason } possibleTypes { ...TypeRef } } fragment InputValue on __InputValue { name description type { ...TypeRef } defaultValue } fragment TypeRef on __Type { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name } } } } } } } }","variables":{}}' \
 > introspection.json
 ```
+
+
+# REST
+
+Escape is compatible with Swagger v2, OpenAPI v3 and Postman Collections.
+
+More input sources will be available soon, as the ability to scan undocumented APIs.

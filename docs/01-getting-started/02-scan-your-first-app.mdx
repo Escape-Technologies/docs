@@ -1,29 +1,29 @@
 ---
 title: Start your first scan
-description: Scan your GraphQL API in 5 minutes
+description: Scan your API in 5 minutes
 ---
 
 import Image from '@theme/IdealImage';
 
 # 🔎 Start your first scan
 
-In its most simple form, an API endpoint is **everything we need to start scans on a GraphQL API.**
-
 ## Application creation stepper
 
 1. Go to your [applications list](https://app.escape.tech) and click on `Secure a new app`
-2. Enter your GraphQL endpoint and click on `Next`
+2. Choose between `GraphQL` and `REST`
+3. For `REST` applicatins, you will be required to provide either a Swagger v2, OpenAPI v3 or Postman Collection file.
+2. Enter your endpoint and click on `Next`
 3. Add an authorization header if desired or click on `Skip`
-4. Select a name for the application, and select if you want the scan to send `queries` and `mutations` (read-write mode), or only `queries` (read-only, safe for production). Click on `Start scanning`.
+4. Select a name for the application, and select if you want the scan to run in development (read-write mode) or production (read-only) environment.
 5. You are all set!
 
 ## Common pitfalls
 
-### My endpoint is not a GraphQL endpoint
+### My endpoint is not a valid endpoint
 
-It might occur that we cannot detect if an API endpoint is powered by a GraphQL engine. In the case it is legit not a GraphQL endpoint and you might want to [discuss with us](https://discord.escape.tech) to be early testers of non-graphql APIs security tests.
+It might occur that we cannot detect if an API endpoint is valid. In the case it is legit, you might want to [discuss with us](https://discord.escape.tech).
 
-### My endpoint is a GraphQL endpoint but requires authentication
+### Your endpoint requires authentication
 
 <Image img={require('./img/not-a-graphql-endpoint.png')} alt="test"/>
 

@@ -24,7 +24,7 @@ We provide a tool that allows you to send custom requests to any URLs within you
 
 To initiate a new static security assessment, navigate to the Expert tab in your application settings.
 
-Below is a sample configuration that illustrates a static security assessment aimed at sending a GraphQL query to a specified endpoint. The assessment will then validate if the server's response status is 200.
+Below is a sample configuration that illustrates a static security assessment aimed at sending a request to a specified endpoint. The assessment will then validate if the server's response status is 200.
 
 ```json
 {
@@ -109,7 +109,7 @@ Special commands should be placed at the beginning of the RAW request body.
 
 ## Method 2 - Using the Hotstart feature
 
-The `hotstart` parameter allows users to provide specific GraphQL query strings. This not only gives Escape more insight into the application's business logic but also aids in faster and more accurate scanning.
+The `hotstart` parameter allows users to provide specific requests. This not only gives Escape more insight into the application's business logic but also aids in faster and more accurate scanning.
 
 **Example**:
 
@@ -148,7 +148,7 @@ Escape operates on a [comprehensive scalar architecture](/advanced-usage/data-ty
 - `description`: Brief description for the scalar.
 - `examples`: Sample values for the scalar (used in the explore phase as default values). Be cautious: the scanner will ignore the checks for these values.
 - `names`: Possible names for the scalar.
-- `parents`: GraphQL's default type the scalar is compatible with.
+- `parents`: default type the scalar is compatible with.
 - `patterns`: Potential regex-friendly values for the scalar (utilized for the checks).
 - `sensitivity`: Data sensitivity level. Allowed values are `[0, 1, 2, 3]`. Values `2` and `3` will serve to raise sensitive data alerts in Escape.
 

@@ -4,11 +4,11 @@ title: Blacklist & Whitelist
 
 # Directing Your Scan: Blacklist, Whitelist & Hotstart 🎯
 
-Gain finer control over how Escape interacts with your GraphQL operations by employing the Blacklist, Whitelist, and Hotstart features.
+Gain finer control over how Escape interacts with your API by employing the Blacklist, Whitelist, and Hotstart features.
 
 ## Blacklist 🚫
 
-Identify the GraphQL operations that you'd like Escape to skip during its security tests. By blacklisting certain operations, you can ensure these won't be evaluated during the scan. The `blacklist` parameter is part of the global `params` keys, referenced [here](/advanced-usage/parameters-reference).
+Identify the operations that you'd like Escape to skip during its security tests. By blacklisting certain operations, you can ensure these won't be evaluated during the scan. The `blacklist` parameter is part of the global `params` keys, referenced [here](/advanced-usage/parameters-reference).
 
 ```json
 {
@@ -44,7 +44,7 @@ By employing a whitelist, you instruct Escape to focus its exploration phase sol
 
 ## Hotstart 🚀
 
-Enhance the potency of your scans! By providing legitimate GraphQL query strings via the Hotstart feature, you arm Escape with deeper insights into your application's business logic. This enables Escape to operate with increased efficiency and precision.
+Enhance the potency of your scans! By providing legitimate requests via the Hotstart feature, you arm Escape with deeper insights into your application's business logic. This enables Escape to operate with increased efficiency and precision.
 
 The queries and mutations you provide should be listed under the hotstart key. You have the freedom to provide multiple queries, with varying parameters and complexities.
 

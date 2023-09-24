@@ -6,12 +6,12 @@ Description: Programmatically update your Escape application's introspection
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# ⨠ Update introspection
+# ⨠ Update schema
 
-The GraphQL introspection (or schema), includes data like types, fields, queries, mutations, and even the field-level descriptions.
+The schema, includes data like types, fields, queries, mutations, and even the field-level descriptions.
 
-By default, Escape will always fetch the latest introspection from your GraphQL endpoint. However, if your introspection is closed, you can still update it manually or programmatically.
-Escape supports the programmatic update of introspection schemas or GraphQL schemas inside the CI/CD. Using this feature, you can **automatically keep your introspection schema in sync even if your introspection is closed**. By uploading a GraphQL schema or an introspection response from a CI/CD environment, Escape will always be aware of your latest schema changes before a scan is started.
+By default, Escape will always fetch the latest schema from your endpoint. However, if your introspection is closed, you can still update it manually or programmatically.
+Escape supports the programmatic update of schemas inside the CI/CD. Using this feature, you can **automatically keep your introspection schema in sync even if your introspection is closed**. By uploading a schema response from a CI/CD environment, Escape will always be aware of your latest schema changes before a scan is started.
 
 :::info
 You can also manually update your application introspection on [Escape](https://app.escape.tech).
