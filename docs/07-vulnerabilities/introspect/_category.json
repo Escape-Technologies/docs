@@ -1,9 +1,9 @@
 {
-        "label": Schema,
-        "collapsed": true,
-        "link": {
-            "type": "generated-index",
-            "slug": "/introspect",
-            "description": "Schema reference"
-        }
+    "label": "Schema",
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "slug": "/introspect",
+        "description": "Schema reference"
     }
+}

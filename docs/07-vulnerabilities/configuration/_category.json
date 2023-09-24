@@ -1,9 +1,9 @@
 {
-        "label": Configuration,
-        "collapsed": true,
-        "link": {
-            "type": "generated-index",
-            "slug": "/configuration",
-            "description": "Configuration reference"
-        }
+    "label": "Configuration",
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "slug": "/configuration",
+        "description": "Configuration reference"
     }
+}

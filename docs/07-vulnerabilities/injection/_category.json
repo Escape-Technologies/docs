@@ -1,9 +1,9 @@
 {
-        "label": Injection,
-        "collapsed": true,
-        "link": {
-            "type": "generated-index",
-            "slug": "/injection",
-            "description": "Injection reference"
-        }
+    "label": "Injection",
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "slug": "/injection",
+        "description": "Injection reference"
     }
+}

@@ -1,9 +1,9 @@
 {
-        "label": Information Disclosure,
-        "collapsed": true,
-        "link": {
-            "type": "generated-index",
-            "slug": "/information_disclosure",
-            "description": "Information Disclosure reference"
-        }
+    "label": "Information Disclosure",
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "slug": "/information_disclosure",
+        "description": "Information Disclosure reference"
     }
+}

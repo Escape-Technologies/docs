@@ -1,9 +1,9 @@
 {
-        "label": Access Control,
-        "collapsed": true,
-        "link": {
-            "type": "generated-index",
-            "slug": "/access_control",
-            "description": "Access Control reference"
-        }
+    "label": "Access Control",
+    "collapsed": true,
+    "link": {
+        "type": "generated-index",
+        "slug": "/access_control",
+        "description": "Access Control reference"
     }
+}
