@@ -1,0 +1,57 @@
+---
+title: File disclosure
+---
+
+# File disclosure
+
+## Description
+
+A critical file was disclosed by the web server.
+
+
+## Remediation
+
+Remove the file from the web server.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/file_disclosure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "information_disclosure/file_disclosure": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
+  
+  - CWE
+  
+  
+  
+
+
+
+
+
+

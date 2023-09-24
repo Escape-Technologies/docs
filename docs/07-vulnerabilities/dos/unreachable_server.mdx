@@ -1,5 +1,4 @@
 ---
-sidebar_position: 1
 title: Unreachable server
 ---
 
@@ -7,28 +6,29 @@ title: Unreachable server
 
 ## Description
 
-The server went offline for too long.
-This can be caused by a server crash, a network issue, or a misconfiguration.
-
+The server went offline for too long. This can be caused by a server crash, a network issue, or a misconfiguration.
 Often, this is a sign of a bigger issue.
+
 
 ## Remediation
 
 We recommend you to investigate two possible causes:
+- Unhandled exceptions in your code: Verify that your code is handling exceptions properly. - Uncontrolled resource consumption: Verify what resolver has been used to leverage the data source.
 
-- Unhandled exceptions in your code: Verify that your code is handling exceptions properly.
-- Uncontrolled resource consumption: Verify what resolver has been used to leverage the data source.
+
 
 
 ## Configuration
 
-> CheckId: `dos/unreachable_server`
+> Identifier: `dos/unreachable_server`
+
 
 
 ### Examples
 
 
-#### Ignoring this check
+
+#### Ignore this check
 
 ```json
 {
@@ -45,20 +45,20 @@ We recommend you to investigate two possible causes:
 
 ## Score
 
-- Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A08:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-lack-of-protection-from-automated-threats.md)**
-- PCI DSS: **6.5.8**
-- CWE
-  - **400**
-  - **557**
-  - **664**
-  - **770**
-  - **1060**
-  - **1088**
-  - **1226**
-- WASC: **10**
-
-
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A08:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-lack-of-protection-from-automated-threats.md)**
+  - PCI DSS: **6.5.8**
+  - CWE
+    - **400**
+    - **557**
+    - **664**
+    - **770**
+    - **1060**
+    - **1088**
+    - **1226**
+  - WASC: **10**
+  
+  
 
 ### CVSS
 
@@ -67,4 +67,5 @@ We recommend you to investigate two possible causes:
 
 ## References
 
-https://medium.com/workflowgen/graphql-query-timeout-and-complexity-management-fab4d7315d8d
+- [https://medium.com/workflowgen/graphql-query-timeout-and-complexity-management-fab4d7315d8d](https://medium.com/workflowgen/graphql-query-timeout-and-complexity-management-fab4d7315d8d)
+  

@@ -1,0 +1,59 @@
+---
+title: Response size
+---
+
+# Response size
+
+## Description
+
+A very large response was detected.
+
+
+## Remediation
+
+A response this large may be a forerunner sign of a DoS attack: your
+API should provide pagination or a similar way to limit the size of the response.
+
+
+
+
+## Configuration
+
+> Identifier: `complexity/response_size`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "complexity/response_size": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
+  
+  
+  
+  
+  
+
+
+
+
+
+

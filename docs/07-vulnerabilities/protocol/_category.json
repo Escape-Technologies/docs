@@ -1,0 +1,9 @@
+{
+        "label": Protocol,
+        "collapsed": true,
+        "link": {
+            "type": "generated-index",
+            "slug": "/protocol",
+            "description": "Protocol reference"
+        }
+    }

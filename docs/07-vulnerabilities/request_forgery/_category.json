@@ -1,0 +1,9 @@
+{
+        "label": RequestForgery,
+        "collapsed": true,
+        "link": {
+            "type": "generated-index",
+            "slug": "/request_forgery",
+            "description": "RequestForgery reference"
+        }
+    }

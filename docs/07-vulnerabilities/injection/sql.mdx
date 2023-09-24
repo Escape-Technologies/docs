@@ -1,14 +1,14 @@
 ---
-sidebar_position: 3
-title: SQL
+title: SQL Injection
 ---
 
-# SQL
+# SQL Injection
 
 ## Description
 
-A SQL injection vulnerability occurs when users can insert (or “inject”) malicious SQL code in a legit SQL query that is built from user-submitted input.
+A SQL injection vulnerability occurs when users can insert - inject - malicious SQL code in a legit SQL query that is built from user-submitted input.
 A successful SQL injection exploit can read sensitive data from the database, modify database data, execute administration operations on the database (such as shutting down the DBMS), recover the content of a given file from the DBMS file system and in some cases issue commands to the operating system.
+
 
 ## Remediation
 
@@ -23,20 +23,24 @@ Additional defenses:
 - Performing Allow-list Input Validation as a secondary line of defense.
 
 
+
+
 ## Configuration
 
-> CheckId: `injection/sql`
+> Identifier: `injection/sql`
 
 ### Options
 
-- *skip_objects* : List of object that are to be skipped by the security test.
+- **skip_objects** : List of object that are to be skipped by the security test.
+  
 
 
 
 ### Examples
 
 
-#### Ignoring this check
+
+#### Ignore this check
 
 ```json
 {
@@ -49,35 +53,20 @@ Additional defenses:
 ```
 
 
-#### Check with all default options
-
-```json
-{
-    "checks": {
-        "injection/sql": {
-            "options": {
-                "skip_objects": []
-            }
-        }
-    }
-}
-```
-
-
 
 
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A09:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-assets-management.md)**
-- PCI DSS: **6.5.1**
-- CWE
-  - **89**
-  - **564**
-  - **943**
-- WASC: **19**
-
-
+  - OWASP: **[A09:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-assets-management.md)**
+  - PCI DSS: **6.5.1**
+  - CWE
+    - **89**
+    - **564**
+    - **943**
+  - WASC: **19**
+  
+  
 
 ### CVSS
 
@@ -86,4 +75,5 @@ Additional defenses:
 
 ## References
 
-https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+- [https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
+  

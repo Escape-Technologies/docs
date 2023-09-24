@@ -1,0 +1,62 @@
+---
+title: Proxy Disclosure
+---
+
+# Proxy Disclosure
+
+## Description
+
+If the proxy server can be detected or fingerprinted then this information will help a potential attacker to determine a list of targets against the application,
+potential vulnerabilities on the proxy servers and the presence or absence of any proxy-based components that are able to detect, prevent or mitigate the attack.
+
+
+## Remediation
+
+- Disable the 'TRACE' method on the proxy servers, as well as the origin web/application server.
+- Disable the 'OPTIONS' method on the proxy servers, as well as the origin web/application server, if it is not required for other purposes, such as 'CORS' (Cross Origin Resource Sharing).
+- Configure all proxies, application servers, and web servers to prevent disclosure of the technology and version information.
+
+
+
+
+## Configuration
+
+> Identifier: `configuration/proxy_disclosure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "configuration/proxy_disclosure": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A05:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa5-broken-function-level-authorization.md)**
+  
+  - CWE
+    - **200**
+  
+  
+  
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+---
+title: SSRF Injection in headers
+---
+
+# SSRF Injection in headers
+
+## Description
+
+SSRF flaws occur whenever a web application is fetching a remote resource without validating the user-supplied URL.
+It allows an attacker to coerce the application to send a crafted request to an unexpected destination, even when protected by a firewall, VPN, or another type of network access control list (ACL).
+
+
+## Remediation
+
+How to prevent:
+- Segment remote resource access functionality in separate networks to reduce the impact of SSRF.
+- Sanitize and validate all client-supplied input data.
+- Enforce the URL schema, port, and destination with a positive allow list.
+- Disable HTTP redirections.
+
+
+
+## Configuration
+
+> Identifier: `request_forgery/ssrf_header`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "request_forgery/ssrf_header": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
+  - PCI DSS: **6.5.6**
+  - CWE
+    - **918**
+    - **441**
+  - WASC: **15**
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L**
+- CVSS_SCORE: **7.3**
+

@@ -1,14 +1,14 @@
 ---
-sidebar_position: 6
-title: XXE
+title: XXE Injection
 ---
 
-# XXE
+# XXE Injection
 
 ## Description
 
 External entities is an element of XML documents, and attackers may replace the entity value with malicious data, alternate referrals, or compromise the security of the data the server/XML application has access to.
 Attackers may also use External Entities to have the web services download malicious code or content on the server for use in secondary or follow up attacks.
+
 
 ## Remediation
 
@@ -23,15 +23,19 @@ Disabling DTDs also helps secure the parser against Denial of Services attacks s
 If it is not possible to disable DTDs completely, disable external entities and external document type declarations in the way that's specific to each parser.
 
 
+
+
 ## Configuration
 
-> CheckId: `injection/xxe`
+> Identifier: `injection/xxe`
+
 
 
 ### Examples
 
 
-#### Ignoring this check
+
+#### Ignore this check
 
 ```json
 {
@@ -49,14 +53,14 @@ If it is not possible to disable DTDs completely, disable external entities and 
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A08:2019](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa8-injection.md)**
-- PCI DSS: **_6_5_1**
-- CWE
-  - **610**
-  - **611**
-- WASC: **43**
-
-
+  - OWASP: **[A08:2019](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa8-injection.md)**
+  - PCI DSS: **_6_5_1**
+  - CWE
+    - **610**
+    - **611**
+  - WASC: **43**
+  
+  
 
 ### CVSS
 
@@ -65,4 +69,5 @@ If it is not possible to disable DTDs completely, disable external entities and 
 
 ## References
 
-http://projects.webappsec.org/XML-External-Entities
+- [http://projects.webappsec.org/XML-External-Entities](http://projects.webappsec.org/XML-External-Entities)
+  

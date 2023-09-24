@@ -1,0 +1,60 @@
+---
+title: Server Error
+---
+
+# Server Error
+
+## Description
+
+Internal server errors can indicate underlying vulnerabilities and misconfigurations that malicious actors can exploit. Persistent occurrences of such errors can also undermine user trust in the platform's security and stability.
+
+
+## Remediation
+
+To fix this issue, you should check the logs and fix the handler that caused the error.
+Make sure you also refer to the query we sent to the server to reproduce the issue.
+
+
+
+
+## Configuration
+
+> Identifier: `protocol/server_error`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "protocol/server_error": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+  - OWASP: **[A05:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa5-broken-function-level-authorization.md)**
+  - PCI DSS: **6.5.8**
+  - CWE
+    - **284**
+  
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N/E:H/RL:O/RC:C**
+- CVSS_SCORE: **8.7**
+

@@ -1,13 +1,14 @@
 ---
-title: Stored XSS
+title: Stored XSS Injection
 ---
 
-# Stored XSS
+# Stored XSS Injection
 
 ## Description
 
 Improper input validation can lead to XSS vulnerabilities and other security issues.
-XSS (Cross-site scripting) is an attack where malicious code (eg. JavaScript) is injected into the application and executed.
+Stored code injections are attacks where malicious code (such as JavaScript) is injected into the application and stored in the database to be later executed. Stored XSS is one of those attacks.
+Stored XSS is when an XSS vulnerability originates from the database because of malicious code previously inserted in it.
 
 
 ## Remediation
@@ -26,7 +27,7 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
 
 ## Configuration
 
-> Identifier: `injection/xss`
+> Identifier: `injection/xss_stored`
 
 ### Options
 
@@ -44,7 +45,7 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
 ```json
 {
     "checks": {
-        "injection/xss": {
+        "injection/xss_stored": {
             "skip": true
         }
     }

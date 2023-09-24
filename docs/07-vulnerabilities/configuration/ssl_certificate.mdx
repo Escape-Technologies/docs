@@ -1,0 +1,61 @@
+---
+title: SSL Certificate
+---
+
+# SSL Certificate
+
+## Description
+
+An SSL certificate is a digital certificate that authenticates a website's identity and enables an encrypted connection.
+Companies and organizations need to add SSL certificates to their websites to secure online transactions and keep customer information private and secure.
+
+
+## Remediation
+
+- Update your SSL certificate.
+- Opt for an automatically generated SSL certificate.
+- Use a certificate management tool.
+
+
+
+
+## Configuration
+
+> Identifier: `configuration/ssl_certificate`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "configuration/ssl_certificate": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A06:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa6-server-side-request-forgery.md)**
+  
+  
+  
+  
+  
+
+
+
+
+
+
