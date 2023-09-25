@@ -1,13 +1,12 @@
 ---
-title: Server Side Request Forgery
+title: Partial SSRF
 ---
 
-# Server Side Request Forgery
+# Partial SSRF
 
 ## Description
 
-SSRF flaws occur whenever a web application is fetching a remote resource without validating the user-supplied URL.
-It allows an attacker to coerce the application to send a crafted request to an unexpected destination, even when protected by a firewall, VPN, or another type of network access control list (ACL).
+Partial Server-Side Request Forgery occurs when the attacker can manipulate a request made by the server.
 
 
 ## Remediation
@@ -25,7 +24,12 @@ The correct ways to prevent SSRF are:
 
 ## Configuration
 
-> Identifier: `request_forgery/ssrf`
+> Identifier: `request_forgery/ssrf_partial`
+
+### Options
+
+- **skip_objects** : List of object that are to be skipped by the security test.
+  
 
 
 
@@ -38,7 +42,7 @@ The correct ways to prevent SSRF are:
 ```json
 {
     "checks": {
-        "request_forgery/ssrf": {
+        "request_forgery/ssrf_partial": {
             "skip": true
         }
     }
@@ -52,18 +56,22 @@ The correct ways to prevent SSRF are:
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
   - OWASP: **[A06:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa6-server-side-request-forgery.md)**
-  - PCI DSS: **6.5.6**
+  
   - CWE
     - **441**
     - **610**
     - **668**
     - **918**
-  - WASC: **15**
+  
   
   
 
 ### CVSS
 
-- CVSS_VECTOR: **CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L**
-- CVSS_SCORE: **7.3**
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N/E:H/RL:O/RC:C**
+- CVSS_SCORE: **6.2**
 
+## References
+
+- [https://0xn3va.gitbook.io/cheat-sheets/web-application/graphql-vulnerabilities#abuse-graphql-as-an-api-gateway](https://0xn3va.gitbook.io/cheat-sheets/web-application/graphql-vulnerabilities#abuse-graphql-as-an-api-gateway)
+  

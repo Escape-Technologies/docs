@@ -1,5 +1,4 @@
 ---
-sidebar_position: 1
 title: Private fields
 ---
 
@@ -8,6 +7,7 @@ title: Private fields
 ## Description
 
 According to the rules provided in the configuration file, `objects` and `object fields` can be accessed by unauthorized users.
+
 
 ## Remediation
 
@@ -24,11 +24,22 @@ Among the several access control policies that can be implemented in an applicat
 For most use cases, ABAC is preferable to RBAC as it allows for finely tuned permissions with explicit goals.
 
 
+
+### GraphQL Specific
+
 <details>
     <summary>Apollo</summary>
 
 See [Apollo's Access Control documentation](https://www.apollographql.com/docs/apollo-server/security/authentication/#in-resolvers).
 For large scale applications, you'll want to use a specific package like [GraphQL Shield](https://github.com/maticzav/graphql-shield) for quick and easy Access Control management.
+
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+See Hasura's detailed [documentation for Authorization Management](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/).
 
 
 </details>
@@ -42,64 +53,25 @@ Appsync provides several methods for protecting critical information.
 
 </details>
 
-<details>
-    <summary>Hasura</summary>
-
-See Hasura's detailed [documentation for Authorization Management](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/).
-
-
-</details>
-
 ## Configuration
 
-> CheckId: `access_control/private_fields`
+> Identifier: `access_control/private_fields`
 
 ### Options
 
-- *empty_values_are_positive* : When the API returns a None value without error is the field considered to be successfully accessed ?
-
+- **empty_values_are_positive** : When the API returns a None value without error is the field considered to be successfully accessed ?
+  
 
 ### Parameters
 
 
-**user** : An object `{objectName:[filedName]}` represting object fields that the user is not supposed to have access to.
-
-```json
-{'__user': {'**value**': ['**value**']}}
-```
+**__user** : An object `{objectName:[filedName]}` represting object fields that the user is not supposed to have access to.
 
 
 
 
 ### Examples
 
-
-#### Ignoring this check
-
-```json
-{
-    "checks": {
-        "access_control/private_fields": {
-            "skip": true
-        }
-    }
-}
-```
-
-
-#### Check with all default options
-
-```json
-{
-    "checks": {
-        "access_control/private_fields": {
-            "options": {
-                "empty_values_are_positive": false
-            }
-        }
-    }
-}
-```
 
 
 #### Accessiblity of private objects in a GraphQL API for not authenticated users.
@@ -131,14 +103,14 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
         "Query": [                   <--- Object name
           "getUsersById",            <--- Field name
           "getAllUsers"              # Here, the public user is not supposed to
-                                     #  have access to the "getUsersById" and "getAllUsers" queries.
+                                      #  have access to the "getUsersById" and "getAllUsers" queries.
         ],
         "Mutation": [
           ...
         ],
         "User": [                    <--- Object name
           "id"                       # Here, the public user is not supposed to
-                                     #  have access to the "id" field of the "User" object
+                                      #  have access to the "id" field of the "User" object
         ]
       }
     }
@@ -153,23 +125,37 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
 
 
 
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "access_control/private_fields": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A01:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
-- PCI DSS: **6.5.8**
-- CWE
-  - **200**
-  - **201**
-  - **284**
-  - **668**
-  - **1198**
-  - **1212**
-  - **1220**
-- WASC: **22**
-
-
+  - OWASP: **[A01:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
+  - PCI DSS: **6.5.8**
+  - CWE
+    - **200**
+    - **201**
+    - **284**
+    - **668**
+    - **1198**
+    - **1212**
+    - **1220**
+  - WASC: **22**
+  
+  
 
 ### CVSS
 
@@ -178,4 +164,5 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
 
 ## References
 
-https://blog.logrocket.com/authorization-access-control-graphql/
+- [https://blog.logrocket.com/authorization-access-control-graphql/](https://blog.logrocket.com/authorization-access-control-graphql/)
+  

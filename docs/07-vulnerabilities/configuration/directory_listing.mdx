@@ -1,0 +1,62 @@
+---
+title: Directory listing
+---
+
+# Directory listing
+
+## Description
+
+A directory listing provides an attacker with the complete index of all the resources located inside of the directory.
+The specific risks and consequences vary depending on which files are listed and accessible.
+
+
+## Remediation
+
+- Configure your web server to prevent directory listings for all paths beneath the web root.
+- Place into each directory a default file (such as index.htm) that the web server will display instead of returning a directory listing.
+
+
+
+
+## Configuration
+
+> Identifier: `configuration/directory_listing`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "configuration/directory_listing": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A01:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
+  - PCI DSS: **3.2-6.5.8**
+  - CWE
+    - **548**
+    - **538**
+  - WASC: **48**
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N**
+- CVSS_SCORE: **5.3**
+

@@ -1,0 +1,64 @@
+---
+title: Content type
+---
+
+# Content type
+
+## Description
+
+The Content-Type header is not set to application/json.
+GraphQL APIs should always return a JSON response, according to the GraphQL specification.
+
+
+## Remediation
+
+Ensure that the Content-Type header is set to application/json.
+
+
+
+## Configuration
+
+> Identifier: `protocol/graphql_content_type`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "protocol/graphql_content_type": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
+  
+  - CWE
+    - **668**
+    - **1295**
+  - WASC: **14**
+  
+  
+
+
+
+
+
+
+## References
+
+- [https://spec.graphql.org/draft/#sec-Serialization-Format](https://spec.graphql.org/draft/#sec-Serialization-Format)
+  

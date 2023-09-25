@@ -1,5 +1,4 @@
 ---
-sidebar_position: 5
 title: Tenant isolation
 ---
 
@@ -9,6 +8,7 @@ title: Tenant isolation
 
 Uses the rules defined by the users to detect same object instances detected by two different users whereas this is prohibited.
 According to the rules provided in the configuration file, the same instance or object can be detected by two different users which is prohibited.
+
 
 ## Remediation
 
@@ -25,11 +25,22 @@ Among the several access control policies we can implement in our application, t
 In general terms, ABAC is preferable over RBAC because it allows us to configure permissions with fine-grained control, and the permission is unequivocal in its objective.
 
 
+
+### GraphQL Specific
+
 <details>
     <summary>Apollo</summary>
 
 See [Apollo's Access Control Documentation](https://www.apollographql.com/docs/apollo-server/security/authentication/#in-resolvers).
 For large scale applications, you might want to use a specific package like [](https://github.com/maticzav/graphql-shield) for easy Access Control Management.
+
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+See Hasura's detailed documentation for Authorization Management [](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/)
 
 
 </details>
@@ -43,51 +54,22 @@ Appsync provides several methods for protecting critical information.
 
 </details>
 
-<details>
-    <summary>Hasura</summary>
-
-See Hasura's detailed documentation for Authorization Management [](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/)
-
-
-</details>
-
 ## Configuration
 
-> CheckId: `access_control/tenant_isolation`
+> Identifier: `access_control/tenant_isolation`
 
 ### Parameters
 
 
-objects : A list of private `objectNames`. A single instance of this object should not be access by 2 different users. Each object instance is identified by its ID.
+**objects** : A list of private `objectNames`. A single instance of this object should not be access by 2 different users. Each object instance is identified by its ID.
 
-```json
-{'objects': ['**value**']}
-```
-
-
-scalars : A list of scalar `fieldName`. A specific `scalarValue` of this field should not be access by 2 different users. Each scalar instance is indentified by its value.
-
-```json
-{'scalars': {'**value**': ['**value**']}}
-```
+**scalars** : A list of scalar `fieldName`. A specific `scalarValue` of this field should not be access by 2 different users. Each scalar instance is indentified by its value.
 
 
 
 
 ### Examples
 
-
-#### Ignoring this check
-
-```json
-{
-    "checks": {
-        "access_control/tenant_isolation": {
-            "skip": true
-        }
-    }
-}
-```
 
 
 #### Accessiblity of objects private instances for differents users
@@ -129,23 +111,37 @@ scalars : A list of scalar `fieldName`. A specific `scalarValue` of this field s
 
 
 
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "access_control/tenant_isolation": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
 
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-- OWASP: **[A05:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa5-broken-function-level-authorization.md)**
-- PCI DSS: **6.5.8**
-- CWE
-  - **200**
-  - **201**
-  - **284**
-  - **668**
-  - **1198**
-  - **1212**
-  - **1220**
-- WASC: **22**
-
-
+  - OWASP: **[A05:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa5-broken-function-level-authorization.md)**
+  - PCI DSS: **6.5.8**
+  - CWE
+    - **200**
+    - **201**
+    - **284**
+    - **668**
+    - **1198**
+    - **1212**
+    - **1220**
+  - WASC: **22**
+  
+  
 
 ### CVSS
 
@@ -154,4 +150,5 @@ scalars : A list of scalar `fieldName`. A specific `scalarValue` of this field s
 
 ## References
 
-https://blog.logrocket.com/authorization-access-control-graphql/
+- [https://blog.logrocket.com/authorization-access-control-graphql/](https://blog.logrocket.com/authorization-access-control-graphql/)
+  

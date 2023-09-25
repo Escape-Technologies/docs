@@ -1,0 +1,202 @@
+---
+title: Strict Transport Security
+---
+
+# Strict Transport Security
+
+## Description
+
+HTTP Strict Transport Security (HSTS) is a web security policy mechanism whereby a web server declares that complying user agents (such as a web browser) are to interact with it using only secure HTTPS connections (i.e. HTTP layered over TLS/SSL).
+HSTS is an IETF standard track protocol specified in RFC 6797.
+
+
+## Remediation
+
+Add `Strict-Transport-Security` header.
+
+
+
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+When using Apollo with Express.js, [helmet](https://www.npmjs.com/package/helmet) can take care of the security headers.
+
+```javascript
+const helmet = require("helmet");
+...
+app.use(helmet);
+```
+
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+* Add security headers with the API Gateway
+
+Put your AppSync API behind an API Gateway and configure it to act as a proxy to your AppSync endpoint (e.g., using the HTTP Proxy feature).
+
+[API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
+
+Then you can manually add headers to each resource. (There is only one resource if your API Gateway is only used to proxy a single AppSync endpoint)
+
+Here is an example of security headers you can add :
+
+```
+Cache-Control: no-store
+Content-Security-Policy: default-src 'self'
+Strict-Transport-Security: max-age=63072000
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+```
+
+
+* Add security headers using only AWS AppSync
+
+AWS AppSync currently does not allow to append custom headers to every response.
+
+However, custom response headers can be configured individually for every resolver by using response mapping templates.
+
+To do this, go to:
+   - AppSync > {Your App} > Schema
+
+For every attached resolver :
+   - Go to the resolver configuration
+   - In the "Configure the response mapping template" section, add this :
+
+```php
+$util.http.addResponseHeader("Cache-Control", "no-store")
+$util.http.addResponseHeader("Content-Security-Policy", "default-src 'self'")
+$util.http.addResponseHeader("Strict-Transport-Security", "max-age=63072000")
+$util.http.addResponseHeader("X-Content-Type-Options", "nosniff")
+$util.http.addResponseHeader("X-Frame-Options", "SAMEORIGIN")
+$util.http.addResponseHeader("X-XSS-Protection", "1; mode=block")
+```
+
+You can safely ignore this warning if you did this for every single resolver.
+
+However, it may still appear here as GraphQL requests like `query { __typename }` are not associated with a resolver; therefore, you cannot add custom response headers. (Which doesn't matter as such requests cannot leak data as no actual field is queried)
+
+[AWS AppSync adds support for custom response headers](https://aws.amazon.com/about-aws/whats-new/2022/02/aws-appsync-support-custom-response-headers/)
+
+[HTTP helpers in $util.http](https://docs.aws.amazon.com/appsync/latest/devguide/http-helpers-in-utils-http.html)
+
+[Resolver Mapping Template Programming Guide](https://docs.aws.amazon.com/appsync/latest/devguide/resolver-mapping-template-reference-programming-guide.html)
+
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+You can use a HTTP middleware to add security headers.
+
+For instance, with [srikrsna/security-headers](https://github.com/srikrsna/security-headers):
+
+```go
+import (
+  secure "github.com/srikrsna/security-headers"
+)
+
+h := handler.New(&handler.Config{
+  Schema:   &schema,
+  ...
+})
+
+s := &secure.Secure{
+  STSIncludeSubdomains: true,
+  STSPreload:           true,
+  STSMaxAgeSeconds:     90,
+
+  FrameOption: secure.FrameAllowFrom,
+  FrameOrigin: "https://example.com/",
+
+  ContentTypeNoSniff: true,
+
+  XSSFilterBlock: true,
+
+  HPKPPins: []string{
+  "HBkhsug765gdKHhvdj6jdb7jJh/j+soZS7sWs=",
+  "hjshHSHU68hbdkHhvdkgksgsg+jd/jHJ68HBH=",
+  },
+  HPKPMaxAge:            5184000,
+  HPKPReportURI:         "https://www.example.org/hpkp-report",
+  HPKPIncludeSubdomains: true,
+
+  ExpectCTMaxAge:    5184000,
+  ExpectCTEnforce:   true,
+  ExpectCTReportUri: "https://www.example.org/ct-report",
+
+  ReferrerPolicy: secure.ReferrerStrictOriginWhenCrossOrigin,
+}
+http.Handle("/graphql", s.Middleware()(h))
+
+http.ListenAndServe(":8082", nil)
+```
+
+
+</details>
+
+<details>
+    <summary>Graphene</summary>
+
+To add Security Headers to **Django**, follow this guide :
+
+[How to Score A+ for Security Headers on Your Django Website](https://adamj.eu/tech/2019/04/10/how-to-score-a+-for-security-headers-on-your-django-website/)
+
+For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatform/flask-talisman)
+
+
+</details>
+
+
+## Configuration
+
+> Identifier: `protocol/strict_transport_security`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "protocol/strict_transport_security": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
+  
+  - CWE
+  
+  
+  
+
+
+
+
+
+
+## References
+
+- [https://owasp.org/www-community/Security_Headers](https://owasp.org/www-community/Security_Headers)
+  - [https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching)
+  - [https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html](https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html)
+  

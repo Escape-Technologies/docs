@@ -1,0 +1,65 @@
+---
+title: Header leaks
+---
+
+# Header leaks
+
+## Description
+
+The web/application server is leaking tech stack information via HTTP response headers.
+Access to such information may facilitate attackers identifying other frameworks/components your web application is reliant upon, and the vulnerabilities of such components may be subject to the leaked information.
+
+
+## Remediation
+
+Remove headers disclosing server-side softwares version.
+
+
+
+
+## Configuration
+
+> Identifier: `protocol/header_leaks`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "protocol/header_leaks": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
+  
+  - CWE
+  
+  
+  
+
+
+
+
+
+
+## References
+
+- [https://owasp.org/www-community/Security_Headers](https://owasp.org/www-community/Security_Headers)
+  - [https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching)
+  - [https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html](https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html)
+  

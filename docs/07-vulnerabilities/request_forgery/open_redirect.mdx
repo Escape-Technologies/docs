@@ -1,0 +1,63 @@
+---
+title: Open redirection Forgery
+---
+
+# Open redirection Forgery
+
+## Description
+
+Open redirection vulnerabilities arise when an application incorporates user-controllable data into the target of a redirection in an unsafe way.
+An attacker can construct a URL within the application that causes a redirection to an arbitrary external domain. This behavior can be leveraged to facilitate phishing attacks against users of the application.
+The ability to use an authentic application URL, targeting the correct domain and with a valid SSL certificate (if SSL is used), lends credibility to the phishing attack.
+
+
+## Remediation
+
+In many cases, this behavior can be avoided in two ways:
+- Remove the redirection function from the application, and replace links to it with direct links to the relevant target URLs.
+- Maintain a server-side list of all URLs that are permitted for redirection. Instead of passing the target URL as a parameter to the redirector, pass an index into this list.
+
+
+
+
+## Configuration
+
+> Identifier: `request_forgery/open_redirect`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "request_forgery/open_redirect": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+  - OWASP: **[A03:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa3-broken-object-property-level-authorization.md)**
+  
+  - CWE
+    - **601**
+  - WASC: **38**
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N**
+
+

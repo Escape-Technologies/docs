@@ -1,12 +1,14 @@
 ---
-title: Directory traversal
+title: File inclusion
 ---
 
-# Directory traversal
+# File inclusion
 
 ## Description
 
 Directory traversal occurs when a server allows an attacker to read a file or directories outside of the normal web server directory, and local file inclusion gives the attacker the ability to include an arbitrary local file (from the web server) in the web server's response.
+
+Example: `getProfilePicture(name: '../../../etc/password')` returns the server's `/etc/password` file.
 
 
 ## Remediation
@@ -19,11 +21,9 @@ There are multiple ways to prevent directory traversal attacks:
 - Take advantage of virtualization. With virtualization, it is possible to have several virtual machines completely isolated from each other. The GraphQL worker can therefore be isolated on its own virtual machine, allowing it access only to the elements absolutely necessary for its proper execution.
 
 
-
-
 ## Configuration
 
-> Identifier: `injection/directory_traversal`
+> Identifier: `injection/file_inclusion`
 
 ### Options
 
@@ -41,7 +41,7 @@ There are multiple ways to prevent directory traversal attacks:
 ```json
 {
     "checks": {
-        "injection/directory_traversal": {
+        "injection/file_inclusion": {
             "skip": true
         }
     }

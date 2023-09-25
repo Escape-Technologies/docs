@@ -1,0 +1,61 @@
+---
+title: Private IP
+---
+
+# Private IP
+
+## Description
+
+A private IP (such as 10.x.x.x, 172.x.x.x, 192.168.x.x) or an Amazon EC2 private hostname... has been found in the HTTP response body.
+This information might be helpful for further attacks targeting internal systems.
+
+
+## Remediation
+
+* Remove the private IP address from the HTTP response body.
+* For comments, use JSP/ASP/PHP comment instead of HTML/JavaScript comment which can be seen by client browsers.
+
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/private_ip`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "information_disclosure/private_ip": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A01:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
+  
+  - CWE
+    - **200**
+  - WASC: **13**
+  
+  
+
+
+
+
+
+

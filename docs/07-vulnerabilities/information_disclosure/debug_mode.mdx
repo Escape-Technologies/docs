@@ -1,5 +1,4 @@
 ---
-sidebar_position: 2
 title: Debug mode
 ---
 
@@ -9,20 +8,24 @@ title: Debug mode
 
 When Debug mode is left turned on by developers, it allows attackers to gather precious information from excessive error reporting messages such as entire stack traces or tracebacks.
 
+
 ## Remediation
 
 Disabled Debug mode.
 
 
+
 ## Configuration
 
-> CheckId: `information_disclosure/debug_mode`
+> Identifier: `information_disclosure/debug_mode`
+
 
 
 ### Examples
 
 
-#### Ignoring this check
+
+#### Ignore this check
 
 ```json
 {
@@ -40,18 +43,18 @@ Disabled Debug mode.
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-- OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
-- PCI DSS: **6.5.5**
-- CWE
-  - **200**
-  - **215**
-  - **489**
-  - **668**
-  - **1258**
-  - **1295**
-- WASC: **14**
-
-
+  - OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
+  - PCI DSS: **6.5.5**
+  - CWE
+    - **200**
+    - **215**
+    - **489**
+    - **668**
+    - **1258**
+    - **1295**
+  - WASC: **14**
+  
+  
 
 ### CVSS
 
@@ -60,4 +63,5 @@ Disabled Debug mode.
 
 ## References
 
-https://www.infosecmatter.com/bug-bounty-tips-8-oct-14/#4-graphql-notes-for-beginners
+- [https://www.infosecmatter.com/bug-bounty-tips-8-oct-14/#4-graphql-notes-for-beginners](https://www.infosecmatter.com/bug-bounty-tips-8-oct-14/#4-graphql-notes-for-beginners)
+  

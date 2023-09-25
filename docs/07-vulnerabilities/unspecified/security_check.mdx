@@ -1,0 +1,60 @@
+---
+title: Custom security check
+---
+
+# Custom security check
+
+## Description
+
+A custom security check failed.
+
+
+## Remediation
+
+Get in touch with your security team.
+
+
+
+## Configuration
+
+> Identifier: `unspecified/security_check`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "unspecified/security_check": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+  - OWASP: **[A08:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-lack-of-protection-from-automated-threats.md)**
+  - PCI DSS: **6.5.8**
+  - CWE
+    - **20**
+    - **400**
+    - **664**
+  - WASC: **10**
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:H/RL:O/RC:R**
+- CVSS_SCORE: **4.9**
+

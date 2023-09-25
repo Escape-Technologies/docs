@@ -1,0 +1,70 @@
+---
+title: Pagination missing
+---
+
+# Pagination missing
+
+## Description
+
+The API returned a substantial amount of data.
+A query pagination might be missing.
+
+
+## Remediation
+
+Implement pagination on the specified queries.
+
+
+
+
+## Configuration
+
+> Identifier: `resource_limitation/pagination_missing`
+
+### Options
+
+- **threshold** : Maximum number of nodes returned before raising an alert in the fast check.
+  
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "resource_limitation/pagination_missing": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A08:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-lack-of-protection-from-automated-threats.md)**
+  - PCI DSS: **6.5.8**
+  - CWE
+    - **284**
+    - **668**
+  - WASC: **22**
+  
+  
+
+
+
+
+
+
+## References
+
+- [https://graphql.org/learn/pagination/](https://graphql.org/learn/pagination/)
+  
