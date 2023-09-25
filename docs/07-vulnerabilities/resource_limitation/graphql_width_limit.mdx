@@ -1,19 +1,19 @@
 ---
-title: Field limit
+title: Width limit
 ---
 
-# Field limit
+# Width limit
 
 ## Description
 
-Attackers may craft complex queries by requesting a significant number of fields.
+GraphQL defines the maximum width of a query as the **maximum number of subfields** queried from one field.
 
-This could lead to potential *DoS attacks* or *information leakage*.
+If no limit is set on query width, clients may therefore craft a complex query that could lead to potential *DoS attacks* or *information leakage*.
 
 
 ## Remediation
 
-Limit query complexity by using a library specific to your engine.
+Set a threshold on the maximum number of subfields that can be queried simultaneously.
 
 
 
@@ -22,7 +22,7 @@ Limit query complexity by using a library specific to your engine.
 <details>
     <summary>Apollo</summary>
 
-Add a module to compute query complexity and set a threshold so that overly broad requests get canceled.
+Add a module to compute query complexity and set a threshold on this complexity so that overly broad requests get canceled.
 
 For a user-friendly module which requires no schema modification whatsoever, check out the [graphql-validation-complexity](https://github.com/4Catalyzer/graphql-validation-complexity) module.
 
@@ -41,29 +41,7 @@ For a more customizable module that lets you manually configure the cost of each
 
 This second option is best suited for a more realistic complexity estimator as all fields may not be equal in terms of complexity.
 
-To learn more about complexity estimation, you can read: [Securing Your GraphQL API from Malicious Queries](https://www.apollographql.com/blog/graphql/security/securing-your-graphql-api-from-malicious-queries/).
-
-
-Source: <https://escape.tech/blog/9-graphql-security-best-practices/>.
-
-
-</details>
-
-<details>
-    <summary>Graphqlphp</summary>
-
-```php
-use GraphQL\GraphQL;
-use GraphQL\Validator\Rules\QueryComplexity;
-use GraphQL\Validator\DocumentValidator;
-
-$rule = new QueryComplexity($maxQueryComplexity = 100);
-DocumentValidator::addRule($rule);
-
-GraphQL::executeQuery(/*...*/);
-```
-
-Source: <https://github.com/webonyx/graphql-php/blob/master/docs/security.md#query-complexity-analysis>
+To learn more on complexity estimation, you can read: [Securing Your GraphQL API from Malicious Queries](https://www.apollographql.com/blog/graphql/security/securing-your-graphql-api-from-malicious-queries/).
 
 
 </details>
@@ -71,8 +49,12 @@ Source: <https://github.com/webonyx/graphql-php/blob/master/docs/security.md#que
 <details>
     <summary>Hasura</summary>
 
-Limit the number of fecthed fields with Response Limiting.
-To learn how to implement it, check out [Hasura's Response Limiting guide](https://hasura.io/learn/graphql/hasura-advanced/security/5-response-limit/).
+Hasura allows you to set a width (=node) limit.
+
+ To do so:
+ - Go to Project Console > Security Settings > API Limits.
+ - Click on "Global".
+ - Set a node limit (e.g., 15).
 
 
 </details>
@@ -88,11 +70,11 @@ With `graphene-django`, it is possible to implement a custom GraphQL backend to 
 
 ## Configuration
 
-> Identifier: `dos/graphql_field_limit`
+> Identifier: `resource_limitation/graphql_width_limit`
 
 ### Options
 
-- **threshold** : Maximum fields before raising an alert (-1 = infinite).
+- **threshold** : Maximum width before raising an alert (-1 = infinite).
   
 
 
@@ -106,7 +88,7 @@ With `graphene-django`, it is possible to implement a custom GraphQL backend to 
 ```json
 {
     "checks": {
-        "dos/graphql_field_limit": {
+        "resource_limitation/graphql_width_limit": {
             "skip": true
         }
     }
@@ -118,7 +100,7 @@ With `graphene-django`, it is possible to implement a custom GraphQL backend to 
 
 ## Score
 
-- Escape Severity: **<span className="medium-severity">MEDIUM</span>**
+- Escape Severity: **<span className="low-severity">LOW</span>**
   - OWASP: **[A04:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)**
   - PCI DSS: **6.5.8**
   - CWE
