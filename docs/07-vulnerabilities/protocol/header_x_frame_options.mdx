@@ -1,17 +1,17 @@
 ---
-title: Content-Type header
+title: X-Frame-Options header
 ---
 
-# Content-Type header
+# X-Frame-Options header
 
 ## Description
 
-The `Content-Type` header was either missing or empty.
+`X-Frame-Options` header is missing
 
 
 ## Remediation
 
-Ensure your server sets the specific and appropriate `Content-Type` value for the delivered content.
+Add `X-Frame-Options` header.
 
 
 
@@ -155,7 +155,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 ## Configuration
 
-> Identifier: `protocol/content_type`
+> Identifier: `protocol/header_x_frame_options`
 
 
 
@@ -168,7 +168,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 ```json
 {
     "checks": {
-        "protocol/content_type": {
+        "protocol/header_x_frame_options": {
             "skip": true
         }
     }
@@ -182,11 +182,11 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
   - OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
-  
-  - CWE
-  
-  
-  
+    
+    - CWE
+      
+      
+      
 
 
 

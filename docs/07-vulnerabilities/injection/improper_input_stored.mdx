@@ -1,13 +1,14 @@
 ---
-title: Stored XSS
+title: Stored Improper Input Validation Injection
 ---
 
-# Stored XSS
+# Stored Improper Input Validation Injection
 
 ## Description
 
 Improper input validation can lead to XSS vulnerabilities and other security issues.
-XSS (Cross-site scripting) is an attack where malicious code (eg. JavaScript) is injected into the application and executed.
+Stored code injections are attacks where malicious code (such as JavaScript) is injected into the application and stored in the database to be later executed. Stored XSS is one of those attacks.
+Stored XSS is when an XSS vulnerability originates from the database because of malicious code previously inserted in it.
 
 
 ## Remediation
@@ -26,7 +27,7 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
 
 ## Configuration
 
-> Identifier: `injection/xss`
+> Identifier: `injection/improper_input_stored`
 
 ### Options
 
@@ -44,7 +45,7 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
 ```json
 {
     "checks": {
-        "injection/xss": {
+        "injection/improper_input_stored": {
             "skip": true
         }
     }
@@ -58,13 +59,13 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
   - OWASP: **[A08:2019](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa8-injection.md)**
-  - PCI DSS: **6.5.7**
-  - CWE
+    - PCI DSS: **6.5.7**
+    - CWE
     - **74**
     - **79**
-  - WASC: **8**
-  
-  
+      - WASC: **8**
+      
+      
 
 ### CVSS
 

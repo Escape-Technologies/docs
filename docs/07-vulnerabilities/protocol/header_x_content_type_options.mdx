@@ -1,17 +1,19 @@
 ---
-title: X-Frame-Options header
+title: X-Content-Type-Options
 ---
 
-# X-Frame-Options header
+# X-Content-Type-Options
 
 ## Description
 
-`X-Frame-Options` header is missing
+The Anti-MIME-Sniffing header `X-Content-Type-Options` is missing or not set to `nosniff`.
+This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.
 
 
 ## Remediation
 
-Add `X-Frame-Options` header.
+Ensure that the application/web server sets the `Content-Type` header appropriately and that it sets the `X-Content-Type-Options` header to `nosniff` for all web pages.
+If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all or that can be directed by the web application/web server to not perform MIME-sniffing.
 
 
 
@@ -155,7 +157,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 ## Configuration
 
-> Identifier: `protocol/x_frame_options`
+> Identifier: `protocol/header_x_content_type_options`
 
 
 
@@ -168,7 +170,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 ```json
 {
     "checks": {
-        "protocol/x_frame_options": {
+        "protocol/header_x_content_type_options": {
             "skip": true
         }
     }
@@ -182,14 +184,18 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
   - OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
-  
-  - CWE
-  
-  
-  
+    - PCI DSS: **6.5.10**
+    - CWE
+    - **693**
+    - **732**
+    - **1004**
+    - **1275**
+      - WASC: **15**
+      
+      
 
+### CVSS
 
-
-
-
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:H/RL:O/RC:C**
+- CVSS_SCORE: **5.1**
 

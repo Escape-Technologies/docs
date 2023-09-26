@@ -1,8 +1,8 @@
 ---
-title: NoSQL Injection Stored
+title: NoSQL Injection
 ---
 
-# NoSQL Injection Stored
+# NoSQL Injection
 
 ## Description
 
@@ -12,18 +12,16 @@ A successful NoSQL injection exploit can read sensitive data from the database, 
 
 ## Remediation
 
-Primary defenses:
-- Use a sanitization library.
-- Cast the inputs to the expected type (eg: The username and password are strings so cast the variables to a string).
-- Never use `where`, `mapReduce`, or `group` operators with user input: they allow the attacker to inject JavaScript and are therefore much more dangerous than others. For extra safety, set `javascriptEnabled` to false in mongod.conf (if using mongoDB).
-- Enforce Least Privilege.
+The main principle of the remediation is to escape user input properly:
+- Allow-list input validation.
+- Escaping all user supplied input.
 
 
 
 
 ## Configuration
 
-> Identifier: `injection/nosql_stored`
+> Identifier: `injection/nosql`
 
 ### Options
 
@@ -41,7 +39,7 @@ Primary defenses:
 ```json
 {
     "checks": {
-        "injection/nosql_stored": {
+        "injection/nosql": {
             "skip": true
         }
     }

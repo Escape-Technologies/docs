@@ -1,20 +1,16 @@
 ---
-title: Cookie Security
+title: Content Security Policy Header
 ---
 
-# Cookie Security
+# Content Security Policy Header
 
 ## Description
 
-A cookie has been set without any secure flag, which means that the cookie can be accessed via unencrypted connections or that JavaScript code can access the cookie.
-If a malicious script runs on this page, then the cookie will be accessible and can be transmitted to another hacker-controlled site. If this is a session cookie, then session hijacking may be possible.
-
+`Content-Security-Policy` header is missing or set to an insecure value.
 
 ## Remediation
 
-Whenever a cookie contains sensitive information or is a session token, it should always be passed using an encrypted channel.
-Set `HttpOnly`, `SameSite` and `Secure` directives in Set-Cookie header.
-
+Set `Content-Security-Policy` header to a secure value.
 
 
 ### GraphQL Specific
@@ -157,7 +153,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 ## Configuration
 
-> Identifier: `protocol/set_cookie`
+> Identifier: `protocol/header_content_security_policy`
 
 
 
@@ -170,7 +166,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 ```json
 {
     "checks": {
-        "protocol/set_cookie": {
+        "protocol/header_content_security_policy": {
             "skip": true
         }
     }
@@ -184,11 +180,11 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
   - OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
-  
-  - CWE
-  
-  
-  
+    
+    - CWE
+      
+      
+      
 
 
 

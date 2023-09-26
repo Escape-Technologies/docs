@@ -1,18 +1,19 @@
 ---
-title: Strict Transport Security
+title: Cookie Security
 ---
 
-# Strict Transport Security
+# Cookie Security
 
 ## Description
 
-HTTP Strict Transport Security (HSTS) is a web security policy mechanism whereby a web server declares that complying user agents (such as a web browser) are to interact with it using only secure HTTPS connections (i.e. HTTP layered over TLS/SSL).
-HSTS is an IETF standard track protocol specified in RFC 6797.
+A cookie has been set without any secure flag, which means that the cookie can be accessed via unencrypted connections or that JavaScript code can access the cookie.
+If a malicious script runs on this page, then the cookie will be accessible and can be transmitted to another hacker-controlled site. If this is a session cookie, then session hijacking may be possible.
 
 
 ## Remediation
 
-Add `Strict-Transport-Security` header.
+Whenever a cookie contains sensitive information or is a session token, it should always be passed using an encrypted channel.
+Set `HttpOnly`, `SameSite` and `Secure` directives in Set-Cookie header.
 
 
 
@@ -156,7 +157,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 ## Configuration
 
-> Identifier: `protocol/strict_transport_security`
+> Identifier: `protocol/header_set_cookie`
 
 
 
@@ -169,7 +170,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 ```json
 {
     "checks": {
-        "protocol/strict_transport_security": {
+        "protocol/header_set_cookie": {
             "skip": true
         }
     }
@@ -183,11 +184,11 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
   - OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
-  
-  - CWE
-  
-  
-  
+    
+    - CWE
+      
+      
+      
 
 
 

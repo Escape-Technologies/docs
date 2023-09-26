@@ -1,16 +1,19 @@
 ---
-title: Access-Control-Allow-Origin
+title: Cache Control Header
 ---
 
-# Access-Control-Allow-Origin
+# Cache Control Header
 
 ## Description
 
-`Access-Control-Allow-Origin` header is missing or set to `*`
+The HTTP 'Cache-Control' header is used to specify directives for caching mechanisms.
+The server did not return (or returned an invalid) 'Cache-Control' header, which means pages containing sensitive information could be stored client-side and then be exposed to unauthorized persons.
+
 
 ## Remediation
 
-Set `Access-Control-Allow-Origin` header to a specific origin
+Whenever possible, ensure the `Cache-Control` HTTP header is set with `no-cache`, `no-store`, `must-revalidate`, and that the pragma HTTP header is set with `no-cache`.
+
 
 
 ### GraphQL Specific
@@ -153,7 +156,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 ## Configuration
 
-> Identifier: `protocol/access_control_allow_origin`
+> Identifier: `protocol/header_cache_control`
 
 
 
@@ -166,7 +169,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 ```json
 {
     "checks": {
-        "protocol/access_control_allow_origin": {
+        "protocol/header_cache_control": {
             "skip": true
         }
     }
@@ -180,11 +183,11 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
   - OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
-  
-  - CWE
-  
-  
-  
+    
+    - CWE
+      
+      
+      
 
 
 
@@ -194,5 +197,6 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 ## References
 
 - [https://owasp.org/www-community/Security_Headers](https://owasp.org/www-community/Security_Headers)
+  - [https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching)
   - [https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html](https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html)
   

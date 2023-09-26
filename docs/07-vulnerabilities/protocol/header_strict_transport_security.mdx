@@ -1,19 +1,18 @@
 ---
-title: X-Content-Type-Options
+title: Strict Transport Security
 ---
 
-# X-Content-Type-Options
+# Strict Transport Security
 
 ## Description
 
-The Anti-MIME-Sniffing header `X-Content-Type-Options` is missing or not set to `nosniff`.
-This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.
+HTTP Strict Transport Security (HSTS) is a web security policy mechanism whereby a web server declares that complying user agents (such as a web browser) are to interact with it using only secure HTTPS connections (i.e. HTTP layered over TLS/SSL).
+HSTS is an IETF standard track protocol specified in RFC 6797.
 
 
 ## Remediation
 
-Ensure that the application/web server sets the `Content-Type` header appropriately and that it sets the `X-Content-Type-Options` header to `nosniff` for all web pages.
-If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all or that can be directed by the web application/web server to not perform MIME-sniffing.
+Add `Strict-Transport-Security` header.
 
 
 
@@ -157,7 +156,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 ## Configuration
 
-> Identifier: `protocol/x_content_type_options`
+> Identifier: `protocol/header_strict_transport_security`
 
 
 
@@ -170,7 +169,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 ```json
 {
     "checks": {
-        "protocol/x_content_type_options": {
+        "protocol/header_strict_transport_security": {
             "skip": true
         }
     }
@@ -184,18 +183,20 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
   - OWASP: **[A07:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-security-misconfiguration.md)**
-  - PCI DSS: **6.5.10**
-  - CWE
-    - **693**
-    - **732**
-    - **1004**
-    - **1275**
-  - WASC: **15**
+    
+    - CWE
+      
+      
+      
+
+
+
+
+
+
+## References
+
+- [https://owasp.org/www-community/Security_Headers](https://owasp.org/www-community/Security_Headers)
+  - [https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching)
+  - [https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html](https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html)
   
-  
-
-### CVSS
-
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **5.1**
-
