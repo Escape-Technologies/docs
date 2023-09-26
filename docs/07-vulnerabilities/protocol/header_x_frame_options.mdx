@@ -1,19 +1,17 @@
 ---
-title: Cookie Security
+title: X-Frame-Options header
 ---
 
-# Cookie Security
+# X-Frame-Options header
 
 ## Description
 
-A cookie has been set without any secure flag, which means that the cookie can be accessed via unencrypted connections or that JavaScript code can access the cookie.
-If a malicious script runs on this page, then the cookie will be accessible and can be transmitted to another hacker-controlled site. If this is a session cookie, then session hijacking may be possible.
+`X-Frame-Options` header is missing
 
 
 ## Remediation
 
-Whenever a cookie contains sensitive information or is a session token, it should always be passed using an encrypted channel.
-Set `HttpOnly`, `SameSite` and `Secure` directives in Set-Cookie header.
+Add `X-Frame-Options` header.
 
 
 
@@ -157,7 +155,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 ## Configuration
 
-> Identifier: `protocol/set_cookie`
+> Identifier: `protocol/header_x_frame_options`
 
 
 
@@ -170,7 +168,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 ```json
 {
     "checks": {
-        "protocol/set_cookie": {
+        "protocol/header_x_frame_options": {
             "skip": true
         }
     }
@@ -195,9 +193,3 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 
 
-## References
-
-- [https://owasp.org/www-community/Security_Headers](https://owasp.org/www-community/Security_Headers)
-  - [https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching)
-  - [https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html](https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html)
-  

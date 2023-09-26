@@ -1,18 +1,17 @@
 ---
-title: Strict Transport Security
+title: Content-Type header
 ---
 
-# Strict Transport Security
+# Content-Type header
 
 ## Description
 
-HTTP Strict Transport Security (HSTS) is a web security policy mechanism whereby a web server declares that complying user agents (such as a web browser) are to interact with it using only secure HTTPS connections (i.e. HTTP layered over TLS/SSL).
-HSTS is an IETF standard track protocol specified in RFC 6797.
+The `Content-Type` header was either missing or empty.
 
 
 ## Remediation
 
-Add `Strict-Transport-Security` header.
+Ensure your server sets the specific and appropriate `Content-Type` value for the delivered content.
 
 
 
@@ -156,7 +155,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 ## Configuration
 
-> Identifier: `protocol/strict_transport_security`
+> Identifier: `protocol/header_content_type`
 
 
 
@@ -169,7 +168,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 ```json
 {
     "checks": {
-        "protocol/strict_transport_security": {
+        "protocol/header_content_type": {
             "skip": true
         }
     }
@@ -194,9 +193,3 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 
 
-## References
-
-- [https://owasp.org/www-community/Security_Headers](https://owasp.org/www-community/Security_Headers)
-  - [https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching)
-  - [https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html](https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html)
-  

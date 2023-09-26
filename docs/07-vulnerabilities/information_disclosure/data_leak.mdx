@@ -1,12 +1,12 @@
 ---
-title: Data leaks
+title: Data leak
 ---
 
-# Data leaks
+# Data leak
 
 ## Description
 
-The API exposes sensitive data to the public, such as secrets, private keys, tokens, passwords, etc. 
+The API exposes sensitive data to the public, such as secrets, private keys, tokens, passwords, etc.
 This security check detects this sensitive data.
 
 
@@ -82,7 +82,7 @@ Appsync provides several other methods for protecting critical information.
 
 ## Configuration
 
-> Identifier: `information_disclosure/data_leaks`
+> Identifier: `information_disclosure/data_leak`
 
 ### Options
 
@@ -101,7 +101,7 @@ Appsync provides several other methods for protecting critical information.
 ```json
 {
     "checks": {
-        "information_disclosure/data_leaks": {
+        "information_disclosure/data_leak": {
             "skip": true
         }
     }

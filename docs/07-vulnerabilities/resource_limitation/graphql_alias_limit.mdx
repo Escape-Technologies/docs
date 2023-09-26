@@ -1,0 +1,116 @@
+---
+title: Alias limit
+---
+
+# Alias limit
+
+## Description
+
+GraphQL supports the aliasing of multiple sub-queries into a single query. It allows requesting multiple instances of objects efficiently and without conflicts.
+However, attackers can leverage this feature to bypass many security measures, including rate limiting.
+
+Query example:
+```
+query {
+  a: myself{username},
+  b: myself{username},
+  ...
+  }
+```
+
+Response example:
+```javascript
+{
+  "data":
+  {
+    "a": {"username":"EscapeAdmin"},
+    "b": {"username":"EscapeAdmin"},
+    ...
+  }
+}
+```
+
+
+## Remediation
+
+**Limit query aliasing** in your GraphQL Engine to prevent aliasing-based attacks.
+
+
+
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Apollo.
+
+
+</details>
+
+<details>
+    <summary>Graphene</summary>
+
+With `graphene-django`, it is possible to implement a custom GraphQL backend to limit query complexity, such as this one:
+[graphene-django query cost analysis / complexity limits](https://gist.github.com/thibaudlabat/7b86f1a4da34eccfbfa524ca7359e87c).
+
+
+</details>
+
+<details>
+    <summary>Graphqlyoga</summary>
+
+Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Yoga.
+
+
+</details>
+
+## Configuration
+
+> Identifier: `resource_limitation/graphql_alias_limit`
+
+### Options
+
+- **threshold** : Maximum aliases before raising an alert (-1 = infinite).
+  
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "resource_limitation/graphql_alias_limit": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+  - OWASP: **[A05:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa5-broken-function-level-authorization.md)**
+  - PCI DSS: **6.5.8**
+  - CWE
+    - **799**
+  - WASC: **10**
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:H/RL:O/RC:C**
+- CVSS_SCORE: **5.1**
+
+## References
+
+- [https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/12-API_Testing/01-Testing_GraphQL](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/12-API_Testing/01-Testing_GraphQL)
+  

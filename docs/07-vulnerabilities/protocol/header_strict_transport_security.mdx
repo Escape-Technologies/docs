@@ -1,18 +1,18 @@
 ---
-title: Cache Control
+title: Strict Transport Security
 ---
 
-# Cache Control
+# Strict Transport Security
 
 ## Description
 
-The HTTP 'Cache-Control' header is used to specify directives for caching mechanisms.
-The server did not return (or returned an invalid) 'Cache-Control' header, which means pages containing sensitive information could be stored client-side and then be exposed to unauthorized persons.
+HTTP Strict Transport Security (HSTS) is a web security policy mechanism whereby a web server declares that complying user agents (such as a web browser) are to interact with it using only secure HTTPS connections (i.e. HTTP layered over TLS/SSL).
+HSTS is an IETF standard track protocol specified in RFC 6797.
 
 
 ## Remediation
 
-Whenever possible, ensure the `Cache-Control` HTTP header is set with `no-cache`, `no-store`, `must-revalidate`, and that the pragma HTTP header is set with `no-cache`.
+Add `Strict-Transport-Security` header.
 
 
 
@@ -156,7 +156,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 ## Configuration
 
-> Identifier: `protocol/cache_control`
+> Identifier: `protocol/header_strict_transport_security`
 
 
 
@@ -169,7 +169,7 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 ```json
 {
     "checks": {
-        "protocol/cache_control": {
+        "protocol/header_strict_transport_security": {
             "skip": true
         }
     }
