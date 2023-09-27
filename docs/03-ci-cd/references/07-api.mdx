@@ -225,3 +225,166 @@ The stringified JSON introspection.
   "applicationId": "5d1b0249-a6fd-4d64-997a-99675ca6afac"
 }
 ```
+
+# OpenAPI Specifcation
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Escape's Public API
+  version: 1.0.0
+servers:
+  - url: https://public.escape.tech
+paths:
+  /organization/{organizationId}/applications:
+    get:
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          description: The ID of the organization on Escape.
+          schema:
+            type: string
+      responses:
+        200:
+          description: A list of applications bound to an organization.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+
+  /scans/{scanId}:
+    get:
+      parameters:
+        - name: scanId
+          in: path
+          required: true
+          description: The ID of the scan on Escape.
+          schema:
+            type: string
+      responses:
+        200:
+          description: Details of a specific scan.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scan'
+
+  /application/{applicationId}/start-scan:
+    post:
+      parameters:
+        - name: applicationId
+          in: path
+          required: true
+          description: The ID of the application on Escape.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                configurationOverride:
+                  type: string
+                  description: See the configuration override section.
+                commitHash:
+                  type: string
+                  description: See the commit identification section.
+                introspection:
+                  type: string
+                  description: The stringified JSON introspection. See the introspection update section.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /applications/{applicationId}/upload-introspection:
+    post:
+      parameters:
+        - name: applicationId
+          in: path
+          required: true
+          description: The ID of the application on Escape.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                introspectionResponse:
+                  type: string
+                  description: The stringified JSON introspection. See the introspection update section.
+              required:
+                - introspectionResponse
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntrospectionResponse'
+
+components:
+  schemas:
+    Application:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        url:
+          type: string
+        createdAt:
+          type: string
+        hasCI:
+          type: boolean
+        cron:
+          type: string
+        scans:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+        lastSuccessfulScan:
+          $ref: '#/components/schemas/Scan'
+
+    Scan:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        createdAt:
+          type: string
+        score:
+          type: number
+        completionRatio:
+          type: number
+        commitHash:
+          type: string
+        application:
+          $ref: '#/components/schemas/Application'
+        configuration:
+          type: object
+        alerts:
+          type: array
+          items:
+            type: object
+
+    IntrospectionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        applicationId:
+          type: string
+```
