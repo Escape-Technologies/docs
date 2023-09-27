@@ -4,36 +4,31 @@ title: Parameters Reference
 
 # ⚙️ Parameters Reference
 
-Here is the list of all available parameters under the `params` key. Some of them are detailed more thorougly in their dedicated documentation section.
+Here is the list of all available parameters in the `escaperc`. Some of them are detailed more thorougly in their dedicated documentation section.
+
+
+
+## `scan`
+
+The parameters related to the scan.
 
 :::note JSON Schema example
 
 ```
 {
-    "params": {
-        "blacklist": {
-            "mutation": [
-                "**value**"
-            ],
-            "objects": [
-                "**value**"
-            ],
-            "query": [
-                "**value**"
-            ]
+    "scan": {
+        "blacklist": {},
+        "environment": "dev | prod",
+        "hotstart": [
+            "**value**"
+        ],
+        "profile": "surface | default | deep | unrestricted",
+        "scalars": {
+            "**value**": {}
         },
-        "client": {
-            "concurrent_connection": "**value**",
-            "concurrent_tasks": "**value**",
-            "proxy": {
-                "type": "escape | http | repeater"
-            },
-            "request_timeout": "**value**",
-            "requests_per_minute": "**value**"
-        },
-        "complexity_mode": "low | medium | high | no_limit",
-        "environment_mode": "dev | prod",
-        "speed_mode": "medium | fast"
+        "whitelist": [
+            "**value**"
+        ]
     }
 }
 ```
@@ -44,105 +39,100 @@ Here is the list of all available parameters under the `params` key. Some of the
 
 
 
-## Blacklist
+- `Blacklist` : The operations that will be skipped by security tests. See more in the dedicated documentation section..
 
-The operations that will be skipped by security tests. See more in the dedicated documentation section.
 
-```JSON
-{
-    "params": {
-        "blacklist": {
-            "mutation": [
-                "**value**"
-            ],
-            "objects": [
-                "**value**"
-            ],
-            "query": [
-                "**value**"
-            ]
-        }
-    }
-}
-```
+- `Environment` : The choosen mode for the tested API. `dev` mode is read-write and suited to development environment. `prod` mode is read-only and will reduce the number of tests performed and the scan coverage. Must be one of `['dev', 'prod']`.
+
+
+- `Hotstart` : Raw queries to hotstart the API exploration.
+
+
+- `Profile` : The scan profile. Must be one of `['surface', 'default', 'deep', 'unrestricted']`.
+
+
+- `Scalars` : The user's defined scalars.
+
+
+- `Whitelist` : Whitelisted raw queries to explore the API.
 
 
 
-## Client
+
+## `client`
 
 All parameters available in our `client`:
 
-```JSON
+:::note JSON Schema example
+
+```
 {
-    "params": {
-        "client": {
-            "concurrent_connection": "**value**",
-            "concurrent_tasks": "**value**",
-            "proxy": {
-                "type": "escape | http | repeater"
-            },
-            "request_timeout": "**value**",
-            "requests_per_minute": "**value**"
-        }
+    "client": {
+        "concurrent_connection": "**value**",
+        "concurrent_tasks": "**value**",
+        "proxy": {},
+        "request_timeout": "**value**",
+        "requests_per_minute": "**value**"
     }
 }
 ```
 
-**concurrent_connection**: The maximum size of the connections pool.
+:::
 
-**concurrent_tasks**: The maximum number of parallel tasks.
-
-**proxy**: The Proxy to use for the requests. See more in the `Scan Internal APIs` documentation section.
-
-**request_timeout**: The maximum timeout duration for each request (in seconds). See more in the dedicated documentation section.
-
-**requests_per_minute**: The maximum number of request per minute. Which will be used on a per second window.
+***
 
 
 
-## Complexity mode
+- `Concurrent connection` : The maximum size of the connections pool.
 
-The maximum query complexity the scan will attempt. Please note that the higher the complexity, the longer the scan will take.
 
-Must be one of `['low', 'medium', 'high', 'no_limit']`
+- `Concurrent tasks` : The maximum number of parallel tasks.
 
-```JSON
+
+- `Proxy` : The Proxy to use for the requests. See more in the `Scan Internal APIs` documentation section.
+
+
+- `Request timeout` : The maximum timeout duration for each request (in seconds). See more in the dedicated documentation section.
+
+
+- `Requests per minute` : The maximum number of request per minute. Which will be used on a per second window.
+
+
+
+
+## `authentication`
+
+The `PyMultiAuth` authentication configuration. See advanced configuration documentation.
+
+:::note JSON Schema example
+
+```
 {
-    "params": {
-        "complexity_mode": "low | medium | high | no_limit"
+    "authentication": {
+        "methods": {},
+        "users": {}
     }
 }
 ```
 
+:::
 
-
-## Environment mode
-
-The choosen mode for the tested API. `dev` mode is read-write and suited to development environment. `prod` mode is read-only and will reduce the number of tests performed and the scan coverage.
-
-Must be one of `['dev', 'prod']`
-
-```JSON
-{
-    "params": {
-        "environment_mode": "dev | prod"
-    }
-}
-```
+***
 
 
 
-## Speed mode
+- `Methods` : The `methods` as descibed in PyMultiAuth.
 
-The choosen speed of the scan. A `fast` mode will attempt less requests to your API and thus might lower the number of tests performed and the scan coverage. By default, the first scan of newly created apps are set to `fast` speed mode, and all the following to `medium`. The speed mode does not impact the frequency of requests, which can be set in the `client.requests_per_minute` parameter.
 
-Must be one of `['medium', 'fast']`
+- `Users` : The `users` as descibed in PyMultiAuth.
 
-```JSON
-{
-    "params": {
-        "speed_mode": "medium | fast"
-    }
-}
-```
 
+
+
+## `custom_checks`
+
+See the Custom Payload documentation.
+
+## `checks`
+
+See the Security Reference.
