@@ -18,11 +18,11 @@ The parameters related to the scan.
 {
     "scan": {
         "blacklist": {},
-        "environment": "dev | prod",
         "hotstart": [
             "**value**"
         ],
         "profile": "surface | default | deep | unrestricted",
+        "read_only": "true | false",
         "scalars": {
             "**value**": {}
         },
@@ -42,13 +42,13 @@ The parameters related to the scan.
 - `Blacklist` : The operations that will be skipped by security tests. See more in the dedicated documentation section..
 
 
-- `Environment` : The choosen mode for the tested API. `dev` mode is read-write and suited to development environment. `prod` mode is read-only and will reduce the number of tests performed and the scan coverage. Must be one of `['dev', 'prod']`.
-
-
 - `Hotstart` : Raw queries to hotstart the API exploration.
 
 
 - `Profile` : The scan profile. Must be one of `['surface', 'default', 'deep', 'unrestricted']`.
+
+
+- `Read only` : The choosen mode for the tested API. Default mode is read-write and suited to development environment. The `read_only` mode is safe for production environments, but will reduce the number of tests performed and the scan coverage..
 
 
 - `Scalars` : The user's defined scalars.
