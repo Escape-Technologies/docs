@@ -1,0 +1,68 @@
+---
+title: SSTI (Server-Side Template Injection)
+---
+
+# SSTI (Server-Side Template Injection)
+
+## Description
+
+Server-Side Template Injection occurs when an attacker can inject arbitrary content into a template, which is then executed and rendered on the server. This can lead to a variety of attacks, such as remote code execution, information disclosure, and more.
+It's especially dangerous in environments where the template engine has functionalities that allow shell command execution or other powerful capabilities.
+
+
+## Remediation
+
+To prevent SSTI:
+
+1. Always validate and sanitize user input rigorously.
+2. If possible, avoid passing user input directly to template engines.
+3. Make sure to use the latest versions of template engines which might have patches for known vulnerabilities.
+4. Restrict template engine's capabilities if possible, so that even if an injection occurs, the impact can be minimized.
+
+
+
+## Configuration
+
+> Identifier: `injection/ssti`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "injection/ssti": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+  - OWASP: **[A08:2019](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa8-injection.md)**
+  - PCI DSS: **6.5.1**
+  - CWE
+    - **94**
+  - WASC: **19**
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L/E:F/RL:O/RC:C**
+- CVSS_SCORE: **6.8**
+
+## References
+
+- [https://portswigger.net/web-security/server-side-template-injection](https://portswigger.net/web-security/server-side-template-injection)
+  

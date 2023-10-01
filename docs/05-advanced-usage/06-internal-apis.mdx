@@ -33,11 +33,9 @@ To do so, you need to add the following parameter to your scan configuration :
 
 ```json
 {
-    "params": {
-        "client": {
-            "proxy": {
-                "type": "escape"
-            }
+    "client": {
+        "proxy": {
+            "type": "escape"
         }
     }
 }
@@ -69,12 +67,10 @@ Then you can add the following parameter to your scan configuration :
 
 ```json
 {
-    "params": {
-        "client": {
-            "proxy": {
-                "type": "http",
-                "target": "http://[user]:[password]@[ip]:[port]"
-            }
+    "client": {
+        "proxy": {
+            "type": "http",
+            "target": "http://[user]:[password]@[ip]:[port]"
         }
     }
 }
