@@ -18,8 +18,8 @@ Here is a schema of the infrastructure :
 
 ![Escape repeater](./img/repeater.drawio.svg)
 
-First, the repeater client you have deployed locally will connect to the repeater manager (1).
-When you start a scan on escape, instead of sending the requests directly to your server, Escape will send them to the repeater manager (2).
+First, the repeater client you have deployed locally will connect to the Repeater manager (1).
+When you start a scan on Escape, instead of sending the requests directly to your server, Escape will send them to the Repeater manager (2).
 Your client will receive the requests and send them to your server (3 & 4).
 The results are sent back to Escape to allow you to see scans results.
 
@@ -41,7 +41,7 @@ Make sure the following **outgoing** connections are allowed by your network con
 
 1. Go to the [Network Configuration](https://app.staging.escape.tech/organization/network/) page.
 2. Create a Repeater or use an existing one.
-3. Follow the deployment intrusctions directly in the Network page.
+3. Follow the deployment intrusctions directly in the Network page. The Repeater is available via a Docker image accessible on [DockerHub](https://hub.docker.com/r/escapetech/repeater).
 4. The connection status is refreshed every minute in the **Last seen** column.
 
 
