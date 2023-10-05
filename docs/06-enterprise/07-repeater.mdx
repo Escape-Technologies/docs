@@ -4,7 +4,7 @@ title: Repeater Agent
 
 :::warning WIP
 
-This feature is in Private Beta for Enterprise Customers. Contact us via email or your Private Slack Support Channel for more information.
+This feature is only available to Enterprise Customers. Contact us via email or your Private Slack Support Channel for more information.
 
 :::
 
@@ -12,8 +12,7 @@ This feature is in Private Beta for Enterprise Customers. Contact us via email o
 
 Escape's Repeater Agent allows you to scan scan Internal Apps behind your organization's firewall or VPN.
 
-This repeater creates a private tunnel between Escape and one of your servers.
-All the escape requests will comes from this server.
+This repeater creates a private tunnel between Escape and one of your servers. All the Ecape requests will comes from this server.
 
 Here is a schema of the infrastructure :
 
@@ -24,17 +23,36 @@ When you start a scan on escape, instead of sending the requests directly to you
 Your client will receive the requests and send them to your server (3 & 4).
 The results are sent back to Escape to allow you to see scans results.
 
-## How to setup a repeater
 
-First, you need to connect to Escape and go to the repeater page.
-Here you can see the list of your active repeaters and add a new one.
+## Setup a repeater
 
-After creating a new repeater, you will be able to retrieve it's repeater id.
+### Configure your firewall
 
-You will now need to setup a repeater client on your server.
-For that, follow the readme of the [repeater client](https://github.com/Escape-Technologies/Repeater/).
+Make sure the following **outgoing** connections are allowed by your network configuration:
+| Address               | Protocole        | Port |
+|-----------------------|------------------|------|
+| repeater.escape.tech  | TCP/RPC          | 443  |
+| 51.159.205.221        | TCP/HTTP         | 80   |
+| 51.159.205.221        | TCP/HTTPs        | 443  |
 
-Once the client is setup, you can configure any of your applications like this :
+
+### Connect a repeater
+
+1. Go to the [Network Configuration](https://app.staging.escape.tech/organization/network/) page.
+2. Create a Repeater or use an existing one.
+3. Follow the deployment intrusctions directly in the Network page.
+4. The connection status is refreshed every minute in the **Last seen** column.
+
+
+### Use the repeater on a new application
+
+While additing a new app to Escape, the Repeater list will be proposed when try to reach your API.
+Select the Repeater you want to use.
+
+
+### Use a repeater in an existing application.
+
+Go to the Advanced Settings of the applications and add the following configuration:
 
 ```json
 {
