@@ -50,110 +50,114 @@ export default function FooterWrapper(props) {
             </div>
             <div class="links-bloc">
               <div class="links-column">
-                <h4>Product Use Cases</h4>
-                <ul class="list">
-                  <li>
-                    <a href="https://escape.tech/product/#zero-configuration-needed/?ref=doc">
-                      Accelerate your vulnerability assessment
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://escape.tech/product/#ci-cd-integration/?ref=doc">
-                      Shift left with continous security in CI/CD
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://escape.tech/product/#api-discovery/?ref=doc">
-                      Get full security observability
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://escape.tech/product/#data-exposure/?ref=doc">
-                      Block unwanted data leaks
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://escape.tech/product/#account-takeover/?ref=doc">
-                      Prevent account takeovers
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://escape.tech/product/#compliance/?ref=doc">
-                      Simplify compliance management
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://escape.tech/product/#remediations/?ref=doc">
-                      Deploy Developer-focused remediation
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://escape.tech/why-escape/?ref=doc">
-                      {' '}
-                      Why Escape
-                    </a>
-                  </li>
-                </ul>
+                <div>
+                  <h4>Product Use Cases</h4>
+                  <ul class="list">
+                    <li>
+                      <a href="https://escape.tech/product/#zero-configuration-needed/?ref=doc">
+                        Accelerate your vulnerability assessment
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://escape.tech/product/#ci-cd-integration/?ref=doc">
+                        Shift left with continous security in CI/CD
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://escape.tech/product/#api-discovery/?ref=doc">
+                        Get full security observability
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://escape.tech/product/#data-exposure/?ref=doc">
+                        Block unwanted data leaks
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://escape.tech/product/#account-takeover/?ref=doc">
+                        Prevent account takeovers
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://escape.tech/product/#compliance/?ref=doc">
+                        Simplify compliance management
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://escape.tech/product/#remediations/?ref=doc">
+                        Deploy Developer-focused remediation
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://escape.tech/why-escape/?ref=doc">
+                        {' '}
+                        Why Escape
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
               <div class="links-column">
-                <h4>Resources</h4>
-                <ul class="list">
-                  <li>
-                    <a href="https://escape.tech/blog/?ref=doc">Blog</a>
-                  </li>
-                  <li>
-                    <a href="https://escape.tech/blog/tag/case-study/?ref=doc">
-                      Case studies
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://docs.escape.tech/?ref=doc">Docs</a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://escape.tech/academy/?ref=doc"
-                      target="_blank"
-                    >
-                      API Security Academy
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://escape.tech/resources/state-of-graphql-security-2023/?ref=doc"
-                      target="_blank"
-                    >
-                      State for GraphQL Security 2023
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://escape.tech/resources/state-of-public-apis-2023/?ref=doc"
-                      target="_blank"
-                    >
-                      State of Public APIs 2023
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://escape.tech/graphql-armor/docs/getting-started/?ref=doc">
-                      GraphQL Armor
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://openapi.security/?ref=doc">
-                      OpenAPI Security
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://escape.tech/securegpt/?ref=doc">
-                      ChatGPT Security
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://escape.tech/graphql-armor/?ref=doc">
-                      GraphQL Armor
-                    </a>
-                  </li>
-                </ul>
+                <div>
+                  <h4>Resources</h4>
+                  <ul class="list">
+                    <li>
+                      <a href="https://escape.tech/blog/?ref=doc">Blog</a>
+                    </li>
+                    <li>
+                      <a href="https://escape.tech/blog/tag/case-study/?ref=doc">
+                        Case studies
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://docs.escape.tech/?ref=doc">Docs</a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://escape.tech/academy/?ref=doc"
+                        target="_blank"
+                      >
+                        API Security Academy
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://escape.tech/resources/state-of-graphql-security-2023/?ref=doc"
+                        target="_blank"
+                      >
+                        State for GraphQL Security 2023
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://escape.tech/resources/state-of-public-apis-2023/?ref=doc"
+                        target="_blank"
+                      >
+                        State of Public APIs 2023
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://escape.tech/graphql-armor/docs/getting-started/?ref=doc">
+                        GraphQL Armor
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://openapi.security/?ref=doc">
+                        OpenAPI Security
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://escape.tech/securegpt/?ref=doc">
+                        ChatGPT Security
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://escape.tech/graphql-armor/?ref=doc">
+                        GraphQL Armor
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
               <div class="links-column">
                 <div>

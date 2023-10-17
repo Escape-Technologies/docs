@@ -49,7 +49,7 @@
 .footer .links {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 2rem;
   justify-content: space-between;
   width: 100%;
 }
@@ -139,7 +139,7 @@
 
   .footer .links {
     flex-direction: row;
-    gap: 2rem;
+    gap: 4rem;
   }
 
   .soc-desktop {
