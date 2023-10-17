@@ -60,14 +60,6 @@
   grid-gap: 2rem 1rem;
   margin-bottom: 3rem;
   overflow: unset;
-
-  @media (max-width: 576px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 .footer .logo,
@@ -126,6 +118,7 @@
 
 .footer a {
   color: #cfcfcf;
+  font-size: 0.8rem;
 }
 
 .footer a.button {
@@ -133,11 +126,21 @@
   background-color: #6e7191;
 }
 
+@media (max-width: 576px) {
+  .footer .links-bloc {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer .links-bloc {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (min-width: 768px) {
-  .footer {
-    .wrapper {
-      padding: 1rem;
-    }
+  .footer .wrapper {
+    padding: 1rem;
   }
 
   .footer .links {
