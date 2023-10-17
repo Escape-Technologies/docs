@@ -5,7 +5,7 @@ export default function FooterWrapper(props) {
   return (
     <>
       <footer class="footer">
-        <div class="wrapper">
+        <div class="container container-fluid wrapper">
           <div class="links">
             <div class="logo">
               <a href="/">
@@ -25,7 +25,7 @@ export default function FooterWrapper(props) {
                   <img
                     src={useBaseUrl('/img/soc2-badge.png')}
                     alt="Escape is Soc2 compliant"
-                    class="soc"
+                    width="150"
                   />
                 </a>
               </div>
@@ -220,7 +220,7 @@ export default function FooterWrapper(props) {
               <img
                 src={useBaseUrl('/img/soc2-badge.png')}
                 alt="Escape is Soc2 compliant"
-                class="soc"
+                width="150"
               />
             </a>
           </div>
