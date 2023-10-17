@@ -49,7 +49,7 @@
 .footer .links {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 4rem;
   justify-content: space-between;
   width: 100%;
 }
@@ -66,16 +66,10 @@
 .footer .links-column {
   display: flex;
   flex-direction: column;
-
-  h4 {
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-  }
+  gap: 1rem;
 }
 
 .footer .logo {
-  gap: 1rem;
   color: #6e7191;
 }
 

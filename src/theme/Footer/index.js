@@ -216,16 +216,6 @@ export default function FooterWrapper(props) {
               </div>
             </div>
           </div>
-
-          <div class="soc-mobile">
-            <a href="https://app.vanta.com/escape/trust/o59eptrutija9j25586wav">
-              <img
-                src={useBaseUrl('/img/soc2-badge.png')}
-                alt="Escape is Soc2 compliant"
-                width="150"
-              />
-            </a>
-          </div>
           <div class="copyrights">
             Made with ❤️, 🥖 and ☕ in San Francisco, Paris and Biarritz.
           </div>
