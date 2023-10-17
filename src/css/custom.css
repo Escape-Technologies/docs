@@ -88,15 +88,13 @@
   color: #6e7191;
 }
 
-.links-column {
-  .list {
-    padding-inline-start: 0 !important;
-    margin: 0 !important;
-    list-style: none !important;
+.list {
+  padding-inline-start: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
 
-    li {
-      margin-top: 0.5rem !important;
-    }
+  li {
+    margin-top: 0.5rem !important;
   }
 }
 
