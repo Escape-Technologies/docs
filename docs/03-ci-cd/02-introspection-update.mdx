@@ -212,6 +212,49 @@ pipeline {
   </TabItem>
 
 
+
+  <TabItem value="azure" label="Azure DevOps">
+
+```yaml
+trigger:
+  branches:
+    include:
+      - staging
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: EscapeScan
+  displayName: 'Escape Scan'
+  dependsOn: deploy # Assuming you have a 'deploy' job defined elsewhere in your Azure DevOps pipeline.
+  
+  variables:
+    ESCAPE_APPLICATION_ID: $(EscapeAppId) # Define these in the Azure DevOps Pipeline environment variables or in a variable group.
+    ESCAPE_API_KEY: $(EscapeApiKey)
+    SCHEMA_FILE: relative/path/to/schema/from/repo/root/schema.graphql
+    # Optionally define INTROSPECTION_FILE instead of SCHEMA_FILE if using the introspection.json approach.
+    # INTROSPECTION_FILE: relative/path/to/schema/from/repo/root/introspection.json
+
+  steps:
+  - script: |
+      sudo npm install -g @escape.tech/action
+      npm show @escape.tech/action version
+      escape-action
+    displayName: 'Run Escape Action'
+    env: 
+      ESCAPE_APPLICATION_ID: $(EscapeAppId)
+      ESCAPE_API_KEY: $(EscapeApiKey)
+      SCHEMA_FILE: $(SCHEMA_FILE)
+      # INTROSPECTION_FILE: $(INTROSPECTION_FILE) # Uncomment if using the introspection.json approach.
+    continueOnError: true
+```
+
+  </TabItem>
+
+
+
+
   <TabItem value="cli" label="CLI">
 
 ```bash

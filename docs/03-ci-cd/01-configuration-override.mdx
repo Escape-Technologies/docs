@@ -207,6 +207,44 @@ pipeline {
 
   </TabItem>
 
+  <TabItem value="azure" label="Azure DevOps">
+
+```yaml
+trigger:
+  branches:
+    include:
+      - staging
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: EscapeScan
+  displayName: 'Escape Scan'
+  dependsOn: deploy # Assuming you have a 'deploy' job defined elsewhere in your Azure DevOps pipeline.
+  
+  variables:
+    ESCAPE_APPLICATION_ID: $(EscapeAppId) # Define these in the Azure DevOps Pipeline environment variables or in a variable group.
+    ESCAPE_API_KEY: $(EscapeApiKey)
+    CONFIGURATION_OVERRIDE: '{"users":{"user1":{"auth":"schema1","headers":{"Authorization":"<YOUR_AUTH>"}}},"auth":{"schema1":{"tech":"manual"}}}'
+    # CONFIGURATION_OVERRIDE_PATH: ./configuration_override.json # Uncomment if you want to use a file.
+
+  steps:
+  - script: |
+      sudo npm install -g @escape.tech/action
+      npm show @escape.tech/action version
+      escape-action
+    displayName: 'Run Escape Action'
+    env: 
+      ESCAPE_APPLICATION_ID: $(EscapeAppId)
+      ESCAPE_API_KEY: $(EscapeApiKey)
+      CONFIGURATION_OVERRIDE: $(CONFIGURATION_OVERRIDE)
+      # CONFIGURATION_OVERRIDE_PATH: $(CONFIGURATION_OVERRIDE_PATH) # Uncomment if you want to use a file.
+    continueOnError: true
+```
+
+  </TabItem>
+
   <TabItem value="cli" label="CLI">
 
 ```bash
