@@ -128,6 +128,10 @@
   color: #cfcfcf;
 }
 
+.footer a.button {
+  background-color: #6e7191;
+}
+
 @media (min-width: 768px) {
   .footer {
     .wrapper {
