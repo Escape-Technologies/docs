@@ -89,11 +89,11 @@
   }
 }
 
-.footer .soc-desktop {
+.soc-desktop {
   display: none;
 }
 
-.footer .soc-mobile {
+.soc-mobile {
   display: block;
 }
 
@@ -148,12 +148,12 @@
     gap: 2rem;
   }
 
-  .footer .soc-desktop {
+  .soc-desktop {
     display: block;
     margin: 1rem 0;
   }
 
-  .footer .soc-mobile {
+  .soc-mobile {
     display: none;
   }
 }
