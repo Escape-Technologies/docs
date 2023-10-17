@@ -129,6 +129,7 @@
 }
 
 .footer a.button {
+  display: inline-block;
   background-color: #6e7191;
 }
 
