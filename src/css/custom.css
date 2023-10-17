@@ -6,10 +6,10 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #38CAA6;
+  --ifm-color-primary: #38caa6;
   --ifm-footer-background-color: #050028;
-  --ifm-footer-color: #F2F2F2;
-  --ifm-footer-link-color: #DDE1E3;
+  --ifm-footer-color: #f2f2f2;
+  --ifm-footer-link-color: #dde1e3;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
 }
@@ -28,4 +28,155 @@
 
 .medium-severity {
   color: orange;
+}
+
+footer {
+  width: 100%;
+  padding: 4rem;
+  padding-bottom: 0;
+  font-weight: 600;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    max-width: 1440px;
+    padding-bottom: 0;
+    margin: 0 auto;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: space-between;
+    width: 100%;
+
+    .links-bloc {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 2rem 1rem;
+      margin-bottom: 3rem;
+      overflow: unset;
+
+      @media (max-width: 576px) {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .logo,
+    .links-column {
+      display: flex;
+      flex-direction: column;
+
+      h4 {
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
+    }
+
+    .logo {
+      gap: 1rem;
+      color: #6e7191;
+    }
+
+    .links-column {
+      .list {
+        padding-inline-start: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
+
+        li {
+          margin-top: 0.5rem !important;
+        }
+      }
+    }
+  }
+
+  .soc {
+    width: 150px;
+  }
+
+  .soc-desktop {
+    display: none;
+  }
+
+  .soc-mobile {
+    display: block;
+  }
+
+  .social-title {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+}
+
+a {
+  color: #6e7191;
+
+  &.button {
+    margin: 0;
+    color: white;
+    white-space: nowrap;
+    background-color: #6e7191;
+  }
+
+  &:hover {
+    color: #05e2b7;
+  }
+
+  &:focus {
+    color: #05e2b7;
+  }
+
+  &:active {
+    color: #05e2b7;
+  }
+}
+
+.copyrights {
+  width: 100%;
+  padding: 2rem 0;
+  color: #6e7191;
+  border-top: 1px solid #6e7191;
+}
+
+@media (min-width: 768px) {
+  footer {
+    padding: 0;
+
+    .wrapper {
+      padding: 1rem;
+    }
+
+    .links {
+      flex-direction: row;
+      gap: 2rem;
+    }
+
+    .soc-desktop {
+      display: block;
+      margin: 1rem 0;
+    }
+
+    .soc-mobile {
+      display: none;
+    }
+  }
 }
