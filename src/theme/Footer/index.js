@@ -1,7 +1,4 @@
 import React from 'react'
-import Footer from '@theme-original/Footer'
-// import escape from '@site/static/img/_logo.svg'
-// import soc2 from '@site/static/img/soc2-badge.png'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 
 export default function FooterWrapper(props) {
