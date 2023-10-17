@@ -190,27 +190,29 @@ export default function FooterWrapper(props) {
                     </li>
                   </ul>
                 </div>
-                <h4>Connect</h4>
-                <ul class="list">
-                  <li>
-                    <a href="https://calendly.com/d/4q4-wkr-p8c/escape-product-demo">
-                      {' '}
-                      Book a live demo
-                    </a>
-                  </li>
-                  <li>
-                    <a href="mailto:support@escape.tech?subject=Contact Escape">
-                      {' '}
-                      Contact us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://discord.com/invite/G9FEuFuKfd">
-                      {' '}
-                      Discord support
-                    </a>
-                  </li>
-                </ul>
+                <div>
+                  <h4>Connect</h4>
+                  <ul class="list">
+                    <li>
+                      <a href="https://calendly.com/d/4q4-wkr-p8c/escape-product-demo">
+                        {' '}
+                        Book a live demo
+                      </a>
+                    </li>
+                    <li>
+                      <a href="mailto:support@escape.tech?subject=Contact Escape">
+                        {' '}
+                        Contact us
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://discord.com/invite/G9FEuFuKfd">
+                        {' '}
+                        Discord support
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
