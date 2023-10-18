@@ -4,11 +4,11 @@ title: Scan Internal APIs
 
 You might need to identify when the request you receive is coming from the security scanner.
 
-Usecases: 
-- Disable monitoring for Escape's requests 
+Usecases:
+
+- Disable monitoring for Escape's requests
 - Enable the introspection of your server only to the security scanner on your staging environment.
 - Scan Internal APIs
-
 
 ## Using HTTP Header
 
@@ -20,10 +20,9 @@ x-escape-identifier: {{your-escape-identifier}}
 
 Thanks to this header you can detect incoming requests from the scanner in your server, to add any custom handling logic you might want on top of this.
 
-You can find this token in your [organization settings](https://app.escape.tech/organization/settings/).
+You can find this token in your [organization settings](https://app.escape.tech/organization/network/).
 
-You should keep this token secret. If you think it has been compromised, you can regenerate it in your [organization settings](https://app.escape.tech/organization/settings/) using the `Revoke` button.
-
+You should keep this token secret. If you think it has been compromised, you can regenerate it in your [organization settings](https://app.escape.tech/organization/network/) using the `Revoke` button.
 
 ## Using the Escape Proxy
 
@@ -33,11 +32,11 @@ To do so, you need to add the following parameter to your scan configuration :
 
 ```json
 {
-    "client": {
-        "proxy": {
-            "type": "escape"
-        }
+  "client": {
+    "proxy": {
+      "type": "escape"
     }
+  }
 }
 ```
 
@@ -67,12 +66,12 @@ Then you can add the following parameter to your scan configuration :
 
 ```json
 {
-    "client": {
-        "proxy": {
-            "type": "http",
-            "target": "http://[user]:[password]@[ip]:[port]"
-        }
+  "client": {
+    "proxy": {
+      "type": "http",
+      "target": "http://[user]:[password]@[ip]:[port]"
     }
+  }
 }
 ```
 
