@@ -34,10 +34,12 @@ By employing a whitelist, you instruct Escape to focus its exploration phase sol
 
 ```json
 {
-    "whitelist": [
-        "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
-        "query { bank(account: 1337) { id address }}"
-    ]
+    "scan": {
+        "whitelist": [
+            "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
+            "query { bank(account: 1337) { id address }}"
+        ]
+    }
 }
 ```
 
@@ -50,9 +52,11 @@ The queries and mutations you provide should be listed under the hotstart key. Y
 
 ```json
 {
-    "hotstart": [
-        "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
-        "query { bank(account: 1337) { id address }}"
-    ]
+    "scan": {
+        "hotstart": [
+            "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
+            "query { bank(account: 1337) { id address }}"
+        ]
+    }
 }
 ```
