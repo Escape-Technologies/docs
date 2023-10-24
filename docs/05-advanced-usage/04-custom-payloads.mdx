@@ -115,10 +115,12 @@ The `hotstart` parameter allows users to provide specific requests. This not onl
 
 ```json
 {
-  "hotstart": [
-    "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
-    "query { bank(account: 1337) { id address }}"
-  ]
+  "scan": {
+    "hotstart": [
+      "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
+      "query { bank(account: 1337) { id address }}"
+    ]
+  }
 }
 ```
 
