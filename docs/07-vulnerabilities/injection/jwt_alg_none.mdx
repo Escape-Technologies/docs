@@ -1,0 +1,60 @@
+---
+title: JWT no algorithm
+---
+
+# JWT no algorithm
+
+## Description
+
+We sent a token with the 'none' algorithm and it was accepted by the server.
+This means that we can handcraft any token to impersonate another user.
+
+
+## Remediation
+
+You must validate the algorithm used to sign the token before checking it's signature.
+
+
+
+## Configuration
+
+> Identifier: `injection/jwt_alg_none`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "injection/jwt_alg_none": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+  - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
+  
+  - CWE
+    - **1390**
+    - **290**
+  
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:N**
+- CVSS_SCORE: **9.3**
+
