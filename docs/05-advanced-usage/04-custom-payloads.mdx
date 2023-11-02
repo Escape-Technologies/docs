@@ -138,8 +138,9 @@ Escape operates on a [comprehensive scalar architecture](/advanced-usage/data-ty
       "examples": ["value"],
       "names": ["value"],
       "parents": ["ID", "Int", "String", "Boolean", "Float"],
-      "patterns": ["value"],
-      "sensitivity": 0
+      "patterns": ["regex"],
+      "sensitivity": "NONE | LOW | MEDIUM | HIGH",
+      "detection": "key | value | value_strict | key_or_value | key_or_value_strict | key_and_value_strict"
     }
   }
 }
@@ -152,7 +153,14 @@ Escape operates on a [comprehensive scalar architecture](/advanced-usage/data-ty
 - `names`: Possible names for the scalar.
 - `parents`: default type the scalar is compatible with.
 - `patterns`: Potential regex-friendly values for the scalar (utilized for the checks).
-- `sensitivity`: Data sensitivity level. Allowed values are `0`, `1`, `2` and 3. Values `2` and `3` will serve to raise **Sensitive Data** issues of respectively `MEDIUM` and `HIGH` sensitivity in Escape.
+- `sensitivity`: Data sensitivity level. Allowed values are `NONE`, `LOW`, `MEDIUM` and `HIGH`. Values `MEDIUM` and `HIGH` will serve to raise **Sensitive Data** issues in Escape.
+- `detection`: The detection strategy:
+  - `key` : detect scalar where the key match one of the names.
+  - `value` : detect scalar where the value match one of the regexes patterns.
+  - `value_strict` : detect scalar where the value full match one of the regexes patterns (ie. `^(regex)$`).
+  - `key_or_value` : detect scalar based on the `key` or `value` strategy.
+  - `key_or_value_strict` : detect scalar based on the `key` or `value_strict` strategy.
+  - `key_and_value_strict` : detect scalar based on the `key` and `value_strict` strategy.
 
 ### Example
 
