@@ -21,7 +21,7 @@ The parameters related to the scan.
         "hotstart": [
             "**value**"
         ],
-        "profile": "surface | default",
+        "profile": "surface | default | deep | unrestricted",
         "read_only": "true | false",
         "scalars": {
             "**value**": {}
@@ -45,7 +45,7 @@ The parameters related to the scan.
 - `Hotstart` : Raw queries to hotstart the API exploration.
 
 
-- `Profile` : The scan profile. Must be one of `['surface', 'default']`.
+- `Profile` : The scan profile. Must be one of `['surface', 'default', 'deep', 'unrestricted']`.
 
 
 - `Read only` : The choosen mode for the tested API. Default mode is read-write and suited to development environment. The `read_only` mode is safe for production environments, but will reduce the number of tests performed and the scan coverage..
@@ -70,9 +70,7 @@ All parameters available in our `client`:
     "client": {
         "concurrent_connection": "**value**",
         "concurrent_tasks": "**value**",
-        "proxy": {
-            "type": "escape | http | repeater"
-        },
+        "proxy": {},
         "request_timeout": "**value**",
         "requests_per_minute": "**value**"
     }
