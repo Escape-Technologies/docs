@@ -164,9 +164,27 @@ Escape operates on a [comprehensive scalar architecture](/advanced-usage/data-ty
 
 ### Example
 
-This is how JWT is defined by default in Escape's engine:
+Let's say you want to add a new scalar for the Super Secret Example Token inside your company :
 
 ```json
+{
+  "SSET": {
+    "custom_scalar_identifier": {
+      "description": "The Super Secret Example Token is internal to our company and should never been exposed by any APIs.",
+      "examples": ["SSET-ABC12"],
+      "names": ["SSET", "super_secret_example_token", "SuperSecretExampleToken"],
+      "parents": ["String"],
+      "patterns": ["SSET-[A-Z0-9]{5}"],
+      "sensitivity": "HIGH",
+      "detection": "key_or_value_strict"
+    }
+  }
+}
+```
+
+This is how JWT is defined by default in Escape's engine:
+
+```yaml
 jwt:
   description: JSON Web Token
   examples:
