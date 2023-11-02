@@ -1,0 +1,61 @@
+---
+title: Unhandled endpoint
+---
+
+# Unhandled endpoint
+
+## Description
+
+Some endpoint can be found in the introspection but have no handler implemented.
+
+
+## Remediation
+
+Either remove the endpoint from your schema or create a handler for them.
+
+
+
+## Configuration
+
+> Identifier: `configuration/unhandled_endpoint`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "configuration/unhandled_endpoint": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+  - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
+  
+  - CWE
+    - **389**
+    - **438**
+    - **440**
+    - **684**
+  
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N**
+- CVSS_SCORE: **0.0**
+
