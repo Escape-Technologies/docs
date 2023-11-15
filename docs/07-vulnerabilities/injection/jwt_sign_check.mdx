@@ -1,0 +1,62 @@
+---
+title: JWT Signature check
+---
+
+# JWT Signature check
+
+## Description
+
+We sent a token with an invalid signature and it was accepted by the server.
+
+
+## Remediation
+
+You must validate the token signature before thrusting the token content.
+
+
+## Configuration
+
+> Identifier: `injection/jwt_sign_check`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "injection/jwt_sign_check": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+  - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
+  
+  - CWE
+    - **1390**
+    - **290**
+  
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:N**
+- CVSS_SCORE: **9.3**
+
+## References
+
+- [https://www.freecodecamp.org/news/how-to-sign-and-validate-json-web-tokens/](https://www.freecodecamp.org/news/how-to-sign-and-validate-json-web-tokens/)
+  

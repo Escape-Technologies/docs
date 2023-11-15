@@ -115,10 +115,12 @@ The `hotstart` parameter allows users to provide specific requests. This not onl
 
 ```json
 {
-  "hotstart": [
-    "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
-    "query { bank(account: 1337) { id address }}"
-  ]
+  "scan": {
+    "hotstart": [
+      "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
+      "query { bank(account: 1337) { id address }}"
+    ]
+  }
 }
 ```
 
@@ -136,8 +138,9 @@ Escape operates on a [comprehensive scalar architecture](/advanced-usage/data-ty
       "examples": ["value"],
       "names": ["value"],
       "parents": ["ID", "Int", "String", "Boolean", "Float"],
-      "patterns": ["value"],
-      "sensitivity": 0
+      "patterns": ["regex"],
+      "sensitivity": "NONE | LOW | MEDIUM | HIGH",
+      "detection": "key | value | value_strict | key_or_value | key_or_value_strict | key_and_value_strict"
     }
   }
 }
@@ -145,18 +148,47 @@ Escape operates on a [comprehensive scalar architecture](/advanced-usage/data-ty
 
 ### Fields
 
+Here is the list of the fields :
+
 - `description`: Brief description for the scalar.
 - `examples`: Sample values for the scalar (used in the explore phase as default values). Be cautious: the scanner will ignore the checks for these values.
 - `names`: Possible names for the scalar.
 - `parents`: default type the scalar is compatible with.
 - `patterns`: Potential regex-friendly values for the scalar (utilized for the checks).
-- `sensitivity`: Data sensitivity level. Allowed values are `[0, 1, 2, 3]`. Values `2` and `3` will serve to raise sensitive data alerts in Escape.
+- `sensitivity`: Data sensitivity level. Allowed values are `NONE`, `LOW`, `MEDIUM` and `HIGH`. Values `MEDIUM` and `HIGH` will serve to raise **Sensitive Data** issues in Escape.
+- `detection`: The detection strategy:
+  - `key` : detect scalar where the key match one of the names.
+  - `value` : detect scalar where the value match one of the regexes patterns.
+  - `value_strict` : detect scalar where the value full match one of the regexes patterns (ie. `^(regex)$`).
+  - `key_or_value` : detect scalar based on the `key` or `value` strategy.
+  - `key_or_value_strict` : detect scalar based on the `key` or `value_strict` strategy.
+  - `key_and_value_strict` : detect scalar based on the `key` and `value_strict` strategy.
+
+All of this fields are optionals and can be omitted.
 
 ### Example
 
-This is how JWT is defined by default in Escape's engine:
+Let's say you want to add a new scalar for the Super Secret Example Token inside your company :
 
 ```json
+{
+  "scalars": {
+    "SSET": {
+      "description": "The Super Secret Example Token is internal to our company and should never been exposed by any APIs.",
+      "examples": ["SSET-ABC12"],
+      "names": ["SSET", "super_secret_example_token", "SuperSecretExampleToken"],
+      "parents": ["String"],
+      "patterns": ["SSET-[A-Z0-9]{5}"],
+      "sensitivity": "HIGH",
+      "detection": "key_or_value_strict"
+    }
+  }
+}
+```
+
+This is how JWT is defined by default in Escape's engine:
+
+```yaml
 jwt:
   description: JSON Web Token
   examples:

@@ -1,0 +1,59 @@
+---
+title: JWT algorithm confusion
+---
+
+# JWT algorithm confusion
+
+## Description
+
+We sent a token with an invalid algorithm and it was accepted by the server.
+In this case, HS256 (HMAC with SHA-256) is a symmetric algorithm, which means that the same key is used to sign and verify the token.
+
+
+## Remediation
+
+You must enforce the algorithm used to sign the token.
+
+
+## Configuration
+
+> Identifier: `injection/jwt_alg_confusion`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "injection/jwt_alg_confusion": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+  - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
+  
+  - CWE
+    - **1390**
+    - **290**
+  
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:N**
+- CVSS_SCORE: **9.3**
+

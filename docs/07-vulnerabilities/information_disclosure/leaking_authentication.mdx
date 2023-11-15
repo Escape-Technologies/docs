@@ -1,0 +1,61 @@
+---
+title: Leaking authentication
+---
+
+# Leaking authentication
+
+## Description
+
+The server sent too much information in the response about the user's base.
+
+
+## Remediation
+
+Ensure that messages are neutral and do not disclose information about the user's base.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/leaking_authentication`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "information_disclosure/leaking_authentication": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="medium-severity">MEDIUM</span>**
+  - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
+  
+  - CWE
+    - **200**
+    - **540**
+    - **664**
+    - **668**
+  
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C**
+- CVSS_SCORE: **7.2**
+
