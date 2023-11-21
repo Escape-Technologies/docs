@@ -1,10 +1,16 @@
 ---
 title: Automatic Persisted Queries
+description: The absence of **Automatic Persisted Queries** can cause backend performance problems at scale.
+
+GraphQL clients send queries to Apollo Servers as HTTP requests, including the GraphQL query string.
+Depending on your GraphQL schema, the size of a valid query string might be arbitrarily large. As query strings become larger, increased latency and network usage can noticeably degrade client performance.
+A persisted query is a query string cached on the server-side, along with its unique identifier (SHA-256 hash of the query). Clients can send this identifier instead of the full query string, drastically reducing request sizes.
+
+To make a query string persist, your GraphQL server must first receive it from a requesting client. Each unique query string must therefore be sent to the server at least once. Once a client has sent a query string to persist, any other client executing that query can benefit from APQ.
+
 ---
 
 # Automatic Persisted Queries
-
-## Description
 
 The absence of **Automatic Persisted Queries** can cause backend performance problems at scale.
 

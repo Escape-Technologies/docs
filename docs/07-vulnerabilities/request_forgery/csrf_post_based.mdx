@@ -1,10 +1,14 @@
 ---
 title: POST based CSRF
+description: The canonical content-type for GraphQL queries is JSON (`application/json`). Other content-types should be rejected as they facilitate CSRF attacks (e.g., via form submission).
+
+Note that CSRF is an attack vector that specifically target requests where the browser automatically provides authentication (typically through `Cookie` or `Basic` Authentication).
+
+Especially, if your application is attaching the credentials via an `Authorization` header then the browser can't automatically authenticate the requests, and CSRF isn't possible.
+
 ---
 
 # POST based CSRF
-
-## Description
 
 The canonical content-type for GraphQL queries is JSON (`application/json`). Other content-types should be rejected as they facilitate CSRF attacks (e.g., via form submission).
 

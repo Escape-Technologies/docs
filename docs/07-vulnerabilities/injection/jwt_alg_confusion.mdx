@@ -1,10 +1,11 @@
 ---
 title: JWT algorithm confusion
+description: We sent a token with an invalid algorithm and it was accepted by the server.
+In this case, HS256 (HMAC with SHA-256) is a symmetric algorithm, which means that the same key is used to sign and verify the token.
+
 ---
 
 # JWT algorithm confusion
-
-## Description
 
 We sent a token with an invalid algorithm and it was accepted by the server.
 In this case, HS256 (HMAC with SHA-256) is a symmetric algorithm, which means that the same key is used to sign and verify the token.

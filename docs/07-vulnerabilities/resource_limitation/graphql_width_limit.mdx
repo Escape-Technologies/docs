@@ -1,10 +1,12 @@
 ---
 title: Width limit
+description: GraphQL defines the maximum width of a query as the **maximum number of subfields** queried from one field.
+
+If no limit is set on query width, clients may therefore craft a complex query that could lead to potential *DoS attacks* or *information leakage*.
+
 ---
 
 # Width limit
-
-## Description
 
 GraphQL defines the maximum width of a query as the **maximum number of subfields** queried from one field.
 

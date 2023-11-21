@@ -1,10 +1,33 @@
 ---
 title: Circular introspection
+description: A circular introspection has been performed on the system.
+This can be exploited to conduct a Denial of Service attack.
+
+The GraphQL introspection is done recursively on your schema.
+By calling several objects that reference each other, an attacker can create a circular reference.
+
+```graphql
+__schema {
+  types {
+    fields {
+      type {
+        fields {
+          type ... and so on infinitely
+        }
+      }
+    }
+  }
+}
+```
+
+Creating a circular reference will increase the size of the returned document exponentially.
+The larger your schema is, the bigger the document will be.
+
+This DOS attack is hard to exploit as the size of the query might be limited by a server before reaching your backend.
+
 ---
 
 # Circular introspection
-
-## Description
 
 A circular introspection has been performed on the system.
 This can be exploited to conduct a Denial of Service attack.

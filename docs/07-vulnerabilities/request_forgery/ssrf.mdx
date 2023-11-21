@@ -1,10 +1,11 @@
 ---
 title: Server Side Request Forgery
+description: SSRF flaws occur whenever a web application is fetching a remote resource without validating the user-supplied URL.
+It allows an attacker to coerce the application to send a crafted request to an unexpected destination, even when protected by a firewall, VPN, or another type of network access control list (ACL).
+
 ---
 
 # Server Side Request Forgery
-
-## Description
 
 SSRF flaws occur whenever a web application is fetching a remote resource without validating the user-supplied URL.
 It allows an attacker to coerce the application to send a crafted request to an unexpected destination, even when protected by a firewall, VPN, or another type of network access control list (ACL).
@@ -51,7 +52,7 @@ The correct ways to prevent SSRF are:
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-  - OWASP: **[API6:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows.md)**
+  - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
   - PCI DSS: **6.5.6**
   - CWE
     - **441**

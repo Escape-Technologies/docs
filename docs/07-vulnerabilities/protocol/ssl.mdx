@@ -1,10 +1,20 @@
 ---
 title: SSL enforced
+description: This security **best practice** should be enforced by your organization, at least for your API routes.
+
+Here are 4 risk examples when allowing unsecure `HTTP`:
+
+- **Man in the Middle attacks**: hackers can intercept and alter data from a legitimate request.
+- **Misuse of data**: confidential information can be accessed by hackers.
+- **Downranking of websites**: your website can be considered insecure by search engines and rated as not trustworthy.
+- **Loss of customers' trust**: without a secure HTTPS padlock displayed on your website, users may rightfully consider it to be unsafe.
+
+Using [HSTS](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security) is not a solution to this problem, as it won't protect against MITM attacks and regular "public wifi sniffing" until connection has been upgraded to HTTPS.
+As recommended by [Google](https://developers.google.com/search/docs/advanced/security/https), make sure that no cookies are being sent through HSTS.
+
 ---
 
 # SSL enforced
-
-## Description
 
 This security **best practice** should be enforced by your organization, at least for your API routes.
 

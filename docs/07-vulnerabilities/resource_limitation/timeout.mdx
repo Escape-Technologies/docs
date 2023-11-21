@@ -1,10 +1,14 @@
 ---
 title: Security timeout
+description: Requests that take a long time to process can be used by attackers to create Denial-of-Service (DoS) situations.
+
+This security test is based on an arbitrary timeout threshold that might not match your application's requirements. To learn how to change it, head over to the configuration section below.
+
+Example: Querying `getAllUsers(){ contacts { contacts }}` returns a response after 15s.
+
 ---
 
 # Security timeout
-
-## Description
 
 Requests that take a long time to process can be used by attackers to create Denial-of-Service (DoS) situations.
 

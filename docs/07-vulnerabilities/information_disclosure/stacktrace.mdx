@@ -1,10 +1,12 @@
 ---
 title: Stacktrace
+description: Details about database-level or code-level errors have been found in the response. This may cause information leaks, allowing attackers to identify the exact database or dependency you are using, and can therefore lead to highly targeted attacks against your application.
+
+Example: sending `getUser(id: null)` returns `{ message: "SQL Error: Postgres 3.6 has encountered an error : Invalid ID."}`.
+
 ---
 
 # Stacktrace
-
-## Description
 
 Details about database-level or code-level errors have been found in the response. This may cause information leaks, allowing attackers to identify the exact database or dependency you are using, and can therefore lead to highly targeted attacks against your application.
 

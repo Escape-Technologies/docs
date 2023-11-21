@@ -1,10 +1,11 @@
 ---
 title: Public state-altering operation
+description: Any route that mutates application data should not be public.
+DELETE, POST, PUT requests and GraphQL mutations should be protected by an authentication middleware.
+
 ---
 
 # Public state-altering operation
-
-## Description
 
 Any route that mutates application data should not be public.
 DELETE, POST, PUT requests and GraphQL mutations should be protected by an authentication middleware.

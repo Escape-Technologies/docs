@@ -1,10 +1,34 @@
 ---
 title: Headers
+description: * **Cache-Control**:
+ - The HTTP 'Cache-Control' header is used to specify directives for caching mechanisms.
+ - The server did not return (or returned an invalid) 'Cache-Control' header, which means pages containing sensitive information could be stored client-side and then be exposed to unauthorized persons.
+
+ * **Content-Type**:
+   - The Content-Type header was either missing or empty.
+
+ * **X-Content-Type-Options**:
+   - The Anti-MIME-Sniffing header X-Content-Type-Options was not set to ‘nosniff’.
+   - This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.
+
+ * **Strict-Transport-Security**:
+   - HTTP Strict Transport Security (HSTS) is a web security policy mechanism whereby a web server declares that complying user agents (such as a web browser) are to interact with it using only secure HTTPS connections (i.e. HTTP layered over TLS/SSL).
+   - HSTS is an IETF standard track protocol specified in RFC 6797.
+
+ * **CookiesSecure**:
+   - A cookie has been set without the secure flag, which means that the cookie can be accessed via unencrypted connections.
+
+ * **CookiesHttpOnly**:
+   - A cookie has been set without the HttpOnly flag, which means that JavaScript code can access the cookie.
+   - If a malicious script runs on this page, then the cookie will be accessible and can be transmitted to another hacker-controlled site. If this is a session cookie, then session hijacking may be possible.
+
+ * **VersionDisclosure**:
+   - The web/application server is leaking server version information via one or more HTTP response headers.
+   - Access to such information may facilitate attackers identifying other frameworks/components your web application is reliant upon, and the vulnerabilities of such components may be subject to the leaked information.
+
 ---
 
 # Headers
-
-## Description
 
 * **Cache-Control**:
  - The HTTP 'Cache-Control' header is used to specify directives for caching mechanisms.

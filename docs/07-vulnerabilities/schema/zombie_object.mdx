@@ -1,10 +1,12 @@
 ---
 title: Zombie object
+description: Zombie objects are objects that are not accessible from any __query__, __mutation__,or __subscription__, but are still declared in your GraphQL schema.
+Most of the time, zombie objects reveal legacy or unused part of your codebase.
+Because they are not maintained nor patched, they are a **privileged vector of attack** and represent a severe security risk for your application.
+
 ---
 
 # Zombie object
-
-## Description
 
 Zombie objects are objects that are not accessible from any __query__, __mutation__,or __subscription__, but are still declared in your GraphQL schema.
 Most of the time, zombie objects reveal legacy or unused part of your codebase.

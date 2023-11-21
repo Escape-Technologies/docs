@@ -1,10 +1,15 @@
 ---
 title: Field suggestion
+description: If introspection is disabled on your target, **Field Suggestion** still allow users infer the entire schema, with a tool like [Clairvoyance](https://github.com/nikitastupin/clairvoyance).
+
+If you query a field with a typo, GraphQL will attempt to suggest fields close to what was requested. Example:
+```
+  Error: Cannot query field "createSesion" on type "RootMutation". Did you mean "createSession", "createUser", "createFile", or "createImage"?
+```
+
 ---
 
 # Field suggestion
-
-## Description
 
 If introspection is disabled on your target, **Field Suggestion** still allow users infer the entire schema, with a tool like [Clairvoyance](https://github.com/nikitastupin/clairvoyance).
 

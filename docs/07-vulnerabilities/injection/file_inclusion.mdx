@@ -1,10 +1,12 @@
 ---
 title: File inclusion
+description: Directory traversal occurs when a server allows an attacker to read a file or directories outside of the normal web server directory, and local file inclusion gives the attacker the ability to include an arbitrary local file (from the web server) in the web server's response.
+
+Example: `getProfilePicture(name: '../../../etc/password')` returns the server's `/etc/password` file.
+
 ---
 
 # File inclusion
-
-## Description
 
 Directory traversal occurs when a server allows an attacker to read a file or directories outside of the normal web server directory, and local file inclusion gives the attacker the ability to include an arbitrary local file (from the web server) in the web server's response.
 

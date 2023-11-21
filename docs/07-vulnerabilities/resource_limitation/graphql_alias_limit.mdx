@@ -1,10 +1,32 @@
 ---
 title: Alias limit
+description: GraphQL supports the aliasing of multiple sub-queries into a single query. It allows requesting multiple instances of objects efficiently and without conflicts.
+However, attackers can leverage this feature to bypass many security measures, including rate limiting.
+
+Query example:
+```
+query {
+  a: myself{username},
+  b: myself{username},
+  ...
+  }
+```
+
+Response example:
+```javascript
+{
+  "data":
+  {
+    "a": {"username":"EscapeAdmin"},
+    "b": {"username":"EscapeAdmin"},
+    ...
+  }
+}
+```
+
 ---
 
 # Alias limit
-
-## Description
 
 GraphQL supports the aliasing of multiple sub-queries into a single query. It allows requesting multiple instances of objects efficiently and without conflicts.
 However, attackers can leverage this feature to bypass many security measures, including rate limiting.
