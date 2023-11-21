@@ -132,15 +132,17 @@ Escape operates on a [comprehensive scalar architecture](/advanced-usage/data-ty
 
 ```json
 {
-  "scalars": {
-    "custom_scalar_identifier": {
-      "description": "value",
-      "examples": ["value"],
-      "names": ["value"],
-      "parents": ["ID", "Int", "String", "Boolean", "Float"],
-      "patterns": ["regex"],
-      "sensitivity": "NONE | LOW | MEDIUM | HIGH",
-      "detection": "key | value | value_strict | key_or_value | key_or_value_strict | key_and_value_strict"
+  "scan": {
+    "scalars": {
+      "custom_scalar_identifier": {
+        "description": "value",
+        "examples": ["value"],
+        "names": ["value"],
+        "parents": ["ID", "Int", "String", "Boolean", "Float"],
+        "patterns": ["regex"],
+        "sensitivity": "NONE | LOW | MEDIUM | HIGH",
+        "detection": "key | value | value_strict | key_or_value | key_or_value_strict | key_and_value_strict"
+      }
     }
   }
 }
@@ -172,15 +174,17 @@ Let's say you want to add a new scalar for the Super Secret Example Token inside
 
 ```json
 {
-  "scalars": {
-    "SSET": {
-      "description": "The Super Secret Example Token is internal to our company and should never been exposed by any APIs.",
-      "examples": ["SSET-ABC12"],
-      "names": ["SSET", "super_secret_example_token", "SuperSecretExampleToken"],
-      "parents": ["String"],
-      "patterns": ["SSET-[A-Z0-9]{5}"],
-      "sensitivity": "HIGH",
-      "detection": "key_or_value_strict"
+  "scan": {
+    "scalars": {
+      "SSET": {
+        "description": "The Super Secret Example Token is internal to our company and should never been exposed by any APIs.",
+        "examples": ["SSET-ABC12"],
+        "names": ["SSET", "super_secret_example_token", "SuperSecretExampleToken"],
+        "parents": ["String"],
+        "patterns": ["SSET-[A-Z0-9]{5}"],
+        "sensitivity": "HIGH",
+        "detection": "key_or_value_strict"
+      }
     }
   }
 }
