@@ -1,0 +1,76 @@
+---
+title: Sensitive endpoint bruteforce
+---
+
+# Sensitive endpoint bruteforce
+
+## Description
+
+During our security assessment, we identified a vulnerability in the
+rate-limiting mechanism of a public mutation endpoint. Multiple requests to
+this endpoint were made without triggering any rate-limiting defenses. This
+lack of rate limitation exposes the endpoint to brute force attacks, where
+an attacker could try numerous combinations of credentials or inputs to
+gain unauthorized access or disrupt services. Such vulnerabilities are
+critical, especially if the endpoint handles sensitive data or critical
+functions.
+
+
+## Remediation
+
+To mitigate this vulnerability, it is crucial to implement an effective
+rate limiting mechanism on the mutation endpoint. This should include
+limiting the number of requests a user can make within a given time frame,
+and escalating restrictions for repeated violations. Consider using tools
+like Redis for efficient rate limiting. Additionally, implement alert
+mechanisms for unusual traffic patterns or repeated failed attempts, which
+can be early indicators of a brute force attack.
+
+
+
+## Configuration
+
+> Identifier: `access_control/sensitive_endpoint_bruteforce`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "access_control/sensitive_endpoint_bruteforce": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+  - OWASP: **[API3:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa3-broken-object-property-level-authorization.md)**
+  
+  - CWE
+    - **307**
+    - **650**
+  
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N**
+- CVSS_SCORE: **5.3**
+
+## References
+
+- [https://developer.redis.com/howtos/ratelimiting/](https://developer.redis.com/howtos/ratelimiting/)
+  

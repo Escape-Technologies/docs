@@ -1,0 +1,57 @@
+---
+title: WAF Bypass
+---
+
+# WAF Bypass
+
+## Description
+
+We successfuly bypassed your Web Application Firewall (WAF).
+
+
+## Remediation
+
+Update your WAF configuration to prevent this bypass.
+
+
+
+## Configuration
+
+> Identifier: `configuration/waf_bypass`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "configuration/waf_bypass": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="medium-severity">MEDIUM</span>**
+  - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+  
+  - CWE
+  
+  
+  
+
+
+
+
+
+

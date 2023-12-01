@@ -53,6 +53,7 @@ Appsync provides several methods for protecting critical information.
 
 </details>
 
+
 ## Configuration
 
 > Identifier: `access_control/private_fields`
@@ -65,7 +66,11 @@ Appsync provides several methods for protecting critical information.
 ### Parameters
 
 
-**__user** : An object `{objectName:[filedName]}` represting object fields that the user is not supposed to have access to.
+**__user** : (**For Graphql**) An object `{objectName:[fieldName]}` represting object fields that the user is not supposed to have access to.
+
+
+**rules** : (**For REST**) The list of private fields rules to check during a scan.
+
 
 
 
@@ -74,7 +79,7 @@ Appsync provides several methods for protecting critical information.
 
 
 
-#### Accessiblity of private objects in a GraphQL API for not authenticated users.
+#### **GraphQL:** Accessiblity of private objects in a GraphQL API for not authenticated users.
 
 ```
 {
@@ -111,6 +116,149 @@ Appsync provides several methods for protecting critical information.
         "User": [                    <--- Object name
           "id"                       # Here, the public user is not supposed to
                                       #  have access to the "id" field of the "User" object
+        ]
+      }
+    }
+
+    ... Other checks ...
+  }
+
+  ... Other configuration settings ...
+}
+```
+
+
+
+
+#### **REST:** Ensure user `some-user` cannot access the routes `GET /admin` and `PUT /user/role/{roleId}`
+
+```
+{
+  "auth": {                       #
+    ... REDACTED AUTH ...
+  },
+  "users": {
+    ... Other users ...
+    "some-user": {                # User to check
+      ... REDACTED AUTH ...
+    }
+    ... Other users ...
+  }
+  ... Other configuration settings ...
+
+  "checks": {
+
+    ... Other checks ...
+
+    "AccessControl_PrivateFields": {
+      "parameters": {
+        "rules": [
+          "user": "some-user",
+          "routes": [
+            {
+              "method": "GET",
+              "path": "/admin"
+            },
+            {
+              "method": "PUT",
+              "path": "/user/role/{roleId}"
+            }
+          ]
+        ]
+      }
+    }
+
+    ... Other checks ...
+  }
+
+  ... Other configuration settings ...
+}
+```
+
+
+
+
+#### **REST:** Ensure user `some-user` cannot access the fields `email` and `credentials.apiKey` route `GET /admin`
+
+```
+{
+  "auth": {                       #
+    ... REDACTED AUTH ...
+  },
+  "users": {
+    ... Other users ...
+    "some-user": {                # User to check
+      ... REDACTED AUTH ...
+    }
+    ... Other users ...
+  }
+  ... Other configuration settings ...
+
+  "checks": {
+
+    ... Other checks ...
+
+    "AccessControl_PrivateFields": {
+      "parameters": {
+        "rules": [
+          "user": "some-user",
+          "routes": [
+            {
+              "method": "GET",
+              "path": "/admin",
+              "fields": [
+                "email",
+                "credentials.apiKey"
+              ]
+            }
+          ]
+        ]
+      }
+    }
+
+    ... Other checks ...
+  }
+
+  ... Other configuration settings ...
+}
+```
+
+
+
+
+#### **REST:** Ensure user `some-user` cannot access a field `admin-*` on route `GET /admin`
+
+```
+{
+  "auth": {                       #
+    ... REDACTED AUTH ...
+  },
+  "users": {
+    ... Other users ...
+    "some-user": {                # User to check
+      ... REDACTED AUTH ...
+    }
+    ... Other users ...
+  }
+  ... Other configuration settings ...
+
+  "checks": {
+
+    ... Other checks ...
+
+    "AccessControl_PrivateFields": {
+      "parameters": {
+        "rules": [
+          "user": "some-user",
+          "routes": [
+            {
+              "method": "GET",
+              "path": "/admin",
+              "fields": [
+                "admin-*",
+              ]
+            }
+          ]
         ]
       }
     }

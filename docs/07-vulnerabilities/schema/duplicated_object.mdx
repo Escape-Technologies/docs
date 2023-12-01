@@ -1,0 +1,61 @@
+---
+title: Duplicated object
+---
+
+# Duplicated object
+
+## Description
+
+Duplicated objects in OpenAPI or GraphQL schemas can lead to maintenance difficulties, increased complexity, data inconsistencies, performance issues, integration challenges, and documentation problems. This redundancy complicates API management and usage.
+
+
+## Remediation
+
+Remove duplicated objects from the schema.
+
+
+
+## Configuration
+
+> Identifier: `schema/duplicated_object`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "schema/duplicated_object": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+  - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
+  
+  - CWE
+    - **758**
+    - **1059**
+    - **1111**
+    - **1357**
+  
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N**
+- CVSS_SCORE: **0.0**
+
