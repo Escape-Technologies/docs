@@ -26,6 +26,8 @@ The results are sent back to Escape to allow you to see scans results.
 
 ## Setup a repeater
 
+Escape's Repeater Agent is available as a Docker image. You can deploy it on any server that can reach your internal applications. The agent's code can also be found on [Github](https://github.com/Escape-Technologies/repeater).
+
 ### Configure your firewall
 
 Make sure the following **outgoing** connections are allowed by your network configuration:
@@ -66,5 +68,9 @@ Go to the Advanced Settings of the applications and add the following configurat
     // ...
 }
 ```
+
+### Configure a custom certificate
+
+See instructions on the [Repeater Github documentation](https://github.com/Escape-Technologies/repeater#escape-repeater-proxy)
 
 For more information about how to whitelist Escape scans, read the [Scan Internal APIs](/advanced-usage/internal-apis) page.
