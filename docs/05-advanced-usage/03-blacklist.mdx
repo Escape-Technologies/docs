@@ -8,7 +8,11 @@ Gain finer control over how Escape interacts with your API by employing the Blac
 
 ## Blacklist 🚫
 
-Identify the operations that you'd like Escape to skip during its security tests. By blacklisting certain operations, you can ensure these won't be evaluated during the scan. The `blacklist` parameter is part of the global `params` keys, referenced [here](/advanced-usage/parameters-reference).
+Identify the operations that you'd like Escape to skip during its security tests. By blacklisting certain operations, you can ensure these won't be evaluated during the scan.
+
+### GraphQL
+
+The `blacklist` parameter is part of the global `scan` keys, referenced [here](/advanced-usage/parameters-reference).
 
 ```json
 {
@@ -23,6 +27,23 @@ Identify the operations that you'd like Escape to skip during its security tests
             "query": [
                 "**queryName**"
             ]
+        }
+    }
+}
+```
+
+### REST
+
+The `blacklist` parameter in REST is a list of path and methods used to identify the routes to blacklist. The path is a valid OpenAPI path and the method is an HTTP method (GET, POST, PUT, DELETE, etc.).
+
+```json
+{
+    "scan": {
+        "blacklist": {
+            "routes": [
+                {"path": "/a/path/to/blacklist", "method": "GET"},
+                {"path": "/another/path/to/blacklist", "method": "POST"},
+            ],
         }
     }
 }
@@ -48,7 +69,11 @@ By employing a whitelist, you instruct Escape to focus its exploration phase sol
 
 Enhance the potency of your scans! By providing legitimate requests via the Hotstart feature, you arm Escape with deeper insights into your application's business logic. This enables Escape to operate with increased efficiency and precision.
 
-The queries and mutations you provide should be listed under the hotstart key. You have the freedom to provide multiple queries, with varying parameters and complexities.
+The operations you provide should be listed under the hotstart key. You have the freedom to provide multiple requests.
+
+### GraphQL
+
+In graphql, the hotstart key is a list of strings, each string representing a graphql query. The query can be as simple as a query with no parameters, or as complex as a query with multiple parameters and nested objects.
 
 ```json
 {
@@ -59,4 +84,25 @@ The queries and mutations you provide should be listed under the hotstart key. Y
         ]
     }
 }
+```
+
+### REST
+
+In REST, the hotstart is a list of HTTP document to execute.
+
+```json
+{
+  "scan": {
+    "hotstart": [
+      "POST /register HTTP/1.1\nHost: example.com\nContent-Type: application/json\nContent-Length: 194\n\n{\"my\": \"data\"}",
+      "GET /users HTTP/1.1\nHost: example.com\nContent-Type: application/json\nContent-Length: 194\n\n",
+    ]
+  }
+}
+```
+
+To easily encode your raw request located in a req.txt file, execute the following Python command:
+
+```python
+cat req.txt | python -c "import sys; print(''.join(sys.stdin).replace('\n', '\\\\n').replace('\\\\\"', '\\\\\\\\\"').replace('\"', '\\\\\"'))"
 ```

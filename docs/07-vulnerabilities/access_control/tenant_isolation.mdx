@@ -64,7 +64,12 @@ Appsync provides several methods for protecting critical information.
 
 **objects** : A list of private `objectNames`. A single instance of this object should not be access by 2 different users. Each object instance is identified by its ID.
 
+
 **scalars** : A list of scalar `fieldName`. A specific `scalarValue` of this field should not be access by 2 different users. Each scalar instance is indentified by its value.
+
+
+**paths** : List of the paths of the routes to control, compliant with the OpenAPI route format. See https://swagger.io/docs/specification/paths-and-operations/.
+
 
 
 
@@ -73,7 +78,7 @@ Appsync provides several methods for protecting critical information.
 
 
 
-#### Accessiblity of objects private instances for differents users
+#### **GraphQL:** Accessiblity of objects private instances for differents users
 
 ```
 {
@@ -99,6 +104,36 @@ Appsync provides several methods for protecting critical information.
                                           #  an alert will be raised.
           ]
         }
+      }
+    }
+
+    ... Other checks ...
+  }
+
+  ... Other configuration settings ...
+}
+```
+
+
+
+
+#### **REST:** Enforce tenant isolation on path /users/{id} and /me
+
+```
+{
+  ... Authentication settings ...
+  ... Other configuration settings ...
+
+  "checks": {
+
+    ... Other checks ...
+
+    "access_control/tenant_isolation": {
+      "parameters": {
+        "paths": [
+          "/users/{id}",
+          "/me"
+        ]
       }
     }
 

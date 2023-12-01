@@ -44,6 +44,7 @@ Appsync provides several methods for protecting critical information.
 
 </details>
 
+
 ## Configuration
 
 > Identifier: `access_control/private_data`
@@ -54,9 +55,156 @@ Appsync provides several methods for protecting critical information.
 **__user** : A list of `fieldName:[scalarValues]` the user should never be able to access. Set `.*` as `fieldName` to avoid the value everywhere.
 
 
+**rules** : (**For REST**) The list of private fields rules to check during a scan.
+
+
+
 
 
 ### Examples
+
+
+
+#### **REST:** Ensure user `some-user` retrieve an admin user on a list of users at `GET /users`
+
+```
+{
+  "auth": {                       #
+    ... REDACTED AUTH ...
+  },
+  "users": {
+    ... Other users ...
+    "some-user": {                # User to check
+      ... REDACTED AUTH ...
+    }
+    ... Other users ...
+  }
+  ... Other configuration settings ...
+
+  "checks": {
+
+    ... Other checks ...
+
+    "AccessControl_PrivateData": {
+      "parameters": {
+        "rules": [
+          "user": "some-user",
+          "routes": [
+            {
+              "method": "GET",
+              "path": "/users",
+              "pattern": ".*admin: true.*"
+            }
+          ]
+        ]
+      }
+    }
+
+    ... Other checks ...
+  }
+
+  ... Other configuration settings ...
+}
+```
+
+
+
+
+#### **REST:** Ensure user `some-user` cannot access the fields `email` with value `@mycompany.com` and `role.group` with value `admin` on route `GET /users`
+
+```
+{
+  "auth": {                       #
+    ... REDACTED AUTH ...
+  },
+  "users": {
+    ... Other users ...
+    "some-user": {                # User to check
+      ... REDACTED AUTH ...
+    }
+    ... Other users ...
+  }
+  ... Other configuration settings ...
+
+  "checks": {
+
+    ... Other checks ...
+
+    "AccessControl_PrivateData: {
+      "parameters": {
+        "rules": [
+          "user": "some-user",
+          "routes": [
+            {
+              "method": "GET",
+              "path": "/users",
+              "fields": ["email"],
+              "pattern": "@mycompany.com"
+            },
+            {
+              "method": "GET",
+              "path": "/users",
+              "fields": ["role.group"],
+              "pattern": "admin"
+            }
+          ]
+        ]
+      }
+    }
+
+    ... Other checks ...
+  }
+
+  ... Other configuration settings ...
+}
+```
+
+
+
+
+#### **REST:** Ensure user `some-user` cannot access a field `admin-*` on route `GET /admin`
+
+```
+{
+  "auth": {                       #
+    ... REDACTED AUTH ...
+  },
+  "users": {
+    ... Other users ...
+    "some-user": {                # User to check
+      ... REDACTED AUTH ...
+    }
+    ... Other users ...
+  }
+  ... Other configuration settings ...
+
+  "checks": {
+
+    ... Other checks ...
+
+    "AccessControl_PrivateData: {
+      "parameters": {
+        "rules": [
+          "user": "some-user",
+          "routes": [
+            {
+              "method": "GET",
+              "path": "/admin",
+              "fields": ["admin-*"],
+              "pattern": ".*"
+            }
+          ]
+        ]
+      }
+    }
+
+    ... Other checks ...
+  }
+
+  ... Other configuration settings ...
+}
+```
+
 
 
 

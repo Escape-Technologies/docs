@@ -1,0 +1,57 @@
+---
+title: Vulnerable Package
+---
+
+# Vulnerable Package
+
+## Description
+
+Some programs that you are using may have known vulnerabilities. The presence of these vulnerable packages in your server configuration poses a significant risk, as attackers may exploit these weaknesses to access sensitive data or compromise system integrity. Depending on your operating system and configuration, you may be vulnerable to this CVE.
+
+
+## Remediation
+
+To address this issue, regularly update your packages. Prioritize patching or upgrading the affected packages based on the severity and exploitability of the vulnerabilities. In cases where immediate patching is not feasible, consider implementing compensatory controls or workarounds to mitigate the risk.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/potential_cve`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "information_disclosure/potential_cve": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="medium-severity">MEDIUM</span>**
+  - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+  
+  
+  
+  
+  
+
+### CVSS
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C**
+- CVSS_SCORE: **7.2**
+
