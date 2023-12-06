@@ -3,7 +3,7 @@ title: Public API Reference
 description: Use Escape's public API
 ---
 
-import TypeTag from "@site/src/components/TypeTag";
+import TypeTag from '@site/src/components/TypeTag';
 
 ## API base URL
 
@@ -223,6 +223,74 @@ The stringified JSON introspection.
 {
   "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
   "applicationId": "5d1b0249-a6fd-4d64-997a-99675ca6afac"
+}
+```
+
+## `POST /create-application`
+
+Programmatically create an application on Escape and start a scan.
+
+### Request body
+
+The route expects a JSON body with the following fields:
+
+```json
+{
+  // Application settings
+  "organizationId": "<organizationId>",
+  "name": "Application name",
+  "type": "GRAPHQL" | "REST",
+  "serverUrl": "<url>",
+
+  // Application schema, provide exactly one of the two fields
+  "schema": "<stringified schema>",
+  "schemaUrl": "<public schema url>",
+
+  // Scan settings
+  "readWrite": true | false, // false makes the scan safe for production
+  "applicationUsers": [
+    // Authentication settings for the scan
+    {name: "User name", headerName: "Authorization", headerValue: "Bearer ..."},
+    ...
+    // Send an empty array if you don't want to authenticate
+  ],
+  "repeaterId": "<repeaterId>" // Optional, if you want to use a repeater
+}
+```
+
+If you are adding a GraphQL application with an open introspection endpoint, set `schemaUrl` to `serverUrl`.
+
+**Example:**
+
+```json
+{
+  "organizationId": "<uuid>",
+  "name": "Gontoz",
+  "type": "GRAPHQL",
+  "serverUrl": "https://gontoz.escape.tech/graphql",
+  "schemaUrl": "https://gontoz.escape.tech/graphql",
+  "readWrite": true,
+  "applicationUsers": []
+}
+```
+
+### Response body
+
+```json
+{
+  "id": "<application uuid>",
+  "name": "Application name",
+  "scans": {
+    "edges": [
+      {
+        "node": {
+          // A scan is created and started automatically
+          "id": "<scan uuid>"
+        }
+      }
+    ]
+  },
+  "href": "https://app.escape.tech/scan/<scan uuid>"
 }
 ```
 
