@@ -250,7 +250,7 @@ The route expects a JSON body with the following fields:
   "readWrite": true | false, // false makes the scan safe for production
   "applicationUsers": [
     // Authentication settings for the scan
-    {name: "User name", headerName: "Authorization", headerValue: "Bearer ..."},
+    {"name": "User name", "headerName": "Authorization", "headerValue": "Bearer ..."},
     ...
     // Send an empty array if you don't want to authenticate
   ],
