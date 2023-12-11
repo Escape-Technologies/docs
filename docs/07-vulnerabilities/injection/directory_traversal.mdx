@@ -20,6 +20,78 @@ There are multiple ways to prevent directory traversal attacks:
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+In ASP.NET, prevent directory traversal by validating user input, using built-in functions to create file paths, and employing proper exception handling.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, use whitelisting to ensure only allowed paths can be accessed and sanitize user input to prevent directory traversal.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+In Next.js, avoid using user input directly in file paths, and use a whitelist approach to serve files. Validate and sanitize all user input.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, use the built-in functions to handle file operations and validate all user inputs to prevent directory traversal attacks.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+In Express.js, validate and sanitize user input before using it in file system operations. Use path.join() and path.normalize() to create safe paths.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use the built-in serving mechanisms and avoid directly exposing the file system to user input to prevent directory traversal.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, use the Filesystem component to safely handle files and validate user input to prevent directory traversal vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, sanitize and validate user input before using it in file operations. Use built-in methods to construct file paths safely.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, ensure that user input is validated and sanitized before using it to access the file system to prevent directory traversal.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt, avoid using user input directly in file paths, and use a whitelist approach to serve files. Validate and sanitize all user input.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/directory_traversal`
@@ -79,10 +151,10 @@ There are multiple ways to prevent directory traversal attacks:
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **7.2**
+
+
+
 
 ## References
 

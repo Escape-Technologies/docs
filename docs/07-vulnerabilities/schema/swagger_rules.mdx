@@ -16,6 +16,78 @@ Comply with the Swagger rules.
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Ensure that your Swagger schema is properly structured and validated to prevent security issues. Use attributes and filters to enforce schema constraints.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Validate your Swagger schema with tools like swagger-blocks or rswag to ensure it adheres to the OpenAPI specification.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Use libraries like swagger-jsdoc to integrate Swagger with your Next.js API routes, ensuring proper schema validation.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Utilize Laravel packages like L5-Swagger to automatically generate and validate Swagger documentation for your API.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Incorporate swagger-ui-express and swagger-jsdoc to create and serve Swagger documentation, ensuring your API schema is validated.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Use Django REST framework with drf-yasg to generate a real-time validated Swagger schema for your API endpoints.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Leverage the NelmioApiDocBundle to integrate Swagger with your Symfony project, ensuring your API schema is properly validated.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Use Springfox or springdoc-openapi to automatically generate and validate Swagger API documentation in your Spring Boot application.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Implement Flask-RESTPlus or Flask-RESTx to automatically create Swagger documentation that is validated against your API schema.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+For Nuxt.js applications, use nuxt-swagger to define and validate your Swagger schema for API routes.
+
+</details>
+
 ## Configuration
 
 > Identifier: `schema/swagger_rules`
@@ -45,7 +117,7 @@ Comply with the Swagger rules.
 
 - Escape Severity: **<span className="info-severityom">INFO</span>**
   - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
-  
+  - PCI DSS: **6.5.1**
   - CWE
     - **758**
     - **1059**
@@ -55,8 +127,8 @@ Comply with the Swagger rules.
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N**
-- CVSS_SCORE: **0.0**
+
+
+
 

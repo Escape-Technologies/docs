@@ -19,6 +19,122 @@ To prevent command injection attacks:
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+To prevent command injection in Apollo, validate and sanitize all user inputs. Use a whitelist approach for allowed operations, and avoid passing user input directly to any system command.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+In Yoga, ensure that user inputs are strictly validated and sanitized. Avoid using any form of eval or system command with user input. Instead, use parameterized APIs or safe libraries designed for the task at hand.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+For AWS AppSync, use VTL (Velocity Template Language) resolvers and avoid calling out to AWS Lambda functions that might execute system commands with user input. Always validate and sanitize input before using it in your resolvers.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In GraphQL Go, validate all inputs using Go's strong typing and avoid using user input directly in any system commands. Use context-bound parameters and sanitize inputs.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL Ruby, use strong parameters and input object types to ensure that only permitted and validated data is processed. Avoid using system commands with user input.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+With Hasura, avoid using raw SQL or system commands that could be injected with user input. Use prepared statements and parameterized queries to handle user input safely.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+For ASP.NET, use parameterized queries or stored procedures to handle user input and avoid directly executing any system commands. Validate all inputs using built-in data annotation validators.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, use Active Record methods for database interactions and avoid using system calls with user input. Validate user input with strong parameters.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+For Next.js, avoid using APIs that can execute system commands with user input. Validate and sanitize all inputs on the server side before using them.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, use Eloquent ORM or query builder for database interactions and avoid exec or system PHP functions with user input. Validate inputs with Laravel's validation rules.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+For Express.js, use middleware to validate and sanitize user input. Avoid using child_process or other modules that can execute system commands with user input.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use the ORM for database interactions and avoid using Python's subprocess or os.system with user input. Validate inputs using Django forms or serializers.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+For Symfony, use Doctrine ORM for database interactions and avoid using the Process component with user input. Validate inputs with Symfony's validation constraints.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, use JPA or JDBC templates for database interactions and avoid using Runtime.exec or ProcessBuilder with user input. Validate inputs using Spring's validation framework.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+For Flask, use SQLAlchemy or a similar ORM for database interactions and avoid using Python's subprocess or os.system with user input. Validate inputs using WTForms or similar libraries.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, validate and sanitize user input on the server side before using it. Avoid using any server-side functionality that can execute system commands with user input.
+
+</details>
 
 ## Configuration
 
@@ -63,10 +179,10 @@ To prevent command injection attacks:
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N/E:F/RC:R**
-- CVSS_SCORE: **8.5**
+
+
+
 
 ## References
 

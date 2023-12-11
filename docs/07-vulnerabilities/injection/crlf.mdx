@@ -6,7 +6,7 @@ title: CRLF Injection
 
 ## Description
 
-CRLF occurs when an attacker can abuse the carriage return character (\r) and a newline character (\n) in an HTTP request in order to inject new headers or a new body for the HTTP request.
+CRLF occurs when an attacker can abuse the carriage return character (\r) and a newline character () in an HTTP request in order to inject new headers or a new body for the HTTP request.
 This attack is a very dangerous attack as it can give the attacker the ability to create whatever request he wants.
 
 
@@ -16,6 +16,122 @@ The only way to prevent CRLF attacks is to carefully sanitize every message that
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+To prevent CRLF injection in Apollo Server, ensure that user input is properly sanitized before being included in HTTP headers or responses. Use a library to escape CRLF characters from user-controlled inputs.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+In GraphQL Yoga, validate and sanitize all user inputs to remove or encode CRLF characters to prevent injection attacks.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+For AWS AppSync, apply input validation in resolvers to ensure that no CRLF characters can be injected into the output.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In GraphQL Go, use middleware to sanitize inputs by stripping out CRLF characters to prevent injection.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+For GraphQL Ruby, implement input sanitization methods to remove CRLF characters from user inputs before processing.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+In Hasura, ensure that all user inputs are sanitized at the client or server level to prevent CRLF injection.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+For ASP.NET applications, use built-in encoding methods or custom middleware to sanitize user inputs and prevent CRLF injection.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, utilize the ActiveSupport::SafeBuffer or similar mechanisms to sanitize user inputs and encode CRLF characters.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+For Next.js applications, ensure to sanitize user inputs on both server-side and client-side to prevent CRLF injection.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, use the built-in sanitization functions or create custom middleware to strip CRLF characters from user inputs.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+For Express.js, implement middleware that sanitizes user inputs by removing CRLF characters to prevent header injection.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use the utilities provided by Django to sanitize inputs and escape CRLF characters in user-provided data.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+For Symfony applications, employ input sanitization at the form or controller level to prevent CRLF injection attacks.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, use built-in sanitization or custom filters to clean user inputs from CRLF characters before they are processed.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+For Flask applications, use the Werkzeug utility functions or create custom decorators to sanitize inputs and remove CRLF characters.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, ensure that user inputs are sanitized on the server-side to prevent CRLF injection, especially in API routes.
+
+</details>
 
 ## Configuration
 
@@ -50,14 +166,14 @@ The only way to prevent CRLF attacks is to carefully sanitize every message that
   - CWE
     - **93**
     - **113**
-  
+  - WASC: **WASC-25**
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **5.1**
+
+
+
 
 ## References
 

@@ -22,49 +22,42 @@ Set a threshold on the maximum number of subfields that can be queried simultane
 <details>
     <summary>Apollo</summary>
 
-Add a module to compute query complexity and set a threshold on this complexity so that overly broad requests get canceled.
-
-For a user-friendly module which requires no schema modification whatsoever, check out the [graphql-validation-complexity](https://github.com/4Catalyzer/graphql-validation-complexity) module.
-
-```javascript
-import { createComplexityLimitRule } from 'graphql-validation-complexity';
-
-const ComplexityLimitRule = createComplexityLimitRule(1000);
-
-const apolloServer = new ApolloServer({
-    ...
-    validationRules: [ComplexityLimitRule],
-});
-```
-
-For a more customizable module that lets you manually configure the cost of each field/type of your schema, take a look at the [graphql-cost-analysis](https://github.com/pa-bru/graphql-cost-analysis) module.
-
-This second option is best suited for a more realistic complexity estimator as all fields may not be equal in terms of complexity.
-
-To learn more on complexity estimation, you can read: [Securing Your GraphQL API from Malicious Queries](https://www.apollographql.com/blog/graphql/security/securing-your-graphql-api-from-malicious-queries/).
-
+Add a module to compute query complexity and set a threshold on this complexity so that overly broad requests get canceled.For a user-friendly module which requires no schema modification whatsoever, check out the [graphql-validation-complexity](https://github.com/4Catalyzer/graphql-validation-complexity) module.```javascriptimport { createComplexityLimitRule } from 'graphql-validation-complexity'; const ComplexityLimitRule = createComplexityLimitRule(1000);const apolloServer = new ApolloServer({    ...    validationRules: [ComplexityLimitRule], });```For a more customizable module that lets you manually configure the cost of each field/type of your schema, take a look at the [graphql-cost-analysis](https://github.com/pa-bru/graphql-cost-analysis) module.This second option is best suited for a more realistic complexity estimator as all fields may not be equal in terms of complexity.To learn more on complexity estimation, you can read: [Securing Your GraphQL API from Malicious Queries](https://www.apollographql.com/blog/graphql/security/securing-your-graphql-api-from-malicious-queries/).
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Hasura allows you to set a width (=node) limit.
-
- To do so:
- - Go to Project Console > Security Settings > API Limits.
- - Click on "Global".
- - Set a node limit (e.g., 15).
-
+Hasura allows you to set a width (=node) limit. To do so: - Go to Project Console > Security Settings > API Limits. - Click on "Global". - Set a node limit (e.g., 15).
 
 </details>
 
 <details>
-    <summary>Graphene</summary>
+    <summary>Graphqlgo</summary>
 
-With `graphene-django`, it is possible to implement a custom GraphQL backend to limit query complexity, such as this one:
-[graphene-django query cost analysis / complexity limits](https://gist.github.com/thibaudlabat/7b86f1a4da34eccfbfa524ca7359e87c).
+For `graphql-go`, you can use a similar approach to Apollo by integrating a query complexity analysis library. There isn't a specific library recommended for `graphql-go`, but you can implement your own complexity analysis based on the principles outlined in the Apollo documentation.
 
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In `graphql-ruby`, you can limit query complexity by using the query complexity analysis feature.```rubyMySchema = GraphQL::Schema.define do  query_analyzer(GraphQL::Analysis::QueryComplexity.new) do |query, complexity|    raise(GraphQL::AnalysisError.new("Query is too complex: #{complexity} > 300")) if complexity > 300  endend```
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+For `graphql-yoga`, you can use the `graphql-query-complexity` library to analyze and limit the complexity of incoming queries.```javascript import { getComplexity, simpleEstimator } from 'graphql-query-complexity'; const server = new GraphQLServer({  schema: myGraphQLSchema,  validationRules: [    (context) => ({      Query: { enter() {        const complexity = getComplexity({          estimators: [            simpleEstimator({ defaultComplexity: 1 })          ],          schema: context.schema,          query: context.document,        });        if (complexity > 1000) {          throw new Error(`Sorry, too complicated query! ${complexity} is over 1000 that is the max allowed complexity.`);        }      } }    })  ]});```
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+AWS AppSync allows you to set query depth and complexity limits directly in the AWS Management Console.To set these limits:- Navigate to your AWS AppSync API in the AWS Management Console.- Select 'Settings' from the left-hand navigation pane.- Scroll down to 'Query Depth Limit' and 'Query Complexity Limit' and set the desired values.
 
 </details>
 
@@ -112,10 +105,10 @@ With `graphene-django`, it is possible to implement a custom GraphQL backend to 
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:H/RL:O/RC:C**
-- CVSS_SCORE: **5.1**
+
+
+
 
 ## References
 

@@ -26,75 +26,21 @@ To improve network performance for large query strings, enable APQ if your Graph
 <details>
     <summary>Apollo</summary>
 
-Enable Automatic Persisted queries.
-For a complete guide on how to do so, see [Apollo's Automatic Persisted Queries documentation](https://www.apollographql.com/docs/apollo-server/performance/apq/).
-
+Enable Automatic Persisted queries.For a complete guide on how to do so, see [Apollo's Automatic Persisted Queries documentation](https://www.apollographql.com/docs/apollo-server/performance/apq/).
 
 </details>
 
 <details>
-    <summary>Dgraph</summary>
+    <summary>Graphqlruby</summary>
 
-For a complete guide on the matter, see [dgraph's Persisted Queries documentation](https://dgraph.io/docs/graphql/queries/persistent-queries/).
-
-
-</details>
-
-<details>
-    <summary>Gqlgen</summary>
-
-Enable Automatic persisted Queries
-For a complete guide on how to do so, see [gqlgen's Automatic Persisted Queries documentation](https://gqlgen.com/reference/apq/).
-
+Add graphql-persisted_queries to your Gemfile `gem 'graphql-persisted_queries'` and add the plugin to your schema class:```rubyclass GraphqlSchema < GraphQL::Schema  use GraphQL::PersistedQueriesend```Pass the `:extensions` argument as part of a context to all calls of `GraphqlSchema#execute`,usually it happens in `GraphqlController`, `GraphqlChannel` and tests:```rubyGraphqlSchema.execute(  params[:query],  variables: ensure_hash(params[:variables]),  context: {    extensions: ensure_hash(params[:extensions])  },  operation_name: params[:operationName])```Source: [https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries](https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries).
 
 </details>
 
 <details>
-    <summary>Graphene</summary>
+    <summary>Yoga</summary>
 
-Automatic Persisted Queries are not supported by Graphene alone.
-
-However, if you use Graphene with [Django](https://github.com/graphql-python/graphene-django), the [django-graphql-persist](https://github.com/flavors/django-graphql-persist) library allows you to implement Automatic Persisted Queries.
-
-
-</details>
-
-<details>
-    <summary>Graphqlapiforwp</summary>
-
-Automatic Persisted Queries on graphqlapiforwp are different than with other engines.
-Learn more on [graphqlapiforwp's Persisted Query guide](https://graphql-api.com/guides/use/creating-a-persisted-query/). You can also implement custom persisted queries using [WP GraphQL Lock](https://github.com/valu-digital/wp-graphql-lock).
-
-
-</details>
-
-<details>
-    <summary>Ruby</summary>
-
-Add graphql-persisted_queries to your Gemfile `gem 'graphql-persisted_queries'` and add the plugin to your schema class:
-
-```ruby
-class GraphqlSchema < GraphQL::Schema
-  use GraphQL::PersistedQueries
-end
-```
-
-Pass the `:extensions` argument as part of a context to all calls of `GraphqlSchema#execute`,
-usually it happens in `GraphqlController`, `GraphqlChannel` and tests:
-
-```ruby
-GraphqlSchema.execute(
-  params[:query],
-  variables: ensure_hash(params[:variables]),
-  context: {
-    extensions: ensure_hash(params[:extensions])
-  },
-  operation_name: params[:operationName]
-)
-```
-
-Source: [https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries](https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries).
-
+To enable Automatic Persisted Queries in GraphQL Yoga, you can use the `useAutomaticPersistedQueries` plugin from the `@envelop/automatic-persisted-queries` package.First, install the package:```bashnpm install @envelop/automatic-persisted-queries ```Then, add the plugin to your Yoga server configuration:```javascript import { createServer } from '@graphql-yoga/node'import { useAutomaticPersistedQueries } from '@envelop/automatic-persisted-queries'const server = createServer({  plugins: [    useAutomaticPersistedQueries(),    // ... other plugins  ],})```This will enable APQ for your GraphQL Yoga server.
 
 </details>
 
@@ -136,10 +82,10 @@ Source: [https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries](https
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:F/RL:O/RC:C**
-- CVSS_SCORE: **4.9**
+
+
+
 
 ## References
 

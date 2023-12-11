@@ -31,29 +31,117 @@ In general terms, ABAC is preferable over RBAC because it allows us to configure
 <details>
     <summary>Apollo</summary>
 
-See [Apollo's Access Control Documentation](https://www.apollographql.com/docs/apollo-server/security/authentication/#in-resolvers).
-For large scale applications, you might want to use a specific package like [](https://github.com/maticzav/graphql-shield) for easy Access Control Management.
-
+See [Apollo's Access Control Documentation](https://www.apollographql.com/docs/apollo-server/security/authentication/#in-resolvers). For large scale applications, you might want to use a specific package like [graphql-shield](https://github.com/maticzav/graphql-shield) for easy Access Control Management.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-See Hasura's detailed documentation for Authorization Management [](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/)
-
+See Hasura's detailed documentation for Authorization Management [here](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/)
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Appsync provides several methods for protecting critical information.
-- For implementing fine-grained access control, see https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#fine-grained-access-control
-
+Appsync provides several methods for protecting critical information. - For implementing fine-grained access control, see https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#fine-grained-access-control
 
 </details>
 
+<details>
+    <summary>Yoga</summary>
+
+In GraphQL Yoga, you can implement custom authentication logic within your resolvers to ensure that users can only access data they are permitted to. Use context to pass user information and validate access rights.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In GraphQL-Go, ensure that your resolver functions include logic to check whether the user is authorized to access the data they are requesting.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL-Ruby, use the `authorized?` method in your types to define authorization logic for accessing objects.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Use ASP.NET Core's built-in authorization features to restrict access to endpoints based on user roles or claims.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Leverage Rails' `before_action` filters to check for user permissions before granting access to controller actions.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+In Next.js API routes, use middleware or helper functions to authenticate and authorize users before processing the request.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Utilize Laravel's middleware and policies to enforce user permissions on routes and actions.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Implement middleware in Express.js to authenticate and authorize users before they can access protected routes.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Use Django's authentication and permission system to protect views and ensure that only authorized users can access them.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, secure your controllers with access control rules defined in security.yaml or with annotations in your controller classes.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Apply Spring Security annotations to your Spring Boot controllers to enforce authentication and authorization.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, use decorators to require login or specific permissions before accessing certain views.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+For Nuxt.js, use middleware to check if the user is authenticated and authorized before rendering pages or processing API requests.
+
+</details>
 
 ## Configuration
 
@@ -179,10 +267,10 @@ Appsync provides several methods for protecting critical information.
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **7.2**
+
+
+
 
 ## References
 

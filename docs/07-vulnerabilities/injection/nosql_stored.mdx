@@ -20,6 +20,50 @@ Primary defenses:
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+To prevent NoSQL injection in Apollo, validate and sanitize all user inputs. Use parameterized queries or the Apollo built-in features to handle user input safely.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+In Yoga, ensure that all inputs are properly validated and sanitized. Avoid directly passing user input to database queries.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+For AWS AppSync, use VTL (Velocity Template Language) to sanitize and validate input arguments before they are passed to resolvers.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In GraphQL-Go, use middleware to validate and sanitize input data before it reaches the resolver functions.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+For GraphQL-Ruby, use built-in validators or custom validation methods to ensure that all inputs are properly sanitized before executing queries.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+With Hasura, leverage permission rules and session variables to control access and validate inputs at the GraphQL layer.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/nosql_stored`
@@ -63,10 +107,10 @@ Primary defenses:
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:H/RL:O/RC:C**
-- CVSS_SCORE: **9.4**
+
+
+
 
 ## References
 

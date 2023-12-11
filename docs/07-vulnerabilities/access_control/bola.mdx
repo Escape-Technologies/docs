@@ -16,6 +16,122 @@ Use non-sequential identifiers.
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Use Apollo Server's context to pass the user's session and validate permissions in your resolvers.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+In GraphQL Yoga, implement authorization logic in your resolvers to protect data access.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Utilize AWS AppSync's built-in authorization mechanisms to control access at the resolver level.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In GraphQL-go, validate the user's permissions within the resolver functions before accessing the data.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+Use GraphQL-Ruby's authorization framework to define access policies for your resources.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Configure Hasura's permission rules to restrict access to data based on user roles and session variables.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Implement user-specific checks to ensure that the logged-in user has the appropriate permissions to access or modify the requested resource.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Use the Pundit or CanCanCan gem for authorization to ensure that users can only access objects they are allowed to.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Verify the user's permissions in API routes before returning sensitive data or allowing modifications.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Utilize Laravel's authorization policies to check if a user can view or edit a given resource.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Use middleware to validate the user's permissions before processing a request.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Leverage Django's permission classes in your views to protect object access.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Implement access control in your controllers using Symfony's security component.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Use Spring Security's method security annotations to secure object access.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, use decorators to check user permissions before accessing an object.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Ensure that your Nuxt server-side methods or middleware validate user permissions before serving content.
+
+</details>
 
 ## Configuration
 
@@ -63,8 +179,8 @@ Use non-sequential identifiers.
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **5.1**
+
+
+
 

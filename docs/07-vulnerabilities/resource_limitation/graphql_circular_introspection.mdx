@@ -41,6 +41,50 @@ To prevent circular introspection from being abused:
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+To prevent circular introspection in Apollo Server, you can use query complexity analysis to set a maximum depth for queries. This will limit the depth of introspection queries and prevent the possibility of a circular reference causing a Denial of Service attack.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+In GraphQL Yoga, to mitigate circular introspection, you can implement depth limiting by using a custom validation rule that checks the depth of the queries and restricts them to a certain threshold.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+AWS AppSync provides built-in security features to prevent complex queries, including circular introspection. You can set query depth and complexity limits in the AWS AppSync console or through the AWS CLI.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+For GraphQL servers using Go, you can prevent circular introspection by implementing a query depth limit using middleware that checks the depth of incoming queries.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL-Ruby, you can prevent circular introspection by using the max_depth query analyzer to limit the depth of accepted queries.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Hasura allows you to set depth limits for queries in the console or through environment variables, which can help prevent circular introspection attacks.
+
+</details>
+
 ## Configuration
 
 > Identifier: `resource_limitation/graphql_circular_introspection`
@@ -79,8 +123,8 @@ To prevent circular introspection from being abused:
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:U/RL:O/RC:R**
-- CVSS_SCORE: **4.4**
+
+
+
 

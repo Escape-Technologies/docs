@@ -21,18 +21,42 @@ This should be handled by the GraphQL engine while parsing the document, otherwi
 <details>
     <summary>Apollo</summary>
 
-Upgrade to GraphQL>=16.0.0 if you are not already up to date.
-You can also use our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware to limit the number of directives allowed in a query.
-
+Upgrade to GraphQL>=16.0.0 if you are not already up to date. You can also use our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware to limit the number of directives allowed in a query.
 
 </details>
 
 <details>
     <summary>Graphqlyoga</summary>
 
-Upgrade to GraphQL>=16.0.0 if you are not already up to date.
-You can also use our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware to limit the number of directives allowed in a query.
+Upgrade to GraphQL>=16.0.0 if you are not already up to date. You can also use our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware to limit the number of directives allowed in a query.
 
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Implement custom directive limits within AWS AppSync resolvers to prevent overloading. Use AWS WAF to set up rate-based rules for your GraphQL API.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Ensure you're using the latest version of the GraphQL Go library. Implement a custom directive limit check in your GraphQL server setup.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+Update to the latest version of GraphQL-Ruby. Use the max_depth and max_complexity query analyzers to limit directive usage.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Configure Hasura's depth limit and complexity analysis to prevent directive overloading. Keep Hasura GraphQL Engine updated to the latest version.
 
 </details>
 
@@ -70,7 +94,7 @@ You can also use our [GraphQL Armor](https://escape.tech/graphql-armor/docs/gett
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
   - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-  
+  - PCI DSS: **6.5.1**
   - CWE
     - **20**
     - **400**
@@ -80,8 +104,8 @@ You can also use our [GraphQL Armor](https://escape.tech/graphql-armor/docs/gett
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H/E:H/RL:O/RC:R**
-- CVSS_SCORE: **6.9**
+
+
+
 

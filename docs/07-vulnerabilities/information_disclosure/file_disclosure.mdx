@@ -15,6 +15,78 @@ Remove the file from the web server.
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Ensure that sensitive files are not stored in publicly accessible directories and configure proper access permissions.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Configure the web server to deny access to critical files and ensure they are not served as static assets.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Use Next.js server-side configurations to prevent serving sensitive files.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Set up middleware to restrict access to sensitive files in Laravel.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Use middleware in Express.js to prevent the disclosure of sensitive files.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Configure Django's URL dispatcher to block access to sensitive files.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Use Symfony's security controls to restrict access to sensitive files.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Configure Spring Security to prevent unauthorized access to sensitive files.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Use Flask to define routes that explicitly block access to sensitive files.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Configure Nuxt.js server middleware to prevent serving of sensitive files.
+
+</details>
+
 ## Configuration
 
 > Identifier: `information_disclosure/file_disclosure`
@@ -44,9 +116,9 @@ Remove the file from the web server.
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
   - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-  
+  - PCI DSS: **6.5.5**
   - CWE
-  
+  - WASC: **WASC-13**
   
   
 

@@ -16,6 +16,122 @@ Remove headers disclosing server-side softwares version.
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+To prevent Apollo Server from leaking tech stack information via HTTP headers, you can disable the 'ApolloServer' default headers.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+For GraphQL Yoga, ensure that server responses do not include any unnecessary headers that may reveal stack details.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+In AWS AppSync, you can manage headers through the response mapping templates to avoid leaking information.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+When using graphql-go, you should configure the HTTP server to strip out any headers that may disclose information about the backend.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+For GraphQL-Ruby, customize the middleware to exclude headers that reveal server information.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+In Hasura, you can configure the server to prevent sending headers that give away the technology stack.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+For ASP.NET applications, remove server information from the headers in the web.config file or through middleware.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, configure the application to not leak server information through headers.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Next.js applications should remove any headers that may disclose server details before sending the response.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Laravel applications can use middleware to strip out headers that reveal information about the underlying technology.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+For Express.js, use middleware to remove headers that may leak stack information.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, adjust the settings to prevent the framework from sending headers that expose server details.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Symfony applications should configure response headers to avoid leaking server information.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Spring Boot applications can set properties to prevent the disclosure of application details in headers.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Flask applications should remove headers in the response that may give away the technology stack.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Nuxt.js applications can customize the server configuration to remove headers that leak stack information.
+
+</details>
 
 ## Configuration
 

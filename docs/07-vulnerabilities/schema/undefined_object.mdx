@@ -16,6 +16,50 @@ Enforce strong typing in your schema objects.
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure that all types in your Apollo GraphQL schema are explicitly defined. Avoid using the generic GraphQLObjectType without proper field definitions to prevent unstructured data vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Define all object types explicitly in your GraphQL Yoga schema to avoid security issues related to unstructured data.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Use AWS AppSync's schema definition language to define your types explicitly, and avoid using undefined objects to maintain structured data.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In your Go application using GraphQL, define all types explicitly and avoid using undefined objects to ensure data integrity.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL-Ruby, define your types explicitly using Ruby classes to avoid the use of undefined objects and ensure data structure.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+When using Hasura, ensure that all GraphQL types are explicitly defined in your schema, and avoid using undefined objects to prevent security vulnerabilities.
+
+</details>
+
 ## Configuration
 
 > Identifier: `schema/undefined_object`
@@ -45,7 +89,7 @@ Enforce strong typing in your schema objects.
 
 - Escape Severity: **<span className="info-severityom">INFO</span>**
   - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
-  
+  - PCI DSS: **6.5.1**
   - CWE
     - **758**
     - **1059**
@@ -55,8 +99,8 @@ Enforce strong typing in your schema objects.
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N**
-- CVSS_SCORE: **0.0**
+
+
+
 

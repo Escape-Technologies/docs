@@ -15,6 +15,50 @@ Ensure that `.git`, `.svn`, `.htaccess` metadata files are not deployed to the w
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure that the Apollo Server is configured to not expose sensitive files. Use the 'playground' option only in development environments and disable introspection and the GraphQL Playground in production.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Configure GraphQL Yoga to disable the playground in production environments and restrict access to the schema by disabling introspection.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+For AWS AppSync, restrict the API access using AWS IAM roles or API keys, and ensure that the schema is not publicly accessible without proper authentication.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In the GraphQL Go implementation, disable introspection queries and the interactive editor in production by setting appropriate configuration flags.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+For GraphQL-Ruby, remove the GraphiQL IDE from production and ensure that introspection is disabled to prevent source code disclosure.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Secure Hasura GraphQL endpoints by using environment variables to disable the console and introspection features in production.
+
+</details>
+
 ## Configuration
 
 > Identifier: `information_disclosure/code`
@@ -51,7 +95,7 @@ Ensure that `.git`, `.svn`, `.htaccess` metadata files are not deployed to the w
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
   - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-  
+  - PCI DSS: **6.5.6**
   - CWE
     - **200**
     - **219**
@@ -62,14 +106,14 @@ Ensure that `.git`, `.svn`, `.htaccess` metadata files are not deployed to the w
     - **552**
     - **664**
     - **668**
-  
+  - WASC: **WASC-13**
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **7.2**
+
+
+
 
 ## References
 

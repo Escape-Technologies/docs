@@ -15,6 +15,50 @@ Update your resolver to make the introspection type match the actual returned ty
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure that the types defined in your GraphQL schema match the types of data returned by your resolvers. Use schema validation tools to enforce type safety.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Implement custom scalar types in GraphQL Yoga if needed to enforce the correct data types in your schema.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Use AWS AppSync's built-in scalar types and directives to define the expected response types in your schema.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In GraphQL-Go, ensure that your resolver functions return values that match the expected GraphQL types.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+Use Ruby's type system and GraphQL-Ruby's type definitions to ensure that the response matches the expected type.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+In Hasura, use the console or the metadata API to define strict types for your tables and make sure that the GraphQL types are consistent with the database schema.
+
+</details>
+
 ## Configuration
 
 > Identifier: `schema/response_type_missmatch`
@@ -55,10 +99,10 @@ Update your resolver to make the introspection type match the actual returned ty
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N/RL:O**
-- CVSS_SCORE: **0**
+
+
+
 
 ## References
 

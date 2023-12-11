@@ -23,6 +23,122 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+In Apollo Server, use validation rules to sanitize user input and prevent XSS attacks. Implement custom directives or use libraries like graphql-constraint-directive for input validation.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+In GraphQL Yoga, validate inputs using middleware or custom scalar types to ensure that the data conforms to expected formats, thus preventing XSS.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+For AWS AppSync, use VTL (Velocity Template Language) to validate input arguments and AWS WAF to protect against common web exploits like XSS.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In GraphQL Go, use the validator package to add validation tags to your schema structs, ensuring that inputs are properly sanitized before processing.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL-Ruby, use input object classes with built-in validators or custom validation methods to sanitize and validate input before execution.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+With Hasura, leverage PostgreSQL's check constraints to validate input at the database level and use Hasura's permission system to prevent unauthorized operations.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+In ASP.NET, use data annotations to validate input models and implement custom validation attributes if necessary to prevent XSS and other injection attacks.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, use Active Model validations to ensure that inputs are properly sanitized and validated before they are used in the application.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+In Next.js, validate API route inputs using libraries like Joi or Yup before processing them to prevent XSS and other security vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, use the built-in validation rules in request classes or controllers to validate user input and protect against XSS.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+In Express.js, use middleware like express-validator to validate and sanitize user input before it reaches your route handlers.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use form or serializer validation to ensure that user input is sanitized and validated before being processed.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, use the Validator component with built-in or custom constraints to validate user input and prevent XSS attacks.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, use JSR-303/JSR-380 annotations for input validation in your controller methods to ensure that the input is valid before processing.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, use WTForms or similar libraries to validate form input and ensure that data is sanitized before being used in the application.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, validate user input on the server side in your API routes or middleware using libraries like Joi or Yup before processing the data.
+
+</details>
 
 ## Configuration
 
@@ -64,12 +180,12 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
     - **79**
   - WASC: **WASC-08**
   
-  
+  - HIPAA: **SecurityRule-164-312(a)(1)**
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **7.2**
+
+
+
 
 ## References
 

@@ -15,6 +15,78 @@ Either remove the endpoint from your schema or create a handler for them.
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Ensure all routes have corresponding action methods in your controllers. Use attribute routing to define routes.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Check your routes.rb file for any routes without actions and implement the missing actions in the corresponding controllers.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Create API route files for unhandled endpoints in the pages/api directory.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Define missing route handlers in your routes/web.php or routes/api.php and create corresponding methods in your controllers.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Add middleware functions to handle unimplemented routes in your Express application.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Map unhandled URLs to views by adding entries in your urls.py and create corresponding view functions or classes.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Define routes in your config/routes.yaml or annotations and create corresponding controller actions.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Ensure that all endpoints are mapped to methods in your @RestController classes using @RequestMapping or its shortcut annotations.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Add route decorators to functions in your Flask application to handle unimplemented endpoints.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Create server middleware or extend the server routes to handle the unimplemented endpoints.
+
+</details>
+
 ## Configuration
 
 > Identifier: `configuration/unhandled_endpoint`
@@ -44,18 +116,18 @@ Either remove the endpoint from your schema or create a handler for them.
 
 - Escape Severity: **<span className="info-severityom">INFO</span>**
   - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
-  
+  - PCI DSS: **6.5.8**
   - CWE
     - **389**
     - **438**
     - **440**
     - **684**
-  
+  - WASC: **WASC-20**
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N**
-- CVSS_SCORE: **0.0**
+
+
+
 

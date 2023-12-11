@@ -24,6 +24,122 @@ If it is not possible to disable DTDs completely, disable external entities and 
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+To prevent XXE in Apollo Server, ensure that any XML parsing, or libraries that parse XML, are configured to disallow the processing of external entities.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+In Yoga, disable external entity processing in XML parsing to mitigate XXE risks.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+For AWS AppSync, avoid using any XML parsing libraries that do not allow you to disable external entities. If you must parse XML, configure the parser to disable external entities.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+When using GraphQL with Go, ensure that your XML parser library is configured to ignore DOCTYPE and external entities.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL-Ruby, ensure that XML parsing is done with external entity processing disabled.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+For Hasura, it's important to validate and sanitize any user-supplied XML before processing and to configure the XML parser to disable external entities.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+In ASP.NET, use XmlReaderSettings with DtdProcessing set to Prohibit to prevent XXE.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+For Ruby on Rails applications, use Nokogiri with strict configuration to prevent XXE attacks.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+In Next.js, ensure that any server-side XML parsing disallows the processing of external entities.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Laravel should use libxml settings to disable external entities when parsing XML.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+For Express.js, use body-parser-xml and configure it to reject external entities.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use defusedxml to parse XML and prevent XXE attacks.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Symfony applications should use the DOMDocument class with proper configuration to prevent XXE.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+For Spring Boot, configure XMLInputFactory to prevent XXE attacks.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, use lxml with proper configuration to parse XML and prevent XXE.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Nuxt.js applications should ensure server-side XML parsing libraries are configured to prevent XXE.
+
+</details>
 
 ## Configuration
 
@@ -59,13 +175,13 @@ If it is not possible to disable DTDs completely, disable external entities and 
     - **610**
     - **611**
   - WASC: **WASC-43**
-  
-  
+  - HDS: **Article-32**
+  - HIPAA: **SecurityRule-164-312(a)(1)**
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L/E:F/RL:O/RC:C**
-- CVSS_SCORE: **6.8**
+
+
+
 
 ## References
 

@@ -21,9 +21,7 @@ To do so, access control must be applied to every object and every link in the g
 <details>
     <summary>Apollo</summary>
 
-See [Apollo's Access Control documentation](https://www.apollographql.com/docs/apollo-server/security/authentication/#in-resolvers).
-For large scale applications, you'll want to use a specific package like [GraphQL Shield](https://github.com/maticzav/graphql-shield) for quick and easy Access Control management.
-
+See [Apollo's Access Control documentation](https://www.apollographql.com/docs/apollo-server/security/authentication/#in-resolvers). For large scale applications, you'll want to use a specific package like [GraphQL Shield](https://github.com/maticzav/graphql-shield) for quick and easy Access Control management.
 
 </details>
 
@@ -32,18 +30,108 @@ For large scale applications, you'll want to use a specific package like [GraphQ
 
 See Hasura's detailed [documentation for Authorization Management](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/).
 
-
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Appsync provides several methods for protecting critical information.
-- To learn more on implementing fine-grained access control, head over to https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#fine-grained-access-control.
-
+Appsync provides several methods for protecting critical information. - To learn more on implementing fine-grained access control, head over to https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#fine-grained-access-control.
 
 </details>
 
+<details>
+    <summary>Yoga</summary>
+
+Ensure that Yoga server implements proper authentication and authorization checks. Use middleware for access control and validate user permissions.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Use the graphql-go library to implement authentication and authorization middleware to protect private data.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL-Ruby, use the `authorized?` method to check if a user is allowed to access a given field or object.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Use ASP.NET Core's built-in authorization features to protect endpoints. Apply the [Authorize] attribute to controllers or actions.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, use `before_action` to check for a logged-in user and `current_user` to check for permissions.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Secure API routes in Next.js by checking the user's session or token in the API route and returning an error if unauthorized.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Use Laravel's middleware for route protection and policies for authorization logic.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Implement middleware in Express.js to verify authentication tokens and user permissions before processing a request.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use decorators like `@login_required` for function-based views or `LoginRequiredMixin` for class-based views to protect views.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Utilize Symfony's security component to set up access control in `security.yaml` and use annotations to secure controller methods.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, secure endpoints using Spring Security. Configure HTTP security and method security to restrict access.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+For Flask, use the `@login_required` decorator from Flask-Login to protect routes, and check user permissions manually.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, use middleware to check if the user is authenticated before rendering a page or processing an API request.
+
+</details>
 
 ## Configuration
 
@@ -238,12 +326,12 @@ Appsync provides several methods for protecting critical information.
     - **1220**
   - WASC: **WASC-22**
   
-  
+  - HIPAA: **SecurityRule-164-312(a)(1)**
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **5.1**
+
+
+
 
 ## References
 

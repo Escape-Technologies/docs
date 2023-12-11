@@ -15,6 +15,50 @@ Limit the maximum size of a JSON that can be inputted.
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+To handle large JSON inputs in Apollo, consider using a custom scalar type for large JSON objects or streaming the input if possible.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+For GraphQL Yoga, you can increase the payload size limit or use a custom scalar for large JSON objects.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+AWS AppSync has built-in support for large payloads, but consider using Amazon S3 for extremely large JSON objects and referencing them in your GraphQL operations.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In GraphQL-Go, you can define a custom scalar type for handling large JSON inputs or adjust the server's maximum request body size.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+For GraphQL-Ruby, consider using a custom scalar type for large JSON inputs or leveraging background jobs for processing if needed.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Hasura supports large JSON objects, but for very large sizes consider using a separate storage service like Amazon S3 and store references in Hasura.
+
+</details>
+
 ## Configuration
 
 > Identifier: `resource_limitation/large_json_input`
@@ -61,10 +105,10 @@ Limit the maximum size of a JSON that can be inputted.
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:H/RL:O/RC:C**
-- CVSS_SCORE: **5.1**
+
+
+
 
 ## References
 

@@ -34,6 +34,122 @@ If you are using **Let's Encrypt** certificates, make sure to authorize HTTPS to
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure that your Apollo server is configured to only serve traffic over HTTPS to protect against data interception and alteration.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Configure Yoga server to use HTTPS by setting up an SSL certificate and enforcing secure connections.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+AWS AppSync is managed by AWS and enforces HTTPS by default. Ensure all clients are configured to use HTTPS endpoints.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+When setting up your GraphQL server with graphql-go, make sure to configure it to serve only over HTTPS to prevent unsecured data transmission.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+For GraphQL-Ruby, use a secure web server like Puma or Passenger that supports SSL, and ensure it's configured to use HTTPS.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Configure Hasura to use HTTPS by setting up an SSL certificate with your reverse proxy or load balancer.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+In ASP.NET, enforce HTTPS by using the 'RequireHttps' attribute on your controllers or globally in 'FilterConfig'.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, enforce SSL by setting 'config.force_ssl = true' in your environment configuration file.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+For Next.js, ensure your server is set up to handle HTTPS requests, and use a reverse proxy like Nginx to manage SSL/TLS.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, use the 'AppServiceProvider' to force a secure schema with 'URL::forceScheme('https')' in the boot method.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+With Express.js, use the 'https' module to create an HTTPS server with your SSL certificates.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use 'SECURE_SSL_REDIRECT = True' in your settings to redirect all HTTP traffic to HTTPS.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+For Symfony, configure your web server to handle SSL/TLS and redirect all HTTP traffic to HTTPS.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, configure your application to use HTTPS by setting server.ssl.key-store properties in application.properties.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+With Flask, use 'flask-talisman' to enforce HTTPS or configure your WSGI server to handle SSL.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+For Nuxt.js, ensure your server is set up to handle HTTPS requests, and use a reverse proxy like Nginx to manage SSL/TLS.
+
+</details>
 
 ## Configuration
 
@@ -72,10 +188,10 @@ If you are using **Let's Encrypt** certificates, make sure to authorize HTTPS to
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **7.2**
+
+
+
 
 ## References
 

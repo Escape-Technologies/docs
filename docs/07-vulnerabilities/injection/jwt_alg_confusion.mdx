@@ -16,6 +16,78 @@ You must enforce the algorithm used to sign the token.
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Ensure that the JWT token is validated against a list of acceptable algorithms on the server side.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Configure JWT to use a specific algorithm for token verification and disallow any others.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Validate the JWT with a specific algorithm in your API routes to prevent algorithm confusion.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Set the JWT algorithm explicitly in the config and validate tokens accordingly.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Use a middleware to verify the JWT with the correct algorithm.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Ensure Django settings specify the algorithm used to decode JWTs.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Configure the lexik_jwt_authentication bundle to use the correct algorithm.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Specify the algorithm when setting up JWT parser in Spring Boot.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Use PyJWT to decode the JWT with the specified algorithm in Flask.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Ensure Nuxt.js middleware validates the JWT with the correct algorithm.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/jwt_alg_confusion`
@@ -45,16 +117,16 @@ You must enforce the algorithm used to sign the token.
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
   - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
-  
+  - PCI DSS: **6.5.10**
   - CWE
     - **1390**
     - **290**
-  
+  - WASC: **WASC-15**
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:N**
-- CVSS_SCORE: **9.3**
+
+
+
 

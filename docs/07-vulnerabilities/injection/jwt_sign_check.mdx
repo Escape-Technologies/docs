@@ -15,6 +15,78 @@ You must validate the token signature before thrusting the token content.
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Ensure that the JWT token signature is validated against a strong secret key or public key. Use middleware to enforce signature checks on every request.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Use a library like 'jwt' to decode and verify the JWT signature. Ensure that the secret key is not hardcoded and is securely managed.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Implement signature verification in your API routes or use a middleware that checks the JWT signature before processing the request.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Use Laravel's built-in JWT authentication guard to validate the token signature. Configure it properly in the auth.php config file.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Use a JWT middleware like 'express-jwt' to validate the token signature on each request. Configure it with the correct secret or key.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Use Django's authentication system to verify JWT tokens. A package like 'djangorestframework-jwt' can be used for this purpose.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Use the 'lexik/jwt-authentication-bundle' to handle JWT tokens. Ensure the signature is verified with each request.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Use Spring Security with a JWT library to enforce signature validation. Configure it to use the correct signing key.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Use Flask-JWT-Extended to handle JWT operations. Ensure that the token signature is validated on each protected endpoint.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Validate the JWT in your Nuxt application by using a middleware that checks the token signature before rendering the page or API call.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/jwt_sign_check`
@@ -44,7 +116,7 @@ You must validate the token signature before thrusting the token content.
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
   - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
-  
+  - PCI DSS: **6.5.10**
   - CWE
     - **1390**
     - **290**
@@ -52,10 +124,10 @@ You must validate the token signature before thrusting the token content.
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:N**
-- CVSS_SCORE: **9.3**
+
+
+
 
 ## References
 

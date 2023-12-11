@@ -28,57 +28,117 @@ This security check detects this sensitive data.
 <details>
     <summary>Apollo</summary>
 
-* If there is a chance that unauthorized individuals have already accessed the secret, revoke it immediately and notify the concerned team.
-
-* If the leak happens through another vulnerability, such as a [Server-Side Request Forgery](https://docs.escape.tech/vulnerabilities/request_forgery/ssrf), fix this issue to avoid further secret leaks.
-
-* Have your developers implement these best practices to avoid leaking secrets:
-    -Inside logs: [keeping sensitive data out of logs](https://medium.com/@joecrobak/seven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904).
-    -Inside commits: [Pre-commit](https://pre-commit.com/) or [Gitleaks](https://github.com/zricethezav/gitleaks).
-    -In the configuration, using an environment variable manager like [Hashicorp Vault](https://www.hashicorp.com/products/vault).
-
-See [Apollo's Access Control Documentation](https://www.apollographql.com/docs/apollo-server/security/authentication/#in-resolvers).
-For large scale applications, you'll want to use a specific package like [GraphQL Shield](https://github.com/maticzav/graphql-shield) for quick and easy Access Control management.
-
+* If there is a chance that unauthorized individuals have already accessed the secret, revoke it immediately and notify the concerned team. * If the leak happens through another vulnerability, such as a [Server-Side Request Forgery](https://docs.escape.tech/vulnerabilities/request_forgery/ssrf), fix this issue to avoid further secret leaks.* Have your developers implement these best practices to avoid leaking secrets:    -Inside logs: [keeping sensitive data out of logs](https://medium.com/@joecrobak/seven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904).    -Inside commits: [Pre-commit](https://pre-commit.com/) or [Gitleaks](https://github.com/zricethezav/gitleaks).    -In the configuration, using an environment variable manager like [Hashicorp Vault](https://www.hashicorp.com/products/vault).See [Apollo's Access Control Documentation](https://www.apollographql.com/docs/apollo-server/security/authentication/#in-resolvers). For large scale applications, you'll want to use a specific package like [GraphQL Shield](https://github.com/maticzav/graphql-shield) for quick and easy Access Control management.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-* If there is a chance that unauthorized individuals have already accessed the secret, revoke it immediately and notify the concerned team.
-
-* If the leak happens through another vulnerability, such as a [Server-Side Request Forgery](https://docs.escape.tech/vulnerabilities/request_forgery/ssrf), fix this issue to avoid further secret leaks.
-
-* Have your developers implement these best practices to avoid leaking secrets:
-    -Inside logs: [keeping sensitive data out of logs](https://medium.com/@joecrobak/seven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904)
-    -Inside commits: [Pre-commit](https://pre-commit.com/) or [Gitleaks](https://github.com/zricethezav/gitleaks)
-    -In the configuration, using an environment variable manager like [Hashicorp Vault](https://www.hashicorp.com/products/vault)
-
-See Hasura's detailed documentation for [authorization management](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/).
-
+* If there is a chance that unauthorized individuals have already accessed the secret, revoke it immediately and notify the concerned team. * If the leak happens through another vulnerability, such as a [Server-Side Request Forgery](https://docs.escape.tech/vulnerabilities/request_forgery/ssrf), fix this issue to avoid further secret leaks.* Have your developers implement these best practices to avoid leaking secrets:    -Inside logs: [keeping sensitive data out of logs](https://medium.com/@joecrobak/seven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904)    -Inside commits: [Pre-commit](https://pre-commit.com/) or [Gitleaks](https://github.com/zricethezav/gitleaks)    -In the configuration, using an environment variable manager like [Hashicorp Vault](https://www.hashicorp.com/products/vault)See Hasura's detailed documentation for [authorization management](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/).
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-* If there is a chance that unauthorized individuals have already accessed the secret, revoke it immediately and notify the concerned team.
-
-* If the leak happens through another vulnerability, such as a [Server-Side Request Forgery](https://docs.escape.tech/vulnerabilities/request_forgery/ssrf), fix this issue to avoid further secret leaks.
-
-* Have your developers implement these best practices to avoid leaking secrets:
-    -Inside logs: [keeping sensitive data out of logs](https://medium.com/@joecrobak/seven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904)
-    -Inside commits: [Pre-commit](https://pre-commit.com/) or [Gitleaks](https://github.com/zricethezav/gitleaks)
-    -In the configuration, using an environment variable manager like [Hashicorp Vault](https://www.hashicorp.com/products/vault)
-
-Appsync provides several other methods for protecting critical information.
--To learn more on implementing fine-grained access control, head over to https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#fine-grained-access-control.
--To learn more on filtering critical data directly from responses, see https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#aws-appsync-filtering-information.
-
+* If there is a chance that unauthorized individuals have already accessed the secret, revoke it immediately and notify the concerned team. * If the leak happens through another vulnerability, such as a [Server-Side Request Forgery](https://docs.escape.tech/vulnerabilities/request_forgery/ssrf), fix this issue to avoid further secret leaks.* Have your developers implement these best practices to avoid leaking secrets:    -Inside logs: [keeping sensitive data out of logs](https://medium.com/@joecrobak/seven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904)    -Inside commits: [Pre-commit](https://pre-commit.com/) or [Gitleaks](https://github.com/zricethezav/gitleaks)    -In the configuration, using an environment variable manager like [Hashicorp Vault](https://www.hashicorp.com/products/vault)Appsync provides several other methods for protecting critical information.-To learn more on implementing fine-grained access control, head over to https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#fine-grained-access-control. -To learn more on filtering critical data directly from responses, see https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#aws-appsync-filtering-information.
 
 </details>
 
+<details>
+    <summary>Yoga</summary>
+
+Ensure that your Yoga server is configured to not expose sensitive information. Use environment variables and secret management systems to handle sensitive data. Regularly audit your GraphQL schema to ensure that no sensitive fields are unintentionally exposed.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Review your GraphQL Go implementation to ensure that resolvers do not inadvertently expose sensitive data. Use environment variables for configuration and consider using a secret management tool like Vault for storing secrets.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+Audit your GraphQL Ruby application to ensure that sensitive data is not being exposed through your queries or mutations. Use Rails' built-in secret management for handling sensitive configuration data.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Ensure that your ASP.NET application does not log sensitive information and that all configurations that contain secrets are secured and not checked into source control. Use the built-in Secret Manager tool for development and Azure Key Vault for production secrets.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Check your Rails application for inadvertent exposure of sensitive data. Use Rails' encrypted credentials feature to manage secrets and ensure that logs are filtered to prevent accidental logging of sensitive information.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+In your Next.js application, avoid exposing sensitive data through APIs or logs. Use environment variables for storing secrets and ensure that API routes are properly secured.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Ensure that your Laravel application does not expose sensitive data through routes or logs. Use Laravel's built-in environment file and secure storage mechanisms for sensitive data.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Audit your Express.js routes and middleware to ensure that sensitive data is not being exposed. Use environment variables and a package like dotenv for managing secrets.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Review your Django views and settings to ensure that no sensitive data is exposed. Use Django's settings module to handle secrets and ensure that DEBUG is set to False in production to prevent sensitive data leaks in error messages.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Check your Symfony application to prevent any sensitive data leaks. Use Symfony's .env files for managing environment variables and secrets.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Ensure that your Spring Boot application does not log sensitive information. Use Spring's configuration properties to externalize secrets and the @Value annotation to inject them.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Secure your Flask application by not exposing sensitive data in routes or logs. Use environment variables for configuration and Flask extensions like Flask-Talisman for security headers.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In your Nuxt.js application, ensure that no sensitive data is exposed through the API or server logs. Use environment variables and the nuxt.config.js file to manage secrets securely.
+
+</details>
 
 ## Configuration
 
@@ -126,12 +186,12 @@ Appsync provides several other methods for protecting critical information.
     - **1220**
   - WASC: **WASC-22**
   
-  
+  - HIPAA: **SecurityRule-164-312(a)(1)**
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **7.2**
+
+
+
 
 ## References
 

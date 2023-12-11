@@ -22,6 +22,50 @@ There are multiple ways to prevent directory traversal attacks:
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+To prevent directory traversal and local file inclusion in Apollo Server, validate and sanitize all user inputs. Use a whitelist approach to serve only allowed files.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+In Yoga, ensure that all file paths constructed from user input are sanitized to prevent directory traversal.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+For AWS AppSync, use AWS WAF to block common directory traversal patterns and validate input in resolvers.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In GraphQL Go, validate and sanitize file paths in resolvers to prevent directory traversal attacks.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL Ruby, use built-in validators or custom methods to sanitize file paths before using them.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+With Hasura, use remote schemas or action handlers to validate and sanitize file paths, as Hasura does not directly handle file serving.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/file_inclusion`
@@ -81,10 +125,10 @@ There are multiple ways to prevent directory traversal attacks:
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **7.2**
+
+
+
 
 ## References
 

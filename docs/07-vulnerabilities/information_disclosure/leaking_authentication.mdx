@@ -15,6 +15,78 @@ Ensure that messages are neutral and do not disclose information about the user'
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Ensure that sensitive information is not included in the response. Use view models to selectively send only the required data to the client.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Filter out sensitive information from the user object before rendering the response.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Avoid sending sensitive user information in API responses. Implement API routes to return only the necessary user data.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Use Laravel's resource classes to transform models into JSON without exposing sensitive data.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Control the data output by explicitly defining which user object properties should be sent in the response.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Utilize Django's serializers to manage the fields that are included in the response.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Leverage Symfony's serializer component to define which fields of the user entity are exposed.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Use DTOs (Data Transfer Objects) to ensure that only the necessary user information is sent to the client.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Implement a function to serialize user data, excluding sensitive information before sending it in the response.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Ensure that the API endpoints in your Nuxt application do not expose sensitive user data.
+
+</details>
+
 ## Configuration
 
 > Identifier: `information_disclosure/leaking_authentication`
@@ -44,18 +116,18 @@ Ensure that messages are neutral and do not disclose information about the user'
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
   - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-  
+  - PCI DSS: **6.5.1**
   - CWE
     - **200**
     - **540**
     - **664**
     - **668**
-  
+  - WASC: **WASC-13**
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **7.2**
+
+
+
 

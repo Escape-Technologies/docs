@@ -21,6 +21,78 @@ To prevent SSTI:
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+In ASP.NET, ensure that user input is not directly used in template generation. Use rigorous input validation and encoding to prevent SSTI. Additionally, restrict the template engine features that can be used if possible.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+For Ruby on Rails, avoid directly passing user input to the rendering engine. Validate and sanitize input rigorously. Use the 'html_escape' or 'sanitize' helpers to encode user input.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+In Next.js, prevent SSTI by avoiding the use of user input in template literals or JSX without proper sanitization. Use a secure library for handling user input.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, use the built-in escaping functions like '{{ }}' in Blade templates to automatically escape output and prevent SSTI. Do not use '{!! !!}' with untrusted data as it does not escape output.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+For Express.js applications, ensure that user input is not embedded directly into templates. Use template engines that automatically escape values, or manually escape input using a library.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use the built-in template system which auto-escapes variables. Avoid using the 'safe' filter or 'mark_safe' function with untrusted data to prevent SSTI.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+For Symfony, utilize Twig's auto-escaping feature to prevent SSTI. Always validate and sanitize user input before rendering it in a template.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, use Thymeleaf or another template engine that automatically escapes user input. Avoid using SpEL expressions with untrusted data to prevent SSTI.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+With Flask, use Jinja2's autoescape feature to prevent SSTI. Ensure that you do not disable autoescaping and validate all user input before rendering.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt, avoid directly using user input in templates. Use Vue's v-bind or mustache syntax which automatically escapes values to prevent SSTI.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/ssti`
@@ -57,10 +129,10 @@ To prevent SSTI:
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L/E:F/RL:O/RC:C**
-- CVSS_SCORE: **6.8**
+
+
+
 
 ## References
 

@@ -16,6 +16,50 @@ When possible, use typed input objects instead.
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure strong typing in your schema by specifying exact types for all fields. Avoid using generic JSON scalar types that can lead to unhandled data and potential data leaks.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Define precise GraphQL types and avoid using arbitrary JSON types to prevent unhandled data leaks. Use the GraphQL schema to enforce type safety.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Utilize AWS AppSync's built-in scalar types or define custom scalar types to ensure that your GraphQL API is strongly typed and secure.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In Go, define your GraphQL types strictly and avoid using interfaces{} as a way to accept any JSON object. This will help maintain type safety in your application.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+Use Ruby's GraphQL type system to define fields explicitly and avoid untyped scalars. This ensures that the data conforms to the expected structure.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Leverage Hasura's ability to create strict GraphQL types and avoid using JSON as a scalar type to prevent data leaks and ensure type safety.
+
+</details>
+
 ## Configuration
 
 > Identifier: `schema/weak_json_typing`
@@ -56,8 +100,8 @@ When possible, use typed input objects instead.
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **0.0**
+
+
+
 

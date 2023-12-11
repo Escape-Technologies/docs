@@ -19,6 +19,122 @@ In many cases, this behavior can be avoided in two ways:
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+In Apollo, ensure that all redirects are validated against a whitelist of allowed URLs before redirecting. Use server-side logic to handle the redirection.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+For Yoga, validate all URLs against a list of approved destinations before performing a redirect. Avoid using user input directly in the redirection logic.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+With AWS AppSync, use VTL (Velocity Template Language) to validate the URL against a predefined list of safe URLs before redirecting.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In GraphQL Go, validate the redirect URL against a list of allowed domains. Do not use user input directly for redirection without validation.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL Ruby, ensure that redirection URLs are validated against a whitelist. Use Ruby's URI module to parse and validate the URL.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+For Hasura, implement server-side validation to check the URL against a list of allowed domains before performing a redirect.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+In ASP.NET, use the Uri.IsWellFormedUriString method to validate URLs and ensure they belong to a whitelist of allowed domains before redirecting.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, use the URI module to parse the URL and compare the host against a whitelist of allowed domains before redirecting.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+In Next.js, validate the URL on the server side before redirecting. Use a list of allowed domains to check against the URL's hostname.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, use the validator to ensure the URL is a valid URL and belongs to a list of allowed domains before redirecting.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+In Express.js, validate the URL against a whitelist of allowed domains before redirecting. Use the URL module to parse and validate the URL.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use the URLValidator to ensure the URL is valid and check the domain against a list of allowed domains before redirecting.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, use the Symfony's Validator component to validate the URL and ensure it matches a pattern that includes only allowed domains before redirecting.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, use Java's URI class to validate the URL and check if the domain is in the list of allowed domains before redirecting.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, validate the URL with Werkzeug's url_parse and check the domain against a list of allowed domains before redirecting.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, validate the URL on the server side before redirecting. Use a list of allowed domains to check against the URL's hostname.
+
+</details>
 
 ## Configuration
 
@@ -49,15 +165,15 @@ In many cases, this behavior can be avoided in two ways:
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
   - OWASP: **[API3:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa3-broken-object-property-level-authorization.md)**
-  
+  - PCI DSS: **6.5.5**
   - CWE
     - **601**
   - WASC: **WASC-38**
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N**
+
+
 
 

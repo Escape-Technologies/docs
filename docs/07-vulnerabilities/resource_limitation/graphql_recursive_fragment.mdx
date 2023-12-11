@@ -15,6 +15,50 @@ Implement a maximum recursion limit.
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+To prevent stack overflow panics in Apollo Server, implement query depth limiting and complexity analysis to reject overly complex queries.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+For GraphQL Yoga, use depth and complexity limiting to mitigate the risk of stack overflow due to recursive queries.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+In AWS AppSync, configure query depth limiting and use AWS WAF to block malicious queries that could cause stack overflows.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+For the graphql-go server, implement a query depth limiting middleware to prevent recursive query attacks.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL-Ruby, use the max_depth query analyzer to protect against deep recursive queries causing stack overflows.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+For Hasura GraphQL engine, set up query depth limits in the console under the 'Security' settings to prevent DoS attacks.
+
+</details>
+
 ## Configuration
 
 > Identifier: `resource_limitation/graphql_recursive_fragment`
@@ -44,7 +88,7 @@ Implement a maximum recursion limit.
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
   - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-  
+  - PCI DSS: **6.5.1**
   - CWE
     - **20**
     - **400**
@@ -54,10 +98,10 @@ Implement a maximum recursion limit.
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H/E:H/RL:O/RC:R**
-- CVSS_SCORE: **6.9**
+
+
+
 
 ## References
 

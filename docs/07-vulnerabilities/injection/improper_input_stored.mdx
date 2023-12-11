@@ -24,6 +24,50 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure all user input is validated, sanitized, and encoded to prevent stored XSS attacks. Use Apollo's built-in features to manage user permissions and access controls.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Use proper input validation and sanitization to prevent stored XSS in GraphQL Yoga. Implement middleware to sanitize all incoming queries and mutations.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+In AWS AppSync, use VTL (Velocity Template Language) to sanitize and validate input before storing it in the database to prevent stored XSS attacks.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+For GraphQL-Go, validate and sanitize user inputs using middleware or custom scalar types to prevent stored XSS vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL-Ruby, use custom scalar types to validate and sanitize input, ensuring that stored XSS vulnerabilities are mitigated.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+In Hasura, leverage permission rules and input validation at the database level to prevent stored XSS. Use webhooks or custom business logic to sanitize inputs.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/improper_input_stored`
@@ -66,10 +110,10 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **7.2**
+
+
+
 
 ## References
 

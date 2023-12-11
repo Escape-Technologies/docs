@@ -28,51 +28,117 @@ In that case, check if this is also the case in production by:
 <details>
     <summary>Apollo</summary>
 
-Never allow database or code error stack traces to be returned directly to the client.
-
-This remediation is supported by our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware.
-
-When using Apollo you can also set `NODE_ENV` to `production` or disable DEBUG mode:
-
-```javascript
-const server = new ApolloServer({
-  ...,
-  debug: false
-)}
-````
-
-If you are working in a development or staging environment, error disclosure might happen on purpose.
-In that case, check if this is also the case in production by:
-- Using our cURL copy button to find the request that generated the stack trace.
-- Changing URL and authentication tokens to match your production environment.
-
+Never allow database or code error stack traces to be returned directly to the client.This remediation is supported by our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware.When using Apollo you can also set `NODE_ENV` to `production` or disable DEBUG mode:```javascriptconst server = new ApolloServer({  ...,  debug: false)}````If you are working in a development or staging environment, error disclosure might happen on purpose.In that case, check if this is also the case in production by:- Using our cURL copy button to find the request that generated the stack trace.- Changing URL and authentication tokens to match your production environment.
 
 </details>
 
 <details>
     <summary>Graphqlyoga</summary>
 
-This remediation is supported by our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware.
-
-When using Yoga you can also enable [error masking](https://www.the-guild.dev/graphql/yoga-server/docs/features/error-masking) to hide stack traces in production.
-Since it is enabled by default, you are probably missing the variable `NODE_ENV=production` in your production environment.
-
+This remediation is supported by our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware.When using Yoga you can also enable [error masking](https://www.the-guild.dev/graphql/yoga-server/docs/features/error-masking) to hide stack traces in production.Since it is enabled by default, you are probably missing the variable `NODE_ENV=production` in your production environment.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Set the `HASURA_GRAPHQL_DEV_MODE` env variable to `false` in all user-facing environments.
-
-Source: https://hasura.io/docs/latest/graphql/core/deployment/graphql-engine-flags/reference/
-
-*Note: if you are working in a development or staging environment, error disclosure might happen on purpose.
-In that case, make sure your production environment has `HASURA_GRAPHQL_DEV_MODE` set to `false`*
-
+Set the `HASURA_GRAPHQL_DEV_MODE` env variable to `false` in all user-facing environments.Source: https://hasura.io/docs/latest/graphql/core/deployment/graphql-engine-flags/reference/ *Note: if you are working in a development or staging environment, error disclosure might happen on purpose.In that case, make sure your production environment has `HASURA_GRAPHQL_DEV_MODE` set to `false`*
 
 </details>
 
+<details>
+    <summary>Awsappsync</summary>
+
+Ensure that AWS AppSync is configured to not expose error details in production. Use VTL (Velocity Template Language) resolvers to handle errors and return custom error messages.For example, you can use a VTL template to catch errors and return a generic error message:
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In production, configure your Go GraphQL server to use a custom error presenter that hides implementation details. Implement the `graphql.ErrorPresenterFunc` to format errors before sending them to the client.For example, you can override the default error presenter:
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In Ruby on Rails with GraphQL-Ruby, avoid exposing stack traces by customizing the `rescue_from` method within your base field or base object. Use a custom error handling mechanism to catch and handle exceptions. For example, you can define a custom error handler:
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+In ASP.NET, use custom error pages and configure the `customErrors` mode to `On` or `RemoteOnly` in your Web.config file to prevent stack traces from being sent to the client.For example, you can add the following to your Web.config:
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, configure your application to handle exceptions gracefully and avoid leaking stack traces to the client. Use `rescue_from` in your controllers to catch exceptions and render a generic error message. For example, you can add the following to your ApplicationController:
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+In Next.js, handle errors by overriding the `_error.js` page or using the `getInitialProps` method in your pages to catch and display custom error messages without exposing stack traces.For example, you can create a custom `_error.js`:
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, use the exception handler to configure the JSON error format and avoid exposing stack traces in production. Customize the `render` method in `App\Exceptions\Handler`.For example, you can modify the `render` method:
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+In Express.js, use error-handling middleware to catch and handle errors without exposing stack traces to the client. Ensure that the error-handling middleware is the last function added with `app.use`.For example, you can add the following middleware:
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, ensure that `DEBUG` is set to `False` in your production settings and use custom error handlers to return generic error responses. For example, you can define a custom error handler in your urls.py:
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, configure the `prod` environment to use the `prod` error templates and ensure that the `debug` flag is set to `false`. Customize error controllers to handle exceptions and return generic error messages. For example, you can create a custom error controller:
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, use `@ControllerAdvice` or `@RestControllerAdvice` to handle exceptions globally and prevent stack traces from being sent to the client. Implement a method with `@ExceptionHandler` to handle specific exceptions.For example, you can add the following to your advice class:
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, use error handlers to define custom behavior for exceptions and avoid exposing stack traces. Register error handlers using the `errorhandler` decorator.For example, you can add the following to your application:
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, customize the error page by creating a `layouts/error.vue` file to handle errors and prevent stack traces from being displayed to the client.For example, you can create a custom error layout:
+
+</details>
 
 ## Configuration
 
@@ -122,14 +188,14 @@ In that case, make sure your production environment has `HASURA_GRAPHQL_DEV_MODE
     - **1207**
     - **1258**
     - **1295**
-  - WASC: **WASC-10**
+  - WASC: **WASC-14**
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **5.1**
+
+
+
 
 ## References
 

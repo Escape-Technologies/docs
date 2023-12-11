@@ -15,6 +15,78 @@ Update your schema to match the real return types
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Ensure that all routes are properly authenticated by using middleware that validates the user's identity and permissions before accessing the route.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Use before_action to check for a valid session or token before allowing access to certain controller actions.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Implement server-side checks in your API routes to verify the user's session or token before processing the request.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Use middleware to ensure that routes are only accessible to authenticated users.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Apply authentication middleware to your routes to verify the user's credentials before proceeding.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Decorate your view functions with the @login_required decorator to ensure that only authenticated users can access them.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Use the security.yaml configuration to restrict access to routes based on user roles.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Secure your endpoints by using Spring Security and annotating your controller methods with @PreAuthorize or @Secured.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Utilize the @login_required decorator from Flask-Login to protect your routes.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In your Nuxt application, use middleware to check if the user is authenticated before rendering a page or processing an API request.
+
+</details>
+
 ## Configuration
 
 > Identifier: `access_control/auth_bypass`

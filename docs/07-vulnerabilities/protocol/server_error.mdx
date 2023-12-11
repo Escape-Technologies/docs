@@ -16,6 +16,122 @@ Make sure you also refer to the query we sent to the server to reproduce the iss
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure that Apollo Server is properly configured to handle errors and to log them for further analysis. Use the 'formatError' function to customize error responses and avoid exposing stack traces or sensitive information to clients.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Regularly update GraphQL Yoga to the latest version to benefit from security patches. Implement proper error handling and logging to monitor and address issues promptly.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Configure AWS AppSync resolvers and data sources to handle errors gracefully. Use CloudWatch to monitor and log errors for analysis and ensure IAM roles and security are correctly set up.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Keep the GraphQL Go library updated and use middleware for error handling to log and mask errors before they reach the client.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL Ruby, use rescue_from within your base field or base object to catch exceptions and handle them appropriately.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Monitor Hasura logs and set up alerts for internal server errors. Ensure that the Hasura engine is up-to-date and that error handling is configured to prevent information leaks.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Use custom error handling middleware in ASP.NET to catch and log exceptions. Ensure that detailed error information is not returned to the client.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Implement exception handling in your Rails controllers and use a centralized logging system to track errors. Avoid exposing stack traces to end-users.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Create a custom error handling API in Next.js to intercept and log server errors. Ensure that the API does not send sensitive error details to the client.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Use Laravel's exception handler to manage exceptions and log them. Ensure that the debug mode is off in production to prevent sensitive information disclosure.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Implement error-handling middleware in Express.js to catch and log errors. Make sure to send generic error messages to the client.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use custom middleware to handle server errors and log them. Ensure DEBUG is set to False in production settings.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Configure Symfony's exception listener to log errors and return a generic response to the client to avoid information leakage.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Use @ControllerAdvice in Spring Boot to handle exceptions globally. Log the exceptions and return a ResponseEntity with a generic error message.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Utilize Flask's error handling capabilities to log exceptions and return a generic error message to the client.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, create a custom error page to handle server errors and ensure that error details are logged but not displayed to the user.
+
+</details>
 
 ## Configuration
 
@@ -53,8 +169,8 @@ Make sure you also refer to the query we sent to the server to reproduce the iss
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **8.7**
+
+
+
 

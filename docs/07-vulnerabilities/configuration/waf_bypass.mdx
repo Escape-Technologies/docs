@@ -15,6 +15,78 @@ Update your WAF configuration to prevent this bypass.
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Ensure that your ASP.NET application has custom error pages configured to prevent detailed error information from being exposed. Implement request validation and encode output to prevent XSS attacks.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Use Rails built-in protection mechanisms such as strong parameters and CSRF protection. Regularly update Rails to the latest version to benefit from security patches.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Apply rate limiting and implement proper input validation in your Next.js API routes. Keep dependencies up to date and use secure headers.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Use Laravel's built-in security features like CSRF tokens, validation, and escaping output. Regularly update Laravel and its dependencies.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Implement helmet for setting various HTTP headers and use express-rate-limit to help protect against brute-force attacks. Validate and sanitize user input.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Use Django's built-in security features such as middleware for clickjacking protection, and ensure DEBUG is set to False in production.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Leverage Symfony's security components like CSRF protection and use the latest stable version of Symfony for security fixes.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Secure Spring Boot applications by using Spring Security, enabling CSRF protection, and configuring method-level security.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Utilize Flask extensions like Flask-WTF for CSRF protection and Flask-Talisman for setting security headers. Always escape data before rendering it.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Ensure that Nuxt.js is configured to use HTTPS, set HTTP headers correctly, and validate and sanitize user inputs on both client and server sides.
+
+</details>
+
 ## Configuration
 
 > Identifier: `configuration/waf_bypass`

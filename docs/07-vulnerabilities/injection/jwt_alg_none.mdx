@@ -16,6 +16,78 @@ You must validate the algorithm used to sign the token before checking it's sign
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Ensure that the JWT middleware in ASP.NET is configured to reject tokens with 'none' as the algorithm. Explicitly specify allowed algorithms.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, configure JWT to disallow 'none' as an algorithm for token verification.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+For Next.js applications, ensure that the JWT verification library is set to reject 'none' as an algorithm.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, use a JWT package that allows you to specify the allowed algorithms and reject 'none'.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Configure the JWT middleware in Express.js to reject tokens with 'none' as the algorithm.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, ensure that the JWT authentication backend is configured to only allow specific algorithms and exclude 'none'.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, configure your JWT library to disallow 'none' as an algorithm for token verification.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+For Spring Boot, ensure that the JWT token provider is set to reject 'none' as an algorithm.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, use a JWT extension that allows you to specify the allowed algorithms and reject 'none'.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+For Nuxt.js applications, ensure that the JWT verification process is configured to reject 'none' as an algorithm.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/jwt_alg_none`
@@ -45,7 +117,7 @@ You must validate the algorithm used to sign the token before checking it's sign
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
   - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
-  
+  - PCI DSS: **6.5.10**
   - CWE
     - **1390**
     - **290**
@@ -53,8 +125,8 @@ You must validate the algorithm used to sign the token before checking it's sign
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:N**
-- CVSS_SCORE: **9.3**
+
+
+
 

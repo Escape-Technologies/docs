@@ -35,25 +35,14 @@ Warning :
 <details>
     <summary>Awsappsync</summary>
 
-AWS AppSync enforces a timeout of 30s on each request by default.
-
-If your API sits behind an [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html), you can configure a different (but lower than the hard 30s limit) timeout in the AWS API Gateway console by following this path:
-
-AWS API Gateway console > {Your App} > Resources > Integration Request > "Use default timeout".
-
+AWS AppSync enforces a timeout of 30s on each request by default. If your API sits behind an [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html), you can configure a different (but lower than the hard 30s limit) timeout in the AWS API Gateway console by following this path:AWS API Gateway console > {Your App} > Resources > Integration Request > "Use default timeout".
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Hasura allows you to set a custom query timeout.
-
-To do so:
-- Go to Project Console > Security Settings > API Limits.
-- Click on "Global".
-- Set a timeout (e.g., 10s).
-
+Hasura allows you to set a custom query timeout.To do so: - Go to Project Console > Security Settings > API Limits.- Click on "Global".- Set a timeout (e.g., 10s).
 
 </details>
 
@@ -62,19 +51,108 @@ To do so:
 
 There is no known remediation for StepZen.
 
-
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Implement a server timeout by following this guide:
-
-[The complete guide to Go net/http timeouts - Cloudfare blog](https://blog.cloudflare.com/the-complete-guide-to-golang-net-http-timeouts/)
-
+Implement a server timeout by following this guide:[The complete guide to Go net/http timeouts - Cloudfare blog](https://blog.cloudflare.com/the-complete-guide-to-golang-net-http-timeouts/)
 
 </details>
 
+<details>
+    <summary>Apollo</summary>
+
+Apollo Server allows you to define a timeout for your GraphQL operations. Set the timeout using the 'context' function in your Apollo Server configuration.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+In GraphQL Yoga, you can set timeouts at the server level using the 'options' parameter when starting the server.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL-Ruby, you can implement query timeouts by using the 'max_complexity' setting or by adding custom middleware.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+In ASP.NET, set the request timeout in the web.config file or directly in the Global.asax file.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, configure the Rack::Timeout middleware to set a timeout for requests.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Next.js does not have a built-in request timeout feature. You can implement timeouts using custom server logic or middleware.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, set the maximum execution time in your public/.htaccess file or within your route logic using the set_time_limit function.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+In Express.js, use the 'connect-timeout' middleware to set a timeout for requests.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Django does not have a built-in request timeout feature. Implement request timeouts using server configurations or middleware.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, set the maximum execution time in your public/.htaccess file or within your controller using the set_time_limit function.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, configure the server's connection timeout properties in the application.properties file.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Flask does not have a built-in request timeout feature. Implement request timeouts using server configurations or middleware.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Nuxt.js does not have a built-in request timeout feature. You can implement timeouts using server middleware or by customizing the server instance.
+
+</details>
 
 ## Configuration
 
@@ -125,10 +203,10 @@ Implement a server timeout by following this guide:
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H/E:H/RL:O/RC:C**
-- CVSS_SCORE: **7.2**
+
+
+
 
 ## References
 

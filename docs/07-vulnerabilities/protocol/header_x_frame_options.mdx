@@ -20,138 +20,124 @@ Add `X-Frame-Options` header.
 <details>
     <summary>Apollo</summary>
 
-When using Apollo with Express.js, [helmet](https://www.npmjs.com/package/helmet) can take care of the security headers.
-
-```javascript
-const helmet = require("helmet");
-...
-app.use(helmet);
-```
-
+When using Apollo with Express.js, [helmet](https://www.npmjs.com/package/helmet) can take care of the security headers.```javascriptconst helmet = require("helmet");...app.use(helmet);```
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-* Add security headers with the API Gateway
-
-Put your AppSync API behind an API Gateway and configure it to act as a proxy to your AppSync endpoint (e.g., using the HTTP Proxy feature).
-
-[API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
-
-Then you can manually add headers to each resource. (There is only one resource if your API Gateway is only used to proxy a single AppSync endpoint)
-
-Here is an example of security headers you can add :
-
-```
-Cache-Control: no-store
-Content-Security-Policy: default-src 'self'
-Strict-Transport-Security: max-age=63072000
-X-Content-Type-Options: nosniff
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-```
-
-
-* Add security headers using only AWS AppSync
-
-AWS AppSync currently does not allow to append custom headers to every response.
-
-However, custom response headers can be configured individually for every resolver by using response mapping templates.
-
-To do this, go to:
-   - AppSync > {Your App} > Schema
-
-For every attached resolver :
-   - Go to the resolver configuration
-   - In the "Configure the response mapping template" section, add this :
-
-```php
-$util.http.addResponseHeader("Cache-Control", "no-store")
-$util.http.addResponseHeader("Content-Security-Policy", "default-src 'self'")
-$util.http.addResponseHeader("Strict-Transport-Security", "max-age=63072000")
-$util.http.addResponseHeader("X-Content-Type-Options", "nosniff")
-$util.http.addResponseHeader("X-Frame-Options", "SAMEORIGIN")
-$util.http.addResponseHeader("X-XSS-Protection", "1; mode=block")
-```
-
-You can safely ignore this warning if you did this for every single resolver.
-
-However, it may still appear here as GraphQL requests like `query { __typename }` are not associated with a resolver; therefore, you cannot add custom response headers. (Which doesn't matter as such requests cannot leak data as no actual field is queried)
-
-[AWS AppSync adds support for custom response headers](https://aws.amazon.com/about-aws/whats-new/2022/02/aws-appsync-support-custom-response-headers/)
-
-[HTTP helpers in $util.http](https://docs.aws.amazon.com/appsync/latest/devguide/http-helpers-in-utils-http.html)
-
-[Resolver Mapping Template Programming Guide](https://docs.aws.amazon.com/appsync/latest/devguide/resolver-mapping-template-reference-programming-guide.html)
-
+* Add security headers with the API GatewayPut your AppSync API behind an API Gateway and configure it to act as a proxy to your AppSync endpoint (e.g., using the HTTP Proxy feature).[API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) Then you can manually add headers to each resource. (There is only one resource if your API Gateway is only used to proxy a single AppSync endpoint)Here is an example of security headers you can add :```Cache-Control: no-store Content-Security-Policy: default-src 'self'Strict-Transport-Security: max-age=63072000 X-Content-Type-Options: nosniffX-Frame-Options: SAMEORIGINX-XSS-Protection: 1; mode=block```* Add security headers using only AWS AppSync AWS AppSync currently does not allow to append custom headers to every response. However, custom response headers can be configured individually for every resolver by using response mapping templates.To do this, go to:   - AppSync > {Your App} > SchemaFor every attached resolver :   - Go to the resolver configuration   - In the "Configure the response mapping template" section, add this :```php$util.http.addResponseHeader("Cache-Control", "no-store")$util.http.addResponseHeader("Content-Security-Policy" , "default-src 'self'")$util.http.addResponseHeader("Strict-Transport-Security", "max-age=63072000")$util.http.addResponseHeader("X-Content-Type-Options", "nosniff")$util.http.addResponseHeader("X-Frame-Options", "SAMEORIGIN")$util.http.addResponseHeader("X-XSS-Protection", "1; mode=block") ```You can safely ignore this warning if you did this for every single resolver.However, it may still appear here as GraphQL requests like `query { __typename }` are not associated with a resolver; therefore, you cannot add custom response headers. (Which doesn't matter as such requests cannot leak data as no actual field is queried)[AWS AppSync adds support for custom response headers](https://aws.amazon.com/about-aws/whats-new/2022/02/aws-appsync-support-custom-response-headers/) [HTTP helpers in $util.http](https://docs.aws.amazon.com/appsync/latest/devguide/http-helpers-in-utils-http.html) [Resolver Mapping Template Programming Guide](https://docs.aws.amazon.com/appsync/latest/devguide/resolver-mapping-template-reference-programming-guide.html)
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-You can use a HTTP middleware to add security headers.
-
-For instance, with [srikrsna/security-headers](https://github.com/srikrsna/security-headers):
-
-```go
-import (
-  secure "github.com/srikrsna/security-headers"
-)
-
-h := handler.New(&handler.Config{
-  Schema:   &schema,
-  ...
-})
-
-s := &secure.Secure{
-  STSIncludeSubdomains: true,
-  STSPreload:           true,
-  STSMaxAgeSeconds:     90,
-
-  FrameOption: secure.FrameAllowFrom,
-  FrameOrigin: "https://example.com/",
-
-  ContentTypeNoSniff: true,
-
-  XSSFilterBlock: true,
-
-  HPKPPins: []string{
-  "HBkhsug765gdKHhvdj6jdb7jJh/j+soZS7sWs=",
-  "hjshHSHU68hbdkHhvdkgksgsg+jd/jHJ68HBH=",
-  },
-  HPKPMaxAge:            5184000,
-  HPKPReportURI:         "https://www.example.org/hpkp-report",
-  HPKPIncludeSubdomains: true,
-
-  ExpectCTMaxAge:    5184000,
-  ExpectCTEnforce:   true,
-  ExpectCTReportUri: "https://www.example.org/ct-report",
-
-  ReferrerPolicy: secure.ReferrerStrictOriginWhenCrossOrigin,
-}
-http.Handle("/graphql", s.Middleware()(h))
-
-http.ListenAndServe(":8082", nil)
-```
-
+You can use a HTTP middleware to add security headers.For instance, with [srikrsna/security-headers](https://github.com/srikrsna/security-headers): ```goimport (  secure "github.com/srikrsna/security-headers") h := handler.New(&handler.Config{  Schema:   &schema,  ...})s := &secure.Secure{  STSIncludeSubdomains: true,  STSPreload:           true,  STSMaxAgeSeconds:     90,  FrameOption: secure.FrameAllowFrom,  FrameOrigin: "https://example.com/",  ContentTypeNoSniff: true,  XSSFilterBlock: true,  HPKPPins: []string{  "HBkhsug765gdKHhvdj6jdb7jJh/j+soZS7sWs=",  "hjshHSHU68hbdkHhvdkgksgsg+jd/jHJ68HBH=",  },  HPKPMaxAge:            5184000,  HPKPReportURI:         "https://www.example.org/hpkp-report",  HPKPIncludeSubdomains: true,  ExpectCTMaxAge:    5184000,  ExpectCTEnforce:   true,  ExpectCTReportUri: "https://www.example.org/ct-report",  ReferrerPolicy: secure.ReferrerStrictOriginWhenCrossOrigin,}http.Handle("/graphql", s.Middleware()(h))http.ListenAndServe(":8082", nil)```
 
 </details>
 
 <details>
     <summary>Graphene</summary>
 
-To add Security Headers to **Django**, follow this guide :
-
-[How to Score A+ for Security Headers on Your Django Website](https://adamj.eu/tech/2019/04/10/how-to-score-a+-for-security-headers-on-your-django-website/)
-
-For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatform/flask-talisman)
-
+To add Security Headers to **Django**, follow this guide : [How to Score A+ for Security Headers on Your Django Website](https://adamj.eu/tech/2019/04/10/how-to-score-a+-for-security-headers-on-your-django-website/) For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatform/flask-talisman)
 
 </details>
 
+<details>
+    <summary>Yoga</summary>
+
+For GraphQL Yoga, you can use middleware to set the `X-Frame-Options` header. Here's an example using Express middleware:
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In Ruby on Rails with GraphQL-Ruby, you can set the `X-Frame-Options` header in your controller responses. Add the following line to your GraphQL controller:
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+With Hasura, you can set the `X-Frame-Options` header using environment variables or by configuring the reverse proxy (like Nginx) in front of Hasura. Here's an example for Nginx:
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+In ASP.NET, you can set the `X-Frame-Options` header globally in the `Startup.cs` file. Use the following code snippet in the `Configure` method:
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, you can set the `X-Frame-Options` header by adding the following line to your application's configuration:
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+In Next.js, you can create a custom server or use Next.js middleware to set the `X-Frame-Options` header. Here's an example using middleware:
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, you can set the `X-Frame-Options` header by adding a middleware that sets the header for each response. Here's an example middleware:
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+In Express.js, you can use the `helmet` middleware to set the `X-Frame-Options` header. Add the following line to your application:
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, you can set the `X-Frame-Options` header by using the built-in `XFrameOptionsMiddleware`. Ensure it's added to your `MIDDLEWARE` settings:
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, you can set the `X-Frame-Options` header by creating an event listener for the `kernel.response` event. Here's an example:
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, you can set the `X-Frame-Options` header by configuring the `HttpSecurity` in your security configuration. Here's an example:
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, you can set the `X-Frame-Options` header by using the `after_request` decorator. Here's an example:
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, you can set the `X-Frame-Options` header by using the `render` configuration in `nuxt.config.js`. Here's an example:
+
+</details>
 
 ## Configuration
 
@@ -182,9 +168,10 @@ For **Flask**, use Google's [flask-talisman](https://github.com/GoogleCloudPlatf
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
   - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-  
+  - PCI DSS: **6.5.1**
   - CWE
-  
+    - **16**
+  - WASC: **WASC-15**
   
   
 

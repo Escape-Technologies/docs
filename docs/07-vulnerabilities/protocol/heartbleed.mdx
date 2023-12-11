@@ -18,6 +18,50 @@ To effectively prevent HeartBleed attacks:
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure that your Apollo server is not using the vulnerable version of OpenSSL. Upgrade OpenSSL to version 1.0.1g or later.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Update the Yoga server to use a version of OpenSSL that is not affected by the Heartbleed vulnerability. This typically means upgrading to OpenSSL 1.0.1g or above.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+AWS AppSync is managed by AWS and any underlying SSL/TLS vulnerabilities would be addressed by AWS. Ensure that you are using the latest updates provided by AWS.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+For GraphQL servers using GraphQL-Go, make sure to update the OpenSSL library to a non-vulnerable version, such as 1.0.1g or later.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+If you are using GraphQL-Ruby, ensure that the server hosting the application is not using the vulnerable OpenSSL version. Upgrade to OpenSSL 1.0.1g or newer.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+For Hasura GraphQL engine, ensure that the underlying system's OpenSSL is updated to version 1.0.1g or above to mitigate the Heartbleed vulnerability.
+
+</details>
+
 ## Configuration
 
 > Identifier: `protocol/heartbleed`
@@ -47,7 +91,7 @@ To effectively prevent HeartBleed attacks:
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
   - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-  
+  - PCI DSS: **6.5.6**
   - CWE
     - **118**
     - **119**
@@ -56,12 +100,12 @@ To effectively prevent HeartBleed attacks:
     - **664**
   
   
-  
+  - HIPAA: **SecurityRule-164.312(a)(1)**
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **7.2**
+
+
+
 
 ## References
 

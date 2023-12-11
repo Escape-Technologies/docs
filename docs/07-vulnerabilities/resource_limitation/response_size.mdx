@@ -16,6 +16,78 @@ API should provide pagination or a similar way to limit the size of the response
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Implement response compression and set maximum response size limits to prevent large responses.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Use Rack::Deflater middleware for compression and monitor response sizes to mitigate large responses.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Enable compression in Next.js and set up a custom server to handle response size limits.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Utilize middleware for response compression and set limits on response size in Laravel configurations.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Use compression middleware and limit the size of JSON payloads in Express.js applications.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Configure Django's data upload handlers and use middleware for response compression to manage large responses.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Enable Gzip compression in Symfony and set limits for maximum response size in your controller.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Use Spring Boot's properties to configure response compression and set maximum response size.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Implement Flask response compression and monitor response sizes to ensure they do not exceed a certain threshold.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Configure Nuxt.js server middleware to compress and limit the size of HTTP responses.
+
+</details>
+
 ## Configuration
 
 > Identifier: `resource_limitation/response_size`
@@ -46,7 +118,7 @@ API should provide pagination or a similar way to limit the size of the response
 - Escape Severity: **<span className="low-severity">LOW</span>**
   - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
   
-  
+  - CWE
   
   
   

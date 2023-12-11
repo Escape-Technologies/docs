@@ -6,27 +6,131 @@ title: Sensitive endpoint bruteforce
 
 ## Description
 
-During our security assessment, we identified a vulnerability in the
-rate-limiting mechanism of a public mutation endpoint. Multiple requests to
-this endpoint were made without triggering any rate-limiting defenses. This
-lack of rate limitation exposes the endpoint to brute force attacks, where
-an attacker could try numerous combinations of credentials or inputs to
-gain unauthorized access or disrupt services. Such vulnerabilities are
-critical, especially if the endpoint handles sensitive data or critical
-functions.
+During our security assessment, we identified a vulnerability in the rate-limiting mechanism of a public mutation endpoint. Multiple requests to this endpoint were made without triggering any rate-limiting defenses. This lack of rate limitation exposes the endpoint to brute force attacks, where an attacker could try numerous combinations of credentials or inputs to gain unauthorized access or disrupt services. Such vulnerabilities are critical, especially if the endpoint handles sensitive data or critical functions.
 
 
 ## Remediation
 
-To mitigate this vulnerability, it is crucial to implement an effective
-rate limiting mechanism on the mutation endpoint. This should include
-limiting the number of requests a user can make within a given time frame,
-and escalating restrictions for repeated violations. Consider using tools
-like Redis for efficient rate limiting. Additionally, implement alert
-mechanisms for unusual traffic patterns or repeated failed attempts, which
-can be early indicators of a brute force attack.
+To mitigate this vulnerability, it is crucial to implement an effective rate limiting mechanism on the mutation endpoint. This should include limiting the number of requests a user can make within a given time frame, and escalating restrictions for repeated violations. Consider using tools like Redis for efficient rate limiting. Additionally, implement alert mechanisms for unusual traffic patterns or repeated failed attempts, which can be early indicators of a brute force attack.
 
 
+
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Implement rate limiting in Apollo Server to prevent brute force attacks. Use Apollo Server's built-in support for defining custom directives or integrate with existing rate-limiting libraries.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Incorporate rate limiting in GraphQL Yoga by using middleware that can limit the number of requests a user can make to an endpoint.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Utilize AWS AppSync's built-in features to set up rate limiting. Configure the AWS AppSync API to use API keys or AWS IAM permissions to control and limit access rates.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Implement rate limiting in your GraphQL Go server by using a middleware that can restrict the rate of incoming requests.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL Ruby, use the built-in complexity and depth analysis to mitigate against brute force attacks by limiting the complexity of the queries that can be executed.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Leverage Hasura's support for setting up rate limits on its actions and subscriptions to prevent abuse.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Use ASP.NET's built-in rate limiting features or third-party libraries like AspNetCoreRateLimit to prevent brute force attacks on endpoints.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, use Rack::Attack or similar middleware to throttle requests and protect sensitive endpoints from brute force attacks.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+For Next.js applications, implement rate limiting using middleware or third-party libraries to protect API routes.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Use Laravel's built-in rate limiting features to protect routes by limiting the number of requests that can be made within a certain time frame.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Implement rate limiting in Express.js applications using the express-rate-limit middleware to prevent brute force attacks.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use the django-ratelimit library to apply rate limiting to views and protect against brute force attacks.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Utilize Symfony's rate limiter component to create custom rate limiting policies for your application's endpoints.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, use a combination of HTTP request interceptors and a rate limiting service to protect your endpoints.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+For Flask applications, use Flask-Limiter to add rate limiting capabilities to your endpoints.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, protect your server middleware and API routes by implementing rate limiting with third-party libraries.
+
+</details>
 
 ## Configuration
 
@@ -57,18 +161,18 @@ can be early indicators of a brute force attack.
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
   - OWASP: **[API3:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa3-broken-object-property-level-authorization.md)**
-  
+  - PCI DSS: **6.5.10**
   - CWE
     - **307**
     - **650**
-  
+  - WASC: **WASC-11**
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N**
-- CVSS_SCORE: **5.3**
+
+
+
 
 ## References
 

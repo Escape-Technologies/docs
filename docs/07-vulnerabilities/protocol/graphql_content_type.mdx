@@ -16,6 +16,50 @@ Ensure that the Content-Type header is set to application/json.
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure that your Apollo server is correctly configured to set the Content-Type header to application/json for all responses.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Configure GraphQL Yoga to use the correct Content-Type header by setting it in the context or the response directly.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+AWS AppSync automatically sets the Content-Type to application/json, but if you're using a Lambda resolver, ensure the response includes the correct header.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In the GraphQL Go server, set the Content-Type header before sending the response.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+Ensure that your Ruby GraphQL server sets the Content-Type header to application/json in the response.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Hasura sets the Content-Type header to application/json by default. If it's not, check for middleware that might be altering the response headers.
+
+</details>
+
 ## Configuration
 
 > Identifier: `protocol/graphql_content_type`

@@ -21,6 +21,122 @@ The correct ways to prevent SSRF are:
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+To prevent SSRF in Apollo, validate and sanitize all user inputs, restrict the URLs the server can request, and use a denylist of internal resources that should not be accessible.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+In Yoga, mitigate SSRF by sanitizing user inputs, enforcing URL allowlists, and avoiding the exposure of sensitive internal systems.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+For AWS AppSync, use VTL resolvers to validate input URLs, employ AWS WAF to filter malicious requests, and configure IAM policies to limit the scope of accessible resources.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In GraphQL Go, prevent SSRF by validating URLs against a strict pattern, using an allowlist for allowed domains, and by implementing proper error handling to avoid leaking information about the internal network.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+For GraphQL Ruby, ensure that user-provided URLs are validated against a strict pattern or allowlist, and consider using a proxy server to control outbound requests from the server.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+In Hasura, protect against SSRF by validating all external URLs, using environment variables for internal endpoints, and restricting outbound requests with webhook configurations.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+To prevent SSRF in ASP.NET, validate all URLs and hostname resolutions, use an allowlist for allowed endpoints, and implement network segmentation to protect internal services.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, mitigate SSRF by sanitizing user input, using allowlists for safe URLs, and employing Ruby's built-in URI library to parse and validate URLs before use.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+For Next.js applications, prevent SSRF by validating URLs on the server-side, using a strict allowlist for outbound requests, and avoiding the exposure of sensitive server-side endpoints to the client.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, protect against SSRF by using validation rules for URLs, employing the Guzzle HTTP client with safe defaults, and restricting access to internal network resources.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+To prevent SSRF in Express.js, validate and sanitize input URLs, use a middleware to enforce URL allowlists, and isolate internal services from the public network.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, prevent SSRF by using the built-in validators for URL fields, applying network segmentation, and ensuring that any use of the requests library is done with caution and validation.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+For Symfony applications, use the Symfony HttpClient component with caution, validate all external URLs, and configure firewall rules to restrict access to internal services.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, protect against SSRF by validating URLs with Java's URI class, using allowlists for allowed hosts, and configuring security settings to limit access to internal services.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+To prevent SSRF in Flask, validate URLs using Werkzeug's URL parsing utilities, employ an allowlist for outbound requests, and use Flask-Talisman for setting HTTP security headers.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, mitigate SSRF risks by validating and sanitizing all user inputs, using server-side environment variables for internal URLs, and configuring server middleware for URL allowlisting.
+
+</details>
 
 ## Configuration
 
@@ -56,20 +172,20 @@ The correct ways to prevent SSRF are:
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
   - OWASP: **[API6:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows.md)**
-  
+  - PCI DSS: **6.5.1**
   - CWE
     - **441**
     - **610**
     - **668**
     - **918**
-  
+  - WASC: **WASC-15**
   
   
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **6.2**
+
+
+
 
 ## References
 

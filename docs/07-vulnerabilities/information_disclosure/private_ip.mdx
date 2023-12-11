@@ -17,6 +17,78 @@ This information might be helpful for further attacks targeting internal systems
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+Ensure that any sensitive information, including private IP addresses, is not included in the HTTP response body. Use custom error pages and configure them to prevent leakage of such details.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+Filter out private IP addresses from the response body in your Rails application. Use Rails filters to remove or mask this information before rendering the response.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+Avoid sending private IP addresses in API responses. Use environment variables for sensitive data and ensure that they are not included in the response body.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Sanitize your output to ensure that private IP addresses are not included in the HTTP response. Use middleware to intercept and modify responses if necessary.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+Implement middleware to check and filter out private IP addresses from the response body before sending it to the client.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Ensure that your Django views and templates do not include private IP addresses in the context data passed to them.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Use Symfony's response event listeners to filter out private IP addresses from the response content.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+Configure your Spring Boot application to avoid exposing private IP addresses in the response. Use AOP to intercept responses and sanitize any private IPs.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Use Flask response handlers to remove or mask private IP addresses from the response body before it is sent to the client.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Ensure that your Nuxt.js application does not include private IP addresses in the API responses or the generated HTML.
+
+</details>
+
 ## Configuration
 
 > Identifier: `information_disclosure/private_ip`

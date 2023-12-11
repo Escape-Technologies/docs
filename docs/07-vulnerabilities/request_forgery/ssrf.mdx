@@ -22,6 +22,122 @@ The correct ways to prevent SSRF are:
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+In Apollo, ensure that any user-supplied URLs for fetching resources are validated against a whitelist of allowed domains and paths. Additionally, use network policies to restrict outbound traffic from the server.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+For Yoga, validate all user-supplied URLs against a list of permitted domains and paths. Implement strict network policies to control the server's outbound requests.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+With AWS AppSync, use VTL (Velocity Template Language) to validate and sanitize user input before making any backend requests. Apply AWS WAF rules to restrict outbound server calls to trusted endpoints.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In GraphQL Go, validate user input URLs rigorously before making any external requests. Use middleware to enforce checks on the URLs and prevent SSRF attacks.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+For GraphQL Ruby, sanitize user-supplied URLs by validating them against a predefined list of allowed domains. Use Ruby's network libraries to enforce these restrictions.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+In Hasura, use environment variables to define allowed domains for outbound requests and validate URLs against these. Leverage Hasura's webhook modes to ensure that the server only communicates with trusted services.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+In ASP.NET, validate any user-supplied URLs against a whitelist of allowed domains. Use network security groups or firewall rules to limit outbound requests from the server.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, use ActiveModel validations or custom validation methods to ensure that user-supplied URLs are safe. Employ network-level controls to prevent unauthorized outbound requests.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+For Next.js applications, validate URLs on the server side before making any fetch calls. Use a library like 'validator' to check for URL format and domain.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, leverage validation rules to check user input URLs. Use GuzzleHttp with middleware to enforce domain whitelisting for outbound HTTP requests.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+With Express.js, use middleware to validate and sanitize user-supplied URLs. Restrict the server's network access to trusted domains using a package like 'helmet'.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use forms or serializers to validate user-supplied URLs. Apply Django's URLValidator or create custom validation logic to prevent SSRF.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+For Symfony applications, use the Validator component to ensure that all user-supplied URLs conform to a set of rules. Configure network security to restrict outbound traffic.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, apply validation annotations to your DTOs to check the format of user-supplied URLs. Use Java's networking capabilities to enforce access controls.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+With Flask, validate URLs using WTForms or similar libraries. Implement network security measures to limit the destinations that the server can request.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, ensure server-side validation of URLs using libraries like 'validator'. Configure server middleware to reject requests with disallowed URLs.
+
+</details>
 
 ## Configuration
 
@@ -59,11 +175,11 @@ The correct ways to prevent SSRF are:
     - **668**
     - **918**
   - WASC: **WASC-15**
-  
-  
+  - HDS: **Article-32**
+  - HIPAA: **SecurityRule-164.306(a)(1)**
 
-### CVSS
 
-- CVSS_VECTOR: **CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L**
-- CVSS_SCORE: **7.3**
+
+
+
 
