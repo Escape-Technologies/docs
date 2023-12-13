@@ -201,7 +201,7 @@ In Nuxt.js, use middleware to verify user permissions before rendering pages or 
         "Mutation": [
           ...
         ],
-        "User": [                    <--- Object name
+        "User": [                    docs
           "id"                       # Here, the public user is not supposed to
                                       #  have access to the "id" field of the "User" object
         ]
@@ -246,6 +246,10 @@ In Nuxt.js, use middleware to verify user permissions before rendering pages or 
             {
               "method": "GET",
               "path": "/admin"
+            },
+            {
+              "method": "GET",
+              "path": "/admin/.*"             # Regex are supported
             },
             {
               "method": "PUT",
