@@ -15,7 +15,7 @@ According to the rules provided in the configuration file, the same instance or 
 When accessing the application via GraphQL, we must validate whether or not the user has access to the requested elements from the schema.
 Especially we must implement access control policies **on every path** of the Graph leading considered field or object.
 
-The authorization logic belongs to the business logic layer, and from there it is accessed by GraphQL.
+The authorization logic belongs to the [business logic](https://escape.tech/blog/what-is-business-logic-and-why-its-important/) layer, and from there it is accessed by GraphQL. 
 This way, the application can have a single source of truth for authorization, which can then be used for other access points.
 
 Among the several access control policies we can implement in our application, the two most popular ones are **Role-Based Access Control** (RBAC) and **Attribute-Based Access Control** (ABAC).
