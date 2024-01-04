@@ -28,6 +28,39 @@ The results are sent back to Escape to allow you to see scans results.
 
 Escape's Repeater Agent is available as a Docker image. You can deploy it on any server that can reach your internal applications. The agent's code can also be found on [Github](https://github.com/Escape-Technologies/repeater).
 
+As it is a Docker image, you can deploy it using docker cli, docker compose or any other container orchestration tool. In this tutorial, we will use docker cli but for production setup, we recommend you to use a container orchestration tool like docker compose.
+
+You now need to run the repeater with the following environment variables:
+
+- `ESCAPE_REPEATER_ID`: Your repeater id.
+
+```bash
+docker run -it --rm --name escape-repeater \
+    -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+    escapetech/repeater:latest
+```
+
+You can find in the example folder more deployment examples.
+Feel free to contribute and add your own.
+
+If you need to add a custom ca certificate, you can mount it in the container:
+
+```bash
+docker run -it --rm --name escape-repeater \
+    -v /path/to/ca.crt:/usr/local/share/ca-certificates/ca.crt \
+    -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+    escapetech/repeater:latest
+```
+
+If you want to allow insecure connections, you can set the `ESCAPE_REPEATER_INSECURE` environment variable to `true`:
+
+```bash
+docker run -it --rm --name escape-repeater \
+    -e ESCAPE_REPEATER_INSECURE=true \
+    -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+    escapetech/repeater:latest
+```
+
 ### Configure your firewall
 
 Make sure the following **outgoing** connections are allowed by your network configuration:
