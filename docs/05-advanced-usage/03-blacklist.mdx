@@ -49,6 +49,20 @@ The `blacklist` parameter in REST is a list of path and methods used to identify
 }
 ```
 
+You can also blacklist some routes using regexes on the path. If we found a [fullmatch](https://docs.python.org/3/library/re.html#re.fullmatch) between the path and the regex, the route will be blacklisted.
+
+```json
+{
+    "scan": {
+        "blacklist": {
+            "routes": [
+                {"path": "/user/.*", "method": "POST"},
+            ],
+        }
+    }
+}
+```
+
 ## Whitelist ✅
 
 By employing a whitelist, you instruct Escape to focus its exploration phase solely on the specified operations. This can make the scan process faster, as Escape narrows its evaluation to just these queries.
