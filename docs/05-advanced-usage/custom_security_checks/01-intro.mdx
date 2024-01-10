@@ -11,3 +11,42 @@ This enables specific business logic tests, or broader company policies to be va
 ## Overview
 
 ![Escape Custom Security Checks](./img/sc_diagram.svg)
+
+Here's an overview of how Escape can help you narrow down your target, your fuzzing and your alerting.
+
+In a YAML format, you can define a Security Check that defines one or several Matchers.
+
+These matchers can then contain 3 types of Action blocks:
+
+- `match`
+- `fuzz`
+- `alert`
+- `request`
+
+We will enter in more details for each of these action blocks, but here is the general structure of a custom security check, with a simple example check HTTP response codes.
+
+
+```yaml
+custom_checks:
+  - name: 'http_resp_codes'
+    matchers:
+      - match:
+          - or: # if resp codes are between 0-199 OR 600-999
+              - response_code:
+                gt: 0
+                lt: 199
+              - response_code:
+                gt: 600
+                lt: 999
+        alert: # then we raise an alert
+          name: Bad HTTP code
+          title_on_pass: HTTP codes OK
+          title_on_fail: Bad HTTP codes detected
+          context: |
+            ....
+          description: |
+            ...
+          remediation: |
+            ...
+        severity: INFO
+```
