@@ -21,7 +21,7 @@ Disable or limit queries batching in your GraphQL engine.
 <details>
     <summary>Apollo</summary>
 
-Disable query batching in `ApolloServer` constructor options. Install our open source package [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) for Apollo.Otherwise, you can switch off batching in the `ApolloServer` constructor options.```javascriptconst server = new ApolloServer({  ...  allowBatchedHttpRequests: false,)}```Source: <https://www.apollographql.com/docs/apollo-server/requests/#batching>
+Disable query batching in `ApolloServer` constructor options. Install our open source package [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) for Apollo.Otherwise, you can switch off batching in the `ApolloServer` constructor options.
 
 </details>
 
@@ -29,6 +29,34 @@ Disable query batching in `ApolloServer` constructor options. Install our open s
     <summary>Yoga</summary>
 
 Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Yoga.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+On AWSAppSync, batching is not supported.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+On GraphQL Go, batching is not supported.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+On GraphQL Ruby, batch limit is supported and enabled by default.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+On Hashura, batching is not supported.
 
 </details>
 
@@ -65,22 +93,29 @@ Install our open source package [GraphQL Armor](https://escape.tech/graphql-armo
 ## Score
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
-  - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-  - PCI DSS: **6.5.8**
-  - CWE
-    - **20**
-    - **400**
-    - **664**
-    - **770**
-    - **799**
-  - WASC: **WASC-10**
-  
-  
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.8**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-2**
+
+### Classification
 
 
 
 
 
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:H/RL:O/RC:R**
+- CVSS_SCORE: **4.9**
 
 ## References
 

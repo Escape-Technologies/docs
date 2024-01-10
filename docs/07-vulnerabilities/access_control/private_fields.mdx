@@ -8,21 +8,12 @@ title: Private fields
 
 According to the rules provided in the configuration file, `objects` and `object fields` can be accessed by unauthorized users.
 
-
 ## Remediation
 
-When accessing the application through GraphQL, it is important to validate whether or not the user is given access to the requested elements from the schema.
-Access control policies must therefore be implemented **on every path** of the Graph leading to the given field or object.
-
-The authorization logic belongs to the business logic layer, and from there it is accessed by GraphQL.
-This way, the application can have a single source of truth for authorization, which can then be used for other access points.
-
-Among the several access control policies that can be implemented in an application, the two most popular ones are **Role-Based Access Control** (RBAC) and **Attribute-Based Access Control** (ABAC).
-  - With **Role-Based Access Control**, permissions are granted based on roles which are later assigned to the users. For instance, WordPress has an `administrator` role with access to all resources, and the `editor`, `author`, `contributor`, and `subscriber` roles which each restrict permissions in various degrees, such as being able to create and publish a blog post, just create it, or simply read it.
-  - With **Attribute-Based Access Control**, permissions are granted based on metadata that can be assigned to different entities including users, assets, or environment conditions (the time of the day or the visitor's IP address for example). In the WordPress example, the capability `edit_others_posts` is used to validate whether or not the user can edit other users' posts.
-
-For most use cases, ABAC is preferable to RBAC as it allows for finely tuned permissions with explicit goals.
-
+When accessing the application through GraphQL, it is important to validate whether or not the user is given access to the requested elements from the schema.   Access control policies must therefore be implemented **on every path** of the Graph leading to the given field or object.
+ The authorization logic belongs to the business logic layer, and from there it is accessed by GraphQL.   This way, the application can have a single source of truth for authorization, which can then be used for other access points.
+  Among the several access control policies that can be implemented in an application, the two most popular ones are **Role-Based Access Control** (RBAC) and **Attribute-Based Access Control** (ABAC).   - With **Role-Based Access Control**, permissions are granted based on roles which are later assigned to the users. For instance, WordPress has an `administrator` role with access to all resources, and the `editor`, `author`, `contributor`, and `subscriber` roles which each restrict permissions in various degrees, such as being able to create and publish a blog post, just create it, or simply read it.   - With **Attribute-Based Access Control**, permissions are granted based on metadata that can be assigned to different entities including users, assets, or environment conditions (the time of the day or the visitor's IP address for example). In the WordPress example, the capability `edit_others_posts` is used to validate whether or not the user can edit other users' posts.
+ For most use cases, ABAC is preferable to RBAC as it allows for finely tuned permissions with explicit goals. 
 
 
 ### GraphQL Specific
@@ -44,7 +35,7 @@ In GraphQL Yoga, you can implement access control by using middleware or by chec
 <details>
     <summary>Awsappsync</summary>
 
-Appsync provides several methods for protecting critical information. -To learn how to implement fine-grained access control, head over to https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#fine-grained-access-control.
+Appsync provides several methods for protecting critical information. To learn how to implement fine-grained access control, head over to https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#fine-grained-access-control.
 
 </details>
 
@@ -75,70 +66,70 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
 <details>
     <summary>Asp.net</summary>
 
-Use ASP.NET Core's built-in authorization features, such as the [Authorize] attribute, to protect your endpoints.
+In ASP.NET, use the built-in authorization attributes to protect your endpoints.
 
 </details>
 
 <details>
     <summary>Ruby on rails</summary>
 
-Leverage Rails' `before_action` filters and gems like CanCanCan for controller-level access control.
+In Ruby on Rails, leverage `before_action` filters and gems like Pundit for access control.
 
 </details>
 
 <details>
     <summary>Next.js</summary>
 
-In Next.js API routes, implement access control checks within each route handler or use middleware.
+In Next.js, protect your API routes by checking the user's authentication and authorization status.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Utilize Laravel's middleware, gates, and policies to enforce access control on your routes.
+In Laravel, use middleware to enforce access control on routes.
 
 </details>
 
 <details>
     <summary>Express.js</summary>
 
-In Express.js, use middleware functions to check user permissions before processing requests.
+In Express.js, use middleware functions to check user permissions before processing a request.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Apply Django's permission classes and decorators to your views to manage access control.
+In Django, use the `@permission_required` decorator or custom decorators to secure your views.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Use Symfony's security voters and annotations to protect your controller actions.
+In Symfony, use Voters or the `@Security` annotation to check permissions.
 
 </details>
 
 <details>
     <summary>Spring boot</summary>
 
-Implement method security with Spring Security annotations like @PreAuthorize to secure your endpoints.
+In Spring Boot, secure your endpoints using Spring Security annotations.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use decorators to enforce access control on your view functions.
+In Flask, use decorators to protect views with login and role checks.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, use middleware to verify user permissions before rendering pages or processing API requests.
+In Nuxt.js, use middleware to verify user authentication and authorization before rendering a page or processing an API request.
 
 </details>
 
@@ -201,7 +192,7 @@ In Nuxt.js, use middleware to verify user permissions before rendering pages or 
         "Mutation": [
           ...
         ],
-        "User": [                    <--- Object name
+        "User": [                    docs
           "id"                       # Here, the public user is not supposed to
                                       #  have access to the "id" field of the "User" object
         ]
@@ -383,24 +374,29 @@ In Nuxt.js, use middleware to verify user permissions before rendering pages or 
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-  - OWASP: **[API1:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
-  - PCI DSS: **6.5.8**
-  - CWE
-    - **200**
-    - **201**
-    - **284**
-    - **668**
-    - **1198**
-    - **1212**
-    - **1220**
-  - WASC: **WASC-22**
-  
-  
+
+### Compliance
+
+- OWASP: **[API1:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
+- pci: **6.5.8**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article-95**
+- iso27001: **A.18.1**
+- nist: **SP800-53-4**
+- fedramp: **AC-6**
+
+### Classification
 
 
 
 
 
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:H/RL:O/RC:C**
+- CVSS_SCORE: **5.1**
 
 ## References
 

@@ -30,7 +30,7 @@ Reject requests containing more than a certain number of characters. For instanc
 </details>
 
 <details>
-    <summary>Graphqlyoga</summary>
+    <summary>Yoga</summary>
 
 Reject requests containing more than a certain number of characters. For instance, `15000` is a coherent threshold for characters.Install our open source package [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) for Yoga.Otherwise, you can use the standalone [envelop plugin](https://www.npmjs.com/package/@escape.tech/graphql-armor-character-limit) directly.
 
@@ -39,28 +39,28 @@ Reject requests containing more than a certain number of characters. For instanc
 <details>
     <summary>Awsappsync</summary>
 
-Add ACL rule to prevent requests bigger than a threshold. (e.g., 3000 characters)This would be entered into the Rule JSON editor when creating a web ACL in the AWS WAF Console :```json{  "Name": "BodySizeRule",  "Priority": 1,  "RuleAction": {    "Block": {}  },  "Statement": {    "SizeConstraintStatement": {      "ComparisonOperator": "GE",      "FieldToMatch": {        "Body": {}      },      "Size": 3000,      "TextTransformations": [        {          "Priority": 0,          "Type": "NONE"        }      ]    }  },  "VisibilityConfig": {    "CloudWatchMetricsEnabled": true,    "MetricName": "BodySizeRule",    "SampledRequestsEnabled": true  }}```Don't forget to associate the previously created ACL rule with your AppSync API.For more information refer to :[AWS AppSync - Developer Guide](https://docs.aws.amazon.com/appsync/latest/devguide/what-is-appsync.html) [Integrate an AppSync API with AWS WAF](https://docs.aws.amazon.com/appsync/latest/devguide/WAF-Integration.html) [AWS Web Application Firewall](https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html)
+Add ACL rule to prevent requests bigger than a threshold. (e.g., 3000 characters)This would be entered into the Rule JSON editor when creating a web ACL in the AWS WAF Console.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-You can limit query size with a net/http middlware.```go func limitBodySize(next http.Handler, limit int64) http.Handler {  return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {    limitedBody := http.MaxBytesReader(w, r.Body, limit)    bodyBytes, err := ioutil.ReadAll(limitedBody)    limitedBody.Close()    if err != nil {      message := "{\"errors\":[{\"message\":\"Request too large.\"}],\"data\":null}"      w.Write([]byte(message))    } else {      r.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))      next.ServeHTTP(w, r)    }  })}func main(){  ...  h := handler.New(&handler.Config{    Schema:   &schema  })  http.Handle("/graphql", limitBodySize(h, 3000))}```
+You can limit query size with a net/http middleware in Go.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In Ruby on Rails, you can create a middleware to reject oversized requests for GraphQL endpoints.```ruby# app/middlewares/graphql_query_limit.rb class GraphqlQueryLimit  def initialize(app, max_length: 15000)    @app = app    @max_length = max_length  end  def call(env)    if env['PATH_INFO'] == '/graphql' && env['CONTENT_LENGTH'].to_i > @max_length      return [413, { 'Content-Type' => 'application/json' }, [{ errors: [{ message: 'Query is too large.' }] }.to_json]]    end    @app.call(env)  endend# config/application.rb module YourApplication  class Application < Rails::Application    # Add the middleware to the stack    config.middleware.use GraphqlQueryLimit  endend```This middleware checks the content length of incoming requests to the `/graphql` endpoint and rejects those that exceed the maximum allowed size.
+In Ruby on Rails, you can create a middleware to reject oversized requests for GraphQL endpoints.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-To prevent oversized requests in Hasura, you can set up a custom limit for the maximum size of a request body.```yaml# docker-compose.yml version: '3.6'services:  hasura:    image: hasura/graphql-engine:v1.3.3    ports:    - "8080:8080"    environment:      HASURA_GRAPHQL_MAX_REQUEST_SIZE: '15000' # Set the maximum request size in bytes```This configuration will limit the request body size to 15000 bytes, rejecting any request that exceeds this size.
+To prevent oversized requests in Hasura, you can set up a custom limit for the maximum size of a request body.
 
 </details>
 
@@ -97,21 +97,29 @@ To prevent oversized requests in Hasura, you can set up a custom limit for the m
 ## Score
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
-  - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-  - PCI DSS: **6.5.8**
-  - CWE
-    - **20**
-    - **400**
-    - **664**
-    - **770**
-  - WASC: **WASC-10**
-  
-  
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.8**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-4**
+
+### Classification
 
 
 
 
 
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:H/RL:O/RC:R**
+- CVSS_SCORE: **4.9**
 
 ## References
 

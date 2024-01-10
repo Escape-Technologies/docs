@@ -61,13 +61,6 @@ In GraphQL Ruby, use the built-in validation rules and avoid string interpolatio
 
 </details>
 
-<details>
-    <summary>Hasura</summary>
-
-With Hasura, restrict direct SQL access and use Hasura's permission system to control data access. Always validate user inputs on the client and server side.
-
-</details>
-
 
 ### REST Specific
 
@@ -137,7 +130,7 @@ In Flask, use SQLAlchemy ORM or raw SQL with parameterized queries to protect ag
 <details>
     <summary>Nuxt</summary>
 
-For Nuxt.js with server-side rendering, use parameterized queries or ORM libraries to interact with databases. Validate and sanitize user inputs on both client and server sides.
+In Nuxt.js, use server-side validation and ORM libraries to interact with databases safely. Avoid concatenating SQL queries with user inputs and use parameterized queries.
 
 </details>
 
@@ -174,20 +167,29 @@ For Nuxt.js with server-side rendering, use parameterized queries or ORM librari
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-  - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
-  - PCI DSS: **6.5.1**
-  - CWE
-    - **89**
-    - **564**
-    - **943**
-  - WASC: **WASC-19**
-  
-  
+
+### Compliance
+
+- OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-7**
+
+### Classification
 
 
 
 
 
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N/E:H/RL:O/RC:C**
+- CVSS_SCORE: **8.7**
 
 ## References
 

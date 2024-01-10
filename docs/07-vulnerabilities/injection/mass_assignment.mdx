@@ -1,0 +1,142 @@
+---
+title: Mass Assignment
+---
+
+# Mass Assignment
+
+## Description
+
+We sent a payload with extra properties relating to RBAC and they were accepted.
+This means that the object was not properly sanitized and special properties can be forced into the object.
+
+
+## Remediation
+
+You must validate all objects and all their properties, even when not documented in the API.
+
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+In ASP.NET, use view models with only the properties you want to update and validate the model state before processing it.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, use strong parameters to whitelist attributes that can be mass-assigned.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+In Next.js, ensure that API routes validate the incoming data and only process the expected fields.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, use the $fillable or $guarded properties in your model to define which attributes are mass-assignable.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+In Express.js, use middleware to validate and sanitize the request body before processing it.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use forms or serializers to explicitly define and validate the fields that should be accepted from the request.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, use form classes to define the allowed fields and validate the data before processing it.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, use DTOs (Data Transfer Objects) to define the fields that should be bound from the request body and validate them using annotations.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, use request parsing libraries like Marshmallow to define schemas and validate the incoming data.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, ensure that API endpoints validate the incoming data and only process the expected fields.
+
+</details>
+
+## Configuration
+
+> Identifier: `injection/mass_assignment`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "injection/mass_assignment": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API1:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
+- pci: **6.5.10**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article-95**
+- iso27001: **A.18.1.3**
+- nist: **SP800-53-AC-6**
+- fedramp: **AC-6**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:N**
+- CVSS_SCORE: **9.3**
+

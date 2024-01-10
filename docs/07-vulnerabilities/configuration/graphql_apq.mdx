@@ -31,16 +31,16 @@ Enable Automatic Persisted queries.For a complete guide on how to do so, see [Ap
 </details>
 
 <details>
-    <summary>Graphqlruby</summary>
+    <summary>Yoga</summary>
 
-Add graphql-persisted_queries to your Gemfile `gem 'graphql-persisted_queries'` and add the plugin to your schema class:```rubyclass GraphqlSchema < GraphQL::Schema  use GraphQL::PersistedQueriesend```Pass the `:extensions` argument as part of a context to all calls of `GraphqlSchema#execute`,usually it happens in `GraphqlController`, `GraphqlChannel` and tests:```rubyGraphqlSchema.execute(  params[:query],  variables: ensure_hash(params[:variables]),  context: {    extensions: ensure_hash(params[:extensions])  },  operation_name: params[:operationName])```Source: [https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries](https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries).
+To enable Automatic Persisted Queries in GraphQL Yoga, you can use the `useAutomaticPersistedQueries` plugin from the `@envelop/automatic-persisted-queries` package.
 
 </details>
 
 <details>
-    <summary>Yoga</summary>
+    <summary>Graphqlruby</summary>
 
-To enable Automatic Persisted Queries in GraphQL Yoga, you can use the `useAutomaticPersistedQueries` plugin from the `@envelop/automatic-persisted-queries` package.First, install the package:```bashnpm install @envelop/automatic-persisted-queries ```Then, add the plugin to your Yoga server configuration:```javascript import { createServer } from '@graphql-yoga/node'import { useAutomaticPersistedQueries } from '@envelop/automatic-persisted-queries'const server = createServer({  plugins: [    useAutomaticPersistedQueries(),    // ... other plugins  ],})```This will enable APQ for your GraphQL Yoga server.
+Add graphql-persisted_queries to your Gemfile `gem 'graphql-persisted_queries'` and add the plugin to your schema class:```ruby class GraphqlSchema < GraphQL::Schema use GraphQL::PersistedQueries end ``` Pass the `:extensions` argument as part of a context to all calls of `GraphqlSchema#execute`,usually it happens in `GraphqlController`, `GraphqlChannel` and tests:```ruby GraphqlSchema.execute( params[:query],   variables: ensure_hash(params[:variables]), context: {  extensions: ensure_hash(params[:extensions]) }, operation_name: params[:operationName])```Source: [https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries](https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries).
 
 </details>
 
@@ -72,20 +72,29 @@ To enable Automatic Persisted Queries in GraphQL Yoga, you can use the `useAutom
 ## Score
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
-  - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-  - PCI DSS: **6.5.8**
-  - CWE
-    - **284**
-    - **307**
-    - **799**
-  - WASC: **WASC-10**
-  
-  
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.8**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+
+- iso27001: **A.12.6**
+- nist: **SP800-53**
+- fedramp: **AC-2**
+
+### Classification
 
 
 
 
 
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:F/RL:O/RC:C**
+- CVSS_SCORE: **4.9**
 
 ## References
 

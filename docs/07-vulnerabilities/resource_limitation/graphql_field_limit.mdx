@@ -22,7 +22,7 @@ Limit query complexity by using a library specific to your engine.
 <details>
     <summary>Apollo</summary>
 
-Add a module to compute query complexity and set a threshold so that overly broad requests get canceled.For a user-friendly module which requires no schema modification whatsoever, check out the [graphql-validation-complexity](https://github.com/4Catalyzer/graphql-validation-complexity) module.```javascriptimport { createComplexityLimitRule } from 'graphql-validation-complexity'; const ComplexityLimitRule = createComplexityLimitRule(1000);const apolloServer = new ApolloServer({    ...    validationRules: [ComplexityLimitRule], });```For a more customizable module that lets you manually configure the cost of each field/type of your schema, take a look at the [graphql-cost-analysis](https://github.com/pa-bru/graphql-cost-analysis) module.This second option is best suited for a more realistic complexity estimator as all fields may not be equal in terms of complexity.To learn more about complexity estimation, you can read: [Securing Your GraphQL API from Malicious Queries](https://www.apollographql.com/blog/graphql/security/securing-your-graphql-api-from-malicious-queries/). Source: <https://escape.tech/blog/9-graphql-security-best-practices/>.
+Add a module to compute query complexity and set a threshold so that overly broad requests get canceled.For a user-friendly module which requires no schema modification whatsoever, check out the [graphql-validation-complexity](https://github.com/4Catalyzer/graphql-validation-complexity) module.
 
 </details>
 
@@ -64,14 +64,14 @@ Limit the number of fetched fields with Response Limiting.To learn how to implem
 <details>
     <summary>Graphqlphp</summary>
 
-```phpuse GraphQL\GraphQL;use GraphQL\Validator\Rules\ QueryComplexity;use GraphQL\Validator\DocumentValidator;$rule = new QueryComplexity($maxQueryComplexity = 100);DocumentValidator::addRule($rule); GraphQL::executeQuery(/*...*/);```Source: <https://github.com/webonyx/graphql-php/blob/master/docs/security.md#query-complexity-analysis>
+Use the `graphql-php` library's QueryComplexity rule to analyze and limit the complexity of incoming queries.
 
 </details>
 
 <details>
     <summary>Graphene</summary>
 
-With `graphene-django`, it is possible to implement a custom GraphQL backend to limit query complexity, such as this one:[graphene-django query cost analysis / complexity limits](https://gist.github.com/thibaudlabat/7b86f1a4da34eccfbfa524ca7359e87c).
+With `graphene-django`, implement a custom GraphQL backend to limit query complexity using query cost analysis or complexity limits.
 
 </details>
 
@@ -108,21 +108,29 @@ With `graphene-django`, it is possible to implement a custom GraphQL backend to 
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-  - OWASP: **[API4:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)**
-  - PCI DSS: **6.5.8**
-  - CWE
-    - **20**
-    - **400**
-    - **664**
-    - **770**
-  - WASC: **WASC-10**
-  
-  
+
+### Compliance
+
+- OWASP: **[API4:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)**
+- pci: **6.5.8**
+- gdpr: **Article-32**
+
+
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-6**
+
+### Classification
 
 
 
 
 
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:H/RL:O/RC:C**
+- CVSS_SCORE: **5.1**
 
 ## References
 
