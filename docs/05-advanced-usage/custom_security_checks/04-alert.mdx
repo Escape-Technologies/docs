@@ -1,0 +1,68 @@
+---
+title: Alert
+---
+
+# Alerting
+
+Once you've matched/targeted, then fuzzed, then matched again maybe, or directly matched, you can create Alerts !
+
+Taking a few workflow examples:
+
+- Listen for some request/responses and match, then alert ?
+  - Useful for detecting suspicious data, bad practices
+- Listen for specific scalars in requests or responses, and fuzz them, then, match the fuzzed responses and match the side-effects (using `sent_by_this_check: true`)
+  - This is a nice simple way to implement 2 step checks, observe, fuzz, observe response and alert
+ 
+
+## Alert block
+
+The Alert block is a powerful an crucial part of Custom Security Checks, and here's how it looks.
+
+```yaml
+alert:
+  name: Escape Emails
+  vul_ref_id: escape_emails
+  title_on_pass: Email check is compliant
+  title_on_fail: Only escape emails are allowed
+  context: |
+    On our production environment, only escape emails are allowed.
+    We have observed that the request at path {{metadata.path}} was accepting an email with a domain other than escape.tech
+  description: |
+    The description information can be hard-coded here or loaded via the reference id
+  remediation: |
+    The remediation information can be hard-coded here or loaded via the reference id
+  severity: HIGH
+```
+
+## Remediation and Description information
+
+Coming soon, you will be able to define your own Vulnerabilities in your account, in the form of YAML files with our editor, to detail some common findings and remediation information that you can reuse in alerts.
+
+With the example above, you can fill out specific details about the exchange that triggered the alert with template strings `{{}}`, but also simply add already written information.
+
+```yaml
+id: escape_emails
+type: Company_Policy
+meta:
+  name: Escape Emails
+  category: REMEDIATION_CATEGORY_INJECTION
+  description: ""
+  references:
+    - https://escape.tech/blog/
+  default_severity: 3
+compliance:
+  owasp: API10:2023
+  pci: 6.5.8
+  gdpr: Article-32
+  iso27001: A.14.2
+  nist: SP800-53
+  fedramp: AC-6
+score:
+  cvss_vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:H/RL:O/RC:C
+  cvss_score: 7.2
+classification:
+  cwe:
+    - '22'
+  wasc: WASC-33
+  mitre_attack: T1190
+```
