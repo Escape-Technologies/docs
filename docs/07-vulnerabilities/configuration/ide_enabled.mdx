@@ -21,7 +21,7 @@ Head over to your specific engine documentation to know how to do it.
 <details>
     <summary>Apollo</summary>
 
-GraphQL Playground is deprecated and disabled by default since Apollo v3.If you installed it voluntarily with the corresponding plugin, you should consider disabling it to improve security.If you still use Apollo v2, you can disable GraphQL Playground by either:* Setting the environment variable `NODE_ENV` to `production`* Explicitly disabling it:  ```javascript  const server = new ApolloServer({    // ...    playground: false,  });  ```Source:* [Apollo v2 Documentation](https://www.apollographql.com/docs/apollo-server/v2/testing/graphql-playground/) * [Apollo v3 Documentation](https://www.apollographql.com/docs/apollo-server/testing/build-run-queries/#graphql-playground)
+GraphQL Playground is deprecated and disabled by default since Apollo v3. If you installed it voluntarily with the corresponding plugin, you should consider disabling it to improve security. If you still use Apollo v2, you can disable GraphQL Playground by either: * Setting the environment variable `NODE_ENV` to `production` * Explicitly disabling it:  ```javascript  const server = new ApolloServer({    // ...    playground: false,  });  ```Source: * [Apollo v2 Documentation](https://www.apollographql.com/docs/apollo-server/v2/testing/graphql-playground/) * [Apollo v3 Documentation](https://www.apollographql.com/docs/apollo-server/testing/build-run-queries/#graphql-playground)
 
 </details>
 
@@ -88,19 +88,27 @@ For Hasura, ensure that the console is not enabled in production. You can disabl
 ## Score
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
-  - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-  - PCI DSS: **6.5.1**
-  - CWE
-    - **200**
-    - **489**
-    - **668**
-    - **1295**
-  
-  
-  
+
+### Compliance
+
+- OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-6**
+
+### Classification
 
 
 
 
 
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:P/RL:O/RC:C**
+- CVSS_SCORE: **4.8**
 

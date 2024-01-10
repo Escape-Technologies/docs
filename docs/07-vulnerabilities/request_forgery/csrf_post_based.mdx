@@ -24,7 +24,7 @@ Only allow requests with the `Content-Type` header set to `application/json`.
 <details>
     <summary>Apollo</summary>
 
-Only allow requests with the `Content-Type` header set to `application/json`. With Express.js, the `enforce-content-type` middleware can be used to block unwanted content types.```javascript const enforceContentType = require('enforce-content-type') app.use(enforceContentType({     type: 'application/json' })) ``` See: [enforce-content-type GitHub Repo](https://github.com/codepunkt/enforce-content-type).
+Only allow requests with the `Content-Type` header set to `application/json`. With Express.js, the `enforce-content-type` middleware can be used to block unwanted content types.
 
 </details>
 
@@ -91,21 +91,29 @@ Configure Hasura GraphQL engine to only allow `application/json` content type fo
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-  - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
-  - PCI DSS: **6.5.9**
-  - CWE
-    - **345**
-    - **346**
-    - **352**
-    - **693**
-  - WASC: **WASC-09**
-  
-  
+
+### Compliance
+
+- OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
+- pci: **6.5.9**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-6**
+
+### Classification
 
 
 
 
 
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:P/RL:O/RC:R**
+- CVSS_SCORE: **4.6**
 
 ## References
 

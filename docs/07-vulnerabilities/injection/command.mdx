@@ -69,70 +69,70 @@ With Hasura, avoid using raw SQL or system commands that could be injected with 
 <details>
     <summary>Asp.net</summary>
 
-For ASP.NET, use parameterized queries or stored procedures to handle user input and avoid directly executing any system commands. Validate all inputs using built-in data annotation validators.
+In ASP.NET, prevent command injection by using parameterized queries or ORM methods instead of concatenating strings to build SQL commands. Always validate and sanitize user inputs.
 
 </details>
 
 <details>
     <summary>Ruby on rails</summary>
 
-In Ruby on Rails, use Active Record methods for database interactions and avoid using system calls with user input. Validate user input with strong parameters.
+In Ruby on Rails, use Active Record methods for database interactions to avoid SQL injection. Validate and sanitize user inputs before using them in system commands.
 
 </details>
 
 <details>
     <summary>Next.js</summary>
 
-For Next.js, avoid using APIs that can execute system commands with user input. Validate and sanitize all inputs on the server side before using them.
+In Next.js, avoid using exec or spawn with user inputs for system commands. Use parameterized APIs and validate all inputs to prevent command injection.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use Eloquent ORM or query builder for database interactions and avoid exec or system PHP functions with user input. Validate inputs with Laravel's validation rules.
+In Laravel, use Eloquent ORM or the query builder with parameter binding to prevent SQL injection. Do not pass user input directly to system commands.
 
 </details>
 
 <details>
     <summary>Express.js</summary>
 
-For Express.js, use middleware to validate and sanitize user input. Avoid using child_process or other modules that can execute system commands with user input.
+In Express.js, use middleware like helmet to protect against common vulnerabilities. Validate and sanitize user inputs before using them in system commands.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the ORM for database interactions and avoid using Python's subprocess or os.system with user input. Validate inputs using Django forms or serializers.
+In Django, use the ORM to interact with the database and avoid raw SQL queries. Validate and sanitize user inputs before using them in system commands.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-For Symfony, use Doctrine ORM for database interactions and avoid using the Process component with user input. Validate inputs with Symfony's validation constraints.
+In Symfony, use Doctrine's parameterized queries to prevent SQL injection. Always validate and sanitize user inputs before using them in system commands.
 
 </details>
 
 <details>
     <summary>Spring boot</summary>
 
-In Spring Boot, use JPA or JDBC templates for database interactions and avoid using Runtime.exec or ProcessBuilder with user input. Validate inputs using Spring's validation framework.
+In Spring Boot, use JPA repositories or JDBC templates with named parameters to prevent SQL injection. Validate and sanitize user inputs before using them in system commands.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-For Flask, use SQLAlchemy or a similar ORM for database interactions and avoid using Python's subprocess or os.system with user input. Validate inputs using WTForms or similar libraries.
+In Flask, use SQLAlchemy ORM or raw SQL with placeholders to prevent SQL injection. Validate and sanitize user inputs before using them in system commands.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, validate and sanitize user input on the server side before using it. Avoid using any server-side functionality that can execute system commands with user input.
+In Nuxt.js, avoid using user inputs directly in system commands. Use context-bound parameters and validate all inputs to prevent command injection.
 
 </details>
 
@@ -169,20 +169,29 @@ In Nuxt.js, validate and sanitize user input on the server side before using it.
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-  - OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
-  - PCI DSS: **6.5.1**
-  - CWE
-    - **77**
-    - **78**
-    - **88**
-  - WASC: **WASC-31**
-  
-  
+
+### Compliance
+
+- OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-6**
+
+### Classification
 
 
 
 
 
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N/E:F/RC:R**
+- CVSS_SCORE: **8.5**
 
 ## References
 

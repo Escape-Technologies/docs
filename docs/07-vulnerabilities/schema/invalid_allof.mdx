@@ -1,0 +1,71 @@
+---
+title: Invalid condition in allOf
+---
+
+# Invalid condition in allOf
+
+## Description
+
+Your current allOf condition does not allow any value to be valid.
+
+## Remediation
+
+Update your condition to allow at least one value to be valid. You can use anyOf if you want to allow multiple values to be valid.
+
+
+## Configuration
+
+> Identifier: `schema/invalid_allof`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "schema/invalid_allof": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+
+### Compliance
+
+- OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AR-1**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N**
+
+
+## References
+
+- [https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/](https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/)
+  

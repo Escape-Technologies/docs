@@ -1,0 +1,71 @@
+---
+title: Software Component Leak
+---
+
+# Software Component Leak
+
+## Description
+
+The web/application server is leaking tech stack information.
+
+Access to such information may facilitate attackers identifying vulnerabilities to exploit.
+
+
+## Remediation
+
+Filter out the data that is being returned from the server.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/software_component_leak`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "information_disclosure/software_component_leak": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.10**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article-95**
+- iso27001: **A.18.1.3**
+- nist: **SP800-53**
+- fedramp: **AC-6**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

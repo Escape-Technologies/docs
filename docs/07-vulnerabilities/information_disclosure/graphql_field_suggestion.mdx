@@ -6,13 +6,7 @@ title: Field suggestion
 
 ## Description
 
-If introspection is disabled on your target, **Field Suggestion** still allow users infer the entire schema, with a tool like [Clairvoyance](https://github.com/nikitastupin/clairvoyance).
-
-If you query a field with a typo, GraphQL will attempt to suggest fields close to what was requested. Example:
-```
-  Error: Cannot query field "createSesion" on type "RootMutation". Did you mean "createSession", "createUser", "createFile", or "createImage"?
-```
-
+If introspection is disabled on your target, **Field Suggestion** still allow users infer the entire schema, with a tool like [Clairvoyance](https://github.com/nikitastupin/clairvoyance). If you query a field with a typo, GraphQL will attempt to suggest fields close to what was requested. Example: ``` Error: Cannot query field "createSesion" on type "RootMutation". Did you mean "createSession", "createUser", "createFile", or "createImage"? ``` 
 
 ## Remediation
 
@@ -32,14 +26,35 @@ Install our open source package [GraphQL Armor](https://escape.tech/graphql-armo
 <details>
     <summary>Yoga</summary>
 
-Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Yoga.Or, you can use the standalone [envelop plugin](https://www.npmjs.com/package/@escape.tech/graphql-armor-block-field-suggestions).
+Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Yoga. Or, you can use the standalone [envelop plugin](https://www.npmjs.com/package/@escape.tech/graphql-armor-block-field-suggestions).
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+On AWSAppSync, Field Suggestion is supported.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-`graphql-go/graphql` does not allow to disable field suggestion as of now.However, you can filter field suggestion by discarding answers containing "Did you mean" with this middleware :
+`graphql-go/graphql` does not allow to disable field suggestion as of now. However, you can filter field suggestion by discarding answers containing "Did you mean" with this middleware :
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+On GraphQL Ruby, Field Suggestion is supported and enabled by default.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+On Hashura, Field Suggestion is supported and enabled by default.
 
 </details>
 
@@ -71,21 +86,29 @@ Install our open source package [GraphQL Armor](https://escape.tech/graphql-armo
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-  - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-  - PCI DSS: **6.5.5**
-  - CWE
-    - **200**
-    - **489**
-    - **668**
-    - **1295**
-  - WASC: **WASC-15**
-  
-  
+
+### Compliance
+
+- OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
+- pci: **6.5.5**
 
 
 
 
 
+
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:H/RL:O/RC:C**
+- CVSS_SCORE: **5.1**
 
 ## References
 

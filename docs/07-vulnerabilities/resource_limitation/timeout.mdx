@@ -16,49 +16,12 @@ Example: Querying `getAllUsers(){ contacts { contacts }}` returns a response aft
 ## Remediation
 
 Implement a server timeout. For example, a server configured with a 5 seconds timeout would stop the execution of any query that takes over 5 seconds.
-
-Pros:
- - Simple to implement.
- - Most security strategies use a timeout as a final layer of protection.
-
-Cons:
- - Damage can already have been done before the timeout kicks in.
- - Can trigger other issues. Stoping connection after a certain time may result in strange behaviors and corrupt data.
-
-Warning :
-  When a timeout is configured on the server, the socket may be closed while the underlying request continues. Make sure that the request is actually canceled.
-
+Pros: - Simple to implement. - Most security strategies use a timeout as a final layer of protection.
+Cons: - Damage can already have been done before the timeout kicks in. - Can trigger other issues. Stoping connection after a certain time may result in strange behaviors and corrupt data.
+Warning : When a timeout is configured on the server, the socket may be closed while the underlying request continues. Make sure that the request is actually canceled. 
 
 
 ### GraphQL Specific
-
-<details>
-    <summary>Awsappsync</summary>
-
-AWS AppSync enforces a timeout of 30s on each request by default. If your API sits behind an [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html), you can configure a different (but lower than the hard 30s limit) timeout in the AWS API Gateway console by following this path:AWS API Gateway console > {Your App} > Resources > Integration Request > "Use default timeout".
-
-</details>
-
-<details>
-    <summary>Hasura</summary>
-
-Hasura allows you to set a custom query timeout.To do so: - Go to Project Console > Security Settings > API Limits.- Click on "Global".- Set a timeout (e.g., 10s).
-
-</details>
-
-<details>
-    <summary>Stepzen</summary>
-
-There is no known remediation for StepZen.
-
-</details>
-
-<details>
-    <summary>Graphqlgo</summary>
-
-Implement a server timeout by following this guide:[The complete guide to Go net/http timeouts - Cloudfare blog](https://blog.cloudflare.com/the-complete-guide-to-golang-net-http-timeouts/)
-
-</details>
 
 <details>
     <summary>Apollo</summary>
@@ -75,9 +38,30 @@ In GraphQL Yoga, you can set timeouts at the server level using the 'options' pa
 </details>
 
 <details>
+    <summary>Awsappsync</summary>
+
+AWS AppSync enforces a timeout of 30s on each request by default. If your API sits behind an API Gateway, you can configure a different (but lower than the hard 30s limit) timeout in the AWS API Gateway console by following this path: AWS API Gateway console > {Your App} > Resources > Integration Request > "Use default timeout".
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Implement a server timeout by following this guide: The complete guide to Go net/http timeouts - Cloudfare blog
+
+</details>
+
+<details>
     <summary>Graphqlruby</summary>
 
 In GraphQL-Ruby, you can implement query timeouts by using the 'max_complexity' setting or by adding custom middleware.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Hasura allows you to set a custom query timeout. To do so: - Go to Project Console > Security Settings > API Limits. - Click on "Global". - Set a timeout (e.g., 10s).
 
 </details>
 
@@ -189,24 +173,29 @@ Nuxt.js does not have a built-in request timeout feature. You can implement time
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
-  - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-  - PCI DSS: **6.5.8**
-  - CWE
-    - **400**
-    - **557**
-    - **664**
-    - **770**
-    - **1060**
-    - **1088**
-    - **1226**
-  - WASC: **WASC-10**
-  
-  
+
+### Compliance
+
+- OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
+- pci: **6.5.8**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-4**
+
+### Classification
 
 
 
 
 
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H/E:H/RL:O/RC:C**
+- CVSS_SCORE: **7.2**
 
 ## References
 

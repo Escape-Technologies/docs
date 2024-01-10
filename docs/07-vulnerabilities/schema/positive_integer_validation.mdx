@@ -1,0 +1,195 @@
+---
+title: Positive integer validation
+---
+
+# Positive integer validation
+
+## Description
+
+refers to a security or software feature where inputs are checked to ensure they are positive integers. This type of validation is crucial in many applications, such as financial software, data processing, or user input forms, to prevent errors or security vulnerabilities like SQL injection or buffer overflows. By validating inputs as positive integers, the system ensures it receives data in the expected format and range, safeguarding against malicious inputs or unintended operations.
+
+## Remediation
+
+To ensure positive integer validation, implement the following remediation steps:
+
+1. Check if the input is an integer using a type-checking function or method specific to your programming language (e.g., `isinstance(input, int)` in Python).
+2. Verify that the integer is greater than zero by comparing it with zero (e.g., `input > 0`).
+3. If the input fails either check, reject it and prompt the user for a valid positive integer.
+4. Use built-in functions or regular expressions to prevent non-numeric data entry if the input is received as a string.
+5. Consider using exception handling to catch any errors that occur during the input validation process.
+6. If the input is part of a web form, use client-side validation with JavaScript to provide immediate feedback, but always validate on the server-side as well to ensure security.
+7. Sanitize the input to prevent SQL injection or other forms of attacks if the data will interact with a database or other critical components.
+8. Provide clear error messages to guide the user towards entering a valid positive integer.
+9. Log validation failures when appropriate to monitor for unusual activity or repeated invalid inputs.
+10. Regularly review and update the validation logic to handle edge cases and new threat vectors.
+
+
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+In Apollo Server, use custom scalars or schema directives to validate positive integers.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+In GraphQL Yoga, implement custom validation logic within your resolvers to check for positive integers.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+In AWS AppSync, use VTL (Velocity Template Language) to validate input arguments as positive integers.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In graphql-go, validate positive integers within the resolver functions before processing.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In GraphQL-Ruby, use argument validators to ensure inputs are positive integers.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+In Hasura, use check constraints in the database or custom validation in actions to ensure positive integer inputs.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp.net</summary>
+
+In ASP.NET, validate positive integers by using data annotations and model validation.
+
+</details>
+
+<details>
+    <summary>Ruby on rails</summary>
+
+In Ruby on Rails, use ActiveModel validations to ensure an attribute is a positive integer.
+
+</details>
+
+<details>
+    <summary>Next.js</summary>
+
+In Next.js, validate API route inputs using middleware or manual checks before processing.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, use validation rules to verify that an input is a positive integer.
+
+</details>
+
+<details>
+    <summary>Express.js</summary>
+
+In Express.js, use middleware to validate that parameters are positive integers.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, use form or serializer validation to ensure inputs are positive integers.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, use the Constraint component to validate positive integers in forms or DTOs.
+
+</details>
+
+<details>
+    <summary>Spring boot</summary>
+
+In Spring Boot, use JSR-303/JSR-380 annotations to validate positive integers in your controller methods.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, manually validate request arguments to ensure they are positive integers.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, validate parameters in asyncData or middleware before using them in your application.
+
+</details>
+
+## Configuration
+
+> Identifier: `schema/positive_integer_validation`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "schema/positive_integer_validation": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-6**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+
