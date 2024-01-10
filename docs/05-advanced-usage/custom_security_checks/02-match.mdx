@@ -46,60 +46,60 @@ custom_checks:
 ### response_code
 Simply match on HTTP response codes
 ```yaml
-- response_code: 200
-- response_code:
-  gt: 200
-  lt: 299
+              - response_code: 200
+              - response_code:
+                  gt: 200
+                  lt: 299
 ```
 
 ### response_success
 Use the built-in Escape success detection to avoid false 200 OK that contain errors
 ```yaml
-- response_success: true | false
+              - response_success: true | false
 ```
 
 ### response_header & request_header
 Use regular expressions to detect key-value or key-any value for headers in either the request or response
 ```yaml
-- request_header:
-    header: 'Authorization'
-    regex: 'Bearer (.*)'
-- response_header:
-    header: 'Content-Type'
-    regex: 'application/json'
+              - request_header:
+                  header: 'Authorization'
+                  regex: 'Bearer (.*)'
+              - response_header:
+                  header: 'Content-Type'
+                  regex: 'application/json'
 ```
 
 ### response_body & request_body
 Apply regular expression on the whole body of a request or response
 ```yaml
-- response_body:
-    regex: 'data\:.*'
-- request_body:
-    regex: 'data\:.*'
+              - response_body:
+                  regex: 'data\:.*'
+              - request_body:
+                  regex: 'data\:.*'
 ```
 
 ### response_json & request_json
 Like previous, but specifically for detected JSON data, you can use JQ/JSONPath to apply more complex filters, make sure to evaluate to a boolean at the end.
 ```yaml
-- response_body: # raw body txt
-    regex: 'data\:.*'
+              - response_json: # on json
+                  jq: '.data.items | length > 0'
 ```
 
 ### request_crud
 Use Escape's built-in detection of CRUD operation types to filter your API operations.
 ```yaml
-- request_crud:
-    - CREATE
-    - READ
-    - UPDATE
-    - DELETE
+              - request_crud:
+                  - CREATE
+                  - READ
+                  - UPDATE
+                  - DELETE
 ```
 
 ### request_path
 Match your URL path using regex (REST-only)
 ```yaml
-- request_path:
-    regex: '.*/register'
+              - request_path:
+                  regex: '.*/register'
 ```
 
 ### request_scalar and response_scalar
@@ -120,7 +120,7 @@ This is a special kind of logic operator, to choose whether your match should on
 This is pretty much how you can implement the feedback loop in all your tests, to Match targets, Fuzz them, and Match again to Alert.
 
 ```yaml
-- sent_by_this_check: true
+          - sent_by_this_check: true
 ```
 
 ### metadata
@@ -128,7 +128,7 @@ In custom security checks, you can attach your own metadata to fuzzed requests, 
 This enables you to pass information between stages of your security test, to know which phase of the matchers you are in and apply different steps.
 
 ```yaml
-- metadata:
-    key: 'ssrf_state'
-    value: 'fuzzing' ## set this when we start fuzzing with payloads
+          - metadata:
+              key: 'ssrf_state'
+              value: 'fuzzing' ## set this when we start fuzzing with payloads
 ```
