@@ -18,10 +18,10 @@ In a YAML format, you can define a Security Check that defines one or several Ma
 
 These matchers can then contain 4 types of Action blocks:
 
-- `match`
-- `fuzz`
-- `alert`
-- `request`
+- `match` always required, you need to at least match something
+- `fuzz` (optional)
+- `alert` (optional)
+- `request` (optional)
 
 We will enter in more details for each of these action blocks, but here is the general structure of a custom security check, with a simple example check HTTP response codes.
 
