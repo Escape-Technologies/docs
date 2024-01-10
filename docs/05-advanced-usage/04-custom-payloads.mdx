@@ -168,7 +168,8 @@ Escape operates on a [comprehensive scalar architecture](/advanced-usage/data-ty
         "parents": ["ID", "Int", "String", "Boolean", "Float"],
         "patterns": ["regex"],
         "sensitivity": "NONE | LOW | MEDIUM | HIGH",
-        "detection": "key | value | value_strict | key_or_value | key_or_value_strict | key_and_value_strict"
+        "detection": "key | value | value_strict | key_or_value | key_or_value_strict | key_and_value_strict",
+        "entropy": (optional) "float"
       }
     }
   }
@@ -192,6 +193,7 @@ Here is the list of the fields :
   - `key_or_value` : detect scalar based on the `key` or `value` strategy.
   - `key_or_value_strict` : detect scalar based on the `key` or `value_strict` strategy.
   - `key_and_value_strict` : detect scalar based on the `key` and `value_strict` strategy.
+- `entropy`: The minimum shannon entropy of the matched value. (Optional)
 
 All of this fields are optionals and can be omitted.
 
@@ -210,7 +212,8 @@ Let's say you want to add a new scalar for the Super Secret Example Token inside
         "parents": ["String"],
         "patterns": ["SSET-[A-Z0-9]{5}"],
         "sensitivity": "HIGH",
-        "detection": "key_or_value_strict"
+        "detection": "key_or_value_strict",
+        "entropy": 2.0
       }
     }
   }
