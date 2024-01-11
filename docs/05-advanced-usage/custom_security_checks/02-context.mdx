@@ -6,72 +6,60 @@ title: Context
 
 In custom security check implementations, you usually want to match on various criterias to investigate things.
 
+Escape provides a powerful context filtering mechanism to help you do that, thanks to the abstraction of any protocol, any schema, any data type using scalars.
+
+The scanner itself will explore your whole API specification, therefore you can "subscribe" to specific `Exchanges` (request-response objects) using the `context:` section.
+
 The `context:` helps you narrow down what the scanner is exploring and send it to your custom security check.
 
-Escape enables you to write powerful matching rules, with logical blocks and a deep understanding of the data types used (scalars)
+Of course, you can combine logical operators to create complex filters, the top-level is an AND operator.
 
-## Context block
+## Available keys
+ - schema.route.path
+  - Filter on the path of the route
+ - schema.route.method
+  - For HTTP, filter on the HTTP method
+ - schema.route.scalars.types
+  - For any protocol, filter on the types of the scalars in the request/response
+ - schema.route.scalars.sensitivity
+  - For any protocol, filter on the sensitivity of the scalars in the request/response
+
+
+## Available operators
+  - contains
+  - in
+  - gt
+  - gte
+  - lt
+  - lte
+  - eq
+  - neq
+  - or
+  - and
+
+
+## Examples
+
 
 ```yaml
-custom_checks:
-  - name: "My custom check"
-    
-    # Context section defines the conditions under which the security test actions should be executed.
     context:
-    # Everything underneath is in an AND logical operator
+      - key: schema.route.path
+        contains: /recommendations # will match /recommendations and /recommendations/123 or /api/recommendations
 
-    # Filter based on a specific property (e.g., route path).
-    - key: http.route.path
-      # Define conditions for the filter (e.g., contains a specific value).
-      contains: /api/{resource}
+      - key: schema.route.method
+        in:
+          - "GET"
+          - "POST"
+          - "PUT"
 
-    # Filter based on another property (e.g., HTTP method).
-    - key: http.route.method
-      # Define conditions for the filter (e.g., must be one of the specified methods).
-      in:
-        - "GET"
-        - "POST"
-        - "PUT"
+      - or:
+        - key: schema.route.scalars.types
+          contains:
+            - "USER"
+            - "EMAIL"
+            - "PASSWORD"
+            - "URL"
 
-    # Filter based on inference scalars.
-    - key: http.route.scalars
-      in:
-      - "USER"
-      - "EMAIL"
-      - "PASSWORD"
-      - "URL"
-    
-    # If you need an OR logical operator
-    - or:
-      - key: grpc.service
-        eq: 'helloworld.Greeter'
-      - key: grpc.service.method
-        eq: 'SayHello'
+        - key: schema.route.scalars.sensitivity
+          gt: 0.5
 ```
-
-## Keys available
-
-### escape
-
-- escape.request
-    - escape.request.arguments
-        - in
-    - escape.(request|response).scalars
-        - in
-
-### http
-
-- http.route
-    - http.route.path
-        - contains
-    - http.route.method
-        - in
-    - http.route.scalars
-        - in
-- http.(request|response)
-    - http.(request|response).body
-        - contains (contains that key)
-    - http.(request|response).headers
-        - contains (contains that header)
-
-### grpc (WIP)

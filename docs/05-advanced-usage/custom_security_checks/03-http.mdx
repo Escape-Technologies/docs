@@ -1,0 +1,28 @@
+---
+title: Raw HTTP
+---
+
+## Raw HTTP
+
+If you want to test a specific route, you can use the `http` block to send a raw HTTP request to your API at each scan start.
+
+There are two ways to use the `http` block.
+
+```yaml
+http:
+  method: GET
+  path: /user
+  headers:
+    Accept: application/json
+  query_params:
+    email: test@example.com
+```
+
+The `http` block is a string that contains a raw HTTP request, with the following format:
+
+```yaml
+http:
+  raw: |
+    GET /user HTTP/1.1
+    Accept: application/json
+```
