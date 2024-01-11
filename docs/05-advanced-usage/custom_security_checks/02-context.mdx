@@ -1,0 +1,77 @@
+---
+title: Context
+---
+
+# Context Filtering
+
+In custom security check implementations, you usually want to match on various criterias to investigate things.
+
+The `context:` helps you narrow down what the scanner is exploring and send it to your custom security check.
+
+Escape enables you to write powerful matching rules, with logical blocks and a deep understanding of the data types used (scalars)
+
+## Context block
+
+```yaml
+custom_checks:
+  - name: "My custom check"
+    
+    # Context section defines the conditions under which the security test actions should be executed.
+    context:
+    # Everything underneath is in an AND logical operator
+
+    # Filter based on a specific property (e.g., route path).
+    - key: http.route.path
+      # Define conditions for the filter (e.g., contains a specific value).
+      contains: /api/{resource}
+
+    # Filter based on another property (e.g., HTTP method).
+    - key: http.route.method
+      # Define conditions for the filter (e.g., must be one of the specified methods).
+      in:
+        - "GET"
+        - "POST"
+        - "PUT"
+
+    # Filter based on inference scalars.
+    - key: http.route.scalars
+      in:
+      - "USER"
+      - "EMAIL"
+      - "PASSWORD"
+      - "URL"
+    
+    # If you need an OR logical operator
+    - or:
+      - key: grpc.service
+        eq: 'helloworld.Greeter'
+      - key: grpc.service.method
+        eq: 'SayHello'
+```
+
+## Keys available
+
+### escape
+
+- escape.request
+    - escape.request.arguments
+        - in
+    - escape.(request|response).scalars
+        - in
+
+### http
+
+- http.route
+    - http.route.path
+        - contains
+    - http.route.method
+        - in
+    - http.route.scalars
+        - in
+- http.(request|response)
+    - http.(request|response).body
+        - contains (contains that key)
+    - http.(request|response).headers
+        - contains (contains that header)
+
+### grpc (WIP)

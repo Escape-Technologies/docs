@@ -4,49 +4,144 @@ title: Custom Security Tests
 
 # Custom security tests
 
-Escape enables you to write custom tests with logic blocks and multiple match/fuzz/alert blocks.
+Escape enables you to write custom tests by leveraging the intelligent exploration of your APIs and their scalars.
 
 This enables specific business logic tests, or broader company policies to be validated against all your APIs, or a subset of them.
 
 ## Overview
 
-![Escape Custom Security Checks](./img/sc_diagram.svg)
+![Escape Custom Security Checks](./img/sec_checks_explained.svg)
 
-Here's an overview of how Escape can help you narrow down your target, your fuzzing and your alerting.
+Here's an overview of how Escape can help you narrow down your target, your testing, detection and alerting.
 
-In a YAML format, you can define a Security Check that defines one or several Matchers.
+In a YAML format, you can define a Security Check that defines 4 blocks:
 
-These matchers can then contain 4 types of Action blocks:
+- `context` to listen to what the scanner explores, specific or not to a protocol, and knowing what kind of data is there (using scalars)
+- `action` to trigger a test, select a specific part of a request, or 
+- `detect` to see if your test successfully broke your targeted context
+- `alert` to fill out details and alert your team(s)
 
-- `match` always required, you need to at least match something
-- `fuzz` (optional)
-- `alert` (optional)
-- `request` (optional)
-
-We will enter in more details for each of these action blocks, but here is the general structure of a custom security check, with a simple example check HTTP response codes.
+We will enter in more details for each one of these blocks, but here is the general structure of a custom security check:
 
 
 ```yaml
 custom_checks:
-  - name: 'http_resp_codes'
-    matchers:
-      - match:
-          - or: # if resp codes are between 0-199 OR 600-999
-              - response_code:
-                gt: 0
-                lt: 199
-              - response_code:
-                gt: 600
-                lt: 999
-        alert: # then we raise an alert
-          name: Bad HTTP code
-          title_on_pass: HTTP codes OK
-          title_on_fail: Bad HTTP codes detected
-          context: |
-            ....
-          description: |
-            ...
-          remediation: |
-            ...
-        severity: INFO
+  - name: "My custom check"
+    
+    # Context section defines the conditions under which the security test actions should be executed.
+    context:
+    # Filter based on a specific property (e.g., route path).
+    - key: http.route.path
+      # Define conditions for the filter (e.g., contains a specific value).
+      contains: /api/{resource}
+
+    # Filter based on another property (e.g., HTTP method).
+    - key: http.route.method
+      # Define conditions for the filter (e.g., must be one of the specified methods).
+      in:
+        - "GET"
+        - "POST"
+        - "PUT"
+
+    # Filter based on inference scalars.
+    - key: http.route.scalars
+      in:
+      - "USER"
+      - "EMAIL"
+      - "PASSWORD"
+      - "URL"
+    
+    - or:
+      - key: grpc.service
+        eq: 'helloworld.Greeter'
+      - key: grpc.service.method
+        eq: 'SayHello'
+
+    # Action section describes the actions to be taken during the security test.
+    # The action blocks are done in that sequence order
+    action:
+      # Issue a request (only once per scan)
+      - raw_http:
+          payload: |
+            GET /user HTTP /1.1 ...
+      - raw_grpc:
+          payload: |
+            TBD
+      
+      # Modify something !
+      - set_key: http.request.body
+        selector: param_name
+        value: "{{modify_value}}"
+
+      - set_key: http.request.body
+        selector: param_name2
+        values:
+          - "{{modify_value}}"
+          - "{{modify_value2}}"
+
+      - set_key: http.request.headers
+        selector: Content-Type
+        value: "{{modify_value}}"
+
+      - set_key: http.request.scalars
+        scalar: "EMAIL"
+        value: "{{modify_value}}"
+
+      - set_key: http.request.body
+        jq: '. | {"user": .user + " {{modify_value}}"}'
+
+      - set_key: escape.request.arguments
+        selector: arg_name
+        value: "{{modify_value}}"
+
+      - set_key: escape.request.crud # Feasible ?
+        value: "CREATE"
+
+    # Detection section specifies criteria to detect the success or failure of the security test.
+    detection:
+      # Check a specific property in the response (e.g., status code).
+      - key: http.response.status_code
+        is: 200
+
+      # Check another property in the response (e.g., body content).
+      - key: http.response.body
+        # Define a pattern or value to look for in the response body.
+        contains: "{{expected_content}}"
+
+      - key: http.response.time
+        # Define the expected value for the property.
+        gt: 20
+        lt: 200
+
+      - key: escape.response.is_successful # use Escape built-in success detection
+        is: true
+
+      - key: escape.response.scalars # also for request
+        in:
+        - "PASSWORD"
+
+      - key: escape.request.arguments
+        in:
+        - "query"
+
+      - key: escape.request.crud
+        in:
+        - "CREATE"
+
+      - key: http.response.json # use jq to detect success for more complex JSONpath filtering
+        jq: '..message == "ok"'
+
+
+    # Alert section is triggered if all conditions of the detection block resolve to true
+    alert:
+      name: Escape emails
+      title_on_pass: Email check is compliant
+      title_on_fail: Only escape employee can register
+      context: |
+        On our production environment, only escape emails are allowed.
+      description: |
+        Call the security team if you need ...
+      remediation: |
+        Do a validation befre registering a user ...
+      severity: HIGH
 ```

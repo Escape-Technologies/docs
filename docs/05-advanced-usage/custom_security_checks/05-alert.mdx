@@ -1,0 +1,43 @@
+---
+title: Alert
+---
+
+# Alert
+
+Once you have selected a request-response pair with your Matcher block, you can start fuzzing !
+
+You can leverage the powerful features of Escape's technology to fuzz in a technology-agnostic manner, but with full knowledge of the data types underneath (aka scalar).
+
+## Fuzzing techniques
+
+### Scalar replace
+Detect specific scalar data types in the request that the scanner will send, and replace according to your regex groups.
+
+```yaml
+fuzz:
+  - scalar_replace:
+      kind: 'EMAIL'
+      regex: '(.*)@escape.tech'
+      replace: '$1@gmail.com'
+```
+
+
+### Scalar Sniper
+Detect specific scalar types in the request, and generate several requests using a payload list.
+
+```yaml
+- scalar_sniper:
+    kind: 'USERNAME'
+    values:
+      - 'userX'
+      - 'userY'
+      - 'userZ'
+```
+
+### JQ raw editing
+Only for JSON-based payloads, you can directly edit the data structure using JQ, and it will be injected into the fuzzed request.
+
+```yaml
+- jq:
+    script: '. | {"user": .user, "phone": 123}'
+```
