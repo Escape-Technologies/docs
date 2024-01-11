@@ -4,40 +4,65 @@ title: Action
 
 # Action
 
-Once you have filtered the exploration results or the raw HTTP requests, you can apply actions to them. Actions are a set of operations that will be applied to the request before sending it to the target.
+Once you have filtered the exploration results, you can apply actions to them.
+
+Actions are a set of operations that will be applied to the request before sending it to the target.
 
 You can leverage the powerful features of Escape's technology to fuzz in a technology-agnostic manner, but with full knowledge of the data types underneath (aka scalar).
 
-## Fuzzing techniques
+Keep in mind that the Raw HTTP requests are not modified by actions, but you can use the `detect` after the action to filter the results (like v1 custom security checks).
 
-### Scalar replace
-Detect specific scalar data types in the request that the scanner will send, and replace according to your regex groups.
+## Available keys
+- `request.body`
+- `request.headers`
+- `request.cookies`
+- `helpers.request.arguments`
+- `helpers.request.scalars`
 
-```yaml
-fuzz:
-  - scalar_replace:
-      kind: 'EMAIL'
-      regex: '(.*)@escape.tech'
-      replace: '$1@gmail.com'
-```
+## Available operators
+- `selector` (string) Specify the key to modify
+  - `value` (string) Specify the value to set
+  - `values` (array) Specify the values to set (generate multiple requests)
 
 
-### Scalar Sniper
-Detect specific scalar types in the request, and generate several requests using a payload list.
+- `scalar`
+  - `value` (string) Specify the value to set
+  - `values` (array) Specify the values to set (generate multiple requests)
+  - `auto_payloads` (boolean) Generate payloads automatically based on the scalar type
 
-```yaml
-- scalar_sniper:
-    kind: 'USERNAME'
-    values:
-      - 'userX'
-      - 'userY'
-      - 'userZ'
-```
 
-### JQ raw editing
-Only for JSON-based payloads, you can directly edit the data structure using JQ, and it will be injected into the fuzzed request.
+## Example
 
 ```yaml
-- jq:
-    script: '. | {"user": .user, "phone": 123}'
+
+    action:
+
+      - set_key: request.body
+        selector: param_name
+        value: "{{modify_value}}"
+
+      - set_key: request.body
+        selector: param_name2
+        values:
+          - "{{modify_value}}"
+          - "{{modify_value2}}"
+
+      - set_key: request.headers
+        selector: Content-Type
+        value: "{{modify_value}}"
+
+      - set_key: helpers.request.scalars
+        scalar: "EMAIL"
+        value: "{{modify_value}}"
+
+      - set_key: helpers.request.scalars
+        scalar: "URL"
+        auto_payloads: true
+
+      - set_key: request.body
+        jq: '. | {"user": .user + " {{modify_value}}"}'
+
+      - set_key: helpers.request.arguments
+        selector: arg_name
+        value: "{{modify_value}}"
 ```
