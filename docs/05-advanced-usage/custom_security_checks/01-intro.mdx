@@ -14,134 +14,210 @@ This enables specific business logic tests, or broader company policies to be va
 
 Here's an overview of how Escape can help you narrow down your target, your testing, detection and alerting.
 
-In a YAML format, you can define a Security Check that defines 4 blocks:
+In a YAML format, you can define a Security Check that defines 5 blocks:
 
-- `context` to listen to what the scanner explores, specific or not to a protocol, and knowing what kind of data is there (using scalars)
+- `http` to send a raw HTTP request to your API at each scan start
+- `context` to filter on what the scanner explores, specific or not to a protocol thanks to schema abstractions, and knowing what kind of data is there (using scalars)
 - `action` to trigger a test, select a specific part of a request, or 
 - `detect` to see if your test successfully broke your targeted context
 - `alert` to fill out details and alert your team(s)
 
+## HTTP
+
+If you want to test a specific route, you can use the `http` block to send a raw HTTP request to your API at each scan start.
+
+There are two ways to use the `http` block.
+
+```yaml
+http:
+  method: GET
+  path: /user
+  headers:
+    Accept: application/json
+  query_params:
+    email: test@example.com
+```
+
+The `http` block is a string that contains a raw HTTP request, with the following format:
+
+```yaml
+http:
+  raw: |
+    GET /user HTTP/1.1
+    Accept: application/json
+```
+
+
+
+## Example
+
 We will enter in more details for each one of these blocks, but here is the general structure of a custom security check:
 
+```yaml
+custom_checks:
+  - name: "Admin account delete"
+
+    context:
+      - key: schema.route.path
+        end_with: /user
+      - key: schema.route.crud
+        in:
+          - "DELETE"
+
+    action:
+      - set_key: request.body
+        selector: email
+        value: "admin@escape.tech"
+
+    detection:
+      - key: response.status_code
+        is: 200
+
+    alert:
+      name: Admin deletion
+      title:
+        on_pass: Admin is safe
+        on_fail: Admin account was deleted
+      context: |
+        We successfully deleted the admin account.
+      description: |
+        The account `admin@escape.tech` is created for compliance reasons.
+        It should not be deletable even by another admin and must always be present.
+      remediation: |
+        Check the email of the user before deleting it.
+        Please contact the security team if you need help to understand why this is a problem.
+      severity: HIGH
+  
+  
+  - name: "Admin account present"
+    
+    raw_http:
+      payload: |
+        GET /user?email=admin%40escape.tech HTTP/1.1
+        Accept: application/json
+
+    detection:
+      - key: response.status_code
+        is_not: 200
+
+    alert:
+      name: Admin account
+      title:
+        on_pass: Admin is safe
+        on_fail: Admin account is not present
+      context: |
+        The admin account is not present.
+      description: |
+        The account `admin@escape.tech` is created for compliance reasons.
+        It should not be deletable even by another admin and must always be present.
+      remediation: |
+        On database seed of your application, please create the admin account.
+        Please contact the security team if you need help to understand why this is a problem.
+      severity: HIGH
+```
 
 ```yaml
 custom_checks:
   - name: "My custom check"
-    
-    # Context section defines the conditions under which the security test actions should be executed.
+
+    raw_http:
+      payload: |
+        GET /user HTTP/1.1
+        Accept: application/json
+
     context:
-    # Filter based on a specific property (e.g., route path).
-    - key: http.route.path
-      # Define conditions for the filter (e.g., contains a specific value).
-      contains: /api/{resource}
+      - key: schema.route.path
+        contains: /api/{resource}
 
-    # Filter based on another property (e.g., HTTP method).
-    - key: http.route.method
-      # Define conditions for the filter (e.g., must be one of the specified methods).
-      in:
-        - "GET"
-        - "POST"
-        - "PUT"
+      - key: schema.route.method
+        in:
+          - "GET"
+          - "POST"
+          - "PUT"
 
-    # Filter based on inference scalars.
-    - key: http.route.scalars
-      in:
-      - "USER"
-      - "EMAIL"
-      - "PASSWORD"
-      - "URL"
-    
-    - or:
-      - key: grpc.service
-        eq: 'helloworld.Greeter'
-      - key: grpc.service.method
-        eq: 'SayHello'
+      - key: schema.route.scalars.types
+        contains:
+          - "USER"
+          - "EMAIL"
+          - "PASSWORD"
+          - "URL"
 
-    # Action section describes the actions to be taken during the security test.
-    # The action blocks are done in that sequence order
+      - key: schema.route.scalars.sensitivity
+        gt: 0.5
+
     action:
-      # Issue a request (only once per scan)
-      - raw_http:
-          payload: |
-            GET /user HTTP /1.1 ...
-      - raw_grpc:
-          payload: |
-            TBD
-      
-      # Modify something !
-      - set_key: http.request.body
+
+      - set_key: request.body
         selector: param_name
         value: "{{modify_value}}"
 
-      - set_key: http.request.body
+      - set_key: request.body
         selector: param_name2
         values:
           - "{{modify_value}}"
           - "{{modify_value2}}"
 
-      - set_key: http.request.headers
+      - set_key: request.headers
         selector: Content-Type
         value: "{{modify_value}}"
 
-      - set_key: http.request.scalars
+      - set_key: helpers.request.scalars
         scalar: "EMAIL"
         value: "{{modify_value}}"
 
-      - set_key: http.request.body
+      - set_key: helpers.request.scalars
+        scalar: "URL"
+        auto_payloads: true
+
+      - set_key: request.body
         jq: '. | {"user": .user + " {{modify_value}}"}'
 
-      - set_key: escape.request.arguments
+      - set_key: helpers.request.arguments
         selector: arg_name
         value: "{{modify_value}}"
 
-      - set_key: escape.request.crud # Feasible ?
-        value: "CREATE"
-
-    # Detection section specifies criteria to detect the success or failure of the security test.
     detection:
-      # Check a specific property in the response (e.g., status code).
-      - key: http.response.status_code
+      - key: response.status_code
         is: 200
 
-      # Check another property in the response (e.g., body content).
-      - key: http.response.body
-        # Define a pattern or value to look for in the response body.
+      - key: response.body
         contains: "{{expected_content}}"
 
-      - key: http.response.time
-        # Define the expected value for the property.
+      - key: response.time
         gt: 20
         lt: 200
 
-      - key: escape.response.is_successful # use Escape built-in success detection
+      - key: helpers.response.is_successful
         is: true
 
-      - key: escape.response.scalars # also for request
+      - key: helpers.response.scalars.detected
+        contains:
+          - "PASSWORD"
+
+      - key: helpers.response.scalars.sensitivity
+        gt: 0.5
+
+      - key: helpers.request.arguments
+        contains:
+          - "query"
+
+      - key: helpers.request.crud
         in:
-        - "PASSWORD"
+          - "CREATE"
 
-      - key: escape.request.arguments
-        in:
-        - "query"
+      - key: response.json
+        jq: '.message == "ok"'
 
-      - key: escape.request.crud
-        in:
-        - "CREATE"
-
-      - key: http.response.json # use jq to detect success for more complex JSONpath filtering
-        jq: '..message == "ok"'
-
-
-    # Alert section is triggered if all conditions of the detection block resolve to true
     alert:
       name: Escape emails
-      title_on_pass: Email check is compliant
-      title_on_fail: Only escape employee can register
+      title:
+        on_pass: Email check is compliant
+        on_fail: Only escape employee can register
       context: |
         On our production environment, only escape emails are allowed.
       description: |
         Call the security team if you need ...
       remediation: |
-        Do a validation befre registering a user ...
+        Do a validation before registering a user ...
       severity: HIGH
 ```

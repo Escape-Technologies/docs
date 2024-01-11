@@ -1,0 +1,27 @@
+# Custom Security Check Specification Documentation
+
+This documentation outlines the structure and components of a custom security check specification written in YAML. The specification allows for defining security tests with context, actions, detections, and alerts.
+
+## Custom Check Definition
+
+
+
+## Explanation of Fields
+
+### Context Section
+
+The `context` section defines conditions under which the security test actions should be executed.
+
+- **Raw HTTP Request (`raw_http`):**
+  - Example: Issue a GET request to `/user`. This is run only once at the start of the scan, and will be matched against the Detection section, skipping the Action section (hence, the "raw" name)
+
+- **Property-Based Filters (`key`):**
+  - Examples: Filter based on route path, HTTP method, scalar types, and sensitivity.
+
+### Action Section
+
+The `action` section describes the actions to be taken during the security test.
+
+- **Set Key (`set_key`):**
+  - Examples: Modify request body, headers, and scalar values.
+

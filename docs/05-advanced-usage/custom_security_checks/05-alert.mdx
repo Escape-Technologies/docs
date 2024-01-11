@@ -8,36 +8,12 @@ Once you have selected a request-response pair with your Matcher block, you can 
 
 You can leverage the powerful features of Escape's technology to fuzz in a technology-agnostic manner, but with full knowledge of the data types underneath (aka scalar).
 
-## Fuzzing techniques
+The `alert` section is triggered if all conditions of the detection block resolve to true.
 
-### Scalar replace
-Detect specific scalar data types in the request that the scanner will send, and replace according to your regex groups.
+- **Alert Details (`name`, `title_on_pass`, `title_on_fail`, `context`, `description`, `remediation`, `severity`):**
+  - Examples: Name, titles, context, description, remediation steps, and severity.
 
-```yaml
-fuzz:
-  - scalar_replace:
-      kind: 'EMAIL'
-      regex: '(.*)@escape.tech'
-      replace: '$1@gmail.com'
+This documentation provides an overview of the custom security check file format, explaining each block and its purpose. Adjust the checks based on your application's specific security requirements and potential vulnerabilities.
 ```
 
-
-### Scalar Sniper
-Detect specific scalar types in the request, and generate several requests using a payload list.
-
-```yaml
-- scalar_sniper:
-    kind: 'USERNAME'
-    values:
-      - 'userX'
-      - 'userY'
-      - 'userZ'
-```
-
-### JQ raw editing
-Only for JSON-based payloads, you can directly edit the data structure using JQ, and it will be injected into the fuzzed request.
-
-```yaml
-- jq:
-    script: '. | {"user": .user, "phone": 123}'
-```
+Feel free to customize the documentation further to suit your needs!
