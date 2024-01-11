@@ -22,34 +22,8 @@ In a YAML format, you can define a Security Check that defines 5 blocks:
 - `detect` to see if your test successfully broke your targeted context
 - `alert` to fill out details and alert your team(s)
 
-## HTTP
 
-If you want to test a specific route, you can use the `http` block to send a raw HTTP request to your API at each scan start.
-
-There are two ways to use the `http` block.
-
-```yaml
-http:
-  method: GET
-  path: /user
-  headers:
-    Accept: application/json
-  query_params:
-    email: test@example.com
-```
-
-The `http` block is a string that contains a raw HTTP request, with the following format:
-
-```yaml
-http:
-  raw: |
-    GET /user HTTP/1.1
-    Accept: application/json
-```
-
-
-
-## Example
+## Quickstart example
 
 We will enter in more details for each one of these blocks, but here is the general structure of a custom security check:
 
@@ -116,7 +90,7 @@ custom_checks:
       severity: HIGH
 ```
 
-Here is a full example of a custom security check:
+## Full example 
 
 <details>
 
