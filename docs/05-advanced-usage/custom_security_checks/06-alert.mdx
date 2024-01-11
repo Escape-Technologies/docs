@@ -4,16 +4,34 @@ title: Alert
 
 # Alert
 
-Once you have selected a request-response pair with your Matcher block, you can start fuzzing !
+After your detection block, you can simply create alerts in the Escape platform.
 
-You can leverage the powerful features of Escape's technology to fuzz in a technology-agnostic manner, but with full knowledge of the data types underneath (aka scalar).
 
-The `alert` section is triggered if all conditions of the detection block resolve to true.
+## Available keys
+- `name` (required): The name of the alert
+- `title` (required): The title of the alert. It can be different if the alert is passing or failing.
+- `context` (required): The context of the alert. Some template variables are available.
+- `description` (required): The description of the alert.
+- `remediation` (required): The remediation information for this alert.
+- `severity` (required): The severity of the alert. It can be `INFO`, `LOW`, `MEDIUM` or `HIGH`.
 
-- **Alert Details (`name`, `title_on_pass`, `title_on_fail`, `context`, `description`, `remediation`, `severity`):**
-  - Examples: Name, titles, context, description, remediation steps, and severity.
+## Example
 
-This documentation provides an overview of the custom security check file format, explaining each block and its purpose. Adjust the checks based on your application's specific security requirements and potential vulnerabilities.
+```yaml
+    alert:
+      name: Admin account
+      title:
+        on_pass: Admin is safe
+        on_fail: Admin account is not present
+      context: |
+        The admin account is not present.
+      description: |
+        The account `admin@escape.tech` is created for compliance reasons.
+        It should not be deletable even by another admin and must always be present.
+      remediation: |
+        On database seed of your application, please create the admin account.
+        Please contact the security team if you need help to understand why this is a problem.
+      severity: HIGH
 ```
 
-Feel free to customize the documentation further to suit your needs!
+

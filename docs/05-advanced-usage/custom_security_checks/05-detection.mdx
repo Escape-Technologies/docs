@@ -2,26 +2,68 @@
 title: Detect
 ---
 
-# Detect
+# Detection
 
-Once you've matched/targeted, then fuzzed, then matched again maybe, or directly matched, you can create Alerts !
+The detect section is where you specify the criteria to detect the success or failure of the security test, and whether or not to alert.
 
-Taking a few workflow examples:
+You can simply test on the response status code, or you can test on the response body, response time, or JSON response.
 
-- Listen for some request/responses and match, then alert ?
-  - Useful for detecting suspicious data, bad practices
-- Listen for specific scalars in requests or responses, and fuzz them, then, match the fuzzed responses and match the side-effects (using `sent_by_this_check: true`)
-  - This is a nice simple way to implement 2 step checks, observe, fuzz, observe response and alert
- 
+In the same format using key and operator, you can select the data you want to test from the response body and test it.
 
-### Detection Section
+## Available keys
 
-The `detection` section specifies criteria to detect the success or failure of the security test.
+- `response.status_code`
+- `response.body`
+- `response.time`
+- `response.json`
+- `helpers.response.is_successful`
+- `helpers.response.scalars.detected`
+- `helpers.response.scalars.sensitivity`
+- `helpers.request.arguments`
+- `helpers.request.crud`
 
-- **Logical Blocks (`and`)
+## Available operators
 
-- **Response Checks (`response.status_code`, `response.body`, `response.time`, `response.json`):**
-  - Examples: Check status code, body content, response time, and JSON response.
+- `is` (string)
+- `contains` (list)
+- `gt`
+- `lt`
+- `in`
+- `jq` Apply a [jq](https://stedolan.github.io/jq/) filter to the response body to assert the result
 
-- **Custom Scalars Detection (`helpers.response.scalars`, `helpers.request.scalars`):**
-  - Examples: Detect specific scalars like "PASSWORD" or "EMAIL".
+
+## Example
+
+```yaml
+    detection:
+      - key: response.status_code
+        is: 200
+
+      - key: response.body
+        contains: "{{expected_content}}"
+
+      - key: response.time
+        gt: 20
+        lt: 200
+
+      - key: helpers.response.is_successful
+        is: true
+
+      - key: helpers.response.scalars.detected
+        contains:
+          - "PASSWORD"
+
+      - key: helpers.response.scalars.sensitivity
+        gt: 0.5
+
+      - key: helpers.request.arguments
+        contains:
+          - "query"
+
+      - key: helpers.request.crud
+        in:
+          - "CREATE"
+
+      - key: response.json
+        jq: '.message == "ok"'
+```
