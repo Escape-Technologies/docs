@@ -12,6 +12,8 @@ You can leverage the powerful features of Escape's technology to fuzz in a techn
 
 Keep in mind that the Raw HTTP requests are not modified by actions, but you can use the `detection` after the action to filter the results (like v1 custom security checks).
 
+---
+
 ## Available keys
 
 You can simply use the `action` action to set a key in the request.
@@ -24,17 +26,21 @@ You can simply use the `action` action to set a key in the request.
 
 ### request.body
 
-> type: [``](#)
+> type: [`string`](#string-action) / [`JSON`](#json-action)
 
 Example :
 ```yaml
-
+action:
+  - action: request.body
+    jq: '. | {"user": .user + " {{modify_value}}"}'
+  - action: request.body
+    
 ```
 
 
 ### request.headers
 
-> type: [``](#)
+> type: [`dict`](#dictionary-action)
 
 Example :
 ```yaml
@@ -44,37 +50,165 @@ Example :
 
 ### request.cookies
 
-> type: [``](#)
+> type: [`dict`](#dictionary-action)
 
 Example :
 ```yaml
-
+action:
+  - action: request.cookies
+    key: "SESSIONID"
+    value: "{{modify_value}}"
 ```
 
 
 ### helpers.request.arguments
 
-> type: [``](#)
+The helper for request arguments is an agnostic abstraction from Escape, that helps you abstract the underlying protocol/technology.
+
+These arguments can be found in the URL, in the body, in the headers, in the cookies, in the path itself, in the query etc.
+
+> type: [`dict`](#dictionary-action)
 
 Example :
 ```yaml
-
+action:
+  - action: helpers.request.arguments
+    selector: arg_name
+    location: query # in the url query like example.com/?arg_name=arg_value
+    value: "{{modify_value}}"
 ```
 
 
 ### helpers.request.scalars
 
-> type: [``](#)
+> type: [`string`](#scalar-action)
 
 Example :
 ```yaml
-
+action:
+  - action: helpers.request.scalars
+    select: # first we select the scalar with multiple criteria
+      kind:
+        in:
+        - "EMAIL"
+        - "PASSWORD"
+      name:
+        regex: ".*@escape.tech"
+      sensitivity:
+        in:
+        - "HIGH"
+        - "MEDIUM"
+      value:
+        is_not: "admin@escape.tech"
+    mutate: # then we mutate the scalar
+      value: "{{modify_value}}"
+      # or
+      values:
+        - "{{modify_value}}"
+        - "{{modify_value2}}"
+      # or
+      regex_replace:
+        regex: "(.*)@escape.tech"
+        replace: "$1@attacker.com"
+      # or
+      auto_mutate: true # use auto-generated payloads depending on the scalar type
 ```
 
+---
+
+## Actions
+
+Depending on the type of the action, you can use different actions.
+
+### String action
+Example :
+
+```yaml
+action:
+  - action: request.body
+    regex_replace: # consider the body as a string and regex replace
+      regex: "(.*)@escape.tech"
+      replace: "$1@attacker.com"
+```
+
+
+### Dictionary action
+
+A dictionary action is a set of key/value pairs that will be added or modified in the request.
+If you'd like to remove a key, you can use the `remove` key.
+
+Example :
+
+```yaml
+action:
+  - action: request.headers
+    key: "X-Forwarded-.*"
+    value: "{{modify_value}}"
+  - action: request.cookies
+    key: "SESSIONID"
+    value: "{{modify_value}}"
+  - action: request.cookies
+    key: "unauthenticated"
+    remove: true
+```
+
+
+### JSON action
+Example :
+
+```yaml
+action:
+  - action: request.body
+    jq: '. | {"user": .user + " {{modify_value}}"}'
+```
+
+
+### Enum action
+Example :
+
+```yaml
+action:
+  - action:
+```
+
+
+### Scalar action
+Example :
+
+```yaml
+action:
+  - action: helpers.request.scalars
+    select: # first we select the scalar with multiple criteria
+      kind:
+        in:
+        - "EMAIL"
+        - "PASSWORD"
+      name:
+        regex: ".*@escape.tech"
+      sensitivity:
+        in:
+        - "HIGH"
+        - "MEDIUM"
+      value:
+        is_not: "admin@escape.tech"
+    mutate: # then we mutate the scalar
+      value: "{{modify_value}}"
+      # or
+      values:
+        - "{{modify_value}}"
+        - "{{modify_value2}}"
+      # or
+      regex_replace:
+        regex: "(.*)@escape.tech"
+        replace: "$1@attacker.com"
+      # or
+      auto_mutate: true # use auto-generated payloads depending on the scalar type
+```
 
 
 ## Example
 
+<details>
 ```yaml
     detection:
       - detect: helpers.response.scalars
@@ -173,3 +307,4 @@ Example :
         selector: arg_name
         value: "{{modify_value}}"
 ```
+</details>
