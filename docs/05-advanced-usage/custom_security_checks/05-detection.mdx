@@ -138,8 +138,13 @@ detection:
 Example :
 ```yaml
 detection:
-  - detect: 
-    
+  - detect: request.headers
+    key:
+      # string matcher
+      is: "Content-Type"
+    value:
+      # string matcher
+      regex: "application/.*"
 ```
 
 ### request.body
@@ -203,8 +208,9 @@ detection:
 Example :
 ```yaml
 detection:
-  - detect: 
-    
+  - detect: response.status_code
+    gt: 200
+    lt: 299
 ```
 
 ### response.duration_ms
@@ -214,8 +220,8 @@ detection:
 Example :
 ```yaml
 detection:
-  - detect: 
-    
+  - detect: response.duration_ms
+    gt: 20
 ```
 
 ### response.headers
@@ -248,7 +254,7 @@ Example :
 ```yaml
 # matching the email of an admin that is not admin@escape.tech
 detection:
-  - detect: helpers.request.scalars
+  - detect: helpers.response.scalars
     type:
       in:
         - "EMAIL"
@@ -358,7 +364,7 @@ Example:
 
 ```yaml
 detection:
-  - detect: request.header
+  - detect: request.headers
     key:
       # string matcher
       is: "Content-Type"
