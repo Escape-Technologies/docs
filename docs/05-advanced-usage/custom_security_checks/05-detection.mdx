@@ -12,169 +12,165 @@ In the same format using key and operator, you can select the data you want to t
 
 ## Matchers
 
-### String matchers
+There are various types of matchers available:
 
-## Available keys
+- [Boolean](#boolean-matcher)
+- [String](#string-matcher)
+- [Integer](#integer-matcher)
+- [Enum](#enum-matcher)
+- [Dictionary](#dictionary-matcher)
+- [JSON](#json-matcher)
+- [Scalar](#scalar-matcher)
 
-### `scan.type`
+### Boolean matcher
 
-> type : `enum`
-
-This will allow you to filter the scan type on which you want to apply the detection.
-
-Your availabe options are :
-
-- `GRAPHQL`
-- `REST`
+You can match over a boolean with the simple `is` matcher.
 
 Example :
 
 ```yaml
 detection:
-  - key: scan.type
-    is: REST
+  - key: helpers.response.is_successful
+    is: true
 ```
 
-or
+### String matcher
+
+You can match over a string in a lot of different ways :
+
+- `is` : The string is exactly the same
+- `in` : The string is in the given list
+- `contains` : The string contains the given value
+- `regex` : The string full match the given regex with ignore case flag (you can try your regex [here](https://regex101.com/))
+
+### Integer matcher
+
+You can match over a integer in a lot of different ways :
+
+- `is` : The integer is exactly the same
+- `in` : The integer is in the given list
+- `gt` : The integer is greater than the given value (or equal)
+- `lt` : The integer is lower than the given value (or equal)
+
+You can combine `gt` and `lt` to create a range.
+
+Example :
 
 ```yaml
 detection:
-  - key: scan.type
-    in:
-      - REST
-      - GRAPHQL
+  - key: response.status_code
+    gt: 200
+    lt: 299
 ```
 
-### `schema.operation`
+### Enum matcher
 
-> type : `string`
+Some keys contain a single value that is defined in an Enum.
 
-This is an abstaction over path or operation depending on the application you are currently testing.
-It will be the path for REST application and the operation for GraphQL application.
-
-Refer to [string matchers](#string-matchers) for more information on how to use it.
-
-### `schema.need_authentication`
-
-> type : `bool`
-
-
-### `schema.url`
-
-> type : `string`
-
-
-### `schema.method`
-
-> type : `string`
-
-
-### `schema.crud`
-
-> type : `enum`
-
-
-
-### `query.is_authenticated`
-
-> type : `bool`
-
-
-### `query.user`
-
-> type : `string`
-
-
-### `query.headers`
-
-> type : `list`
-
-
-### `query.body`
-
-> type : `json` / text
-
-
-### `query.scalars`
-
-> type : `scalar`
-
-
-
-### `response.status_code`
-
-> type : `int`
-
-
-### `response.is_successful`
-
-> type : `bool`
-
-
-### `response.duration_ms`
-
-> type : `int`
-
-
-### `response.headers`
-
-> type : `list`
-
-
-### `response.body`
-
-> type : `json` / text
-
-
-### `response.scalars`
-
-> type : `scalar`
-
-
-
-
-## Available operators
-
-- `is` (string)
-- `contains` (list)
-- `gt`
-- `lt`
-- `in`
-- `jq` Apply a [jq](https://stedolan.github.io/jq/) filter to the response body to assert the result
-
-
-## Example
+Example : 
 
 ```yaml
-    detection:
-      - key: response.status_code
-        is: 200
-
-      - key: response.body
-        contains: "{{expected_content}}"
-
-      - key: response.time
-        gt: 20
-        lt: 200
-
-      - key: helpers.response.is_successful
-        is: true
-
-      - key: helpers.response.scalars.detected
-        contains:
-          - "PASSWORD"
-
-      - key: helpers.response.scalars.sensitivity
-        gt: 0.5
-
-      - key: helpers.request.arguments
-        contains:
-          - "query"
-
-      - key: helpers.request.crud
-        in:
-          - "CREATE"
-
-      - key: response.json
-        jq: '.message == "ok"'
+detection:
+  - key: helpers.request.crud # (= "CREATE")
+    in:
+      - "CREATE"
+      - "READ"
 ```
+
+### Dictionary matcher
+
+For data that is structured as a dictionary of key-values and you want to match on both the key and value.
+
+Example:
+
+```yaml
+detection:
+  - key: request.header
+    key:
+      # string matcher
+    value:
+      # string matcher
+```
+
+### JSON matcher
+
+You can match over a JSON in a lot of different ways :
+
+- `is` : The JSON is exactly the same as the given JSON
+- `in` : The JSON is in the given list of JSON
+- `key` : The given key is present in the JSON
+- `jq` : The string match the given [jq](https://stedolan.github.io/jq/) filter
+
+### Scalar matcher
+
+Escape explore your API using scalars : each key of the query and the response will be extracted and stored as a scalar.
+It can be helpful to understand what is the underlying type of a key in a from.
+
+For example you may have a `user_id` key typed as string in your json schema, but in the underlying database store it as an UUID,
+escape will tag this key as `ID` and `UUID`, and during the scan, this scalars will be refined to `UUID` only.
+
+You so can match the scalar type using an enum matcher with our predefined scalars :
+
+```yaml
+detection:
+  - key: helpers.response.scalars
+    type:
+      in:
+        - "IPV4"
+        - "IPV6"
+```
+
+You can also match a scalar by it's name using a string matcher :
+
+```yaml
+detection:
+  - key: helpers.response.scalars
+    name:
+      # string matcher
+      regex: ".*@escape.tech"
+```
+You can also match a scalar by value using a string matcher :
+
+```yaml
+detection:
+  - key: helpers.response.scalars
+    value:
+      # string matcher
+      regex: ".*@escape.tech"
+```
+
+You can also match on the sensitivity of a scalar using an enum matcher:
+
+```yaml
+detection:
+  - key: helpers.response.scalars
+    sensitivity:
+      in:
+        - "HIGH"
+        - "MEDIUM"
+```
+
+---
+
+## Available keys
+
+With all the aforementioned matchers, you can match on the following keys :
+
+- [scan.type](#scantype)
+- [schema.operation](#schemaoperation)
+- [schema.need_authentication](#schemaneed_authentication)
+- [schema.url](#schemaurl)
+- [schema.method](#schemamethod)
+- [request.is_authenticated](#queryis_authenticated)
+- [request.user](#queryuser)
+- [request.headers](#queryheaders)
+- [request.body](#querybody)
+- [helpers.request.scalars](#helpersrequest.scalars)
+- [helpers.request.crud](#helpersrequestcrud)
+- [response.status_code](#responsestatus_code)
+- [response.duration_ms](#responseduration_ms)
+- [response.headers](#responseheaders)
+- [response.body](#responsebody)
+- [helpers.response.scalars](#helpersresponse.scalars)
+- [helpers.response.is_successful](#helpersresponseis_successful)
+

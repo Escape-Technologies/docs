@@ -12,15 +12,7 @@ You can leverage the powerful features of Escape's technology to fuzz in a techn
 
 Keep in mind that the Raw HTTP requests are not modified by actions, but you can use the `detect` after the action to filter the results (like v1 custom security checks).
 
-## Available keys
-
-- `request.body`
-- `request.headers`
-- `request.cookies`
-- `helpers.request.arguments`
-- `helpers.request.scalars`
-
-## Available operators
+## Matchers
 
 - `selector` (string) Specify the key to modify
   - `value` (string) Specify the value to set
@@ -31,6 +23,16 @@ Keep in mind that the Raw HTTP requests are not modified by actions, but you can
   - `value` (string) Specify the value to set
   - `values` (array) Specify the values to set (generate multiple requests)
   - `auto_payloads` (boolean) Generate payloads automatically based on the scalar type
+
+## Available keys
+
+- `request.body`
+- `request.headers`
+- `request.cookies`
+- `helpers.request.arguments`
+- `helpers.request.scalars`
+
+
 
 
 ## Example
