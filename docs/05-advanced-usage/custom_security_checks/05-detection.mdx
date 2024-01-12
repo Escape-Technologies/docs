@@ -144,13 +144,24 @@ detection:
 
 ### request.body
 
-> type: [`string`](#string-matcher) / [`dict`](#dictionary-matcher) / [`JSON`](#json-matcher)
+> type: [`string`](#string-matcher) / [`JSON`](#json-matcher)
 
 Example :
 ```yaml
 detection:
-  - detect: 
-    
+  - detect: request.body
+    is: "OK" # string matcher
+    # or 
+    contains: "admin_password=" # string matcher
+    # or
+    is: {"user": "admin"} # JSON Matcher
+    # or
+    in: # JSON matcher
+    - {"user": "admin"}
+    - {"isAdmin": true}
+    # or
+    jq: '.user == "admin" or .isAdmin' # JSON Matcher
+```
 ```
 
 ### helpers.request.scalars
@@ -343,8 +354,21 @@ You can match over a JSON in a lot of different ways :
 
 - `is` : The JSON is exactly the same as the given JSON
 - `in` : The JSON is in the given list of JSON
-- `key` : The given key is present in the JSON
 - `jq` : The string match the given [jq](https://stedolan.github.io/jq/) filter
+
+Example:
+
+```yaml
+detection:
+  - detect: request.body
+    is: {"user": "admin"}
+    # or
+    in: 
+    - {"user": "admin"}
+    - {"isAdmin": true}
+    # or
+    jq: '.user == "admin" or .isAdmin'
+```
 
 ### Scalar matcher
 
@@ -365,14 +389,14 @@ detection:
         - "IPV6"
 ```
 
-You can also match a scalar by it's name using a string matcher :
+You can also match a scalar by it's name in your specification, using a string matcher :
 
 ```yaml
 detection:
   - detect: helpers.response.scalars
     name:
       # string matcher
-      regex: ".*@escape.tech"
+      is: "user_id"
 ```
 You can also match a scalar by value using a string matcher :
 
@@ -393,4 +417,23 @@ detection:
       in:
         - "HIGH"
         - "MEDIUM"
+```
+
+You can merge all of these matchers to create a complex detection rule :
+
+```yaml
+# matching the email of an admin that is not admin@escape.tech
+detection:
+  - detect: response.status_code
+    is: 200
+  - detect: helpers.response.scalars
+    type:
+      in:
+        - "EMAIL"
+    name:
+      # string matcher
+      regex: ".*admin.*" # admin_email, email_of_admin, etc...
+    value:
+      # string matcher
+      is_not: "admin@escape.tech"
 ```

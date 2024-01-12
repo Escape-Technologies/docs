@@ -14,6 +14,8 @@ Keep in mind that the Raw HTTP requests are not modified by actions, but you can
 
 ## Available keys
 
+You can simply use the `action` action to set a key in the request.
+
 - [request.body](#requestbody)
 - [request.headers](#requestheaders)
 - [request.cookies](#requestcookies)
@@ -74,35 +76,100 @@ Example :
 ## Example
 
 ```yaml
+    detection:
+      - detect: helpers.response.scalars
+        name:
+          # string matcher
+          regex: ".*@escape.tech"
 
     action:
+      - action: helpers.response.scalars.remove
+        name:
+          # string matcher
+          regex: ".*@escape.tech"
 
-      - set_key: request.body
-        selector: param_name
+      - action: request.headers
+        key: "X-Forwarded-.*"
         value: "{{modify_value}}"
 
-      - set_key: request.body
-        selector: param_name2
-        values:
-          - "{{modify_value}}"
-          - "{{modify_value2}}"
+      - action: request.headers
+        key: "X-Forwarded-For"
+        value: "{{modify_value}}"
 
-      - set_key: request.headers
+      - action: request.headers
+        key: "X-Forwarded-For"
+        regex_replace:
+          regex: "{{regex}}"
+          value: "$1{{modified_value}}"
+
+      - action: request.headers
+        key: "X-.*"
+        remove: true
+
+      - action: request.headers
+        key: "X-Forwarded-For"
+        value: "{{modify_value}}"
+        add: true
+
+      - action: request.body
+        jq: '. | {"user": .user + " {{modify_value}}"}'
+
+      - action: helpers.request.scalars
+        select: # first we select the scalar with multiple criteria
+          kind:
+            in:
+            - "EMAIL"
+            - "PASSWORD"
+          name:
+            regex: ".*@escape.tech"
+          sensitivity:
+            in:
+            - "HIGH"
+            - "MEDIUM"
+          value:
+            is_not: "admin@escape.tech"
+        mutate: # then we mutate the scalar
+          value: "{{modify_value}}"
+          # or
+          values:
+            - "{{modify_value}}"
+            - "{{modify_value2}}"
+          # or
+          regex_replace:
+            regex: "(.*)@escape.tech"
+            replace: "$1@attacker.com"
+          # or
+          auto_mutate: true # use auto-generated payloads depending on the scalar type
+
+      - action: request.body
+        select:
+          key: "user"
+
+      - action: request.body
+        key:
+          # string matcher
+          is: "Content-Type"
+        value:
+          # string matcher
+          regex: "application/.*"
+
+
+      - action: request.headers
         selector: Content-Type
         value: "{{modify_value}}"
 
-      - set_key: helpers.request.scalars
+      - action: helpers.request.scalars
         scalar: "EMAIL"
         value: "{{modify_value}}"
 
-      - set_key: helpers.request.scalars
+      - action: helpers.request.scalars
         scalar: "URL"
         auto_payloads: true
 
-      - set_key: request.body
+      - action: request.body
         jq: '. | {"user": .user + " {{modify_value}}"}'
 
-      - set_key: helpers.request.arguments
+      - action: helpers.request.arguments
         selector: arg_name
         value: "{{modify_value}}"
 ```
