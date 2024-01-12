@@ -197,8 +197,16 @@ action:
         - "EMAIL"
         - "PASSWORD"
         - "..."
-      name:
+      value:
+        is: ""
+        # or
+        is_not: ""
+        # or
         regex: ".*@escape.tech"
+        contains: "admin_password=" # string matcher
+        in:
+        - "a value"
+        - "another value"
       sensitivity:
         in:
         - "HIGH"
@@ -231,7 +239,7 @@ action:
           regex: ".*@escape.tech"
 
     action:
-      - action: helpers.response.scalars.remove
+      - action: helpers.response.scalars
         name:
           # string matcher
           regex: ".*@escape.tech"
