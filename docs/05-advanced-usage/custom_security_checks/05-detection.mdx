@@ -10,6 +10,104 @@ You can simply test on the response status code, or you can test on the response
 
 In the same format using key and operator, you can select the data you want to test from the response body and test it.
 
+## Available keys
+
+With all the aforementioned matchers, you can match on the following keys :
+
+- [scan.type](#scantype)
+- [schema.operation](#schemaoperation)
+- [schema.need_authentication](#schemaneed_authentication)
+- [schema.url](#schemaurl)
+- [schema.method](#schemamethod)
+- [request.is_authenticated](#requestis_authenticated)
+- [request.user](#requestuser)
+- [request.headers](#requestheaders)
+- [request.body](#requestbody)
+- [helpers.request.scalars](#helpersrequestscalars)
+- [helpers.request.crud](#helpersrequestcrud)
+- [response.status_code](#responsestatus_code)
+- [response.duration_ms](#responseduration_ms)
+- [response.headers](#responseheaders)
+- [response.body](#responsebody)
+- [helpers.response.scalars](#helpersresponsescalars)
+- [helpers.response.is_successful](#helpersresponseis_successful)
+
+### scan.type
+
+> type: [`enum`](#enum-matcher)
+
+Example :
+
+```yaml
+detection:
+  - key: scan.type
+    is: "REST"
+```
+
+### schema.operation
+
+> type: `aaa`
+
+### schema.need_authentication
+
+> type: [`bool`](#enum-matcher)
+
+### schema.url
+
+> type: `aaa`
+
+### schema.method
+
+> type: `aaa`
+
+### request.is_authenticated
+
+> type: `aaa`
+
+### request.user
+
+> type: `aaa`
+
+### request.headers
+
+> type: `aaa`
+
+### request.body
+
+> type: `aaa`
+
+### helpers.request.scalars
+
+> type: `aaa`
+
+### helpers.request.crud
+
+> type: `aaa`
+
+### response.status_code
+
+> type: `aaa`
+
+### response.duration_ms
+
+> type: `aaa`
+
+### response.headers
+
+> type: `aaa`
+
+### response.body
+
+> type: `aaa`
+
+### helpers.response.scalars
+
+> type: `aaa`
+
+### helpers.response.is_successful
+
+> type: `aaa`
+
 ## Matchers
 
 There are various types of matchers available:
@@ -42,6 +140,14 @@ You can match over a string in a lot of different ways :
 - `in` : The string is in the given list
 - `contains` : The string contains the given value
 - `regex` : The string full match the given regex with ignore case flag (you can try your regex [here](https://regex101.com/))
+
+Example :
+
+```yaml
+detection:
+  - key: schema.url
+    contains: "admin"
+```
 
 ### Integer matcher
 
@@ -88,8 +194,10 @@ detection:
   - key: request.header
     key:
       # string matcher
+      is: "Content-Type"
     value:
       # string matcher
+      regex: "application/.*"
 ```
 
 ### JSON matcher
@@ -149,28 +257,3 @@ detection:
         - "HIGH"
         - "MEDIUM"
 ```
-
----
-
-## Available keys
-
-With all the aforementioned matchers, you can match on the following keys :
-
-- [scan.type](#scantype)
-- [schema.operation](#schemaoperation)
-- [schema.need_authentication](#schemaneed_authentication)
-- [schema.url](#schemaurl)
-- [schema.method](#schemamethod)
-- [request.is_authenticated](#queryis_authenticated)
-- [request.user](#queryuser)
-- [request.headers](#queryheaders)
-- [request.body](#querybody)
-- [helpers.request.scalars](#helpersrequest.scalars)
-- [helpers.request.crud](#helpersrequestcrud)
-- [response.status_code](#responsestatus_code)
-- [response.duration_ms](#responseduration_ms)
-- [response.headers](#responseheaders)
-- [response.body](#responsebody)
-- [helpers.response.scalars](#helpersresponse.scalars)
-- [helpers.response.is_successful](#helpersresponseis_successful)
-
