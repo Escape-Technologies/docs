@@ -8,7 +8,7 @@ Once you have filtered the exploration results, you can apply actions to them.
 
 Actions are a set of operations that will be applied to the request before sending it to the target.
 
-You can leverage the powerful features of Escape's technology to fuzz in a technology-agnostic manner, but with full knowledge of the data types underneath (aka scalar).
+You can leverage the powerful features of Escape's technology to test your APIs in a technology-agnostic manner, but with full knowledge of the data types underneath (aka scalar).
 
 Keep in mind that the Raw HTTP requests are not modified by actions, but you can use the `detection` after the action to filter the results (like v1 custom security checks).
 
@@ -26,25 +26,34 @@ You can simply use the `action` action to set a key in the request.
 
 ### request.body
 
+Your request body, in JSON or string format.
+
 > type: [`string`](#string-action) / [`JSON`](#json-action)
 
 Example :
 ```yaml
 action:
   - action: request.body
-    jq: '. | {"user": .user + " {{modify_value}}"}'
+    jq: '. | {"user": .user + " {{modify_value}}"}' # consider the body as a JSON and use jq to modify it
   - action: request.body
-    
+    regex_replace: # consider the body as a string and regex replace
+      regex: "(.*)@escape.tech"
+      replace: "$1@attacker.com"
 ```
 
 
 ### request.headers
 
+Your request headers, in key/value format.
+
 > type: [`dict`](#dictionary-action)
 
 Example :
 ```yaml
-
+action:
+  - action: request.headers
+    key: "Authorization"
+    value: "Bearer some_alg_none_jwt"
 ```
 
 
@@ -73,13 +82,17 @@ Example :
 ```yaml
 action:
   - action: helpers.request.arguments
-    selector: arg_name
+    selector: arg_name # the name of the argument
     location: query # in the url query like example.com/?arg_name=arg_value
     value: "{{modify_value}}"
 ```
 
 
 ### helpers.request.scalars
+
+The helper for request scalars is an agnostic abstraction from Escape, on the objects that are inferred from the API specifications and actual request/responses.
+
+This enables you to only care about data types, their inherent sensitivity, and test their validation with payloads you supply or our automatic payloads generator.
 
 > type: [`string`](#scalar-action)
 
@@ -178,11 +191,12 @@ Example :
 ```yaml
 action:
   - action: helpers.request.scalars
-    select: # first we select the scalar with multiple criteria
+    select: # first we select the scalar with multiple criteria, in a logical AND group
       kind:
         in:
         - "EMAIL"
         - "PASSWORD"
+        - "..."
       name:
         regex: ".*@escape.tech"
       sensitivity:
@@ -214,7 +228,6 @@ action:
     detection:
       - detect: helpers.response.scalars
         name:
-          # string matcher
           regex: ".*@escape.tech"
 
     action:
