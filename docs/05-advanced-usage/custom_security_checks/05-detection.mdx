@@ -162,27 +162,37 @@ detection:
     # or
     jq: '.user == "admin" or .isAdmin' # JSON Matcher
 ```
-```
 
 ### helpers.request.scalars
 
-> type: `aaa`
+> type: [`string`](#string-matcher) / [`enum`](#enum-matcher)
 
 Example :
 ```yaml
+# matching the email of an admin that is not admin@escape.tech
 detection:
-  - detect: 
-    
+  - detect: helpers.request.scalars
+    type:
+      in:
+        - "EMAIL"
+    name:
+      # string matcher
+      regex: ".*admin.*" # admin_email, email_of_admin, etc...
+    value:
+      # string matcher
+      is_not: "admin@escape.tech"
 ```
+
+
 
 ### helpers.request.crud
 
-> type: `aaa`
+> type: [`enum`](#enum-matcher)
 
 Example :
 ```yaml
 detection:
-  - detect: 
+  - detect:
     
 ```
 
@@ -210,7 +220,7 @@ detection:
 
 ### response.headers
 
-> type: `aaa`
+> type: [`dict`](#dictionary-matcher)
 
 Example :
 ```yaml
@@ -232,13 +242,22 @@ detection:
 
 ### helpers.response.scalars
 
-> type: `aaa`
+> type: [`string`](#string-matcher) / [`enum`](#enum-matcher)
 
 Example :
 ```yaml
+# matching the email of an admin that is not admin@escape.tech
 detection:
-  - detect: 
-    
+  - detect: helpers.request.scalars
+    type:
+      in:
+        - "EMAIL"
+    name:
+      # string matcher
+      regex: ".*admin.*" # admin_email, email_of_admin, etc...
+    value:
+      # string matcher
+      is_not: "admin@escape.tech"
 ```
 
 ### helpers.response.is_successful
