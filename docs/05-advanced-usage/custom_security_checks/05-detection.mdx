@@ -36,21 +36,25 @@ With all the aforementioned matchers, you can match on the following keys :
 
 > type: [`enum`](#enum-matcher)
 
+You can test the scan type to run some specific tests only for specific applications.
+
 Example :
 
 ```yaml
 detection:
-  - key: scan.type
+  - detect: scan.type
     is: "REST"
 ```
 
 ### schema.operation
 
-> type: `aaa`
+> type: [`string`](#string-matcher)
+
+
 
 ### schema.need_authentication
 
-> type: [`bool`](#enum-matcher)
+> type: [`bool`](#boolean-matcher)
 
 ### schema.url
 
@@ -62,7 +66,7 @@ detection:
 
 ### request.is_authenticated
 
-> type: `aaa`
+> type: [`bool`](#boolean-matcher)
 
 ### request.user
 
@@ -74,7 +78,7 @@ detection:
 
 ### request.body
 
-> type: `aaa`
+> type: [`string`](#string-matcher) / [`dict`](#dictionary-matcher) / [`JSON`](#json-matcher)
 
 ### helpers.request.scalars
 
@@ -86,11 +90,11 @@ detection:
 
 ### response.status_code
 
-> type: `aaa`
+> type: [`integer`](#integer-matcher)
 
 ### response.duration_ms
 
-> type: `aaa`
+> type: [`integer`](#integer-matcher)
 
 ### response.headers
 
@@ -98,7 +102,7 @@ detection:
 
 ### response.body
 
-> type: `aaa`
+> type: [`string`](#string-matcher) / [`dict`](#dictionary-matcher) / [`JSON`](#json-matcher)
 
 ### helpers.response.scalars
 
@@ -106,7 +110,7 @@ detection:
 
 ### helpers.response.is_successful
 
-> type: `aaa`
+> type: [`bool`](#boolean-matcher)
 
 ## Matchers
 
@@ -128,7 +132,7 @@ Example :
 
 ```yaml
 detection:
-  - key: helpers.response.is_successful
+  - detect: helpers.response.is_successful
     is: true
 ```
 
@@ -145,7 +149,7 @@ Example :
 
 ```yaml
 detection:
-  - key: schema.url
+  - detect: schema.url
     contains: "admin"
 ```
 
@@ -164,7 +168,7 @@ Example :
 
 ```yaml
 detection:
-  - key: response.status_code
+  - detect: response.status_code
     gt: 200
     lt: 299
 ```
@@ -177,7 +181,7 @@ Example :
 
 ```yaml
 detection:
-  - key: helpers.request.crud # (= "CREATE")
+  - detect: helpers.request.crud # (= "CREATE")
     in:
       - "CREATE"
       - "READ"
@@ -191,7 +195,7 @@ Example:
 
 ```yaml
 detection:
-  - key: request.header
+  - detect: request.header
     key:
       # string matcher
       is: "Content-Type"
@@ -221,7 +225,7 @@ You so can match the scalar type using an enum matcher with our predefined scala
 
 ```yaml
 detection:
-  - key: helpers.response.scalars
+  - detect: helpers.response.scalars
     type:
       in:
         - "IPV4"
@@ -232,7 +236,7 @@ You can also match a scalar by it's name using a string matcher :
 
 ```yaml
 detection:
-  - key: helpers.response.scalars
+  - detect: helpers.response.scalars
     name:
       # string matcher
       regex: ".*@escape.tech"
@@ -241,7 +245,7 @@ You can also match a scalar by value using a string matcher :
 
 ```yaml
 detection:
-  - key: helpers.response.scalars
+  - detect: helpers.response.scalars
     value:
       # string matcher
       regex: ".*@escape.tech"
@@ -251,7 +255,7 @@ You can also match on the sensitivity of a scalar using an enum matcher:
 
 ```yaml
 detection:
-  - key: helpers.response.scalars
+  - detect: helpers.response.scalars
     sensitivity:
       in:
         - "HIGH"
