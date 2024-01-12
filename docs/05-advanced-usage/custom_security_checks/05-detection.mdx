@@ -10,17 +10,128 @@ You can simply test on the response status code, or you can test on the response
 
 In the same format using key and operator, you can select the data you want to test from the response body and test it.
 
+## Matchers
+
+### String matchers
+
 ## Available keys
 
-- `response.status_code`
-- `response.body`
-- `response.time`
-- `response.json`
-- `helpers.response.is_successful`
-- `helpers.response.scalars.detected`
-- `helpers.response.scalars.sensitivity`
-- `helpers.request.arguments`
-- `helpers.request.crud`
+### `scan.type`
+
+> type : `enum`
+
+This will allow you to filter the scan type on which you want to apply the detection.
+
+Your availabe options are :
+
+- `GRAPHQL`
+- `REST`
+
+Example :
+
+```yaml
+detection:
+  - key: scan.type
+    is: REST
+```
+
+or
+
+```yaml
+detection:
+  - key: scan.type
+    in:
+      - REST
+      - GRAPHQL
+```
+
+### `schema.operation`
+
+> type : `string`
+
+This is an abstaction over path or operation depending on the application you are currently testing.
+It will be the path for REST application and the operation for GraphQL application.
+
+Refer to [string matchers](### String matchers) for more information on how to use it.
+
+### `schema.need_authentication`
+
+> type : `bool`
+
+
+### `schema.url`
+
+> type : `string`
+
+
+### `schema.method`
+
+> type : `string`
+
+
+### `schema.crud`
+
+> type : `enum`
+
+
+
+### `query.is_authenticated`
+
+> type : `bool`
+
+
+### `query.user`
+
+> type : `string`
+
+
+### `query.headers`
+
+> type : `list`
+
+
+### `query.body`
+
+> type : `json` / text
+
+
+### `query.scalars`
+
+> type : `scalar`
+
+
+
+### `response.status_code`
+
+> type : `int`
+
+
+### `response.is_successful`
+
+> type : `bool`
+
+
+### `response.duration_ms`
+
+> type : `int`
+
+
+### `response.headers`
+
+> type : `list`
+
+
+### `response.body`
+
+> type : `json` / text
+
+
+### `response.scalars`
+
+> type : `scalar`
+
+
+
 
 ## Available operators
 
