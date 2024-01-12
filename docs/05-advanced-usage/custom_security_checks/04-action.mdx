@@ -12,24 +12,64 @@ You can leverage the powerful features of Escape's technology to fuzz in a techn
 
 Keep in mind that the Raw HTTP requests are not modified by actions, but you can use the `detection` after the action to filter the results (like v1 custom security checks).
 
-## Matcher
-
-- `selector` (string) Specify the key to modify
-  - `value` (string) Specify the value to set
-  - `values` (array) Specify the values to set (generate multiple requests)
-
-- `scalar`
-  - `value` (string) Specify the value to set
-  - `values` (array) Specify the values to set (generate multiple requests)
-  - `auto_payloads` (boolean) Generate payloads automatically based on the scalar type
-
 ## Available keys
 
-- `request.body`
-- `request.headers`
-- `request.cookies`
-- `helpers.request.arguments`
-- `helpers.request.scalars`
+- [request.body](#requestbody)
+- [request.headers](#requestheaders)
+- [request.cookies](#requestcookies)
+- [helpers.request.arguments](#helpersrequestarguments)
+- [helpers.request.scalars](#helpersrequestscalars)
+
+### request.body
+
+> type: [``](#)
+
+Example :
+```yaml
+
+```
+
+
+### request.headers
+
+> type: [``](#)
+
+Example :
+```yaml
+
+```
+
+
+### request.cookies
+
+> type: [``](#)
+
+Example :
+```yaml
+
+```
+
+
+### helpers.request.arguments
+
+> type: [``](#)
+
+Example :
+```yaml
+
+```
+
+
+### helpers.request.scalars
+
+> type: [``](#)
+
+Example :
+```yaml
+
+```
+
+
 
 ## Example
 
