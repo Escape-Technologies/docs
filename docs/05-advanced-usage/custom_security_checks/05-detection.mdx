@@ -63,6 +63,13 @@ detection:
 The operation is an agnostic way to describe the action that is performed by the request.
 It will match the operation in graphql, the path in REST, the verb in gRPC, etc...
 
+```yaml
+detection:
+  - detect: scan.type
+    is: "REST"
+```
+
+
 ### schema.need_authentication
 
 > type: [`bool`](#boolean-matcher)
@@ -81,57 +88,158 @@ detection:
 
 > type: `aaa`
 
+Example :
+
+```yaml
+detection:
+  - detect: scan.type
+    is: "REST"
+```
+
 ### schema.method
 
-> type: `aaa`
+> type: `[enum](#enum-matcher)`
+
+Example :
+
+```yaml
+detection:
+  - detect: scan.type
+    is: "REST"
+```
 
 ### request.is_authenticated
 
 > type: [`bool`](#boolean-matcher)
 
+Example :
+
+```yaml
+detection:
+  - detect: scan.type
+    is: "REST"
+```
+
 ### request.user
 
-> type: `aaa`
+> type: [`string`](#string-matcher)
+
+Example :
+```yaml
+detection:
+  - detect: 
+    
+```
 
 ### request.headers
 
-> type: `aaa`
+> type: [`dict`](#dictionary-matcher)
+
+Example :
+```yaml
+detection:
+  - detect: 
+    
+```
 
 ### request.body
 
 > type: [`string`](#string-matcher) / [`dict`](#dictionary-matcher) / [`JSON`](#json-matcher)
 
+Example :
+```yaml
+detection:
+  - detect: 
+    
+```
+
 ### helpers.request.scalars
 
 > type: `aaa`
+
+Example :
+```yaml
+detection:
+  - detect: 
+    
+```
 
 ### helpers.request.crud
 
 > type: `aaa`
 
+Example :
+```yaml
+detection:
+  - detect: 
+    
+```
+
 ### response.status_code
 
 > type: [`integer`](#integer-matcher)
+
+Example :
+```yaml
+detection:
+  - detect: 
+    
+```
 
 ### response.duration_ms
 
 > type: [`integer`](#integer-matcher)
 
+Example :
+```yaml
+detection:
+  - detect: 
+    
+```
+
 ### response.headers
 
 > type: `aaa`
+
+Example :
+```yaml
+detection:
+  - detect: 
+    
+```
 
 ### response.body
 
 > type: [`string`](#string-matcher) / [`dict`](#dictionary-matcher) / [`JSON`](#json-matcher)
 
+Example :
+```yaml
+detection:
+  - detect: 
+    
+```
+
 ### helpers.response.scalars
 
 > type: `aaa`
 
+Example :
+```yaml
+detection:
+  - detect: 
+    
+```
+
 ### helpers.response.is_successful
 
 > type: [`bool`](#boolean-matcher)
+
+Example :
+```yaml
+detection:
+  - detect: 
+    
+```
 
 ## Matchers
 
@@ -197,7 +305,10 @@ detection:
 
 ### Enum matcher
 
-Some keys contain a single value that is defined in an Enum.
+Some keys contain a single value from an Enum that contains valid values.
+Autocompletion should suggest them to you, depending on the key.
+e.g. `helpers.request.crud` accepts `CREATE`, `READ`, `UPDATE`, `DELETE`.
+`schema.method` accepts `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `OPTIONS`, `HEAD`.
 
 Example : 
 
