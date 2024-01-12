@@ -19,7 +19,7 @@ In a YAML format, you can define a Security Check that defines 5 blocks:
 - `http` to send a raw HTTP request to your API at each scan start
 - `context` to filter on what the scanner explores, specific or not to a protocol thanks to schema abstractions, and knowing what kind of data is there (using scalars)
 - `action` to trigger a test, select a specific part of a request, or 
-- `detect` to see if your test successfully broke your targeted context
+- `detection` to see if your test successfully broke your targeted context
 - `alert` to fill out details and alert your team(s)
 
 
@@ -44,7 +44,7 @@ custom_checks:
         value: "admin@escape.tech"
 
     detection:
-      - key: response.status_code
+      - detect: response.status_code
         is: 200
 
     alert:

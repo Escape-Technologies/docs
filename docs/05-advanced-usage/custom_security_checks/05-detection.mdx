@@ -1,14 +1,24 @@
 ---
-title: Detect
+title: Detection
 ---
 
 # Detection
 
-The detect section is where you specify the criteria to detect the success or failure of the security test, and whether or not to alert.
+In your security test, you must define what are the criteria to raise an alert.
+For that you have a lot of matchers available to match on the request, the response, the schema or the scan type.
 
-You can simply test on the response status code, or you can test on the response body, response time, or JSON response.
+The detection block is a list of detection rules, each rule is evaluated independently and if all the rules are matched,
+an alert is raised. This means that you can define multiple matchers to fine tune your detection.
 
-In the same format using key and operator, you can select the data you want to test from the response body and test it.
+For example, a check that will raise an alert if the response status code is 500 to a route that contains `debug` in the url :
+
+```yaml
+detection:
+  - detect: response.status_code
+    is: 500
+  - detect: schema.url
+    contains: "debug"
+```
 
 ## Available keys
 
