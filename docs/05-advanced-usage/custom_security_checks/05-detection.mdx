@@ -20,6 +20,9 @@ detection:
     contains: "debug"
 ```
 
+--- 
+
+
 ## Available keys
 
 With all the aforementioned matchers, you can match on the following keys :
@@ -86,7 +89,7 @@ detection:
 
 ### schema.url
 
-> type: `aaa`
+> type: [`string`](#string-matcher)
 
 Example :
 
@@ -127,8 +130,8 @@ detection:
 Example :
 ```yaml
 detection:
-  - detect: 
-    
+  - detect: request.user
+    is: "admin"
 ```
 
 ### request.headers
@@ -188,8 +191,6 @@ detection:
       is_not: "admin@escape.tech"
 ```
 
-
-
 ### helpers.request.crud
 
 > type: [`enum`](#enum-matcher)
@@ -197,8 +198,10 @@ detection:
 Example :
 ```yaml
 detection:
-  - detect:
-    
+  - detect: helpers.request.crud # (= "CREATE")
+    in:
+      - "CREATE"
+      - "READ"
 ```
 
 ### response.status_code
@@ -231,8 +234,13 @@ detection:
 Example :
 ```yaml
 detection:
-  - detect: 
-    
+  - detect: response.headers
+    key:
+      # string matcher
+      is: "Content-Type"
+    value:
+      # string matcher
+      regex: "application/.*"
 ```
 
 ### response.body
@@ -242,8 +250,18 @@ detection:
 Example :
 ```yaml
 detection:
-  - detect: 
-    
+  - detect: response.body
+    is: "OK" # string matcher
+    # or 
+    contains: "admin_password=" # string matcher
+    # or
+    is: {"user": "admin"} # JSON Matcher
+    # or
+    in: # JSON matcher
+    - {"user": "admin"}
+    - {"isAdmin": true}
+    # or
+    jq: '.user == "admin" or .isAdmin' # JSON Matcher
 ```
 
 ### helpers.response.scalars
@@ -276,6 +294,8 @@ detection:
   - detect: 
     
 ```
+
+---
 
 ## Matchers
 
@@ -316,6 +336,7 @@ Example :
 detection:
   - detect: schema.url
     contains: "admin"
+  - detect: schema.
 ```
 
 ### Integer matcher
