@@ -28,7 +28,7 @@ detection:
 With all the aforementioned matchers, you can match on the following keys :
 
 - [scan.type](#scantype)
-- [schema.operation](#schemaoperation)
+- [schema.path_ref](#schemapath_ref)
 - [schema.need_authentication](#schemaneed_authentication)
 - [schema.url](#schemaurl)
 - [schema.method](#schemamethod)
@@ -59,17 +59,19 @@ detection:
     is: "REST"
 ```
 
-### schema.operation
+### schema.path_ref
 
 > type: [`string`](#string-matcher)
 
-The operation is an agnostic way to describe the action that is performed by the request.
-It will match the operation in graphql, the path in REST, the verb in gRPC, etc...
+The path_ref is an agnostic way to describe the action that is performed by the request.
+It will match the operation in graphql, the path in REST, etc...
 
 ```yaml
 detection:
-  - detect: scan.type
-    is: "REST"
+  - detect: schema.path_ref
+    is: "query"
+    # or
+    contains: "/users"
 ```
 
 
@@ -291,8 +293,8 @@ detection:
 Example :
 ```yaml
 detection:
-  - detect: 
-    
+  - detect: helpers.response.is_successful
+    is: true
 ```
 
 ---
@@ -336,7 +338,8 @@ Example :
 detection:
   - detect: schema.url
     contains: "admin"
-  - detect: schema.
+  - detect: schema.path_ref
+    regex: ".*_debug"
 ```
 
 ### Integer matcher
