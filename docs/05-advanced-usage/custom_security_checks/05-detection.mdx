@@ -60,11 +60,22 @@ detection:
 
 > type: [`string`](#string-matcher)
 
-
+The operation is an agnostic way to describe the action that is performed by the request.
+It will match the operation in graphql, the path in REST, the verb in gRPC, etc...
 
 ### schema.need_authentication
 
 > type: [`bool`](#boolean-matcher)
+
+You can filter only the authenticated routes with this detection.
+
+Example :
+
+```yaml
+detection:
+  - detect: schema.need_authentication
+    is: true
+```
 
 ### schema.url
 
