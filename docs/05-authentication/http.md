@@ -27,11 +27,12 @@ preset:
             for: authentication
         headers:
             Content-Type: application/json
-    inject:
-        key: Authorization
+    injections:
+    -   key: Authorization
         location: header
         prefix: 'Bearer '
-    extract:
+    extractions:
+    -   name: token
         key: accessToken
         location: body
     users:
@@ -60,8 +61,8 @@ preset:
 | type | `Const[http]` | `False` |  |  |
 | users | `HTTPUserPreset` | `True` | The list of users to generate tokens for. | [HTTPUserPreset](#HTTPUserPreset) |
 | request | `HTTPRequestPreset` | `True` | The parameters of the HTTP request used to fetch the access and refresh tokens. | [HTTPRequestPreset](#HTTPRequestPreset) |
-| extract | `TokenExtraction` | `True` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
-| inject | `TokenInjection` | `True` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
+| extractions | `TokenExtraction` | `False` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
+| injections | `TokenInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
 
 
 
@@ -95,7 +96,7 @@ preset:
 | location | `HTTPLocation` | `True` | The location of the HTTP request where the value should be extracted | [HTTPLocation](#HTTPLocation) |
 | key | `string` | `True` | The key to use for the extracted value, depending on the location |  |
 | regex | `string` | `False` | The regex to use to extract the token from the key value. By default the entire value is taken. |  |
-| name | `string` | `False` | The name of the variable to store the extracted value into |  |
+| name | `string` | `True` | The name of the variable to store the extracted value into |  |
 
 
 ### <a id="TokenInjection"></a>TokenInjection

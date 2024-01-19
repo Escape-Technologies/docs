@@ -23,11 +23,13 @@ Two common use cases are:
 ```yaml
 preset:
 -   type: curl
-    inject:
-        key: Authorization
+    injections:
+    -   key: Authorization
         location: header
         prefix: Bearer
-    extract:
+        variable: token
+    extractions:
+    -   name: token
         key: Authorization
         location: header
     users:
@@ -39,11 +41,12 @@ preset:
 ```yaml
 preset:
 -   type: curl
-    inject:
-        key: session_id
+    injections:
+    -   key: session_id
         location: cookie
         variable: sessionId
-    extract:
+    extractions:
+    -   name: sessionId
         key: Set-Cookie
         location: header
         regex: session_id=(\S+);
@@ -60,8 +63,8 @@ preset:
 |----------|------|----------|-------------|-----------|
 | type | `Const[curl]` | `False` |  |  |
 | users | `cURLUserPreset` | `True` | The list of users to generate tokens for. | [cURLUserPreset](#cURLUserPreset) |
-| extract | `TokenExtraction` | `True` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
-| inject | `TokenInjection` | `True` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
+| extractions | `TokenExtraction` | `True` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
+| injections | `TokenInjection` | `True` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
 
 
 
@@ -82,7 +85,7 @@ preset:
 | location | `HTTPLocation` | `True` | The location of the HTTP request where the value should be extracted | [HTTPLocation](#HTTPLocation) |
 | key | `string` | `True` | The key to use for the extracted value, depending on the location |  |
 | regex | `string` | `False` | The regex to use to extract the token from the key value. By default the entire value is taken. |  |
-| name | `string` | `False` | The name of the variable to store the extracted value into |  |
+| name | `string` | `True` | The name of the variable to store the extracted value into |  |
 
 
 ### <a id="TokenInjection"></a>TokenInjection

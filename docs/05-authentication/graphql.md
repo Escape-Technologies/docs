@@ -24,11 +24,12 @@ preset:
     url: https://api.example.com/graphql-auth
     query: "mutation($login: String!, $password: String!) {\n   authenticate(login:\
         \ $login, password: $password) {\n       accessToken\n   }\n}"
-    inject:
-        key: Authorization
+    injections:
+    -   key: Authorization
         location: header
         prefix: Bearer
-    extract:
+    extractions:
+    -   name: token
         key: accessToken
         location: body
     users:
@@ -52,8 +53,8 @@ preset:
 | users | `GraphQLUserPreset` | `True` | A list of users with credentials contained in the GraphQL `variables` of the query | [GraphQLUserPreset](#GraphQLUserPreset) |
 | url | `string` | `True` | The URL of the GraphQL authentication endpoint. |  |
 | query | `string` | `True` | The templated GraphQL inside the `query` field of the JSON body of the HTTP request. |  |
-| extract | `TokenExtraction` | `False` | The extraction of the GraphQL query containing the user credentials. | [TokenExtraction](#TokenExtraction) |
-| inject | `TokenInjection` | `False` | The injection of the GraphQL query containing the user credentials. | [TokenInjection](#TokenInjection) |
+| extractions | `TokenExtraction` | `False` | The extractions of the GraphQL query containing the user credentials. | [TokenExtraction](#TokenExtraction) |
+| injections | `TokenInjection` | `False` | The injections of the GraphQL query containing the user credentials. | [TokenInjection](#TokenInjection) |
 
 
 
@@ -74,7 +75,7 @@ preset:
 | location | `HTTPLocation` | `True` | The location of the HTTP request where the value should be extracted | [HTTPLocation](#HTTPLocation) |
 | key | `string` | `True` | The key to use for the extracted value, depending on the location |  |
 | regex | `string` | `False` | The regex to use to extract the token from the key value. By default the entire value is taken. |  |
-| name | `string` | `False` | The name of the variable to store the extracted value into |  |
+| name | `string` | `True` | The name of the variable to store the extracted value into |  |
 
 
 ### <a id="TokenInjection"></a>TokenInjection

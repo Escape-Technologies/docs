@@ -21,11 +21,12 @@ This preset is particularly useful when other forms of API-based authentication 
 preset:
 -   type: webdriver
     wait_for_seconds: 30
-    inject:
-        key: Authorization
+    injections:
+    -   key: Authorization
         location: header
         prefix: 'Bearer '
-    extract:
+    extractions:
+    -   name: token
         location: query
         regex: example-portal.*portal-session-id=([^&]*)
     users:
@@ -99,8 +100,8 @@ preset:
 | type | `Const[webdriver]` | `False` |  |  |
 | users | `WebdriverUserPreset` | `True` | The list of users to generate tokens for. | [WebdriverUserPreset](#WebdriverUserPreset) |
 | wait_for_seconds | `integer` | `False` | The number of seconds to wait at various steps of the script. For example when waiting for a page to load. |  |
-| extract | `TokenExtraction` | `True` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
-| inject | `TokenInjection` | `True` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
+| extractions | `TokenExtraction` | `False` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
+| injections | `TokenInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
 
 
 
@@ -121,7 +122,7 @@ preset:
 | location | `HTTPLocation` | `True` | The location of the HTTP request where the value should be extracted | [HTTPLocation](#HTTPLocation) |
 | key | `string` | `True` | The key to use for the extracted value, depending on the location |  |
 | regex | `string` | `False` | The regex to use to extract the token from the key value. By default the entire value is taken. |  |
-| name | `string` | `False` | The name of the variable to store the extracted value into |  |
+| name | `string` | `True` | The name of the variable to store the extracted value into |  |
 
 
 ### <a id="TokenInjection"></a>TokenInjection

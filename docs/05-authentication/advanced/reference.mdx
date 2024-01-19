@@ -110,8 +110,8 @@ description: All objects available
 | users | `GraphQLUserPreset` | `True` | A list of users with credentials contained in the GraphQL `variables` of the query | [GraphQLUserPreset](#GraphQLUserPreset) |
 | url | `string` | `True` | The URL of the GraphQL authentication endpoint. |  |
 | query | `string` | `True` | The templated GraphQL inside the `query` field of the JSON body of the HTTP request. |  |
-| extract | `TokenExtraction` | `False` | The extraction of the GraphQL query containing the user credentials. | [TokenExtraction](#TokenExtraction) |
-| inject | `TokenInjection` | `False` | The injection of the GraphQL query containing the user credentials. | [TokenInjection](#TokenInjection) |
+| extractions | `TokenExtraction` | `False` | The extractions of the GraphQL query containing the user credentials. | [TokenExtraction](#TokenExtraction) |
+| injections | `TokenInjection` | `False` | The injections of the GraphQL query containing the user credentials. | [TokenInjection](#TokenInjection) |
 
 
 ## <a id="GraphQLUserPreset"></a>GraphQLUserPreset
@@ -147,8 +147,8 @@ description: All objects available
 | type | `Const[http]` | `False` |  |  |
 | users | `HTTPUserPreset` | `True` | The list of users to generate tokens for. | [HTTPUserPreset](#HTTPUserPreset) |
 | request | `HTTPRequestPreset` | `True` | The parameters of the HTTP request used to fetch the access and refresh tokens. | [HTTPRequestPreset](#HTTPRequestPreset) |
-| extract | `TokenExtraction` | `True` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
-| inject | `TokenInjection` | `True` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
+| extractions | `TokenExtraction` | `False` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
+| injections | `TokenInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
 
 
 ## <a id="HTTPQueryParameter"></a>HTTPQueryParameter
@@ -270,7 +270,7 @@ description: All objects available
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | name | `string` | `True` | The name of the procedure. It must be unique and is used to reference the procedure in users. |  |
-| operations | `DigestRunnerConfiguration | SeleniumRunnerConfiguration | HTTPRunnerConfiguration` | `False` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
+| operations | `SeleniumRunnerConfiguration | DigestRunnerConfiguration | HTTPRunnerConfiguration` | `False` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
 | injections | `TokenInjection` | `False` | The list of injections to perform at the end of the procedure. Injections are used to inject the variables extracted from the procedure into the user authentication. | [TokenInjection](#TokenInjection) |
 
 
@@ -333,7 +333,7 @@ description: All objects available
 | location | `HTTPLocation` | `True` | The location of the HTTP request where the value should be extracted | [HTTPLocation](#HTTPLocation) |
 | key | `string` | `True` | The key to use for the extracted value, depending on the location |  |
 | regex | `string` | `False` | The regex to use to extract the token from the key value. By default the entire value is taken. |  |
-| name | `string` | `False` | The name of the variable to store the extracted value into |  |
+| name | `string` | `True` | The name of the variable to store the extracted value into |  |
 
 
 ## <a id="TokenInjection"></a>TokenInjection
@@ -375,8 +375,8 @@ description: All objects available
 | type | `Const[webdriver]` | `False` |  |  |
 | users | `WebdriverUserPreset` | `True` | The list of users to generate tokens for. | [WebdriverUserPreset](#WebdriverUserPreset) |
 | wait_for_seconds | `integer` | `False` | The number of seconds to wait at various steps of the script. For example when waiting for a page to load. |  |
-| extract | `TokenExtraction` | `True` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
-| inject | `TokenInjection` | `True` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
+| extractions | `TokenExtraction` | `False` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
+| injections | `TokenInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
 
 
 ## <a id="WebdriverUserPreset"></a>WebdriverUserPreset
@@ -395,8 +395,36 @@ description: All objects available
 |------------|------------|-----|-------------|-----------|
 | type | `Const[curl]` | `False` |  |  |
 | users | `cURLUserPreset` | `True` | The list of users to generate tokens for. | [cURLUserPreset](#cURLUserPreset) |
-| extract | `TokenExtraction` | `True` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
-| inject | `TokenInjection` | `True` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
+| extractions | `TokenExtraction` | `True` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
+| injections | `TokenInjection` | `True` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
+
+
+## <a id="cURLSequencePreset"></a>cURLSequencePreset
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| type | `Const[curl_sequence]` | `False` |  |  |
+| users | `cURLSequenceUserPreset` | `True` | The list of users to generate tokens for. | [cURLSequenceUserPreset](#cURLSequenceUserPreset) |
+| requests | `cURLSequenceRequestPreset` | `True` | A sequence of curl templates used to make requests and extract variables. | [cURLSequenceRequestPreset](#cURLSequenceRequestPreset) |
+| injections | `TokenInjection` | `True` | Final variables injected into the authentified requests. | [TokenInjection](#TokenInjection) |
+
+
+## <a id="cURLSequenceRequestPreset"></a>cURLSequenceRequestPreset
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| curl | `string` | `True` | A curl template used to make a request. |  |
+| extractions | `TokenExtraction` | `True` | Variables extracted from the response that can be templated in further requests. | [TokenExtraction](#TokenExtraction) |
+
+
+## <a id="cURLSequenceUserPreset"></a>cURLSequenceUserPreset
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| username | `string` | `True` | The arbitrary name that identifies the user. |  |
+| headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
+| cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
+| variables | `Dict[string, string]` | `True` | A dict of variables to inject into the cURL sequences. |  |
 
 
 ## <a id="cURLUserPreset"></a>cURLUserPreset
