@@ -3,7 +3,7 @@ title: Headers
 description: Headers Authentication Preset
 ---
 
-# Headers
+# Headers Authentication with Escape
 
 ## Description
 The &#39;Headers&#39; authentication preset is a straightforward, manual authentication method:

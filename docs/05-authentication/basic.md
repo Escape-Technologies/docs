@@ -3,7 +3,7 @@ title: Basic
 description: Basic Authentication Preset
 ---
 
-# Basic
+# Basic Authentication with Escape
 
 ## Description
 The &#39;Basic&#39; authentication preset is designed for straightforward authentication scenarios:

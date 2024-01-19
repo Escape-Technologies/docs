@@ -3,7 +3,7 @@ title: Webdriver
 description: Webdriver Authentication Preset
 ---
 
-# Webdriver
+# Webdriver Authentication with Escape
 
 ## Description
 The &#39;Webdriver&#39; authentication preset is designed for scenarios where traditional authentication methods are not feasible, and it relies on Selenium-based web automation:

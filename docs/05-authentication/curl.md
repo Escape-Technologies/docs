@@ -3,7 +3,7 @@ title: cURL
 description: cURL Authentication Preset
 ---
 
-# cURL
+# cURL Authentication with Escape
 
 ## Description
 The &#39;cURL&#39; authentication preset is designed for dynamic token generation and reuse:

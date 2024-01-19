@@ -3,7 +3,7 @@ title: HTTP
 description: HTTP Authentication Preset
 ---
 
-# HTTP
+# HTTP Authentication with Escape
 
 ## Description
 The &#39;HTTP&#39; authentication preset is designed to handle authentication via structured HTTP requests:

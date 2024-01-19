@@ -3,7 +3,7 @@ title: GraphQL
 description: GraphQL Authentication Preset
 ---
 
-# GraphQL
+# GraphQL Authentication with Escape
 
 ## Description
 The &#39;GraphQL&#39; authentication preset facilitates authentication through GraphQL queries:

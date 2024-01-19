@@ -3,7 +3,7 @@ title: OAuth User Password
 description: OAuth User Password Authentication Preset
 ---
 
-# OAuth User Password
+# OAuth User Password Authentication with Escape
 
 ## Description
 The &#39;OAuth User Password&#39; preset is designed for authentication using the OAuth 2.0 framework with user password credentials:
@@ -27,6 +27,11 @@ preset:
         password: pass1
     -   username: user2
         password: pass2
+    -   username: user3
+        password: pass3
+        scopes:
+        - create
+        - delete
 
 ```
 
@@ -52,6 +57,7 @@ preset:
 | headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
 | cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | password | `string` | `True` | The password of the user. |  |
+| scopes | `string` | `False` | A list of scopes to request for the user. If not specified, no scopes will be requested. |  |
 
 
 

@@ -3,7 +3,7 @@ title: Digest
 description: Digest Authentication Preset
 ---
 
-# Digest
+# Digest Authentication with Escape
 
 ## Description
 The &#39;Digest&#39; authentication preset employs a challenge-response mechanism for enhanced security:

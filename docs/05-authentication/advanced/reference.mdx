@@ -52,6 +52,7 @@ description: All objects available
 | headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
 | cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | password | `string` | `True` | The password of the user. |  |
+| scopes | `string` | `False` | A list of scopes to request for the user. If not specified, no scopes will be requested. |  |
 
 
 ## <a id="Credentials"></a>Credentials
@@ -239,6 +240,7 @@ description: All objects available
 | cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | client_id | `string` | `True` | The client ID to use for the OAuth requests |  |
 | client_secret | `string` | `True` | The client secret to use for the OAuth requests |  |
+| scopes | `string` | `False` | A list of scopes to request for the user. If not specified, no scopes will be requested. |  |
 
 
 ## <a id="OAuthUserpassPreset"></a>OAuthUserpassPreset
@@ -260,6 +262,7 @@ description: All objects available
 | headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
 | cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | password | `string` | `True` | The password of the user. |  |
+| scopes | `string` | `False` | A list of scopes to request for the user. If not specified, no scopes will be requested. |  |
 
 
 ## <a id="ProcedureConfiguration"></a>ProcedureConfiguration
@@ -267,7 +270,7 @@ description: All objects available
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | name | `string` | `True` | The name of the procedure. It must be unique and is used to reference the procedure in users. |  |
-| operations | `HTTPRunnerConfiguration | SeleniumRunnerConfiguration | DigestRunnerConfiguration` | `False` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
+| operations | `HTTPRunnerConfiguration | DigestRunnerConfiguration | SeleniumRunnerConfiguration` | `False` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
 | injections | `TokenInjection` | `False` | The list of injections to perform at the end of the procedure. Injections are used to inject the variables extracted from the procedure into the user authentication. | [TokenInjection](#TokenInjection) |
 
 

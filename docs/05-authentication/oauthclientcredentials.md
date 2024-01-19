@@ -3,7 +3,7 @@ title: OAuth Client Credentials
 description: OAuth Client Credentials Authentication Preset
 ---
 
-# OAuth Client Credentials
+# OAuth Client Credentials Authentication with Escape
 
 ## Description
 The &#39;OAuth Client Credentials&#39; preset is tailored for authentication using the OAuth 2.0 client credentials grant, ideal for service accounts:
@@ -27,6 +27,9 @@ preset:
     -   username: serviceAccount2
         client_id: serviceClientID2
         client_secret: serviceSecret2
+        scopes:
+        - create
+        - delete
 
 ```
 
@@ -51,6 +54,7 @@ preset:
 | cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | client_id | `string` | `True` | The client ID to use for the OAuth requests |  |
 | client_secret | `string` | `True` | The client secret to use for the OAuth requests |  |
+| scopes | `string` | `False` | A list of scopes to request for the user. If not specified, no scopes will be requested. |  |
 
 
 
