@@ -1,0 +1,374 @@
+---
+title: Custom Security Checks
+---
+
+# Custom Check
+
+A custom check is a YAML-formatted file that defines a set of conditions to trigger an alert.
+
+## Basic structure
+
+```yaml
+---
+custom_checks:
+  - seed:
+    transform:
+    detect:
+    alert:
+```
+
+## Properties
+
+- `seed:` A list of requests to seed the scan. See [Seeders](#seeders).]
+- `transform:` The list of definitions of triggers and mutations. See [Transformations](#transformations).
+- `detect:` The conditions to trigger the alert. See [Detectors](#detectors).
+- `alert:` The alert to raise if the detection conditions are met. See [Alerting](#alerting).
+
+---
+
+# Seeders
+
+## HTTP seeder (`protocol: http`)
+
+The HTTP seeder allows you to seed the scan with a raw HTTP request.
+This request will be sent a the beginning of the scan, after the hotstart but before any other requests.
+
+    ### Example
+
+    ```yaml
+    seed:
+      - protocol: http
+        raw: |
+          @Host: https://[REDACTED]
+          GET /debug HTTP/1.1
+          Host: [REDACTED]
+          Content-Type: application/json
+    ```
+
+
+## Properties
+
+- `raw:` (string): The raw HTTP request in [nuclei format](https://docs.projectdiscovery.io/templates/protocols/http/raw-http)
+- `user:` The user to use for the request.
+
+---
+
+# Transformations
+
+## Properties
+
+- `trigger:` The detectors to trigger the transform, on the request or response. See [Detectors](#detectors).)
+- `mutate:` The mutations to apply to the request and replay it. See [Mutators](#mutators).
+
+---
+
+# Alert
+
+You can configure a custom alert to be raised when all detections are matched.
+
+## Properties
+
+- `name` (string): Name of the alert
+- `severity` (string): Severity of the alert
+- `context` (string): Context of the alert
+
+## Example
+
+```yaml
+alert:
+  name: AccessControl
+  severity: HIGH
+  context: We succesfully deleted the admin user from another user.
+```
+
+## Properties
+
+- `name:` Name of the alert
+- `severity:` Severity of the alert
+- `context:` Context of the alert
+
+---
+
+# Detectors
+
+## Scan type detector (`if: scan.type`)
+
+Use this to select against the type of the scan.
+
+## Properties
+
+- `is:` The scan type is exactly this
+- `is_not:` The scan type is not this type
+- `in:` The scan type is in this list
+
+## CRUD detector (`if: helpers.request.crud`)
+
+Use this to select against the detected CRUD operation of the request.
+
+## Properties
+
+- `is:` Condition is the request is this CRUD operation
+- `is_not:` Condition is the request is not this CRUD operation
+- `in:` Condition is the request is in this list of CRUD operations (exact match)
+
+## Response status detector (`if: response.status_code`)
+
+Use this to compare the HTTP status code as an integer.
+
+## Properties
+
+- `is:` Condition is this exact integer
+- `is_not:` Condition is not this exact integer
+- `in:` Condition is in this list of integers (exact match)
+- `gt:` Condition is greater than this integer
+- `lt:` Condition is less than this integer
+
+## Response duration detector (`if: response.duration_ms`)
+
+Use this to compare the duration of the request in milliseconds.
+
+## Properties
+
+- `is:` Condition is this exact integer
+- `is_not:` Condition is not this exact integer
+- `in:` Condition is in this list of integers (exact match)
+- `gt:` Condition is greater than this integer
+- `lt:` Condition is less than this integer
+
+## Schema authentication detector (`if: schema.need_authentication`)
+
+Use this to select whether or not the schema requires authentication.
+
+## Properties
+
+- `is:` Condition is true
+- `is_not:` Condition is false
+
+## Request authentication detector (`if: request.is_authenticated`)
+
+Use this to select whether or not whether the request is authenticated.
+
+## Properties
+
+- `is:` Condition is true
+- `is_not:` Condition is false
+
+## Schema path reference detector (`if: schema.path_ref`)
+
+Use this to string compare the operation name in GraphQL or the path in REST
+
+## Properties
+
+- `is:` Condition is this exact string
+- `is_not:` Condition is not this exact string
+- `in:` Condition is in this list (exact match)
+- `contains:` Contains this string
+- `regex:` Condition is matched on this regex with fullmatch
+
+## Response success detector (`if: helpers.response.is_successful`)
+
+Use this to check whether the response is successful.
+
+## Properties
+
+- `is:` Condition is true
+- `is_not:` Condition is false
+
+## Schema URL detector (`if: schema.url`)
+
+Use this to string compare the URL of the request.
+
+## Properties
+
+- `is:` Condition is this exact string
+- `is_not:` Condition is not this exact string
+- `in:` Condition is in this list (exact match)
+- `contains:` Contains this string
+- `regex:` Condition is matched on this regex with fullmatch
+
+## Request user detector (`if: request.user`)
+
+Use this to string compare the configured user for the request.
+
+## Properties
+
+- `is:` Condition is this exact string
+- `is_not:` Condition is not this exact string
+- `in:` Condition is in this list (exact match)
+- `contains:` Contains this string
+- `regex:` Condition is matched on this regex with fullmatch
+
+## Request headers detector (`if: request.headers`)
+
+Use that to select and compare the request headers in a key value dictionary.
+
+## Properties
+
+- `key:` Key to match
+- `value:` Value to match
+
+## Response headers detector (`if: response.headers`)
+
+Use that to select and compare the response headers in a key value dictionary.
+
+## Properties
+
+- `key:` Key to match
+- `value:` Value to match
+
+## Response body JSON detector (`if: response.body.json`)
+
+Use this to select and compare the response body when detected as JSON, using jq-like syntax.
+
+## Properties
+
+- `is:` Condition is this exact JSON
+- `is_not:` Condition is not this exact JSON
+- `in:` Condition is in this list of JSON
+- `jq:` JQ query to match and use as boolean
+
+## Request body JSON detector (`if: request.body.json`)
+
+Use this to select and compare the request body when detected as JSON, using jq-like syntax.
+
+## Properties
+
+- `is:` Condition is this exact JSON
+- `is_not:` Condition is not this exact JSON
+- `in:` Condition is in this list of JSON
+- `jq:` JQ query to match and use as boolean
+
+## Response body text detector (`if: response.body.text`)
+
+Use this to select and compare the response body as text, using string compare.
+
+## Properties
+
+- `is:` Condition is this exact string
+- `is_not:` Condition is not this exact string
+- `in:` Condition is in this list (exact match)
+- `contains:` Contains this string
+- `regex:` Condition is matched on this regex with fullmatch
+
+## Request body text detector (`if: request.body.text`)
+
+Use this to select and compare the request body as text, using string compare.
+
+## Properties
+
+- `is:` Condition is this exact string
+- `is_not:` Condition is not this exact string
+- `in:` Condition is in this list (exact match)
+- `contains:` Contains this string
+- `regex:` Condition is matched on this regex with fullmatch
+
+## Request object detector (`if: request.object`)
+
+Use this to select and compare the detected object scalars (including custom scalars) in the request, with their kind, name and value.
+
+## Properties
+
+- `type:` Object scalar type to match
+- `name:` Object scalar name to match
+- `value:` Object scalar value to match
+
+## Response object detector (`if: response.object`)
+
+Use this to select and compare the detected object scalars (including custom scalars) in the response, with their kind, name and value.
+
+## Properties
+
+- `type:` Object scalar type to match
+- `name:` Object scalar name to match
+- `value:` Object scalar value to match
+
+---
+
+# Mutators
+
+## Request Body JSON Mutator (`key: request.body.json`)
+
+You can use this mutator to change the JSON body of the request before resending it.
+
+## Properties
+
+- `jq:` JQ query to apply to the JSON body. See https://stedolan.github.io/jq/manual/
+
+## Request Body Text Mutator (`key: request.body.text`)
+
+You can use this mutator to change the body (as text) of the request before resending it.
+
+## Properties
+
+- `value:` The value to set.
+- `values:` The values to set, generates multiple queries.
+- `regex_replace:` Regex replace pattern.
+
+## Request Headers Mutator (`key: request.headers`)
+
+You can use this mutator to change the headers of the request before resending it.
+
+## Properties
+
+- `value:` The value to set.
+- `values:` The values to set, generates multiple queries.
+- `regex_replace:` Regex replace pattern.
+- `name:` The header name to match, supports regex.
+- `delete:` Delete the matched headers.
+
+## Request Object Mutator (`key: request.object`)
+
+The detected object scalars (including custom scalars) in the request, with their kind, name and value.
+
+## Properties
+
+- `type:` Object scalar type to match
+- `name:` Object scalar name to match
+- `value:` Object scalar value to match
+
+## Properties
+
+- `value:` The value to set.
+- `values:` The values to set, generates multiple queries.
+- `regex_replace:` Regex replace pattern.
+
+## Request User Mutator (`key: request.user`)
+
+You can use this mutator to change the user of the request before resending it.
+
+        ### Example
+
+        ```yaml
+
+        ```
+
+
+## Properties
+
+- `value:` The value to set.
+- `values:` The values to set, generates multiple queries.
+- `regex_replace:` Regex replace pattern.
+- `drop_user:` Remove the user authentication from the request.
+
+## Schema URL Mutator (`key: schema.url`)
+
+You can use this mutator to change the URL of the request before resending it.
+
+## Example
+
+```yaml
+transform:
+  trigger:
+    - if: schema.url
+      contains: /api/v1/
+  mutate:
+    key: schema.url
+    mutate:
+      value: /api/v2/
+```
+
+## Properties
+
+- `value:` The value to set.
+- `values:` The values to set, generates multiple queries.
+- `regex_replace:` Regex replace pattern.
