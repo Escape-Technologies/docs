@@ -20,7 +20,7 @@ This preset is ideal for systems where authentication is managed via GraphQL API
 
 ```yaml
 preset:
-    type: graphql
+-   type: graphql
     url: https://api.example.com/graphql-auth
     query: "mutation($login: String!, $password: String!) {\n   authenticate(login:\
         \ $login, password: $password) {\n       accessToken\n   }\n}"
@@ -63,6 +63,8 @@ preset:
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
 | username | `string` | `True` | The name of the user. |  |
+| headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
+| cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | variables | `Dict[string, string]` | `True` | The variables of the GraphQL query containing the user credentials. |  |
 
 

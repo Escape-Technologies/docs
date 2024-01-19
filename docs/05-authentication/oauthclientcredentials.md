@@ -18,7 +18,7 @@ This preset is particularly effective for scenarios where applications or servic
 
 ```yaml
 preset:
-    type: oauth_client_credentials
+-   type: oauth_client_credentials
     url: https://oauth.example.com/token
     users:
     -   username: serviceAccount1
@@ -47,6 +47,8 @@ preset:
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
 | username | `string` | `True` | The arbitrary username given to the user. |  |
+| headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
+| cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | client_id | `string` | `True` | The client ID to use for the OAuth requests |  |
 | client_secret | `string` | `True` | The client secret to use for the OAuth requests |  |
 

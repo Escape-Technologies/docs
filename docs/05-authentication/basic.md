@@ -20,7 +20,7 @@ This method provides a simple and direct way to authenticate users, without requ
 
 ```yaml
 preset:
-    type: basic
+-   type: basic
     users:
     -   username: user1
         password: pass1
@@ -45,6 +45,8 @@ preset:
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
 | username | `string` | `True` | The Basic username of the user. |  |
+| headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
+| cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | password | `string` | `True` | The Basic password of the user. |  |
 
 

@@ -19,7 +19,7 @@ This preset is particularly useful when other forms of API-based authentication 
 
 ```yaml
 preset:
-    type: webdriver
+-   type: webdriver
     wait_for_seconds: 30
     inject:
         key: Authorization
@@ -110,11 +110,8 @@ preset:
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
 | username | `string` | `True` | The arbitrary name that identifies the user. |  |
-| password | `string` | `False` | The password to attach to the HTTP requests sent for this user. See [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#access_using_credentials_in_the_url) |  |
-| headers | `HTTPHeader` | `False` | A list of headers to attach to every HTTP requests sent for this user | [HTTPHeader](#HTTPHeader) |
-| cookies | `HTTPCookie` | `False` | A list of cookies to attach to every HTTP requests sent for this user | [HTTPCookie](#HTTPCookie) |
-| query_parameters | `HTTPQueryParameter` | `False` | A list of query parameters to attach to every HTTP requests sent for this user | [HTTPQueryParameter](#HTTPQueryParameter) |
-| body | `Any` | `False` | A body to merge with the bodies of every HTTP requests sent for this user |  |
+| headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
+| cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | project | `SeleniumProject` | `True` | The Selenium project used to run the script. It is the one that contains the tests and commands to run. The project script can be generated using the Selenium IDE. See [selenium.dev](https://www.selenium.dev/selenium-ide/docs/en/introduction/getting-started/) | [SeleniumProject](#SeleniumProject) |
 
 

@@ -18,7 +18,7 @@ This preset is ideal for scenarios where authentication can be handled via prede
 
 ```yaml
 preset:
-    type: headers
+-   type: headers
     users:
     -   username: user1
         headers:
@@ -46,6 +46,7 @@ preset:
 |----------|------|----------|-------------|-----------|
 | username | `string` | `True` | The name of the user. |  |
 | headers | `Dict[string, string]` | `True` | The headers of the user. |  |
+| cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 
 
 

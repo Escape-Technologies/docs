@@ -18,7 +18,7 @@ This method is particularly effective in scenarios where authentication is manag
 
 ```yaml
 preset:
-    type: http
+-   type: http
     request:
         url: https://api.example.com/authenticate
         method: POST
@@ -71,9 +71,9 @@ preset:
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
 | username | `string` | `False` | The username to attach to the HTTP requests sent for this user. See [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#access_using_credentials_in_the_url) |  |
-| password | `string` | `False` | The password to attach to the HTTP requests sent for this user. See [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#access_using_credentials_in_the_url) |  |
 | headers | `Dict[string, string]` | `False` | A dict representing the headers to attach to every HTTP requests sent for this user |  |
 | cookies | `Dict[string, string]` | `False` | A dict representing the cookies to attach to every HTTP requests sent for this user |  |
+| password | `string` | `False` | The password to attach to the HTTP requests sent for this user. See [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#access_using_credentials_in_the_url) |  |
 | query_parameters | `Dict[string, string]` | `False` | A dict of query parameters to attach to every HTTP requests sent for this user |  |
 | body | `Any` | `False` | A body to merge with the bodies of every HTTP requests sent for this user |  |
 

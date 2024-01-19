@@ -19,7 +19,7 @@ Digest Authentication is suitable for scenarios requiring enhanced security with
 
 ```yaml
 preset:
-    type: digest
+-   type: digest
     first_request:
         url: https://api.example.com/request
         method: GET
@@ -58,6 +58,8 @@ preset:
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
 | username | `string` | `True` | The Basic username of the user. |  |
+| headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
+| cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | password | `string` | `True` | The Basic password of the user. |  |
 
 

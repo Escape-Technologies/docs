@@ -18,7 +18,7 @@ This method is suitable for systems that require secure, OAuth-based authenticat
 
 ```yaml
 preset:
-    type: oauth_userpass
+-   type: oauth_userpass
     url: https://oauth.example.com/token
     client_id: client123
     client_secret: secretXYZ
@@ -49,6 +49,8 @@ preset:
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
 | username | `string` | `True` | The username of the user. |  |
+| headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
+| cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | password | `string` | `True` | The password of the user. |  |
 
 

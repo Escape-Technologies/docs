@@ -19,7 +19,7 @@ This preset is ideal for systems that use AWS Cognito for managing user authenti
 
 ```yaml
 preset:
-    type: cognito_userpass
+-   type: cognito_userpass
     client_id: yourCognitoClientId
     client_secret: yourCognitoClientSecret
     region: us-west-1
@@ -50,6 +50,8 @@ preset:
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
 | username | `string` | `True` | The username of the user. |  |
+| headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
+| cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | password | `string` | `True` | The password of the user. |  |
 
 

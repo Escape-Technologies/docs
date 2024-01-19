@@ -22,7 +22,7 @@ Two common use cases are:
 
 ```yaml
 preset:
-    type: curl
+-   type: curl
     inject:
         key: Authorization
         location: header
@@ -38,7 +38,7 @@ preset:
 
 ```yaml
 preset:
-    type: curl
+-   type: curl
     inject:
         key: session_id
         location: cookie
@@ -71,11 +71,8 @@ preset:
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
 | username | `string` | `True` | The arbitrary name that identifies the user. |  |
-| password | `string` | `False` | The password to attach to the HTTP requests sent for this user. See [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#access_using_credentials_in_the_url) |  |
-| headers | `HTTPHeader` | `False` | A list of headers to attach to every HTTP requests sent for this user | [HTTPHeader](#HTTPHeader) |
-| cookies | `HTTPCookie` | `False` | A list of cookies to attach to every HTTP requests sent for this user | [HTTPCookie](#HTTPCookie) |
-| query_parameters | `HTTPQueryParameter` | `False` | A list of query parameters to attach to every HTTP requests sent for this user | [HTTPQueryParameter](#HTTPQueryParameter) |
-| body | `Any` | `False` | A body to merge with the bodies of every HTTP requests sent for this user |  |
+| headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
+| cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | curl | `string` | `True` | The curl command that is used to fetch the tokens for this user. |  |
 
 
