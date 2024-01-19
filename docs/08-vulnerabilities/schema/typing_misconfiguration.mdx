@@ -20,42 +20,112 @@ Do not resolve queries with a wrong argument type.
 <details>
     <summary>Apollo</summary>
 
-Apollo doesn't allow arguments of the wrong type by default.Example:```javascript{  "errors": [    {      "message": "String cannot represent a non string value: 123",      "extensions": {        "code": "GRAPHQL_VALIDATION_FAILED"      }    }  ] }```This error should appear if you are using Apollo.
+Apollo doesn't allow arguments of the wrong type by default.
+Example:
+```javascript
+{
+  "errors": [
+    {
+      "message": "String cannot represent a non string value: 123",
+      "extensions": {
+        "code": "GRAPHQL_VALIDATION_FAILED"
+      }
+    }
+  ]
+}
+```This error should appear if you are using Apollo.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-AWS AppSync doesn't allow arguments of the wrong type by default.Example:```json{  "data": null,  "errors": [    {      "path": null,      "locations": [        {          "line" : 1,          "column": 18,          "sourceName": null        }      ],      "message": "Validation error of type WrongType: argument 'a' with value 'StringValue{value='4'}' is not a valid 'Int' @ 'testType'"}  ]}```
+AWS AppSync doesn't allow arguments of the wrong type by default.
+Example:
+```json
+{
+  "data": null,
+  "errors": [
+    {
+      "path": null,
+      "locations": [
+        {
+          "line" : 1,
+          "column": 18,
+          "sourceName": null
+        }
+      ],
+      "message": "Validation error of type WrongType: argument 'a' with value 'StringValue{value='4'}' is not a valid 'Int' @ 'testType'"}
+  ]
+}```
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-GraphQL Yoga will throw an error if an argument of the wrong type is provided.Example:```json{  "errors": [    {      "message": "Argument 'id' has invalid value 123. Expected type 'String', found 123.",      "locations": [{ "line": 2, "column": 22 }]    }  ]}```
+GraphQL Yoga will throw an error if an argument of the wrong type is provided.
+Example:
+```json
+{
+  "errors": [
+    {
+      "message": "Argument 'id' has invalid value 123. Expected type 'String', found 123.",
+      "locations": [{ "line": 2, "column": 22 }]
+    }
+  ]
+}```
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-The graphql-go library will validate the types of provided arguments and return an error if they do not match the expected types.Example:```json{  "errors": [    {      "message": "Variable '$id' got invalid value 123; Expected type String. String cannot represent a non string value: 123",      "locations": [{ "line": 1, "column": 11 }]    }  ]}```
+The graphql-go library will validate the types of provided arguments and return an error if they do not match the expected types.
+Example:
+```json
+{
+  "errors": [
+    {
+      "message": "Variable '$id' got invalid value 123; Expected type String. String cannot represent a non string value: 123",
+      "locations": [{ "line": 1, "column": 11 }]
+    }
+  ]
+}```
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-GraphQL-Ruby will not execute a query if the provided arguments are of the wrong type, and it will return an error message.Example:```json{  "errors": [    {      "message": "Argument 'input' on Field 'createUser' has an invalid value. Expected type 'String!'.",      "locations": [{ "line": 2, "column": 3 }]    }  ]}```
+GraphQL-Ruby will not execute a query if the provided arguments are of the wrong type, and it will return an error message.
+Example:
+```json
+{
+  "errors": [
+    {
+      "message": "Argument 'input' on Field 'createUser' has an invalid value. Expected type 'String!'.",
+      "locations": [{ "line": 2, "column": 3 }]
+    }
+  ]
+}```
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Hasura enforces strict type checks and will return an error if an argument is provided with an incorrect type.Example:```json{  "errors": [    {      "message": "field 'createPost' argument 'title' is expected to be type 'String!' but got 'Int'.",      "locations": [{ "line": 3, "column": 5 }]    }  ]}```
+Hasura enforces strict type checks and will return an error if an argument is provided with an incorrect type.
+Example:
+```json
+{
+  "errors": [
+    {
+      "message": "field 'createPost' argument 'title' is expected to be type 'String!' but got 'Int'.",
+      "locations": [{ "line": 3, "column": 5 }]
+    }
+  ]
+}```
 
 </details>
 
@@ -92,20 +162,28 @@ Hasura enforces strict type checks and will return an error if an argument is pr
 ## Score
 
 - Escape Severity: **<span className="medium-severity">MEDIUM</span>**
-  - OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
-  - PCI DSS: **6.5.8**
-  - CWE
-    - **20**
-    - **351**
-    - **1068**
-    - **1287**
-  - WASC: **WASC-40**
-  
-  
+
+### Compliance
+
+- OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
+- pci: **6.5.8**
+- gdpr: **Article-32**
+
+
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-4**
+
+### Classification
 
 
 
 
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N/RL:O/RC:C**
 
 
 ## References
