@@ -34,7 +34,7 @@ preset:
 
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
-| type | `Const[headers]` | `False` |  |  |
+| type | `Const[headers]` | `True` |  |  |
 | users | `HeadersUserPreset` | `True` | A list of users with basic credentials to create | [HeadersUserPreset](#HeadersUserPreset) |
 
 

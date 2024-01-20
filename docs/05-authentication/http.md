@@ -58,11 +58,11 @@ preset:
 
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
-| type | `Const[http]` | `False` |  |  |
+| type | `Const[http]` | `True` |  |  |
 | users | `HTTPUserPreset` | `True` | The list of users to generate tokens for. | [HTTPUserPreset](#HTTPUserPreset) |
 | request | `HTTPRequestPreset` | `True` | The parameters of the HTTP request used to fetch the access and refresh tokens. | [HTTPRequestPreset](#HTTPRequestPreset) |
-| extractions | `TokenExtraction` | `False` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
-| injections | `TokenInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
+| extractions | `TokenExtraction` | `True` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
+| injections | `TokenInjection` | `True` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
 
 
 
@@ -71,7 +71,7 @@ preset:
 ### <a id="HTTPUserPreset"></a>HTTPUserPreset
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
-| username | `string` | `False` | The username to attach to the HTTP requests sent for this user. See [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#access_using_credentials_in_the_url) |  |
+| username | `string` | `True` | The username to attach to the HTTP requests sent for this user. See [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#access_using_credentials_in_the_url) |  |
 | headers | `Dict[string, string]` | `False` | A dict representing the headers to attach to every HTTP requests sent for this user |  |
 | cookies | `Dict[string, string]` | `False` | A dict representing the cookies to attach to every HTTP requests sent for this user |  |
 | password | `string` | `False` | The password to attach to the HTTP requests sent for this user. See [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#access_using_credentials_in_the_url) |  |
@@ -83,7 +83,7 @@ preset:
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
 | url | `string` | `True` | The URL to send the request to |  |
-| method | `HTTPMethod` | `False` | The HTTP method to use | [HTTPMethod](#HTTPMethod) |
+| method | `HTTPMethod` | `True` | The HTTP method to use | [HTTPMethod](#HTTPMethod) |
 | headers | `Dict[string, string]` | `False` | The list of headers to attach to the request. Headers are merged with the user credentials headers. It is possible to attach mutliple values to a header. |  |
 | cookies | `Dict[string, string]` | `False` | The list of cookies to attach to the request. Cookies are merged with the user credentials cookies. It is possible to attach mutliple values to a cookie. Cookie values are url-encoded before being sent. |  |
 | query_parameters | `Dict[string, string]` | `False` | The list of query parameters to attach to the request. Query parameters are merged with the user credentials query parameters. It is possible to attach mutliple values to a query parameter. Query parameter values are url-encoded before being sent. |  |
@@ -105,7 +105,7 @@ preset:
 | location | `HTTPLocation` | `True` | The location of the HTTP request where the token should be injected | [HTTPLocation](#HTTPLocation) |
 | key | `string` | `True` | The key to use for the injected token. Its usage depends on the location. For headers, cookies,and query parameters, this key describes the name of the header, cookie or query parameter. For a body location, the key is the field where the token should be injected within the request bodies |  |
 | prefix | `string` | `False` | A prefix to prepend to the token before it is injected |  |
-| variable | `string` | `False` | The name of a variable to retrieve to create the token&#39;s value. If not provided, the token will be infered as the first successful extraction of the procedure |  |
+| variable | `string` | `True` | The name of a variable to retrieve to create the token&#39;s value. If not provided, the token will be infered as the first successful extraction of the procedure |  |
 
 
 

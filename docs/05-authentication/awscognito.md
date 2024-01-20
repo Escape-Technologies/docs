@@ -39,7 +39,7 @@ preset:
 
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
-| type | `Const[cognito_userpass]` | `False` |  |  |
+| type | `Const[cognito_userpass]` | `True` |  |  |
 | users | `CognitoUserpassUserPreset` | `True` | A list of users to create | [CognitoUserpassUserPreset](#CognitoUserpassUserPreset) |
 | region | `AWSRegion` | `True` | The region of the Cognito Service. | [AWSRegion](#AWSRegion) |
 | client_id | `string` | `True` | The client ID to use for the OAuth requests |  |

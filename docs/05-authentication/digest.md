@@ -45,7 +45,7 @@ preset:
 
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
-| type | `Const[digest]` | `False` |  |  |
+| type | `Const[digest]` | `True` |  |  |
 | users | `BasicUserPreset` | `True` | The list of users to generate tokens for. | [BasicUserPreset](#BasicUserPreset) |
 | first_request | `HTTPRequestPreset` | `True` | The parameters of the first HTTP request executed during the digest procedure.It is the one that returns the WWW-Authenticate header. | [HTTPRequestPreset](#HTTPRequestPreset) |
 | second_request | `DigestSecondRequestConfiguration` | `False` | The parameters of the second HTTP request executed during the digest procedure.It is the one that uses the digest authentication. By default, parameters of the first request are used. | [DigestSecondRequestConfiguration](#DigestSecondRequestConfiguration) |
@@ -67,7 +67,7 @@ preset:
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
 | url | `string` | `True` | The URL to send the request to |  |
-| method | `HTTPMethod` | `False` | The HTTP method to use | [HTTPMethod](#HTTPMethod) |
+| method | `HTTPMethod` | `True` | The HTTP method to use | [HTTPMethod](#HTTPMethod) |
 | headers | `Dict[string, string]` | `False` | The list of headers to attach to the request. Headers are merged with the user credentials headers. It is possible to attach mutliple values to a header. |  |
 | cookies | `Dict[string, string]` | `False` | The list of cookies to attach to the request. Cookies are merged with the user credentials cookies. It is possible to attach mutliple values to a cookie. Cookie values are url-encoded before being sent. |  |
 | query_parameters | `Dict[string, string]` | `False` | The list of query parameters to attach to the request. Query parameters are merged with the user credentials query parameters. It is possible to attach mutliple values to a query parameter. Query parameter values are url-encoded before being sent. |  |

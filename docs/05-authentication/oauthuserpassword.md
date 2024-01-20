@@ -40,7 +40,7 @@ preset:
 
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
-| type | `Const[oauth_userpass]` | `False` |  |  |
+| type | `Const[oauth_userpass]` | `True` |  |  |
 | users | `OAuthUserpassUserPreset` | `True` | A list of users to create | [OAuthUserpassUserPreset](#OAuthUserpassUserPreset) |
 | url | `string` | `True` | The URL of the token endpoint of the OpenIDConnect server |  |
 | client_id | `string` | `True` | The client ID to use for the OAuth requests |  |

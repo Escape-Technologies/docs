@@ -38,7 +38,7 @@ preset:
 
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
-| type | `Const[oauth_client_credentials]` | `False` |  |  |
+| type | `Const[oauth_client_credentials]` | `True` |  |  |
 | users | `OAuthClientCredentialsUserPreset` | `True` | A list of users to create | [OAuthClientCredentialsUserPreset](#OAuthClientCredentialsUserPreset) |
 | url | `string` | `True` | The URL of the token endpoint of the OpenIDConnect server |  |
 

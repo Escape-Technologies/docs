@@ -34,7 +34,7 @@ preset:
 
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
-| type | `Const[basic]` | `False` |  |  |
+| type | `Const[basic]` | `True` |  |  |
 | users | `BasicUserPreset` | `True` | A list of users with basic credentials to create | [BasicUserPreset](#BasicUserPreset) |
 
 
