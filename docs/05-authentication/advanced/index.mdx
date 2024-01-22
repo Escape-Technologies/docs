@@ -31,44 +31,30 @@ A procedure consists of an array of "operations." An operation is a single actio
 
 ## Procedure configuration example
 
-```json title=".multiauthrc.json"
-{
-  "procedures": [
-    // (1)
-    {
-      "name": "example-procedure", // (2)
-      "requests": [
-        {
-          "tech": "http", // (3)
-          "parameters": {
-            "url": "https://vampi.tools.escape.tech",
-            "method": "GET"
-          }, // (4)
-          "extractions": [
-            {
-              "name": "example-extraction",
-              "location": "body",
-              "key": "message"
-            }
-          ] // (5)
-        },
-        {
-          "tech": "http",
-          "parameters": {
-            "url": "https://vampi.tools.escape.tech",
-            "method": "GET",
-            "headers": [
-              {
-                "name": "X-Example-Header-Extracted",
-                "values": ["{{ example-extraction }}"] // (6)
-              }
-            ]
-          }
-        }
-      ]
-    }
-  ] // (7)
-}
+```yaml title="authentication"
+procedures:
+  # (1)
+  - name: example-procedure  # (2)
+    requests:
+      - tech: http  # (3)
+        parameters:
+          url: "https://vampi.tools.escape.tech"
+          method: GET
+        # (4)
+        extractions:
+          - name: example-extraction
+            location: body
+            key: message
+          # (5)
+      - tech: http
+        parameters:
+          url: "https://vampi.tools.escape.tech"
+          method: GET
+          headers:
+            - name: X-Example-Header-Extracted
+              values:
+                - "{{ example-extraction }}"  # (6)
+# (7)
 ```
 
 1. This authentication procedure declares two HTTP requests to be executed in order.
@@ -91,7 +77,7 @@ HTTP requests are the most common type of operation. They are declared with the 
 
 *TODO: Finish this documentation*
 
-```json title=".multiauthrc.json"
+```json title="HTTP Request Example"
 --8<-- "examples/http.json"
 ```
 
@@ -101,16 +87,6 @@ Selenium scripts are declared with the `selenium` value for the `tech` property 
 
 *TODO: Finish this documentation*
 
-```json title=".multiauthrc.json"
+```json title="Selenium Procedure Example"
 --8<-- "examples/selenium.json"
-```
-
-### GraphQL queries
-
-GraphQL queries are declared with the `graphql` value for the `tech` property of the operation configuration object.
-
-*TODO: Finish this documentation*
-
-```json title=".multiauthrc.json"
---8<-- "examples/graphql.json"
 ```
