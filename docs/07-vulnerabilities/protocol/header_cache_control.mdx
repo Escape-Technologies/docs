@@ -21,42 +21,42 @@ Whenever possible, ensure the `Cache-Control` HTTP header is set with `no-cache`
 <details>
     <summary>Apollo</summary>
 
-When using Apollo with Express.js, [helmet](https://www.npmjs.com/package/helmet) can take care of the security headers.```javascriptconst helmet = require("helmet");...app.use(helmet);```
-
-</details>
-
-<details>
-    <summary>Awsappsync</summary>
-
-* Add security headers with the API GatewayPut your AppSync API behind an API Gateway and configure it to act as a proxy to your AppSync endpoint (e.g., using the HTTP Proxy feature).[API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) Then you can manually add headers to each resource. (There is only one resource if your API Gateway is only used to proxy a single AppSync endpoint)Here is an example of security headers you can add :```Cache-Control: no-store Content-Security-Policy: default-src 'self'Strict-Transport-Security: max-age=63072000 X-Content-Type-Options: nosniffX-Frame-Options: SAMEORIGINX-XSS-Protection: 1; mode=block```* Add security headers using only AWS AppSync AWS AppSync currently does not allow to append custom headers to every response. However, custom response headers can be configured individually for every resolver by using response mapping templates.To do this, go to:   - AppSync > {Your App} > SchemaFor every attached resolver :   - Go to the resolver configuration   - In the "Configure the response mapping template" section, add this :```php$util.http.addResponseHeader("Cache-Control", "no-store")$util.http.addResponseHeader("Content-Security-Policy" , "default-src 'self'")$util.http.addResponseHeader("Strict-Transport-Security", "max-age=63072000")$util.http.addResponseHeader("X-Content-Type-Options", "nosniff")$util.http.addResponseHeader("X-Frame-Options", "SAMEORIGIN")$util.http.addResponseHeader("X-XSS-Protection", "1; mode=block") ```You can safely ignore this warning if you did this for every single resolver.However, it may still appear here as GraphQL requests like `query { __typename }` are not associated with a resolver; therefore, you cannot add custom response headers. (Which doesn't matter as such requests cannot leak data as no actual field is queried)[AWS AppSync adds support for custom response headers](https://aws.amazon.com/about-aws/whats-new/2022/02/aws-appsync-support-custom-response-headers/) [HTTP helpers in $util.http](https://docs.aws.amazon.com/appsync/latest/devguide/http-helpers-in-utils-http.html) [Resolver Mapping Template Programming Guide](https://docs.aws.amazon.com/appsync/latest/devguide/resolver-mapping-template-reference-programming-guide.html)
-
-</details>
-
-<details>
-    <summary>Graphqlgo</summary>
-
-You can use a HTTP middleware to add security headers.For instance, with [srikrsna/security-headers](https://github.com/srikrsna/security-headers): ```goimport (  secure "github.com/srikrsna/security-headers") h := handler.New(&handler.Config{  Schema:   &schema,  ...})s := &secure.Secure{  STSIncludeSubdomains: true,  STSPreload:           true,  STSMaxAgeSeconds:     90,  FrameOption: secure.FrameAllowFrom,  FrameOrigin: "https://example.com/",  ContentTypeNoSniff: true,  XSSFilterBlock: true,  HPKPPins: []string{  "HBkhsug765gdKHhvdj6jdb7jJh/j+soZS7sWs=",  "hjshHSHU68hbdkHhvdkgksgsg+jd/jHJ68HBH=",  },  HPKPMaxAge:            5184000,  HPKPReportURI:         "https://www.example.org/hpkp-report",  HPKPIncludeSubdomains: true,  ExpectCTMaxAge:    5184000,  ExpectCTEnforce:   true,  ExpectCTReportUri: "https://www.example.org/ct-report",  ReferrerPolicy: secure.ReferrerStrictOriginWhenCrossOrigin,}http.Handle("/graphql", s.Middleware()(h))http.ListenAndServe(":8082", nil)```
-
-</details>
-
-<details>
-    <summary>Graphqlruby</summary>
-
-In Ruby on Rails with GraphQL-Ruby, you can set the Cache-Control header in your controller actions:
-
-</details>
-
-<details>
-    <summary>Hasura</summary>
-
-For Hasura GraphQL engine, you can configure the Cache-Control header using environment variables or directly in the console under the 'Settings' tab:
+Implement proper Cache-Control headers for sensitive information to ensure that private data is not stored in the browser cache. Set the 'Cache-Control' header to 'no-store' for responses containing sensitive data to prevent it from being cached on the client-side.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For GraphQL Yoga, you can use middleware to set the Cache-Control header. Here's an example using Express.js middleware:
+Implement proper cache control headers to ensure sensitive information is not stored in the cache of a user's browser. Set the 'Cache-Control' header to 'no-store' for responses containing sensitive data related to 'Yoga With' sessions to prevent unauthorized access.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Configure the 'Cache-Control' header in AWS AppSync responses to define appropriate cacheability, set maximum age, and leverage validation tokens.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Implement proper cache control headers for GraphQL responses to prevent sensitive information from being stored in cache. Set 'Cache-Control' to 'no-store' to ensure that responses are not cached on the client side.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+Implement proper cache control headers for GraphQL responses to prevent sensitive data leakage and ensure that the data is not unnecessarily stored or cached by intermediaries. In Ruby on Rails, you can set the `Cache-Control` header in your GraphQL controller actions using `response.headers['Cache-Control'] = 'no-store'` to instruct clients and proxies not to cache the response.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Configure the 'Cache-Control' header in the Hasura server responses to specify the appropriate caching policy. For example, set 'Cache-Control: no-store' to prevent sensitive data from being stored in the cache or Cache-Control: max-age=(seconds) to define the maximum amount of time a resource is considered fresh.
 
 </details>
 
@@ -64,72 +64,65 @@ For GraphQL Yoga, you can use middleware to set the Cache-Control header. Here's
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, use the HttpResponse object to set the Cache-Control header:
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, set the Cache-Control header in your controller actions:
+In ASP.NET, ensure that sensitive pages send appropriate 'Cache-Control' headers to prevent client-side caching. Use the 'HttpResponse.Cache' property to set the 'Cache-Control' header, for example: 'Response.Cache.SetCacheability(HttpCacheability.NoCache);' to specify that a response should not be cached.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js API routes, you can set headers using the NextApiResponse object:
+In Ruby on Rails, ensure that the 'Cache-Control' header is set correctly in your responses, particularly for sensitive information. Use 'expires_now' to set 'Cache-Control' to 'no-cache, no-store', or manually set the header using 'response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'. This prevents the caching of sensitive pages on the client side.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+In Next.js applications, ensure that your server-side code sets appropriate 'Cache-Control' headers for responses containing sensitive information. Use the 'res.setHeader()' function to set the 'Cache-Control' header to 'no-store' or 'no-cache, private' to prevent sensitive data from being stored in the browser cache. For example, in your API routes or getServerSideProps function, you can include 'res.setHeader('Cache-Control', 'no-store')' before sending the response.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use the response object to set the Cache-Control header:
+In Laravel, ensure that your responses containing sensitive information have appropriate 'Cache-Control' headers set. You can use the 'header' method on the response object to set the 'Cache-Control' directive to 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0' to prevent caching. For example: `return response($content)->header('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');` This will instruct the browser and proxies not to cache the sensitive response.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, use the response object to set the Cache-Control header:
+In Express.js, ensure that responses containing sensitive information have appropriate Cache-Control headers set. Use the 'res.set' function to set the header to 'no-store' to prevent caching of such responses. For example, use 'res.set('Cache-Control', 'no-store, max-age=0')' before sending the response.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the @never_cache decorator to set the Cache-Control header:
+In Django, ensure that your views that return sensitive information set the 'Cache-Control' header to 'no-store' to prevent the browser from caching the response. You can do this by using the 'cache_control' decorator or by manually setting the header in the response object. For example, use '@cache_control(no_store=True)' on your view functions or 'response['Cache-Control'] = 'no-store'' for HttpResponse objects.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, use the Response object to set the Cache-Control header:
+In Symfony, ensure that responses containing sensitive information have appropriate 'Cache-Control' headers set. Use the 'Response' object to add the header, for example: `$response->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0');`. This will instruct browsers and proxies not to cache the response.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, use HttpServletResponse to set the Cache-Control header:
+In Spring Boot, ensure that responses containing sensitive information have appropriate 'Cache-Control' headers set. This can be achieved by configuring the 'CacheControl' in the response headers to 'no-store' or 'no-cache, no-store, must-revalidate' for such responses. You can do this programmatically within your controller methods or globally by implementing a WebMvcConfigurer and overriding the 'addInterceptors' method to add an interceptor that sets the header for each response.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use the response object to set the Cache-Control header:
-
-</details>
-
-<details>
-    <summary>Nuxt</summary>
-
-In Nuxt.js, you can set headers in the nuxtServerInit action or in middleware:
+In Flask, ensure that responses containing sensitive information have the 'Cache-Control' header set with appropriate directives, such as 'no-store' to prevent caching. Use 'flask.make_response()' to create a response object and set the header using 'response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'. Apply this to all routes that serve sensitive data.
 
 </details>
 
@@ -161,14 +154,26 @@ In Nuxt.js, you can set headers in the nuxtServerInit action or in middleware:
 ## Score
 
 - Escape Severity: **<span className="low-severity">LOW</span>**
-  - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-  - PCI DSS: **6.5.10**
-  - CWE
-  - WASC: **WASC-13**
-  
-  
+
+### Compliance
+
+- OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
+- pci: **6.5.10**
+- gdpr: **Article-32**
+- soc2: **CC6.1**
+- psd2: **Article 95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **SC-28**
+
+### Classification
 
 
+
+
+
+
+### Score
 
 
 
