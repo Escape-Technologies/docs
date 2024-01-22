@@ -20,112 +20,108 @@ Do not resolve queries with a wrong argument type.
 <details>
     <summary>Apollo</summary>
 
-Apollo doesn't allow arguments of the wrong type by default.
-Example:
-```javascript
-{
-  "errors": [
-    {
-      "message": "String cannot represent a non string value: 123",
-      "extensions": {
-        "code": "GRAPHQL_VALIDATION_FAILED"
-      }
-    }
-  ]
-}
-```This error should appear if you are using Apollo.
-
-</details>
-
-<details>
-    <summary>Awsappsync</summary>
-
-AWS AppSync doesn't allow arguments of the wrong type by default.
-Example:
-```json
-{
-  "data": null,
-  "errors": [
-    {
-      "path": null,
-      "locations": [
-        {
-          "line" : 1,
-          "column": 18,
-          "sourceName": null
-        }
-      ],
-      "message": "Validation error of type WrongType: argument 'a' with value 'StringValue{value='4'}' is not a valid 'Int' @ 'testType'"}
-  ]
-}```
+Ensure correct keyboard layout is selected and check for any software updates that may address typing issues. Verify that all keys are functioning properly and clean the keyboard if necessary. If the problem persists, consider resetting keyboard settings to default or replacing the keyboard if it is damaged.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-GraphQL Yoga will throw an error if an argument of the wrong type is provided.
-Example:
-```json
-{
-  "errors": [
-    {
-      "message": "Argument 'id' has invalid value 123. Expected type 'String', found 123.",
-      "locations": [{ "line": 2, "column": 22 }]
-    }
-  ]
-}```
+Ensure correct spelling of 'Yoga' in all digital content and promotional materials to maintain professionalism and avoid confusion.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Ensure that AWS AppSync API keys are rotated regularly to prevent unauthorized access due to potential key leaks or misuse. Implement a key rotation policy and automate the process using AWS Lambda functions to generate new keys and update the relevant applications or services with the new credentials.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-The graphql-go library will validate the types of provided arguments and return an error if they do not match the expected types.
-Example:
-```json
-{
-  "errors": [
-    {
-      "message": "Variable '$id' got invalid value 123; Expected type String. String cannot represent a non string value: 123",
-      "locations": [{ "line": 1, "column": 11 }]
-    }
-  ]
-}```
+Ensure proper validation and sanitization of user inputs to prevent typing misconfigurations. Utilize strict type checking in your GraphQL schema definitions to enforce the correct data types and adhere to best practices in error handling to provide clear feedback on typing issues.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-GraphQL-Ruby will not execute a query if the provided arguments are of the wrong type, and it will return an error message.
-Example:
-```json
-{
-  "errors": [
-    {
-      "message": "Argument 'input' on Field 'createUser' has an invalid value. Expected type 'String!'.",
-      "locations": [{ "line": 2, "column": 3 }]
-    }
-  ]
-}```
+Ensure proper validation and sanitization of user inputs to prevent injection attacks. Use GraphQL-Ruby's built-in mechanisms for argument validation, and avoid interpolating variables directly into queries or mutations.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Hasura enforces strict type checks and will return an error if an argument is provided with an incorrect type.
-Example:
-```json
-{
-  "errors": [
-    {
-      "message": "field 'createPost' argument 'title' is expected to be type 'String!' but got 'Int'.",
-      "locations": [{ "line": 3, "column": 5 }]
-    }
-  ]
-}```
+Ensure that the Hasura GraphQL engine configuration is set correctly, with appropriate environment variables, permissions, and secure endpoints. Review the Hasura documentation for best practices on configuration settings.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp_net</summary>
+
+In ASP.NET, ensure strong typing by using explicit data types and validate all inputs against expected types. Implement custom model binding or use built-in type checking features to prevent type-related misconfigurations.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+In Ruby on Rails, ensure that you validate the types of all input parameters rigorously before using them in your code. Use Active Record validations to enforce the correct data types and constraints. Additionally, employ strong parameters to prevent mass assignment vulnerabilities and ensure that only the permitted attributes can be updated.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure proper validation of input types on both the client and server sides in Next.js applications. Utilize TypeScript for static type checking and implement runtime validation using libraries such as `joi` or `yup` to catch typing misconfigurations and prevent unintended behavior or security vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, ensure that you are using Eloquent ORM or the query builder's parameter binding to prevent typing misconfigurations and SQL injection vulnerabilities. Avoid using raw queries with user input. Instead, leverage Laravel's built-in methods that automatically handle parameter binding and type checking.
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+In Express.js, ensure that all input parameters are validated for the correct type before using them in your application logic. Utilize middleware like 'express-validator' to check for data types and sanitize input, preventing typing misconfigurations and potential security vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, ensure that you use field lookups that are appropriate for the type of field you are querying against. For instance, use `__exact` for exact string comparisons, `__iexact` for case-insensitive exact string comparisons, and `__gt`, `__gte`, `__lt`, `__lte` for comparing numerical values. Always validate and sanitize input before using it in queries to prevent type mismatches and potential security vulnerabilities such as SQL injection.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, ensure that you use the correct data types when setting parameters for your queries. Utilize the ParameterBag provided by the HttpFoundation component to validate and retrieve request parameters in a type-safe manner. Additionally, when working with Doctrine ORM, make use of the built-in parameter binding functionality in DQL or QueryBuilder to prevent type-related issues and enhance security against SQL injection attacks.
+
+</details>
+
+<details>
+    <summary>Spring_boot</summary>
+
+In Spring Boot, ensure that you use strong type checking in method signatures and validate input types rigorously. Leverage the built-in support for data binding and type conversion to automatically handle type mismatches and reject incorrect types. Additionally, implement custom type validators when necessary to catch typing misconfigurations early in the request handling process.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, ensure that you use the `flask.request` object to access request data and validate the data types before processing. Utilize libraries like WTForms or Marshmallow for form validation and data serialization to prevent typing misconfigurations. Additionally, apply proper error handling to catch and respond to incorrect data types.
 
 </details>
 
@@ -186,3 +182,7 @@ Example:
 - CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N/RL:O/RC:C**
 
 
+## References
+
+- [https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html)
+  
