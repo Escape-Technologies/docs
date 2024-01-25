@@ -19,7 +19,7 @@ This preset is ideal for systems where authentication is managed via GraphQL API
 ## Examples
 
 ```yaml
-preset:
+presets:
 -   type: graphql
     url: https://api.example.com/graphql-auth
     query: "mutation($login: String!, $password: String!) {\n   authenticate(login:\

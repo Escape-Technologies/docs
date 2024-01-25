@@ -18,7 +18,7 @@ Digest Authentication is suitable for scenarios requiring enhanced security with
 ## Examples
 
 ```yaml
-preset:
+presets:
 -   type: digest
     first_request:
         url: https://api.example.com/request

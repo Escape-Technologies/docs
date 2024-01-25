@@ -20,7 +20,7 @@ This preset is particularly useful for complex authentication scenarios where mu
 ## Examples
 
 ```yaml
-preset:
+presets:
 -   type: curl_sequence
     requests:
     -   curl: curl -X POST https://api.example.com/login -d "username={{username}}&password={{password}}"

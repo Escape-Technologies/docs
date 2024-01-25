@@ -18,7 +18,7 @@ This preset is particularly useful when other forms of API-based authentication 
 ## Examples
 
 ```yaml
-preset:
+presets:
 -   type: webdriver
     wait_for_seconds: 30
     injections:

@@ -18,7 +18,7 @@ This preset is ideal for systems that use AWS Cognito for managing user authenti
 ## Examples
 
 ```yaml
-preset:
+presets:
 -   type: cognito_userpass
     client_id: yourCognitoClientId
     client_secret: yourCognitoClientSecret

@@ -17,7 +17,7 @@ This method is particularly effective in scenarios where authentication is manag
 ## Examples
 
 ```yaml
-preset:
+presets:
 -   type: http
     request:
         url: https://api.example.com/authenticate

@@ -21,7 +21,7 @@ Two common use cases are:
 ## Examples
 
 ```yaml
-preset:
+presets:
 -   type: curl
     injections:
     -   key: Authorization
@@ -39,7 +39,7 @@ preset:
 ```
 
 ```yaml
-preset:
+presets:
 -   type: curl
     injections:
     -   key: session_id
