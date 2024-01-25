@@ -1,58 +1,46 @@
 ---
-title: cURL
-description: cURL Authentication Preset
+title: GraphQL
+description: GraphQL Authentication Preset
 ---
 
-# cURL Authentication with Escape
+# GraphQL Authentication with Escape
 
 ## Description
-The &#39;cURL&#39; authentication preset is designed for dynamic token generation and reuse:
+The &#39;GraphQL&#39; authentication preset facilitates authentication through GraphQL queries:
 
-- **cURL Command Parsing**: Parses a cURL command to send an authentication request.
-- **Dynamic Token Extraction**: Extracts the authentication token from the cURL command&#39;s HTTP response.
-- **Token Re-injection**: Reinjects the extracted token into subsequent authenticated requests.
+- **GraphQL Endpoint**: The authentication is performed against a specified GraphQL endpoint.
+- **Query Templating**: Utilizes a templated GraphQL query for authentication requests.
+- **Variable Handling**: User credentials are passed as variables within the GraphQL query.
+- **Token Extraction**: Specifies how and where to extract authentication tokens (e.g., from the response body).
+- **Token Injection**: Defines how to inject the extracted token into subsequent requests.
 
-This preset is particularly useful for scenarios where authentication tokens are dynamically generated and need to be efficiently extracted and reused in ongoing requests.
-
-Two common use cases are:
-- **Bearer JWT Token**: A REST API request that generates a Bearer JWT Token, which is then reinjected into the Authorization header for subsequent requests.
-- **Set-Cookie**: A REST API request that generates a cookie, which is then set in the cookies for subsequent requests.
+This preset is ideal for systems where authentication is managed via GraphQL APIs, allowing for flexible and powerful authentication mechanisms.
 
 ## Examples
 
 ```yaml
-preset:
--   type: curl
+presets:
+-   type: graphql
+    url: https://api.example.com/graphql-auth
+    query: "mutation($login: String!, $password: String!) {\n   authenticate(login:\
+        \ $login, password: $password) {\n       accessToken\n   }\n}"
     injections:
     -   key: Authorization
         location: header
         prefix: Bearer
-        variable: token
     extractions:
     -   name: token
-        key: Authorization
-        location: header
+        key: accessToken
+        location: body
     users:
     -   username: user1
-        curl: curl -X POST https://api.example.com/auth -d "username=user1&password=pass1"
-
-```
-
-```yaml
-preset:
--   type: curl
-    injections:
-    -   key: session_id
-        location: cookie
-        variable: sessionId
-    extractions:
-    -   name: sessionId
-        key: Set-Cookie
-        location: header
-        regex: session_id=(\S+);
-    users:
+        variables:
+            login: user1
+            password: pass1
     -   username: user2
-        curl: curl -X POST https://api.example.com/login -d "username=user2&password=pass2"
+        variables:
+            login: user2
+            password: pass2
 
 ```
 
@@ -61,22 +49,24 @@ preset:
 
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
-| type | `Const[curl]` | `True` |  |  |
-| users | `cURLUserPreset` | `True` | The list of users to generate tokens for. | [cURLUserPreset](#cURLUserPreset) |
-| extractions | `TokenExtraction` | `True` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
-| injections | `TokenInjection` | `True` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
+| type | `Const[graphql]` | `True` |  |  |
+| users | `GraphQLUserPreset` | `True` | A list of users with credentials contained in the GraphQL `variables` of the query | [GraphQLUserPreset](#GraphQLUserPreset) |
+| url | `string` | `True` | The URL of the GraphQL authentication endpoint. |  |
+| query | `string` | `True` | The templated GraphQL inside the `query` field of the JSON body of the HTTP request. |  |
+| extractions | `TokenExtraction` | `False` | The extractions of the GraphQL query containing the user credentials. | [TokenExtraction](#TokenExtraction) |
+| injections | `TokenInjection` | `False` | The injections of the GraphQL query containing the user credentials. | [TokenInjection](#TokenInjection) |
 
 
 
 ## Objects
 
-### <a id="cURLUserPreset"></a>cURLUserPreset
+### <a id="GraphQLUserPreset"></a>GraphQLUserPreset
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
-| username | `string` | `True` | The arbitrary name that identifies the user. |  |
+| username | `string` | `True` | The name of the user. |  |
 | headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
 | cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
-| curl | `string` | `True` | The curl command that is used to fetch the tokens for this user. |  |
+| variables | `Dict[string, string]` | `True` | The variables of the GraphQL query containing the user credentials. |  |
 
 
 ### <a id="TokenExtraction"></a>TokenExtraction

@@ -17,7 +17,7 @@ This preset is ideal for scenarios where authentication can be handled via prede
 ## Examples
 
 ```yaml
-preset:
+presets:
 -   type: headers
     users:
     -   username: user1

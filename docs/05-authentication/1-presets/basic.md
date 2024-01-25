@@ -19,7 +19,7 @@ This method provides a simple and direct way to authenticate users, without requ
 ## Examples
 
 ```yaml
-preset:
+presets:
 -   type: basic
     users:
     -   username: user1

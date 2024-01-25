@@ -17,7 +17,7 @@ This method is suitable for systems that require secure, OAuth-based authenticat
 ## Examples
 
 ```yaml
-preset:
+presets:
 -   type: oauth_userpass
     url: https://oauth.example.com/token
     client_id: client123

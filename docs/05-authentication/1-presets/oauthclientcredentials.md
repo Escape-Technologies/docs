@@ -17,7 +17,7 @@ This preset is particularly effective for scenarios where applications or servic
 ## Examples
 
 ```yaml
-preset:
+presets:
 -   type: oauth_client_credentials
     url: https://oauth.example.com/token
     users:
