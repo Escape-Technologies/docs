@@ -41,6 +41,10 @@ jobs:
 ```
 
 
+## Failure behavior
+
+By default, Escape cli will fail if any High issues are flagged, and will exit with an error code 1.
+
 ## Available variables
 
 ### `ESCAPE_APPLICATION_ID` <TypeTag type="string"/> <RequiredTag/>
@@ -52,6 +56,14 @@ You can find it in your [Escape application settings](https://app.escape.tech).
 
 Your API key on the Escape platform.  
 You can find it in your [Escape settings](https://app.escape.tech/user/profile/).
+
+### `SCHEMA_URL` <TypeTag type="string"/>
+
+The URL to your API schema, that you want to upload to the specific application `ESCAPE_APPLICATION_ID`
+
+### `SCHEMA_FILE` <TypeTag type="string"/>
+
+The filepath to your API schema, that you want to upload to the specific application `ESCAPE_APPLICATION_ID`
 
 ### `TIMEOUT` <TypeTag type="number"/>
 
@@ -67,11 +79,19 @@ The triggered scan will run asynchronously on Escape, and your team will be noti
 
 [See the configuration override section](/ci-cd/configuration-override).
 
+### `REF_NAME` <TypeTag type="string"/>
+
+[See the commit identification section](/ci-cd/commit-sha).
+
 ### `COMMIT_HASH` <TypeTag type="string"/>
 
 [See the commit identification section](/ci-cd/commit-sha).
 
-### `INTROSPECTION_FILE` <TypeTag type="number"/>
+### `USER_EMAIL` <TypeTag type="string"/>
+
+[See the commit identification section](/ci-cd/commit-sha).
+
+### `INTROSPECTION_FILE` <TypeTag type="path"/>
 
 [See the introspection update section](/ci-cd/introspection-update).
 
