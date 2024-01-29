@@ -4,9 +4,7 @@ toc_min_heading_level: 2
 toc_max_heading_level: 2
 ---
 # Mutators
-
 ## Request Body JSON Mutator
-
 (`key: request.body.json`)
 
 You can use this mutator to change the JSON body of the request before resending it.
@@ -17,13 +15,11 @@ You can use this mutator to change the JSON body of the request before resending
 
 
 ## Request Body Text Mutator
-
 (`key: request.body.text`)
 
 You can use this mutator to change the body (as text) of the request before resending it.
 
 ## Request Headers Mutator
-
 (`key: request.headers`)
 
 You can use this mutator to change the headers of the request before resending it.
@@ -38,14 +34,12 @@ You can use this mutator to change the headers of the request before resending i
 
 
 ## Request Object Mutator
-
 (`key: request.object`)
 
 
 The detected object scalars (including custom scalars) in the request, with their kind, name and value.
 
 ## Request User Mutator
-
 (`key: request.user`)
 
 
@@ -75,7 +69,6 @@ transform:
 
 
 ## Schema URL Mutator
-
 (`key: schema.url`)
 
 

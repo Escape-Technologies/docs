@@ -1,7 +1,5 @@
 # Seeders
-
 ## HTTP seeder
-
 (`protocol: http`)
 
 

@@ -1,6 +1,6 @@
-# Custom Check
+# Custom Checks
 
-A custom check is a YAML-formatted file that defines a list of blocks to set some tests and conditions to trigger an alert.
+A custom test is a YAML-formatted file that defines a list of custom check blocks to set some tests and conditions to trigger an alert.
 
 - [Seeders](./seeders) are used to seed the scan with requests
 

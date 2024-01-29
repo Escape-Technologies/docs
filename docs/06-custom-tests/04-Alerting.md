@@ -1,6 +1,5 @@
 # Alerting
-
-## Alert
+# Alert
 
 You can configure a custom alert to be raised when all detections are matched.
 

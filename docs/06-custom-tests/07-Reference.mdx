@@ -1,6 +1,6 @@
 ---
-title: Custom Security Checks Reference
-description: All objects available for custom security checks.
+title: Custom Tests Reference
+description: All objects available for custom security tests.
 ---
 
 
@@ -54,8 +54,8 @@ This request will be sent a the beginning of the scan, after the hotstart but be
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| trigger | `ResponseIsSuccessfulDetector | ScanTypeDetector | RequestBodyJSONDetector | RequestIsAuthenticatedDetector | ResponseHeadersDetector | SchemaUrlDetector | RequestUserDetector | ResponseDurationDetector | ResponseStatusCodeDetector | SchemaNeedAuthenticationDetector | ResponseBodyJSONDetector | RequestObjectDetector | RequestHeadersDetector | SchemaPathRefDetector | CrudDetector | RequestBodyTextDetector | ResponseObjectDetector | ResponseBodyTextDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
-| mutate | `RequestUserMutator | RequestBodyJSONMutator | RequestBodyTextMutator | RequestObjectMutator | SchemaUrlMutator | RequestHeadersMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
+| trigger | `ResponseHeadersDetector | ResponseDurationDetector | SchemaNeedAuthenticationDetector | ResponseObjectDetector | RequestBodyTextDetector | ResponseIsSuccessfulDetector | RequestUserDetector | CrudDetector | ScanTypeDetector | SchemaUrlDetector | ResponseBodyJSONDetector | RequestHeadersDetector | ResponseBodyTextDetector | SchemaPathRefDetector | RequestIsAuthenticatedDetector | ResponseStatusCodeDetector | RequestBodyJSONDetector | RequestObjectDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
+| mutate | `RequestObjectMutator | RequestHeadersMutator | RequestUserMutator | RequestBodyTextMutator | SchemaUrlMutator | RequestBodyJSONMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
 
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher

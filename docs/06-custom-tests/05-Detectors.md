@@ -4,9 +4,7 @@ toc_min_heading_level: 2
 toc_max_heading_level: 2
 ---
 # Detectors
-
 ## Scan type detector
-
 (`if: scan.type`)
 
 Use this to select against the type of the scan.
@@ -21,7 +19,6 @@ Use this to select against the type of the scan.
 
 ---
 ## CRUD detector
-
 (`if: helpers.request.crud`)
 
 Use this to select against the detected CRUD operation of the request.
@@ -36,7 +33,6 @@ Use this to select against the detected CRUD operation of the request.
 
 ---
 ## Response status detector
-
 (`if: response.status_code`)
 
 Use this to compare the HTTP status code as an integer.
@@ -53,7 +49,6 @@ Use this to compare the HTTP status code as an integer.
 
 ---
 ## Response duration detector
-
 (`if: response.duration_ms`)
 
 Use this to compare the duration of the request in milliseconds.
@@ -70,7 +65,6 @@ Use this to compare the duration of the request in milliseconds.
 
 ---
 ## Schema authentication detector
-
 (`if: schema.need_authentication`)
 
 Use this to select whether or not the schema requires authentication.
@@ -84,7 +78,6 @@ Use this to select whether or not the schema requires authentication.
 
 ---
 ## Request authentication detector
-
 (`if: request.is_authenticated`)
 
 Use this to select whether or not whether the request is authenticated.
@@ -98,7 +91,6 @@ Use this to select whether or not whether the request is authenticated.
 
 ---
 ## Schema path reference detector
-
 (`if: schema.path_ref`)
 
 Use this to string compare the operation name in GraphQL or the path in REST
@@ -115,7 +107,6 @@ Use this to string compare the operation name in GraphQL or the path in REST
 
 ---
 ## Response success detector
-
 (`if: helpers.response.is_successful`)
 
 Use this to check whether the response is successful.
@@ -129,7 +120,6 @@ Use this to check whether the response is successful.
 
 ---
 ## Schema URL detector
-
 (`if: schema.url`)
 
 Use this to string compare the URL of the request.
@@ -146,7 +136,6 @@ Use this to string compare the URL of the request.
 
 ---
 ## Request user detector
-
 (`if: request.user`)
 
 Use this to string compare the configured user for the request.
@@ -163,7 +152,6 @@ Use this to string compare the configured user for the request.
 
 ---
 ## Request headers detector
-
 (`if: request.headers`)
 
 Use that to select and compare the request headers in a key value dictionary.
@@ -177,7 +165,6 @@ Use that to select and compare the request headers in a key value dictionary.
 
 ---
 ## Response headers detector
-
 (`if: response.headers`)
 
 Use that to select and compare the response headers in a key value dictionary.
@@ -191,7 +178,6 @@ Use that to select and compare the response headers in a key value dictionary.
 
 ---
 ## Response body JSON detector
-
 (`if: response.body.json`)
 
 Use this to select and compare the response body when detected as JSON, using jq-like syntax.
@@ -207,7 +193,6 @@ Use this to select and compare the response body when detected as JSON, using jq
 
 ---
 ## Request body JSON detector
-
 (`if: request.body.json`)
 
 Use this to select and compare the request body when detected as JSON, using jq-like syntax.
@@ -223,7 +208,6 @@ Use this to select and compare the request body when detected as JSON, using jq-
 
 ---
 ## Response body text detector
-
 (`if: response.body.text`)
 
 Use this to select and compare the response body as text, using string compare.
@@ -240,7 +224,6 @@ Use this to select and compare the response body as text, using string compare.
 
 ---
 ## Request body text detector
-
 (`if: request.body.text`)
 
 Use this to select and compare the request body as text, using string compare.
@@ -257,7 +240,6 @@ Use this to select and compare the request body as text, using string compare.
 
 ---
 ## Request object detector
-
 (`if: request.object`)
 
 Use this to select and compare the detected object scalars (including custom scalars) in the request, with their kind, name and value.
@@ -272,7 +254,6 @@ Use this to select and compare the detected object scalars (including custom sca
 
 ---
 ## Response object detector
-
 (`if: response.object`)
 
 Use this to select and compare the detected object scalars (including custom scalars) in the response, with their kind, name and value.
