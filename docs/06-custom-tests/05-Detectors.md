@@ -12,6 +12,14 @@ toc_max_heading_level: 2
 
 Use this to select against the type of the scan.
 
+### Example
+
+```yaml
+detect:
+  - if: scan.type
+    is: REST
+```
+
 ### Properties
 
 - `is:` The scan type is exactly this
@@ -26,6 +34,16 @@ Use this to select against the type of the scan.
 
 Use this to select against the detected CRUD operation of the request.
 
+### Example
+
+```yaml
+detect:
+  - if: helpers.request.crud
+    in:
+      - CREATE
+      - UPDATE
+```
+
 ### Properties
 
 - `is:` Condition is the request is this CRUD operation
@@ -39,6 +57,14 @@ Use this to select against the detected CRUD operation of the request.
 `if: response.status_code`
 
 Use this to compare the HTTP status code as an integer.
+
+### Example
+
+```yaml
+detect:
+  - if: response.status_code
+    is: 200
+```
 
 ### Properties
 
@@ -56,6 +82,14 @@ Use this to compare the HTTP status code as an integer.
 
 Use this to compare the duration of the request in milliseconds.
 
+### Example
+
+```yaml
+detect:
+  - if: response.duration_ms
+    gt: 200
+```
+
 ### Properties
 
 - `is:` Condition is this exact integer
@@ -72,6 +106,14 @@ Use this to compare the duration of the request in milliseconds.
 
 Use this to select whether or not the schema requires authentication.
 
+### Example
+
+```yaml
+detect:
+  - if: schema.need_authentication
+    is: false
+```
+
 ### Properties
 
 - `is:` Condition is true
@@ -85,6 +127,14 @@ Use this to select whether or not the schema requires authentication.
 
 Use this to select whether or not whether the request is authenticated.
 
+### Example
+
+```yaml
+detect:
+  - if: request.is_authenticated
+    is: true
+```
+
 ### Properties
 
 - `is:` Condition is true
@@ -96,7 +146,15 @@ Use this to select whether or not whether the request is authenticated.
 
 `if: schema.path_ref`
 
-Use this to string compare the operation name in GraphQL or the path in REST
+Use this to string compare the operation name in GraphQL or the path in REST.
+
+### Example
+
+```yaml
+detect:
+  - if: schema.path_ref
+    contains: /admin/secrets
+```
 
 ### Properties
 
@@ -114,6 +172,14 @@ Use this to string compare the operation name in GraphQL or the path in REST
 
 Use this to check whether the response is successful.
 
+### Example
+
+```yaml
+detect:
+  - if: helpers.response.is_successful
+    is: true
+```
+
 ### Properties
 
 - `is:` Condition is true
@@ -126,6 +192,14 @@ Use this to check whether the response is successful.
 `if: schema.url`
 
 Use this to string compare the URL of the request.
+
+### Example
+
+```yaml
+detect:
+  - if: schema.url
+    regex: .*(internal|private).*
+```
 
 ### Properties
 
@@ -143,6 +217,14 @@ Use this to string compare the URL of the request.
 
 Use this to string compare the configured user for the request.
 
+### Example
+
+```yaml
+detect:
+  - if: request.user
+    is: unprivileged_user
+```
+
 ### Properties
 
 - `is:` Condition is this exact string
@@ -159,6 +241,17 @@ Use this to string compare the configured user for the request.
 
 Use that to select and compare the request headers in a key value dictionary.
 
+### Example
+
+```yaml
+detect:
+  - if: request.headers
+    key:
+      is: "X-OPERATION"
+    value:
+      is: "PAY"
+```
+
 ### Properties
 
 - `key:` Key to match
@@ -172,6 +265,17 @@ Use that to select and compare the request headers in a key value dictionary.
 
 Use that to select and compare the response headers in a key value dictionary.
 
+### Example
+
+```yaml
+detect:
+  - if: response.headers
+    key:
+      is: "X-RESULT"
+    value:
+      is: "PAID"
+```
+
 ### Properties
 
 - `key:` Key to match
@@ -184,6 +288,15 @@ Use that to select and compare the response headers in a key value dictionary.
 `if: response.body.json`
 
 Use this to select and compare the response body when detected as JSON, using jq-like syntax.
+
+### Example
+
+```yaml
+detect:
+  - if: response.body.json
+    is:
+      jq: ".role == admin"
+```
 
 ### Properties
 
@@ -200,6 +313,15 @@ Use this to select and compare the response body when detected as JSON, using jq
 
 Use this to select and compare the request body when detected as JSON, using jq-like syntax.
 
+### Example
+
+```yaml
+detect:
+  - if: request.body.json
+    is:
+      jq: ".role == admin"
+```
+
 ### Properties
 
 - `is:` Condition is this exact JSON
@@ -214,6 +336,14 @@ Use this to select and compare the request body when detected as JSON, using jq-
 `if: response.body.text`
 
 Use this to select and compare the response body as text, using string compare.
+
+### Example
+
+```yaml
+detect:
+  - if: request.body.text
+    is_not: "unauthorized"
+```
 
 ### Properties
 
@@ -231,6 +361,14 @@ Use this to select and compare the response body as text, using string compare.
 
 Use this to select and compare the request body as text, using string compare.
 
+### Example
+
+```yaml
+detect:
+  - if: request.body.text
+    contains: "password="
+```
+
 ### Properties
 
 - `is:` Condition is this exact string
@@ -247,6 +385,18 @@ Use this to select and compare the request body as text, using string compare.
 
 Use this to select and compare the detected object scalars (including custom scalars) in the request, with their kind, name and value.
 
+### Example
+
+```yaml
+detect:
+  - if: request.object
+    type:
+      in:
+        - email
+        - phone
+        - street_address
+```
+
 ### Properties
 
 - `type:` Object scalar type to match
@@ -260,6 +410,18 @@ Use this to select and compare the detected object scalars (including custom sca
 `if: response.object`
 
 Use this to select and compare the detected object scalars (including custom scalars) in the response, with their kind, name and value.
+
+### Example
+
+```yaml
+detect:
+  - if: response.object
+    type:
+      in:
+        - email
+        - phone
+        - street_address
+```
 
 ### Properties
 
