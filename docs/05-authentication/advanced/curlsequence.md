@@ -20,7 +20,7 @@ This preset is particularly useful for complex authentication scenarios where mu
 ## Examples
 
 ```yaml
-presets:
+preset:
 -   type: curl_sequence
     requests:
     -   curl: curl -X POST https://api.example.com/login -d "username={{username}}&password={{password}}"
@@ -65,7 +65,7 @@ presets:
 | type | `Const[curl_sequence]` | `True` |  |  |
 | users | `cURLSequenceUserPreset` | `True` | The list of users to generate tokens for. | [cURLSequenceUserPreset](#cURLSequenceUserPreset) |
 | requests | `cURLSequenceRequestPreset` | `True` | A sequence of curl templates used to make requests and extract variables. | [cURLSequenceRequestPreset](#cURLSequenceRequestPreset) |
-| injections | `TokenInjection` | `False` | Final variables injected into the authentified requests. | [TokenInjection](#TokenInjection) |
+| injections | `TokenInjection` | `True` | Final variables injected into the authentified requests. | [TokenInjection](#TokenInjection) |
 
 
 
@@ -77,14 +77,14 @@ presets:
 | username | `string` | `True` | The arbitrary name that identifies the user. |  |
 | headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
 | cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
-| variables | `Dict[string, string]` | `False` | A dict of variables to inject into the cURL sequences. |  |
+| variables | `Dict[string, string]` | `True` | A dict of variables to inject into the cURL sequences. |  |
 
 
 ### <a id="cURLSequenceRequestPreset"></a>cURLSequenceRequestPreset
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
 | curl | `string` | `True` | A curl template used to make a request. |  |
-| extractions | `TokenExtraction` | `False` | Variables extracted from the response that can be templated in further requests. | [TokenExtraction](#TokenExtraction) |
+| extractions | `TokenExtraction` | `True` | Variables extracted from the response that can be templated in further requests. | [TokenExtraction](#TokenExtraction) |
 
 
 ### <a id="TokenInjection"></a>TokenInjection

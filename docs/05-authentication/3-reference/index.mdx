@@ -61,9 +61,9 @@ description: All objects available
 |------------|------------|-----|-------------|-----------|
 | username | `string` | `False` | The username to attach to the HTTP requests sent for this user. See [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#access_using_credentials_in_the_url) |  |
 | password | `string` | `False` | The password to attach to the HTTP requests sent for this user. See [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#access_using_credentials_in_the_url) |  |
-| headers | `HTTPHeader` | `True` | A list of headers to attach to every HTTP requests sent for this user | [HTTPHeader](#HTTPHeader) |
-| cookies | `HTTPCookie` | `True` | A list of cookies to attach to every HTTP requests sent for this user | [HTTPCookie](#HTTPCookie) |
-| query_parameters | `HTTPQueryParameter` | `True` | A list of query parameters to attach to every HTTP requests sent for this user | [HTTPQueryParameter](#HTTPQueryParameter) |
+| headers | `HTTPHeader` | `False` | A list of headers to attach to every HTTP requests sent for this user | [HTTPHeader](#HTTPHeader) |
+| cookies | `HTTPCookie` | `False` | A list of cookies to attach to every HTTP requests sent for this user | [HTTPCookie](#HTTPCookie) |
+| query_parameters | `HTTPQueryParameter` | `False` | A list of query parameters to attach to every HTTP requests sent for this user | [HTTPQueryParameter](#HTTPQueryParameter) |
 | body | `Any` | `False` | A body to merge with the bodies of every HTTP requests sent for this user |  |
 
 
@@ -270,7 +270,7 @@ description: All objects available
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | name | `string` | `True` | The name of the procedure. It must be unique and is used to reference the procedure in users. |  |
-| operations | `SeleniumRunnerConfiguration | HTTPRunnerConfiguration | DigestRunnerConfiguration` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
+| operations | `DigestRunnerConfiguration | SeleniumRunnerConfiguration | HTTPRunnerConfiguration` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
 | injections | `TokenInjection` | `True` | The list of injections to perform at the end of the procedure. Injections are used to inject the variables extracted from the procedure into the user authentication. | [TokenInjection](#TokenInjection) |
 
 
@@ -353,7 +353,7 @@ description: All objects available
 | name | `string` | `True` | The name of the user |  |
 | credentials | `Credentials` | `False` | A set of HTTP parameters used to customize requests sent for the user. | [Credentials](#Credentials) |
 | procedure | `string` | `False` | The name of the procedure to use to authenticate the user.This name MUST match the `name` field of a procedure in the `procedures` list in the multiauth configuration. |  |
-| variables | `AuthenticationVariable` | `True` | List of variables that will be injected at the beginning of the user&#39;s authentication procedure. | [AuthenticationVariable](#AuthenticationVariable) |
+| variables | `AuthenticationVariable` | `False` | List of variables that will be injected at the beginning of the user&#39;s authentication procedure. | [AuthenticationVariable](#AuthenticationVariable) |
 | refresh | `UserRefresh` | `False` | An optional refresh procedure to follow for the user. | [UserRefresh](#UserRefresh) |
 
 
@@ -406,7 +406,7 @@ description: All objects available
 | type | `Const[curl_sequence]` | `True` |  |  |
 | users | `cURLSequenceUserPreset` | `True` | The list of users to generate tokens for. | [cURLSequenceUserPreset](#cURLSequenceUserPreset) |
 | requests | `cURLSequenceRequestPreset` | `True` | A sequence of curl templates used to make requests and extract variables. | [cURLSequenceRequestPreset](#cURLSequenceRequestPreset) |
-| injections | `TokenInjection` | `True` | Final variables injected into the authentified requests. | [TokenInjection](#TokenInjection) |
+| injections | `TokenInjection` | `False` | Final variables injected into the authentified requests. | [TokenInjection](#TokenInjection) |
 
 
 ## <a id="cURLSequenceRequestPreset"></a>cURLSequenceRequestPreset
@@ -414,7 +414,7 @@ description: All objects available
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | curl | `string` | `True` | A curl template used to make a request. |  |
-| extractions | `TokenExtraction` | `True` | Variables extracted from the response that can be templated in further requests. | [TokenExtraction](#TokenExtraction) |
+| extractions | `TokenExtraction` | `False` | Variables extracted from the response that can be templated in further requests. | [TokenExtraction](#TokenExtraction) |
 
 
 ## <a id="cURLSequenceUserPreset"></a>cURLSequenceUserPreset
@@ -424,7 +424,7 @@ description: All objects available
 | username | `string` | `True` | The arbitrary name that identifies the user. |  |
 | headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
 | cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
-| variables | `Dict[string, string]` | `True` | A dict of variables to inject into the cURL sequences. |  |
+| variables | `Dict[string, string]` | `False` | A dict of variables to inject into the cURL sequences. |  |
 
 
 ## <a id="cURLUserPreset"></a>cURLUserPreset
