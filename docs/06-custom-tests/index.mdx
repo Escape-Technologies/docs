@@ -38,6 +38,45 @@ detect:
     is: true
 ```
 
+```yaml
+seed:
+  - raw: |
+      @Host: https://example.com
+      POST /resource HTTP/1.1
+      Host: example.com
+      Content-Type: application/json
+      {"test": "hello"}
+    protocol: http
+alert:
+  name: V2 API with V1 tokens
+  context: >
+    For compliance reasons, the new V2 API should not be accessible with V1 tokens
+  severity: HIGH
+detect:
+  - if: helpers.request.crud
+    is: CREATE
+  - if: request.user
+    is_not: admin
+  - if: helpers.response.is_successful
+    is: true
+transform:
+  mutate:
+    - key: request.headers
+      name: X-API-Version
+      value: V1
+    - key: request.headers
+      name: Authorization
+      value: Bearer xxxxx
+  trigger:
+    - if: response.status_code
+      is: 200
+    - if: request.headers
+      key:
+        is: X-API-Version
+      value:
+        is: V2
+```
+
 ### Properties
 
 - `seed`: A list of requests to seed the scan. See [Seeders](./seeders)
