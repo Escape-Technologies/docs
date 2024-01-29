@@ -63,6 +63,17 @@ The URL to your API schema, that you want to upload to the specific application 
 
 The filepath to your API schema, that you want to upload to the specific application `ESCAPE_APPLICATION_ID`
 
+### `FAIL_ON_SEVERITIES` <TypeTag type="string"/>
+
+A csv-delimited string that should contain either of these severities to define a failure of the cli (exit code 1):
+
+- HIGH
+- MEDIUM
+- LOW
+- INFO
+
+For example, `export FAIL_ON_SEVERITIES=HIGH,MEDIUM` will make the cli fail if any HIGH or MEDIUM issues are flagged.
+
 ### `TIMEOUT` <TypeTag type="number"/>
 
 The timeout of the job. If set to 0, the scan will be started, but the job will not wait for it to be finished before terminating.
