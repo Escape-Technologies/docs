@@ -14,7 +14,7 @@ in a simple language that is powerful thanks to Escape's inference engine.
 
 A custom test is a YAML file that defines the following blocks:
 
-- [Alerting](./alerting) is used define the alert format, it's severity ...
+- [Alerting](./alerting) is used define the alert format, it's severity…
 - [Detectors](./detectors) are used to detect if an alert must be raised by inspecting queries.
 - [Transformations](./transformations) are used to mutate the requests (optional).
 - [Mutators](./mutators) are used inside the transformations.
@@ -40,7 +40,7 @@ detect:
 
 ### Properties
 
-- `seed:` A list of requests to seed the scan. See [Seeders](./seeders)
-- `transform:` Defines lists of triggers and mutations (combined with AND operators).See [Transformations](./transformations)
-- `detect:` The conditions to trigger the alert. See [Detectors](./detectors)
-- `alert:` The alert to raise if the detection conditions are met. See [Alerting](./alerting)
+- `seed`: A list of requests to seed the scan. See [Seeders](./seeders)
+- `transform`: Defines lists of triggers and mutations (combined with AND operators).See [Transformations](./transformations)
+- `detect`: The conditions to trigger the alert. See [Detectors](./detectors)
+- `alert`: The alert to raise if the detection conditions are met. See [Alerting](./alerting)

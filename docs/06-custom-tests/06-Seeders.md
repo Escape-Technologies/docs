@@ -26,5 +26,5 @@ seed:
 
 ### Properties
 
-- `raw:` The raw HTTP request in [nuclei format](https://docs.projectdiscovery.io/templates/protocols/http/raw-http).
-- `user:` The user to use for the request. If not provided, the request is sent without authentication.
+- `raw`: The raw HTTP request in [nuclei format](https://docs.projectdiscovery.io/templates/protocols/http/raw-http).
+- `user`: The user to use for the request. If not provided, the request is sent without authentication.

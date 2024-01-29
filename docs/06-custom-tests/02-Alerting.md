@@ -9,7 +9,6 @@ To help others users to understand why this alert is raised and why it is import
 with more information.
 
 ```yaml
----
 alert:
   severity: HIGH
   name: Admin email changed
@@ -20,6 +19,6 @@ alert:
 
 ### Properties
 
-- `severity:` Severity of the alert
-- `name:` Name of the alert
-- `context:` Context of the alert
+- `severity`: Severity of the alert
+- `name`: Name of the alert
+- `context`: Context of the alert

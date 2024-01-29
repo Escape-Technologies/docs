@@ -67,8 +67,8 @@ seed:
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| trigger | `ResponseDurationDetector | CrudDetector | ResponseHeadersDetector | ResponseObjectDetector | ResponseIsSuccessfulDetector | RequestHeadersDetector | RequestUserDetector | ScanTypeDetector | RequestBodyTextDetector | SchemaPathRefDetector | RequestObjectDetector | SchemaUrlDetector | ResponseBodyTextDetector | RequestIsAuthenticatedDetector | RequestBodyJSONDetector | SchemaNeedAuthenticationDetector | ResponseStatusCodeDetector | ResponseBodyJSONDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
-| mutate | `RequestUserMutator | RequestBodyTextMutator | RequestBodyJSONMutator | RequestHeadersMutator | RequestObjectMutator | SchemaUrlMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
+| trigger | `ResponseIsSuccessfulDetector | CrudDetector | RequestObjectDetector | ResponseObjectDetector | SchemaUrlDetector | SchemaNeedAuthenticationDetector | ResponseBodyJSONDetector | RequestIsAuthenticatedDetector | RequestHeadersDetector | RequestBodyJSONDetector | RequestUserDetector | ResponseBodyTextDetector | ResponseDurationDetector | ScanTypeDetector | RequestBodyTextDetector | ResponseStatusCodeDetector | ResponseHeadersDetector | SchemaPathRefDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
+| mutate | `RequestHeadersMutator | RequestUserMutator | RequestObjectMutator | RequestBodyTextMutator | RequestBodyJSONMutator | SchemaUrlMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
 
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher
@@ -194,7 +194,10 @@ transform:
       contains: &#39;hello&#39;
   mutate:
     - key: request.body.text
-      value: &#39;world&#39;
+      values:
+        - &#39;injection 1&#39;
+        - &#39;injection 2&#39;
+        - &#39;injection 3&#39;
 ```
 
 | |

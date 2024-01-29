@@ -26,7 +26,7 @@ transform:
 
 ### Properties
 
-- `jq:` JQ query to apply to the JSON body. See https://stedolan.github.io/jq/manual/
+- `jq`: JQ query to apply to the JSON body. See https://stedolan.github.io/jq/manual/
 
 ---
 
@@ -45,14 +45,17 @@ transform:
       contains: "hello"
   mutate:
     - key: request.body.text
-      value: "world"
+      values:
+        - "injection 1"
+        - "injection 2"
+        - "injection 3"
 ```
 
 ### Properties
 
-- `value:` The value to set.
-- `values:` The values to set, generates multiple queries.
-- `regex_replace:` Regex replace pattern.
+- `value`: The value to set.
+- `values`: The values to set, generates multiple queries.
+- `regex_replace`: Regex replace pattern.
 
 ---
 
@@ -77,11 +80,11 @@ transform:
 
 ### Properties
 
-- `value:` The value to set.
-- `values:` The values to set, generates multiple queries.
-- `regex_replace:` Regex replace pattern.
-- `name:` The header name to match, supports regex.
-- `delete:` Delete the matched headers.
+- `value`: The value to set.
+- `values`: The values to set, generates multiple queries.
+- `regex_replace`: Regex replace pattern.
+- `name`: The header name to match, supports regex.
+- `delete`: Delete the matched headers.
 
 ---
 
@@ -136,10 +139,10 @@ transform:
 
 ### Properties
 
-- `value:` The value to set.
-- `values:` The values to set, generates multiple queries.
-- `regex_replace:` Regex replace pattern.
-- `drop_user:` Remove the user authentication from the request.
+- `value`: The value to set.
+- `values`: The values to set, generates multiple queries.
+- `regex_replace`: Regex replace pattern.
+- `drop_user`: Remove the user authentication from the request.
 
 ---
 

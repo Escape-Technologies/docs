@@ -22,9 +22,9 @@ detect:
 
 ### Properties
 
-- `is:` The scan type is exactly this
-- `is_not:` The scan type is not this type
-- `in:` The scan type is in this list
+- `is`: The scan type is exactly this
+- `is_not`: The scan type is not this type
+- `in`: The scan type is in this list
 
 ---
 
@@ -46,9 +46,9 @@ detect:
 
 ### Properties
 
-- `is:` Condition is the request is this CRUD operation
-- `is_not:` Condition is the request is not this CRUD operation
-- `in:` Condition is the request is in this list of CRUD operations (exact match)
+- `is`: Condition is the request is this CRUD operation
+- `is_not`: Condition is the request is not this CRUD operation
+- `in`: Condition is the request is in this list of CRUD operations (exact match)
 
 ---
 
@@ -68,11 +68,11 @@ detect:
 
 ### Properties
 
-- `is:` Condition is this exact integer
-- `is_not:` Condition is not this exact integer
-- `in:` Condition is in this list of integers (exact match)
-- `gt:` Condition is greater than this integer
-- `lt:` Condition is less than this integer
+- `is`: Condition is this exact integer
+- `is_not`: Condition is not this exact integer
+- `in`: Condition is in this list of integers (exact match)
+- `gt`: Condition is greater than this integer
+- `lt`: Condition is less than this integer
 
 ---
 
@@ -92,11 +92,11 @@ detect:
 
 ### Properties
 
-- `is:` Condition is this exact integer
-- `is_not:` Condition is not this exact integer
-- `in:` Condition is in this list of integers (exact match)
-- `gt:` Condition is greater than this integer
-- `lt:` Condition is less than this integer
+- `is`: Condition is this exact integer
+- `is_not`: Condition is not this exact integer
+- `in`: Condition is in this list of integers (exact match)
+- `gt`: Condition is greater than this integer
+- `lt`: Condition is less than this integer
 
 ---
 
@@ -116,8 +116,8 @@ detect:
 
 ### Properties
 
-- `is:` Condition is true
-- `is_not:` Condition is false
+- `is`: Condition is true
+- `is_not`: Condition is false
 
 ---
 
@@ -137,8 +137,8 @@ detect:
 
 ### Properties
 
-- `is:` Condition is true
-- `is_not:` Condition is false
+- `is`: Condition is true
+- `is_not`: Condition is false
 
 ---
 
@@ -158,11 +158,11 @@ detect:
 
 ### Properties
 
-- `is:` Condition is this exact string
-- `is_not:` Condition is not this exact string
-- `in:` Condition is in this list (exact match)
-- `contains:` Contains this string
-- `regex:` Condition is matched on this regex with fullmatch
+- `is`: Condition is this exact string
+- `is_not`: Condition is not this exact string
+- `in`: Condition is in this list (exact match)
+- `contains`: Contains this string
+- `regex`: Condition is matched on this regex with fullmatch
 
 ---
 
@@ -182,8 +182,8 @@ detect:
 
 ### Properties
 
-- `is:` Condition is true
-- `is_not:` Condition is false
+- `is`: Condition is true
+- `is_not`: Condition is false
 
 ---
 
@@ -203,11 +203,11 @@ detect:
 
 ### Properties
 
-- `is:` Condition is this exact string
-- `is_not:` Condition is not this exact string
-- `in:` Condition is in this list (exact match)
-- `contains:` Contains this string
-- `regex:` Condition is matched on this regex with fullmatch
+- `is`: Condition is this exact string
+- `is_not`: Condition is not this exact string
+- `in`: Condition is in this list (exact match)
+- `contains`: Contains this string
+- `regex`: Condition is matched on this regex with fullmatch
 
 ---
 
@@ -227,11 +227,11 @@ detect:
 
 ### Properties
 
-- `is:` Condition is this exact string
-- `is_not:` Condition is not this exact string
-- `in:` Condition is in this list (exact match)
-- `contains:` Contains this string
-- `regex:` Condition is matched on this regex with fullmatch
+- `is`: Condition is this exact string
+- `is_not`: Condition is not this exact string
+- `in`: Condition is in this list (exact match)
+- `contains`: Contains this string
+- `regex`: Condition is matched on this regex with fullmatch
 
 ---
 
@@ -254,8 +254,8 @@ detect:
 
 ### Properties
 
-- `key:` Key to match
-- `value:` Value to match
+- `key`: Key to match
+- `value`: Value to match
 
 ---
 
@@ -278,8 +278,8 @@ detect:
 
 ### Properties
 
-- `key:` Key to match
-- `value:` Value to match
+- `key`: Key to match
+- `value`: Value to match
 
 ---
 
@@ -300,10 +300,10 @@ detect:
 
 ### Properties
 
-- `is:` Condition is this exact JSON
-- `is_not:` Condition is not this exact JSON
-- `in:` Condition is in this list of JSON
-- `jq:` JQ query to match and use as boolean
+- `is`: Condition is this exact JSON
+- `is_not`: Condition is not this exact JSON
+- `in`: Condition is in this list of JSON
+- `jq`: JQ query to match and use as boolean
 
 ---
 
@@ -324,10 +324,10 @@ detect:
 
 ### Properties
 
-- `is:` Condition is this exact JSON
-- `is_not:` Condition is not this exact JSON
-- `in:` Condition is in this list of JSON
-- `jq:` JQ query to match and use as boolean
+- `is`: Condition is this exact JSON
+- `is_not`: Condition is not this exact JSON
+- `in`: Condition is in this list of JSON
+- `jq`: JQ query to match and use as boolean
 
 ---
 
@@ -347,11 +347,11 @@ detect:
 
 ### Properties
 
-- `is:` Condition is this exact string
-- `is_not:` Condition is not this exact string
-- `in:` Condition is in this list (exact match)
-- `contains:` Contains this string
-- `regex:` Condition is matched on this regex with fullmatch
+- `is`: Condition is this exact string
+- `is_not`: Condition is not this exact string
+- `in`: Condition is in this list (exact match)
+- `contains`: Contains this string
+- `regex`: Condition is matched on this regex with fullmatch
 
 ---
 
@@ -371,11 +371,11 @@ detect:
 
 ### Properties
 
-- `is:` Condition is this exact string
-- `is_not:` Condition is not this exact string
-- `in:` Condition is in this list (exact match)
-- `contains:` Contains this string
-- `regex:` Condition is matched on this regex with fullmatch
+- `is`: Condition is this exact string
+- `is_not`: Condition is not this exact string
+- `in`: Condition is in this list (exact match)
+- `contains`: Contains this string
+- `regex`: Condition is matched on this regex with fullmatch
 
 ---
 
@@ -399,9 +399,9 @@ detect:
 
 ### Properties
 
-- `type:` Object scalar type to match
-- `name:` Object scalar name to match
-- `value:` Object scalar value to match
+- `type`: Object scalar type to match
+- `name`: Object scalar name to match
+- `value`: Object scalar value to match
 
 ---
 
@@ -425,8 +425,8 @@ detect:
 
 ### Properties
 
-- `type:` Object scalar type to match
-- `name:` Object scalar name to match
-- `value:` Object scalar value to match
+- `type`: Object scalar type to match
+- `name`: Object scalar name to match
+- `value`: Object scalar value to match
 
 ---
