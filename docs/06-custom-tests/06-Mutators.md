@@ -48,7 +48,6 @@ You can use this mutator to change the user of the request before resending it.
 ### Example
 
 ```yaml
----
 transform:
     trigger:
     - if: schema.url
@@ -77,7 +76,6 @@ You can use this mutator to change the URL of the request before resending it.
 ## Example
 
 ```yaml
----
 transform:
     trigger:
     - if: schema.url

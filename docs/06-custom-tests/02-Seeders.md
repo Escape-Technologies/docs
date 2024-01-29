@@ -4,9 +4,11 @@
 
 The HTTP seeder allows you to send a request at the start of the scan.
 
+This requests will be sent at the same time as the hotstart, the syntax is similar to it but
+you can configure for which user the request must be sent.
 
-with a raw HTTP request.
-This request will be sent a the beginning of the scan, after the hotstart but before any other requests.
+The main difference between this two features it that a seeded request is bound to a custom security check.
+If you disable a check, the seeded request will not be sent.
 
 ### Example
 
@@ -22,7 +24,7 @@ seed:
 
 ### Properties
 
-- `raw:` (string): The raw HTTP request in [nuclei format](https://docs.projectdiscovery.io/templates/protocols/http/raw-http)
-- `user:` The user to use for the request.
+- `raw:` The raw HTTP request in [nuclei format](https://docs.projectdiscovery.io/templates/protocols/http/raw-http).
+- `user:` The user to use for the request. If not provided, the request is sent without authentication.
 
 
