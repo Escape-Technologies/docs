@@ -3,8 +3,11 @@
 toc_min_heading_level: 2
 toc_max_heading_level: 2
 ---
+
 # Detectors
+
 ## Scan type detector
+
 `if: scan.type`
 
 Use this to select against the type of the scan.
@@ -15,12 +18,10 @@ Use this to select against the type of the scan.
 - `is_not:` The scan type is not this type
 - `in:` The scan type is in this list
 
-
-
-
 ---
 
 ## CRUD detector
+
 `if: helpers.request.crud`
 
 Use this to select against the detected CRUD operation of the request.
@@ -31,12 +32,10 @@ Use this to select against the detected CRUD operation of the request.
 - `is_not:` Condition is the request is not this CRUD operation
 - `in:` Condition is the request is in this list of CRUD operations (exact match)
 
-
-
-
 ---
 
 ## Response status detector
+
 `if: response.status_code`
 
 Use this to compare the HTTP status code as an integer.
@@ -49,12 +48,10 @@ Use this to compare the HTTP status code as an integer.
 - `gt:` Condition is greater than this integer
 - `lt:` Condition is less than this integer
 
-
-
-
 ---
 
 ## Response duration detector
+
 `if: response.duration_ms`
 
 Use this to compare the duration of the request in milliseconds.
@@ -67,12 +64,10 @@ Use this to compare the duration of the request in milliseconds.
 - `gt:` Condition is greater than this integer
 - `lt:` Condition is less than this integer
 
-
-
-
 ---
 
 ## Schema authentication detector
+
 `if: schema.need_authentication`
 
 Use this to select whether or not the schema requires authentication.
@@ -82,12 +77,10 @@ Use this to select whether or not the schema requires authentication.
 - `is:` Condition is true
 - `is_not:` Condition is false
 
-
-
-
 ---
 
 ## Request authentication detector
+
 `if: request.is_authenticated`
 
 Use this to select whether or not whether the request is authenticated.
@@ -97,12 +90,10 @@ Use this to select whether or not whether the request is authenticated.
 - `is:` Condition is true
 - `is_not:` Condition is false
 
-
-
-
 ---
 
 ## Schema path reference detector
+
 `if: schema.path_ref`
 
 Use this to string compare the operation name in GraphQL or the path in REST
@@ -115,12 +106,10 @@ Use this to string compare the operation name in GraphQL or the path in REST
 - `contains:` Contains this string
 - `regex:` Condition is matched on this regex with fullmatch
 
-
-
-
 ---
 
 ## Response success detector
+
 `if: helpers.response.is_successful`
 
 Use this to check whether the response is successful.
@@ -130,12 +119,10 @@ Use this to check whether the response is successful.
 - `is:` Condition is true
 - `is_not:` Condition is false
 
-
-
-
 ---
 
 ## Schema URL detector
+
 `if: schema.url`
 
 Use this to string compare the URL of the request.
@@ -148,12 +135,10 @@ Use this to string compare the URL of the request.
 - `contains:` Contains this string
 - `regex:` Condition is matched on this regex with fullmatch
 
-
-
-
 ---
 
 ## Request user detector
+
 `if: request.user`
 
 Use this to string compare the configured user for the request.
@@ -166,12 +151,10 @@ Use this to string compare the configured user for the request.
 - `contains:` Contains this string
 - `regex:` Condition is matched on this regex with fullmatch
 
-
-
-
 ---
 
 ## Request headers detector
+
 `if: request.headers`
 
 Use that to select and compare the request headers in a key value dictionary.
@@ -181,12 +164,10 @@ Use that to select and compare the request headers in a key value dictionary.
 - `key:` Key to match
 - `value:` Value to match
 
-
-
-
 ---
 
 ## Response headers detector
+
 `if: response.headers`
 
 Use that to select and compare the response headers in a key value dictionary.
@@ -196,12 +177,10 @@ Use that to select and compare the response headers in a key value dictionary.
 - `key:` Key to match
 - `value:` Value to match
 
-
-
-
 ---
 
 ## Response body JSON detector
+
 `if: response.body.json`
 
 Use this to select and compare the response body when detected as JSON, using jq-like syntax.
@@ -213,12 +192,10 @@ Use this to select and compare the response body when detected as JSON, using jq
 - `in:` Condition is in this list of JSON
 - `jq:` JQ query to match and use as boolean
 
-
-
-
 ---
 
 ## Request body JSON detector
+
 `if: request.body.json`
 
 Use this to select and compare the request body when detected as JSON, using jq-like syntax.
@@ -230,12 +207,10 @@ Use this to select and compare the request body when detected as JSON, using jq-
 - `in:` Condition is in this list of JSON
 - `jq:` JQ query to match and use as boolean
 
-
-
-
 ---
 
 ## Response body text detector
+
 `if: response.body.text`
 
 Use this to select and compare the response body as text, using string compare.
@@ -248,12 +223,10 @@ Use this to select and compare the response body as text, using string compare.
 - `contains:` Contains this string
 - `regex:` Condition is matched on this regex with fullmatch
 
-
-
-
 ---
 
 ## Request body text detector
+
 `if: request.body.text`
 
 Use this to select and compare the request body as text, using string compare.
@@ -266,12 +239,10 @@ Use this to select and compare the request body as text, using string compare.
 - `contains:` Contains this string
 - `regex:` Condition is matched on this regex with fullmatch
 
-
-
-
 ---
 
 ## Request object detector
+
 `if: request.object`
 
 Use this to select and compare the detected object scalars (including custom scalars) in the request, with their kind, name and value.
@@ -282,12 +253,10 @@ Use this to select and compare the detected object scalars (including custom sca
 - `name:` Object scalar name to match
 - `value:` Object scalar value to match
 
-
-
-
 ---
 
 ## Response object detector
+
 `if: response.object`
 
 Use this to select and compare the detected object scalars (including custom scalars) in the response, with their kind, name and value.
@@ -298,8 +267,4 @@ Use this to select and compare the detected object scalars (including custom sca
 - `name:` Object scalar name to match
 - `value:` Object scalar value to match
 
-
-
-
 ---
-

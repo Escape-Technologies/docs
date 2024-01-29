@@ -3,34 +3,30 @@ title: Custom Tests Reference
 description: All objects available for custom security tests.
 ---
 
-
 # Objects
-
 
 ## <a id="AlertModel"></a>AlertModel
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| severity | `SEVERITY` | `True` | Severity of the alert | [SEVERITY](#SEVERITY) |
-| name | `string` | `True` | Name of the alert |  |
-| context | `string` | `True` | Context of the alert |  |
-
+| Property | Type       | Required | Description           | Reference             |
+| -------- | ---------- | -------- | --------------------- | --------------------- |
+| severity | `SEVERITY` | `True`   | Severity of the alert | [SEVERITY](#SEVERITY) |
+| name     | `string`   | `True`   | Name of the alert     |                       |
+| context  | `string`   | `True`   | Context of the alert  |                       |
 
 ## <a id="CrudDetector"></a>CrudDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `CRUD` | `False` | Condition is the request is this CRUD operation | [CRUD](#CRUD) |
-| is_not | `CRUD` | `False` | Condition is the request is not this CRUD operation | [CRUD](#CRUD) |
-| in | `CRUD` | `False` | Condition is the request is in this list of CRUD operations (exact match) | [CRUD](#CRUD) |
-| if | `Const[helpers.request.crud]` | `False` | Use this to select against the detected CRUD operation of the request. |  |
-
+| Property | Type                          | Required | Description                                                               | Reference     |
+| -------- | ----------------------------- | -------- | ------------------------------------------------------------------------- | ------------- |
+| is       | `CRUD`                        | `False`  | Condition is the request is this CRUD operation                           | [CRUD](#CRUD) |
+| is_not   | `CRUD`                        | `False`  | Condition is the request is not this CRUD operation                       | [CRUD](#CRUD) |
+| in       | `CRUD`                        | `False`  | Condition is the request is in this list of CRUD operations (exact match) | [CRUD](#CRUD) |
+| if       | `Const[helpers.request.crud]` | `False`  | Use this to select against the detected CRUD operation of the request.    |               |
 
 ## <a id="HTTPSeeder"></a>HTTPSeeder
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| protocol | `Const[http]` | `False` | The HTTP seeder allows you to send a request at the start of the scan.
+| Property | Type          | Required | Description                                                            | Reference |
+| -------- | ------------- | -------- | ---------------------------------------------------------------------- | --------- |
+| protocol | `Const[http]` | `False`  | The HTTP seeder allows you to send a request at the start of the scan. |
 
 This requests will be sent at the same time as the hotstart, the syntax is similar to it but
 you can configure for which user the request must be sent.
@@ -40,7 +36,7 @@ If you disable a check, the seeded request will not be sent.
 
 ### Example
 
-```yaml
+````yaml
 seed:
   - protocol: http
     raw: |
@@ -57,8 +53,8 @@ seed:
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| trigger | `CrudDetector | ResponseIsSuccessfulDetector | SchemaUrlDetector | ResponseBodyTextDetector | ResponseHeadersDetector | ResponseObjectDetector | SchemaNeedAuthenticationDetector | ScanTypeDetector | RequestBodyJSONDetector | SchemaPathRefDetector | RequestHeadersDetector | RequestBodyTextDetector | RequestObjectDetector | ResponseBodyJSONDetector | RequestUserDetector | ResponseDurationDetector | RequestIsAuthenticatedDetector | ResponseStatusCodeDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
-| mutate | `SchemaUrlMutator | RequestObjectMutator | RequestUserMutator | RequestBodyJSONMutator | RequestHeadersMutator | RequestBodyTextMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
+| trigger | `RequestBodyTextDetector | RequestUserDetector | RequestObjectDetector | SchemaNeedAuthenticationDetector | ResponseStatusCodeDetector | CrudDetector | ScanTypeDetector | SchemaPathRefDetector | ResponseDurationDetector | RequestHeadersDetector | ResponseHeadersDetector | ResponseIsSuccessfulDetector | ResponseObjectDetector | RequestIsAuthenticatedDetector | SchemaUrlDetector | RequestBodyJSONDetector | ResponseBodyJSONDetector | ResponseBodyTextDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
+| mutate | `RequestObjectMutator | SchemaUrlMutator | RequestHeadersMutator | RequestBodyJSONMutator | RequestBodyTextMutator | RequestUserMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
 
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher
@@ -179,7 +175,7 @@ seed:
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| key | `Const[request.object]` | `False` | 
+| key | `Const[request.object]` | `False` |
 The detected object scalars (including custom scalars) in the request, with their kind, name and value. |  |
 | select | `ObjectMatcher` | `True` |  | [ObjectMatcher](#ObjectMatcher) |
 | mutate | `ObjectMutate` | `True` |  | [ObjectMutate](#ObjectMutate) |
@@ -204,7 +200,7 @@ The detected object scalars (including custom scalars) in the request, with thei
 | value | `string` | `False` | The value to set. |  |
 | values | `string` | `False` | The values to set, generates multiple queries. |  |
 | regex_replace | `RegexReplace` | `False` | Regex replace pattern. | [RegexReplace](#RegexReplace) |
-| key | `Const[request.user]` | `False` | 
+| key | `Const[request.user]` | `False` |
 You can use this mutator to change the user of the request before resending it.
 
 ### Example
@@ -219,134 +215,125 @@ transform:
       - key: request.user
       mutate:
       value: /api/v2/
-```
-         |  |
-| drop_user | `boolean` | `False` | Remove the user authentication from the request. |  |
+````
 
+         |  |
+
+| drop_user | `boolean` | `False` | Remove the user authentication from the request. | |
 
 ## <a id="ResponseBodyJSONDetector"></a>ResponseBodyJSONDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `Dict[string, None]` | `False` | Condition is this exact JSON |  |
-| is_not | `Dict[string, None]` | `False` | Condition is not this exact JSON |  |
-| in | `Dict[string, None]` | `False` | Condition is in this list of JSON |  |
-| jq | `string` | `False` | JQ query to match and use as boolean |  |
-| if | `Const[response.body.json]` | `False` | Use this to select and compare the response body when detected as JSON, using jq-like syntax. |  |
-
+| Property | Type                        | Required | Description                                                                                   | Reference |
+| -------- | --------------------------- | -------- | --------------------------------------------------------------------------------------------- | --------- |
+| is       | `Dict[string, None]`        | `False`  | Condition is this exact JSON                                                                  |           |
+| is_not   | `Dict[string, None]`        | `False`  | Condition is not this exact JSON                                                              |           |
+| in       | `Dict[string, None]`        | `False`  | Condition is in this list of JSON                                                             |           |
+| jq       | `string`                    | `False`  | JQ query to match and use as boolean                                                          |           |
+| if       | `Const[response.body.json]` | `False`  | Use this to select and compare the response body when detected as JSON, using jq-like syntax. |           |
 
 ## <a id="ResponseBodyTextDetector"></a>ResponseBodyTextDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `string` | `False` | Condition is this exact string |  |
-| is_not | `string` | `False` | Condition is not this exact string |  |
-| in | `string` | `False` | Condition is in this list (exact match) |  |
-| contains | `string` | `False` | Contains this string |  |
-| regex | `string` | `False` | Condition is matched on this regex with fullmatch |  |
-| if | `Const[response.body.text]` | `False` | Use this to select and compare the response body as text, using string compare. |  |
-
+| Property | Type                        | Required | Description                                                                     | Reference |
+| -------- | --------------------------- | -------- | ------------------------------------------------------------------------------- | --------- |
+| is       | `string`                    | `False`  | Condition is this exact string                                                  |           |
+| is_not   | `string`                    | `False`  | Condition is not this exact string                                              |           |
+| in       | `string`                    | `False`  | Condition is in this list (exact match)                                         |           |
+| contains | `string`                    | `False`  | Contains this string                                                            |           |
+| regex    | `string`                    | `False`  | Condition is matched on this regex with fullmatch                               |           |
+| if       | `Const[response.body.text]` | `False`  | Use this to select and compare the response body as text, using string compare. |           |
 
 ## <a id="ResponseDurationDetector"></a>ResponseDurationDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `integer` | `False` | Condition is this exact integer |  |
-| is_not | `integer` | `False` | Condition is not this exact integer |  |
-| in | `integer` | `False` | Condition is in this list of integers (exact match) |  |
-| gt | `integer` | `False` | Condition is greater than this integer |  |
-| lt | `integer` | `False` | Condition is less than this integer |  |
-| if | `Const[response.duration_ms]` | `False` | Use this to compare the duration of the request in milliseconds. |  |
-
+| Property | Type                          | Required | Description                                                      | Reference |
+| -------- | ----------------------------- | -------- | ---------------------------------------------------------------- | --------- |
+| is       | `integer`                     | `False`  | Condition is this exact integer                                  |           |
+| is_not   | `integer`                     | `False`  | Condition is not this exact integer                              |           |
+| in       | `integer`                     | `False`  | Condition is in this list of integers (exact match)              |           |
+| gt       | `integer`                     | `False`  | Condition is greater than this integer                           |           |
+| lt       | `integer`                     | `False`  | Condition is less than this integer                              |           |
+| if       | `Const[response.duration_ms]` | `False`  | Use this to compare the duration of the request in milliseconds. |           |
 
 ## <a id="ResponseHeadersDetector"></a>ResponseHeadersDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| key | `StringMatcher` | `False` | Key to match | [StringMatcher](#StringMatcher) |
-| value | `StringMatcher` | `False` | Value to match | [StringMatcher](#StringMatcher) |
-| if | `Const[response.headers]` | `False` | Use that to select and compare the response headers in a key value dictionary. |  |
-
+| Property | Type                      | Required | Description                                                                    | Reference                       |
+| -------- | ------------------------- | -------- | ------------------------------------------------------------------------------ | ------------------------------- |
+| key      | `StringMatcher`           | `False`  | Key to match                                                                   | [StringMatcher](#StringMatcher) |
+| value    | `StringMatcher`           | `False`  | Value to match                                                                 | [StringMatcher](#StringMatcher) |
+| if       | `Const[response.headers]` | `False`  | Use that to select and compare the response headers in a key value dictionary. |                                 |
 
 ## <a id="ResponseIsSuccessfulDetector"></a>ResponseIsSuccessfulDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `boolean` | `False` | Condition is true |  |
-| is_not | `boolean` | `False` | Condition is false |  |
-| if | `Const[helpers.response.is_successful]` | `False` | Use this to check whether the response is successful. |  |
-
+| Property | Type                                    | Required | Description                                           | Reference |
+| -------- | --------------------------------------- | -------- | ----------------------------------------------------- | --------- |
+| is       | `boolean`                               | `False`  | Condition is true                                     |           |
+| is_not   | `boolean`                               | `False`  | Condition is false                                    |           |
+| if       | `Const[helpers.response.is_successful]` | `False`  | Use this to check whether the response is successful. |           |
 
 ## <a id="ResponseObjectDetector"></a>ResponseObjectDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| type | `ObjectTypeMatcher` | `False` | Object scalar type to match | [ObjectTypeMatcher](#ObjectTypeMatcher) |
-| name | `StringMatcher` | `False` | Object scalar name to match | [StringMatcher](#StringMatcher) |
-| value | `StringMatcher` | `False` | Object scalar value to match | [StringMatcher](#StringMatcher) |
-| if | `Const[response.object]` | `False` | Use this to select and compare the detected object scalars (including custom scalars) in the response, with their kind, name and value. |  |
-
+| Property | Type                     | Required | Description                                                                                                                             | Reference                               |
+| -------- | ------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| type     | `ObjectTypeMatcher`      | `False`  | Object scalar type to match                                                                                                             | [ObjectTypeMatcher](#ObjectTypeMatcher) |
+| name     | `StringMatcher`          | `False`  | Object scalar name to match                                                                                                             | [StringMatcher](#StringMatcher)         |
+| value    | `StringMatcher`          | `False`  | Object scalar value to match                                                                                                            | [StringMatcher](#StringMatcher)         |
+| if       | `Const[response.object]` | `False`  | Use this to select and compare the detected object scalars (including custom scalars) in the response, with their kind, name and value. |                                         |
 
 ## <a id="ResponseStatusCodeDetector"></a>ResponseStatusCodeDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `integer` | `False` | Condition is this exact integer |  |
-| is_not | `integer` | `False` | Condition is not this exact integer |  |
-| in | `integer` | `False` | Condition is in this list of integers (exact match) |  |
-| gt | `integer` | `False` | Condition is greater than this integer |  |
-| lt | `integer` | `False` | Condition is less than this integer |  |
-| if | `Const[response.status_code]` | `False` | Use this to compare the HTTP status code as an integer. |  |
-
+| Property | Type                          | Required | Description                                             | Reference |
+| -------- | ----------------------------- | -------- | ------------------------------------------------------- | --------- |
+| is       | `integer`                     | `False`  | Condition is this exact integer                         |           |
+| is_not   | `integer`                     | `False`  | Condition is not this exact integer                     |           |
+| in       | `integer`                     | `False`  | Condition is in this list of integers (exact match)     |           |
+| gt       | `integer`                     | `False`  | Condition is greater than this integer                  |           |
+| lt       | `integer`                     | `False`  | Condition is less than this integer                     |           |
+| if       | `Const[response.status_code]` | `False`  | Use this to compare the HTTP status code as an integer. |           |
 
 ## <a id="ScanTypeDetector"></a>ScanTypeDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `SCAN_TYPE` | `False` | The scan type is exactly this | [SCAN_TYPE](#SCAN_TYPE) |
-| is_not | `SCAN_TYPE` | `False` | The scan type is not this type | [SCAN_TYPE](#SCAN_TYPE) |
-| in | `SCAN_TYPE` | `False` | The scan type is in this list | [SCAN_TYPE](#SCAN_TYPE) |
-| if | `Const[scan.type]` | `False` | Use this to select against the type of the scan. |  |
-
+| Property | Type               | Required | Description                                      | Reference               |
+| -------- | ------------------ | -------- | ------------------------------------------------ | ----------------------- |
+| is       | `SCAN_TYPE`        | `False`  | The scan type is exactly this                    | [SCAN_TYPE](#SCAN_TYPE) |
+| is_not   | `SCAN_TYPE`        | `False`  | The scan type is not this type                   | [SCAN_TYPE](#SCAN_TYPE) |
+| in       | `SCAN_TYPE`        | `False`  | The scan type is in this list                    | [SCAN_TYPE](#SCAN_TYPE) |
+| if       | `Const[scan.type]` | `False`  | Use this to select against the type of the scan. |                         |
 
 ## <a id="SchemaNeedAuthenticationDetector"></a>SchemaNeedAuthenticationDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `boolean` | `False` | Condition is true |  |
-| is_not | `boolean` | `False` | Condition is false |  |
-| if | `Const[schema.need_authentication]` | `False` | Use this to select whether or not the schema requires authentication. |  |
-
+| Property | Type                                | Required | Description                                                           | Reference |
+| -------- | ----------------------------------- | -------- | --------------------------------------------------------------------- | --------- |
+| is       | `boolean`                           | `False`  | Condition is true                                                     |           |
+| is_not   | `boolean`                           | `False`  | Condition is false                                                    |           |
+| if       | `Const[schema.need_authentication]` | `False`  | Use this to select whether or not the schema requires authentication. |           |
 
 ## <a id="SchemaPathRefDetector"></a>SchemaPathRefDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `string` | `False` | Condition is this exact string |  |
-| is_not | `string` | `False` | Condition is not this exact string |  |
-| in | `string` | `False` | Condition is in this list (exact match) |  |
-| contains | `string` | `False` | Contains this string |  |
-| regex | `string` | `False` | Condition is matched on this regex with fullmatch |  |
-| if | `Const[schema.path_ref]` | `False` | Use this to string compare the operation name in GraphQL or the path in REST |  |
-
+| Property | Type                     | Required | Description                                                                  | Reference |
+| -------- | ------------------------ | -------- | ---------------------------------------------------------------------------- | --------- |
+| is       | `string`                 | `False`  | Condition is this exact string                                               |           |
+| is_not   | `string`                 | `False`  | Condition is not this exact string                                           |           |
+| in       | `string`                 | `False`  | Condition is in this list (exact match)                                      |           |
+| contains | `string`                 | `False`  | Contains this string                                                         |           |
+| regex    | `string`                 | `False`  | Condition is matched on this regex with fullmatch                            |           |
+| if       | `Const[schema.path_ref]` | `False`  | Use this to string compare the operation name in GraphQL or the path in REST |           |
 
 ## <a id="SchemaUrlDetector"></a>SchemaUrlDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `string` | `False` | Condition is this exact string |  |
-| is_not | `string` | `False` | Condition is not this exact string |  |
-| in | `string` | `False` | Condition is in this list (exact match) |  |
-| contains | `string` | `False` | Contains this string |  |
-| regex | `string` | `False` | Condition is matched on this regex with fullmatch |  |
-| if | `Const[schema.url]` | `False` | Use this to string compare the URL of the request. |  |
-
+| Property | Type                | Required | Description                                        | Reference |
+| -------- | ------------------- | -------- | -------------------------------------------------- | --------- |
+| is       | `string`            | `False`  | Condition is this exact string                     |           |
+| is_not   | `string`            | `False`  | Condition is not this exact string                 |           |
+| in       | `string`            | `False`  | Condition is in this list (exact match)            |           |
+| contains | `string`            | `False`  | Contains this string                               |           |
+| regex    | `string`            | `False`  | Condition is matched on this regex with fullmatch  |           |
+| if       | `Const[schema.url]` | `False`  | Use this to string compare the URL of the request. |           |
 
 ## <a id="SchemaUrlMutator"></a>SchemaUrlMutator
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| key | `Const[schema.url]` | `False` | 
+| Property | Type                | Required | Description | Reference |
+| -------- | ------------------- | -------- | ----------- | --------- |
+| key      | `Const[schema.url]` | `False`  |
+
 You can use this mutator to change the URL of the request before resending it.
 
 ## Example
@@ -362,33 +349,30 @@ transform:
         mutate:
         value: /api/v2/
 ```
-         |  |
-| mutate | `StringMutate` | `True` |  | [StringMutate](#StringMutate) |
 
+         |  |
+
+| mutate | `StringMutate` | `True` | | [StringMutate](#StringMutate) |
 
 ## <a id="StringMatcher"></a>StringMatcher
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `string` | `False` | Condition is this exact string |  |
-| is_not | `string` | `False` | Condition is not this exact string |  |
-| in | `string` | `False` | Condition is in this list (exact match) |  |
-| contains | `string` | `False` | Contains this string |  |
-| regex | `string` | `False` | Condition is matched on this regex with fullmatch |  |
-
+| Property | Type     | Required | Description                                       | Reference |
+| -------- | -------- | -------- | ------------------------------------------------- | --------- |
+| is       | `string` | `False`  | Condition is this exact string                    |           |
+| is_not   | `string` | `False`  | Condition is not this exact string                |           |
+| in       | `string` | `False`  | Condition is in this list (exact match)           |           |
+| contains | `string` | `False`  | Contains this string                              |           |
+| regex    | `string` | `False`  | Condition is matched on this regex with fullmatch |           |
 
 ## <a id="StringMutate"></a>StringMutate
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| value | `string` | `False` | The value to set. |  |
-| values | `string` | `False` | The values to set, generates multiple queries. |  |
-| regex_replace | `RegexReplace` | `False` | Regex replace pattern. | [RegexReplace](#RegexReplace) |
-
-
+| Property      | Type           | Required | Description                                    | Reference                     |
+| ------------- | -------------- | -------- | ---------------------------------------------- | ----------------------------- |
+| value         | `string`       | `False`  | The value to set.                              |                               |
+| values        | `string`       | `False`  | The values to set, generates multiple queries. |                               |
+| regex_replace | `RegexReplace` | `False`  | Regex replace pattern.                         | [RegexReplace](#RegexReplace) |
 
 # Enums
-
 
 ## <a id="CRUD"></a>CRUD
 
@@ -399,7 +383,6 @@ transform:
 - `UPDATE`
 
 - `DELETE`
-
 
 ## <a id="OBJECT_TYPE"></a>OBJECT_TYPE
 
@@ -2199,13 +2182,11 @@ transform:
 
 - `zonkafeedback`
 
-
 ## <a id="SCAN_TYPE"></a>SCAN_TYPE
 
 - `GRAPHQL`
 
 - `REST`
-
 
 ## <a id="SEVERITY"></a>SEVERITY
 
@@ -2216,4 +2197,3 @@ transform:
 - `LOW`
 
 - `INFO`
-
