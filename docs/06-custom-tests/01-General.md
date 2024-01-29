@@ -34,7 +34,6 @@ custom_checks:
   alert:
     name: '<alert_name>'
     severity: '<alert_severity>'
-    description: '<alert_description>'
     context: '<alert_context>'
 ```
 

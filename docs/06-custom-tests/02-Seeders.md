@@ -2,22 +2,23 @@
 ## HTTP seeder
 `protocol: http`
 
+The HTTP seeder allows you to send a request at the start of the scan.
 
-The HTTP seeder allows you to seed the scan with a raw HTTP request.
+
+with a raw HTTP request.
 This request will be sent a the beginning of the scan, after the hotstart but before any other requests.
 
 ### Example
 
 ```yaml
 seed:
-    - protocol: http
+  - protocol: http
     raw: |
-        @Host: https://example.com
-        GET /debug HTTP/1.1
-        Host: example.com
-        Content-Type: application/json
+      @Host: https://example.com
+      GET /debug HTTP/1.1
+      Host: example.com
+      Content-Type: application/json
 ```
-          
 
 ### Properties
 

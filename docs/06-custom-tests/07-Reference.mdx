@@ -11,8 +11,8 @@ description: All objects available for custom security tests.
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| name | `string` | `True` | Name of the alert |  |
 | severity | `SEVERITY` | `True` | Severity of the alert | [SEVERITY](#SEVERITY) |
+| name | `string` | `True` | Name of the alert |  |
 | context | `string` | `True` | Context of the alert |  |
 
 
@@ -36,16 +36,15 @@ This request will be sent a the beginning of the scan, after the hotstart but be
 
 ### Example
 
-    ```yaml
-    seed:
-      - protocol: http
-        raw: |
-          @Host: [example.com](https://example.com)
-          GET /debug HTTP/1.1
-          Host: example.com
-          Content-Type: application/json
-    ```
-           |  |
+```yaml
+seed:
+  - protocol: http
+    raw: |
+      @Host: [example.com](https://example.com)
+      GET /debug HTTP/1.1
+      Host: example.com
+      Content-Type: application/json
+``` |  |
 | raw | `string` | `True` | (string): The raw HTTP request in [nuclei format]([docs.projectdiscovery.io](https://docs.projectdiscovery.io/templates/protocols/http/raw-http)) |  |
 | user | `string` | `False` | The user to use for the request. |  |
 
@@ -54,8 +53,8 @@ This request will be sent a the beginning of the scan, after the hotstart but be
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| trigger | `RequestObjectDetector | ResponseIsSuccessfulDetector | SchemaPathRefDetector | RequestBodyTextDetector | ResponseBodyTextDetector | ResponseBodyJSONDetector | CrudDetector | RequestIsAuthenticatedDetector | ScanTypeDetector | ResponseHeadersDetector | SchemaUrlDetector | RequestHeadersDetector | ResponseStatusCodeDetector | RequestUserDetector | RequestBodyJSONDetector | ResponseDurationDetector | SchemaNeedAuthenticationDetector | ResponseObjectDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
-| mutate | `RequestObjectMutator | RequestUserMutator | SchemaUrlMutator | RequestBodyTextMutator | RequestBodyJSONMutator | RequestHeadersMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
+| trigger | `CrudDetector | RequestHeadersDetector | ScanTypeDetector | ResponseBodyTextDetector | ResponseHeadersDetector | ResponseObjectDetector | RequestBodyTextDetector | ResponseIsSuccessfulDetector | RequestObjectDetector | ResponseBodyJSONDetector | ResponseStatusCodeDetector | RequestBodyJSONDetector | RequestIsAuthenticatedDetector | SchemaNeedAuthenticationDetector | SchemaUrlDetector | RequestUserDetector | SchemaPathRefDetector | ResponseDurationDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
+| mutate | `RequestObjectMutator | RequestHeadersMutator | SchemaUrlMutator | RequestBodyJSONMutator | RequestBodyTextMutator | RequestUserMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
 
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher
