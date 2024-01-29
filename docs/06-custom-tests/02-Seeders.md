@@ -1,6 +1,6 @@
 # Seeders
 ## HTTP seeder
-(`protocol: http`)
+`protocol: http`
 
 
 The HTTP seeder allows you to seed the scan with a raw HTTP request.

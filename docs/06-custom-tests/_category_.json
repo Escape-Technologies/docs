@@ -1,9 +1,4 @@
 {
-    "label": "Custom Tests",
-    "collapsed": false,
-    "link": {
-      "type": "generated-index",
-      "slug": "custom-tests",
-      "description": "Custom Tests"
-    }
-  }
+  "label": "⚡ Custom Tests",
+  "collapsed": false
+}

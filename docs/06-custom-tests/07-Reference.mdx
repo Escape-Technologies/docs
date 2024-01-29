@@ -54,8 +54,8 @@ This request will be sent a the beginning of the scan, after the hotstart but be
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| trigger | `ResponseHeadersDetector | ResponseDurationDetector | SchemaNeedAuthenticationDetector | ResponseObjectDetector | RequestBodyTextDetector | ResponseIsSuccessfulDetector | RequestUserDetector | CrudDetector | ScanTypeDetector | SchemaUrlDetector | ResponseBodyJSONDetector | RequestHeadersDetector | ResponseBodyTextDetector | SchemaPathRefDetector | RequestIsAuthenticatedDetector | ResponseStatusCodeDetector | RequestBodyJSONDetector | RequestObjectDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
-| mutate | `RequestObjectMutator | RequestHeadersMutator | RequestUserMutator | RequestBodyTextMutator | SchemaUrlMutator | RequestBodyJSONMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
+| trigger | `SchemaPathRefDetector | ResponseDurationDetector | RequestUserDetector | ResponseStatusCodeDetector | RequestHeadersDetector | ResponseBodyTextDetector | ScanTypeDetector | ResponseHeadersDetector | CrudDetector | SchemaNeedAuthenticationDetector | SchemaUrlDetector | RequestBodyTextDetector | RequestObjectDetector | ResponseIsSuccessfulDetector | RequestBodyJSONDetector | RequestIsAuthenticatedDetector | ResponseBodyJSONDetector | ResponseObjectDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
+| mutate | `RequestBodyTextMutator | RequestObjectMutator | RequestHeadersMutator | RequestBodyJSONMutator | SchemaUrlMutator | RequestUserMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
 
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher
