@@ -25,6 +25,7 @@ presets:
     -   key: Authorization
         location: header
         prefix: 'Bearer '
+        variable: token
     extractions:
     -   name: token
         location: query
