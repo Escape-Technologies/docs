@@ -63,58 +63,99 @@ seed:
 | user | `string` | `False` | The user to use for the request. If not provided, the request is sent without authentication. |  |
 
 
-## <a id="Middleware"></a>Middleware
+## <a id="MethodDetector"></a>MethodDetector
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| trigger | `RequestBodyTextDetector | ResponseObjectDetector | ResponseIsSuccessfulDetector | RequestBodyJSONDetector | CrudDetector | ResponseBodyTextDetector | ResponseDurationDetector | SchemaPathRefDetector | ScanTypeDetector | SchemaUrlDetector | RequestHeadersDetector | ResponseBodyJSONDetector | RequestObjectDetector | ResponseHeadersDetector | ResponseStatusCodeDetector | SchemaNeedAuthenticationDetector | RequestUserDetector | RequestIsAuthenticatedDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
-| mutate | `RequestBodyJSONMutator | RequestBodyTextMutator | RequestUserMutator | SchemaUrlMutator | RequestObjectMutator | RequestHeadersMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
+| is | `HTTP_METHOD` | `False` | Condition is the request is this CRUD operation | [HTTP_METHOD](#HTTP_METHOD) |
+| is_not | `HTTP_METHOD` | `False` | Condition is the request is not this CRUD operation | [HTTP_METHOD](#HTTP_METHOD) |
+| in | `HTTP_METHOD` | `False` | Condition is the request is in this list of CRUD operations (exact match) | [HTTP_METHOD](#HTTP_METHOD) |
+| if | `Const[request.method]` | `False` |
+Use this to select against the request [HTTP method]([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).)
 
+### Example
+
+```yaml
+detect:
+  - if: request.method
+    is: OPTIONS
+````
+
+| |
+
+## <a id="MethodMutator"></a>MethodMutator
+
+| Property | Type                    | Required | Description | Reference |
+| -------- | ----------------------- | -------- | ----------- | --------- |
+| key      | `Const[request.method]` | `False`  |
+
+You can use this mutator to change the [HTTP method](<[developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)>) of the
+request before resending it.
+
+### Example
+
+```yaml
+transform:
+  trigger:
+    - if: helpers.request.crud
+      is: CREATE
+  mutate:
+    - key: request.method
+      value: DELETE
+```
+
+| |
+| value | `HTTP_METHOD` | `False` | The value to set. | [HTTP_METHOD](#HTTP_METHOD) |
+| values | `HTTP_METHOD` | `False` | The values to set, generates multiple queries. | [HTTP_METHOD](#HTTP_METHOD) |
+
+## <a id="Middleware"></a>Middleware
+
+| Property | Type                     | Required                       | Description              | Reference              |
+| -------- | ------------------------ | ------------------------------ | ------------------------ | ---------------------- | ----------------- | -------------------------------- | --------------------- | ---------------------- | ------------------------------------------------------------------------------- | ---------------------------- | ------------------------ | ------------------------ | -------------------------- | ----------------------- | ---------------------- | ----------------------- | ------------ | ---------------- | ---------------------- | ------ | ------------------------------------------------------------------------------------------------ | --- |
+| trigger  | `RequestBodyJSONDetector | RequestIsAuthenticatedDetector | ResponseBodyJSONDetector | MethodDetector         | SchemaUrlDetector | SchemaNeedAuthenticationDetector | SchemaPathRefDetector | ResponseObjectDetector | RequestUserDetector                                                             | ResponseIsSuccessfulDetector | ResponseDurationDetector | ResponseBodyTextDetector | ResponseStatusCodeDetector | RequestBodyTextDetector | RequestHeadersDetector | ResponseHeadersDetector | CrudDetector | ScanTypeDetector | RequestObjectDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |     |
+| mutate   | `RequestBodyTextMutator  | RequestObjectMutator           | RequestUserMutator       | RequestBodyJSONMutator | SchemaUrlMutator  | RequestHeadersMutator            | MethodMutator`        | `True`                 | The mutations to apply to the request and replay it. See [Mutators](./mutators) |                              |
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| type | `ObjectTypeMatcher` | `False` | Object scalar type to match | [ObjectTypeMatcher](#ObjectTypeMatcher) |
-| name | `StringMatcher` | `False` | Object scalar name to match | [StringMatcher](#StringMatcher) |
-| value | `StringMatcher` | `False` | Object scalar value to match | [StringMatcher](#StringMatcher) |
-
+| Property | Type                | Required | Description                  | Reference                               |
+| -------- | ------------------- | -------- | ---------------------------- | --------------------------------------- |
+| type     | `ObjectTypeMatcher` | `False`  | Object scalar type to match  | [ObjectTypeMatcher](#ObjectTypeMatcher) |
+| name     | `StringMatcher`     | `False`  | Object scalar name to match  | [StringMatcher](#StringMatcher)         |
+| value    | `StringMatcher`     | `False`  | Object scalar value to match | [StringMatcher](#StringMatcher)         |
 
 ## <a id="ObjectMutate"></a>ObjectMutate
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| value | `string` | `False` | The value to set. |  |
-| values | `string` | `False` | The values to set, generates multiple queries. |  |
-| regex_replace | `RegexReplace` | `False` | Regex replace pattern. | [RegexReplace](#RegexReplace) |
-
+| Property      | Type           | Required | Description                                    | Reference                     |
+| ------------- | -------------- | -------- | ---------------------------------------------- | ----------------------------- |
+| value         | `string`       | `False`  | The value to set.                              |                               |
+| values        | `string`       | `False`  | The values to set, generates multiple queries. |                               |
+| regex_replace | `RegexReplace` | `False`  | Regex replace pattern.                         | [RegexReplace](#RegexReplace) |
 
 ## <a id="ObjectTypeMatcher"></a>ObjectTypeMatcher
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `OBJECT_TYPE` | `False` | Object type is exactly this type | [OBJECT_TYPE](#OBJECT_TYPE) |
-| is_not | `OBJECT_TYPE` | `False` | Object type is any this type except this one | [OBJECT_TYPE](#OBJECT_TYPE) |
-| in | `OBJECT_TYPE` | `False` | Object type is in the following list | [OBJECT_TYPE](#OBJECT_TYPE) |
-
+| Property | Type          | Required | Description                                  | Reference                   |
+| -------- | ------------- | -------- | -------------------------------------------- | --------------------------- |
+| is       | `OBJECT_TYPE` | `False`  | Object type is exactly this type             | [OBJECT_TYPE](#OBJECT_TYPE) |
+| is_not   | `OBJECT_TYPE` | `False`  | Object type is any this type except this one | [OBJECT_TYPE](#OBJECT_TYPE) |
+| in       | `OBJECT_TYPE` | `False`  | Object type is in the following list         | [OBJECT_TYPE](#OBJECT_TYPE) |
 
 ## <a id="RegexReplace"></a>RegexReplace
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| pattern | `string` | `True` | The regex pattern to match. |  |
-| replacement | `string` | `True` | The replacement, use \1, \2, ... to refer capture groups. |  |
-
+| Property    | Type     | Required | Description                                               | Reference |
+| ----------- | -------- | -------- | --------------------------------------------------------- | --------- |
+| pattern     | `string` | `True`   | The regex pattern to match.                               |           |
+| replacement | `string` | `True`   | The replacement, use \1, \2, ... to refer capture groups. |           |
 
 ## <a id="RequestBodyJSONDetector"></a>RequestBodyJSONDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `Dict[string, None]` | `False` | Condition is this exact JSON |  |
-| is_not | `Dict[string, None]` | `False` | Condition is not this exact JSON |  |
-| in | `Dict[string, None]` | `False` | Condition is in this list of JSON |  |
-| jq | `string` | `False` | JQ query to match and use as boolean |  |
-| if | `Const[request.body.json]` | `False` |
+| Property | Type                       | Required | Description                          | Reference |
+| -------- | -------------------------- | -------- | ------------------------------------ | --------- |
+| is       | `Dict[string, None]`       | `False`  | Condition is this exact JSON         |           |
+| is_not   | `Dict[string, None]`       | `False`  | Condition is not this exact JSON     |           |
+| in       | `Dict[string, None]`       | `False`  | Condition is in this list of JSON    |           |
+| jq       | `string`                   | `False`  | JQ query to match and use as boolean |           |
+| if       | `Const[request.body.json]` | `False`  |
+
 Use this to select and compare the request body when detected as JSON, using jq-like syntax.
 
 ### Example
@@ -124,7 +165,7 @@ detect:
   - if: request.body.json
     is:
       jq: &#39;.role == admin&#39;
-````
+```
 
 | |
 
@@ -684,6 +725,26 @@ transform:
 - `UPDATE`
 
 - `DELETE`
+
+## <a id="HTTP_METHOD"></a>HTTP_METHOD
+
+- `GET`
+
+- `POST`
+
+- `PUT`
+
+- `DELETE`
+
+- `HEAD`
+
+- `PATCH`
+
+- `OPTIONS`
+
+- `TRACE`
+
+- `CONNECT`
 
 ## <a id="OBJECT_TYPE"></a>OBJECT_TYPE
 
