@@ -14,16 +14,17 @@ in a simple language that is powerful thanks to Escape's inference engine.
 
 A custom test is a YAML file that defines the following blocks:
 
-- [Detectors](./detectors) are used to detect if an alert must be raised by inspecting queries.
 - [Alerting](./alerting) is used define the alert format, it's severity ...
-- [Seeders](./seeders) are used to seed the scan with requests (optional).
+- [Detectors](./detectors) are used to detect if an alert must be raised by inspecting queries.
 - [Transformations](./transformations) are used to mutate the requests (optional).
+- [Mutators](./mutators) are used inside the transformations.
+- [Seeders](./seeders) are used to seed the scan with requests (optional).
 
 ## Examples
 
 ```yaml
 alert:
-  name: Deletion successfull
+  name: Deletion successful
   context: >
     For compliance reasons, the non admin user must not be able to delete some
     data via the API.

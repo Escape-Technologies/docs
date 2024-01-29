@@ -48,6 +48,12 @@ transform:
       value: "world"
 ```
 
+### Properties
+
+- `value:` The value to set.
+- `values:` The values to set, generates multiple queries.
+- `regex_replace:` Regex replace pattern.
+
 ---
 
 ## Request Headers Mutator
@@ -62,7 +68,7 @@ You can use this mutator to change the headers of the request before resending i
 transform:
   trigger:
     - if: schema.url
-      contains: "/api/v1/"
+      is: "/api/v1/tested/route"
   mutate:
     - key: request.headers
       name: X-API-version
@@ -91,7 +97,7 @@ The detected object scalars (including custom scalars) in the request, with thei
 transform:
   trigger:
     - if: schema.url
-      contains: "/api/v1/"
+      is: "/api/v1/tested/route"
   mutate:
     - key: request.object
       select:
@@ -104,7 +110,7 @@ transform:
       mutate:
         regex_replace:
           pattern: (.*)@escape.tech
-          replacement: $1@attacker.com
+          replacement: \1@attacker.com
 ```
 
 ---
@@ -121,11 +127,11 @@ You can use this mutator to change the user of the request before resending it.
 transform:
   trigger:
     - if: schema.url
-      contains: "/api/v1/"
+      is: "/api/v1/tested/route"
   mutate:
     - key: request.user
       mutate:
-      value: "/api/v2/"
+        value: admin
 ```
 
 ### Properties
@@ -149,11 +155,11 @@ You can use this mutator to change the URL of the request before resending it.
 transform:
   trigger:
     - if: schema.url
-      contains: "/api/v1/"
+      is: "/api/v1/tested/route"
   mutate:
     - key: schema.url
       mutate:
-      value: "/api/v2/"
+        value: "/api/v2/"
 ```
 
 ---
