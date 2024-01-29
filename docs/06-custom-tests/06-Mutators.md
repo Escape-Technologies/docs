@@ -102,6 +102,9 @@ transform:
         value:
           regex: .*@escape.tech
       mutate:
+        regex_replace:
+          pattern: (.*)@escape.tech
+          replacement: $1@attacker.com
 ```
 
 ---
@@ -140,7 +143,7 @@ transform:
 
 You can use this mutator to change the URL of the request before resending it.
 
-## Example
+### Example
 
 ```yaml
 transform:

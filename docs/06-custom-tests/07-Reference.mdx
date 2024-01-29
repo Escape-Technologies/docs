@@ -53,8 +53,8 @@ seed:
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| trigger | `RequestUserDetector | CrudDetector | ResponseHeadersDetector | SchemaUrlDetector | ResponseIsSuccessfulDetector | ResponseDurationDetector | RequestIsAuthenticatedDetector | ResponseBodyJSONDetector | ResponseStatusCodeDetector | RequestBodyJSONDetector | SchemaNeedAuthenticationDetector | ScanTypeDetector | SchemaPathRefDetector | ResponseBodyTextDetector | RequestHeadersDetector | RequestObjectDetector | RequestBodyTextDetector | ResponseObjectDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
-| mutate | `RequestObjectMutator | SchemaUrlMutator | RequestUserMutator | RequestBodyJSONMutator | RequestBodyTextMutator | RequestHeadersMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
+| trigger | `ResponseHeadersDetector | SchemaNeedAuthenticationDetector | ResponseStatusCodeDetector | ScanTypeDetector | SchemaUrlDetector | ResponseDurationDetector | ResponseBodyTextDetector | RequestHeadersDetector | RequestIsAuthenticatedDetector | RequestObjectDetector | RequestBodyJSONDetector | RequestUserDetector | CrudDetector | RequestBodyTextDetector | ResponseBodyJSONDetector | ResponseObjectDetector | ResponseIsSuccessfulDetector | SchemaPathRefDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
+| mutate | `RequestObjectMutator | RequestBodyJSONMutator | RequestHeadersMutator | RequestBodyTextMutator | RequestUserMutator | SchemaUrlMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
 
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher
@@ -397,7 +397,7 @@ transform:
 
 You can use this mutator to change the URL of the request before resending it.
 
-## Example
+### Example
 
 ```yaml
 transform:

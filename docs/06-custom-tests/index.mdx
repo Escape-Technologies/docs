@@ -22,35 +22,19 @@ A custom test is a YAML file that defines the following blocks:
 ## Examples
 
 ```yaml
-detect:
-  - if: "<detect_key>"
-    is: "<detect_condition>"
 alert:
-  name: "<alert_name>"
-  severity: "<alert_severity>"
-  context: "<alert_context>"
-```
-
-```yaml
-seed:
-  - http:
-    raw: |
-    <http_request>
-transform:
-trigger:
-  - if: '<trigger_key>'
-    is: '<trigger_condition>'
-mutate:
-  - key: '<mutation_key>'
-    name: '<mutation_select>'
-    value: '<mutation_value>'
+  name: Deletion successfull
+  context: >
+    For compliance reasons, the non admin user must not be able to delete some
+    data via the API.
+  severity: HIGH
 detect:
-  - if: '<detect_key>'
-    is: '<detect_condition>'
-alert:
-  name: '<alert_name>'
-  severity: '<alert_severity>'
-  context: '<alert_context>'
+  - if: helpers.request.crud
+    is: DELETE
+  - if: request.user
+    is_not: admin
+  - if: helpers.response.is_successful
+    is: true
 ```
 
 ### Properties

@@ -11,21 +11,19 @@ These leverage the detectors and mutators, that will be covered in next sections
 ## Block structure
 
 ```yaml
----
-custom_checks:
-  - transform:
-      trigger:
-        - if: response.status_code
-          is: 200
-        - if: request.headers
-          key: "X-Forwarded-For"
-          value: "http://company.com"
-      mutate:
-        - key: request.headers
-          name: "X-Forwarded-For"
-          value: "http://localhost"
-      detect:
-      alert:
+transform:
+  trigger:
+    - if: response.status_code
+      is: 200
+    - if: request.headers
+      key:
+        is: "X-Forwarded-For"
+      value:
+        is: "http://company.com"
+  mutate:
+    - key: request.headers
+      name: "X-Forwarded-For"
+      value: "http://localhost"
 ```
 
 ### Properties
