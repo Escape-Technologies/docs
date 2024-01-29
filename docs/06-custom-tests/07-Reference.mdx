@@ -53,8 +53,8 @@ seed:
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| trigger | `CrudDetector | RequestHeadersDetector | ScanTypeDetector | ResponseBodyTextDetector | ResponseHeadersDetector | ResponseObjectDetector | RequestBodyTextDetector | ResponseIsSuccessfulDetector | RequestObjectDetector | ResponseBodyJSONDetector | ResponseStatusCodeDetector | RequestBodyJSONDetector | RequestIsAuthenticatedDetector | SchemaNeedAuthenticationDetector | SchemaUrlDetector | RequestUserDetector | SchemaPathRefDetector | ResponseDurationDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
-| mutate | `RequestObjectMutator | RequestHeadersMutator | SchemaUrlMutator | RequestBodyJSONMutator | RequestBodyTextMutator | RequestUserMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
+| trigger | `RequestIsAuthenticatedDetector | SchemaUrlDetector | ResponseHeadersDetector | CrudDetector | RequestHeadersDetector | SchemaNeedAuthenticationDetector | ResponseDurationDetector | RequestUserDetector | ResponseBodyTextDetector | ResponseStatusCodeDetector | ResponseIsSuccessfulDetector | RequestBodyTextDetector | RequestObjectDetector | ScanTypeDetector | SchemaPathRefDetector | ResponseBodyJSONDetector | RequestBodyJSONDetector | ResponseObjectDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
+| mutate | `RequestObjectMutator | RequestHeadersMutator | RequestBodyJSONMutator | RequestBodyTextMutator | SchemaUrlMutator | RequestUserMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
 
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher
