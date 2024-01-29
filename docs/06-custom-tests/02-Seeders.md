@@ -8,15 +8,15 @@ This request will be sent a the beginning of the scan, after the hotstart but be
 
 ### Example
 
-    ```yaml
-    seed:
-      - protocol: http
-        raw: |
-          @Host: https://example.com
-          GET /debug HTTP/1.1
-          Host: example.com
-          Content-Type: application/json
-    ```
+```yaml
+seed:
+    - protocol: http
+    raw: |
+        @Host: https://example.com
+        GET /debug HTTP/1.1
+        Host: example.com
+        Content-Type: application/json
+```
           
 
 ### Properties
