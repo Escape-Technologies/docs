@@ -45,7 +45,7 @@ seed:
       Host: example.com
       Content-Type: application/json
 ``` |  |
-| raw | `string` | `True` | (string): The raw HTTP request in [nuclei format]([docs.projectdiscovery.io](https://docs.projectdiscovery.io/templates/protocols/http/raw-http)) |  |
+| raw | `string` | `True` | The raw HTTP request in [nuclei format]([docs.projectdiscovery.io](https://docs.projectdiscovery.io/templates/protocols/http/raw-http).) |  |
 | user | `string` | `False` | The user to use for the request. If not provided, the request is sent without authentication. |  |
 
 
@@ -53,8 +53,8 @@ seed:
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| trigger | `RequestBodyTextDetector | RequestUserDetector | RequestObjectDetector | SchemaNeedAuthenticationDetector | ResponseStatusCodeDetector | CrudDetector | ScanTypeDetector | SchemaPathRefDetector | ResponseDurationDetector | RequestHeadersDetector | ResponseHeadersDetector | ResponseIsSuccessfulDetector | ResponseObjectDetector | RequestIsAuthenticatedDetector | SchemaUrlDetector | RequestBodyJSONDetector | ResponseBodyJSONDetector | ResponseBodyTextDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
-| mutate | `RequestObjectMutator | SchemaUrlMutator | RequestHeadersMutator | RequestBodyJSONMutator | RequestBodyTextMutator | RequestUserMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
+| trigger | `RequestUserDetector | CrudDetector | ResponseHeadersDetector | SchemaUrlDetector | ResponseIsSuccessfulDetector | ResponseDurationDetector | RequestIsAuthenticatedDetector | ResponseBodyJSONDetector | ResponseStatusCodeDetector | RequestBodyJSONDetector | SchemaNeedAuthenticationDetector | ScanTypeDetector | SchemaPathRefDetector | ResponseBodyTextDetector | RequestHeadersDetector | RequestObjectDetector | RequestBodyTextDetector | ResponseObjectDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
+| mutate | `RequestObjectMutator | SchemaUrlMutator | RequestUserMutator | RequestBodyJSONMutator | RequestBodyTextMutator | RequestHeadersMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
 
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher
@@ -107,115 +107,176 @@ seed:
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| key | `Const[request.body.json]` | `False` | You can use this mutator to change the JSON body of the request before resending it. |  |
-| jq | `string` | `False` | JQ query to apply to the JSON body. See [stedolan.github.io](https://stedolan.github.io/jq/manual/) |  |
+| key | `Const[request.body.json]` | `False` |
+You can use this mutator to change the JSON body of the request before resending it.
 
+### Example
+
+```yaml
+transform:
+    trigger:
+    - if: request.body.json
+      is: {&#34;user&#34;: &#34;admin&#34;}
+    mutate:
+      - key: request.body.json
+        jq: &#39;. | {&#34;user&#34;: .user + &#34; {{modify_value}}&#34;}&#39;
+````
+
+| |
+| jq | `string` | `False` | JQ query to apply to the JSON body. See [stedolan.github.io](https://stedolan.github.io/jq/manual/) | |
 
 ## <a id="RequestBodyTextDetector"></a>RequestBodyTextDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `string` | `False` | Condition is this exact string |  |
-| is_not | `string` | `False` | Condition is not this exact string |  |
-| in | `string` | `False` | Condition is in this list (exact match) |  |
-| contains | `string` | `False` | Contains this string |  |
-| regex | `string` | `False` | Condition is matched on this regex with fullmatch |  |
-| if | `Const[request.body.text]` | `False` | Use this to select and compare the request body as text, using string compare. |  |
-
+| Property | Type                       | Required | Description                                                                    | Reference |
+| -------- | -------------------------- | -------- | ------------------------------------------------------------------------------ | --------- |
+| is       | `string`                   | `False`  | Condition is this exact string                                                 |           |
+| is_not   | `string`                   | `False`  | Condition is not this exact string                                             |           |
+| in       | `string`                   | `False`  | Condition is in this list (exact match)                                        |           |
+| contains | `string`                   | `False`  | Contains this string                                                           |           |
+| regex    | `string`                   | `False`  | Condition is matched on this regex with fullmatch                              |           |
+| if       | `Const[request.body.text]` | `False`  | Use this to select and compare the request body as text, using string compare. |           |
 
 ## <a id="RequestBodyTextMutator"></a>RequestBodyTextMutator
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| key | `Const[request.body.text]` | `False` | You can use this mutator to change the body (as text) of the request before resending it. |  |
-| mutate | `StringMutate` | `True` |  | [StringMutate](#StringMutate) |
+| Property | Type                       | Required | Description | Reference |
+| -------- | -------------------------- | -------- | ----------- | --------- |
+| key      | `Const[request.body.text]` | `False`  |
 
+You can use this mutator to change the body (as text) of the request before resending it.
+
+### Example
+
+```yaml
+transform:
+  trigger:
+    - if: request.body.text
+      contains: &#39;hello&#39;
+  mutate:
+    - key: request.body.text
+      value: &#39;world&#39;
+```
+
+| |
+| mutate | `StringMutate` | `True` | | [StringMutate](#StringMutate) |
 
 ## <a id="RequestHeadersDetector"></a>RequestHeadersDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| key | `StringMatcher` | `False` | Key to match | [StringMatcher](#StringMatcher) |
-| value | `StringMatcher` | `False` | Value to match | [StringMatcher](#StringMatcher) |
-| if | `Const[request.headers]` | `False` | Use that to select and compare the request headers in a key value dictionary. |  |
-
+| Property | Type                     | Required | Description                                                                   | Reference                       |
+| -------- | ------------------------ | -------- | ----------------------------------------------------------------------------- | ------------------------------- |
+| key      | `StringMatcher`          | `False`  | Key to match                                                                  | [StringMatcher](#StringMatcher) |
+| value    | `StringMatcher`          | `False`  | Value to match                                                                | [StringMatcher](#StringMatcher) |
+| if       | `Const[request.headers]` | `False`  | Use that to select and compare the request headers in a key value dictionary. |                                 |
 
 ## <a id="RequestHeadersMutator"></a>RequestHeadersMutator
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| value | `string` | `False` | The value to set. |  |
-| values | `string` | `False` | The values to set, generates multiple queries. |  |
-| regex_replace | `RegexReplace` | `False` | Regex replace pattern. | [RegexReplace](#RegexReplace) |
-| key | `Const[request.headers]` | `False` | You can use this mutator to change the headers of the request before resending it. |  |
-| name | `string` | `True` | The header name to match, supports regex. |  |
-| delete | `boolean` | `False` | Delete the matched headers. |  |
+| Property      | Type                     | Required | Description                                    | Reference                     |
+| ------------- | ------------------------ | -------- | ---------------------------------------------- | ----------------------------- |
+| value         | `string`                 | `False`  | The value to set.                              |                               |
+| values        | `string`                 | `False`  | The values to set, generates multiple queries. |                               |
+| regex_replace | `RegexReplace`           | `False`  | Regex replace pattern.                         | [RegexReplace](#RegexReplace) |
+| key           | `Const[request.headers]` | `False`  |
 
+You can use this mutator to change the headers of the request before resending it.
+
+### Example
+
+```yaml
+transform:
+  trigger:
+    - if: schema.url
+      contains: &#39;/api/v1/&#39;
+  mutate:
+    - key: request.headers
+      name: X-API-version
+      value: &#39;APIV2&#39;
+```
+
+| |
+| name | `string` | `True` | The header name to match, supports regex. | |
+| delete | `boolean` | `False` | Delete the matched headers. | |
 
 ## <a id="RequestIsAuthenticatedDetector"></a>RequestIsAuthenticatedDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `boolean` | `False` | Condition is true |  |
-| is_not | `boolean` | `False` | Condition is false |  |
-| if | `Const[request.is_authenticated]` | `False` | Use this to select whether or not whether the request is authenticated. |  |
-
+| Property | Type                              | Required | Description                                                             | Reference |
+| -------- | --------------------------------- | -------- | ----------------------------------------------------------------------- | --------- |
+| is       | `boolean`                         | `False`  | Condition is true                                                       |           |
+| is_not   | `boolean`                         | `False`  | Condition is false                                                      |           |
+| if       | `Const[request.is_authenticated]` | `False`  | Use this to select whether or not whether the request is authenticated. |           |
 
 ## <a id="RequestObjectDetector"></a>RequestObjectDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| type | `ObjectTypeMatcher` | `False` | Object scalar type to match | [ObjectTypeMatcher](#ObjectTypeMatcher) |
-| name | `StringMatcher` | `False` | Object scalar name to match | [StringMatcher](#StringMatcher) |
-| value | `StringMatcher` | `False` | Object scalar value to match | [StringMatcher](#StringMatcher) |
-| if | `Const[request.object]` | `False` | Use this to select and compare the detected object scalars (including custom scalars) in the request, with their kind, name and value. |  |
-
+| Property | Type                    | Required | Description                                                                                                                            | Reference                               |
+| -------- | ----------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| type     | `ObjectTypeMatcher`     | `False`  | Object scalar type to match                                                                                                            | [ObjectTypeMatcher](#ObjectTypeMatcher) |
+| name     | `StringMatcher`         | `False`  | Object scalar name to match                                                                                                            | [StringMatcher](#StringMatcher)         |
+| value    | `StringMatcher`         | `False`  | Object scalar value to match                                                                                                           | [StringMatcher](#StringMatcher)         |
+| if       | `Const[request.object]` | `False`  | Use this to select and compare the detected object scalars (including custom scalars) in the request, with their kind, name and value. |                                         |
 
 ## <a id="RequestObjectMutator"></a>RequestObjectMutator
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| key | `Const[request.object]` | `False` |
-The detected object scalars (including custom scalars) in the request, with their kind, name and value. |  |
-| select | `ObjectMatcher` | `True` |  | [ObjectMatcher](#ObjectMatcher) |
-| mutate | `ObjectMutate` | `True` |  | [ObjectMutate](#ObjectMutate) |
+| Property | Type                    | Required | Description | Reference |
+| -------- | ----------------------- | -------- | ----------- | --------- |
+| key      | `Const[request.object]` | `False`  |
 
+The detected object scalars (including custom scalars) in the request, with their kind, name and value.
+
+### Example
+
+```yaml
+transform:
+  trigger:
+    - if: schema.url
+      contains: &#34;/api/v1/&#34;
+  mutate:
+    - key: request.object
+      select:
+        type:
+          is: email
+        name:
+          is: &#39;admin_email&#39;
+        value:
+          regex: .*@escape.tech
+      mutate:
+```
+
+| |
+| select | `ObjectMatcher` | `True` | | [ObjectMatcher](#ObjectMatcher) |
+| mutate | `ObjectMutate` | `True` | | [ObjectMutate](#ObjectMutate) |
 
 ## <a id="RequestUserDetector"></a>RequestUserDetector
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| is | `string` | `False` | Condition is this exact string |  |
-| is_not | `string` | `False` | Condition is not this exact string |  |
-| in | `string` | `False` | Condition is in this list (exact match) |  |
-| contains | `string` | `False` | Contains this string |  |
-| regex | `string` | `False` | Condition is matched on this regex with fullmatch |  |
-| if | `Const[request.user]` | `False` | Use this to string compare the configured user for the request. |  |
-
+| Property | Type                  | Required | Description                                                     | Reference |
+| -------- | --------------------- | -------- | --------------------------------------------------------------- | --------- |
+| is       | `string`              | `False`  | Condition is this exact string                                  |           |
+| is_not   | `string`              | `False`  | Condition is not this exact string                              |           |
+| in       | `string`              | `False`  | Condition is in this list (exact match)                         |           |
+| contains | `string`              | `False`  | Contains this string                                            |           |
+| regex    | `string`              | `False`  | Condition is matched on this regex with fullmatch               |           |
+| if       | `Const[request.user]` | `False`  | Use this to string compare the configured user for the request. |           |
 
 ## <a id="RequestUserMutator"></a>RequestUserMutator
 
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| value | `string` | `False` | The value to set. |  |
-| values | `string` | `False` | The values to set, generates multiple queries. |  |
-| regex_replace | `RegexReplace` | `False` | Regex replace pattern. | [RegexReplace](#RegexReplace) |
-| key | `Const[request.user]` | `False` |
+| Property      | Type                  | Required | Description                                    | Reference                     |
+| ------------- | --------------------- | -------- | ---------------------------------------------- | ----------------------------- |
+| value         | `string`              | `False`  | The value to set.                              |                               |
+| values        | `string`              | `False`  | The values to set, generates multiple queries. |                               |
+| regex_replace | `RegexReplace`        | `False`  | Regex replace pattern.                         | [RegexReplace](#RegexReplace) |
+| key           | `Const[request.user]` | `False`  |
+
 You can use this mutator to change the user of the request before resending it.
 
 ### Example
 
 ```yaml
----
 transform:
-    trigger:
+  trigger:
     - if: schema.url
-        contains: /api/v1/
-    mutate:
-      - key: request.user
+      contains: &#39;/api/v1/&#39;
+  mutate:
+    - key: request.user
       mutate:
-      value: /api/v2/
-````
+      value: &#39;/api/v2/&#39;
+```
 
          |  |
 
@@ -339,15 +400,14 @@ You can use this mutator to change the URL of the request before resending it.
 ## Example
 
 ```yaml
----
 transform:
-    trigger:
+  trigger:
     - if: schema.url
-        contains: /api/v1/
-    mutate:
+      contains: &#39;/api/v1/&#39;
+  mutate:
     - key: schema.url
-        mutate:
-        value: /api/v2/
+      mutate:
+      value: &#39;/api/v2/&#39;
 ```
 
          |  |

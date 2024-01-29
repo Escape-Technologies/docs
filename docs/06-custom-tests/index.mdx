@@ -2,46 +2,55 @@
 title: ⚡ Custom Tests
 ---
 
-As you already know, [Escape's built-in tests](../vulnerabilities) are pretty extensive and cover a lot of security vulnerabilities and concerns.
+As you already know, [Escape's built-in tests](../vulnerabilities) are
+pretty extensive and cover a lot of security vulnerabilities and concerns.
+But we know that you might have very specific use-cases, and that's why
+we've made it possible for you to create your own custom tests.
 
-But we know that you might have very specific use-cases, and that's why we've made it possible for you to create your own custom tests.
+These will enable you to build your own governance and apply it at scale,
+in a simple language that is powerful thanks to Escape's inference engine.
 
-These will enable you to build your own governance and apply it at scale, in a simple language that is powerful thanks to Escape's inference engine.
+## Format
 
-A custom test is a YAML-formatted file that defines a list of custom check blocks to set some tests and conditions to trigger an alert.
+A custom test is a YAML file that defines the following blocks:
 
-- [Seeders](./seeders) are used to seed the scan with requests
+- [Detectors](./detectors) are used to detect if an alert must be raised by inspecting queries.
+- [Alerting](./alerting) is used define the alert format, it's severity ...
+- [Seeders](./seeders) are used to seed the scan with requests (optional).
+- [Transformations](./transformations) are used to mutate the requests (optional).
 
-- [Transformations](./transformations) are used to mutate the requests
-
-- [Detectors](./detectors) are used to trigger the alerting
-
-- [Alerting](./alerting) is used to raise an alert if the detections are matched
-
-## Block structure
+## Examples
 
 ```yaml
----
-custom_checks:
-  - seed:
-      - http:
-        raw: |
-          <http_request>
-    transform:
-      trigger:
-        - if: "<trigger_key>"
-          is: "<trigger_condition>"
-      mutate:
-        - key: "<mutation_key>"
-          name: "<mutation_select>"
-          value: "<mutation_value>"
-    detect:
-      - if: "<detect_key>"
-        is: "<detect_condition>"
-    alert:
-      name: "<alert_name>"
-      severity: "<alert_severity>"
-      context: "<alert_context>"
+detect:
+  - if: "<detect_key>"
+    is: "<detect_condition>"
+alert:
+  name: "<alert_name>"
+  severity: "<alert_severity>"
+  context: "<alert_context>"
+```
+
+```yaml
+seed:
+  - http:
+    raw: |
+    <http_request>
+transform:
+trigger:
+  - if: '<trigger_key>'
+    is: '<trigger_condition>'
+mutate:
+  - key: '<mutation_key>'
+    name: '<mutation_select>'
+    value: '<mutation_value>'
+detect:
+  - if: '<detect_key>'
+    is: '<detect_condition>'
+alert:
+  name: '<alert_name>'
+  severity: '<alert_severity>'
+  context: '<alert_context>'
 ```
 
 ### Properties

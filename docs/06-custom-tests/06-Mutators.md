@@ -140,7 +140,7 @@ transform:
 
 You can use this mutator to change the URL of the request before resending it.
 
-### Example
+## Example
 
 ```yaml
 transform:
