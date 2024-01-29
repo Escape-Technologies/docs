@@ -22,6 +22,8 @@ A custom test is a YAML file that defines the following blocks:
 
 ## Examples
 
+### Minimal example
+
 ```yaml
 alert:
   name: Deletion successful
@@ -38,43 +40,86 @@ detect:
     is: true
 ```
 
+### Mutated example
+
+If you want to improve the above example, you can force escape to try to
+delete the resource by adding a mutation block:
+
 ```yaml
-seed:
-  - raw: |
-      @Host: https://example.com
-      POST /resource HTTP/1.1
-      Host: example.com
-      Content-Type: application/json
-      {"test": "hello"}
-    protocol: http
+transform:
+  trigger:
+    - if: helpers.request.crud
+      is: CREATE
+    - if: schema.path_ref
+      is: /record
+    - if: request.user
+      is_not: admin
+  mutate:
+    - key: request.method
+      value: DELETE
+    - key: request.body.json
+      jq: '{"id": .id}' # only keep the id in the delete body
 alert:
-  name: V2 API with V1 tokens
+  name: Deletion successful forced
   context: >
-    For compliance reasons, the new V2 API should not be accessible with V1 tokens
+    For compliance reasons, the non admin user must not be able to delete some
+    data via the API.
   severity: HIGH
 detect:
   - if: helpers.request.crud
-    is: CREATE
+    is: DELETE
   - if: request.user
     is_not: admin
   - if: helpers.response.is_successful
     is: true
+```
+
+### Seeded example
+
+```yaml
+seed:
+  - protocol: http
+    raw: |
+      @Host: https://backend-api.escape.tech
+      GET /data HTTP/1.1
+      Host: backend-api.tools.escape.tech
+alert:
+  name: Environment isolation
+  context: >
+    Tested API may call the backend API, but customers must not be able to
+    access the backend API directly.
+  severity: MEDIUM
+detect:
+  - if: helpers.response.is_successful
+    is: true
+```
+
+### Seeded
+
+```yaml
 transform:
-  mutate:
-    - key: request.headers
-      name: X-API-Version
-      value: V1
-    - key: request.headers
-      name: Authorization
-      value: Bearer xxxxx
   trigger:
-    - if: response.status_code
-      is: 200
+    - if: helpers.response.is_successful
+      is: true
     - if: request.headers
       key:
         is: X-API-Version
       value:
         is: V2
+  mutate:
+    - key: request.headers
+      name: X-API-Version
+      value: V1
+
+alert:
+  name: V2 API with V1 tokens
+  context: >
+    Your current API seems to be confused between V1 and V2 endpoints.
+    For compliance reasons, an API must only be deployed with one version.
+  severity: LOW
+detect:
+  - if: helpers.response.is_successful
+    is: true
 ```
 
 ### Properties
