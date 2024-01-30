@@ -110,10 +110,10 @@ transform:
 
 ## <a id="Middleware"></a>Middleware
 
-| Property | Type                     | Required                       | Description              | Reference              |
-| -------- | ------------------------ | ------------------------------ | ------------------------ | ---------------------- | ----------------- | -------------------------------- | --------------------- | ---------------------- | ------------------------------------------------------------------------------- | ---------------------------- | ------------------------ | ------------------------ | -------------------------- | ----------------------- | ---------------------- | ----------------------- | ------------ | ---------------- | ---------------------- | ------ | ------------------------------------------------------------------------------------------------ | --- |
-| trigger  | `RequestBodyJSONDetector | RequestIsAuthenticatedDetector | ResponseBodyJSONDetector | MethodDetector         | SchemaUrlDetector | SchemaNeedAuthenticationDetector | SchemaPathRefDetector | ResponseObjectDetector | RequestUserDetector                                                             | ResponseIsSuccessfulDetector | ResponseDurationDetector | ResponseBodyTextDetector | ResponseStatusCodeDetector | RequestBodyTextDetector | RequestHeadersDetector | ResponseHeadersDetector | CrudDetector | ScanTypeDetector | RequestObjectDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |     |
-| mutate   | `RequestBodyTextMutator  | RequestObjectMutator           | RequestUserMutator       | RequestBodyJSONMutator | SchemaUrlMutator  | RequestHeadersMutator            | MethodMutator`        | `True`                 | The mutations to apply to the request and replay it. See [Mutators](./mutators) |                              |
+| Property | Type                     | Required                         | Description           | Reference              |
+| -------- | ------------------------ | -------------------------------- | --------------------- | ---------------------- | ---------------------- | --------------------- | ------------------------ | ---------------------- | ------------------------------------------------------------------------------- | -------------------------- | ------------------- | ----------------------- | ---------------- | ------------------------ | ------------------------ | ---------------------------- | ----------------------- | ------------------------------ | ------------------ | ------ | ------------------------------------------------------------------------------------------------ | --- |
+| trigger  | `RequestBodyJSONDetector | SchemaNeedAuthenticationDetector | SchemaPathRefDetector | MethodDetector         | RequestHeadersDetector | RequestObjectDetector | ResponseBodyTextDetector | ResponseObjectDetector | CrudDetector                                                                    | ResponseStatusCodeDetector | RequestUserDetector | ResponseHeadersDetector | ScanTypeDetector | ResponseBodyJSONDetector | ResponseDurationDetector | ResponseIsSuccessfulDetector | RequestBodyTextDetector | RequestIsAuthenticatedDetector | SchemaUrlDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |     |
+| mutate   | `RequestBodyTextMutator  | SchemaUrlMutator                 | RequestHeadersMutator | RequestBodyJSONMutator | RequestUserMutator     | RequestObjectMutator  | MethodMutator`           | `True`                 | The mutations to apply to the request and replay it. See [Mutators](./mutators) |                            |
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher
 
@@ -673,9 +673,12 @@ detect:
 
 ## <a id="SchemaUrlMutator"></a>SchemaUrlMutator
 
-| Property | Type                | Required | Description | Reference |
-| -------- | ------------------- | -------- | ----------- | --------- |
-| key      | `Const[schema.url]` | `False`  |
+| Property      | Type                | Required | Description                                    | Reference                     |
+| ------------- | ------------------- | -------- | ---------------------------------------------- | ----------------------------- |
+| value         | `string`            | `False`  | The value to set.                              |                               |
+| values        | `string`            | `False`  | The values to set, generates multiple queries. |                               |
+| regex_replace | `RegexReplace`      | `False`  | Regex replace pattern.                         | [RegexReplace](#RegexReplace) |
+| key           | `Const[schema.url]` | `False`  |
 
 You can use this mutator to change the URL of the request before resending it.
 
@@ -694,8 +697,6 @@ transform:
 
          |  |
 
-| mutate | `StringMutate` | `True` | | [StringMutate](#StringMutate) |
-
 ## <a id="StringMatcher"></a>StringMatcher
 
 | Property | Type     | Required | Description                                       | Reference |
@@ -705,14 +706,6 @@ transform:
 | in       | `string` | `False`  | Condition is in this list (exact match)           |           |
 | contains | `string` | `False`  | Contains this string                              |           |
 | regex    | `string` | `False`  | Condition is matched on this regex with fullmatch |           |
-
-## <a id="StringMutate"></a>StringMutate
-
-| Property      | Type           | Required | Description                                    | Reference                     |
-| ------------- | -------------- | -------- | ---------------------------------------------- | ----------------------------- |
-| value         | `string`       | `False`  | The value to set.                              |                               |
-| values        | `string`       | `False`  | The values to set, generates multiple queries. |                               |
-| regex_replace | `RegexReplace` | `False`  | Regex replace pattern.                         | [RegexReplace](#RegexReplace) |
 
 # Enums
 

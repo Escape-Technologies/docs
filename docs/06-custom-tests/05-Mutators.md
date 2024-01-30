@@ -165,4 +165,10 @@ transform:
         value: "/api/v2/"
 ```
 
+### Properties
+
+- `value`: The value to set.
+- `values`: The values to set, generates multiple queries.
+- `regex_replace`: Regex replace pattern.
+
 ---
