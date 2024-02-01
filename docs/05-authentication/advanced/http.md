@@ -17,7 +17,7 @@ This method is particularly effective in scenarios where authentication is manag
 ## Examples
 
 ```yaml
-presets:
+preset:
 -   type: http
     request:
         url: https://api.example.com/authenticate
@@ -31,7 +31,6 @@ presets:
     -   key: Authorization
         location: header
         prefix: 'Bearer '
-        variable: token
     extractions:
     -   name: token
         key: accessToken

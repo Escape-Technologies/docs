@@ -18,14 +18,13 @@ This preset is particularly useful when other forms of API-based authentication 
 ## Examples
 
 ```yaml
-presets:
+preset:
 -   type: webdriver
     wait_for_seconds: 30
     injections:
     -   key: Authorization
         location: header
         prefix: 'Bearer '
-        variable: token
     extractions:
     -   name: token
         location: query
