@@ -1,0 +1,2554 @@
+---
+title: Custom Tests Reference
+description: All objects available for custom security tests.
+---
+
+# Objects
+
+## <a id="AlertModel"></a>AlertModel
+
+| Property | Type       | Required | Description           | Reference             |
+| -------- | ---------- | -------- | --------------------- | --------------------- |
+| severity | `SEVERITY` | `True`   | Severity of the alert | [SEVERITY](#SEVERITY) |
+| name     | `string`   | `True`   | Name of the alert     |                       |
+| context  | `string`   | `True`   | Context of the alert  |                       |
+
+## <a id="CrudDetector"></a>CrudDetector
+
+| Property | Type                          | Required | Description                                                               | Reference     |
+| -------- | ----------------------------- | -------- | ------------------------------------------------------------------------- | ------------- |
+| is       | `CRUD`                        | `False`  | Condition is the request is this CRUD operation                           | [CRUD](#CRUD) |
+| is_not   | `CRUD`                        | `False`  | Condition is the request is not this CRUD operation                       | [CRUD](#CRUD) |
+| in       | `CRUD`                        | `False`  | Condition is the request is in this list of CRUD operations (exact match) | [CRUD](#CRUD) |
+| if       | `Const[helpers.request.crud]` | `False`  |
+
+Use this to select against the detected CRUD operation of the request.
+
+### Example
+
+```yaml
+detect:
+  - if: helpers.request.crud
+    in:
+      - CREATE
+      - UPDATE
+```
+
+| |
+
+## <a id="HTTPSeeder"></a>HTTPSeeder
+
+| Property | Type          | Required | Description                                                            | Reference |
+| -------- | ------------- | -------- | ---------------------------------------------------------------------- | --------- |
+| protocol | `Const[http]` | `False`  | The HTTP seeder allows you to send a request at the start of the scan. |
+
+This requests will be sent at the same time as the hotstart, the syntax is similar to it but
+you can configure for which user the request must be sent.
+
+The main difference between this two features it that a seeded request is bound to a custom security check.
+If you disable a check, the seeded request will not be sent.
+
+### Example
+
+````yaml
+seed:
+  - protocol: http
+    raw: |
+      @Host: [example.com](https://example.com)
+      GET /debug HTTP/1.1
+      Host: example.com
+      Content-Type: application/json
+``` |  |
+| raw | `string` | `True` | The raw HTTP request in [nuclei format]([docs.projectdiscovery.io](https://docs.projectdiscovery.io/templates/protocols/http/raw-http).) |  |
+| user | `string` | `False` | The user to use for the request. If not provided, the request is sent without authentication. |  |
+
+
+## <a id="MethodDetector"></a>MethodDetector
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| is | `HTTP_METHOD` | `False` | Condition is the request is this CRUD operation | [HTTP_METHOD](#HTTP_METHOD) |
+| is_not | `HTTP_METHOD` | `False` | Condition is the request is not this CRUD operation | [HTTP_METHOD](#HTTP_METHOD) |
+| in | `HTTP_METHOD` | `False` | Condition is the request is in this list of CRUD operations (exact match) | [HTTP_METHOD](#HTTP_METHOD) |
+| if | `Const[request.method]` | `False` |
+Use this to select against the request [HTTP method]([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).)
+
+### Example
+
+```yaml
+detect:
+  - if: request.method
+    is: OPTIONS
+````
+
+| |
+
+## <a id="MethodMutator"></a>MethodMutator
+
+| Property | Type                    | Required | Description | Reference |
+| -------- | ----------------------- | -------- | ----------- | --------- |
+| key      | `Const[request.method]` | `False`  |
+
+You can use this mutator to change the [HTTP method](<[developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)>) of the
+request before resending it.
+
+### Example
+
+```yaml
+transform:
+  trigger:
+    - if: helpers.request.crud
+      is: CREATE
+  mutate:
+    - key: request.method
+      value: DELETE
+```
+
+| |
+| value | `HTTP_METHOD` | `False` | The value to set. | [HTTP_METHOD](#HTTP_METHOD) |
+| values | `HTTP_METHOD` | `False` | The values to set, generates multiple queries. | [HTTP_METHOD](#HTTP_METHOD) |
+
+## <a id="Middleware"></a>Middleware
+
+| Property | Type                     | Required                         | Description           | Reference              |
+| -------- | ------------------------ | -------------------------------- | --------------------- | ---------------------- | ---------------------- | --------------------- | ------------------------ | ---------------------- | ------------------------------------------------------------------------------- | -------------------------- | ------------------- | ----------------------- | ---------------- | ------------------------ | ------------------------ | ---------------------------- | ----------------------- | ------------------------------ | ------------------ | ------ | ------------------------------------------------------------------------------------------------ | --- |
+| trigger  | `RequestBodyJSONDetector | SchemaNeedAuthenticationDetector | SchemaPathRefDetector | MethodDetector         | RequestHeadersDetector | RequestObjectDetector | ResponseBodyTextDetector | ResponseObjectDetector | CrudDetector                                                                    | ResponseStatusCodeDetector | RequestUserDetector | ResponseHeadersDetector | ScanTypeDetector | ResponseBodyJSONDetector | ResponseDurationDetector | ResponseIsSuccessfulDetector | RequestBodyTextDetector | RequestIsAuthenticatedDetector | SchemaUrlDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |     |
+| mutate   | `RequestBodyTextMutator  | SchemaUrlMutator                 | RequestHeadersMutator | RequestBodyJSONMutator | RequestUserMutator     | RequestObjectMutator  | MethodMutator`           | `True`                 | The mutations to apply to the request and replay it. See [Mutators](./mutators) |                            |
+
+## <a id="ObjectMatcher"></a>ObjectMatcher
+
+| Property | Type                | Required | Description                  | Reference                               |
+| -------- | ------------------- | -------- | ---------------------------- | --------------------------------------- |
+| type     | `ObjectTypeMatcher` | `False`  | Object scalar type to match  | [ObjectTypeMatcher](#ObjectTypeMatcher) |
+| name     | `StringMatcher`     | `False`  | Object scalar name to match  | [StringMatcher](#StringMatcher)         |
+| value    | `StringMatcher`     | `False`  | Object scalar value to match | [StringMatcher](#StringMatcher)         |
+
+## <a id="ObjectMutate"></a>ObjectMutate
+
+| Property      | Type           | Required | Description                                    | Reference                     |
+| ------------- | -------------- | -------- | ---------------------------------------------- | ----------------------------- |
+| value         | `string`       | `False`  | The value to set.                              |                               |
+| values        | `string`       | `False`  | The values to set, generates multiple queries. |                               |
+| regex_replace | `RegexReplace` | `False`  | Regex replace pattern.                         | [RegexReplace](#RegexReplace) |
+
+## <a id="ObjectTypeMatcher"></a>ObjectTypeMatcher
+
+| Property | Type          | Required | Description                                  | Reference                   |
+| -------- | ------------- | -------- | -------------------------------------------- | --------------------------- |
+| is       | `OBJECT_TYPE` | `False`  | Object type is exactly this type             | [OBJECT_TYPE](#OBJECT_TYPE) |
+| is_not   | `OBJECT_TYPE` | `False`  | Object type is any this type except this one | [OBJECT_TYPE](#OBJECT_TYPE) |
+| in       | `OBJECT_TYPE` | `False`  | Object type is in the following list         | [OBJECT_TYPE](#OBJECT_TYPE) |
+
+## <a id="RegexReplace"></a>RegexReplace
+
+| Property    | Type     | Required | Description                                               | Reference |
+| ----------- | -------- | -------- | --------------------------------------------------------- | --------- |
+| pattern     | `string` | `True`   | The regex pattern to match.                               |           |
+| replacement | `string` | `True`   | The replacement, use \1, \2, ... to refer capture groups. |           |
+
+## <a id="RequestBodyJSONDetector"></a>RequestBodyJSONDetector
+
+| Property | Type                       | Required | Description                          | Reference |
+| -------- | -------------------------- | -------- | ------------------------------------ | --------- |
+| is       | `Dict[string, None]`       | `False`  | Condition is this exact JSON         |           |
+| is_not   | `Dict[string, None]`       | `False`  | Condition is not this exact JSON     |           |
+| in       | `Dict[string, None]`       | `False`  | Condition is in this list of JSON    |           |
+| jq       | `string`                   | `False`  | JQ query to match and use as boolean |           |
+| if       | `Const[request.body.json]` | `False`  |
+
+Use this to select and compare the request body when detected as JSON, using jq-like syntax.
+
+### Example
+
+```yaml
+detect:
+  - if: request.body.json
+    is:
+      jq: &#39;.role == admin&#39;
+```
+
+| |
+
+## <a id="RequestBodyJSONMutator"></a>RequestBodyJSONMutator
+
+| Property | Type                       | Required | Description | Reference |
+| -------- | -------------------------- | -------- | ----------- | --------- |
+| key      | `Const[request.body.json]` | `False`  |
+
+You can use this mutator to change the JSON body of the request before resending it.
+
+### Example
+
+```yaml
+transform:
+    trigger:
+      - if: request.body.json
+        is: {&#34;user&#34;: &#34;admin&#34;}
+    mutate:
+      - key: request.body.json
+        jq: &#39;. | {&#34;user&#34;: .user + &#34; {{modify_value}}&#34;}&#39;
+```
+
+| |
+| jq | `string` | `False` | JQ query to apply to the JSON body. See [stedolan.github.io](https://stedolan.github.io/jq/manual/) | |
+
+## <a id="RequestBodyTextDetector"></a>RequestBodyTextDetector
+
+| Property | Type                       | Required | Description                                       | Reference |
+| -------- | -------------------------- | -------- | ------------------------------------------------- | --------- |
+| is       | `string`                   | `False`  | Condition is this exact string                    |           |
+| is_not   | `string`                   | `False`  | Condition is not this exact string                |           |
+| in       | `string`                   | `False`  | Condition is in this list (exact match)           |           |
+| contains | `string`                   | `False`  | Contains this string                              |           |
+| regex    | `string`                   | `False`  | Condition is matched on this regex with fullmatch |           |
+| if       | `Const[request.body.text]` | `False`  |
+
+Use this to select and compare the request body as text, using string compare.
+
+### Example
+
+```yaml
+detect:
+  - if: request.body.text
+    contains: &#39;password=&#39;
+```
+
+| |
+
+## <a id="RequestBodyTextMutator"></a>RequestBodyTextMutator
+
+| Property      | Type                       | Required | Description                                    | Reference                     |
+| ------------- | -------------------------- | -------- | ---------------------------------------------- | ----------------------------- |
+| value         | `string`                   | `False`  | The value to set.                              |                               |
+| values        | `string`                   | `False`  | The values to set, generates multiple queries. |                               |
+| regex_replace | `RegexReplace`             | `False`  | Regex replace pattern.                         | [RegexReplace](#RegexReplace) |
+| key           | `Const[request.body.text]` | `False`  |
+
+You can use this mutator to change the body (as text) of the request before resending it.
+
+### Example
+
+```yaml
+transform:
+  trigger:
+    - if: request.body.text
+      contains: &#39;hello&#39;
+  mutate:
+    - key: request.body.text
+      values:
+        - &#39;injection 1&#39;
+        - &#39;injection 2&#39;
+        - &#39;injection 3&#39;
+```
+
+| |
+
+## <a id="RequestHeadersDetector"></a>RequestHeadersDetector
+
+| Property | Type                     | Required | Description    | Reference                       |
+| -------- | ------------------------ | -------- | -------------- | ------------------------------- |
+| key      | `StringMatcher`          | `False`  | Key to match   | [StringMatcher](#StringMatcher) |
+| value    | `StringMatcher`          | `False`  | Value to match | [StringMatcher](#StringMatcher) |
+| if       | `Const[request.headers]` | `False`  |
+
+Use that to select and compare the request headers in a key value dictionary.
+
+### Example
+
+```yaml
+detect:
+  - if: request.headers
+    key:
+      is: &#39;X-OPERATION&#39;
+    value:
+      is: &#39;PAY&#39;
+```
+
+| |
+
+## <a id="RequestHeadersMutator"></a>RequestHeadersMutator
+
+| Property      | Type                     | Required | Description                                    | Reference                     |
+| ------------- | ------------------------ | -------- | ---------------------------------------------- | ----------------------------- |
+| value         | `string`                 | `False`  | The value to set.                              |                               |
+| values        | `string`                 | `False`  | The values to set, generates multiple queries. |                               |
+| regex_replace | `RegexReplace`           | `False`  | Regex replace pattern.                         | [RegexReplace](#RegexReplace) |
+| key           | `Const[request.headers]` | `False`  |
+
+You can use this mutator to change the headers of the request before resending it.
+
+### Example
+
+```yaml
+transform:
+  trigger:
+    - if: schema.url
+      is: &#39;/api/v1/tested/route&#39;
+  mutate:
+    - key: request.headers
+      name: X-API-version
+      value: &#39;APIV2&#39;
+```
+
+| |
+| name | `string` | `True` | The header name to match, supports regex. | |
+| delete | `boolean` | `False` | Delete the matched headers. | |
+
+## <a id="RequestIsAuthenticatedDetector"></a>RequestIsAuthenticatedDetector
+
+| Property | Type                              | Required | Description        | Reference |
+| -------- | --------------------------------- | -------- | ------------------ | --------- |
+| is       | `boolean`                         | `False`  | Condition is true  |           |
+| is_not   | `boolean`                         | `False`  | Condition is false |           |
+| if       | `Const[request.is_authenticated]` | `False`  |
+
+Use this to select whether or not whether the request is authenticated.
+
+### Example
+
+```yaml
+detect:
+  - if: request.is_authenticated
+    is: true
+```
+
+| |
+
+## <a id="RequestObjectDetector"></a>RequestObjectDetector
+
+| Property | Type                    | Required | Description                  | Reference                               |
+| -------- | ----------------------- | -------- | ---------------------------- | --------------------------------------- |
+| type     | `ObjectTypeMatcher`     | `False`  | Object scalar type to match  | [ObjectTypeMatcher](#ObjectTypeMatcher) |
+| name     | `StringMatcher`         | `False`  | Object scalar name to match  | [StringMatcher](#StringMatcher)         |
+| value    | `StringMatcher`         | `False`  | Object scalar value to match | [StringMatcher](#StringMatcher)         |
+| if       | `Const[request.object]` | `False`  |
+
+Use this to select and compare the detected object scalars (including custom scalars) in the request, with their kind, name and value.
+
+### Example
+
+```yaml
+detect:
+  - if: request.object
+    type:
+      in:
+        - email
+        - phone
+        - street_address
+```
+
+| |
+
+## <a id="RequestObjectMutator"></a>RequestObjectMutator
+
+| Property | Type                    | Required | Description | Reference |
+| -------- | ----------------------- | -------- | ----------- | --------- |
+| key      | `Const[request.object]` | `False`  |
+
+The detected object scalars (including custom scalars) in the request, with their kind, name and value.
+
+### Example
+
+```yaml
+transform:
+  trigger:
+    - if: schema.url
+      is: &#39;/api/v1/tested/route&#39;
+  mutate:
+    - key: request.object
+      select:
+        type:
+          is: email
+        name:
+          is: &#39;admin_email&#39;
+        value:
+          regex: .*@escape.tech
+      mutate:
+        regex_replace:
+          pattern: (.*)@escape.tech
+          replacement: \1@attacker.com
+```
+
+| |
+| select | `ObjectMatcher` | `True` | | [ObjectMatcher](#ObjectMatcher) |
+| mutate | `ObjectMutate` | `True` | | [ObjectMutate](#ObjectMutate) |
+
+## <a id="RequestUserDetector"></a>RequestUserDetector
+
+| Property | Type                  | Required | Description                                       | Reference |
+| -------- | --------------------- | -------- | ------------------------------------------------- | --------- |
+| is       | `string`              | `False`  | Condition is this exact string                    |           |
+| is_not   | `string`              | `False`  | Condition is not this exact string                |           |
+| in       | `string`              | `False`  | Condition is in this list (exact match)           |           |
+| contains | `string`              | `False`  | Contains this string                              |           |
+| regex    | `string`              | `False`  | Condition is matched on this regex with fullmatch |           |
+| if       | `Const[request.user]` | `False`  |
+
+Use this to string compare the configured user for the request.
+
+### Example
+
+```yaml
+detect:
+  - if: request.user
+    is: unprivileged_user
+```
+
+| |
+
+## <a id="RequestUserMutator"></a>RequestUserMutator
+
+| Property      | Type                  | Required | Description                                    | Reference                     |
+| ------------- | --------------------- | -------- | ---------------------------------------------- | ----------------------------- |
+| value         | `string`              | `False`  | The value to set.                              |                               |
+| values        | `string`              | `False`  | The values to set, generates multiple queries. |                               |
+| regex_replace | `RegexReplace`        | `False`  | Regex replace pattern.                         | [RegexReplace](#RegexReplace) |
+| key           | `Const[request.user]` | `False`  |
+
+You can use this mutator to change the user of the request before resending it.
+
+### Example
+
+```yaml
+transform:
+  trigger:
+    - if: schema.url
+      is: &#39;/api/v1/tested/route&#39;
+  mutate:
+    - key: request.user
+      mutate:
+        value: admin
+```
+
+         |  |
+
+| drop_user | `boolean` | `False` | Remove the user authentication from the request. | |
+
+## <a id="ResponseBodyJSONDetector"></a>ResponseBodyJSONDetector
+
+| Property | Type                        | Required | Description                          | Reference |
+| -------- | --------------------------- | -------- | ------------------------------------ | --------- |
+| is       | `Dict[string, None]`        | `False`  | Condition is this exact JSON         |           |
+| is_not   | `Dict[string, None]`        | `False`  | Condition is not this exact JSON     |           |
+| in       | `Dict[string, None]`        | `False`  | Condition is in this list of JSON    |           |
+| jq       | `string`                    | `False`  | JQ query to match and use as boolean |           |
+| if       | `Const[response.body.json]` | `False`  |
+
+Use this to select and compare the response body when detected as JSON, using jq-like syntax.
+
+### Example
+
+```yaml
+detect:
+  - if: response.body.json
+    is:
+      jq: &#39;.role == admin&#39;
+```
+
+| |
+
+## <a id="ResponseBodyTextDetector"></a>ResponseBodyTextDetector
+
+| Property | Type                        | Required | Description                                       | Reference |
+| -------- | --------------------------- | -------- | ------------------------------------------------- | --------- |
+| is       | `string`                    | `False`  | Condition is this exact string                    |           |
+| is_not   | `string`                    | `False`  | Condition is not this exact string                |           |
+| in       | `string`                    | `False`  | Condition is in this list (exact match)           |           |
+| contains | `string`                    | `False`  | Contains this string                              |           |
+| regex    | `string`                    | `False`  | Condition is matched on this regex with fullmatch |           |
+| if       | `Const[response.body.text]` | `False`  |
+
+Use this to select and compare the response body as text, using string compare.
+
+### Example
+
+```yaml
+detect:
+  - if: request.body.text
+    is_not: &#39;unauthorized&#39;
+```
+
+| |
+
+## <a id="ResponseDurationDetector"></a>ResponseDurationDetector
+
+| Property | Type                          | Required | Description                                         | Reference |
+| -------- | ----------------------------- | -------- | --------------------------------------------------- | --------- |
+| is       | `integer`                     | `False`  | Condition is this exact integer                     |           |
+| is_not   | `integer`                     | `False`  | Condition is not this exact integer                 |           |
+| in       | `integer`                     | `False`  | Condition is in this list of integers (exact match) |           |
+| gt       | `integer`                     | `False`  | Condition is greater than this integer              |           |
+| lt       | `integer`                     | `False`  | Condition is less than this integer                 |           |
+| if       | `Const[response.duration_ms]` | `False`  |
+
+Use this to compare the duration of the request in milliseconds.
+
+### Example
+
+```yaml
+detect:
+  - if: response.duration_ms
+    gt: 200
+```
+
+| |
+
+## <a id="ResponseHeadersDetector"></a>ResponseHeadersDetector
+
+| Property | Type                      | Required | Description    | Reference                       |
+| -------- | ------------------------- | -------- | -------------- | ------------------------------- |
+| key      | `StringMatcher`           | `False`  | Key to match   | [StringMatcher](#StringMatcher) |
+| value    | `StringMatcher`           | `False`  | Value to match | [StringMatcher](#StringMatcher) |
+| if       | `Const[response.headers]` | `False`  |
+
+Use that to select and compare the response headers in a key value dictionary.
+
+### Example
+
+```yaml
+detect:
+  - if: response.headers
+    key:
+      is: &#39;X-RESULT&#39;
+    value:
+      is: &#39;PAID&#39;
+```
+
+| |
+
+## <a id="ResponseIsSuccessfulDetector"></a>ResponseIsSuccessfulDetector
+
+| Property | Type                                    | Required | Description        | Reference |
+| -------- | --------------------------------------- | -------- | ------------------ | --------- |
+| is       | `boolean`                               | `False`  | Condition is true  |           |
+| is_not   | `boolean`                               | `False`  | Condition is false |           |
+| if       | `Const[helpers.response.is_successful]` | `False`  |
+
+Use this to check whether the response is successful.
+
+### Example
+
+```yaml
+detect:
+  - if: helpers.response.is_successful
+    is: true
+```
+
+| |
+
+## <a id="ResponseObjectDetector"></a>ResponseObjectDetector
+
+| Property | Type                     | Required | Description                  | Reference                               |
+| -------- | ------------------------ | -------- | ---------------------------- | --------------------------------------- |
+| type     | `ObjectTypeMatcher`      | `False`  | Object scalar type to match  | [ObjectTypeMatcher](#ObjectTypeMatcher) |
+| name     | `StringMatcher`          | `False`  | Object scalar name to match  | [StringMatcher](#StringMatcher)         |
+| value    | `StringMatcher`          | `False`  | Object scalar value to match | [StringMatcher](#StringMatcher)         |
+| if       | `Const[response.object]` | `False`  |
+
+Use this to select and compare the detected object scalars (including custom scalars) in the response, with their kind, name and value.
+
+### Example
+
+```yaml
+detect:
+  - if: response.object
+    type:
+      in:
+        - email
+        - phone
+        - street_address
+```
+
+| |
+
+## <a id="ResponseStatusCodeDetector"></a>ResponseStatusCodeDetector
+
+| Property | Type                          | Required | Description                                         | Reference |
+| -------- | ----------------------------- | -------- | --------------------------------------------------- | --------- |
+| is       | `integer`                     | `False`  | Condition is this exact integer                     |           |
+| is_not   | `integer`                     | `False`  | Condition is not this exact integer                 |           |
+| in       | `integer`                     | `False`  | Condition is in this list of integers (exact match) |           |
+| gt       | `integer`                     | `False`  | Condition is greater than this integer              |           |
+| lt       | `integer`                     | `False`  | Condition is less than this integer                 |           |
+| if       | `Const[response.status_code]` | `False`  |
+
+Use this to compare the HTTP status code as an integer.
+
+### Example
+
+```yaml
+detect:
+  - if: response.status_code
+    is: 200
+```
+
+| |
+
+## <a id="ScanTypeDetector"></a>ScanTypeDetector
+
+| Property | Type               | Required | Description                    | Reference               |
+| -------- | ------------------ | -------- | ------------------------------ | ----------------------- |
+| is       | `SCAN_TYPE`        | `False`  | The scan type is exactly this  | [SCAN_TYPE](#SCAN_TYPE) |
+| is_not   | `SCAN_TYPE`        | `False`  | The scan type is not this type | [SCAN_TYPE](#SCAN_TYPE) |
+| in       | `SCAN_TYPE`        | `False`  | The scan type is in this list  | [SCAN_TYPE](#SCAN_TYPE) |
+| if       | `Const[scan.type]` | `False`  |
+
+Use this to select against the type of the scan.
+
+### Example
+
+```yaml
+detect:
+  - if: scan.type
+    is: REST
+```
+
+| |
+
+## <a id="SchemaNeedAuthenticationDetector"></a>SchemaNeedAuthenticationDetector
+
+| Property | Type                                | Required | Description        | Reference |
+| -------- | ----------------------------------- | -------- | ------------------ | --------- |
+| is       | `boolean`                           | `False`  | Condition is true  |           |
+| is_not   | `boolean`                           | `False`  | Condition is false |           |
+| if       | `Const[schema.need_authentication]` | `False`  |
+
+Use this to select whether or not the schema requires authentication.
+
+### Example
+
+```yaml
+detect:
+  - if: schema.need_authentication
+    is: false
+```
+
+| |
+
+## <a id="SchemaPathRefDetector"></a>SchemaPathRefDetector
+
+| Property | Type                     | Required | Description                                       | Reference |
+| -------- | ------------------------ | -------- | ------------------------------------------------- | --------- |
+| is       | `string`                 | `False`  | Condition is this exact string                    |           |
+| is_not   | `string`                 | `False`  | Condition is not this exact string                |           |
+| in       | `string`                 | `False`  | Condition is in this list (exact match)           |           |
+| contains | `string`                 | `False`  | Contains this string                              |           |
+| regex    | `string`                 | `False`  | Condition is matched on this regex with fullmatch |           |
+| if       | `Const[schema.path_ref]` | `False`  |
+
+Use this to string compare the operation name in GraphQL or the path in REST.
+
+### Example
+
+```yaml
+detect:
+  - if: schema.path_ref
+    contains: /admin/secrets
+```
+
+| |
+
+## <a id="SchemaUrlDetector"></a>SchemaUrlDetector
+
+| Property | Type                | Required | Description                                       | Reference |
+| -------- | ------------------- | -------- | ------------------------------------------------- | --------- |
+| is       | `string`            | `False`  | Condition is this exact string                    |           |
+| is_not   | `string`            | `False`  | Condition is not this exact string                |           |
+| in       | `string`            | `False`  | Condition is in this list (exact match)           |           |
+| contains | `string`            | `False`  | Contains this string                              |           |
+| regex    | `string`            | `False`  | Condition is matched on this regex with fullmatch |           |
+| if       | `Const[schema.url]` | `False`  |
+
+Use this to string compare the URL of the request.
+
+### Example
+
+```yaml
+detect:
+  - if: schema.url
+    regex: .*(internal|private).*
+```
+
+| |
+
+## <a id="SchemaUrlMutator"></a>SchemaUrlMutator
+
+| Property      | Type                | Required | Description                                    | Reference                     |
+| ------------- | ------------------- | -------- | ---------------------------------------------- | ----------------------------- |
+| value         | `string`            | `False`  | The value to set.                              |                               |
+| values        | `string`            | `False`  | The values to set, generates multiple queries. |                               |
+| regex_replace | `RegexReplace`      | `False`  | Regex replace pattern.                         | [RegexReplace](#RegexReplace) |
+| key           | `Const[schema.url]` | `False`  |
+
+You can use this mutator to change the URL of the request before resending it.
+
+### Example
+
+```yaml
+transform:
+  trigger:
+    - if: schema.url
+      is: &#39;/api/v1/tested/route&#39;
+  mutate:
+    - key: schema.url
+      mutate:
+        value: &#39;/api/v2/&#39;
+```
+
+         |  |
+
+## <a id="StringMatcher"></a>StringMatcher
+
+| Property | Type     | Required | Description                                       | Reference |
+| -------- | -------- | -------- | ------------------------------------------------- | --------- |
+| is       | `string` | `False`  | Condition is this exact string                    |           |
+| is_not   | `string` | `False`  | Condition is not this exact string                |           |
+| in       | `string` | `False`  | Condition is in this list (exact match)           |           |
+| contains | `string` | `False`  | Contains this string                              |           |
+| regex    | `string` | `False`  | Condition is matched on this regex with fullmatch |           |
+
+# Enums
+
+## <a id="CRUD"></a>CRUD
+
+- `CREATE`
+
+- `READ`
+
+- `UPDATE`
+
+- `DELETE`
+
+## <a id="HTTP_METHOD"></a>HTTP_METHOD
+
+- `GET`
+
+- `POST`
+
+- `PUT`
+
+- `DELETE`
+
+- `HEAD`
+
+- `PATCH`
+
+- `OPTIONS`
+
+- `TRACE`
+
+- `CONNECT`
+
+## <a id="OBJECT_TYPE"></a>OBJECT_TYPE
+
+- `abbysale`
+
+- `abstract`
+
+- `abuseipdb`
+
+- `accuweather`
+
+- `adafruit_api_key`
+
+- `adobe_client_id`
+
+- `adobe_client_secret`
+
+- `adzuna_private`
+
+- `adzuna_public`
+
+- `aeroworkflow_client`
+
+- `aeroworkflow_private`
+
+- `age_secret_key`
+
+- `agora`
+
+- `airbrakeproject_private_key`
+
+- `airbrakeproject_pub_key`
+
+- `airbrakeuserkey`
+
+- `airship_private`
+
+- `airtable_api_key`
+
+- `airvisual`
+
+- `alconost`
+
+- `alegra`
+
+- `aletheiaapi`
+
+- `algolia_api_key`
+
+- `algoliaadminkey`
+
+- `alibaba_access_key_id`
+
+- `alibaba_secret_key`
+
+- `alienvault`
+
+- `allsports`
+
+- `amadeus`
+
+- `ambee`
+
+- `amount`
+
+- `amplitudeapikey`
+
+- `anypoint`
+
+- `apacta`
+
+- `api2cart`
+
+- `apideck_secret`
+
+- `apideck_user`
+
+- `apiflash`
+
+- `apifonica`
+
+- `apify`
+
+- `apimatic`
+
+- `apiscience`
+
+- `apollo`
+
+- `appcues`
+
+- `appfollow`
+
+- `application`
+
+- `appsynergy`
+
+- `apptivo`
+
+- `area_code`
+
+- `artifactory_secret`
+
+- `artsy`
+
+- `asana_client_id`
+
+- `asana_client_secret`
+
+- `asanaoauth`
+
+- `asanapersonalaccesstoken`
+
+- `assemblyai`
+
+- `atlassian_api_token`
+
+- `audd`
+
+- `auth0managementapitoken`
+
+- `authentication`
+
+- `author`
+
+- `authorization_code`
+
+- `authress_service_client_access_key`
+
+- `autodesk`
+
+- `autoklose`
+
+- `autopilot`
+
+- `avazapersonalaccesstoken`
+
+- `aviationstack`
+
+- `aws_access_token`
+
+- `aws_client_id`
+
+- `aws_mws_id`
+
+- `aws_secret_key`
+
+- `axonaut`
+
+- `aylien`
+
+- `ayrshare`
+
+- `bank`
+
+- `bank_account`
+
+- `bank_card`
+
+- `bannerbear`
+
+- `baremetrics`
+
+- `base64`
+
+- `baseapiio`
+
+- `bcrypt`
+
+- `beamer_api_token`
+
+- `beebole`
+
+- `besttime`
+
+- `billomat`
+
+- `bitbar`
+
+- `bitbucket_client_id`
+
+- `bitbucket_client_secret`
+
+- `bitcoin`
+
+- `bitcoinaverage`
+
+- `bitfinex`
+
+- `bitlyaccesstoken`
+
+- `bitmex`
+
+- `bittrex_access_key`
+
+- `bittrex_secret_key`
+
+- `blazemeter`
+
+- `blitapp`
+
+- `blogger`
+
+- `body_type`
+
+- `bombbomb`
+
+- `boolean`
+
+- `boolean_wannabe`
+
+- `boostnote`
+
+- `borgbase`
+
+- `brandfetch`
+
+- `browshot`
+
+- `buddyns`
+
+- `bugherd`
+
+- `bugsnag`
+
+- `building`
+
+- `buildkite`
+
+- `bulbul`
+
+- `business_type`
+
+- `buttercms`
+
+- `caflou`
+
+- `calendarific`
+
+- `calendlyapikey`
+
+- `calorieninja`
+
+- `campayn`
+
+- `cannyio`
+
+- `capsulecrm`
+
+- `captaindata`
+
+- `carboninterface`
+
+- `card_type`
+
+- `carrier`
+
+- `cashboard`
+
+- `caspio`
+
+- `category`
+
+- `censys`
+
+- `centralstationcrm`
+
+- `cexio`
+
+- `chatfule`
+
+- `checio`
+
+- `checklyhq`
+
+- `checkvist`
+
+- `cicero`
+
+- `circleci`
+
+- `clearbit`
+
+- `clickhelp`
+
+- `cliengo`
+
+- `clinchpad`
+
+- `clockify`
+
+- `clockworksms`
+
+- `clojars_api_token`
+
+- `closecrm`
+
+- `cloudelements`
+
+- `cloudflareapitoken`
+
+- `cloudflarecakey`
+
+- `cloudflareglobalapikey`
+
+- `cloudimage`
+
+- `cloudmersive`
+
+- `cloudplan`
+
+- `cloverly`
+
+- `cloze`
+
+- `clustdoc`
+
+- `codacy`
+
+- `codecov_access_token`
+
+- `coinapi`
+
+- `coinbase_access_token`
+
+- `coinlayer`
+
+- `coinlib`
+
+- `column`
+
+- `command`
+
+- `commercejs`
+
+- `commit_hash`
+
+- `commodities`
+
+- `companyhub`
+
+- `confirmation_code`
+
+- `confluent_access_token`
+
+- `confluent_secret_key`
+
+- `content_type`
+
+- `contentful_delivery_api_token`
+
+- `contentfulpersonalaccesstoken`
+
+- `convertkit`
+
+- `convier`
+
+- `country`
+
+- `country_code`
+
+- `countrylayer`
+
+- `county`
+
+- `coupon_code`
+
+- `courier`
+
+- `coveralls`
+
+- `crowdin`
+
+- `cryptocompare`
+
+- `cuid`
+
+- `currency_code`
+
+- `currencycloud`
+
+- `currencyfreaks`
+
+- `currencylayer`
+
+- `currencyscoop`
+
+- `currentsapi`
+
+- `customerguru`
+
+- `customerio`
+
+- `cvv`
+
+- `d7network`
+
+- `dailyco`
+
+- `dandelion`
+
+- `dash`
+
+- `databricks_api_token`
+
+- `datadog_access_token`
+
+- `datadogtoken`
+
+- `datafire`
+
+- `datagov`
+
+- `date`
+
+- `datetime`
+
+- `debounce`
+
+- `deepai`
+
+- `deepgram`
+
+- `defined_networking_api_token`
+
+- `delighted`
+
+- `delivery_method`
+
+- `department_name`
+
+- `detectlanguage`
+
+- `device_name`
+
+- `device_type`
+
+- `dfuse`
+
+- `did`
+
+- `diffbot`
+
+- `digitalocean_access_token`
+
+- `digitalocean_pat`
+
+- `digitalocean_refresh_token`
+
+- `digitaloceantoken`
+
+- `directory`
+
+- `discord_api_token`
+
+- `discord_bot_token`
+
+- `discord_client_id`
+
+- `discord_client_secret`
+
+- `discord_webhook_url`
+
+- `discordbottoken`
+
+- `discordwebhook`
+
+- `discount`
+
+- `ditto`
+
+- `dnscheck`
+
+- `document_type`
+
+- `documo`
+
+- `domain`
+
+- `doppler_api_token`
+
+- `dotmailer`
+
+- `dovico`
+
+- `driving_license`
+
+- `dronahq`
+
+- `droneci_access_token`
+
+- `dropbox_api_token`
+
+- `dropbox_long_lived_api_token`
+
+- `dropbox_short_lived_api_token`
+
+- `duffel_api_token`
+
+- `dwolla`
+
+- `dynalist`
+
+- `dynatrace_api_token`
+
+- `dyspatch`
+
+- `e_commerce_indicator`
+
+- `eagleeyenetworks`
+
+- `easyinsight`
+
+- `easypost_api_token`
+
+- `easypost_test_api_token`
+
+- `edamam`
+
+- `edenai`
+
+- `eightxeight`
+
+- `elasticemail`
+
+- `email`
+
+- `enablex`
+
+- `enigma`
+
+- `environment`
+
+- `ethereum`
+
+- `ethplorer`
+
+- `etsy_access_token`
+
+- `etsyapikey`
+
+- `event_type`
+
+- `everhour`
+
+- `exchangerateapi`
+
+- `exchangeratesapi`
+
+- `facebook`
+
+- `facebookoauth`
+
+- `faceplusplus`
+
+- `fakejson`
+
+- `fastforex`
+
+- `fastly_api_token`
+
+- `fastlypersonaltoken`
+
+- `fee`
+
+- `feedier`
+
+- `fetchrss`
+
+- `figmapersonalaccesstoken`
+
+- `file`
+
+- `fileio`
+
+- `finage`
+
+- `financialmodelingprep`
+
+- `findl`
+
+- `finicity_api_token`
+
+- `finicity_client_secret`
+
+- `finnhub_access_token`
+
+- `fixerio`
+
+- `flatio`
+
+- `fleetbase`
+
+- `flickr_access_token`
+
+- `flightapi`
+
+- `flightstats`
+
+- `float`
+
+- `flowflu`
+
+- `flutterwave_encryption_key`
+
+- `flutterwave_public_key`
+
+- `flutterwave_secret_key`
+
+- `fmfw`
+
+- `form`
+
+- `formbucket`
+
+- `formio`
+
+- `foursquare`
+
+- `frameio_api_token`
+
+- `freshbooks_access_token`
+
+- `freshdesk`
+
+- `front`
+
+- `fulcrum`
+
+- `fullstory`
+
+- `func`
+
+- `fusebill`
+
+- `fxmarket`
+
+- `gcp_api_key`
+
+- `geckoboard`
+
+- `gender`
+
+- `generic_api_key`
+
+- `gengo`
+
+- `geoapify`
+
+- `geocode`
+
+- `geocodify`
+
+- `geocodio`
+
+- `geoipifi`
+
+- `getemail`
+
+- `getemails`
+
+- `getgeoapi`
+
+- `getgist`
+
+- `getsandbox`
+
+- `github_app_token`
+
+- `github_fine_grained_pat`
+
+- `github_oauth`
+
+- `github_pat`
+
+- `github_refresh_token`
+
+- `githubapp`
+
+- `gitlab_pat`
+
+- `gitlab_ptt`
+
+- `gitlab_rrt`
+
+- `gitlabv2`
+
+- `gitter_access_token`
+
+- `glassnode`
+
+- `gocanvas`
+
+- `gocardless_api_token`
+
+- `goodday`
+
+- `google_api_public_key`
+
+- `grafana_api_key`
+
+- `grafana_cloud_api_token`
+
+- `grafana_service_account_token`
+
+- `graphcms`
+
+- `graphhopper`
+
+- `groovehq`
+
+- `guardianapi`
+
+- `guru`
+
+- `gyazo`
+
+- `happi`
+
+- `happyscribe`
+
+- `harvest`
+
+- `hash`
+
+- `hashicorp_tf_api_token`
+
+- `hashicorp_tf_password`
+
+- `hellosign`
+
+- `helpcrunch`
+
+- `helpscout`
+
+- `hereapi`
+
+- `heroku_api_key`
+
+- `hex_color_code`
+
+- `hexadecimal`
+
+- `hive`
+
+- `hiveage`
+
+- `holidayapi`
+
+- `host`
+
+- `hsl`
+
+- `hsla`
+
+- `html2pdf`
+
+- `html_body`
+
+- `http_method`
+
+- `hubspot_api_key`
+
+- `hubspotapikey`
+
+- `huggingface_access_token`
+
+- `huggingface_organization_api_token`
+
+- `humanity`
+
+- `hunter`
+
+- `hypertrack`
+
+- `ibmclouduserkey`
+
+- `iconfinder`
+
+- `id`
+
+- `identity_number`
+
+- `iexcloud`
+
+- `imagekit`
+
+- `imagga`
+
+- `impala`
+
+- `infracost_api_token`
+
+- `injection`
+
+- `insightly`
+
+- `instagram_oauth`
+
+- `integer`
+
+- `integer32`
+
+- `integer64`
+
+- `integromat`
+
+- `intercom_api_key`
+
+- `intrinio`
+
+- `invoiceocean`
+
+- `ipapi`
+
+- `ipc_patent`
+
+- `ipgeolocation`
+
+- `ipify`
+
+- `ipinfodb`
+
+- `ipquality`
+
+- `ipstack_token`
+
+- `ipv4`
+
+- `ipv6`
+
+- `isbn`
+
+- `item`
+
+- `jdbc`
+
+- `jfrog_api_key`
+
+- `jfrog_identity_token`
+
+- `jiratoken`
+
+- `join`
+
+- `jotform`
+
+- `json`
+
+- `jumpcloud`
+
+- `juro`
+
+- `jwt`
+
+- `jwt_base64`
+
+- `kanban`
+
+- `karmacrm`
+
+- `keenio`
+
+- `key_kms`
+
+- `kickbox`
+
+- `klipfolio`
+
+- `kontent`
+
+- `kraken_access_token`
+
+- `kucoin_access_token`
+
+- `kucoin_secret_key`
+
+- `kylas`
+
+- `language_iso_639_1`
+
+- `language_iso_639_2`
+
+- `languagelayer`
+
+- `lastfm`
+
+- `latitude`
+
+- `launchdarkly_access_token`
+
+- `leadfeeder`
+
+- `legal_name`
+
+- `lendflow`
+
+- `lessannoyingcrm`
+
+- `lexigram`
+
+- `limit`
+
+- `linear_api_key`
+
+- `linear_client_secret`
+
+- `linearapi`
+
+- `linemessaging`
+
+- `linenotify`
+
+- `linkedin_client_id`
+
+- `linkedin_client_secret`
+
+- `liveagent`
+
+- `livestorm`
+
+- `lob_api_key`
+
+- `lob_pub_api_key`
+
+- `locale`
+
+- `location`
+
+- `locationiq`
+
+- `loginradius`
+
+- `lokalisetoken`
+
+- `long`
+
+- `longitude`
+
+- `loyverse`
+
+- `luno`
+
+- `m3o`
+
+- `mac`
+
+- `macaddress`
+
+- `madkudu`
+
+- `magnetic`
+
+- `mailboxlayer`
+
+- `mailchimp_api_key`
+
+- `mailerlite`
+
+- `mailgun_private_api_token`
+
+- `mailgun_pub_key`
+
+- `mailgun_signing_key`
+
+- `mailjetbasicauth`
+
+- `mailjetsms`
+
+- `mailmodo`
+
+- `mailsac`
+
+- `mandrill`
+
+- `manifest`
+
+- `mapbox_api_token`
+
+- `mapquest`
+
+- `marketstack`
+
+- `mask`
+
+- `mattermost_access_token`
+
+- `mattermostpersonaltoken`
+
+- `mavenlink`
+
+- `maxmindlicense`
+
+- `md5`
+
+- `meaningcloud`
+
+- `mediastack`
+
+- `meistertask`
+
+- `merchant`
+
+- `mesibo`
+
+- `messagebird_api_token`
+
+- `messagebird_client_id`
+
+- `metaapi`
+
+- `metrilo`
+
+- `microsoft_teams_webhook`
+
+- `microsoftteamswebhook`
+
+- `midise`
+
+- `mime_type`
+
+- `mindmeister`
+
+- `mite`
+
+- `mixmax`
+
+- `mixpanel`
+
+- `moderation`
+
+- `monday`
+
+- `monero`
+
+- `mongo_db_object_id`
+
+- `month`
+
+- `moonclerck`
+
+- `moonclerk`
+
+- `moosend`
+
+- `mrticktock`
+
+- `myfreshworks`
+
+- `myintervals`
+
+- `nasdaqdatalink`
+
+- `navigation`
+
+- `nethunt`
+
+- `netlify_access_token`
+
+- `neutrinoapi`
+
+- `new_relic_browser_api_token`
+
+- `new_relic_user_api_id`
+
+- `new_relic_user_api_key`
+
+- `newrelicpersonalapikey`
+
+- `newsapi`
+
+- `newscatcher`
+
+- `nexmoapikey`
+
+- `nftport`
+
+- `nicereply`
+
+- `nimble`
+
+- `nitro`
+
+- `noticeable`
+
+- `notion`
+
+- `nozbeteams`
+
+- `npm_access_token`
+
+- `numverify`
+
+- `nutritionix`
+
+- `nylas`
+
+- `nytimes_access_token`
+
+- `oanda`
+
+- `offset`
+
+- `okta_access_token`
+
+- `omnisend`
+
+- `onedesk`
+
+- `onelogin`
+
+- `onepagecrm`
+
+- `onwaterio`
+
+- `oopspam`
+
+- `openai_api_key`
+
+- `opencagedata`
+
+- `opengraphr`
+
+- `openuv`
+
+- `openweather`
+
+- `optimizely`
+
+- `organization`
+
+- `owlbot`
+
+- `pagerdutyapikey`
+
+- `pandadoc`
+
+- `pandascore`
+
+- `paralleldots`
+
+- `partnerstack`
+
+- `passbase`
+
+- `passport`
+
+- `password`
+
+- `pastebin`
+
+- `paymoapp`
+
+- `paymongo`
+
+- `paypaloauth`
+
+- `paystack`
+
+- `pdflayer`
+
+- `pdfshift`
+
+- `peopledatalabs`
+
+- `pepipost`
+
+- `permission`
+
+- `phone`
+
+- `pin_code`
+
+- `pipedream`
+
+- `pipedrive`
+
+- `pivotaltracker`
+
+- `pixabay`
+
+- `plaid_api_token`
+
+- `plaid_client_id`
+
+- `plaid_secret_key`
+
+- `plaidkey`
+
+- `plan`
+
+- `planetscale_api_token`
+
+- `planetscale_oauth_token`
+
+- `planetscale_password`
+
+- `planviewleankit`
+
+- `planyo`
+
+- `plivo`
+
+- `policy`
+
+- `poloniex`
+
+- `polygon`
+
+- `port`
+
+- `position`
+
+- `positionstack`
+
+- `postageapp`
+
+- `posthog`
+
+- `postman_api_token`
+
+- `postmark`
+
+- `powrbot`
+
+- `prefect_api_token`
+
+- `price`
+
+- `private_key`
+
+- `privatekey`
+
+- `prospectcrm`
+
+- `prospectio`
+
+- `protocol`
+
+- `protocolsio`
+
+- `proxycrawl`
+
+- `pubnubpublishkey`
+
+- `pulumi_api_token`
+
+- `purestake`
+
+- `pushbulletapikey`
+
+- `pusherchannelkey`
+
+- `pypi_upload_token`
+
+- `qualaroo`
+
+- `qubole`
+
+- `quickmetrics`
+
+- `rapidapi_access_token`
+
+- `raven`
+
+- `rawg`
+
+- `razorpay`
+
+- `readme_api_token`
+
+- `reallysimplesystems`
+
+- `reason_code`
+
+- `rebrandly`
+
+- `reference`
+
+- `refiner`
+
+- `region`
+
+- `repairshopr`
+
+- `restpack`
+
+- `restpackhtmltopdfapi`
+
+- `restpackscreenshotapi`
+
+- `return_type`
+
+- `rev`
+
+- `revampcrm`
+
+- `rgb`
+
+- `rgba`
+
+- `ringcentral`
+
+- `ritekit`
+
+- `roaring`
+
+- `rocketreach`
+
+- `role`
+
+- `roninapp`
+
+- `room`
+
+- `route4me`
+
+- `rownd`
+
+- `rubygems_api_token`
+
+- `runrunit`
+
+- `salesblink`
+
+- `salescookie`
+
+- `salesflare`
+
+- `satismeterprojectkey`
+
+- `satismeterwritekey`
+
+- `saucelabs`
+
+- `scalewaykey`
+
+- `scalingo_api_token`
+
+- `scrapeowl`
+
+- `scraperapi`
+
+- `scraperbox`
+
+- `scrapersite`
+
+- `scrapestack`
+
+- `scrapfly`
+
+- `scrapingant`
+
+- `scrapingbee`
+
+- `screenshotapi`
+
+- `screenshotlayer`
+
+- `search`
+
+- `secret`
+
+- `securitytrails`
+
+- `segmentapikey`
+
+- `selectpdf`
+
+- `semaphore`
+
+- `sendbird_access_id`
+
+- `sendbird_access_token`
+
+- `sendbirdorganizationapi`
+
+- `sendgrid_api_token`
+
+- `sendinblue_api_token`
+
+- `sendinbluev2`
+
+- `sentiment`
+
+- `sentry_access_token`
+
+- `sentrytoken`
+
+- `serial_number`
+
+- `serphouse`
+
+- `serpstack`
+
+- `sha1`
+
+- `sha256`
+
+- `sheety`
+
+- `sherpadesk`
+
+- `shipday`
+
+- `shipping_method`
+
+- `shippo_api_token`
+
+- `shodankey`
+
+- `shopify_access_token`
+
+- `shopify_custom_access_token`
+
+- `shopify_private_app_access_token`
+
+- `shopify_shared_secret`
+
+- `shortcut`
+
+- `shotstack`
+
+- `shutterstock`
+
+- `shutterstockoauth`
+
+- `sidekiq_secret`
+
+- `sidekiq_sensitive_url`
+
+- `signalwire`
+
+- `signaturit`
+
+- `signupgenius`
+
+- `sigopt`
+
+- `simplesat`
+
+- `simplynoted`
+
+- `simvoly`
+
+- `sinchmessage`
+
+- `sirv`
+
+- `siteleaf`
+
+- `skrappio`
+
+- `skybiometry`
+
+- `slack_app_token`
+
+- `slack_bot_token`
+
+- `slack_config_access_token`
+
+- `slack_config_refresh_token`
+
+- `slack_legacy_bot_token`
+
+- `slack_legacy_token`
+
+- `slack_legacy_workspace_token`
+
+- `slack_user_token`
+
+- `slack_webhook_url`
+
+- `slackwebhook`
+
+- `slug`
+
+- `smartsheets`
+
+- `smartystreets`
+
+- `smooch`
+
+- `snipcart`
+
+- `snyk_api_token`
+
+- `snykkey`
+
+- `social_security_number`
+
+- `software_component`
+
+- `sparkpost`
+
+- `splunkobservabilitytoken`
+
+- `spoonacular`
+
+- `sportsmonk`
+
+- `spotifykey`
+
+- `square_access_token`
+
+- `squareapp`
+
+- `squarespace_access_token`
+
+- `squareup`
+
+- `ssh_url`
+
+- `sslmate`
+
+- `status`
+
+- `status_code`
+
+- `status_message`
+
+- `stitchdata`
+
+- `stockdata`
+
+- `storecove`
+
+- `stormglass`
+
+- `storyblok`
+
+- `storychief`
+
+- `strava`
+
+- `streak`
+
+- `street_address`
+
+- `string`
+
+- `stripe_access_token`
+
+- `stripe_public_access_token`
+
+- `stytch`
+
+- `sugester`
+
+- `sumologic_access_id`
+
+- `sumologic_access_token`
+
+- `sumologickey`
+
+- `supernotesapi`
+
+- `surveyanyplace`
+
+- `surveybot`
+
+- `surveysparrow`
+
+- `survicate`
+
+- `swell`
+
+- `swiftype`
+
+- `tallyfy`
+
+- `tatumio`
+
+- `taxjar`
+
+- `teamgate`
+
+- `teamworkcrm`
+
+- `teamworkdesk`
+
+- `teamworkspaces`
+
+- `technicalanalysisapi`
+
+- `telegram_bot_api_token`
+
+- `telegrambottoken`
+
+- `telnyx`
+
+- `terraformcloudpersonaltoken`
+
+- `text2data`
+
+- `textmagic`
+
+- `theoddsapi`
+
+- `thinkific`
+
+- `thousandeyes`
+
+- `ticketmaster`
+
+- `tiingo`
+
+- `time`
+
+- `timestamp`
+
+- `timezoneapi`
+
+- `title`
+
+- `tmetric`
+
+- `todoist`
+
+- `toggltrack`
+
+- `tomorrowio`
+
+- `tomtom`
+
+- `tradier`
+
+- `travelpayouts`
+
+- `travisci_access_token`
+
+- `trelloapikey`
+
+- `tru`
+
+- `twelvedata`
+
+- `twilio_api_key`
+
+- `twitch_api_token`
+
+- `twitter_access_secret`
+
+- `twitter_access_token`
+
+- `twitter_api_key`
+
+- `twitter_api_secret`
+
+- `twitter_bearer_token`
+
+- `tyntec`
+
+- `typeform_api_token`
+
+- `ubidots`
+
+- `unifyid`
+
+- `unplugg`
+
+- `unsanitized_payload`
+
+- `unsplash`
+
+- `upcdatabase`
+
+- `uplead`
+
+- `uploadcare`
+
+- `upwave`
+
+- `uri`
+
+- `url`
+
+- `urlscan`
+
+- `us_bank_account_number`
+
+- `us_bank_routing_number`
+
+- `us_zip_code`
+
+- `user_agent`
+
+- `username`
+
+- `userstack`
+
+- `uuid`
+
+- `vatlayer`
+
+- `vault_batch_token`
+
+- `vault_service_token`
+
+- `vehicle_type`
+
+- `vercel`
+
+- `verifier`
+
+- `verimail`
+
+- `version`
+
+- `versioneye`
+
+- `view`
+
+- `viewneo`
+
+- `virustotal`
+
+- `visualcrossing`
+
+- `voicegain`
+
+- `vouchery`
+
+- `vpnapi`
+
+- `vultrapikey`
+
+- `vyte`
+
+- `walkscore`
+
+- `weatherbit`
+
+- `weatherstack`
+
+- `webex`
+
+- `webflow`
+
+- `webscraper`
+
+- `webscraping`
+
+- `website`
+
+- `wepay`
+
+- `whoxy`
+
+- `worksnaps`
+
+- `workstack`
+
+- `worldcoinindex`
+
+- `worldweather`
+
+- `wrike`
+
+- `yandex_access_token`
+
+- `yandex_api_key`
+
+- `yandex_aws_access_token`
+
+- `year`
+
+- `youneedabudget`
+
+- `yousign`
+
+- `youtubeapikey`
+
+- `zapierwebhook`
+
+- `zendesk_secret_key`
+
+- `zendeskapi`
+
+- `zenkitapi`
+
+- `zenscrape`
+
+- `zenserp`
+
+- `zeplin`
+
+- `zerobounce`
+
+- `zip_code`
+
+- `zipapi`
+
+- `zipbooks`
+
+- `zipcodeapi`
+
+- `zonkafeedback`
+
+## <a id="SCAN_TYPE"></a>SCAN_TYPE
+
+- `GRAPHQL`
+
+- `REST`
+
+## <a id="SEVERITY"></a>SEVERITY
+
+- `HIGH`
+
+- `MEDIUM`
+
+- `LOW`
+
+- `INFO`
