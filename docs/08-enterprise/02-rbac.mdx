@@ -2,6 +2,8 @@
 title: RBAC
 ---
 
+import Image from '@theme/IdealImage';
+
 # RBAC (Role-Based Access Control)
 
 Role-Based Access Control (RBAC) is a cornerstone of modern access management, ensuring that users have the exact permissions they need—no more, no less. Escape's RBAC features allow organizations to meticulously define roles and fine-grained permissions, ensuring robust security, streamlined operations, and maximized productivity.
@@ -10,42 +12,32 @@ Escape's RBAC is accessible under the "Organization" Settings, and at the "Appli
 
 ## Core Roles
 
-Escape defines several out-of-the-box roles that grant specific sets of permissions, catering to various organizational needs:
+Escape defines roles via a mapping between features and CRUD permissions for each features. The following are the core features that can be configured in Escape:
 
-- **Manage Roles**: Allows users to define, modify, or delete roles within the organization.
-- **Edit Organization**: Grants permission to modify organizational details and settings.
-- **Create Application**: Enables users to initiate new applications within the platform.
-- **Invite Members**: Entrusts users with the ability to bring new members into the organization.
-- **Manage Billing**: Grants access to financial and subscription-related settings and information.
-- **Delete Organization**: A high-level permission allowing users to delete the entire organization; typically reserved for top-level admins.
-- **Manage Integrations**: Enables users to add, modify, or remove third-party integrations and their settings.
+- **Applications**: Applications created from discovered endpoints in the inventory, with their scan configurations and scan results.
+- **Inventory**: The Escape inventory built from the discovered endpoints via the integrations and the crawling.
+- **Integrations**: All the integrations that are configured in Escape to discover and enrich your organizational context.
+    - [Integrations Docs](/integrations/) or [Jump to your integrations](https://app.escape.tech/integrations/)
+- **Reporting**: Your organizational dashboard to visualize the data from the inventory and the applications, your progress and security posture.
+- **Notifications**: Your configured notification workflows, and the history of the triggered notificat. 
+
+
+## RBAC Table
+
+| Feature         | Administrator                                                      | Editor | Viewer | None             |
+|-----------------|--------------------------------------------------------------------|--------|--------|------------------|
+| All Applications| Allow users to perform all application and scan operations         | Allow users to browse all scan results, start scans, update configurations | Allow users to browse all scan results | No access        |
+| Inventory       | Allow users to perform all inventory operations                    | Allow users to browse the inventory, update endpoints data, set labels | Allow users to browse the inventory and view endpoints data | No access        |
+| Integrations    | Allow users to perform all operations including create, read, update, delete | N/A      | N/A      | No access        |
+| Reporting       | Allow users to perform all operations including create, read, update, delete | N/A      | N/A      | No access        |
+| Notifications        | Allow users to perform all notification operations                     | Allow users to create, update and delete custom notification workflows | Allow users to view custom notification workflows | No access        |
+
+
 
 ## Fine-Grained Application Permissions
 
 Beyond the core roles, Escape provides the flexibility to define permissions at the granular application level. This ensures that users or business units can be restricted or permitted to specific applications, aligning with their job responsibilities and the principle of least privilege.
 
-### **Example**:
-A user in the 'Marketing' business unit may be granted read-only access to the 'Analytics App' but may not have any access to the 'Finance App'.
+You can simply configure the permissions for each application by selecting the role for each application.
 
-### Features:
-
-- **Individual Permissions**: Set permissions on a per-user basis for each application.
-
-:::success 📅 Coming soon:
-- **Group Permissions**: Define permissions for a group or business unit and assign users to these groups.
-- **Inheritance**: Easily copy permissions from one user or group to another, ensuring consistency and saving time.
-:::
-
-
-## Benefits of Escape's RBAC:
-
-1. **Security**: Minimize the risk of unauthorized access by ensuring users only have the permissions they need.
-2. **Efficiency**: Streamline user management by assigning roles that encapsulate sets of permissions.
-3. **Flexibility**: Easily adapt to organizational changes by adjusting roles and permissions as required.
-4. **Transparency**: Clearly understand who has access to what, helping in audits and reviews.
-
-## Wrapping Up
-
-With Escape's RBAC, organizations can maintain an optimal balance between operational efficiency and security. The ability to fine-tune access ensures that resources are safeguarded, regulatory compliance is met, and teams can work harmoniously with the exact tools and data they need.
-
-For more details or to understand best practices in configuring RBAC in Escape, don't hesitate to contact our support team.
+<Image img={require('./img/rbac-application.png')} alt="A dropdown selector for "/>
