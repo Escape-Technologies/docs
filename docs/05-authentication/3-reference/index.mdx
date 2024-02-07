@@ -63,7 +63,7 @@ description: All objects available
 | password | `string` | `False` | The password to attach to the HTTP requests sent for this user. See [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#access_using_credentials_in_the_url) |  |
 | headers | `HTTPHeader` | `False` | A list of headers to attach to every HTTP requests sent for this user | [HTTPHeader](#HTTPHeader) |
 | cookies | `HTTPCookie` | `False` | A list of cookies to attach to every HTTP requests sent for this user | [HTTPCookie](#HTTPCookie) |
-| query_parameters | `HTTPQueryParameter` | `False` | A list of query parameters to attach to every HTTP requests sent for this user | [HTTPQueryParameter](#HTTPQueryParameter) |
+| queryParameters | `HTTPQueryParameter` | `False` | A list of query parameters to attach to every HTTP requests sent for this user | [HTTPQueryParameter](#HTTPQueryParameter) |
 | body | `Any` | `False` | A body to merge with the bodies of every HTTP requests sent for this user |  |
 
 
@@ -167,7 +167,7 @@ description: All objects available
 | method | `HTTPMethod` | `True` | The HTTP method to use | [HTTPMethod](#HTTPMethod) |
 | headers | `HTTPHeader` | `True` | The list of headers to attach to the request. Headers are merged with the user credentials headers. It is possible to attach mutliple values to a header. | [HTTPHeader](#HTTPHeader) |
 | cookies | `HTTPCookie` | `True` | The list of cookies to attach to the request. Cookies are merged with the user credentials cookies. It is possible to attach mutliple values to a cookie. Cookie values are url-encoded before being sent. | [HTTPCookie](#HTTPCookie) |
-| query_parameters | `HTTPQueryParameter` | `True` | The list of query parameters to attach to the request. Query parameters are merged with the user credentials query parameters. It is possible to attach mutliple values to a query parameter. Query parameter values are url-encoded before being sent. | [HTTPQueryParameter](#HTTPQueryParameter) |
+| queryParameters | `HTTPQueryParameter` | `True` | The list of query parameters to attach to the request. Query parameters are merged with the user credentials query parameters. It is possible to attach mutliple values to a query parameter. Query parameter values are url-encoded before being sent. | [HTTPQueryParameter](#HTTPQueryParameter) |
 | body | `Any` | `False` | The body of the request. It can be a string or a JSON object. It is merged with the user credentials body if provided. If bodies of the HTTP request and of the user credentials are both JSON objects, they are merged. If the two bodies are strings, they are concatenated. If the two bodies are of different types, the body of the user credentials is used instead of this value. |  |
 | proxy | `string` | `False` | An eventual proxy used for this request |  |
 
@@ -201,7 +201,7 @@ description: All objects available
 | headers | `Dict[string, string]` | `False` | A dict representing the headers to attach to every HTTP requests sent for this user |  |
 | cookies | `Dict[string, string]` | `False` | A dict representing the cookies to attach to every HTTP requests sent for this user |  |
 | password | `string` | `False` | The password to attach to the HTTP requests sent for this user. See [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#access_using_credentials_in_the_url) |  |
-| query_parameters | `Dict[string, string]` | `False` | A dict of query parameters to attach to every HTTP requests sent for this user |  |
+| queryParameters | `Dict[string, string]` | `False` | A dict of query parameters to attach to every HTTP requests sent for this user |  |
 | body | `Any` | `False` | A body to merge with the bodies of every HTTP requests sent for this user |  |
 
 
@@ -270,7 +270,7 @@ description: All objects available
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | name | `string` | `True` | The name of the procedure. It must be unique and is used to reference the procedure in users. |  |
-| operations | `DigestRunnerConfiguration | HTTPRunnerConfiguration | SeleniumRunnerConfiguration` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
+| operations | `HTTPRunnerConfiguration | SeleniumRunnerConfiguration | DigestRunnerConfiguration` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
 | injections | `TokenInjection` | `True` | The list of injections to perform at the end of the procedure. Injections are used to inject the variables extracted from the procedure into the user authentication. | [TokenInjection](#TokenInjection) |
 
 
@@ -362,7 +362,7 @@ description: All objects available
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | procedure | `string` | `False` | An optional custom procedure to use to refresh the authentication of the user. Defaults to the user procedure if not provided. This name MUST match the `name` field of a procedure in the `procedures` list in the multiauth configuration. |  |
-| session_seconds | `integer` | `False` | Number of seconds to wait before refreshing the authentication. If not provided, multiauth willtry to infer the session duration from the returned variables |  |
+| sessionSeconds | `integer` | `False` | Number of seconds to wait before refreshing the authentication. If not provided, multiauth willtry to infer the session duration from the returned variables |  |
 | keep | `boolean` | `True` | If true, multiauth will keep the current tokens and use a merge of the refreshed authenticationand the current one. |  |
 | credentials | `Credentials` | `False` | Credentials to use to refresh the authentication. If not provided, the user credentials will be used. | [Credentials](#Credentials) |
 | variables | `AuthenticationVariable` | `False` | List of variables that will be injected at the beginning of the user&#39;srefresh procedure. If not provided, the user&#39;s variables will be used instead. | [AuthenticationVariable](#AuthenticationVariable) |
