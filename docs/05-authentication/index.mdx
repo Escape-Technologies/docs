@@ -38,3 +38,19 @@ Escape offers two dynamic methods for managing authentication:
 - **Standard Workflows**: For common authentication methods, Escape provides Standard Authentication Workflow Presets, including Basic, REST, Digest, GraphQL, OAuth, AWS Cognito, Webdriver, etc. Detailed instructions for these presets are available in the "Preset" Section.
 - **Advanced Workflows**: For more complex needs, users can combine multiple workflows, like Webdriver and HTTP Requests, to create advanced authentication procedures. This offers unmatched flexibility and is detailed in the "Advanced" section.
 
+# Validating your authentication
+
+By default, Escape will validate the authentication process by injecting the credentials generated into a request and checking the response.
+If you want to skip this step, you can add the `validation: false` parameter to the authentication configuration.
+
+Here is an simple example of a configuration without validation:
+
+```yaml
+presets:
+  - type: headers
+    users:
+      - username: user1
+        headers:
+          Authorization: Bearer user1Token
+validation: false
+```
