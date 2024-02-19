@@ -1,0 +1,181 @@
+---
+title: GraphQL Response Format
+---
+
+# GraphQL Response Format
+
+## Description
+
+This test checks that your GraphQL response format matches the offciel GraphQL specification.
+
+## Remediation
+
+Make sure that the response format matches the official GraphQL specification.
+
+
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure proper validation and sanitization of user-supplied input to prevent injection attacks. Utilize Apollo's built-in features for input types and validation rules to define allowable structures and values for GraphQL queries and mutations.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Ensure that the GraphQL server implementation properly formats the response according to the GraphQL specification, including providing data in the 'data' field and errors in the 'errors' field. This helps clients to correctly parse and handle the response.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Ensure that AWS AppSync responses adhere to a strict schema and do not expose sensitive data. Implement field-level authorization checks and use resolver mapping templates to sanitize and validate the output.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Ensure that the GraphQL server implements appropriate response formatting to prevent data leakage or misinterpretation. This can include using a well-defined schema, sanitizing error messages, and controlling the depth and complexity of queries to avoid performance issues.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+Ensure proper validation and sanitization of user-supplied input in GraphQL queries. Use the built-in mechanisms provided by GraphQL-Ruby, such as argument validation using `argument :name, Type, required: true, validate: method(:validation_method)` to define custom validation logic. Additionally, consider implementing field-level permissions to restrict access to sensitive data and avoid exposing unnecessary information in the schema.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Ensure proper validation and sanitization of user inputs to prevent injection attacks. Use Hasura's allow-list feature to restrict the set of valid queries that can be run on your GraphQL endpoint.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp_net</summary>
+
+Ensure that your ASP.NET application properly validates and encodes user input to prevent common vulnerabilities such as SQL injection, Cross-Site Scripting (XSS), and Cross-Site Request Forgery (CSRF). Utilize built-in security features like parameterized queries, AntiForgeryToken, and the built-in encoder for HTML output.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+Ensure that your Ruby on Rails application handles GraphQL responses according to the official specification by using the `graphql-ruby` gem, which provides a query execution framework that integrates seamlessly with Rails. Validate the response structure in your tests and handle errors appropriately to conform with the GraphQL standard.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that your Next.js application properly validates and sanitizes user input to prevent security vulnerabilities such as XSS attacks. Implement server-side rendering or static generation for pages where possible to reduce client-side processing and potential exposure to client-side scripting attacks.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Ensure that your Laravel application uses the latest stable version of the GraphQL library and adheres to the official GraphQL specification for response formats. Validate responses during development with tools like GraphiQL or GraphQL Playground to catch any discrepancies.
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+Ensure that your Express.js application properly validates and sanitizes user input to prevent injection attacks, and consistently handle errors to avoid leaking sensitive information.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Ensure Django views return properly formatted JSON responses adhering to the GraphQL specification. Utilize Django's JsonResponse or Graphene-Django for GraphQL integration.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Ensure that your Symfony application's GraphQL endpoint properly constructs responses according to the official GraphQL specification. Utilize the webonyx/graphql-php library for accurate response formatting and adhere to the defined schema. Regularly validate response structures during development and testing phases.
+
+</details>
+
+<details>
+    <summary>Spring_boot</summary>
+
+Ensure that your Spring Boot application's GraphQL responses adhere to the official GraphQL specification by using the appropriate data fetching and error handling mechanisms provided by the GraphQL Java tools. Regularly review the GraphQL Java documentation and update your codebase to comply with the latest standards and practices.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Ensure Flask responses adhere to the official GraphQL specification by using a dedicated library such as Graphene, which provides tools to construct your schema and resolvers according to GraphQL principles. Validate all responses against the schema before sending them to the client.
+
+</details>
+
+## Configuration
+
+> Identifier: `schema/graphql_response_format`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "schema/graphql_response_format": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+
+### Compliance
+
+- OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
+- pci: **6.5.6**
+- gdpr: **Article 5**
+- soc2: **CC2.1**
+- psd2: **Article 94**
+- iso27001: **A.12.1**
+- nist: **SP800-95**
+- fedramp: **SI-10**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+
+## References
+
+- [https://spec.graphql.org/October2021/#sec-Errors](https://spec.graphql.org/October2021/#sec-Errors)
+  
