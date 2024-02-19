@@ -150,6 +150,22 @@ In Nuxt.js, you can create a server middleware or API route that accepts paginat
 
 
 
+#### Increase the threshold
+
+{
+  "checks": {
+      "resource_limitation/pagination_missing": {
+          "skip": true
+          "threshold_low": 1000,
+          "threshold_medium": 2000,
+          "threshold_high": 5000,
+      }
+  }
+}
+
+
+
+
 #### Ignore this check
 
 ```json
