@@ -140,13 +140,30 @@ In Nuxt.js, you can create a server middleware or API route that accepts paginat
 ### Options
 
 - **threshold_low** : Maximum number of nodes returned before raising a low level alert.
-  - **threshold_medium** : Maximum number of nodes returned before raising a low level alert.
-  - **threshold_high** : Maximum number of nodes returned before raising a low level alert.
-  
+- **threshold_medium** : Maximum number of nodes returned before raising a low level alert.
+- **threshold_high** : Maximum number of nodes returned before raising a low level alert.
 
 
 
 ### Examples
+
+
+
+#### Increase the threshold
+
+```json
+{
+  "checks": {
+      "resource_limitation/pagination_missing": {
+          "skip": true
+          "threshold_low": 1000,
+          "threshold_medium": 2000,
+          "threshold_high": 5000,
+      }
+  }
+}
+```
+
 
 
 
