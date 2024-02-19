@@ -59,72 +59,6 @@ Ensure that the Hasura GraphQL engine configuration is set correctly, with appro
 
 </details>
 
-
-### REST Specific
-
-<details>
-    <summary>Asp_net</summary>
-
-In ASP.NET, ensure strong typing by using explicit data types and validate all inputs against expected types. Implement custom model binding or use built-in type checking features to prevent type-related misconfigurations.
-
-</details>
-
-<details>
-    <summary>Ruby_on_rails</summary>
-
-In Ruby on Rails, ensure that you validate the types of all input parameters rigorously before using them in your code. Use Active Record validations to enforce the correct data types and constraints. Additionally, employ strong parameters to prevent mass assignment vulnerabilities and ensure that only the permitted attributes can be updated.
-
-</details>
-
-<details>
-    <summary>Next_js</summary>
-
-Ensure proper validation of input types on both the client and server sides in Next.js applications. Utilize TypeScript for static type checking and implement runtime validation using libraries such as `joi` or `yup` to catch typing misconfigurations and prevent unintended behavior or security vulnerabilities.
-
-</details>
-
-<details>
-    <summary>Laravel</summary>
-
-In Laravel, ensure that you are using Eloquent ORM or the query builder's parameter binding to prevent typing misconfigurations and SQL injection vulnerabilities. Avoid using raw queries with user input. Instead, leverage Laravel's built-in methods that automatically handle parameter binding and type checking.
-
-</details>
-
-<details>
-    <summary>Express_js</summary>
-
-In Express.js, ensure that all input parameters are validated for the correct type before using them in your application logic. Utilize middleware like 'express-validator' to check for data types and sanitize input, preventing typing misconfigurations and potential security vulnerabilities.
-
-</details>
-
-<details>
-    <summary>Django</summary>
-
-In Django, ensure that you use field lookups that are appropriate for the type of field you are querying against. For instance, use `__exact` for exact string comparisons, `__iexact` for case-insensitive exact string comparisons, and `__gt`, `__gte`, `__lt`, `__lte` for comparing numerical values. Always validate and sanitize input before using it in queries to prevent type mismatches and potential security vulnerabilities such as SQL injection.
-
-</details>
-
-<details>
-    <summary>Symfony</summary>
-
-In Symfony, ensure that you use the correct data types when setting parameters for your queries. Utilize the ParameterBag provided by the HttpFoundation component to validate and retrieve request parameters in a type-safe manner. Additionally, when working with Doctrine ORM, make use of the built-in parameter binding functionality in DQL or QueryBuilder to prevent type-related issues and enhance security against SQL injection attacks.
-
-</details>
-
-<details>
-    <summary>Spring_boot</summary>
-
-In Spring Boot, ensure that you use strong type checking in method signatures and validate input types rigorously. Leverage the built-in support for data binding and type conversion to automatically handle type mismatches and reject incorrect types. Additionally, implement custom type validators when necessary to catch typing misconfigurations early in the request handling process.
-
-</details>
-
-<details>
-    <summary>Flask</summary>
-
-In Flask, ensure that you use the `flask.request` object to access request data and validate the data types before processing. Utilize libraries like WTForms or Marshmallow for form validation and data serialization to prevent typing misconfigurations. Additionally, apply proper error handling to catch and respond to incorrect data types.
-
-</details>
-
 ## Configuration
 
 > Identifier: `schema/typing_misconfiguration`
@@ -165,7 +99,7 @@ In Flask, ensure that you use the `flask.request` object to access request data 
 - pci: **6.5.8**
 - gdpr: **Article-32**
 - soc2: **CC6.1**
-- psd2: **Article 95**
+- psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-4**
