@@ -210,9 +210,9 @@ export default function FooterWrapper(props) {
                       </a>
                     </li>
                     <li>
-                      <a href="https://discord.com/invite/G9FEuFuKfd">
+                      <a href="https://join.slack.com/t/escapecommunity/shared_invite/zt-2cpklvqqv-m_h4fzlZhSatxcrxetf3Fg">
                         {' '}
-                        Discord support
+                        Slack Community
                       </a>
                     </li>
                   </ul>
