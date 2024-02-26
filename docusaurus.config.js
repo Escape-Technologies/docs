@@ -68,6 +68,11 @@ const config = {
         },
         items: [
           {
+            href: 'https://calendly.com/d/46g-xzy-dgw',
+            label: 'New to Escape? Chat with our team',
+            position: 'right'
+          },
+          {
             href: 'https://escape.tech',
             label: 'Website',
             position: 'right'
