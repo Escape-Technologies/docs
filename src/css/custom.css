@@ -30,6 +30,12 @@
   color: orange;
 }
 
+.navbar__items.navbar__items--right a:first-child{
+  outline: 1px solid #000;
+  border-radius: 2px;
+}
+
+
 .footer {
   width: 100%;
   padding: 4rem;
