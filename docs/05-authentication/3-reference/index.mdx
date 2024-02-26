@@ -67,6 +67,15 @@ description: All objects available
 | body | `Any` | `False` | A body to merge with the bodies of every HTTP requests sent for this user |  |
 
 
+## <a id="DigestOperation"></a>DigestOperation
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| tech | `Const[digest]` | `True` |  |  |
+| parameters | `DigestRequestSequence` | `True` | The parameters of the HTTP requests executed during the digest procedure.It features two HTTP requests: the first one is the one that returns the WWW-Authenticate header,and the second one is the one that uses the digest authentication. | [DigestRequestSequence](#DigestRequestSequence) |
+| extractions | `TokenExtraction` | `True` |  | [TokenExtraction](#TokenExtraction) |
+
+
 ## <a id="DigestPreset"></a>DigestPreset
 
 | Property   | Type       | Required | Description | Reference |
@@ -77,21 +86,12 @@ description: All objects available
 | second_request | `DigestSecondRequestConfiguration` | `False` | The parameters of the second HTTP request executed during the digest procedure.It is the one that uses the digest authentication. By default, parameters of the first request are used. | [DigestSecondRequestConfiguration](#DigestSecondRequestConfiguration) |
 
 
-## <a id="DigestRequestSequenceConfiguration"></a>DigestRequestSequenceConfiguration
+## <a id="DigestRequestSequence"></a>DigestRequestSequence
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | first_request | `HTTPRequestParameters` | `True` | The parameters of the first HTTP request executed during the digest procedure.It is the one that returns the WWW-Authenticate header. | [HTTPRequestParameters](#HTTPRequestParameters) |
 | second_request | `DigestSecondRequestConfiguration` | `False` | The parameters of the second HTTP request executed during the digest procedure.It is the one that uses the digest authentication. By default, parameters of the first request are used. | [DigestSecondRequestConfiguration](#DigestSecondRequestConfiguration) |
-
-
-## <a id="DigestRunnerConfiguration"></a>DigestRunnerConfiguration
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| tech | `Const[digest]` | `True` |  |  |
-| parameters | `DigestRequestSequenceConfiguration` | `True` | The parameters of the HTTP requests executed during the digest procedure.It features two HTTP requests: the first one is the one that returns the WWW-Authenticate header,and the second one is the one that uses the digest authentication. | [DigestRequestSequenceConfiguration](#DigestRequestSequenceConfiguration) |
-| extractions | `TokenExtraction` | `True` |  | [TokenExtraction](#TokenExtraction) |
 
 
 ## <a id="DigestSecondRequestConfiguration"></a>DigestSecondRequestConfiguration
@@ -140,6 +140,15 @@ description: All objects available
 | values | `string` | `True` |  |  |
 
 
+## <a id="HTTPOperation"></a>HTTPOperation
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| tech | `Const[http]` | `True` |  |  |
+| parameters | `HTTPRequestParameters` | `True` | The parameters of the HTTP request to send. At least a URL and a method must be provided. | [HTTPRequestParameters](#HTTPRequestParameters) |
+| extractions | `TokenExtraction` | `True` | The list of extractions to run at the end of the operation.For HTTP operations, variables are extracted from the response. | [TokenExtraction](#TokenExtraction) |
+
+
 ## <a id="HTTPPreset"></a>HTTPPreset
 
 | Property   | Type       | Required | Description | Reference |
@@ -182,15 +191,6 @@ description: All objects available
 | cookies | `Dict[string, string]` | `False` | The list of cookies to attach to the request. Cookies are merged with the user credentials cookies. It is possible to attach mutliple values to a cookie. Cookie values are url-encoded before being sent. |  |
 | query_parameters | `Dict[string, string]` | `False` | The list of query parameters to attach to the request. Query parameters are merged with the user credentials query parameters. It is possible to attach mutliple values to a query parameter. Query parameter values are url-encoded before being sent. |  |
 | body | `Any` | `False` | The body of the request. It can be a string or a JSON object. It is merged with the user credentials body if provided. If bodies of the HTTP request and of the user credentials are both JSON objects, they are merged. If the two bodies are strings, they are concatenated. If the two bodies are of different types, the body of the user credentials is used instead of this value. |  |
-
-
-## <a id="HTTPRunnerConfiguration"></a>HTTPRunnerConfiguration
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| tech | `Const[http]` | `True` |  |  |
-| parameters | `HTTPRequestParameters` | `True` | The parameters of the HTTP request to send. At least a URL and a method must be provided. | [HTTPRequestParameters](#HTTPRequestParameters) |
-| extractions | `TokenExtraction` | `True` | The list of extractions to run at the end of the operation.For HTTP operations, variables are extracted from the response. | [TokenExtraction](#TokenExtraction) |
 
 
 ## <a id="HTTPUserPreset"></a>HTTPUserPreset
@@ -265,12 +265,12 @@ description: All objects available
 | scopes | `string` | `False` | A list of scopes to request for the user. If not specified, no scopes will be requested. |  |
 
 
-## <a id="ProcedureConfiguration"></a>ProcedureConfiguration
+## <a id="Procedure"></a>Procedure
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | name | `string` | `True` | The name of the procedure. It must be unique and is used to reference the procedure in users. |  |
-| operations | `HTTPRunnerConfiguration | SeleniumRunnerConfiguration | DigestRunnerConfiguration` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
+| operations | `DigestOperation | SeleniumOperation | HTTPOperation` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
 | injections | `TokenInjection` | `True` | The list of injections to perform at the end of the procedure. Injections are used to inject the variables extracted from the procedure into the user authentication. | [TokenInjection](#TokenInjection) |
 
 
@@ -285,6 +285,23 @@ description: All objects available
 | value | `string` | `True` | The value of the test. |  |
 
 
+## <a id="SeleniumOperation"></a>SeleniumOperation
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| tech | `Const[selenium]` | `True` |  |  |
+| parameters | `SeleniumOperationParameters` | `True` | The parameters of the Selenium operation. | [SeleniumOperationParameters](#SeleniumOperationParameters) |
+| extractions | `TokenExtraction` | `True` |  | [TokenExtraction](#TokenExtraction) |
+
+
+## <a id="SeleniumOperationParameters"></a>SeleniumOperationParameters
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| project | `SeleniumProject` | `True` | The Selenium project used to run the script. It is the one that contains the tests and commands to run. The project script can be generated using the Selenium IDE. See [selenium.dev](https://www.selenium.dev/selenium-ide/docs/en/introduction/getting-started/) | [SeleniumProject](#SeleniumProject) |
+| options | `SeleniumScriptOptions` | `True` | The options of the Selenium script. | [SeleniumScriptOptions](#SeleniumScriptOptions) |
+
+
 ## <a id="SeleniumProject"></a>SeleniumProject
 
 | Property   | Type       | Required | Description | Reference |
@@ -292,29 +309,12 @@ description: All objects available
 | tests | `SeleniumTest` | `True` | The tests of the Selenium script. | [SeleniumTest](#SeleniumTest) |
 
 
-## <a id="SeleniumRunnerConfiguration"></a>SeleniumRunnerConfiguration
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| tech | `Const[selenium]` | `True` |  |  |
-| parameters | `SeleniumScriptParameters` | `True` | The parameters of the Selenium operation. | [SeleniumScriptParameters](#SeleniumScriptParameters) |
-| extractions | `TokenExtraction` | `True` |  | [TokenExtraction](#TokenExtraction) |
-
-
 ## <a id="SeleniumScriptOptions"></a>SeleniumScriptOptions
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| wait_for_seconds | `integer` | `True` | The number of seconds to wait at various steps of the script. For example when waiting for a page to load. |  |
+| wait_for_seconds | `integer` | `False` | The number of seconds to wait at various steps of the script. For example when waiting for a page to load. |  |
 | proxy | `string` | `False` | The proxy used to run the script. |  |
-
-
-## <a id="SeleniumScriptParameters"></a>SeleniumScriptParameters
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| project | `SeleniumProject` | `True` | The Selenium project used to run the script. It is the one that contains the tests and commands to run. The project script can be generated using the Selenium IDE. See [selenium.dev](https://www.selenium.dev/selenium-ide/docs/en/introduction/getting-started/) | [SeleniumProject](#SeleniumProject) |
-| options | `SeleniumScriptOptions` | `True` | The options of the Selenium script. | [SeleniumScriptOptions](#SeleniumScriptOptions) |
 
 
 ## <a id="SeleniumTest"></a>SeleniumTest
@@ -374,7 +374,7 @@ description: All objects available
 |------------|------------|-----|-------------|-----------|
 | type | `Const[webdriver]` | `True` |  |  |
 | users | `WebdriverUserPreset` | `True` | The list of users to generate tokens for. | [WebdriverUserPreset](#WebdriverUserPreset) |
-| wait_for_seconds | `integer` | `True` | The number of seconds to wait at various steps of the script. For example when waiting for a page to load. |  |
+| wait_for_seconds | `integer` | `False` | The number of seconds to wait at various steps of the script. For example when waiting for a page to load. |  |
 | extractions | `TokenExtraction` | `False` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
 | injections | `TokenInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
 

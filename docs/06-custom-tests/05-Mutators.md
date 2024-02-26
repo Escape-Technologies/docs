@@ -172,3 +172,30 @@ transform:
 - `regex_replace`: Regex replace pattern.
 
 ---
+
+## Schema Path Reference Mutator
+
+`key: schema.path_ref`
+
+You can use this mutator to change the operation name in GraphQL or the path in REST before resending it.
+
+### Example
+
+```yaml
+transform:
+  trigger:
+    - if: schema.path_ref
+      is: "/api/v1/tested/route"
+  mutate:
+    - key: schema.path_ref
+      mutate:
+        value: "/api/v2/tested/route"
+```
+
+### Properties
+
+- `value`: The value to set.
+- `values`: The values to set, generates multiple queries.
+- `regex_replace`: Regex replace pattern.
+
+---

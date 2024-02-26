@@ -1,6 +1,9 @@
 ---
 title: Custom Tests Reference
 description: All objects available for custom security tests.
+# Limit depth of table of contents
+toc_min_heading_level: 2
+toc_max_heading_level: 2
 ---
 
 # Objects
@@ -110,10 +113,10 @@ transform:
 
 ## <a id="Middleware"></a>Middleware
 
-| Property | Type                     | Required                   | Description              | Reference               |
-| -------- | ------------------------ | -------------------------- | ------------------------ | ----------------------- | ---------------------------- | ------------------------ | ------------------------------ | -------------------------------- | ------------------------------------------------------------------------------- | -------------- | --------------------- | ---------------------- | ---------------------- | ---------------- | ----------------------- | ------------------- | ------------ | ----------------- | ------------------------- | ------ | ------------------------------------------------------------------------------------------------ | --- |
-| trigger  | `ResponseHeadersDetector | ResponseStatusCodeDetector | ResponseBodyJSONDetector | RequestBodyJSONDetector | ResponseIsSuccessfulDetector | ResponseBodyTextDetector | RequestIsAuthenticatedDetector | SchemaNeedAuthenticationDetector | SchemaPathRefDetector                                                           | MethodDetector | RequestObjectDetector | ResponseObjectDetector | RequestHeadersDetector | ScanTypeDetector | RequestBodyTextDetector | RequestUserDetector | CrudDetector | SchemaUrlDetector | ResponseDurationDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |     |
-| mutate   | `MethodMutator           | RequestBodyJSONMutator     | SchemaUrlMutator         | RequestObjectMutator    | RequestBodyTextMutator       | RequestHeadersMutator    | RequestUserMutator`            | `True`                           | The mutations to apply to the request and replay it. See [Mutators](./mutators) |                |
+| Property | Type                     | Required                | Description             | Reference                    |
+| -------- | ------------------------ | ----------------------- | ----------------------- | ---------------------------- | ------------------- | -------------------- | ------------------------ | -------------- | ------------------------------ | ------------------------------------------------------------------------------- | ---------------------- | ---------------- | ------------------------ | --------------------- | ----------------- | ---------------------- | --------------------- | -------------------------------- | --------------------------- | ------ | ------------------------------------------------------------------------------------------------ | --- |
+| trigger  | `RequestBodyTextDetector | RequestBodyJSONDetector | ResponseHeadersDetector | ResponseIsSuccessfulDetector | RequestUserDetector | CrudDetector         | ResponseBodyJSONDetector | MethodDetector | RequestIsAuthenticatedDetector | ResponseBodyTextDetector                                                        | ResponseObjectDetector | ScanTypeDetector | ResponseDurationDetector | SchemaPathRefDetector | SchemaUrlDetector | RequestHeadersDetector | RequestObjectDetector | SchemaNeedAuthenticationDetector | ResponseStatusCodeDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |     |
+| mutate   | `RequestBodyTextMutator  | RequestHeadersMutator   | RequestBodyJSONMutator  | SchemaPathRefMutator         | RequestUserMutator  | RequestObjectMutator | SchemaUrlMutator         | MethodMutator` | `True`                         | The mutations to apply to the request and replay it. See [Mutators](./mutators) |                        |
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher
 
@@ -647,6 +650,32 @@ detect:
 ```
 
 | |
+
+## <a id="SchemaPathRefMutator"></a>SchemaPathRefMutator
+
+| Property      | Type                     | Required | Description                                    | Reference                     |
+| ------------- | ------------------------ | -------- | ---------------------------------------------- | ----------------------------- |
+| value         | `string`                 | `False`  | The value to set.                              |                               |
+| values        | `string`                 | `False`  | The values to set, generates multiple queries. |                               |
+| regex_replace | `RegexReplace`           | `False`  | Regex replace pattern.                         | [RegexReplace](#RegexReplace) |
+| key           | `Const[schema.path_ref]` | `False`  |
+
+You can use this mutator to change the operation name in GraphQL or the path in REST before resending it.
+
+### Example
+
+```yaml
+transform:
+  trigger:
+    - if: schema.path_ref
+      is: &#39;/api/v1/tested/route&#39;
+  mutate:
+    - key: schema.path_ref
+      mutate:
+        value: &#39;/api/v2/tested/route&#39;
+```
+
+         |  |
 
 ## <a id="SchemaUrlDetector"></a>SchemaUrlDetector
 
