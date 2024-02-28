@@ -74,7 +74,7 @@ seed:
 | is_not | `HTTP_METHOD` | `False` | Condition is the request is not this CRUD operation | [HTTP_METHOD](#HTTP_METHOD) |
 | in | `HTTP_METHOD` | `False` | Condition is the request is in this list of CRUD operations (exact match) | [HTTP_METHOD](#HTTP_METHOD) |
 | if | `Const[request.method]` | `False` |
-Use this to select against the request [HTTP method]([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).)
+Use this to select against the request [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
 
 ### Example
 
@@ -92,7 +92,7 @@ detect:
 | -------- | ----------------------- | -------- | ----------- | --------- |
 | key      | `Const[request.method]` | `False`  |
 
-You can use this mutator to change the [HTTP method](<[developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)>) of the
+You can use this mutator to change the [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) of the
 request before resending it.
 
 ### Example
