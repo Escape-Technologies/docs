@@ -74,6 +74,8 @@ seed:
 | is_not | `HTTP_METHOD` | `False` | Condition is the request is not this CRUD operation | [HTTP_METHOD](#HTTP_METHOD) |
 | in | `HTTP_METHOD` | `False` | Condition is the request is in this list of CRUD operations (exact match) | [HTTP_METHOD](#HTTP_METHOD) |
 | if | `Const[request.method]` | `False` |
+
+
 Use this to select against the request [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
 
 ### Example
