@@ -37,7 +37,6 @@ detect:
       - UPDATE
 ```
 
-| |
 
 ## <a id="HTTPSeeder"></a>HTTPSeeder
 
@@ -48,12 +47,12 @@ detect:
 This requests will be sent at the same time as the hotstart, the syntax is similar to it but
 you can configure for which user the request must be sent.
 
-The main difference between this two features it that a seeded request is bound to a custom security check.
+The main difference between these two features is that a seeded request is bound to a custom security check.
 If you disable a check, the seeded request will not be sent.
 
 ### Example
 
-````yaml
+```yaml
 seed:
   - protocol: http
     raw: |
@@ -61,7 +60,9 @@ seed:
       GET /debug HTTP/1.1
       Host: example.com
       Content-Type: application/json
-``` |  |
+
+```
+
 | raw | `string` | `True` | The raw HTTP request in [nuclei format]([docs.projectdiscovery.io](https://docs.projectdiscovery.io/templates/protocols/http/raw-http).) |  |
 | user | `string` | `False` | The user to use for the request. If not provided, the request is sent without authentication. |  |
 
