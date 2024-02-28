@@ -29,4 +29,4 @@ transform:
 ### Properties
 
 - `trigger`: The detectors to trigger the transform, on the request or response. See [Detectors](https://docs.escape.tech/custom-tests/Detectors)
-- `mutate`: The mutations to apply to the request and replay it. See [Mutators][https://docs.escape.tech/custom-tests/Mutators]
+- `mutate`: The mutations to apply to the request and replay it. See [Mutators](https://docs.escape.tech/custom-tests/Mutators)
