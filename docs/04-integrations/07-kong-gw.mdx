@@ -9,15 +9,15 @@ By integrating your Kong Gateway with Escape, you can further enrich your invent
 
 ## Instructions
 
-Go to your Kong Admin UI (usually running on port 8002) and go to the Plugins sections /plugins/key-auth/create?redirect=/plugins
+Go to your Kong Admin UI (usually running on port 8002) and go to the Plugins sections `/plugins/key-auth/create?redirect=/plugins`
 
-The official key-auth plugin documentation is available on [the Official Kong Documentation](https://app.escape.tech/integrations/kong-gateway/#:~:text=Official%20Kong%20Documentation)
+The official `key-auth` plugin documentation is available on [the Official Kong Documentation](https://app.escape.tech/integrations/kong-gateway/#:~:text=Official%20Kong%20Documentation)
 
-Do not change the default key_names apikey
+Do not change the default `key_names` apikey
 
-Then, list our your available consumers or add one :8001/consumers/, then copy the id of the consumer.
+Then, list our your available consumers or add one `:8001/consumers/`, then copy the id of the consumer.
 
-Lastly, create the key for the consumer curl -X POST http://localhost:8001/consumers/$CONSUMER_ID/key-auth and copy the key from the JSON response.
+Lastly, create the key for the consumer `curl -X POST http://localhost:8001/consumers/$CONSUMER_ID/key-auth` and copy the key from the JSON response.
 
 Paste the API key and the Admin API URL into Escape
 
