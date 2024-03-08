@@ -270,7 +270,7 @@ description: All objects available
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | name | `string` | `True` | The name of the procedure. It must be unique and is used to reference the procedure in users. |  |
-| operations | `DigestOperation | SeleniumOperation | HTTPOperation` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
+| operations | `HTTPOperation | DigestOperation | SeleniumOperation` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
 | injections | `TokenInjection` | `True` | The list of injections to perform at the end of the procedure. Injections are used to inject the variables extracted from the procedure into the user authentication. | [TokenInjection](#TokenInjection) |
 
 
@@ -281,8 +281,8 @@ description: All objects available
 | id | `string` | `True` |  |  |
 | command | `string` | `True` | The command of the test. |  |
 | target | `string` | `True` | The target of the test. |  |
-| targets | `string` | `True` | The targets of the test. |  |
-| value | `string` | `True` | The value of the test. |  |
+| targets | `string` | `False` | The targets of the test. |  |
+| value | `string` | `False` | The value of the test. |  |
 
 
 ## <a id="SeleniumOperation"></a>SeleniumOperation
