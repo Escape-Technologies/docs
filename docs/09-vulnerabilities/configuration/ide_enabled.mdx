@@ -21,42 +21,42 @@ Head over to your specific engine documentation to know how to do it.
 <details>
     <summary>Apollo</summary>
 
-GraphQL Playground is deprecated and disabled by default since Apollo v3. If you installed it voluntarily with the corresponding plugin, you should consider disabling it to improve security. If you still use Apollo v2, you can disable GraphQL Playground by either: * Setting the environment variable `NODE_ENV` to `production` * Explicitly disabling it:  ```javascript  const server = new ApolloServer({    // ...    playground: false,  });  ```Source: * [Apollo v2 Documentation](https://www.apollographql.com/docs/apollo-server/v2/testing/graphql-playground/) * [Apollo v3 Documentation](https://www.apollographql.com/docs/apollo-server/testing/build-run-queries/#graphql-playground)
+Ensure that the Apollo Server is configured with appropriate security settings, such as depth limiting and complexity analysis, to prevent malicious queries from overloading the server. Regularly update the Apollo framework to incorporate the latest security patches and features.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-To secure your GraphQL Yoga server, ensure that the playground is disabled in production environments. You can do this by setting the playground option to false when initializing the server.
+To mitigate potential security risks in the Yoga framework engine when using GraphQL IDE, ensure that all queries are validated against a schema that defines allowed operations. Implement proper authentication and authorization checks to control access to sensitive data. Regularly update the Yoga framework to incorporate the latest security patches and features.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, it's important to manage the API access correctly. Use AWS IAM roles, Cognito User Pools, or API keys to control access and disable any unnecessary default settings that may expose the API.
+To mitigate the risk of injection attacks in AWS AppSync, ensure that all GraphQL queries are parameterized. Avoid using string interpolation or concatenation to insert variables directly into queries. Instead, use GraphQL's built-in support for variables. This approach allows the AppSync framework to safely parse and validate the input before executing the query, reducing the attack surface for malicious actors.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-When using graphql-go, ensure that you do not expose the GraphiQL interface in production. This can be done by not including the GraphiQL middleware or by conditionally adding it based on the environment.
+To mitigate the risk of injection attacks in a GraphQL Go framework engine, ensure that all user-supplied inputs are properly validated and sanitized. Use prepared statements with variable binding for all database queries to prevent injection vulnerabilities. Additionally, implement proper error handling to avoid exposing sensitive information through error messages. Regularly review and update dependencies to patch any known vulnerabilities in the framework or associated libraries.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, disable GraphiQL in production by not mounting the GraphiQL::Rails::Engine or by using environment checks to conditionally enable it.
+To mitigate potential vulnerabilities in the GraphQL Ruby framework, ensure that all queries are properly sanitized and use parameterized queries to prevent injection attacks. Additionally, implement strict type checking and input validation to avoid malicious data from being processed. Regularly update the framework to the latest version to benefit from security patches and improvements.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-For Hasura, ensure that the console is not enabled in production. You can disable it by setting the `HASURA_GRAPHQL_ENABLE_CONSOLE` environment variable to false.
+To mitigate the risk of injection attacks in Hasura, ensure that all GraphQL queries are constructed using parameterized statements. This approach prevents attackers from manipulating the query by injecting malicious code. Additionally, apply strict access controls and validate all inputs to further enhance the security of your Hasura GraphQL engine.
 
 </details>
 
@@ -94,7 +94,7 @@ For Hasura, ensure that the console is not enabled in production. You can disabl
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
 - pci: **6.5.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

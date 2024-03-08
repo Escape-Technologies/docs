@@ -23,42 +23,42 @@ The main principle of the remediation is to escape user input properly:
 <details>
     <summary>Apollo</summary>
 
-To prevent NoSQL injection in Apollo, validate and sanitize all user inputs. Use parameterized queries or the graphql-tools library to create a schema that defines how data can be queried and mutated.
+To prevent NoSQL injection in Apollo framework, ensure that all user-supplied input is validated and sanitized. Use parameterized queries with the appropriate data binding methods provided by the database driver or ORM. Avoid constructing queries with string concatenation. Implement proper access controls and regularly update the Apollo server and any underlying database packages to patch known vulnerabilities.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In Yoga, ensure that all inputs are validated against the schema and use parameterized queries to avoid direct injection of user input into database queries.
+To prevent NoSQL injection in the Yoga framework engine, ensure that all database queries are constructed using parameterized queries or prepared statements. Avoid concatenating user input directly into database queries. Validate and sanitize all user inputs to remove malicious injection payloads. Additionally, implement proper access controls and use the principle of least privilege to minimize the potential impact of any successful injection attack.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, use AWS WAF to apply web filtering rules that block common injection patterns. Also, leverage VTL resolvers to sanitize and validate input arguments.
+To mitigate NoSQL injection vulnerabilities in AWS AppSync, ensure that all user-supplied input is validated and sanitized. Use AWS AppSync's built-in support for parameterized resolvers and the VTL (Velocity Template Language) to safely handle user input. Avoid directly concatenating user input into queries or filter expressions. Implement strict input validation routines to check for expected data types and patterns. Additionally, employ AWS IAM policies and AppSync's fine-grained access control mechanisms to restrict access to underlying data sources and limit the potential impact of a successful injection attack.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL Go, use the graphql-go library to define your schema with strong types and input validation to prevent NoSQL injections.
+To mitigate NoSQL injection vulnerabilities in a GraphQL Go framework engine, ensure that all user-supplied input is properly sanitized and validated. Use parameterized queries or prepared statements to handle data input, and employ a library that provides built-in protection against injection attacks. Additionally, implement proper access controls and regularly audit your code for potential injection flaws.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-For GraphQL Ruby, use the built-in input object types with argument validation to ensure that all user input is properly sanitized before hitting the database.
+In the GraphQL Ruby framework, to prevent NoSQL injection attacks, ensure that all user-supplied input is validated and sanitized. Use the built-in mechanisms for parameterized queries and arguments to avoid directly interpolating variables into queries. Additionally, employ proper access control checks and adhere to the principle of least privilege when designing your schema and resolvers.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-With Hasura, use permission rules to restrict access and validate inputs using check constraints or custom business logic in actions or remote schemas.
+To prevent NoSQL injection in Hasura, ensure that all GraphQL queries and mutations are constructed using parameterized arguments rather than string concatenation. Additionally, apply strict input validation, use Hasura's permission system to restrict data access, and regularly update Hasura to incorporate security fixes.
 
 </details>
 
@@ -66,72 +66,72 @@ With Hasura, use permission rules to restrict access and validate inputs using c
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, use parameterized queries with Entity Framework or ADO.NET to prevent NoSQL injection. Validate all user inputs using Data Annotations or custom validation logic.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, use Active Record query methods that are designed to prevent SQL injection, such as `where`, `find_by`, and `find`. Always sanitize inputs using Rails validators.
+To prevent NoSQL injection in ASP.NET applications, use parameterized queries with ORM frameworks like Entity Framework, which automatically handle the use of parameters. Avoid building queries with string concatenation, and validate and sanitize all user input. Implement proper error handling to prevent leakage of database information in error messages. Additionally, apply the principle of least privilege by restricting database permissions for application users.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js API routes, use prepared statements with libraries like `pg` for PostgreSQL to prevent NoSQL injection. Validate and sanitize inputs using a library like `joi` or `express-validator`.
+In Ruby on Rails, prevent NoSQL injection by using parameterized queries with the ActiveRecord ORM, which ensures that user input is treated as data rather than executable code. Additionally, avoid directly passing user input to methods that perform database operations, and implement input validation to sanitize and verify the data before it's used in a query.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+In the Next.js framework, to prevent NoSQL injection attacks, ensure that all database queries are constructed using parameterized queries or prepared statements. Avoid concatenating or interpolating user input directly into queries. Utilize libraries that provide built-in protection against injection, and always validate and sanitize user input to enforce the expected data type and format. Additionally, implement proper access controls and regularly audit your code for security vulnerabilities.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use Eloquent ORM or the query builder with parameter binding to protect against NoSQL injection. Validate requests using Laravel's built-in validation features.
+In Laravel, to prevent NoSQL injection attacks, always use Eloquent ORM or the query builder's parameter binding feature to handle your database queries. Avoid raw queries or constructing queries with user input directly. When using Eloquent, leverage its built-in protection against injection by utilizing model binding and mass assignment protection. Additionally, validate and sanitize all user inputs using Laravel's validation features to ensure that the data conforms to expected formats before it is used in any database query.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-With Express.js, use middleware like `express-validator` to validate and sanitize input data. Use parameterized queries with your database client to prevent NoSQL injection.
+In Express.js applications using NoSQL databases like MongoDB, prevent NoSQL injection attacks by using parameterized queries with libraries such as Mongoose, which automatically sanitize input. Avoid constructing queries with string concatenation. Additionally, implement input validation using middleware like express-validator to ensure that the data conforms to expected formats. Regularly update your database drivers and frameworks to incorporate security patches.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the ORM's built-in filtering methods to prevent NoSQL injection. Always validate user input using Django forms or serializers.
+In Django, ensure that you use the Django ORM properly to avoid NoSQL injection vulnerabilities. Always use the built-in querysets and avoid directly passing user input into filter() or raw() methods. For instance, instead of using raw string concatenation, leverage the ORM's parameterized query capabilities such as YourModel.objects.filter(field_name=user_input). This ensures that Django will handle the necessary escaping and formatting of inputs. Additionally, validate and sanitize all user inputs to ensure they meet the expected format and type. Regularly update Django to the latest version to benefit from security patches and improvements.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-For Symfony, use Doctrine's parameterized queries to prevent NoSQL injection. Validate and sanitize input data using Symfony's form and validation components.
+In the Symfony framework, to prevent NoSQL injection attacks, use the Doctrine ODM (Object Document Mapper) or ORM (Object Relational Mapper) with parameterized queries or prepared statements. Ensure that all user-supplied input is sanitized and validated before being used in database queries. Additionally, implement proper access controls and use the latest security practices recommended by Symfony's documentation.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, use JPA repositories with parameterized methods to prevent NoSQL injection. Apply validation annotations on your DTOs to ensure input data is valid.
+In the Spring Boot framework, to prevent NoSQL injection attacks, it is recommended to use parameterized queries or Spring Data repositories. Avoid constructing queries using string concatenation with user input. Instead, leverage Spring Data's support for query methods, which automatically apply parameter binding and sanitization. For more complex queries, use Criteria API or QueryDSL to ensure that user input is handled safely. Additionally, validate and sanitize all user inputs to ensure they conform to expected formats. Implement proper authentication and authorization checks to restrict access to sensitive data and operations.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use SQLAlchemy with parameterized queries to prevent NoSQL injection. Validate input using libraries like WTForms or Marshmallow.
+In Flask applications using NoSQL databases, ensure that you use parameterized queries or the equivalent feature provided by the database driver, such as the 'safe' parameter in PyMongo. Avoid constructing queries with string concatenation or interpolation of user-supplied input. Additionally, apply proper input validation, use database-specific escaping functions, and implement access controls to mitigate NoSQL injection risks.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-For Nuxt.js with serverMiddleware, use parameterized queries with your database client and validate inputs using libraries like `validator` or `joi`.
+In Nuxt.js applications, to prevent NoSQL injection attacks, ensure that all database queries are constructed using parameterized queries or prepared statements. This approach allows the database to distinguish between code and data, regardless of user input. Additionally, validate and sanitize all user input to remove potential malicious injection code. Implement proper error handling to avoid revealing database structures in error messages. Regularly review and update dependencies to mitigate vulnerabilities in third-party packages. Use security libraries and modules that are designed to protect against injection attacks. Finally, employ a robust authentication and authorization strategy to limit database access.
 
 </details>
 
@@ -174,7 +174,7 @@ For Nuxt.js with serverMiddleware, use parameterized queries with your database 
 - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
 - pci: **6.5.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

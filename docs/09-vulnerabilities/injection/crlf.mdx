@@ -21,42 +21,42 @@ The only way to prevent CRLF attacks is to carefully sanitize every message that
 <details>
     <summary>Apollo</summary>
 
-To prevent CRLF injection in Apollo Server, ensure that user input is properly sanitized before being included in HTTP headers or responses. Use a library to escape CRLF characters from user-controlled inputs.
+To prevent CRLF (Carriage Return Line Feed) injection attacks in the Apollo framework, ensure that user input is properly sanitized before being used in HTTP headers or any other outputs. Implement strict input validation to reject any input containing CRLF characters. Additionally, use built-in security features of the framework and libraries for setting HTTP headers to automatically encode potentially dangerous characters. Regularly update the Apollo framework and its dependencies to incorporate security patches that may address CRLF vulnerabilities.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In GraphQL Yoga, validate and sanitize all user inputs to remove or encode CRLF characters to prevent injection attacks.
+To mitigate CRLF (Carriage Return Line Feed) injection vulnerabilities in the Yoga framework engine, ensure that user input is properly sanitized before being used in output functions. Implement strict input validation to reject any input containing CRLF characters or sequences. Additionally, use context-aware encoding functions to encode output according to the specific context in which it is rendered (e.g., HTML, URL, JavaScript). It is also advisable to set appropriate HTTP headers such as 'Content-Type' and 'Content-Disposition' to prevent content sniffing that could lead to CRLF injection attacks.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, apply input validation in resolvers to ensure that no CRLF characters can be injected into the output.
+To mitigate CRLF (Carriage Return Line Feed) injection vulnerabilities in AWS AppSync, ensure that all user-supplied input is properly sanitized before being processed. Implement input validation to reject any input containing CRLF characters or sequences. Additionally, use built-in AWS AppSync security features to encode and handle data safely. Regularly update and review security policies to prevent injection attacks.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL Go, use middleware to sanitize inputs by stripping out CRLF characters to prevent injection.
+To mitigate CRLF (Carriage Return Line Feed) injection vulnerabilities in a GraphQL Go framework engine, ensure that user input is properly sanitized before being processed. Implement strict input validation to reject any input containing CRLF characters or sequences. Additionally, use context-aware escaping functions when handling user input to prevent the injection of arbitrary CRLF sequences into headers or other sensitive parts of the HTTP response. Regularly review and update your security practices to address new and emerging threats.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-For GraphQL Ruby, implement input sanitization methods to remove CRLF characters from user inputs before processing.
+To prevent CRLF (Carriage Return Line Feed) injection attacks in the GraphQL Ruby framework, ensure that user-supplied input is properly sanitized before being used in HTTP headers or any other outputs. Utilize built-in Ruby methods to encode or escape special characters, and consider implementing a robust input validation library to enforce strict input patterns. Additionally, set response headers to treat the content as data, not as executable code, by using content type headers like 'Content-Type: text/plain' for plain text responses.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-In Hasura, ensure that all user inputs are sanitized at the client or server level to prevent CRLF injection.
+To mitigate CRLF (Carriage Return Line Feed) injection vulnerabilities in the Hasura framework, ensure that user input is properly sanitized before being used in any context. Implement strict input validation to reject any suspicious or malformed input. Additionally, configure Hasura's built-in security features to encode or escape CRLF sequences in both URLs and headers to prevent response splitting attacks. Regularly review and update your security practices to address new threats.
 
 </details>
 
@@ -64,72 +64,73 @@ In Hasura, ensure that all user inputs are sanitized at the client or server lev
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-For ASP.NET applications, use built-in encoding methods or custom middleware to sanitize user inputs and prevent CRLF injection.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, utilize the ActiveSupport::SafeBuffer or similar mechanisms to sanitize user inputs and encode CRLF characters.
+To prevent CRLF injection attacks in ASP.NET, encode user input before including it in HTTP headers or responses. Utilize the `HttpUtility.HtmlEncode` method for HTML output and `UrlEncode` for URL components. Additionally, set the `validateRequest` attribute to `true` in the web.config file to enable built-in request validation, and consider implementing a custom header validation routine to check for CRLF sequences.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js applications, ensure to sanitize user inputs on both server-side and client-side to prevent CRLF injection.
+In Ruby on Rails, to prevent CRLF injection, ensure that user input is properly validated and encoded. Use built-in Rails methods such as `json_escape` to encode output and `strip` to remove unwanted carriage return and newline characters from user input. Additionally, set response headers explicitly using Rails' response object methods and avoid directly injecting user-controlled data into headers or responses.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+To mitigate CRLF injection attacks in Next.js, ensure that user input is properly sanitized by encoding or escaping CRLF sequences before incorporating them into HTTP headers or responses. Utilize middleware or built-in functions to encode output, and rigorously validate and sanitize all user inputs to prevent the injection of malicious characters.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use the built-in sanitization functions or create custom middleware to strip CRLF characters from user inputs.
+In Laravel, to prevent CRLF injection attacks, ensure that user input is properly sanitized before including it in HTTP headers. Use Laravel's built-in validation features to filter and escape input data. Additionally, avoid directly setting headers with user-supplied data and employ middleware that can strip out any CRLF characters from incoming requests.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-For Express.js, implement middleware that sanitizes user inputs by removing CRLF characters to prevent header injection.
+To mitigate CRLF injection attacks in Express.js, ensure that user input is properly sanitized by escaping CRLF sequences. Use middleware such as `helmet` to set secure HTTP headers and employ libraries like `express-validator` to validate and sanitize input. Avoid directly injecting user content into headers or responses, and consistently encode output when dynamically generating web pages.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the utilities provided by Django to sanitize inputs and escape CRLF characters in user-provided data.
+In Django, ensure that user input is properly escaped by using Django's built-in template system which automatically handles escaping. Additionally, use Django's HttpResponse objects to construct responses and avoid manually concatenating headers or body content. Always validate and sanitize input to prevent injection of arbitrary CRLF sequences.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-For Symfony applications, employ input sanitization at the form or controller level to prevent CRLF injection attacks.
+In Symfony, to prevent CRLF injection attacks, ensure that any user input that is included in HTTP headers is properly sanitized. Use the 'Response' object to set headers instead of raw header functions, and employ the 'setHeader' method which automatically handles special characters. Additionally, validate and sanitize all user inputs to remove or encode carriage return () and newline (
+) characters. Consider using Symfony's built-in functions and components, such as the 'HttpFoundation' component, to manage responses securely.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, use built-in sanitization or custom filters to clean user inputs from CRLF characters before they are processed.
+In Spring Boot applications, to prevent CRLF injection attacks, ensure that user input is properly validated and encoded. Use built-in security features such as HttpFirewall to restrict the characters allowed in URLs. Additionally, set 'server.tomcat.relaxed-query-chars' and 'server.tomcat.relaxed-path-chars' properties in application.properties to explicitly define which characters are permitted. Always encode user-controlled data before including it in HTTP headers to prevent malicious input from manipulating the response.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-For Flask applications, use the Werkzeug utility functions or create custom decorators to sanitize inputs and remove CRLF characters.
+In Flask, to prevent CRLF injection, ensure that user input is properly sanitized by escaping carriage return and newline characters. Use the `werkzeug` utility functions such as `escape()` to encode user input before incorporating it into HTTP headers or responses. Additionally, set response headers explicitly using Flask's `Response` object and avoid directly concatenating user-controlled data into headers or status lines.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, ensure that user inputs are sanitized on the server-side to prevent CRLF injection, especially in API routes.
+To prevent CRLF injection attacks in a Nuxt.js application, ensure that user input is properly sanitized before being included in HTTP headers or responses. Utilize libraries that encode or strip out CRLF characters from inputs, and always validate and escape user data based on the context in which it is used. Additionally, set up content security policies (CSP) to reduce the impact of any potential injection.
 
 </details>
 
@@ -167,7 +168,7 @@ In Nuxt.js, ensure that user inputs are sanitized on the server-side to prevent 
 - OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
 - pci: **6.5.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

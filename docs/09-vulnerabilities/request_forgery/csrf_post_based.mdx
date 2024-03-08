@@ -24,42 +24,42 @@ Only allow requests with the `Content-Type` header set to `application/json`.
 <details>
     <summary>Apollo</summary>
 
-Only allow requests with the `Content-Type` header set to `application/json`. With Express.js, the `enforce-content-type` middleware can be used to block unwanted content types.
+To mitigate POST-based CSRF attacks in the Apollo framework, implement anti-CSRF tokens in your application. Generate a unique token for each user session and include it as a hidden field in your forms. Verify the token on the server side before processing any POST requests. Additionally, consider using the 'sameSite' attribute for cookies to restrict cross-origin requests.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Ensure that your Yoga server is configured to accept only JSON content types for incoming requests to prevent CSRF attacks.
+To mitigate POST-based CSRF attacks in the Yoga framework engine, implement anti-CSRF tokens in your forms. Generate a unique token for each user session and include it as a hidden field in your POST forms. Verify the token on the server side before processing any POST request. Additionally, ensure that the 'SameSite' attribute for cookies is set to 'Lax' or 'Strict' to prevent cross-site request forgery. It's also recommended to use the Yoga framework's built-in security features or middleware that provide CSRF protection.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Configure AWS AppSync to reject requests with content types other than `application/json` to mitigate CSRF vulnerabilities.
+To mitigate POST-based CSRF vulnerabilities in AWS AppSync, ensure that all sensitive mutations require authentication and are protected with tokens such as CSRF tokens or API keys. Implement a robust authentication mechanism, such as AWS Cognito, and use it to validate user sessions for each request. Additionally, consider using AWS WAF to create custom rules that validate the presence of custom headers or tokens that are unique to your application and difficult to forge. Regularly review and update your security policies to keep up with the latest threats.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In your Go server, set up middleware to check for `Content-Type: application/json` header and reject other content types.
+To mitigate POST-based CSRF attacks in a GraphQL Go framework engine, implement anti-CSRF tokens by generating a unique token for each user session and requiring that token to be included as a header or in the payload of every state-changing POST request. Validate the token on the server side before processing the request. Additionally, ensure that CORS policies are correctly set to restrict cross-origin requests from untrusted domains.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-For GraphQL-Ruby, ensure that your controllers are configured to process only JSON requests to protect against CSRF.
+To mitigate POST-based CSRF attacks in a GraphQL Ruby framework, ensure that you implement CSRF tokens within your application. Use the built-in Rails CSRF protection by including `protect_from_forgery with: :exception` in your controllers. Additionally, verify that every state-changing request includes a valid CSRF token. For GraphQL, you can pass the CSRF token within the HTTP headers or the body of the POST request and validate it on the server-side. Also, consider using same-site cookie attributes and CORS policies to restrict cross-origin requests.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Configure Hasura GraphQL engine to only allow `application/json` content type for requests to prevent CSRF attacks.
+To mitigate POST-based CSRF attacks in the Hasura framework, ensure that all state-changing operations require a valid CSRF token. Implement a strong CSRF protection mechanism by utilizing Hasura's webhook or JWT-based authentication methods, which inherently provide CSRF protection by requiring a valid authentication token for each request. Additionally, consider using the 'SameSite' attribute for cookies to restrict their sending to same-site requests only. Regularly review and update your security configurations to keep up with best practices.
 
 </details>
 
@@ -97,7 +97,7 @@ Configure Hasura GraphQL engine to only allow `application/json` content type fo
 - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
 - pci: **6.5.9**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

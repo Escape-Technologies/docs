@@ -20,42 +20,42 @@ Limit the maximum size of a JSON that can be inputted.
 <details>
     <summary>Apollo</summary>
 
-To handle large JSON inputs in Apollo, consider using a custom scalar type for large JSON objects or streaming the input if possible.
+To address large JSON input issues in the Apollo framework, ensure that you implement input validation to reject payloads that exceed the expected size. Additionally, consider using streaming JSON parsers to handle large inputs more efficiently and avoid memory overload. Set up rate limiting and depth limiting to protect against abusive requests and maintain server performance.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For GraphQL Yoga, you can increase the payload size limit or use a custom scalar for large JSON objects.
+To handle large JSON input in the Yoga framework engine, consider implementing streaming JSON parsers to process the data in chunks, thereby reducing memory overhead. Additionally, ensure that the server has sufficient resources to handle the expected load and optimize the JSON parsing logic for performance.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-AWS AppSync has built-in support for large payloads, but consider using Amazon S3 for extremely large JSON objects and referencing them in your GraphQL operations.
+To address large JSON input issues in AWS AppSync, consider implementing pagination to break down the data into smaller chunks, compressing the JSON payload if the service allows, or increasing the payload size limits within the service configuration if possible. Additionally, optimize the resolver logic to handle large inputs more efficiently and ensure that the underlying data sources can process large requests effectively.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL-Go, you can define a custom scalar type for handling large JSON inputs or adjust the server's maximum request body size.
+To mitigate the risk of inefficient processing or potential denial of service attacks when handling large JSON inputs in a GraphQL Go framework, it is recommended to implement input validation to restrict the size and structure of the incoming JSON requests. Additionally, consider using query complexity analysis to prevent overly complex queries from overloading the system. Employing rate limiting and timeouts can also help in managing the load on the server. Ensure that the parsing of JSON is done securely to avoid injection attacks. Regularly monitor and log the performance to identify and address any issues proactively.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-For GraphQL-Ruby, consider using a custom scalar type for large JSON inputs or leveraging background jobs for processing if needed.
+To mitigate the risk of large JSON input attacks in the GraphQL Ruby framework, implement input validation to restrict the size and structure of the incoming JSON payloads. Additionally, consider using query complexity analysis to prevent overly complex queries from consuming excessive resources.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Hasura supports large JSON objects, but for very large sizes consider using a separate storage service like Amazon S3 and store references in Hasura.
+To mitigate the risk of large JSON input vulnerabilities in Hasura, ensure that you implement strict input validation, enforce payload size limits, and utilize depth and complexity limits for queries. Additionally, consider using rate limiting to prevent abuse.
 
 </details>
 
@@ -96,13 +96,13 @@ Hasura supports large JSON objects, but for very large sizes consider using a se
 ### Compliance
 
 - OWASP: **[API4:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)**
-- pci: **6.5.8**
+- pci: **6.5.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
-
+- soc2: **CC1**
+- psd2: **Article-94**
 - iso27001: **A.14.2**
-
-
+- nist: **SP800-95**
+- fedramp: **SI-10**
 
 ### Classification
 

@@ -23,42 +23,42 @@ In general terms, ABAC is preferable over RBAC because it allows us to configure
 <details>
     <summary>Apollo</summary>
 
-See [Apollo's Access Control Documentation](https://www.apollographql.com/docs/apollo-server/security/authentication/#in-resolvers). For large scale applications, you might want to use a specific package like [graphql-shield](https://github.com/maticzav/graphql-shield) for easy Access Control Management.
-
-</details>
-
-<details>
-    <summary>Hasura</summary>
-
-See Hasura's detailed documentation for Authorization Management [here](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/)
-
-</details>
-
-<details>
-    <summary>Awsappsync</summary>
-
-Appsync provides several methods for protecting critical information. - For implementing fine-grained access control, see https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#fine-grained-access-control
+Ensure that the Apollo framework engine is configured to provide tenant isolation by implementing separate data stores for each tenant, using authentication and authorization mechanisms to control access, and applying schema validation to prevent data leaks between tenants.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In GraphQL Yoga, you can implement custom authentication logic within your resolvers to ensure that users can only access data they are permitted to. Use context to pass user information and validate access rights.
+Ensure that the Yoga framework engine is configured to enforce strict tenant isolation. This can be achieved by implementing unique execution contexts for each tenant, such as separate database schemas, dedicated service instances, or isolated runtime environments. Additionally, apply rigorous access controls and authentication mechanisms to prevent cross-tenant data access or resource interference.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Ensure that AWS AppSync resolvers are configured to enforce tenant isolation by using context-based dynamic resolution. This can be achieved by incorporating tenant identifiers into the resolver logic, which ensures that data is only accessible to the appropriate tenant. Additionally, utilize AWS Identity and Access Management (IAM) policies to control access at the API level, and consider implementing field-level authorization for fine-grained access control.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL-Go, ensure that your resolver functions include logic to check whether the user is authorized to access the data they are requesting.
+Implement strict tenant isolation mechanisms within the GraphQL Go framework by enforcing access controls and segregating query execution contexts per tenant. Utilize middleware to validate tenant IDs and ensure that data queries and mutations are scoped exclusively to the authenticated tenant's data set. Regularly audit and test isolation features to prevent cross-tenant data leaks.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, use the `authorized?` method in your types to define authorization logic for accessing objects.
+In the GraphQL Ruby framework, ensure tenant isolation by implementing a context-based authorization mechanism. This can be achieved by using the context object to store the current user's information and then applying scope filters to resolve functions. This ensures that users can only access data that belongs to their tenant. Additionally, consider using the pundit or cancancan gems for more granular permission controls.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Ensure that the Hasura GraphQL engine is configured to use role-based access control (RBAC) to enforce tenant isolation. Define roles corresponding to different tenants and set permissions for each role to restrict access to data that belongs to that tenant only. Use session variables to dynamically apply the appropriate role for each request based on the authenticated user's tenant.
 
 </details>
 
@@ -66,72 +66,72 @@ In GraphQL-Ruby, use the `authorized?` method in your types to define authorizat
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, use authorization filters and policies to control access to resources. Implement custom authorization logic within your controllers.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, use before_action filters in your controllers to check user permissions before accessing a resource.
+Implement strict tenant isolation by enforcing access controls and ensuring that each user's data is stored and processed in a separate context. Utilize ASP.NET's built-in features such as custom authorization filters, resource-based authorization, or multi-tenancy frameworks to prevent cross-tenant data access.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js, use API routes with middleware to check authentication and permissions before processing a request.
+Implement scoped queries within the Rails application to ensure that users can only access objects within their own tenant. Use ActiveRecord's `default_scope` or explicit scoping methods to filter records based on the tenant's ID associated with the current user. Additionally, apply strong parameter validation and access control checks before any object instantiation or data processing to prevent unauthorized cross-tenant data access.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement strict access controls and logical separation of tenant data. Utilize middleware to enforce tenant isolation policies and ensure that database queries are scoped to the authenticated user's tenant context.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use middleware to verify user credentials and define policies to authorize user actions on resources.
+Implement middleware to enforce tenant isolation by validating the user's access rights to the requested resource, ensuring that each user can only access data within their own tenant scope.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, use middleware functions to authenticate and authorize users before they can access certain routes.
+Implement middleware in Express.js to enforce tenant isolation by validating the user's session and ensuring that each user can only access their own tenant's data. Use scoped queries based on user context and avoid direct object references from user input.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the @login_required decorator or custom decorators to ensure that a user is authenticated before accessing a view.
+Implement strict tenant isolation by using Django's built-in support for database schemas and ensuring that querysets are properly scoped to the current user's tenant. Apply middleware to enforce tenant context and use Django's permissions framework to control access. Regularly audit code to prevent cross-tenant data leaks.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, use Voters or Access Decision Managers to implement complex authorization logic.
+Implement access control checks within the Symfony framework to ensure that each user can only access or modify objects that they are authorized to. Use Symfony's security components, such as Voters or Access Decision Managers, to enforce strict permissions on a per-object basis. Additionally, ensure that user sessions are properly isolated and that any API endpoints or controllers that handle object retrieval or manipulation include proper authentication and authorization checks.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, use method security with @PreAuthorize or @Secured annotations to protect your endpoints.
+Implement multi-tenancy with separate schemas or databases for each tenant to ensure complete isolation. Use Spring Security to enforce authentication and authorization rules, and apply method-level security to prevent cross-tenant data access. Additionally, configure Spring Data JPA or Hibernate filters to automatically apply tenant context to all database queries.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use decorators to require authentication and check permissions before a user can access a route.
+Implement strict access control checks based on user sessions and roles to ensure that each tenant can only access their own data. Use Flask's session management and decorators to enforce these controls.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, use middleware to check if the user is authenticated and authorized to access certain pages or API endpoints.
+Implement strict access control checks based on user roles and permissions to ensure that each tenant can only access their own data. Use middleware to validate the user's session and enforce tenant isolation at the API level within the Nuxt.js application.
 
 </details>
 
@@ -249,13 +249,13 @@ In Nuxt.js, use middleware to check if the user is authenticated and authorized 
 ### Compliance
 
 - OWASP: **[API5:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa5-broken-function-level-authorization.md)**
-- pci: **6.5.8**
+- pci: **7.1.2**
 - gdpr: **Article-25**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.18.1**
 - nist: **SP800-53**
-
+- fedramp: **AC-4**
 
 ### Classification
 

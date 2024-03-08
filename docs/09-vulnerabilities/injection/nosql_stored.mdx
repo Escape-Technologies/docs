@@ -25,42 +25,42 @@ Primary defenses:
 <details>
     <summary>Apollo</summary>
 
-To prevent NoSQL injection in Apollo, validate and sanitize all user inputs. Use parameterized queries or the Apollo built-in features to handle user input safely.
+To mitigate NoSQL injection vulnerabilities in the Apollo framework, ensure that all user-supplied input is validated and sanitized. Use parameterized queries or the built-in filtering and parameterization features provided by the database driver or ORM. Avoid directly concatenating or interpolating user input into database queries. Implement proper access controls and regularly audit your codebase for security issues.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In Yoga, ensure that all inputs are properly validated and sanitized. Avoid directly passing user input to database queries.
+To prevent NoSQL injection attacks in the Yoga framework engine, ensure that all database queries are constructed using parameterized queries or prepared statements. Avoid concatenating user input directly into database queries. Validate and sanitize all user inputs to ensure they conform to expected formats. Implement proper error handling to prevent the disclosure of database structures. Regularly review and update security measures in line with best practices.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, use VTL (Velocity Template Language) to sanitize and validate input arguments before they are passed to resolvers.
+To mitigate NoSQL injection vulnerabilities in AWS AppSync, ensure that all user-supplied input is validated and sanitized. Use AWS AppSync's built-in VTL (Velocity Template Language) resolvers to parameterize data access in resolvers, and avoid directly passing user input to NoSQL queries. Implement strict type checking and input validation using AppSync's schema definition. Additionally, employ AWS WAF (Web Application Firewall) to filter out malicious requests and regularly update your security rules to protect against emerging threats.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL-Go, use middleware to validate and sanitize input data before it reaches the resolver functions.
+To mitigate NoSQL injection vulnerabilities in a GraphQL Go framework engine, ensure that all user-supplied input is properly sanitized and validated. Use parameterized queries or prepared statements to handle data input, and avoid directly concatenating or interpolating user input into database queries. Additionally, implement proper access control checks and adhere to the principle of least privilege when accessing the database. Regularly review and update your security practices to protect against emerging threats.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-For GraphQL-Ruby, use built-in validators or custom validation methods to ensure that all inputs are properly sanitized before executing queries.
+To mitigate NoSQL injection vulnerabilities in a GraphQL Ruby framework, ensure that all user-supplied input is validated and sanitized. Use the built-in mechanisms for parameterized queries provided by the framework, such as variables in GraphQL queries, to prevent attackers from injecting arbitrary NoSQL code. Additionally, employ proper access control checks to restrict data access and operations based on user permissions. Regularly update the GraphQL Ruby framework and its dependencies to incorporate security fixes. Consider using an allowlist approach for query complexity and depth to prevent abusive queries. Implement monitoring and logging to detect and respond to suspicious activities promptly.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-With Hasura, leverage permission rules and session variables to control access and validate inputs at the GraphQL layer.
+To prevent NoSQL injection attacks in the Hasura framework, ensure that all user-supplied input is validated and sanitized. Use prepared statements with variable binding for GraphQL queries. Additionally, implement strict access controls and permission rules to limit the exposure of sensitive data. Regularly review and update security policies to keep up with emerging threats.
 
 </details>
 
@@ -103,8 +103,8 @@ With Hasura, leverage permission rules and session variables to control access a
 - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
 - pci: **6.5.1**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-6**

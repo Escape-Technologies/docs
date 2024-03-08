@@ -21,42 +21,42 @@ Ensure that the Content-Type header is set to application/json.
 <details>
     <summary>Apollo</summary>
 
-Ensure that your Apollo server is correctly configured to set the Content-Type header to application/json for all responses.
+To address vulnerabilities within the Apollo framework engine, ensure that all dependencies are kept up-to-date with the latest security patches. Regularly review and follow the security guidelines provided by the Apollo documentation. Implement proper error handling to prevent information leakage and consider using security linters and tools to automatically detect potential security issues in your codebase.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Configure GraphQL Yoga to use the correct Content-Type header by setting it in the context or the response directly.
+To address vulnerabilities within the Yoga framework engine, ensure that all user inputs are properly sanitized and validated. Implement strict type checking and input validation routines to prevent injection attacks. Regularly update the framework to the latest version to incorporate security patches and improvements. Additionally, consider using security middleware that can provide an extra layer of protection against common web vulnerabilities.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-AWS AppSync automatically sets the Content-Type to application/json, but if you're using a Lambda resolver, ensure the response includes the correct header.
+To mitigate potential security risks in AWS AppSync, ensure that all GraphQL resolvers are properly configured to prevent injection attacks. Use VTL (Velocity Template Language) to sanitize and validate all input data. Implement fine-grained access control with AWS IAM and utilize AWS AppSync's built-in authorization mechanisms, such as API keys, IAM roles, or Cognito user pools, to control access to your GraphQL API. Regularly review and update your security policies to adhere to best practices.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In the GraphQL Go server, set the Content-Type header before sending the response.
+To mitigate potential security risks in a GraphQL Go framework engine, it is recommended to validate and sanitize all user inputs to prevent injection attacks. Implement proper error handling to avoid exposing sensitive information in error messages. Regularly update dependencies to patch known vulnerabilities. Additionally, consider using query complexity analysis to prevent denial-of-service attacks caused by overly complex queries.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Ensure that your Ruby GraphQL server sets the Content-Type header to application/json in the response.
+Ensure that the GraphQL Ruby framework engine is properly configured to validate and sanitize input to prevent injection attacks. Use GraphQL's built-in mechanisms to define and enforce the shape and content of queries and mutations. Avoid arbitrary code execution by using parameterized fields and resolvers, and never directly interpolate user input into query strings. Regularly update the GraphQL Ruby gem to incorporate security patches and improvements.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Hasura sets the Content-Type header to application/json by default. If it's not, check for middleware that might be altering the response headers.
+To mitigate potential security risks in the Hasura framework engine, ensure that all GraphQL queries are validated against a strict schema and use prepared statements or parameterized queries to prevent SQL injection attacks. Regularly update the Hasura engine to the latest version to incorporate security patches and improvements. Additionally, implement role-based access control and use environment variables for sensitive information instead of hardcoding them into the application.
 
 </details>
 
@@ -92,13 +92,13 @@ Hasura sets the Content-Type header to application/json by default. If it's not,
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-
-
-
-
-
-
-
+- pci: **6.5.1**
+- gdpr: **Article-5**
+- soc2: **CC6**
+- psd2: **Article-97**
+- iso27001: **A.14.1**
+- nist: **SP800-95**
+- fedramp: **SC-7**
 
 ### Classification
 

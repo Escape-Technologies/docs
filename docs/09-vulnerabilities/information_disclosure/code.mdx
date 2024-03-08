@@ -20,42 +20,42 @@ Ensure that `.git`, `.svn`, `.htaccess` metadata files are not deployed to the w
 <details>
     <summary>Apollo</summary>
 
-Ensure that the Apollo Server is configured to not expose sensitive files. Use the 'playground' option only in development environments and disable introspection and the GraphQL Playground in production.
+To prevent source code disclosure in the Apollo framework engine, ensure that proper access controls are in place to restrict unauthorized users from accessing sensitive files. Configure your web server to deny direct access to source code files and serve only the necessary assets to the client. Additionally, implement a robust authentication and authorization mechanism to protect against unauthorized access to application endpoints that could potentially expose source code. Regularly review and update your security configurations to keep up with the latest best practices.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Configure GraphQL Yoga to disable the playground in production environments and restrict access to the schema by disabling introspection.
+To prevent source code disclosure in the Yoga framework engine, ensure that proper access controls are in place to restrict unauthorized users from accessing application source code. Configure the web server to serve only the necessary files and directories. Additionally, implement security measures such as input validation, output encoding, and the use of security headers to mitigate the risk of source code exposure through other vulnerabilities.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, restrict the API access using AWS IAM roles or API keys, and ensure that the schema is not publicly accessible without proper authentication.
+To prevent source code disclosure in AWS AppSync, ensure that all GraphQL resolvers are properly configured to avoid exposing implementation details. Implement strict access controls using AWS Identity and Access Management (IAM) to restrict who can view and modify the AppSync APIs and resolvers. Regularly review and update your security policies to adhere to the principle of least privilege. Additionally, enable logging and monitoring through AWS CloudTrail and Amazon CloudWatch to detect and respond to any unauthorized access attempts. Always use environment variables for sensitive information instead of hardcoding them into your resolvers or schema.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In the GraphQL Go implementation, disable introspection queries and the interactive editor in production by setting appropriate configuration flags.
+To prevent source code disclosure in a GraphQL Go framework engine, ensure that error messages are generic and do not reveal stack traces or code snippets to the client. Implement proper error handling that catches exceptions and logs them internally without exposing sensitive information. Additionally, configure the server to run in a production mode that suppresses detailed errors, and regularly audit your code and dependencies for vulnerabilities.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-For GraphQL-Ruby, remove the GraphiQL IDE from production and ensure that introspection is disabled to prevent source code disclosure.
+To prevent source code disclosure in the GraphQL Ruby framework, ensure that detailed errors are not exposed to clients. Configure the `GraphQL::ExecutionError` to handle exceptions and provide generic error messages to the users. Additionally, restrict access to the GraphiQL IDE in production and review the `config.interpreter` settings to disable introspection queries if necessary. Always use environment variables for sensitive information and never hard-code secrets. Keep the framework and its dependencies up-to-date with the latest security patches.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Secure Hasura GraphQL endpoints by using environment variables to disable the console and introspection features in production.
+To prevent source code disclosure in the Hasura framework engine, ensure that proper access controls are in place to restrict unauthorized access to the GraphQL endpoint. Configure role-based permissions meticulously, and avoid exposing sensitive information in error messages or logs. Regularly audit your configurations and update the Hasura engine to incorporate the latest security patches and features.
 
 </details>
 
@@ -98,10 +98,10 @@ Secure Hasura GraphQL endpoints by using environment variables to disable the co
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.6**
+- pci: **6.5.4**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.14.1**
 - nist: **SP800-53**
 - fedramp: **AC-4**

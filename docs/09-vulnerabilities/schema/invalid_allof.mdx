@@ -13,6 +13,78 @@ Your current allOf condition does not allow any value to be valid.
 Update your condition to allow at least one value to be valid. You can use anyOf if you want to allow multiple values to be valid.
 
 
+### REST Specific
+
+<details>
+    <summary>Asp_net</summary>
+
+Ensure that the allOf condition in your schema is correctly defined with overlapping valid value ranges or compatible conditions, allowing for at least one set of values to satisfy all specified schemas.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+In Ruby on Rails, ensure that your allOf conditions in JSON Schemas are correctly defined to allow for valid combinations of the specified schemas. Review the conditions and adjust them to accurately reflect the intended logic. Additionally, consider using ActiveModel::Validations for more complex validation logic within your Rails models.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that the allOf condition in your schema has at least one possible set of valid conditions. Review the schema logic to allow for a meaningful combination of the included schemas that can be satisfied by appropriate input data.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, ensure that your allOf condition in validation rules is properly defined to allow for valid combinations of input. Review the conditions and adjust them to accurately reflect the intended logic. Utilize Laravel's built-in validation rules or custom rules if necessary to create a coherent allOf condition.
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+Ensure that the allOf condition in your schema has at least one set of valid criteria that can be met. Review the schema definitions included in the allOf array and adjust them so that they do not contradict each other, allowing for a valid set of data to satisfy the condition.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Ensure that the allOf condition in your schema has at least one possible set of valid conditions. Review the nested schemas within allOf to confirm they are not mutually exclusive and can be satisfied simultaneously. In the Django framework, use Django's form or serializer validation to enforce the combined conditions.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, ensure that your 'allOf' condition in the validation configuration is correctly defined with overlapping valid value ranges or compatible conditions. Review the constraints within 'allOf' to allow for a valid intersection of conditions. Utilize the Symfony Validator component and properly configure your validation rules to prevent mutually exclusive conditions.
+
+</details>
+
+<details>
+    <summary>Spring_boot</summary>
+
+Ensure that the allOf condition in your Spring Boot application's JSON schema is correctly defined with overlapping valid sets, or refactor the schema to use anyOf or oneOf if mutually exclusive conditions are intended.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Ensure that the allOf condition in your JSON Schema is correctly defined with overlapping valid value ranges or compatible conditions. In the Flask framework, review your schema definitions and adjust the allOf conditions to create a logical intersection that allows for valid input. Additionally, consider using Flask extensions like Flask-RESTful or Marshmallow to help with request parsing and validation.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Ensure that the allOf condition in your schema has at least one set of valid criteria that an object can satisfy. Review the schema definitions included in the allOf array and adjust them so that they do not contradict each other, allowing for a valid object to meet the combined requirements.
+
+</details>
+
 ## Configuration
 
 > Identifier: `schema/invalid_allof`
@@ -45,13 +117,13 @@ Update your condition to allow at least one value to be valid. You can use anyOf
 ### Compliance
 
 - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
-- pci: **6.5.1**
+- pci: **1.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
-- fedramp: **AR-1**
+- fedramp: **AC-2**
 
 ### Classification
 

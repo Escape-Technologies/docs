@@ -15,122 +15,6 @@ Get in touch with your security team.
 
 
 
-### GraphQL Specific
-
-<details>
-    <summary>Apollo</summary>
-
-Ensure that your Apollo server has the necessary validation rules to prevent malicious queries. Implement depth limiting, amount limiting, and require authentication for sensitive data.
-
-</details>
-
-<details>
-    <summary>Yoga</summary>
-
-Configure GraphQL Yoga to use proper security practices, such as rate limiting and input validation to protect against common vulnerabilities.
-
-</details>
-
-<details>
-    <summary>Awsappsync</summary>
-
-Use AWS WAF with AWS AppSync to apply web ACLs to your GraphQL API, protecting against common web exploits.
-
-</details>
-
-<details>
-    <summary>Graphqlgo</summary>
-
-In Go, use the 'throttled' package to rate limit your GraphQL server and protect against denial-of-service attacks.
-
-</details>
-
-<details>
-    <summary>Graphqlruby</summary>
-
-For Ruby on Rails with GraphQL, use the 'rack-attack' gem to throttle requests and safeguard against brute force attacks.
-
-</details>
-
-<details>
-    <summary>Hasura</summary>
-
-Configure Hasura with proper permission rules and use webhook or JWT authentication to secure your GraphQL endpoints.
-
-</details>
-
-
-### REST Specific
-
-<details>
-    <summary>Asp.net</summary>
-
-Use ASP.NET Core's built-in features like authentication, authorization, and anti-forgery tokens to secure your REST API.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Leverage Ruby on Rails' built-in security features such as 'strong parameters' and 'before_action' filters to secure your REST API.
-
-</details>
-
-<details>
-    <summary>Next.js</summary>
-
-Secure your Next.js API routes by implementing server-side authentication checks and input validation.
-
-</details>
-
-<details>
-    <summary>Laravel</summary>
-
-In Laravel, use middleware for route protection, Eloquent for input validation, and policies for authorization to secure your REST API.
-
-</details>
-
-<details>
-    <summary>Express.js</summary>
-
-Use Express.js middleware for security headers, rate limiting, and CORS to protect your REST API.
-
-</details>
-
-<details>
-    <summary>Django</summary>
-
-Utilize Django's authentication system, permission classes, and query parameter validation to secure your REST API.
-
-</details>
-
-<details>
-    <summary>Symfony</summary>
-
-Implement Symfony's security component with firewalls and access controls to protect your REST API.
-
-</details>
-
-<details>
-    <summary>Spring boot</summary>
-
-Secure your Spring Boot REST API with Spring Security, using HTTP Basic authentication, OAuth2, or JWT tokens.
-
-</details>
-
-<details>
-    <summary>Flask</summary>
-
-In Flask, use extensions like Flask-HTTPAuth for authentication and Flask-Limiter for rate limiting to secure your REST API.
-
-</details>
-
-<details>
-    <summary>Nuxt</summary>
-
-For Nuxt.js, ensure serverMiddleware is used to handle authentication and protect your REST API endpoints.
-
-</details>
 
 ## Configuration
 
@@ -164,13 +48,13 @@ For Nuxt.js, ensure serverMiddleware is used to handle authentication and protec
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-- pci: **6.5.8**
-
-
-
-
-
-
+- pci: **11.4**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-53**
+- fedramp: **SI-2**
 
 ### Classification
 

@@ -27,42 +27,42 @@ There are multiple ways to prevent directory traversal attacks:
 <details>
     <summary>Apollo</summary>
 
-To prevent directory traversal and local file inclusion in Apollo Server, validate and sanitize all user inputs. Use a whitelist approach to serve only allowed files.
+To mitigate file inclusion vulnerabilities in the Apollo framework engine, ensure that user input is not directly used to specify files to be included. Implement a whitelist of allowed files and verify that the requested file is in the whitelist before including it. Additionally, use proper input validation and sanitization to prevent malicious input from being processed. Consider using built-in functions that provide secure file handling and avoid dynamic file inclusion whenever possible.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In Yoga, ensure that all file paths constructed from user input are sanitized to prevent directory traversal.
+To mitigate file inclusion vulnerabilities in the Yoga framework engine, ensure that user input is not directly used to specify files to be included. Employ a whitelist of allowed files, validate and sanitize all user inputs, and avoid dynamic file paths. Additionally, use the framework's built-in functions for file handling that are designed to prevent such vulnerabilities.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, use AWS WAF to block common directory traversal patterns and validate input in resolvers.
+To mitigate file inclusion vulnerabilities in the AWS AppSync framework, ensure that any user-supplied input is properly sanitized and validated. Avoid using dynamic file paths that can be manipulated by an attacker. Implement a strict allowlist of permissible files to be included, and use AWS AppSync's built-in resolvers and velocity templates to securely manage and process file paths. Regularly review and update security policies and IAM roles to adhere to the principle of least privilege.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL Go, validate and sanitize file paths in resolvers to prevent directory traversal attacks.
+To mitigate file inclusion vulnerabilities in a GraphQL Go framework engine, ensure that user-supplied input is not used directly to determine the files to be included. Implement strict input validation, use a whitelist of allowed files, and employ the principle of least privilege when accessing file system resources. Additionally, consider using built-in functions for file handling that abstract the underlying file system structure, and regularly update your dependencies to incorporate security fixes.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL Ruby, use built-in validators or custom methods to sanitize file paths before using them.
+To mitigate file inclusion vulnerabilities in a GraphQL Ruby framework engine, ensure that user-supplied input is not used directly to determine the files to be included or executed. Use a whitelist of allowed files, sanitize and validate all input rigorously, and employ the principle of least privilege when granting file system access to the application. Additionally, consider using built-in mechanisms for template rendering and avoid dynamic file paths.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-With Hasura, use remote schemas or action handlers to validate and sanitize file paths, as Hasura does not directly handle file serving.
+To mitigate file inclusion vulnerabilities in the Hasura framework, ensure that all file paths are handled securely. Avoid using user input directly when specifying file paths. If dynamic file paths are necessary, validate and sanitize the input rigorously to prevent directory traversal attacks. Additionally, use a whitelist approach to limit accessible files to only those that are required for application functionality. Keep the Hasura engine and all dependencies up to date to benefit from the latest security patches.
 
 </details>
 
@@ -103,13 +103,13 @@ With Hasura, use remote schemas or action handlers to validate and sanitize file
 ### Compliance
 
 - OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
-- pci: **6.5.8**
+- pci: **6.5.1**
 - gdpr: **Article-32**
-
-
-
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-123**
+- fedramp: **SI-10**
 
 ### Classification
 

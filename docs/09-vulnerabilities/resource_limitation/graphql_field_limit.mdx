@@ -22,56 +22,42 @@ Limit query complexity by using a library specific to your engine.
 <details>
     <summary>Apollo</summary>
 
-Add a module to compute query complexity and set a threshold so that overly broad requests get canceled.For a user-friendly module which requires no schema modification whatsoever, check out the [graphql-validation-complexity](https://github.com/4Catalyzer/graphql-validation-complexity) module.
+To address potential issues with the Apollo framework engine, ensure that all dependencies are up to date, utilize the built-in security features such as schema validation and rate limiting, and follow best practices for error handling and logging. Regularly review the Apollo documentation for any updates on security advisories and recommended practices.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In GraphQL Yoga, you can use the `graphql-query-complexity` library to prevent complex queries from overloading your server. Define complexity scores for your types and fields and set a maximum allowed complexity for queries.
+To address issues within the Yoga framework engine, ensure that all components are updated to their latest versions to benefit from security patches and performance improvements. Regularly review the framework's documentation for best practices on security and efficiency. Additionally, consider implementing a thorough testing strategy that includes unit tests, integration tests, and end-to-end tests to catch potential problems early in the development cycle. Monitor the application's performance and error logs to quickly identify and resolve any issues that may arise.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, you can use the built-in features to limit the depth and complexity of GraphQL operations to mitigate against costly queries and potential DoS attacks.
+To address limitations in the AWS AppSync framework, ensure that your GraphQL schema is designed to handle complexity and size within the service's constraints. Optimize resolvers by batching requests and using caching mechanisms to reduce the load on data sources. Implement pagination to manage large datasets and avoid exceeding field limits. Monitor and adjust the performance of your AppSync API with CloudWatch metrics and logs. If necessary, consider splitting your API into multiple smaller, more focused GraphQL endpoints to stay within the field limits and maintain efficient data retrieval.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Implement a complexity limiting strategy in your Go server by using a library like `graphql-go/graphql` with a complexity limit extension.
+To mitigate potential security risks in the GraphQL Go framework engine, ensure that all queries are strictly validated against a schema, implement proper authentication and authorization checks, and use query complexity analysis to prevent denial-of-service attacks. Additionally, consider employing field-level permissions to restrict access to sensitive data and apply rate limiting to control the amount of resources a client can consume.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, use the query complexity analysis feature to protect against complex queries by setting a maximum query complexity.
+In the GraphQL Ruby framework, to prevent potential issues with field limits, it is recommended to implement query complexity analysis to ensure that clients cannot request an excessive amount of data which could lead to performance problems. You can use the built-in analysis features to set a maximum complexity for your queries. Additionally, consider using the `max_depth` method to limit the depth of queries and avoid deeply nested queries that could impact the stability of your application.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Limit the number of fetched fields with Response Limiting.To learn how to implement it, check out [Hasura's Response Limiting guide](https://hasura.io/learn/graphql/hasura-advanced/security/5-response-limit/).
-
-</details>
-
-<details>
-    <summary>Graphqlphp</summary>
-
-Use the `graphql-php` library's QueryComplexity rule to analyze and limit the complexity of incoming queries.
-
-</details>
-
-<details>
-    <summary>Graphene</summary>
-
-With `graphene-django`, implement a custom GraphQL backend to limit query complexity using query cost analysis or complexity limits.
+To prevent issues related to field limits in the Hasura framework engine, ensure that you define appropriate permissions and access control lists for your GraphQL schema. Use Hasura's built-in mechanisms to set maximum query depths and complexity scores, which can help in preventing resource exhaustion caused by excessively large or deeply nested queries. Additionally, consider implementing custom business logic in your backend to validate and limit the number of fields that can be queried at once, if necessary. Regularly review your schema and optimize it to handle the expected query loads efficiently.
 
 </details>
 
@@ -112,10 +98,10 @@ With `graphene-django`, implement a custom GraphQL backend to limit query comple
 ### Compliance
 
 - OWASP: **[API4:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)**
-- pci: **6.5.8**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-6**

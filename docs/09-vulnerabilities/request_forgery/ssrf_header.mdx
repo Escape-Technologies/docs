@@ -23,72 +23,72 @@ How to prevent:
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, validate and sanitize all URLs received from user input before using them to make requests. Use a whitelist of allowed domains to ensure only expected hosts are contacted.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, always validate the URL against a set of known good patterns or domains before making HTTP calls.
+To mitigate SSRF injection in headers within an ASP.NET application, validate and sanitize all user-supplied input, including URLs. Implement a whitelist of allowed domains and schemes, and ensure that any URL fetching is performed using a secure method that does not expose sensitive server-side resources. Additionally, consider using built-in .NET libraries like `HttpClient` with predefined request headers and avoid concatenating user input into URLs. Employ network-level restrictions and review server-side request handling code to ensure it does not inadvertently process user-supplied URLs without proper security checks.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js, ensure that any user-provided URLs are validated against a list of allowed domains before being used in server-side requests.
+In Ruby on Rails, mitigate SSRF attacks by validating and sanitizing user-supplied URLs before using them to make requests. Employ a whitelist of allowed domains and schemes, and use the 'uri' standard library to parse and validate URLs. Additionally, consider using the 'resolv-replace' library to enforce DNS resolution restrictions and timeouts to prevent internal network probing.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+To mitigate SSRF injection in headers within a Next.js application, ensure that all user-supplied URLs are validated against a strict whitelist of allowed domains and protocols. Implement server-side checks to verify the URL format and use built-in URL parsing libraries to decompose and validate each part of the URL before making any outbound requests. Additionally, consider using a dedicated library for HTTP requests that provides SSRF protection features, and restrict outgoing traffic from the server to only necessary services to minimize the attack surface.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use the built-in validation rules to ensure the URL is well-formed and belongs to a list of allowed hosts before making outgoing requests.
+In Laravel, to mitigate SSRF injection in headers, validate and sanitize all user-supplied URLs before using them to fetch resources. Employ Laravel's built-in validation rules, such as 'url' or 'active_url', to ensure the URL is valid. Additionally, restrict outgoing requests to a predefined list of allowed domains and implement network-level controls to prevent requests to internal resources. Use GuzzleHttp client with caution, and avoid passing user input directly to the client. Always keep Laravel and its dependencies up to date to benefit from the latest security enhancements.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, validate the URL with a custom middleware that checks the hostname against a list of allowed domains before proceeding with the request.
+To mitigate SSRF injection in headers within an Express.js application, ensure that all user-supplied URLs are validated against a whitelist of allowed domains and URL patterns. Implement strict input validation, use a dedicated library for URL parsing, and avoid passing user-controlled data to networking functions. Additionally, consider using a server-side request proxy that restricts outgoing traffic to known-safe destinations, and employ network-level security measures to prevent unauthorized internal network access.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the URLValidator to ensure the URL is valid and then check the domain against a whitelist before making the request.
+In Django, to mitigate SSRF vulnerabilities, ensure that any user-supplied URLs are validated against a whitelist of allowed domains. Use Django's URLValidator for basic validation, and consider implementing more robust checks tailored to your application's logic. Additionally, limit outgoing requests to only necessary protocols and domains, and apply strict timeout and error handling to prevent misuse of the application's ability to make HTTP requests.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, use the Validator component to validate the URL and check if the domain is in the list of allowed domains before making the request.
+In Symfony, to mitigate SSRF injection in headers, ensure that any user-supplied URLs are validated against a whitelist of allowed domains and schemes. Use Symfony's built-in validation constraints, such as 'Url' and 'Choice', to enforce this. Additionally, avoid directly passing user-controlled data to functions that perform HTTP requests. Implement service wrappers that sanitize and validate all input, and consider using a dedicated library to handle URL fetching that has built-in security features.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, use a custom validator to ensure the URL's domain is allowed before making any outgoing requests.
+In Spring Boot applications, to mitigate SSRF attacks, validate and sanitize all user-supplied URLs before using them to initiate a connection to a remote resource. Implement a whitelist of allowed domains and schemes, and reject any requests that do not match the criteria. Additionally, consider using Spring Security's built-in protections and avoid disclosing sensitive information through error messages.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, validate the URL using Werkzeug's URL parsing utilities and check the domain against a whitelist before making the request.
+To mitigate SSRF injection in headers within a Flask application, ensure that all user-supplied URLs are validated against a whitelist of allowed domains and schemes. Use a dedicated library or function to parse and sanitize URLs before using them in network requests. Additionally, consider implementing network-level restrictions to limit the range of accessible resources by the server, and avoid disclosing sensitive information through error messages.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, validate the URL on the server-side before making any API calls, ensuring the domain is within a set of allowed domains.
+In Nuxt.js, to mitigate SSRF injection in headers, ensure that all user-supplied URLs are validated against a whitelist of allowed domains and URL patterns. Implement server-side checks to sanitize and verify the legitimacy of URLs before using them in any HTTP requests. Additionally, consider using built-in Nuxt.js modules or third-party libraries designed to secure HTTP requests and prevent SSRF by default.
 
 </details>
 
@@ -124,9 +124,9 @@ In Nuxt.js, validate the URL on the server-side before making any API calls, ens
 ### Compliance
 
 - OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
-- pci: **6.5.6**
+- pci: **6.5.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

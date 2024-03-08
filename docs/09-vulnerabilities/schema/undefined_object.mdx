@@ -21,42 +21,42 @@ Enforce strong typing in your schema objects.
 <details>
     <summary>Apollo</summary>
 
-Ensure that all types in your Apollo GraphQL schema are explicitly defined. Avoid using the generic GraphQLObjectType without proper field definitions to prevent unstructured data vulnerabilities.
+Ensure that all objects and variables are properly defined within the scope of their use in the Apollo framework engine. This includes initializing variables before use, and avoiding the use of any variables that have not been explicitly declared. Check for typos in variable names and confirm that all modules or components are correctly imported or required where needed. Additionally, consider implementing TypeScript for stronger type-checking and object definition validation during the development process.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Define all object types explicitly in your GraphQL Yoga schema to avoid security issues related to unstructured data.
+To address issues with undefined objects in the Yoga framework engine, ensure that all objects and their properties are properly initialized before use. Check for any typos or incorrect references that may lead to undefined objects. Additionally, implement null checks or optional chaining (object?.property) to safely access object properties that might not exist.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Use AWS AppSync's schema definition language to define your types explicitly, and avoid using undefined objects to maintain structured data.
+To address issues with undefined objects in AWS AppSync, ensure that your schema definitions are correct and that the resolvers are properly configured to handle the data types and fields defined in your schema. Additionally, implement null checks and error handling in your resolver logic to gracefully handle cases where objects might be undefined.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In your Go application using GraphQL, define all types explicitly and avoid using undefined objects to ensure data integrity.
+In the GraphQL Go framework, when dealing with undefined objects, ensure that your schema definitions are correctly set up and all object types are properly defined. Use the provided schema validation tools to check for any inconsistencies or missing types. Additionally, implement null checks and error handling in your resolver functions to gracefully handle cases where objects might not be defined. This will prevent runtime errors and improve the stability of your GraphQL service.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, define your types explicitly using Ruby classes to avoid the use of undefined objects and ensure data structure.
+In the GraphQL Ruby framework, to avoid issues with undefined objects, ensure that your type definitions are correct and complete. Use the provided type-checking mechanisms to validate objects and fields. Implement null checks and default values where appropriate. Additionally, consider using the 'graphql-guard' gem for authorization and policy enforcement to prevent exposure of undefined or unauthorized objects.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-When using Hasura, ensure that all GraphQL types are explicitly defined in your schema, and avoid using undefined objects to prevent security vulnerabilities.
+To address issues with undefined objects in the Hasura framework, ensure that all referenced tables, columns, and relationships exist and are correctly defined in your schema. Double-check your migrations and metadata to confirm that the definitions match the expected structure. If you're using remote schemas, verify that the remote service is accessible and the schema is properly integrated. Additionally, use Hasura's console to inspect and manage your database schema and relationships effectively.
 
 </details>
 
@@ -92,13 +92,13 @@ When using Hasura, ensure that all GraphQL types are explicitly defined in your 
 ### Compliance
 
 - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
-- pci: **6.5.1**
+- pci: **6.5.6**
 - gdpr: **Article-32**
-
-
-
-
-
+- soc2: **CC6**
+- psd2: **Article-94**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **SC-7**
 
 ### Classification
 

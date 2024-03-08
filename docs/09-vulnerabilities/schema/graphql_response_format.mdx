@@ -18,42 +18,42 @@ Make sure that the response format matches the official GraphQL specification.
 <details>
     <summary>Apollo</summary>
 
-Ensure proper validation and sanitization of user-supplied input to prevent injection attacks. Utilize Apollo's built-in features for input types and validation rules to define allowable structures and values for GraphQL queries and mutations.
+Ensure that the Apollo server is configured to validate and sanitize user input to prevent injection attacks. Use a combination of schema validation, custom directives, and depth limiting to control the structure and complexity of the queries. Additionally, implement error handling that does not expose sensitive information in the GraphQL responses.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Ensure that the GraphQL server implementation properly formats the response according to the GraphQL specification, including providing data in the 'data' field and errors in the 'errors' field. This helps clients to correctly parse and handle the response.
+Ensure that the Yoga GraphQL server implementation properly validates and sanitizes user input to prevent injection attacks. Implement a robust error handling strategy that does not expose stack traces or sensitive information in the GraphQL responses. Regularly update the Yoga framework to incorporate security patches and improvements.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Ensure that AWS AppSync responses adhere to a strict schema and do not expose sensitive data. Implement field-level authorization checks and use resolver mapping templates to sanitize and validate the output.
+Ensure that the AWS AppSync GraphQL API is configured to validate and sanitize user input to prevent injection attacks. Use strong, non-nullable types in your schema whenever possible, and leverage AWS AppSync's built-in validation capabilities. Additionally, implement authorization checks and resolvers to control access to data and operations, and consider using AWS WAF to add another layer of security.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Ensure that the GraphQL server implements appropriate response formatting to prevent data leakage or misinterpretation. This can include using a well-defined schema, sanitizing error messages, and controlling the depth and complexity of queries to avoid performance issues.
+Ensure that the GraphQL Go framework engine properly validates and sanitizes user input to prevent injection attacks. Implement a strong type system and use parameterized queries to handle data fetching. Additionally, employ query complexity analysis to prevent denial-of-service attacks caused by resource-intensive queries. Regularly update the framework to incorporate security patches and improvements.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Ensure proper validation and sanitization of user-supplied input in GraphQL queries. Use the built-in mechanisms provided by GraphQL-Ruby, such as argument validation using `argument :name, Type, required: true, validate: method(:validation_method)` to define custom validation logic. Additionally, consider implementing field-level permissions to restrict access to sensitive data and avoid exposing unnecessary information in the schema.
+Ensure proper validation and sanitization of user-supplied input to prevent injection attacks. Utilize the GraphQL-Ruby's built-in mechanisms for parameterized queries and argument validation. Regularly update the GraphQL-Ruby framework to incorporate the latest security patches and features.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Ensure proper validation and sanitization of user inputs to prevent injection attacks. Use Hasura's allow-list feature to restrict the set of valid queries that can be run on your GraphQL endpoint.
+Ensure that the Hasura GraphQL engine is configured to validate and sanitize user input to prevent injection attacks. Use allow-lists for queries and mutations, and apply appropriate permissions and role-based access controls to limit exposure of sensitive data. Regularly review and update security configurations in line with best practices.
 
 </details>
 
@@ -63,28 +63,28 @@ Ensure proper validation and sanitization of user inputs to prevent injection at
 <details>
     <summary>Asp_net</summary>
 
-Ensure that your ASP.NET application properly validates and encodes user input to prevent common vulnerabilities such as SQL injection, Cross-Site Scripting (XSS), and Cross-Site Request Forgery (CSRF). Utilize built-in security features like parameterized queries, AntiForgeryToken, and the built-in encoder for HTML output.
+Ensure that your ASP.NET application is using the latest security patches and that input validation is properly implemented to prevent common vulnerabilities such as SQL injection and cross-site scripting (XSS). Utilize built-in features like request validation and encode output where necessary. Regularly review your code for security issues and adhere to best practices in secure coding.
 
 </details>
 
 <details>
     <summary>Ruby_on_rails</summary>
 
-Ensure that your Ruby on Rails application handles GraphQL responses according to the official specification by using the `graphql-ruby` gem, which provides a query execution framework that integrates seamlessly with Rails. Validate the response structure in your tests and handle errors appropriately to conform with the GraphQL standard.
+Ensure that your Ruby on Rails application uses the graphql-ruby gem correctly. Adhere to the official GraphQL specification by defining your types, queries, and mutations properly. Validate and sanitize all inputs to prevent injection attacks. Use the provided query execution methods without altering the response structure to maintain compliance with the GraphQL spec.
 
 </details>
 
 <details>
     <summary>Next_js</summary>
 
-Ensure that your Next.js application properly validates and sanitizes user input to prevent security vulnerabilities such as XSS attacks. Implement server-side rendering or static generation for pages where possible to reduce client-side processing and potential exposure to client-side scripting attacks.
+Ensure that your Next.js application uses the latest stable version, follows best practices for secure coding, and regularly audits dependencies for vulnerabilities using tools like npm audit or Snyk. Additionally, implement server-side rendering or static generation appropriately to optimize performance and SEO.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Ensure that your Laravel application uses the latest stable version of the GraphQL library and adheres to the official GraphQL specification for response formats. Validate responses during development with tools like GraphiQL or GraphQL Playground to catch any discrepancies.
+Ensure that your Laravel application uses the latest stable version of the GraphQL Laravel package, and strictly adhere to the official GraphQL specification for response formats. Validate responses with automated tests.
 
 </details>
 
@@ -98,28 +98,35 @@ Ensure that your Express.js application properly validates and sanitizes user in
 <details>
     <summary>Django</summary>
 
-Ensure Django views return properly formatted JSON responses adhering to the GraphQL specification. Utilize Django's JsonResponse or Graphene-Django for GraphQL integration.
+Ensure that Django views return properly formatted JSON responses adhering to the GraphQL specification. Utilize the Graphene-Django library for seamless integration and compliance.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Ensure that your Symfony application's GraphQL endpoint properly constructs responses according to the official GraphQL specification. Utilize the webonyx/graphql-php library for accurate response formatting and adhere to the defined schema. Regularly validate response structures during development and testing phases.
+Ensure that your Symfony application's GraphQL endpoint properly constructs responses according to the official GraphQL specification. This includes using the correct JSON structure with 'data' for successful executions and 'errors' for exceptions. Utilize the webonyx/graphql-php library or similar to handle response formatting, and validate responses during development with tools like GraphiQL.
 
 </details>
 
 <details>
     <summary>Spring_boot</summary>
 
-Ensure that your Spring Boot application's GraphQL responses adhere to the official GraphQL specification by using the appropriate data fetching and error handling mechanisms provided by the GraphQL Java tools. Regularly review the GraphQL Java documentation and update your codebase to comply with the latest standards and practices.
+Ensure that your Spring Boot application's GraphQL responses adhere to the official GraphQL specification by using the appropriate libraries such as 'graphql-java' or 'graphql-spring-boot-starter'. Validate response formats during development with unit tests and integration tests.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Ensure Flask responses adhere to the official GraphQL specification by using a dedicated library such as Graphene, which provides tools to construct your schema and resolvers according to GraphQL principles. Validate all responses against the schema before sending them to the client.
+Ensure Flask responses conform to the official GraphQL specification by using a dedicated library such as Graphene. Structure your Flask views to serialize data using Graphene types and adhere to the correct content-type headers.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Ensure Nuxt.js is configured to use the latest stable version, follow best practices for secure coding, and regularly update dependencies to mitigate potential vulnerabilities.
 
 </details>
 
@@ -155,10 +162,10 @@ Ensure Flask responses adhere to the official GraphQL specification by using a d
 ### Compliance
 
 - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
-- pci: **6.5.6**
-- gdpr: **Article 5**
-- soc2: **CC2.1**
-- psd2: **Article 94**
+- pci: **6.5.1**
+- gdpr: **Article-5**
+- soc2: **CC6**
+- psd2: **Article-98**
 - iso27001: **A.12.1**
 - nist: **SP800-95**
 - fedramp: **SI-10**

@@ -18,72 +18,72 @@ Update your schema to match the real return types
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Ensure that all routes are properly authenticated by using middleware that validates the user's identity and permissions before accessing the route.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Use before_action to check for a valid session or token before allowing access to certain controller actions.
+Ensure that all routes in the ASP.NET application are properly authenticated by implementing and enforcing authentication checks. Use the [Authorize] attribute on controllers and actions to restrict access to authenticated users. Additionally, review and update the routing configuration to prevent unauthorized access to sensitive data. Regularly audit your route authorization logic to ensure it aligns with your security policies.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Implement server-side checks in your API routes to verify the user's session or token before processing the request.
+Ensure proper authorization checks are in place for each controller action. Use before_action callbacks in your controllers to verify that the current user is permitted to access the route. Additionally, consider using a robust authorization framework like Pundit or CanCanCan to manage permissions more effectively.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure all routes are properly authenticated by implementing middleware that verifies user credentials or tokens before processing requests. Use Next.js API routes with built-in or custom authentication checks, and consistently apply these checks across all endpoints to prevent unauthorized access.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Use middleware to ensure that routes are only accessible to authenticated users.
+Ensure that all routes are properly protected by middleware that checks for authentication and authorization. Use Laravel's built-in authentication guards and gate features to control access to routes. Regularly audit your routes file to ensure that new routes adhere to the security policies.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Apply authentication middleware to your routes to verify the user's credentials before proceeding.
+Ensure all routes are protected with appropriate middleware that verifies authentication and authorization. Update route handlers to check for user credentials and permissions before processing requests. Regularly audit your route configurations to prevent bypass vulnerabilities.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Decorate your view functions with the @login_required decorator to ensure that only authenticated users can access them.
+Ensure that all views that handle sensitive data require proper authentication by using Django's built-in decorators such as @login_required for function-based views or LoginRequiredMixin for class-based views. Additionally, validate that all routes correctly check user permissions and that the Django ORM queries are properly scoped to the authenticated user to prevent unauthorized access.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Use the security.yaml configuration to restrict access to routes based on user roles.
+Ensure that all routes in the Symfony application are properly secured by implementing access controls. Use the 'security.yaml' configuration file to define access rules and apply appropriate authentication checks before granting access to sensitive routes. Additionally, validate and sanitize all user inputs to prevent unauthorized data exposure.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Secure your endpoints by using Spring Security and annotating your controller methods with @PreAuthorize or @Secured.
+Ensure that all routes are properly secured by configuring Spring Security to authenticate and authorize requests. Use method-level security with annotations like @PreAuthorize to protect controller methods based on roles or permissions. Regularly review your security configuration to prevent bypasses.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Utilize the @login_required decorator from Flask-Login to protect your routes.
+Ensure all Flask routes that require authentication are properly protected by using decorators such as @login_required. Verify that the user is authenticated and authorized to access the route before processing the request. Additionally, review and update route permissions regularly to prevent unauthorized access.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In your Nuxt application, use middleware to check if the user is authenticated before rendering a page or processing an API request.
+Ensure all routes are properly authenticated by implementing middleware that verifies user credentials before granting access to any sensitive data or actions. Regularly review and update route permissions to align with the principle of least privilege.
 
 </details>
 
@@ -121,7 +121,7 @@ In your Nuxt application, use middleware to check if the user is authenticated b
 - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
 - pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

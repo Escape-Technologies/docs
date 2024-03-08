@@ -20,72 +20,72 @@ This information might be helpful for further attacks targeting internal systems
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Ensure that any sensitive information, including private IP addresses, is not included in the HTTP response body. Use custom error pages and configure them to prevent leakage of such details.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Filter out private IP addresses from the response body in your Rails application. Use Rails filters to remove or mask this information before rendering the response.
+Ensure that any sensitive information, including private IP addresses, is not included in the HTTP response body. Review your code to remove any hardcoded IP addresses or hostnames. If internal IPs need to be shared between backend services, use secure methods such as environment variables or configuration files with proper access controls. Additionally, implement proper error handling to prevent leakage of such information in error messages.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Avoid sending private IP addresses in API responses. Use environment variables for sensitive data and ensure that they are not included in the response body.
+In Ruby on Rails, ensure that any sensitive information, including private IP addresses, is not included in the HTTP response body. Use environment variables or Rails secrets to manage internal data and apply filters in your controllers or views to prevent accidental exposure. Additionally, configure your logging to avoid recording private IPs.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that server-side code does not include private IP addresses or sensitive hostnames in the HTTP response body. Review and sanitize any data sent to the client in Next.js pages or API routes. Use environment variables for sensitive data and avoid exposing them to the frontend.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Sanitize your output to ensure that private IP addresses are not included in the HTTP response. Use middleware to intercept and modify responses if necessary.
+To prevent the exposure of private IP addresses in HTTP responses within a Laravel application, ensure that any debug or error messages are properly sanitized before being sent to the client. Configure your logging settings to exclude sensitive information and use environment variables to manage configuration without hardcoding IP addresses. Additionally, consider implementing middleware that checks responses for private IP addresses and removes or obfuscates them before they reach the client.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Implement middleware to check and filter out private IP addresses from the response body before sending it to the client.
+To prevent private IP addresses from being exposed in the HTTP response body within an Express.js application, ensure that any sensitive information is not included in the response object. Use middleware to filter out private IPs from the response or avoid including any dynamic data that could potentially contain private IPs. Additionally, consider implementing a content security policy (CSP) to reduce the risk of information leakage.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Ensure that your Django views and templates do not include private IP addresses in the context data passed to them.
+To prevent the exposure of private IP addresses in the HTTP response body within a Django application, ensure that any templates or views do not include direct references to private IP addresses. Use environment variables or Django settings to manage internal URLs and IP addresses, and avoid hardcoding them in your codebase. Additionally, implement proper access controls and network security measures to restrict unauthorized access to internal resources.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Use Symfony's response event listeners to filter out private IP addresses from the response content.
+In the Symfony framework, ensure that any sensitive information, including private IP addresses, is not included in the HTTP response body. Use Symfony's environment variables to manage configuration and avoid hardcoding sensitive data. Implement access controls and filters to prevent exposure of private network details to unauthorized users. Regularly review your code and use Symfony's security features to mitigate the risk of information leakage.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Configure your Spring Boot application to avoid exposing private IP addresses in the response. Use AOP to intercept responses and sanitize any private IPs.
+To prevent the exposure of private IP addresses in the HTTP response body within a Spring Boot application, ensure that any sensitive information is not included in the response objects. Use environment-specific configuration files or externalized configuration management to avoid hardcoding IP addresses. Implement proper logging to avoid inadvertently logging private IPs. Additionally, review your application's error handling to ensure that stack traces or error messages containing private IPs are not sent to the client.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Use Flask response handlers to remove or mask private IP addresses from the response body before it is sent to the client.
+To prevent private IP addresses from being exposed in the HTTP response body within a Flask application, ensure that any templates or views do not include sensitive information. Use environment variables or configuration files to manage internal data, and avoid hardcoding IP addresses. Implement proper access controls and output encoding to safeguard against inadvertent data leaks. Additionally, consider using a proxy or firewall to filter outgoing data and monitor for unintentional disclosures.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Ensure that your Nuxt.js application does not include private IP addresses in the API responses or the generated HTML.
+Ensure that server-side code does not include private IP addresses or sensitive hostnames in the HTTP response body. Review and sanitize any data sent to the client in Nuxt.js applications to prevent inadvertent exposure of internal network details.
 
 </details>
 
@@ -121,10 +121,10 @@ Ensure that your Nuxt.js application does not include private IP addresses in th
 ### Compliance
 
 - OWASP: **[API1:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
-- pci: **6.5.1**
+- pci: **1.3.7**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
-
+- soc2: **CC1**
+- psd2: **Article-95**
 - iso27001: **A.18.1**
 - nist: **SP800-53**
 - fedramp: **AC-4**

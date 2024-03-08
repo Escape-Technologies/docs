@@ -20,42 +20,42 @@ Update your resolver to make the introspection type match the actual returned ty
 <details>
     <summary>Apollo</summary>
 
-Ensure that the types defined in your GraphQL schema match the types of data returned by your resolvers. Use schema validation tools to enforce type safety.
+Ensure that the response type in the Apollo framework engine matches the expected type defined in the GraphQL schema. This can be achieved by validating the resolver functions to return the correct type and by using schema type checks during development to prevent type mismatches.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Implement custom scalar types in GraphQL Yoga if needed to enforce the correct data types in your schema.
+Ensure that the Yoga framework engine is configured to handle the expected response types for each endpoint. Verify that the content types in the requests and responses match, and that the data serialization and deserialization processes align with the specified formats. If necessary, implement custom serializers or parsers to manage content type negotiation and conversion accurately.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Use AWS AppSync's built-in scalar types and directives to define the expected response types in your schema.
+Ensure that the response type in the resolver matches the expected return type defined in the GraphQL schema. If there is a mismatch, update the resolver to correctly handle the data structure and types as per the schema definition.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL-Go, ensure that your resolver functions return values that match the expected GraphQL types.
+Ensure that the GraphQL schema strictly defines the types for all fields and that the resolver functions correctly handle the types as defined. Implement input validation to verify that the data received matches the expected types before processing the query. Use middleware or schema directives for consistent validation across resolvers.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Use Ruby's type system and GraphQL-Ruby's type definitions to ensure that the response matches the expected type.
+Ensure that the types defined in the GraphQL schema match the expected response types in the Ruby resolver functions. Utilize the GraphQL Ruby framework's type-checking features to enforce the correct data types and structures. Additionally, implement custom type validations if necessary to handle complex data structures or custom business logic.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-In Hasura, use the console or the metadata API to define strict types for your tables and make sure that the GraphQL types are consistent with the database schema.
+Ensure that the expected response type in the client matches the actual response type provided by the Hasura GraphQL engine. Verify the GraphQL query or mutation structure and types in the schema, and update the client-side parsing logic to correctly handle the data structure returned by Hasura.
 
 </details>
 
@@ -91,10 +91,10 @@ In Hasura, use the console or the metadata API to define strict types for your t
 ### Compliance
 
 - OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
-- pci: **6.5.8**
+- pci: **6.5.1**
 - gdpr: **Article-32**
-
-
+- soc2: **CC5**
+- psd2: **Article-97**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-4**

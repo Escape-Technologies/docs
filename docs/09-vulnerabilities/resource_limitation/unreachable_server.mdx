@@ -22,42 +22,42 @@ We recommend you to investigate two possible causes:
 <details>
     <summary>Apollo</summary>
 
-Check the Apollo server logs for errors, ensure that the server is running, and that there are no issues with the resolvers or schema definitions.
+For an unreachable server in the Apollo framework engine, ensure that the server is running and accessible. Check network configurations, firewall settings, and confirm that the server's URL is correct. Additionally, verify that the Apollo server is properly configured to listen on the correct port and that any environment variables or configurations required for the server to function are set correctly.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Ensure that the GraphQL Yoga server is running and check the console for any errors. Verify that your schema and resolvers are set up correctly.
+To address an unreachable server issue within the Yoga framework engine, ensure that the server address is correct and the network connection is stable. Verify firewall settings and server configuration to allow incoming connections on the appropriate port. Additionally, check for any recent updates or changes in the Yoga framework that might require adjustments in the server setup.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Check the AWS AppSync console for any deployment errors, ensure that the schema and data sources are configured correctly.
+To address an unreachable server issue in the AWS AppSync framework, ensure that your VPC configuration allows for outbound internet access if your GraphQL endpoint is outside the VPC. Check security groups and network ACLs for proper inbound and outbound rules. Verify that the AppSync service role has the necessary permissions. Additionally, confirm that the endpoint URL is correct and the server is running. If the issue persists, enable AWS CloudTrail and AppSync logging to diagnose the connectivity problem.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Verify that the Go server running the GraphQL endpoint is up and check the logs for any panic or fatal errors.
+To address an unreachable server issue in a GraphQL Go framework engine, ensure that the server is running and accessible. Check network configurations, firewall settings, and confirm that the correct port is open and listening. Verify that the GraphQL service is properly configured and that any dependent services or databases are also online. If the problem persists, consult the server logs for more detailed error messages that can help identify the root cause of the connectivity issue.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Check the logs for errors and ensure that the Ruby server hosting the GraphQL endpoint is running. Confirm that the schema is properly defined.
+For an unreachable server issue in a GraphQL Ruby framework engine, ensure that the server is running and accessible. Check the network connectivity, firewall settings, and confirm that the correct port is open and listening. Review the server logs for any errors and address them accordingly. If the issue persists, consider restarting the server or the service hosting the GraphQL endpoint.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Ensure that the Hasura GraphQL engine is running and that there are no errors in the console or logs. Check the database connectivity and schema migrations.
+To address an unreachable Hasura engine server, ensure that the server is running and accessible. Check the network connectivity, firewall settings, and confirm that the Hasura GraphQL engine's endpoint URL is correct. Additionally, verify that the appropriate ports are open and that the server's host is not experiencing any downtime. If you're using Docker or Kubernetes, ensure that the containers or pods are healthy and that the service is properly exposed. Consult the Hasura logs for any error messages that could provide further insight into the issue.
 
 </details>
 
@@ -65,72 +65,72 @@ Ensure that the Hasura GraphQL engine is running and that there are no errors in
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Check the server logs for any unhandled exceptions. Ensure that the application pool is running and that the server has network connectivity.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Inspect the logs for errors, ensure the Puma or Unicorn server is running, and check for any database connectivity issues.
+Check the server's connectivity, ensure the ASP.NET framework is properly installed and updated, review the event logs for errors, and verify the web.config file for any misconfigurations. If necessary, restart the server and the application pool associated with the ASP.NET application.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Verify that your Node.js server is running and that there are no errors in the console. Check your 'next.config.js' for any misconfigurations.
+In a Ruby on Rails application, ensure that the server is properly configured and monitor the logs for any exceptions or errors. Set up automatic restarts with a tool like systemd or use a process manager such as Capistrano for deployment. Implement health checks and use a monitoring service to alert you when the server becomes unreachable. Check network configurations and firewall rules to ensure they are not blocking traffic to the server.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Check the server logs for any error messages that can indicate the cause of the crash. Ensure the server hardware is functioning correctly. Verify network connectivity and DNS configurations. Review recent changes to the server's configuration files for any errors. If the issue persists, consider rolling back to a previous stable configuration or contacting your hosting provider for further assistance.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Check the Laravel logs in the 'storage/logs' directory for errors, ensure the web server and PHP-FPM services are running.
+Check the Laravel logs in 'storage/logs/' for specific error messages. Ensure the server is running and the network connection is stable. Verify the .env configuration for correctness, and if necessary, reboot the server or restart the web service. Consider setting up a monitoring system to alert on server downtime.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Ensure that the Express server is running and that there are no errors in the console. Check for any network issues that might be preventing the server from starting.
+Check the server's power and network connections. Verify the server's hardware and software health. Review the server logs for any error messages that occurred before the server became unreachable. Ensure the Express.js application is running and listening on the correct port. Check for any recent changes in the code or configurations that might have caused the issue. If a crash is suspected, investigate the root cause, and apply necessary patches or updates. Implement monitoring tools to alert on server unavailability in the future.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Check the Django server logs for errors, ensure that the Gunicorn or uWSGI server is running, and verify database connectivity.
+Check the Django server logs for any exceptions or error messages that could indicate the cause of the crash. Verify the network connectivity and ensure the server configuration files are correct. If necessary, restart the Django service and monitor the system for stability.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Review the Symfony logs under 'var/logs/' and ensure that the web server is properly configured and running.
+Check the Symfony server logs for any exceptions or errors that could indicate the cause of the downtime. Ensure that the server's hardware resources are sufficient and that the network configuration is correct. Verify that the Symfony environment is properly configured, and all dependencies are up to date. If a crash is suspected, investigate the possibility of memory leaks or other resource exhaustion issues. In case of a suspected network issue, check the firewall settings and connectivity between the server and its clients. If a misconfiguration is to blame, review the Symfony configuration files for any incorrect settings. Implement monitoring tools to alert on server health and performance metrics to detect future issues proactively.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Check the Spring Boot application logs for any exceptions or errors, and ensure that the application is correctly packaged and deployed.
+For a Spring Boot application, first ensure the server instance is running. If it's down, restart the service. Check the application logs for exceptions or errors that might indicate the cause of the crash, such as out of memory errors or database connection issues. Verify network configurations and firewall rules to ensure the server is reachable. If a misconfiguration is suspected, review the application.properties or application.yml files for any incorrect settings. Additionally, implement health checks and monitoring to detect and alert on future outages promptly.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Ensure that the Flask server is running without errors. Check the terminal or logs for any stack traces or error messages.
+Check the server logs for any exceptions or errors that could indicate the cause of the crash. Verify network connectivity and firewall settings to ensure the server is reachable. Review the Flask application's configuration for any incorrect settings. If necessary, restart the server and monitor its stability.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Make sure the Nuxt.js server is running and check the '.nuxt/logs' directory for any potential errors that could have caused the server to crash.
+Check the server logs for any exceptions or errors that could indicate the cause of the crash. Verify network connectivity and ensure that the server's IP address is correctly configured. If using a cloud service, check for any service outages. Review Nuxt.js configuration files for any incorrect settings that might prevent the server from starting. If necessary, restart the server or deploy a new instance.
 
 </details>
 
@@ -166,9 +166,9 @@ Make sure the Nuxt.js server is running and check the '.nuxt/logs' directory for
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-- pci: **6.5.8**
+- pci: **1.2.3**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.17.1**
 - nist: **SP800-53**

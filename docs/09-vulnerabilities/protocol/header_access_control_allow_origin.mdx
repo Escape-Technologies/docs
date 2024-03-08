@@ -18,68 +18,42 @@ Set `Access-Control-Allow-Origin` header to a specific origin
 <details>
     <summary>Apollo</summary>
 
-When using Apollo with Express.js, [helmet](https://www.npmjs.com/package/helmet) can take care of the security headers.
+To remediate the 'Access-Control-Allow-Origin' header issue in the Apollo framework, ensure that the Apollo Server is configured to set the appropriate CORS policies. This can be achieved by using the 'cors' option in the Apollo Server constructor, where you can specify the domains allowed to access your GraphQL endpoint. For example, to allow requests from 'https://example.com', you would set the 'cors' option to '{ origin: 'https://example.com' }'. If you need to allow multiple domains or use more complex rules, you can provide a function to the 'origin' option to dynamically determine the allowed origin based on the incoming request. Always restrict the 'Access-Control-Allow-Origin' header to the specific domains that should have access, and avoid using the wildcard '*' in a production environment as it allows any domain to send requests.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For GraphQL Yoga, you can use middleware to set the `Access-Control-Allow-Origin` header appropriately. Here's an example using Express middleware:
+To remediate the 'Access-Control-Allow-Origin' header issue in the Yoga framework engine, ensure that the CORS policy is configured properly. Set the 'Access-Control-Allow-Origin' header to the specific origins that should be allowed to access the resources, rather than using a wildcard '*'. This can be done by modifying the CORS configuration in the Yoga server setup to include only trusted domains, or by implementing a more dynamic approach that checks the origin against a whitelist before setting the header. Additionally, consider using credentials with CORS if authentication is required, and ensure that the 'Access-Control-Allow-Credentials' header is set to 'true' only for trusted origins.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-* Add security headers with the API Gateway
-Put your AppSync API behind an API Gateway and configure it to act as a proxy to your AppSync endpoint (e.g., using the HTTP Proxy feature).
-[API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
-Then you can manually add headers to each resource. (There is only one resource if your API Gateway is only used to proxy a single AppSync endpoint)
-Here is an example of security headers you can add :
-```Cache-Control: no-store
-Content-Security-Policy: default-src 'self'
-Strict-Transport-Security: max-age=63072000
-X-Content-Type-Options: nosniff
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block```
-* Add security headers using only AWS AppSync
-AWS AppSync currently does not allow to append custom headers to every response. However, custom response headers can be configured individually for every resolver by using response mapping templates.
-To do this, go to:
-  - AppSync > {Your App} > Schema
-For every attached resolver :
-  - Go to the resolver configuration
-  - In the "Configure the response mapping template" section, add this :
-```php
-$util.http.addResponseHeader("Cache-Control", "no-store")
-$util.http.addResponseHeader("Content-Security-Policy" , "default-src 'self'")
-$util.http.addResponseHeader("Strict-Transport-Security", "max-age=63072000")
-$util.http.addResponseHeader("X-Content-Type-Options", "nosniff")
-$util.http.addResponseHeader("X-Frame-Options", "SAMEORIGIN")
-$util.http.addResponseHeader("X-XSS-Protection", "1; mode=block") 
-```
+To remediate the 'Access-Control-Allow-Origin' header issue in AWS AppSync, ensure that the CORS configuration for your GraphQL API is correctly set. In the AWS AppSync console, navigate to your API settings and under the 'Default Settings' section, specify the domains that are allowed to access your API by setting the 'Access-Control-Allow-Origin' header. Use a specific domain or a wildcard to define the allowed origins. Additionally, review and adjust other CORS headers such as 'Access-Control-Allow-Headers' and 'Access-Control-Allow-Methods' to control the allowed headers and HTTP methods for cross-origin requests. Always follow the principle of least privilege, granting only necessary permissions to minimize security risks.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-You can use a HTTP middleware to add security headers.
-For instance, with [srikrsna/security-headers](https://github.com/srikrsna/security-headers):
+To remediate the Access-Control-Allow-Origin header issue in a GraphQL Go framework engine, ensure that the server only allows specific trusted domains to access your resources. Implement a middleware that checks the Origin header against a whitelist of allowed domains before setting the Access-Control-Allow-Origin header accordingly. Avoid using the wildcard '*' in production environments as it allows any domain to access your resources. Additionally, consider using a library or framework feature that supports CORS configuration to manage these headers more effectively.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In Ruby on Rails with GraphQL-Ruby, you can set the `Access-Control-Allow-Origin` header in your controller:
+To remediate the 'Access-Control-Allow-Origin' header issue in a GraphQL Ruby framework engine, ensure that the CORS policy is configured correctly. Use the 'rack-cors' middleware or a similar CORS handling library to define which origins are allowed to access your GraphQL API. Set up a strict policy that only permits specific domains and ensure that credentials are handled securely if allowed. Regularly review and update the CORS policy to adapt to changes in your application's consumption patterns.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-With Hasura, you can set the `Access-Control-Allow-Origin` header using environment variables or in the reverse proxy (like Nginx) sitting in front of Hasura:
+Configure the 'Access-Control-Allow-Origin' header in the Hasura engine's settings to specify a whitelist of origins that are permitted to access the resources. Ensure that the header is not set to '*', which would allow any domain to access your resources, and instead define explicit URIs that need access. This can be done by modifying the 'HASURA_GRAPHQL_CORS_DOMAIN' environment variable or through custom middleware if you're using Hasura with a proxy server.
 
 </details>
 
@@ -87,72 +61,72 @@ With Hasura, you can set the `Access-Control-Allow-Origin` header using environm
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, you can set the `Access-Control-Allow-Origin` header in the Web.config file or directly in your C# code:
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, you can set the `Access-Control-Allow-Origin` header using the `rack-cors` gem:
+In the ASP.NET framework, ensure that the 'Access-Control-Allow-Origin' header is properly set in the web.config file or directly in the response headers to specify allowed domains, rather than using '*' which allows any domain.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js, you can set the `Access-Control-Allow-Origin` header using API routes:
+In Ruby on Rails, ensure that the 'Access-Control-Allow-Origin' header is set correctly in your responses. Use the 'rack-cors' gem for handling Cross-Origin Resource Sharing (CORS), and configure it to specify allowed origins. Avoid setting the header to '*', which allows any domain to access your resources, and instead define a whitelist of domains that are permitted to make requests to your application.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+In Next.js, ensure that API routes or pages sending responses set the 'Access-Control-Allow-Origin' header appropriately. Use the Next.js API middleware to intercept outgoing responses and conditionally set the header to specific origins or handle CORS policy more comprehensively with a package like 'nextjs-cors'.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, you can set the `Access-Control-Allow-Origin` header by creating a middleware:
+In Laravel, ensure that your routes or controllers that serve API responses include the 'Access-Control-Allow-Origin' header with the appropriate domain. You can do this by using middleware to set the header or by manually adding the header to the response. For example, use `->header('Access-Control-Allow-Origin', 'http://example.com')` to set the header for a specific domain or handle CORS globally with a middleware that conditionally sets the header based on the request origin.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-When using Express.js, you can set the `Access-Control-Allow-Origin` header using the `cors` middleware:
+In Express.js, ensure that the 'Access-Control-Allow-Origin' header is set to the specific origin(s) that should be allowed to access the resource, rather than '*' for unrestricted access. Use middleware such as 'cors' to configure this header properly. For example: `app.use(cors({ origin: 'https://example.com' }));` where 'https://example.com' is the allowed origin.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, you can set the `Access-Control-Allow-Origin` header using the `django-cors-headers` package:
+In Django, ensure that the 'Access-Control-Allow-Origin' header is properly set by using the 'CORS_ORIGIN_WHITELIST' setting in the 'django-cors-headers' library. Configure it with a list of allowed domains to restrict cross-origin access to trusted sources.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, you can set the `Access-Control-Allow-Origin` header using the `nelmio/cors-bundle`:
+In Symfony, ensure that the 'Access-Control-Allow-Origin' header is properly set by using the 'nelmio_cors' bundle or by manually configuring the 'Response' object's headers to specify the allowed origins. Avoid using '*' for sensitive resources to prevent Cross-Origin Resource Sharing (CORS) vulnerabilities.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, you can set the `Access-Control-Allow-Origin` header using `@CrossOrigin` annotation or by configuring a global CORS policy:
+In Spring Boot, configure CORS globally by extending the `WebMvcConfigurer` and overriding the `addCorsMappings` method, or use `@CrossOrigin` annotations on individual controllers or handler methods to specify allowed origins. Avoid setting `Access-Control-Allow-Origin` to `*` in production.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, you can set the `Access-Control-Allow-Origin` header using the `flask-cors` extension:
+In Flask, set the 'Access-Control-Allow-Origin' header to the specific origin domain instead of '*' or use Flask-CORS extension to handle CORS with more granularity.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, you can set the `Access-Control-Allow-Origin` header using the `@nuxtjs/proxy` module for development and a server middleware for production:
+Ensure that the server-side application sets the 'Access-Control-Allow-Origin' header to the specific origins that should be allowed to access the resources, rather than using '*' which allows any domain to access your resources. In Nuxt.js, you can configure this in your server middleware or by using modules like '@nuxtjs/proxy' for development and setting proper CORS headers in your production environment.
 
 </details>
 
@@ -190,8 +164,8 @@ In Nuxt.js, you can set the `Access-Control-Allow-Origin` header using the `@nux
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
 - pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
-
+- soc2: **CC1**
+- psd2: **Article-95**
 - iso27001: **A.14.1**
 - nist: **SP800-53**
 - fedramp: **AC-4**

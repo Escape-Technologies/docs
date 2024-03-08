@@ -20,42 +20,42 @@ Implement a maximum recursion limit.
 <details>
     <summary>Apollo</summary>
 
-To prevent stack overflow panics in Apollo Server, implement query depth limiting and complexity analysis to reject overly complex queries.
+To address potential issues within the Apollo framework engine, ensure that all dependencies are up-to-date, follow best practices for schema design, and implement proper error handling. Regularly review the Apollo documentation for updates on security practices and performance improvements. Additionally, consider using Apollo's built-in features for performance monitoring and query optimization to enhance the resilience and efficiency of your GraphQL implementation.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For GraphQL Yoga, use depth and complexity limiting to mitigate the risk of stack overflow due to recursive queries.
+To address issues within the Yoga framework engine, ensure that all components are updated to their latest versions to benefit from recent bug fixes and performance improvements. Regularly review the framework's documentation for best practices and utilize the community forums for support. Additionally, consider implementing error handling and logging mechanisms to monitor the system's health and quickly identify areas that require attention.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-In AWS AppSync, configure query depth limiting and use AWS WAF to block malicious queries that could cause stack overflows.
+To address potential issues with the AWS AppSync framework engine, ensure that you are using the latest version of the service which includes the most recent security patches and performance improvements. Regularly review your schema and resolvers to optimize performance and security. Implement proper authentication and authorization mechanisms to control access to your GraphQL API. Monitor your API usage and set up alerts for unusual patterns that could indicate a problem. Additionally, consider using AWS CloudFormation or the AWS Amplify CLI to manage and provision your AppSync resources in a more controlled and repeatable manner.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-For the graphql-go server, implement a query depth limiting middleware to prevent recursive query attacks.
+To address potential security vulnerabilities in the GraphQL Go framework engine, ensure that all user-supplied input is validated and sanitized. Implement proper error handling to avoid leaking sensitive information in error messages. Regularly update the framework to incorporate the latest security patches. Additionally, consider using query complexity analysis to prevent resource exhaustion attacks, and enforce authentication and authorization checks to control access to sensitive data.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, use the max_depth query analyzer to protect against deep recursive queries causing stack overflows.
+In the GraphQL Ruby framework, to avoid issues with recursive fragments, ensure that your queries are structured in a way that prevents infinite loops. This can be achieved by defining a maximum depth for queries and using fragment definitions wisely. Utilize the `max_depth` option in your schema definition to limit the complexity of the queries and protect against potential denial-of-service attacks. Additionally, consider implementing analysis tools provided by the framework to detect and alert on recursive fragment usage before it affects your application's performance.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-For Hasura GraphQL engine, set up query depth limits in the console under the 'Security' settings to prevent DoS attacks.
+To address potential issues with the Hasura framework engine, ensure that all GraphQL queries are constructed using parameterized statements to prevent injection attacks. Additionally, regularly update the Hasura engine to the latest version to incorporate security patches and performance improvements. Implement proper access control by configuring role-based permissions carefully, and review the security rules to ensure that sensitive data is protected. Monitor the Hasura logs for any unusual activity that could indicate a security breach or misconfiguration. By following these best practices, you can maintain a secure and efficient Hasura deployment.
 
 </details>
 
@@ -91,13 +91,13 @@ For Hasura GraphQL engine, set up query depth limits in the console under the 'S
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-- pci: **6.5.1**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
-- fedramp: **AR-1**
+- fedramp: **SC-5**
 
 ### Classification
 

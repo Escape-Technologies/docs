@@ -19,42 +19,42 @@ Disable Field Suggestion in production.
 <details>
     <summary>Apollo</summary>
 
-Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Apollo.
+To address issues with the Apollo framework engine, ensure that you are using the latest stable version. Update your dependencies and check for any deprecated features that may need refactoring. Additionally, review the Apollo documentation for best practices on schema design, query optimization, and error handling to improve the performance and reliability of your GraphQL API.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Yoga. Or, you can use the standalone [envelop plugin](https://www.npmjs.com/package/@escape.tech/graphql-armor-block-field-suggestions).
+To address issues within the Yoga framework engine, ensure that you are using the latest stable version of the framework. Regularly update your dependencies to incorporate security patches and bug fixes. Additionally, follow best practices for error handling and input validation to prevent common vulnerabilities. If you encounter specific problems, consult the Yoga framework documentation or seek support from the community forums.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-On AWSAppSync, Field Suggestion is supported.
+To ensure the security and performance of your AWS AppSync GraphQL APIs, it is recommended to use parameterized queries to prevent injection attacks and to optimize query execution. Additionally, enable caching for frequently accessed data, monitor and set alarms for unusual patterns or error rates using Amazon CloudWatch, and manage data access by implementing fine-grained access control with AWS Identity and Access Management (IAM) roles and Amazon Cognito for authentication and authorization purposes.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-`graphql-go/graphql` does not allow to disable field suggestion as of now. However, you can filter field suggestion by discarding answers containing "Did you mean" with this middleware :
+To mitigate potential security risks in your GraphQL Go framework engine, ensure that all queries are properly validated and sanitized to prevent injection attacks. Use middleware for authentication and authorization to control access to sensitive data. Regularly update dependencies to incorporate security patches. Additionally, consider implementing rate limiting to protect against denial-of-service attacks.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-On GraphQL Ruby, Field Suggestion is supported and enabled by default.
+Ensure that proper input validation is implemented to prevent GraphQL injection attacks. Use the built-in mechanisms for argument validation provided by the GraphQL Ruby framework. Additionally, consider implementing rate limiting and complexity analysis on queries to mitigate potential abuse.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-On Hashura, Field Suggestion is supported and enabled by default.
+To ensure secure and efficient data handling with the Hasura framework engine, it is recommended to use parameterized queries to prevent SQL injection attacks. Additionally, regularly update the Hasura engine to the latest version to benefit from security patches and performance improvements. Implement role-based access control to restrict data access and operations according to user roles. Monitor the engine's performance and logs to detect and address any issues promptly. Lastly, consider using environment variables for sensitive information instead of hardcoding them into your application.
 
 </details>
 
@@ -90,13 +90,13 @@ On Hashura, Field Suggestion is supported and enabled by default.
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.5**
-
-
-
-
-
-
+- pci: **6.5.10**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-53**
+- fedramp: **AC-6**
 
 ### Classification
 

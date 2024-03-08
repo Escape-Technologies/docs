@@ -21,66 +21,42 @@ Add `Strict-Transport-Security` header.
 <details>
     <summary>Apollo</summary>
 
-When using Apollo with Express.js, [helmet](https://www.npmjs.com/package/helmet) can take care of the security headers.
+Implement HTTP Strict Transport Security (HSTS) by adding a 'Strict-Transport-Security' header to all responses with an appropriate 'max-age' directive. Ensure that the 'includeSubDomains' directive is set if all subdomains are to be included, and consider the 'preload' directive if you want the domain to be included in the HSTS preload list. Configure the Apollo framework to enforce HTTPS to prevent protocol downgrade attacks and cookie hijacking.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For GraphQL Yoga, you can use middleware to set the HSTS header. Here's an example using Express middleware:
+Enable HTTP Strict Transport Security (HSTS) by adding the 'Strict-Transport-Security' header with an appropriate 'max-age' directive to the Yoga framework engine. This header ensures that browsers only communicate with the server over HTTPS, preventing man-in-the-middle attacks. Configure the Yoga server to send the header 'Strict-Transport-Security: max-age=31536000; includeSubDomains' with every response to enforce a secure connection for at least one year, including all subdomains.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-* Add security headers with the API Gateway
-Put your AppSync API behind an API Gateway and configure it to act as a proxy to your AppSync endpoint (e.g., using the HTTP Proxy feature).
-[API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) Then you can manually add headers to each resource. (There is only one resource if your API Gateway is only used to proxy a single AppSync endpoint)
-Here is an example of security headers you can add :
-```Cache-Control: no-store
-Content-Security-Policy: default-src 'self'
-Strict-Transport-Security: max-age=63072000
-X-Content-Type-Options: nosniff
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block```
-* Add security headers using only AWS AppSync
-AWS AppSync currently does not allow to append custom headers to every response. However, custom response headers can be configured individually for every resolver by using response mapping templates.
-To do this, go to:
-  - AppSync > {Your App} > Schema
-For every attached resolver :
-  - Go to the resolver configuration
-  - In the "Configure the response mapping template" section, add this :
-```php
-$util.http.addResponseHeader("Cache-Control", "no-store")
-$util.http.addResponseHeader("Content-Security-Policy" , "default-src 'self'")
-$util.http.addResponseHeader("Strict-Transport-Security", "max-age=63072000")
-$util.http.addResponseHeader("X-Content-Type-Options", "nosniff")
-$util.http.addResponseHeader("X-Frame-Options", "SAMEORIGIN")
-$util.http.addResponseHeader("X-XSS-Protection", "1; mode=block") 
-```
+Ensure that AWS AppSync is configured to use HTTPS for all communications and enable Strict Transport Security by setting the 'Strict-Transport-Security' header in the response. This can be achieved by configuring a custom domain name for your AppSync API and using AWS CloudFront to serve the API over HTTPS with the appropriate security headers.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-You can use a HTTP middleware to add security headers. For instance, with [srikrsna/security-headers](https://github.com/srikrsna/security-headers):
+Implement HTTP Strict Transport Security (HSTS) by configuring your web server to add the 'Strict-Transport-Security' header to all responses. This header should specify a 'max-age' directive to indicate how long the browser should remember that the site should only be accessed using HTTPS. Optionally, include the 'includeSubDomains' directive if you want all subdomains to also use HSTS, and the 'preload' directive if you want to be included in the HSTS preload list. For a GraphQL Go framework engine, ensure that the web server sitting in front of the application, such as Nginx or Apache, is configured to send the appropriate HSTS header.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In Ruby on Rails, you can set the HSTS header by configuring the middleware stack:
+Implement HTTP Strict Transport Security (HSTS) by adding the `rack-ssl` gem to your Gemfile and configuring it to use the `Rack::SSL` middleware. This will ensure that all communications between the client and the server are conducted over HTTPS, preventing man-in-the-middle attacks. Additionally, set the `hsts` option to true in your GraphQL Ruby framework configuration to enforce HSTS headers in responses.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-For Hasura, you can configure HSTS by setting the appropriate environment variable or using a reverse proxy:
+Enable Strict Transport Security in Hasura by setting the 'strict-transport-security' header in the response. This can be done by configuring the web server hosting Hasura to add this header, or by using a reverse proxy that can inject the header. The header should be set to 'max-age=31536000; includeSubDomains; preload' to ensure that browsers only access Hasura using HTTPS for at least one year, including all subdomains, and to allow the domain to be preloaded into browsers' HSTS lists.
 
 </details>
 
@@ -88,72 +64,72 @@ For Hasura, you can configure HSTS by setting the appropriate environment variab
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, use the `UseHsts` extension method in the `Configure` method of your `Startup` class to enable HSTS:
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, you can enable HSTS by setting the `force_ssl` option in your application's configuration:
+Implement HTTP Strict Transport Security (HSTS) in your ASP.NET application by adding the 'Strict-Transport-Security' header to your responses. This can be done by configuring the 'system.webServer' section in your web.config file or by using OWIN middleware to append the header for all outgoing responses. Ensure that the 'max-age' attribute is set to an appropriate duration and consider including the 'includeSubDomains' attribute if you want all subdomains to also enforce HSTS.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js applications, you can use a custom server with Express to set the HSTS header:
+In Ruby on Rails, enable HSTS by setting the 'hsts' option in the 'force_ssl' configuration. Add the following line to your application's configuration file (config/environments/production.rb): 'config.force_ssl = true', which will automatically enforce HSTS with default settings. For custom HSTS options, use 'config.ssl_options = { hsts: { expires: 1.year, subdomains: false } }' to specify the expiry time and whether to include subdomains.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement HTTP Strict Transport Security (HSTS) in your Next.js application by configuring the server to send the 'Strict-Transport-Security' header with an appropriate 'max-age' value. This ensures that browsers only communicate with your server over HTTPS. Additionally, consider setting the 'includeSubDomains' flag if you want all subdomains to also use HSTS, and the 'preload' flag if you intend to submit your site to the HSTS preload list for added security.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, you can use middleware to set the HSTS header. Create a new middleware and register it in your kernel:
+In Laravel, enable HTTP Strict Transport Security (HSTS) by adding the 'StrictTransportSecurity' middleware to the 'web' middleware group in the 'app/Http/Kernel.php' file. This middleware can enforce HTTPS by sending the 'Strict-Transport-Security' header with an appropriate max-age directive.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-For Express.js applications, use the `helmet` middleware to set the HSTS header:
+In Express.js, to enable HTTP Strict Transport Security (HSTS), use the 'helmet' middleware. Install it with 'npm install helmet' and include it in your application by adding 'app.use(helmet.hsts({ maxAge: 15552000 }))' to set a max-age of 180 days. Ensure all requests use HTTPS to prevent man-in-the-middle attacks.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the `SECURE_HSTS_SECONDS`, `SECURE_HSTS_INCLUDE_SUBDOMAINS`, and `SECURE_HSTS_PRELOAD` settings in your settings file:
+In Django, enable HSTS by setting the 'SECURE_HSTS_SECONDS' value in your settings.py file to a non-zero integer, which specifies the number of seconds browsers should remember to only access the site via HTTPS. Also, consider setting 'SECURE_HSTS_INCLUDE_SUBDOMAINS' to True to apply HSTS to all subdomains, and 'SECURE_HSTS_PRELOAD' to True if you intend to submit your site to the HSTS preload list.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, configure HSTS in the security headers of your `config/packages/security.yaml` file:
+In Symfony, enable HTTP Strict Transport Security (HSTS) by configuring the 'nelmio_security' bundle. Add the 'forced_ssl' configuration under 'nelmio_security' in your 'config/packages/security.yaml' file, setting 'hsts_max_age' to a suitable value, 'hsts_include_subdomains' to true if you want to include subdomains, and 'hsts_preload' to true if you intend to submit your site to the HSTS preload list.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, configure HSTS in your `application.properties` or `application.yml` file:
+In Spring Boot, enable HSTS by configuring the security headers in the application.properties or application.yml file. Set the security.require-ssl property to true and use the SecurityHeadersConfigurer to add the Strict-Transport-Security header with an appropriate max-age directive.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use the `flask-talisman` extension to set the HSTS header:
+In Flask, enable HSTS by setting the 'Strict-Transport-Security' header. Use Flask-Talisman or set the header manually in responses. For example, response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-For Nuxt.js with a custom server configuration, you can set the HSTS header using server middleware:
+Implement HSTS in Nuxt.js by adding the `helmet` package to set the `Strict-Transport-Security` header. Configure it in the server middleware to ensure all connections use HTTPS.
 
 </details>
 
@@ -189,10 +165,10 @@ For Nuxt.js with a custom server configuration, you can set the HSTS header usin
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.10**
+- pci: **4.1**
 - gdpr: **Article-32**
-- soc2: **CC1.2**
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.14.1**
 - nist: **SP800-52**
 - fedramp: **SC-8**

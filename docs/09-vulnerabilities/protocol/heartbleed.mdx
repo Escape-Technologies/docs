@@ -23,42 +23,42 @@ To effectively prevent HeartBleed attacks:
 <details>
     <summary>Apollo</summary>
 
-Ensure that your Apollo server is not using the vulnerable version of OpenSSL. Upgrade OpenSSL to version 1.0.1g or later.
+To mitigate the Heartbleed vulnerability within the Apollo framework engine, it is essential to update the OpenSSL library to the latest patched version that addresses the CVE-2014-0160 vulnerability. Ensure that all systems using the Apollo framework are using this updated version of OpenSSL. Additionally, regenerate all security certificates and keys that may have been compromised as a result of the vulnerability, and revoke any old certificates. It is also recommended to force a password change for all users to prevent unauthorized access from potentially compromised credentials.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Update the Yoga server to use a version of OpenSSL that is not affected by the Heartbleed vulnerability. This typically means upgrading to OpenSSL 1.0.1g or above.
+To remediate the Heartbleed vulnerability within the Yoga framework engine, it is essential to update the OpenSSL library to the latest patched version that has addressed the Heartbleed bug (CVE-2014-0160). Ensure that all systems using the Yoga framework are using this updated version of OpenSSL. Additionally, it is recommended to regenerate all security certificates as well as revoke and replace any keys that may have been compromised due to the vulnerability. After updating, thoroughly test the system to confirm that the patch has been applied successfully and that the Yoga framework engine is no longer susceptible to Heartbleed exploits.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-AWS AppSync is managed by AWS and any underlying SSL/TLS vulnerabilities would be addressed by AWS. Ensure that you are using the latest updates provided by AWS.
+To remediate the Heartbleed vulnerability within the AWS AppSync framework, ensure that all underlying systems and dependencies, such as EC2 instances running your resolvers or Lambda functions, are using a version of OpenSSL that is patched against CVE-2014-0160. Update the OpenSSL library to the latest secure version, and rotate any potentially compromised keys and certificates. Additionally, review your AppSync resolvers and data sources to confirm they are not exposed to the vulnerability. AWS services are regularly updated, but you should verify that you are using the latest AWS SDKs and IAM policies to enforce secure communication.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-For GraphQL servers using GraphQL-Go, make sure to update the OpenSSL library to a non-vulnerable version, such as 1.0.1g or later.
+To mitigate the Heartbleed vulnerability in a GraphQL Go framework engine, ensure that you are using the latest version of the OpenSSL library that has patched the Heartbleed bug. Update your system's OpenSSL package to the latest version provided by your operating system's package manager. Additionally, regenerate all SSL certificates after updating OpenSSL, as the private keys may have been compromised due to the vulnerability. It is also recommended to force a password change for all users as a precautionary measure.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-If you are using GraphQL-Ruby, ensure that the server hosting the application is not using the vulnerable OpenSSL version. Upgrade to OpenSSL 1.0.1g or newer.
+To mitigate the Heartbleed vulnerability within a GraphQL Ruby framework engine, ensure you are using a version of OpenSSL that is 1.0.1g or later, as these versions contain the necessary patches to address the issue. Additionally, update the graphql-ruby gem to the latest version to incorporate any security fixes. It is also recommended to regenerate all SSL certificates after updating OpenSSL, as they may have been compromised if they were created with a vulnerable version of OpenSSL.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-For Hasura GraphQL engine, ensure that the underlying system's OpenSSL is updated to version 1.0.1g or above to mitigate the Heartbleed vulnerability.
+To mitigate the Heartbleed vulnerability within a Hasura framework engine, ensure that you are using the latest version of OpenSSL that has patched the Heartbleed bug. Update the Hasura engine to the latest version that includes the updated OpenSSL. Additionally, regenerate all the SSL certificates after updating OpenSSL to ensure that any compromised keys are no longer in use.
 
 </details>
 
@@ -94,13 +94,13 @@ For Hasura GraphQL engine, ensure that the underlying system's OpenSSL is update
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.6**
+- pci: **6.5.2**
 - gdpr: **Article-32**
-
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
 - nist: **SP800-53**
-
+- fedramp: **SI-2**
 
 ### Classification
 

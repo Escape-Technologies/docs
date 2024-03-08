@@ -20,6 +20,78 @@ There are multiple ways to prevent directory traversal attacks:
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp_net</summary>
+
+In ASP.NET, prevent directory traversal attacks by validating user input, using built-in functions to sanitize file paths, employing the Path.Combine() method to safely create file paths, and setting proper permissions. Always restrict file access to a specific whitelist of allowed files and directories, and avoid using user-controllable input to access file system objects directly.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+In Ruby on Rails, ensure that user-supplied input is not used directly to access file system objects. Use built-in Rails methods such as 'send_file' or 'send_data' for serving files, and always validate and sanitize input paths. Implement strict input validation to allow only a predetermined set of paths. Avoid passing user-controllable data to methods that access the file system, and consider using the 'brakeman' gem to scan for potential vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+In Next.js, to prevent directory traversal attacks, ensure that user input is not directly used to access file system paths. Use a whitelist of allowed paths, validate and sanitize input using libraries like `path` to resolve and normalize paths, and avoid exposing sensitive system files. Implement proper error handling to avoid revealing directory structures. Additionally, use built-in Next.js routing and avoid manual path concatenation where possible.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, use the built-in functions such as 'storage_path()' and 'public_path()' to safely reference files within the application's directories. Always validate and sanitize user input to ensure it does not contain directory traversal sequences like '../'. Implement access controls to restrict file access to authorized users only.
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+In Express.js, to prevent directory traversal attacks, ensure that user input is not directly used to access file system paths. Validate and sanitize input by using modules like 'path' to resolve and normalize paths, and 'express-fileupload' or similar middleware to handle file uploads securely. Always restrict file access to intended directories and set proper permissions. Additionally, employ a robust authentication and authorization strategy to limit access to sensitive files and directories.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, ensure that any file access operations are restricted to the intended directories by using the built-in storage system classes such as 'FileSystemStorage' or 'DefaultStorage', and avoid directly handling file system paths from user input. Always validate and sanitize input to prevent directory traversal, and use 'os.path.join()' with 'settings.MEDIA_ROOT' or 'settings.STATIC_ROOT' for constructing file paths. Additionally, employ Django's 'get_valid_filename()' function to clean the user-supplied filenames.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, to prevent directory traversal attacks, always use the 'file_locator' service to safely locate files, and validate and sanitize all user inputs. Avoid directly passing user-controlled paths to filesystem functions. Use 'realpath()' to resolve paths and check they are within expected directories.
+
+</details>
+
+<details>
+    <summary>Spring_boot</summary>
+
+In Spring Boot, to prevent directory traversal attacks, validate and sanitize all user inputs to ensure they do not contain file system navigation characters. Use built-in functions to construct file paths and avoid directly concatenating user input to file paths. Implement proper access control checks before serving files to users.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, ensure that file access operations use a secure function that restricts paths to the intended directories. Validate and sanitize all user input to prevent directory traversal. Avoid using user input directly in file system operations and employ the `os.path.join` function with `flask.safe_join` to construct file paths. Additionally, set proper permissions on the server to limit which files can be accessed by the web application.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, to prevent directory traversal attacks, ensure that user input is not directly used to access file system paths. Use a whitelist of allowed paths, validate and sanitize input using libraries like `validator`, and avoid using user input for file system operations without strict checks. Additionally, employ the built-in `fs` module with caution and always resolve paths with `path.resolve` to avoid unintentional exposure of sensitive files.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/directory_traversal`
@@ -57,10 +129,10 @@ There are multiple ways to prevent directory traversal attacks:
 ### Compliance
 
 - OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
-- pci: **6.5.8**
+- pci: **6.5.1**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-6**

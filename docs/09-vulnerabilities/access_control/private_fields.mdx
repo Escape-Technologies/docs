@@ -21,42 +21,42 @@ When accessing the application through GraphQL, it is important to validate whet
 <details>
     <summary>Apollo</summary>
 
-See [Apollo's Access Control documentation](https://www.apollographql.com/docs/apollo-server/security/authentication/#in-resolvers). For large scale applications, you'll want to use a specific package like [GraphQL Shield](https://github.com/maticzav/graphql-shield) for quick and easy Access Control management.
+Ensure that private fields in the Apollo framework engine are properly encapsulated and not directly accessible from outside the class. Use appropriate access modifiers like 'private' to declare fields that should not be exposed, and provide controlled access through public methods if necessary. Regularly review your codebase to adhere to the principle of least privilege, only exposing what is necessary for the operation of the application.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In GraphQL Yoga, you can implement access control by using middleware or by checking permissions directly in your resolvers.
+Ensure that all private fields in the Yoga framework engine are properly encapsulated and can only be accessed through getter and setter methods. This will help maintain the integrity of the data and prevent unauthorized access or modification of the internal state. Additionally, consider using TypeScript or similar tools that provide better support for private fields and enhance type safety in your codebase.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Appsync provides several methods for protecting critical information. To learn how to implement fine-grained access control, head over to https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#fine-grained-access-control.
+Ensure that all sensitive data, such as API keys and user credentials, are stored in AWS Secrets Manager or another secure storage service. Do not hardcode sensitive information within the AWS AppSync resolvers or schema definitions. Implement fine-grained access control using AWS Identity and Access Management (IAM) to restrict who can access the AppSync API and what actions they can perform. Regularly audit and rotate credentials to minimize the risk of unauthorized access.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL Go, ensure that your resolver functions check for user permissions before returning sensitive data.
+Ensure that private fields in your GraphQL schema are properly encapsulated and are not exposed through the API. Implement field-level permissions and use schema directives to control access to sensitive data. Regularly review your schema and resolver functions to verify that private fields are only accessible to authorized users.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Use GraphQL-Ruby's built-in authorization mechanisms or integrate with Pundit or CanCanCan to manage access control.
+In the GraphQL Ruby framework, ensure that private fields are not inadvertently exposed through the API. Use the `private` keyword to define private fields within your Ruby classes, and apply proper scoping rules to control access. Additionally, leverage the built-in visibility feature of GraphQL Ruby to control field visibility at the schema level. This can be done by defining visibility methods or using the `visible?` method on field definitions to determine if a field should be accessible to the current querying user. Always include tests to verify that private fields are not exposed to unauthorized users.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-See Hasura's detailed [documentation for Authorization Management](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/).
+Ensure that all sensitive fields are marked as private in the Hasura schema and access permissions are properly configured to prevent unauthorized access to private fields.
 
 </details>
 
@@ -64,72 +64,72 @@ See Hasura's detailed [documentation for Authorization Management](https://hasur
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, use the built-in authorization attributes to protect your endpoints.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, leverage `before_action` filters and gems like Pundit for access control.
+Ensure that all sensitive fields within objects are marked as private and utilize proper encapsulation. Implement strong access control checks within the ASP.NET framework to prevent unauthorized access to object fields. Regularly review your codebase for adherence to the principle of least privilege and update your access control mechanisms accordingly.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js, protect your API routes by checking the user's authentication and authorization status.
+In Ruby on Rails, ensure that private fields are not exposed to unauthorized users by using strong parameters. Implement `attr_accessor` for fields that should be modifiable and use `private` or `protected` keywords for sensitive fields. Leverage the `before_action` callback to check user permissions before granting access to certain controller actions. Additionally, employ the `current_user` method to verify user identity and scope queries to the current user's accessible data using Active Record associations and scopes.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that all sensitive fields within your Next.js application are declared as private class fields or encapsulated within modules, and utilize proper access control checks before exposing any user data. Implement server-side authentication and authorization mechanisms to restrict access to private fields based on user roles and permissions. Regularly audit your codebase to adhere to the principle of least privilege, and keep your access control logic up-to-date with the latest security practices.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use middleware to enforce access control on routes.
+In Laravel, ensure that you are using Eloquent's built-in methods for data access and manipulation, which automatically protect against unauthorized access. Implement proper authentication and authorization checks using middleware, policies, and gates to control access to private fields and objects. Additionally, use Laravel's Mass Assignment protection by defining `$fillable` or `$guarded` properties on your models to prevent unauthorized updates to sensitive fields.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, use middleware functions to check user permissions before processing a request.
+Ensure that all private fields in Express.js applications are properly encapsulated and not directly accessible from the client side. Implement middleware for authentication and authorization checks to restrict access to sensitive object fields based on user roles and permissions. Use closures or Symbols in JavaScript for true privacy, and consider leveraging Object.defineProperty() to create private fields with getters and setters. Regularly review your codebase for accidental global variable leaks and enforce strict access control policies in your application logic.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the `@permission_required` decorator or custom decorators to secure your views.
+Ensure that Django models use the appropriate field-level permissions and queryset filtering to prevent unauthorized access to private fields. Implement Django's built-in authentication and permission classes, and override `get_queryset` in your views to filter data based on the current user's permissions.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, use Voters or the `@Security` annotation to check permissions.
+In the Symfony framework, ensure that access to private object fields is controlled by using the built-in security features. Define access control rules in 'security.yaml', use Voters for fine-grained permissions, and leverage the 'security.authorization_checker' service to explicitly check access rights in your code. Additionally, avoid exposing sensitive fields through serialization groups when using the Serializer component.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, secure your endpoints using Spring Security annotations.
+Ensure that the Spring Boot application uses proper access modifiers for fields and methods. Leverage the `@JsonIgnore` annotation to prevent sensitive fields from being serialized and exposed in responses. Implement method-level security with `@PreAuthorize` or `@Secured` annotations to restrict access to API endpoints based on user roles or permissions. Additionally, use Spring Security's ACL module for fine-grained access control over domain objects.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use decorators to protect views with login and role checks.
+Ensure that Flask routes that handle sensitive data are protected with appropriate authentication and authorization checks. Use Flask extensions like Flask-Login or Flask-Security for user session management, and decorators such as @login_required to restrict access to private fields. Additionally, validate and sanitize all user inputs to prevent injection attacks.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, use middleware to verify user authentication and authorization before rendering a page or processing an API request.
+Ensure that all private fields in Nuxt.js components are properly encapsulated and not exposed to the client side. Use the Vue.js data function for component-specific state and computed properties for derived state. Avoid using or modifying the window object directly, and utilize Nuxt.js modules or plugins to manage global state and side-effects.
 
 </details>
 
@@ -378,12 +378,12 @@ In Nuxt.js, use middleware to verify user authentication and authorization befor
 ### Compliance
 
 - OWASP: **[API1:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
-- pci: **6.5.8**
+- pci: **7.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.18.1**
-- nist: **SP800-53-4**
+- nist: **SP800-53**
 - fedramp: **AC-6**
 
 ### Classification

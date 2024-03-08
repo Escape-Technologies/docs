@@ -20,72 +20,72 @@ The specific risks and consequences vary depending on which files are listed and
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, disable directory browsing by setting the system.webServer/directoryBrowse enabled attribute to false in your web.config file.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, ensure that the config.public_file_server.enabled option is set to false to prevent directory listing.
+To prevent directory listing in ASP.NET, configure the web server to disable directory browsing. In IIS, this can be done by opening the IIS Manager, navigating to the 'Directory Browsing' feature, and setting it to 'Disabled'. Additionally, ensure that default documents are properly configured so that a default web page is served instead of a directory listing. In the web.config file, set the 'system.webServer/directoryBrowse' element's 'enabled' attribute to 'false' to block directory listing at the application level.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js, avoid placing sensitive files in the public directory and use server-side APIs to handle file serving.
+In Ruby on Rails, disable directory listings by ensuring the `config.serve_static_files` option is set to `false` in your application's configuration file. Additionally, configure your web server (e.g., Apache or Nginx) to deny directory browsing. For Apache, use 'Options -Indexes' in your .htaccess file or Apache configuration. For Nginx, ensure 'autoindex off;' is included in the server block configuration.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+In Next.js, disable directory listing by ensuring that the 'server' configuration does not serve static files from a public directory without explicit routes. Use a custom server or middleware to control access to files, and set proper file permissions to prevent unauthorized directory traversal and exposure of sensitive files.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, you should ensure that the 'public' directory is the only web-accessible directory and that directory listing is disabled in your web server configuration.
+In Laravel, disable directory listing by ensuring the 'Options -Indexes' directive is included in your .htaccess file, or configure your web server settings appropriately. Additionally, set the 'public' directory as the web root and avoid placing sensitive files within it. Use middleware to restrict access to authorized users and apply proper access controls to your routes.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-For Express.js, use middleware to prevent directory listing and serve static files securely.
+In Express.js, disable directory listing by not using express.static() middleware for serving static files, or configure it to disable directory indexing. Additionally, ensure that web server configurations like Apache's .htaccess or Nginx's server block do not have directory listing enabled. Use middleware like helmet to set security-related HTTP headers and prevent common vulnerabilities.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, set the DEBUG to False in production and configure your web server to disable directory listing.
+In Django, ensure that the 'DEBUG' setting is set to False in your production settings file to prevent the display of a directory listing. Additionally, configure your web server to disallow directory indexing. For Apache, this can be done by removing 'Indexes' from the 'Options' directive in the .htaccess file or the main configuration file. For Nginx, ensure that 'autoindex' is set to 'off;' in the server block configuration.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, ensure that the web server configuration does not allow directory listing and that the 'public' directory is properly secured.
+In Symfony, disable directory listing by configuring your web server appropriately. For Apache, use '.htaccess' or the config file to set 'Options -Indexes'. For Nginx, ensure 'autoindex' is set to 'off'. Additionally, review your 'public/' directory to ensure it only contains index.php and assets.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-For Spring Boot, configure application properties to disable directory listing and ensure static content is served securely.
+In Spring Boot, disable directory listing by configuring your application.properties or application.yml to not allow static content listing, and ensure that your controllers do not expose directory paths. Use Spring Security to restrict access and define proper permissions for different resources.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, do not serve static files directly from the application in production, and ensure your web server has directory listing disabled.
+In Flask, ensure that the 'AUTOINDEX' option is set to False in your application configuration or web server settings to prevent automatic directory listings. Additionally, configure your web server to deny directory browsing requests and serve a custom 403 Forbidden error page instead.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-For Nuxt.js, configure your server settings to disable directory listing and ensure that static files are served correctly.
+In Nuxt.js, to prevent directory listing, ensure that the static file serving configuration does not allow directory indexing. Set 'serveStatic' options to disable directory listing in your server configuration or use a middleware to restrict access to sensitive directories. Additionally, review and configure your web server settings (like Nginx or Apache) to disable directory browsing.
 
 </details>
 
@@ -121,10 +121,10 @@ For Nuxt.js, configure your server settings to disable directory listing and ens
 ### Compliance
 
 - OWASP: **[API1:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
-- pci: **6.5.8**
+- pci: **2.2.5**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.18.1**
 - nist: **SP800-53**
 - fedramp: **AC-4**

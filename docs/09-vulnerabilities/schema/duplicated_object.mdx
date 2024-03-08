@@ -18,72 +18,72 @@ Remove duplicated objects from the schema.
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, ensure that your models and controllers are designed with a single responsibility principle to avoid duplication. Use inheritance or partial classes to share common properties.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, use concerns or modules to encapsulate shared logic and DRY up your codebase.
+In the ASP.NET framework, to address the issue of duplicated objects, refactor your codebase to implement the 'Don't Repeat Yourself' (DRY) principle. Consolidate duplicate classes, methods, or schemas into single, reusable components. Utilize inheritance, interfaces, or shared libraries to abstract common functionality. Regularly review your code for redundancies and apply migrations or updates to ensure a single source of truth for each object definition. This will simplify maintenance, reduce errors, and improve the overall performance and scalability of your application.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js, create reusable API handlers and utility functions to prevent duplication in your API routes.
+In Ruby on Rails, to address the issue of duplicated objects in your OpenAPI or GraphQL schemas, refactor your codebase to utilize shared definitions or components. Employ modules or concerns to encapsulate common functionality and types, and use inheritance or mixins to avoid duplication. Ensure that your API documentation is updated accordingly to reflect these changes for clarity and ease of use.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Consolidate duplicated components and utilize module imports to maintain a single source of truth, enhancing maintainability and reducing complexity in your Next.js application.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use Eloquent's relationships, traits, and service classes to avoid duplication in your models and controllers.
+In Laravel, to avoid duplication in your Eloquent models or database migrations, utilize traits for common methods and relationships, and leverage database seeders and factories for consistent data creation. Regularly refactor your code to ensure DRY (Don't Repeat Yourself) principles are followed.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, use middleware and modular routing to encapsulate common functionality and avoid duplication.
+In Express.js, avoid defining duplicate middleware or route handlers that can cause conflicts or unexpected behavior. Refactor your code to create reusable functions or modules, and ensure that each endpoint is handled by a unique function. Regularly review your routes and middleware for any redundancy and consolidate them when possible to maintain a clean and efficient codebase.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use abstract base classes and mixins to share common fields and methods across models.
+In Django, ensure that your models, serializers, and views are designed with the DRY (Don't Repeat Yourself) principle in mind. Refactor any duplicated code by creating abstract base classes, mixins, or utility functions that can be shared across different parts of your application. Regularly review your codebase for redundancies and consolidate any duplicate logic or schema definitions to maintain a clean and efficient codebase.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, use traits and inheritance to share common functionality between different classes.
+In Symfony, to avoid duplication in your API schemas, utilize inheritance and composition with the Serializer component or leverage the PHP8 Attributes in combination with the Symfony Serializer to define reusable schema components. Employ services and dependency injection to share common logic across your application.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, use @Component and @Service annotations to create shared beans and avoid duplication.
+In Spring Boot, to address the issue of duplicated objects in OpenAPI or GraphQL schemas, refactor the codebase to create shared DTOs (Data Transfer Objects) or entities that can be reused across different API endpoints. Utilize inheritance or composition to handle common properties and reduce redundancy. Ensure that all references to these objects are updated to point to the shared definitions. Additionally, consider using libraries like ModelMapper to simplify object mapping and maintain consistency. Regularly review your schema to identify potential duplications as part of your API governance process.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use Blueprints to create modular endpoints and shared utility functions to reduce duplication.
+In Flask, to avoid duplication in your API schema, utilize inheritance with Python classes or leverage Flask extensions like Flask-RESTPlus or Flask-RESTful. These tools encourage code reuse and help define resources in a clean, DRY (Don't Repeat Yourself) manner. Regularly refactor your code to abstract common functionality and use decorators for shared behavior across endpoints.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, use mixins and plugins to share common functionality across components and pages.
+In Nuxt.js, ensure that components, plugins, and store modules are named and structured uniquely to prevent duplication. Refactor any existing duplicated code by creating reusable components or mixins, and utilize Vuex for shared state management to maintain a single source of truth.
 
 </details>
 
@@ -119,13 +119,13 @@ In Nuxt.js, use mixins and plugins to share common functionality across componen
 ### Compliance
 
 - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
-- pci: **6.5**
+- pci: **6.5.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.12.6**
 - nist: **SP800-53**
-- fedramp: **AR-2**
+- fedramp: **CM-3**
 
 ### Classification
 

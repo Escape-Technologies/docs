@@ -18,42 +18,42 @@ Set `Content-Security-Policy` header to a secure value.
 <details>
     <summary>Apollo</summary>
 
-When using Apollo with Express.js, [helmet](https://www.npmjs.com/package/helmet) can take care of the security headers.
+Implement a Content Security Policy (CSP) header in the Apollo framework engine to mitigate the risk of XSS attacks by specifying which dynamic resources are allowed to load. Define a policy that restricts sources for scripts, styles, and other potentially unsafe content to trusted domains. Update the server configuration to include the CSP header with the appropriate directives, such as 'default-src', 'script-src', 'style-src', and 'img-src', tailored to your application's requirements.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For GraphQL Yoga, you can use middleware to set the Content-Security-Policy header. Here's an example using Express middleware:
+Implement a Content Security Policy (CSP) header in the Yoga framework engine to mitigate the risk of Cross-Site Scripting (XSS) and other code injection attacks. Define the policy directives to restrict the sources from which content can be loaded, and specify the valid sources for scripts, styles, and other resources. Ensure that the CSP header is configured correctly and tested thoroughly to prevent any unintended restrictions on legitimate content.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Add security headers with the API Gateway. Put your AppSync API behind an API Gateway and configure it to act as a proxy to your AppSync endpoint (e.g., using the HTTP Proxy feature). Then you can manually add headers to each resource.
+Implement a Content Security Policy (CSP) header in your AWS AppSync responses by configuring your web service or the serverless function that serves the content. Use the CSP header to define which resources are allowed to load for your AppSync API, thereby reducing the risk of XSS attacks. Ensure that the CSP directives are appropriately restrictive to prevent the loading of unauthorized resources, while still allowing the necessary ones for your application to function correctly.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-You can use a HTTP middleware to add security headers. For instance, with [srikrsna/security-headers](https://github.com/srikrsna/security-headers):
+Implement a Content Security Policy (CSP) header in the GraphQL Go framework engine to mitigate the risk of Cross-Site Scripting (XSS) and other code injection attacks. Define a policy that specifies the valid sources of content and restricts the browser from loading malicious resources. Ensure that the CSP header is configured properly and tested to not interfere with the legitimate functionality of the GraphQL application.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In Ruby on Rails with GraphQL-Ruby, you can set the Content-Security-Policy header in the controller response. For example:
+Implement a Content Security Policy (CSP) header in your GraphQL Ruby application to mitigate the risk of Cross-Site Scripting (XSS) attacks. Define a policy that specifies the valid sources of content and restricts the browser from loading malicious resources. You can configure the CSP header in your Ruby on Rails application by adding it to the `config/initializers/content_security_policy.rb` file or by using middleware to set the header. Ensure that the CSP directives are compatible with the functionality of your application and test thoroughly to prevent breaking legitimate content loading.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-With Hasura, you can configure the Content-Security-Policy header using environment variables or directly in the reverse proxy (like Nginx) sitting in front of Hasura.
+Implement a Content Security Policy (CSP) header in the Hasura engine by adding it to the list of HTTP headers in the Hasura console or configuration file. Ensure that the CSP directives are appropriately set to restrict the sources from which content can be loaded, thereby mitigating the risk of Cross-Site Scripting (XSS) and data injection attacks. Test the policy thoroughly to confirm that it does not interfere with legitimate Hasura functionalities.
 
 </details>
 
@@ -61,72 +61,72 @@ With Hasura, you can configure the Content-Security-Policy header using environm
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, use the `customHeaders` setting in the `web.config` file to set the Content-Security-Policy header.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, set the Content-Security-Policy header in the application controller or use the `secure_headers` gem.
+Implement a strict Content-Security-Policy (CSP) header in your ASP.NET application by adding it to the response headers in the Global.asax.cs file or through custom middleware in the OWIN pipeline. Ensure that the CSP directive values are restrictive, allowing resources to be loaded only from trusted sources, and avoid using 'unsafe-inline' or 'unsafe-eval' for scripts and styles.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js, set the Content-Security-Policy header in the `next.config.js` file or use a custom server with Express middleware.
+Implement a Content Security Policy (CSP) by adding the `Content-Security-Policy` header to your application's responses. In Ruby on Rails, you can use the `secure_headers` gem to manage CSP and other security-related headers. Configure the CSP directives to define the allowed sources for scripts, styles, images, and other resources to enhance your application's defense against XSS attacks. Ensure that the policy is strict enough to prevent loading of potentially malicious content, but permissive enough to allow legitimate functionality.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement a Content Security Policy (CSP) by adding a `Content-Security-Policy` HTTP header in the `next.config.js` file or by setting it directly in your server-side code. Define a policy that specifies allowed sources for scripts, styles, and other resources to enhance security against XSS attacks. Test the policy thoroughly to ensure it doesn't break your application's functionality.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use middleware to set the Content-Security-Policy header.
+Implement a Content Security Policy (CSP) by adding the 'Content-Security-Policy' header to your Laravel application's responses. This can be done by using middleware to set the header with appropriate directives that define the sources from which the application can load resources. Ensure that the directives are restrictive enough to prevent XSS attacks, but permissive enough to allow legitimate content to load. Test the policy thoroughly to avoid breaking the functionality of your application.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, use the `helmet` middleware to set the Content-Security-Policy header.
+Implement a Content Security Policy (CSP) by setting the `Content-Security-Policy` HTTP header. Use the `helmet` middleware in your Express.js application to easily configure and manage CSP. Define a policy that specifies the valid sources for various resource types and add it to your app using `helmet.contentSecurityPolicy()`. Test your policy thoroughly to ensure it allows legitimate resources while blocking potentially harmful ones.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the `SecurityMiddleware` to set the Content-Security-Policy header.
+Implement the Content-Security-Policy (CSP) header by adding it to your Django application's response headers. Use the django-csp package or middleware to help define and control the CSP policy, ensuring that it is neither missing nor set to insecure values. Configure the policy directives to restrict the sources from which content can be loaded, effectively mitigating the risk of XSS attacks.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, configure the Content-Security-Policy header in the `security.yaml` file or use an event listener.
+Implement a Content-Security-Policy (CSP) header in your Symfony application by configuring it in the `security.yaml` file or by setting the header directly in your controller responses. Use the `nelmio/security-bundle` for an easier CSP configuration. Ensure that the CSP directives are appropriately strict to prevent XSS attacks without hindering the functionality of your application.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, configure the Content-Security-Policy header in the `SecurityConfig` class.
+Implement a Content Security Policy (CSP) by configuring the `Content-Security-Policy` HTTP response header in your Spring Boot application. Use the `WebSecurityConfigurerAdapter` to set a strict CSP policy that defines which resources are allowed to load, thus preventing XSS attacks. Ensure that the CSP directives are appropriately restrictive to your application's needs without allowing unsafe sources.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use the `flask-talisman` extension to set the Content-Security-Policy header.
+Implement the Content-Security-Policy (CSP) header by using Flask extensions such as Flask-Talisman to define a policy that specifies which content sources are valid. This helps prevent XSS attacks by controlling resources the user agent is allowed to load.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, set the Content-Security-Policy header using the `@nuxtjs/helmet` module or in the `nuxt.config.js` file.
+Implement a Content Security Policy (CSP) in your Nuxt.js application by adding the `helmet` middleware to set the `Content-Security-Policy` header. Configure the CSP directives in `nuxt.config.js` to define the allowed sources for scripts, styles, and other resources, ensuring to restrict sources to only trusted domains and self. Test the policy thoroughly to prevent breaking legitimate functionality.
 
 </details>
 
@@ -164,8 +164,8 @@ In Nuxt.js, set the Content-Security-Policy header using the `@nuxtjs/helmet` mo
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
 - pci: **6.5.10**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-14**

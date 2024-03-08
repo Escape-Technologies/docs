@@ -14,11 +14,11 @@ in a simple language that is powerful thanks to Escape's inference engine.
 
 A custom test is a YAML file that defines the following blocks:
 
-- [Alerting](https://docs.escape.tech/custom-tests/Alerting) is used define the alert format, it's severity…
-- [Detectors](https://docs.escape.tech/custom-tests/Detectors) are used to detect if an alert must be raised by inspecting queries.
-- [Transformations](https://docs.escape.tech/custom-tests/Transformations) are used to mutate the requests (optional).
-- [Mutators](https://docs.escape.tech/custom-tests/Mutators) are used inside the transformations.
-- [Seeders](https://docs.escape.tech/custom-tests/Seeders) are used to seed the scan with requests (optional).
+- [Alerting](./alerting) is used define the alert format, it's severity…
+- [Detectors](./detectors) are used to detect if an alert must be raised by inspecting queries.
+- [Transformations](./transformations) are used to mutate the requests (optional).
+- [Mutators](./mutators) are used inside the transformations.
+- [Seeders](./seeders) are used to seed the scan with requests (optional).
 
 ## Examples
 
@@ -124,7 +124,8 @@ detect:
 
 ### Properties
 
-- `seed`: A list of requests to seed the scan. See [Seeders](https://docs.escape.tech/custom-tests/Seeders)
-- `transform`: Defines lists of triggers and mutations (combined with AND operators).See [Transformations](https://docs.escape.tech/custom-tests/Transformations)
-- `detect`: The conditions to trigger the alert. See [Detectors](https://docs.escape.tech/custom-tests/Detectors)
-- `alert`: The alert to raise if the detection conditions are met. See [Alerting](https://docs.escape.tech/custom-tests/Alerting)
+- `id`: The unique identifier of the custom check. It is provided by Escape, do not set it manually.
+- `seed`: A list of requests to seed the scan. See [Seeders](./seeders)
+- `transform`: Defines lists of triggers and mutations (combined with AND operators).See [Transformations](./transformations)
+- `detect`: The conditions to trigger the alert. See [Detectors](./detectors)
+- `alert`: The alert to raise if the detection conditions are met. See [Alerting](./alerting)

@@ -16,75 +16,120 @@ You must enforce the algorithm used to sign the token.
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure that the Apollo framework is configured to only accept a secure and explicit list of algorithms for JWT validation. Avoid using 'none' or any algorithm not intended for your application. Implement checks to reject JWTs with 'alg' headers that don't match the expected algorithm. It's also recommended to use a library that provides strong defaults and has been well-reviewed for security.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+To mitigate the JWT algorithm confusion vulnerability in the Yoga framework engine, ensure that the server explicitly verifies the JWT token using a secure and expected algorithm. Do not rely on user input for selecting the algorithm. Configure the JWT library to reject tokens that do not specify a matching algorithm (e.g., 'HS256'). Additionally, implement proper error handling to reject any tokens that fail verification.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Ensure that the AWS AppSync GraphQL API is configured to use only secure and recommended algorithms for JSON Web Tokens (JWTs). Avoid using the 'none' algorithm, and do not allow the algorithm to be specified by the user. Implement strict server-side checks to enforce the expected algorithm, such as HS256 or RS256, and validate the JWT signature accordingly. Regularly review and update the cryptographic practices to align with current best practices and recommendations.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+To mitigate the JWT algorithm confusion vulnerability in a GraphQL Go framework engine, ensure that the server explicitly verifies the JWT 'alg' header against a whitelist of allowed algorithms. Do not rely on client-supplied parameters for selecting the algorithm. Implement strong checks to compare the algorithm in the JWT header with the expected algorithm. If the algorithm does not match the expected one, reject the token and log the attempt. Additionally, consider using a well-maintained JWT library that provides built-in protections against this type of attack.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+To mitigate the JWT algorithm confusion vulnerability in a GraphQL Ruby framework engine, ensure that the server explicitly verifies the JWT token using a secure, server-side defined algorithm. Do not allow the client to dictate the algorithm used for verification. This can be achieved by configuring the JWT library to use a constant algorithm, such as 'HS256', and rejecting any tokens that specify a different algorithm. Additionally, always validate the JWT with a strong, private key that is kept secure and never exposed to the client. Regularly rotate your keys and audit your token handling code to prevent exploitation of this vulnerability.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Ensure that the Hasura engine is configured to accept only strong and secure JWT algorithms, such as RS256, and reject none algorithm. Explicitly specify the allowed algorithms in the JWT configuration and avoid using weaker algorithms like HS256 if the secret key is not managed securely. Additionally, keep the JWT secret key confidential and rotate it periodically to maintain security.
+
+</details>
+
+
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Ensure that the JWT token is validated against a list of acceptable algorithms on the server side.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Configure JWT to use a specific algorithm for token verification and disallow any others.
+Ensure the ASP.NET application explicitly validates the JWT algorithm used during token verification. Configure the JWT middleware to only accept a predefined list of secure algorithms, such as RS256, and reject tokens with non-matching algorithms. This can be done by setting the TokenValidationParameters.ValidAlgorithms property to the list of acceptable algorithms and by checking the algorithm in the JWT header before processing the token.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Validate the JWT with a specific algorithm in your API routes to prevent algorithm confusion.
+Ensure the JWT library in your Ruby on Rails application explicitly verifies the token algorithm against a whitelist of accepted algorithms. Configure the JWT decode function to only accept the expected algorithm, such as RS256, and reject tokens with mismatched or none specified algorithms. This can be done by setting the 'verify_iss' and 'algorithm' options in your JWT decode call. Additionally, always use a strong, private key for token signing and keep it secure.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure the server strictly validates the JWT algorithm specified in the token header. Configure the JWT library to accept only the expected algorithm, such as RS256, and reject tokens with a different 'alg' parameter to prevent algorithm confusion attacks. In Next.js, use a robust library like 'jsonwebtoken' with a fixed algorithm setting in the verification step.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Set the JWT algorithm explicitly in the config and validate tokens accordingly.
+Ensure the JWT library in Laravel is configured to accept only a specific, secure algorithm such as RS256 or ES256 for token verification. Reject any tokens with a different 'alg' header. Use the 'jwt-auth' package's 'allowed_algs' configuration to specify acceptable algorithms and validate the 'alg' claim rigorously to prevent algorithm confusion attacks.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Use a middleware to verify the JWT with the correct algorithm.
+Ensure the Express.js application explicitly verifies the JWT with the expected algorithm. Configure the JWT middleware to reject tokens with algorithms other than the one you have securely chosen (e.g., RS256 for asymmetric verification). This can be done by setting the 'algorithms' option in the jwt.verify() method or within the express-jwt configuration. Additionally, implement proper error handling to catch and respond to invalid algorithm errors.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Ensure Django settings specify the algorithm used to decode JWTs.
+Ensure the Django application is configured to only accept a secure and appropriate algorithm for JWT validation, such as RS256. In the settings, explicitly specify the algorithm in the JWT_AUTH configuration and validate the 'alg' header in the token against this expected algorithm. Reject any tokens that do not match the expected algorithm to prevent algorithm confusion attacks.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Configure the lexik_jwt_authentication bundle to use the correct algorithm.
+Ensure the JWT library in Symfony is configured to explicitly check for the expected 'alg' parameter in the token's header. Reject any tokens that do not match the expected algorithm, typically by using a whitelist approach. Update the JWT handling code to use a library that provides secure default behavior and does not allow algorithm 'none'. Regularly review and update the security configurations to keep up with best practices and known vulnerabilities.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Specify the algorithm when setting up JWT parser in Spring Boot.
+Ensure the JWT parser in the Spring Boot application is configured to only accept a predefined set of secure algorithms. Explicitly specify the allowed algorithms using the .setAllowedAlgorithms() method of the JwtParser, and avoid using none as an allowed algorithm. Additionally, implement proper key management to safeguard the secret keys used for token signing and verification.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Use PyJWT to decode the JWT with the specified algorithm in Flask.
+Ensure the Flask application explicitly verifies the JWT algorithm used. Configure the JWT library to only accept a predefined list of secure algorithms, such as RS256 or ES256, and reject tokens with non-matching algorithms. Use a library like PyJWT and its 'algorithms' argument to define allowed algorithms. For example: jwt.decode(token, key, algorithms=['RS256']).
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Ensure Nuxt.js middleware validates the JWT with the correct algorithm.
+Ensure the server validates the JWT's 'alg' header. Configure the JWT library to reject tokens with unexpected algorithms, particularly 'none'. Use a library that provides strong defaults against algorithm substitution attacks. Regularly audit your JWT handling code and dependencies for security updates.
 
 </details>
 
@@ -122,11 +167,11 @@ Ensure Nuxt.js middleware validates the JWT with the correct algorithm.
 - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
 - pci: **6.5.10**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-63B**
-
+- fedramp: **SC-12**
 
 ### Classification
 

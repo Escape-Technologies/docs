@@ -24,42 +24,42 @@ By default, it will return an Internal Server Error.
 <details>
     <summary>Apollo</summary>
 
-Ensure that error types are consistent across your Apollo server implementation. Define a custom error format if necessary.
+Ensure consistent error type handling in the Apollo framework engine by defining a standardized error interface or class. This should encapsulate all necessary information about an error, such as the message, code, and any additional context. Use this error type across all resolvers and middleware to maintain consistency. Additionally, consider implementing error handling middleware that can intercept and format these errors before they are sent to the client, adhering to the GraphQL error specification.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In Yoga, standardize your error handling by creating a consistent error format and using it throughout your resolvers.
+Ensure consistent error type handling in the Yoga framework engine by implementing a standardized error interface or class. This should encapsulate all error information, providing a consistent structure for error objects. Additionally, use a centralized error handling mechanism to manage exceptions and errors uniformly across the framework.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, use the $util.error function in your VTL templates to throw errors with a consistent structure.
+Ensure that the error types returned by AWS AppSync resolvers are consistent across your GraphQL schema. Define a standard error object structure and use it throughout your resolvers. This can be achieved by creating custom error types in your schema and handling errors in resolver mapping templates to conform to these types. Additionally, consider implementing error handling logic in your Lambda functions or data sources to return errors that match your defined schema. Consistent error handling improves the client's ability to handle errors gracefully and debug issues more effectively.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL Go, define a custom error type that implements the `error` interface and use it consistently across your resolvers.
+Ensure consistent error types by defining a custom error interface in the GraphQL Go framework. Implement this interface across all resolvers and use it to handle and return errors uniformly. This will help maintain consistency and improve error handling in your GraphQL API.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL Ruby, use the `GraphQL::ExecutionError` class to create errors with a consistent type and message format.
+Ensure consistent error handling by defining a custom error class inheriting from `GraphQL::ExecutionError` and use it across your resolvers. Implement a method to standardize error messages and types. Use this custom error class to capture and format exceptions, providing a consistent error structure in the GraphQL response.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-For Hasura, ensure that custom errors returned from actions or remote schemas have a consistent format.
+Ensure that the error types returned by the Hasura engine are consistent across your GraphQL schema. This can be achieved by defining custom error types in your schema and using them uniformly in your resolvers. Additionally, make sure to handle exceptions properly and map them to the defined error types before sending the response to the client. Consistent error handling improves the client's ability to handle errors gracefully and debug issues more effectively.
 
 </details>
 
@@ -95,13 +95,13 @@ For Hasura, ensure that custom errors returned from actions or remote schemas ha
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-- pci: **6.5.8**
+- pci: **6.5.5**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
-- fedramp: **AR-2**
+- fedramp: **SI-11**
 
 ### Classification
 

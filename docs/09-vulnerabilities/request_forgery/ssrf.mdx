@@ -27,42 +27,42 @@ The correct ways to prevent SSRF are:
 <details>
     <summary>Apollo</summary>
 
-In Apollo, ensure that any user-supplied URLs for fetching resources are validated against a whitelist of allowed domains and paths. Additionally, use network policies to restrict outbound traffic from the server.
+To mitigate Server Side Request Forgery (SSRF) in the Apollo framework engine, ensure that any user-supplied URLs are validated against a strict whitelist of allowed domains and protocols. Implement proper input validation and sanitization to reject malicious or unexpected input. Additionally, consider using a server-side proxy with an allowlist to restrict outbound traffic to trusted destinations only. Employ least privilege principles by restricting the server's network access, and regularly audit and monitor outgoing requests to detect and respond to any SSRF attempts.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For Yoga, validate all user-supplied URLs against a list of permitted domains and paths. Implement strict network policies to control the server's outbound requests.
+To mitigate Server Side Request Forgery (SSRF) in the Yoga framework engine, ensure that any functionality allowing for URL fetching is restricted to trusted domains. Implement strict input validation, whitelist allowable protocols and domains, and consider using a server-side proxy with an allowlist to further restrict outbound requests. Additionally, avoid disclosing sensitive information in error messages and regularly audit your code for potential SSRF vulnerabilities.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-With AWS AppSync, use VTL (Velocity Template Language) to validate and sanitize user input before making any backend requests. Apply AWS WAF rules to restrict outbound server calls to trusted endpoints.
+To mitigate Server Side Request Forgery (SSRF) in AWS AppSync, ensure that your resolvers do not accept arbitrary URLs from client-side input for data fetching. Implement strict input validation to accept only well-defined, whitelisted external endpoints. Use AWS IAM roles and policies to enforce least privilege access, and consider using VPC endpoints for services to keep traffic within the AWS network. Regularly review and update your security groups and network ACLs to restrict outbound traffic. Additionally, enable logging and monitoring to detect and respond to any SSRF attempts promptly.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL Go, validate user input URLs rigorously before making any external requests. Use middleware to enforce checks on the URLs and prevent SSRF attacks.
+To mitigate Server Side Request Forgery (SSRF) in a GraphQL Go framework engine, validate and sanitize all user-supplied URLs and inputs. Implement strict allowlists for external services that can be accessed, and use a dedicated HTTP client with limited permissions. Additionally, consider employing network-level controls to restrict outbound traffic to trusted endpoints only.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-For GraphQL Ruby, sanitize user-supplied URLs by validating them against a predefined list of allowed domains. Use Ruby's network libraries to enforce these restrictions.
+To mitigate Server Side Request Forgery (SSRF) in a GraphQL Ruby framework, ensure that any user-supplied URLs or input used in network requests are validated against a whitelist of allowed domains and protocols. Additionally, employ least privilege by restricting the server's network access to only necessary external services, and consider using a dedicated library or service for fetching URLs that has built-in SSRF protection. Regularly review and update the whitelist and security policies to adapt to new threats.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-In Hasura, use environment variables to define allowed domains for outbound requests and validate URLs against these. Leverage Hasura's webhook modes to ensure that the server only communicates with trusted services.
+To mitigate Server Side Request Forgery (SSRF) in Hasura, ensure that any user-supplied URLs for webhooks or remote schemas are validated against a whitelist of allowed domains and protocols. Additionally, employ network policies to restrict the Hasura engine's outbound traffic to known safe destinations, and consider using a server-side proxy to handle external requests, which can provide an additional layer of filtering and access control.
 
 </details>
 
@@ -70,72 +70,72 @@ In Hasura, use environment variables to define allowed domains for outbound requ
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, validate any user-supplied URLs against a whitelist of allowed domains. Use network security groups or firewall rules to limit outbound requests from the server.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, use ActiveModel validations or custom validation methods to ensure that user-supplied URLs are safe. Employ network-level controls to prevent unauthorized outbound requests.
+To mitigate SSRF vulnerabilities in ASP.NET applications, validate all user-supplied URLs to ensure they point to allowed destinations. Implement a whitelist of approved services and reject any requests not matching the criteria. Additionally, use built-in .NET classes such as 'HttpClient' with proper URL validation, and avoid concatenating user input in URLs. Employ least privilege principles by restricting the server's ability to make outbound requests to only necessary services and ports.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js applications, validate URLs on the server side before making any fetch calls. Use a library like 'validator' to check for URL format and domain.
+In Ruby on Rails, mitigate SSRF by validating and sanitizing user input, ensuring URLs are from an allowed list of hosts and schemes. Employ the 'uri' standard library to parse and validate URLs, and consider using a dedicated gem like 'ssrf_filter' for enhanced protection. Additionally, apply network-level controls to restrict outbound traffic to trusted destinations.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+In Next.js applications, mitigate SSRF by validating and sanitizing all user inputs, implementing strict URL allowlists, and using built-in server-side functions like `fetch` with caution. Ensure that any URLs constructed from user inputs are checked against a predetermined list of allowed destinations. Additionally, consider using network-level controls to restrict the server's ability to initiate requests to untrusted hosts.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, leverage validation rules to check user input URLs. Use GuzzleHttp with middleware to enforce domain whitelisting for outbound HTTP requests.
+In Laravel, mitigate SSRF by validating and sanitizing all user inputs, especially URL parameters. Use Laravel's built-in validation rules, such as 'url' or custom regex patterns, to ensure only allowed URLs are processed. Additionally, restrict outgoing requests to a predefined list of trusted domains and employ the 'GuzzleHttp' client with caution, setting appropriate timeouts and redirect limits.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-With Express.js, use middleware to validate and sanitize user-supplied URLs. Restrict the server's network access to trusted domains using a package like 'helmet'.
+To mitigate SSRF vulnerabilities in an Express.js application, ensure that all user-supplied URLs are validated against a whitelist of allowed domains and paths. Implement strict input validation, use a dedicated library for URL parsing, and avoid passing user-controlled data to networking functions. Additionally, consider using a server-side proxy with an allowlist to restrict outbound traffic to trusted destinations only.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use forms or serializers to validate user-supplied URLs. Apply Django's URLValidator or create custom validation logic to prevent SSRF.
+In Django, to mitigate Server Side Request Forgery (SSRF) vulnerabilities, ensure that any function making external requests validates and sanitizes the URLs provided by users. Use Django's URLValidator for initial validation. Additionally, restrict the outgoing requests to a predefined whitelist of allowed domains and schemes, and consider implementing network-level firewall rules that limit the destinations your application can interact with. Always apply the principle of least privilege, granting minimal access necessary for the application to function.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-For Symfony applications, use the Validator component to ensure that all user-supplied URLs conform to a set of rules. Configure network security to restrict outbound traffic.
+In Symfony, to mitigate Server Side Request Forgery (SSRF) vulnerabilities, ensure that any functionality allowing users to supply URLs for fetching resources implements strict input validation. Use Symfony's built-in validation constraints to whitelist allowed protocols and domains, and avoid disclosing sensitive information through error messages. Additionally, consider using the HttpClient component with a preconfigured base URI and limited permissions to further restrict outbound requests to trusted destinations.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, apply validation annotations to your DTOs to check the format of user-supplied URLs. Use Java's networking capabilities to enforce access controls.
+In Spring Boot applications, to mitigate SSRF vulnerabilities, validate and sanitize all user-supplied URLs before using them to initiate a request. Implement a strict allowlist of allowed domains and schemes, and use a dedicated library for URL parsing to avoid bypasses. Additionally, configure your HTTP client to resolve DNS names using a trusted server and to disallow interactions with internal network resources.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-With Flask, validate URLs using WTForms or similar libraries. Implement network security measures to limit the destinations that the server can request.
+To mitigate SSRF vulnerabilities in a Flask application, ensure that any user-supplied URLs are validated against a whitelist of allowed domains and schemes. Additionally, use the 'requests' library with caution, setting a timeout and explicitly disabling redirects. Employ network-level controls to restrict outbound traffic to trusted services, and consider using a server-side proxy to handle external requests. Always apply the principle of least privilege to minimize the potential impact of an SSRF attack.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, ensure server-side validation of URLs using libraries like 'validator'. Configure server middleware to reject requests with disallowed URLs.
+In Nuxt.js applications, to mitigate SSRF vulnerabilities, ensure that all user-supplied URLs are validated against a strict whitelist of allowed domains and protocols. Additionally, employ server-side input validation to reject malformed URLs and unexpected input. Use built-in Nuxt.js or server features to set timeouts and limit redirects on outgoing requests. Avoid disclosing sensitive information through error messages and consider implementing a proxy to handle outgoing requests, which can provide an additional layer of control and monitoring.
 
 </details>
 
@@ -171,13 +171,13 @@ In Nuxt.js, ensure server-side validation of URLs using libraries like 'validato
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.6**
+- pci: **6.5.9**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
-
+- fedramp: **SI-10**
 
 ### Classification
 

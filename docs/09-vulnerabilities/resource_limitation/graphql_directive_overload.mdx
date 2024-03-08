@@ -21,42 +21,42 @@ This should be handled by the GraphQL engine while parsing the document, otherwi
 <details>
     <summary>Apollo</summary>
 
-Upgrade to GraphQL>=16.0.0 if you are not already up to date. You can also use our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware to limit the number of directives allowed in a query.
+To address directive overloading in the Apollo framework engine, ensure that your schema design follows best practices by limiting the number of directives applied to a single field or type. Review and refactor your GraphQL schema to merge or simplify directives where possible. Additionally, implement schema validation rules that prevent the excessive use of directives and maintain clear documentation on the purpose and usage of each custom directive to avoid confusion and misuse.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Upgrade to GraphQL>=16.0.0 if you are not already up to date. You can also use our [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) middleware to limit the number of directives allowed in a query.
+To address directive overloading in the Yoga framework engine, ensure that custom directives are clearly defined and do not conflict with existing directives within the framework. Implement a naming convention that distinguishes custom directives from default ones, and regularly review the codebase for directive consistency and proper usage. Additionally, consider encapsulating directive logic to prevent unintended side effects and maintain a clean separation of concerns within your application.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Implement custom directive limits within AWS AppSync resolvers to prevent overloading. Use AWS WAF to set up rate-based rules for your GraphQL API.
+To mitigate the risk of directive overloading in AWS AppSync, ensure that your GraphQL schema is designed with clear and specific directives. Limit the number of directives that can be applied to a single field, and validate the schema to prevent conflicts. Implement authorization checks within your resolver logic to ensure that directives are not misused to access or modify data beyond the intended scope. Regularly review your schema and resolvers for potential overloading issues and update your security practices accordingly.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Ensure you're using the latest version of the GraphQL Go library. Implement a custom directive limit check in your GraphQL server setup.
+In the context of the GraphQL Go framework, to prevent issues such as directive overloading, it is recommended to implement strict schema validation. Ensure that the GraphQL schema is defined with clear and specific directives, and use schema validation hooks provided by the framework to enforce constraints on directive usage. Additionally, consider using a linter or other static analysis tools to catch potential misuse of directives during the development process. Regularly review and update your schema and validation logic to keep up with evolving application requirements and security best practices.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Update to the latest version of GraphQL-Ruby. Use the max_depth and max_complexity query analyzers to limit directive usage.
+In the GraphQL Ruby framework, avoid directive overloading by ensuring that each directive is used for its intended purpose and is not overloaded with multiple meanings or functionalities. Define clear and concise directives, and if complex logic is required, consider implementing it within the resolver functions or using middleware. This approach helps maintain the clarity and maintainability of the GraphQL schema and prevents potential conflicts or unexpected behaviors in the API.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Configure Hasura's depth limit and complexity analysis to prevent directive overloading. Keep Hasura GraphQL Engine updated to the latest version.
+To prevent directive overloading in Hasura, ensure that custom directives are clearly defined and adhere to strict naming conventions to avoid conflicts with existing Hasura directives. Regularly review and update security policies to control access to directive definitions and apply schema validation to detect and mitigate any potential overloading attempts. Additionally, use role-based access control to limit who can modify the GraphQL schema and directives.
 
 </details>
 
@@ -97,9 +97,9 @@ Configure Hasura's depth limit and complexity analysis to prevent directive over
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-- pci: **6.5.1**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

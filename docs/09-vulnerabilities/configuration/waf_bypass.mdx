@@ -18,72 +18,72 @@ Update your WAF configuration to prevent this bypass.
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Ensure that your ASP.NET application has custom error pages configured to prevent detailed error information from being exposed. Implement request validation and encode output to prevent XSS attacks.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Use Rails built-in protection mechanisms such as strong parameters and CSRF protection. Regularly update Rails to the latest version to benefit from security patches.
+Implement rigorous input validation, encode data on output, update the ASP.NET framework to the latest version, and configure the WAF to understand and protect against the latest web vulnerabilities and attack techniques.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Apply rate limiting and implement proper input validation in your Next.js API routes. Keep dependencies up to date and use secure headers.
+Ensure that the Ruby on Rails application uses the latest version of the framework with all security patches applied. Implement strict input validation, employ least privilege principles, and configure the WAF with custom rules tailored to the application's traffic patterns to mitigate bypass attempts.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+To mitigate WAF bypass in a Next.js application, ensure that all user inputs are properly sanitized and validated both on the client and server side. Implement strict Content Security Policies (CSP), regularly update dependencies to patch known vulnerabilities, and consider using additional security headers like X-Frame-Options and X-XSS-Protection. Regularly review and update your WAF rules to cover new attack vectors and patterns.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Use Laravel's built-in security features like CSRF tokens, validation, and escaping output. Regularly update Laravel and its dependencies.
+Ensure that the Laravel application uses the latest version of the framework, which includes updated security features. Implement strict input validation, use Laravel's built-in security functions to sanitize user input, and regularly update security packages. Additionally, configure the WAF with custom rules tailored to the application's traffic patterns to better detect and prevent bypass attempts.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Implement helmet for setting various HTTP headers and use express-rate-limit to help protect against brute-force attacks. Validate and sanitize user input.
+To mitigate WAF bypass in Express.js applications, ensure that you validate and sanitize all user inputs to prevent injection attacks. Implement strict content security policies, use the latest versions of Express.js and its middleware, and consider employing additional security modules like `helmet` to enhance HTTP headers security. Regularly update your WAF rules to protect against new vulnerabilities and perform thorough security testing to identify and fix potential bypass techniques.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Use Django's built-in security features such as middleware for clickjacking protection, and ensure DEBUG is set to False in production.
+Ensure that Django's built-in protections are properly configured and up-to-date. Use the latest version of Django, as it includes the most recent security patches. Regularly update your WAF rules to cover new vulnerabilities and exploit techniques. Additionally, implement strict input validation, employ rate limiting, and consider using a more robust, customizable WAF solution if necessary.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Leverage Symfony's security components like CSRF protection and use the latest stable version of Symfony for security fixes.
+To mitigate WAF bypass in a Symfony application, ensure that all user inputs are properly validated and sanitized. Use Symfony's built-in security features such as input validation, output escaping, and CSRF protection. Regularly update the Symfony framework and all dependencies to their latest versions to address any security vulnerabilities. Additionally, configure your WAF with custom rules tailored to your application's logic and regularly audit and test WAF rules to ensure they are effective against evolving threats.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Secure Spring Boot applications by using Spring Security, enabling CSRF protection, and configuring method-level security.
+To mitigate WAF bypass in a Spring Boot application, ensure that you are using the latest version of Spring Security with properly configured security rules. Enable strict transport security, input validation, output encoding, and CSRF protection. Regularly update your dependencies to patch known vulnerabilities and consider implementing additional layers of security such as rate limiting and intrusion detection systems.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Utilize Flask extensions like Flask-WTF for CSRF protection and Flask-Talisman for setting security headers. Always escape data before rendering it.
+To mitigate WAF bypass in a Flask application, ensure that you validate and sanitize all user inputs, implement strict content security policies, use up-to-date libraries, and regularly update your WAF rules to protect against new vulnerabilities and attack vectors.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Ensure that Nuxt.js is configured to use HTTPS, set HTTP headers correctly, and validate and sanitize user inputs on both client and server sides.
+Ensure that the Nuxt.js application strictly validates and sanitizes all user inputs to prevent injection attacks. Implement server-side checks and use the latest security plugins available for Nuxt.js to enhance WAF capabilities. Regularly update the Nuxt.js framework and all dependencies to patch known vulnerabilities.
 
 </details>
 
@@ -119,13 +119,13 @@ Ensure that Nuxt.js is configured to use HTTPS, set HTTP headers correctly, and 
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-- pci: **6.5**
-
-
-
-
-
-
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.13.1**
+- nist: **SP800-41**
+- fedramp: **SC-7**
 
 ### Classification
 

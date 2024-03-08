@@ -26,42 +26,42 @@ The correct ways to prevent SSRF are:
 <details>
     <summary>Apollo</summary>
 
-To prevent SSRF in Apollo, validate and sanitize all user inputs, restrict the URLs the server can request, and use a denylist of internal resources that should not be accessible.
+To mitigate Server-Side Request Forgery (SSRF) vulnerabilities in the Apollo framework engine, ensure that all user-supplied URLs are validated against a strict whitelist of allowed domains and protocols. Additionally, implement server-side checks to verify that the response received matches expected criteria before processing it. If possible, use a dedicated service for fetching external resources that can enforce access control and auditing. Limit the response size and timeout to minimize the impact of any potential SSRF attacks. Regularly review and update the whitelist to maintain a strong security posture.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In Yoga, mitigate SSRF by sanitizing user inputs, enforcing URL allowlists, and avoiding the exposure of sensitive internal systems.
+To mitigate Server-Side Request Forgery (SSRF) vulnerabilities in the Yoga framework engine, ensure that all user-supplied URLs are validated against a strict whitelist of allowed domains and protocols. Additionally, implement server-side checks to verify that the response from the external service is expected and benign. If possible, use a server-side proxy with a static IP to control outgoing traffic and monitor for any unusual patterns or requests. Always apply the principle of least privilege by restricting the URLs to which the application can send requests, and consider using an allowlist for URL schemas, ports, and methods if applicable.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, use VTL resolvers to validate input URLs, employ AWS WAF to filter malicious requests, and configure IAM policies to limit the scope of accessible resources.
+To mitigate Server-Side Request Forgery (SSRF) vulnerabilities in AWS AppSync, ensure that the service is configured to only allow access to trusted endpoints. Implement strict validation on user-supplied URLs, including schema validation to only permit `https` schemes. Use AWS IAM roles and policies to enforce least privilege access control, and regularly audit your AppSync resolvers and data sources for any overly permissive settings. Additionally, consider using VPC endpoints for services that support them to keep traffic within the AWS network.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL Go, prevent SSRF by validating URLs against a strict pattern, using an allowlist for allowed domains, and by implementing proper error handling to avoid leaking information about the internal network.
+To mitigate Partial Server-Side Request Forgery (SSRF) vulnerabilities in a GraphQL Go framework engine, validate and sanitize all user-supplied URL inputs to ensure they point to allowed destinations. Implement strict allowlists for external services that can be interacted with, and employ network-level controls to restrict outbound traffic to trusted endpoints. Additionally, consider using a dedicated SSRF prevention library or functionality within the framework, if available.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-For GraphQL Ruby, ensure that user-provided URLs are validated against a strict pattern or allowlist, and consider using a proxy server to control outbound requests from the server.
+To mitigate Partial Server-Side Request Forgery (SSRF) vulnerabilities in a GraphQL Ruby framework engine, ensure that any URL inputs are validated against a strict whitelist of allowed domains and schemes. Additionally, employ server-side checks to verify that the resolved IP addresses of the URLs do not point to internal resources. Implement network-level restrictions to prevent the GraphQL server from making requests to internal infrastructure. Use the 'graphql-pro' gem which includes SSRF protection features, and regularly update all dependencies to incorporate security fixes.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-In Hasura, protect against SSRF by validating all external URLs, using environment variables for internal endpoints, and restricting outbound requests with webhook configurations.
+To mitigate Server-Side Request Forgery (SSRF) vulnerabilities in the Hasura framework, ensure that any user-supplied URLs are validated against a strict whitelist of allowed domains and protocols. Additionally, employ network-level controls to restrict the Hasura engine's ability to initiate requests to unintended internal services. Consider using a combination of URL parsing libraries to validate and sanitize input, and apply the principle of least privilege by limiting the outbound network capabilities of the server running Hasura.
 
 </details>
 
@@ -69,72 +69,72 @@ In Hasura, protect against SSRF by validating all external URLs, using environme
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-To prevent SSRF in ASP.NET, validate all URLs and hostname resolutions, use an allowlist for allowed endpoints, and implement network segmentation to protect internal services.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, mitigate SSRF by sanitizing user input, using allowlists for safe URLs, and employing Ruby's built-in URI library to parse and validate URLs before use.
+In ASP.NET, mitigate partial SSRF vulnerabilities by validating and sanitizing all user inputs, enforcing strict URL schemas, using allowlists for allowable destinations, and employing least privilege principles for server requests. Additionally, consider implementing network-level restrictions and monitoring outbound traffic for unusual patterns.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js applications, prevent SSRF by validating URLs on the server-side, using a strict allowlist for outbound requests, and avoiding the exposure of sensitive server-side endpoints to the client.
+In Ruby on Rails, mitigate partial SSRF by validating and sanitizing user input, enforcing strict URL schemas, using a whitelist for allowed domains, and employing the 'resolv-replace' library to prevent DNS rebinding attacks.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+To mitigate partial SSRF vulnerabilities in a Next.js application, validate and sanitize all user inputs rigorously. Implement strict allowlists for URLs and IP addresses that the server is permitted to interact with. Additionally, use built-in Next.js features like 'getServerSideProps' or 'getStaticProps' for data fetching, which abstract away direct HTTP requests and reduce the attack surface. Always keep Next.js and its dependencies up to date to benefit from the latest security patches.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, protect against SSRF by using validation rules for URLs, employing the Guzzle HTTP client with safe defaults, and restricting access to internal network resources.
+In Laravel, mitigate partial SSRF by validating and sanitizing all user inputs, enforcing strict URL schemas, using built-in HTTP client features to limit request destinations, and implementing access control lists for external services.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-To prevent SSRF in Express.js, validate and sanitize input URLs, use a middleware to enforce URL allowlists, and isolate internal services from the public network.
+To mitigate partial SSRF vulnerabilities in an Express.js application, validate and sanitize all user inputs rigorously. Ensure that any URLs or IP addresses supplied by users are checked against a whitelist of allowed destinations. Employ a library like `validator` to help with input validation. Additionally, configure the HTTP request library to avoid following redirects automatically and to have a strict timeout to prevent long-running requests. Use the principle of least privilege by restricting the server's outbound requests to the minimum necessary for functionality.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, prevent SSRF by using the built-in validators for URL fields, applying network segmentation, and ensuring that any use of the requests library is done with caution and validation.
+In Django, mitigate partial SSRF vulnerabilities by validating and sanitizing all user-supplied URLs before using them in server-side requests. Employ Django's URLValidator for initial validation, ensure only allowed schemes (e.g., 'http', 'https') are used, and restrict target hosts to a predefined whitelist. Additionally, use the 'requests' library with caution, setting a timeout, and avoid sending any sensitive data as part of the request.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-For Symfony applications, use the Symfony HttpClient component with caution, validate all external URLs, and configure firewall rules to restrict access to internal services.
+In Symfony, to mitigate partial SSRF vulnerabilities, validate and sanitize all user inputs, especially URLs, before using them in server-side requests. Employ a whitelist approach to allow only trusted domains and protocols. Additionally, use Symfony's HttpClient component with caution, setting strict options and timeouts to prevent abuse.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, protect against SSRF by validating URLs with Java's URI class, using allowlists for allowed hosts, and configuring security settings to limit access to internal services.
+In Spring Boot, to mitigate partial SSRF vulnerabilities, validate and sanitize all user inputs, especially URL parameters. Implement strict input validation using a whitelist approach for URLs and schemes allowed. Additionally, configure the HttpClient to use a URL filter that only permits requests to known, safe domains. Avoid disclosing sensitive information in error messages and ensure that outgoing requests do not expose internal services or resources.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-To prevent SSRF in Flask, validate URLs using Werkzeug's URL parsing utilities, employ an allowlist for outbound requests, and use Flask-Talisman for setting HTTP security headers.
+In the Flask framework, mitigate partial SSRF vulnerabilities by validating and sanitizing all user inputs, ensuring that URLs or IP addresses are from a whitelist of allowed destinations, and using a secure default configuration that restricts outgoing requests to untrusted services. Additionally, employ network-level controls to prevent unauthorized interactions with internal network resources.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, mitigate SSRF risks by validating and sanitizing all user inputs, using server-side environment variables for internal URLs, and configuring server middleware for URL allowlisting.
+In Nuxt.js, to mitigate partial SSRF vulnerabilities, validate and sanitize all user inputs, especially URL parameters, before using them in server-side requests. Implement strict input validation with a whitelist of allowed domains and protocols. Additionally, use network-level controls to restrict the server's ability to make outbound requests only to known, trusted services.
 
 </details>
 
@@ -175,9 +175,9 @@ In Nuxt.js, mitigate SSRF risks by validating and sanitizing all user inputs, us
 ### Compliance
 
 - OWASP: **[API6:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa6-unrestricted-access-to-sensitive-business-flows.md)**
-- pci: **6.5.1**
+- pci: **6.5.9**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

@@ -26,42 +26,42 @@ Warning : When a timeout is configured on the server, the socket may be closed w
 <details>
     <summary>Apollo</summary>
 
-Apollo Server allows you to define a timeout for your GraphQL operations. Set the timeout using the 'context' function in your Apollo Server configuration.
+To mitigate security risks associated with the Apollo framework engine, ensure that all user inputs are validated and sanitized before processing. Implement proper authentication and authorization checks to prevent unauthorized access. Regularly update the Apollo framework and its dependencies to patch known vulnerabilities. Additionally, consider setting up a security timeout feature that automatically logs out users after a period of inactivity to reduce the risk of session hijacking.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In GraphQL Yoga, you can set timeouts at the server level using the 'options' parameter when starting the server.
+To address the security timeout issue within the Yoga framework engine, ensure that session timeout values are appropriately configured to balance usability with security. Implement automatic session expiration after a defined period of inactivity, and prompt users to re-authenticate to continue their session. This helps to mitigate the risk of unauthorized access from unattended user sessions.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-AWS AppSync enforces a timeout of 30s on each request by default. If your API sits behind an API Gateway, you can configure a different (but lower than the hard 30s limit) timeout in the AWS API Gateway console by following this path: AWS API Gateway console > {Your App} > Resources > Integration Request > "Use default timeout".
+To enhance security within the AWS AppSync framework, it is recommended to implement a security timeout feature. This can be achieved by setting appropriate timeout values for resolvers to prevent excessively long-running operations that could potentially expose the system to denial-of-service attacks or unintended resource consumption. Configure the 'timeoutInMillis' field for each resolver to a sensible value that balances performance and security, ensuring that operations complete within an acceptable timeframe without compromising the system's stability or user experience.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Implement a server timeout by following this guide: The complete guide to Go net/http timeouts - Cloudfare blog
+Implement a security timeout mechanism in the GraphQL Go framework engine to automatically terminate sessions that exceed a predefined period of inactivity. This helps to reduce the risk of unauthorized access from unattended sessions. Configure the timeout duration based on the sensitivity of the application's data and operations. Ensure that the timeout settings are enforced consistently across the application and that users are informed about the timeout policy to prevent data loss due to unexpected session termination.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, you can implement query timeouts by using the 'max_complexity' setting or by adding custom middleware.
+Implement query complexity analysis to prevent resource exhaustion attacks. Define a complexity budget and use the `max_complexity` setting in GraphQL-Ruby to enforce it. This will help to mitigate potential denial-of-service attacks by ensuring that overly complex queries cannot be executed.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Hasura allows you to set a custom query timeout. To do so: - Go to Project Console > Security Settings > API Limits. - Click on "Global". - Set a timeout (e.g., 10s).
+Implement a security timeout mechanism in the Hasura framework engine to automatically terminate sessions after a period of inactivity. This reduces the risk of unauthorized access from unattended sessions. Configure the 'HASURA_GRAPHQL_JWT_SECRET' environment variable with an appropriate 'claims_namespace' and 'claims_format' to include custom claims for session timeout. Use these claims to enforce session expiration on the client-side, and ensure that the Hasura engine validates the expiration claim to prevent the use of expired tokens.
 
 </details>
 
@@ -69,72 +69,72 @@ Hasura allows you to set a custom query timeout. To do so: - Go to Project Conso
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, set the request timeout in the web.config file or directly in the Global.asax file.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, configure the Rack::Timeout middleware to set a timeout for requests.
+Implement request timeout limits and optimize long-running processes within the ASP.NET application to prevent potential DoS attacks.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Next.js does not have a built-in request timeout feature. You can implement timeouts using custom server logic or middleware.
+Implement request timeout settings in your Ruby on Rails application to prevent long-running requests from causing a Denial-of-Service (DoS). Configure Rack::Timeout or a similar middleware to define a maximum time a request can take, and ensure that your web server (e.g., Puma, Unicorn) has appropriate timeout settings as well.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement server-side request timeout limits and use efficient data retrieval methods to prevent long-running queries that could lead to DoS attacks.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, set the maximum execution time in your public/.htaccess file or within your route logic using the set_time_limit function.
+Implement request throttling and set a maximum execution time for queries in Laravel by using middleware to prevent long-running requests that could lead to DoS attacks.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, use the 'connect-timeout' middleware to set a timeout for requests.
+Implement rate limiting and set up a maximum request timeout in your Express.js application to prevent long-running requests from causing DoS. Use middleware like `express-rate-limit` for rate limiting and set the `timeout` property on the server to define a maximum request processing time.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Django does not have a built-in request timeout feature. Implement request timeouts using server configurations or middleware.
+Implement request timeouts and limit the number of concurrent connections in your Django application to mitigate potential DoS attacks. Use Django's built-in features to set a reasonable timeout value for database operations and consider using a reverse proxy like Nginx to manage timeouts for client connections.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, set the maximum execution time in your public/.htaccess file or within your controller using the set_time_limit function.
+Implement a request timeout mechanism in Symfony by configuring the 'max_execution_time' in your 'php.ini' file or by using the 'set_time_limit()' function in your PHP scripts to prevent long-running requests. Additionally, consider using Symfony's 'RequestStack' and 'KernelEvents' to create custom event listeners that can track request duration and terminate requests that exceed a predefined threshold.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, configure the server's connection timeout properties in the application.properties file.
+Implement a global timeout configuration for all requests in Spring Boot by using the `spring.mvc.async.request-timeout` property in `application.properties` or `application.yml`. Additionally, consider using `@Async` annotation with a custom `Executor` that has a timeout policy to handle long-running tasks without blocking the main thread.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Flask does not have a built-in request timeout feature. Implement request timeouts using server configurations or middleware.
+Implement request timeout handling in Flask by using the `timeout` decorator from Flask-Timeout or setting up a custom timeout mechanism to ensure long-running requests are terminated, preventing potential DoS attacks.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Nuxt.js does not have a built-in request timeout feature. You can implement timeouts using server middleware or by customizing the server instance.
+Implement server-side request timeout settings and client-side timeout warnings to prevent long-running requests from causing DoS. In Nuxt.js, configure the server middleware to manage request processing time and set timeouts appropriately.
 
 </details>
 
@@ -177,9 +177,9 @@ Nuxt.js does not have a built-in request timeout feature. You can implement time
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.8**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

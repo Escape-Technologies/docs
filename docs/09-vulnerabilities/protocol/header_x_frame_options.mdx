@@ -20,47 +20,42 @@ Add `X-Frame-Options` header.
 <details>
     <summary>Apollo</summary>
 
-When using Apollo with Express.js, [helmet](https://www.npmjs.com/package/helmet) can take care of the security headers.
+To mitigate the risk of clickjacking attacks in the Apollo framework engine, ensure that the server sends the 'X-Frame-Options' HTTP header with a value of 'DENY' or 'SAMEORIGIN'. This header prevents the application's content from being embedded into other sites. Configure your web server or application to include this header in all responses with HTML content.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For GraphQL Yoga, you can use middleware to set the `X-Frame-Options` header. Here's an example using Express middleware:
+To mitigate the risk of clickjacking attacks in the Yoga framework engine, set the 'X-Frame-Options' HTTP response header to 'DENY' or 'SAMEORIGIN'. This header prevents your webpages from being framed by other sites. Configure your server to include this header in all responses containing HTML content.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-* Add security headers with the API Gateway
-Put your AppSync API behind an API Gateway and configure it to act as a proxy to your AppSync endpoint (e.g., using the HTTP Proxy feature).
-[API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) Then you can manually add headers to each resource. (There is only one resource if your API Gateway is only used to proxy a single AppSync endpoint)
-* Add security headers using only AWS AppSync AWS AppSync currently does not allow to append custom headers to every response. However, custom response headers can be configured individually for every resolver by using response mapping templates.
-To do this, go to:   - AppSync > {Your App} > SchemaFor every attached resolver :   - Go to the resolver configuration   - In the "Configure the response mapping template" section, add this :
-```php$util.http.addResponseHeader("Cache-Control", "no-store")$util.http.addResponseHeader("Content-Security-Policy" , "default-src 'self'")$util.http.addResponseHeader("Strict-Transport-Security", "max-age=63072000")$util.http.addResponseHeader("X-Content-Type-Options", "nosniff")$util.http.addResponseHeader("X-Frame-Options", "SAMEORIGIN")$util.http.addResponseHeader("X-XSS-Protection", "1; mode=block") ```
+To mitigate the risk of clickjacking attacks in the AWS AppSync framework, set the 'X-Frame-Options' header to 'DENY' or 'SAMEORIGIN' for all responses served by your AppSync API. This can be achieved by configuring a response mapping template to include the header, or by using a Lambda function or a proxy server that sets the header before forwarding the response to the client.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-You can use a HTTP middleware to add security headers.For instance, with [srikrsna/security-headers](https://github.com/srikrsna/security-headers):
+Implement the X-Frame-Options HTTP header in the GraphQL Go framework engine to control whether your application can be embedded into other websites. Set the header to 'DENY' to prevent any domain from framing your content, or to 'SAMEORIGIN' to allow framing only by pages on the same origin as the content itself. This can help mitigate clickjacking attacks.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In Ruby on Rails with GraphQL-Ruby, you can set the `X-Frame-Options` header in your controller responses. Add the following line to your GraphQL controller:
+To mitigate the risk of clickjacking attacks in a GraphQL Ruby framework engine, set the 'X-Frame-Options' header to 'DENY' or 'SAMEORIGIN'. This can be done by configuring your Ruby on Rails application to include the header in the response. For example, in your application controller, you can add a before_action hook that sets the header: `response.headers['X-Frame-Options'] = 'SAMEORIGIN'`. This ensures that your application's content cannot be embedded into iframes on external sites when set to 'SAMEORIGIN', or at all when set to 'DENY'.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-With Hasura, you can set the `X-Frame-Options` header using environment variables or by configuring the reverse proxy (like Nginx) in front of Hasura. Here's an example for Nginx:
+Configure the Hasura engine to include the 'X-Frame-Options' HTTP header with the value 'DENY' or 'SAMEORIGIN' in its responses to prevent clickjacking attacks. This can be achieved by setting up a reverse proxy such as Nginx or Apache in front of Hasura and configuring the proxy to add the header, or by using a middleware in the Hasura web server if supported.
 
 </details>
 
@@ -68,72 +63,72 @@ With Hasura, you can set the `X-Frame-Options` header using environment variable
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, you can set the `X-Frame-Options` header globally in the `Startup.cs` file. Use the following code snippet in the `Configure` method:
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, you can set the `X-Frame-Options` header by adding the following line to your application's configuration:
+Implement the X-Frame-Options HTTP response header in your ASP.NET application to prevent clickjacking attacks. This can be done by adding the header in the web.config file or directly in your code.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js, you can create a custom server or use Next.js middleware to set the `X-Frame-Options` header. Here's an example using middleware:
+In Ruby on Rails, set the 'X-Frame-Options' header to 'DENY' or 'SAMEORIGIN' by adding 'config.action_dispatch.default_headers = { 'X-Frame-Options' => 'SAMEORIGIN' }' to the 'config/application.rb' file. This will prevent the app's content from being framed and protect against clickjacking attacks.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+In your Next.js application, set the `X-Frame-Options` HTTP header to `DENY` or `SAMEORIGIN` to prevent clickjacking attacks. You can do this by customizing the server configuration or by using Next.js middleware to add the header to all server responses.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, you can set the `X-Frame-Options` header by adding a middleware that sets the header for each response. Here's an example middleware:
+In Laravel, you can add the 'X-Frame-Options' header globally by using middleware. Create a new middleware with the command 'php artisan make:middleware AddXFrameOptionsHeader', then in the handle method of the generated class, add the header to the response using '	extbackslash{}Illuminate	extbackslash{}Http	extbackslash{}Response'. Finally, register the middleware in the 'app/Http/Kernel.php' file.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, you can use the `helmet` middleware to set the `X-Frame-Options` header. Add the following line to your application:
+In your Express.js application, set the 'X-Frame-Options' header to 'DENY' or 'SAMEORIGIN' to prevent clickjacking attacks. You can do this by using the 'helmet' middleware, which includes a module for setting this header. Install helmet with 'npm install helmet' and include it in your app with 'app.use(helmet.frameguard({ action: 'deny' }))' for denying all framing or 'app.use(helmet.frameguard({ action: 'sameorigin' }))' to allow framing by the same origin only.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, you can set the `X-Frame-Options` header by using the built-in `XFrameOptionsMiddleware`. Ensure it's added to your `MIDDLEWARE` settings:
+In your Django application, ensure that the 'X-Frame-Options' header is set by using the 'XFrameOptionsMiddleware'. Add 'django.middleware.clickjacking.XFrameOptionsMiddleware' to the 'MIDDLEWARE' setting in your settings.py file to enable it. This middleware will set the 'X-Frame-Options' header to 'DENY' by default, which prevents your website from being framed by any other site. If you need to allow framing by certain trusted origins, you can use the 'SAMEORIGIN' value or customize the behavior using the 'X_FRAME_OPTIONS' setting.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, you can set the `X-Frame-Options` header by creating an event listener for the `kernel.response` event. Here's an example:
+In Symfony, enable the `X-Frame-Options` header by configuring it in your `security.yaml` or by setting the header directly in your response objects. For example, you can add `frame-options: DENY` or `frame-options: SAMEORIGIN` under the `headers` section in `security.yaml` to apply it globally, or use `$response->headers->set('X-Frame-Options', 'DENY');` for an individual response.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, you can set the `X-Frame-Options` header by configuring the `HttpSecurity` in your security configuration. Here's an example:
+In a Spring Boot application, add the `X-Frame-Options` header to HTTP responses to prevent clickjacking attacks. Configure the `HttpSecurity` in your security configuration class by using the `headers()` method chain to include `frameOptions().deny()` or `frameOptions().sameOrigin()` based on your requirements.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, you can set the `X-Frame-Options` header by using the `after_request` decorator. Here's an example:
+In Flask, set the 'X-Frame-Options' header to 'DENY' or 'SAMEORIGIN' by adding it to the response headers. This can be done using the 'after_request' decorator to ensure all responses include the header. For example, use '@app.after_request def apply_xframe_options(response): response.headers['X-Frame-Options'] = 'SAMEORIGIN' return response' to apply it to all responses.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, you can set the `X-Frame-Options` header by using the `render` configuration in `nuxt.config.js`. Here's an example:
+In your Nuxt.js application, ensure that the `X-Frame-Options` header is set to either `DENY` or `SAMEORIGIN` to prevent clickjacking attacks. You can achieve this by configuring your server settings or by using middleware to set the header for all responses.
 
 </details>
 
@@ -169,10 +164,10 @@ In Nuxt.js, you can set the `X-Frame-Options` header by using the `render` confi
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.1**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
-
+- soc2: **CC1**
+- psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-2**

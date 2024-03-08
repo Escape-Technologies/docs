@@ -29,42 +29,42 @@ To effectively prevent XSS vulnerabilities, use a combination of the following m
 <details>
     <summary>Apollo</summary>
 
-Ensure all user input is validated, sanitized, and encoded to prevent stored XSS attacks. Use Apollo's built-in features to manage user permissions and access controls.
+To mitigate the risk of injection vulnerabilities in the Apollo framework engine, ensure that all user-supplied input is properly validated and sanitized before processing. Utilize built-in security features such as input validation functions or libraries, and avoid directly incorporating user input into queries or commands. Additionally, implement parameterized queries or prepared statements to safely handle data input, and consistently apply these practices across the entire codebase to maintain a strong defense against injection attacks.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Use proper input validation and sanitization to prevent stored XSS in GraphQL Yoga. Implement middleware to sanitize all incoming queries and mutations.
+To mitigate the risk of improper input validation and injection vulnerabilities in the Yoga framework engine, ensure that all user-supplied input is validated, sanitized, and encoded appropriately before processing. Utilize built-in security features of the framework for input handling, and consider implementing additional layers of validation according to the context of the data usage. Avoid dynamic queries; instead, use parameterized statements or prepared statements to interact with the database. Regularly update the framework and its dependencies to incorporate security fixes and improvements.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-In AWS AppSync, use VTL (Velocity Template Language) to sanitize and validate input before storing it in the database to prevent stored XSS attacks.
+To mitigate the risk of injection vulnerabilities in AWS AppSync, ensure that all user inputs are properly validated and sanitized before they are processed. Utilize AWS AppSync's built-in input validation mechanisms to define strict schemas and resolvers that enforce the correct data types and formats. Additionally, implement custom validation logic within resolver mapping templates where necessary. Always avoid directly passing user-controlled data into resolver functions without validation. By adhering to these practices, you can help prevent malicious actors from injecting unauthorized commands or queries into your GraphQL API.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-For GraphQL-Go, validate and sanitize user inputs using middleware or custom scalar types to prevent stored XSS vulnerabilities.
+In the GraphQL Go framework, ensure proper input validation by using middleware or directives to sanitize and validate all user-supplied data. Implement strict type checking and utilize prepared statements or parameterized queries to prevent injection attacks. Regularly update dependencies to incorporate security fixes.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, use custom scalar types to validate and sanitize input, ensuring that stored XSS vulnerabilities are mitigated.
+In the GraphQL Ruby framework, ensure proper input validation by using the built-in argument validation mechanisms. Define custom validators or use the provided ones to check the types and values of the arguments before they are processed. Additionally, avoid directly interpolating user input into query strings or resolvers. Instead, leverage the framework's parameterization features to safely handle user input and protect against injection attacks.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-In Hasura, leverage permission rules and input validation at the database level to prevent stored XSS. Use webhooks or custom business logic to sanitize inputs.
+To prevent improper input validation and injection vulnerabilities in Hasura, ensure that all user inputs are properly validated before being processed. Use Hasura's built-in input validation features to define strict types and validation rules for the input fields in your GraphQL schema. Additionally, leverage prepared statements and parameterized queries when executing SQL statements to avoid injection attacks. Regularly review and update your security policies to keep up with the latest best practices.
 
 </details>
 
@@ -107,7 +107,7 @@ In Hasura, leverage permission rules and input validation at the database level 
 - OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
 - pci: **6.5.7**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

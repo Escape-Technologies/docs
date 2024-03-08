@@ -20,67 +20,42 @@ Ensure your server sets the specific and appropriate `Content-Type` value for th
 <details>
     <summary>Apollo</summary>
 
-When using Apollo with Express.js, [helmet](https://www.npmjs.com/package/helmet) can take care of the security headers.
+Ensure that the Apollo server framework is configured to include the 'Content-Type' header with the appropriate media type (e.g., 'application/json' for JSON responses) in all responses. This can typically be achieved by setting up middleware that sets the header or by configuring the response object directly within your resolver functions.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For GraphQL Yoga, you can use middleware to set the `Content-Type` header. Here's an example using Express middleware:
+Ensure that the Yoga framework engine properly sets the 'Content-Type' header to the appropriate media type (e.g., 'application/json' for JSON responses) for all responses. This can help mitigate issues such as MIME type confusion attacks. Additionally, validate and sanitize all input to prevent content sniffing and other injection attacks.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-* Add security headers with the API Gateway
-Put your AppSync API behind an API Gateway and configure it to act as a proxy to your AppSync endpoint (e.g., using the HTTP Proxy feature).
-[API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) Then you can manually add headers to each resource. (There is only one resource if your API Gateway is only used to proxy a single AppSync endpoint)
-Here is an example of security headers you can add :
-```Cache-Control: no-store
-Content-Security-Policy: default-src 'self'
-Strict-Transport-Security: max-age=63072000
-X-Content-Type-Options: nosniff
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block```
-* Add security headers using only AWS AppSync
-AWS AppSync currently does not allow to append custom headers to every response. However, custom response headers can be configured individually for every resolver by using response mapping templates.
-To do this, go to:
-  - AppSync > {Your App} > Schema
-For every attached resolver :
-  - Go to the resolver configuration
-  - In the "Configure the response mapping template" section, add this :
-```php
-$util.http.addResponseHeader("Cache-Control", "no-store")
-$util.http.addResponseHeader("Content-Security-Policy" , "default-src 'self'")
-$util.http.addResponseHeader("Strict-Transport-Security", "max-age=63072000")
-$util.http.addResponseHeader("X-Content-Type-Options", "nosniff")
-$util.http.addResponseHeader("X-Frame-Options", "SAMEORIGIN")
-$util.http.addResponseHeader("X-XSS-Protection", "1; mode=block") 
-```
+Ensure that the 'Content-Type' header is set to 'application/json' for all JSON-based HTTP responses to prevent MIME type confusion attacks. In AWS AppSync, configure the response mapping template to set the 'Content-Type' header appropriately for the returned content.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-You can use a HTTP middleware to add security headers.
-For instance, with [srikrsna/security-headers](https://github.com/srikrsna/security-headers):
+Ensure that the Content-Type header is set to 'application/json' for all GraphQL requests to properly interpret the incoming queries.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, you can set response headers in the context within each resolver or by using a middleware. Here's an example of setting headers in a middleware:
+Ensure that the Content-Type header is set to 'application/json' for all GraphQL requests to prevent content sniffing and reduce the risk of CSRF attacks. In the GraphQL Ruby framework, you can enforce this by using a before_action callback in your controller to check the Content-Type of incoming requests or by using a middleware that asserts the correct Content-Type header.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-With Hasura, you can set response headers using Actions or Remote Schemas. For Actions, you can define the headers in the handler's response. For Remote Schemas, you can set the headers in your server configuration. Here's an example for an Action handler:
+Ensure that the Content-Type header is set correctly for all responses. For Hasura GraphQL engine, configure the server to use 'application/json' as the Content-Type for JSON responses and 'application/graphql' for GraphQL responses. This can help prevent MIME type confusion and potential security issues.
 
 </details>
 
@@ -88,72 +63,72 @@ With Hasura, you can set response headers using Actions or Remote Schemas. For A
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, set the Content-Type header in the response object.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, set the Content-Type header using the `response` object.
+Ensure that all responses from the ASP.NET application explicitly set the 'Content-Type' header to the appropriate MIME type. For example, use 'Response.ContentType = "application/json";' when returning JSON data.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js API routes, set the Content-Type header using the `res` object.
+Ensure that your Ruby on Rails application explicitly sets the 'Content-Type' header for each response. Use the 'respond_to' block or 'render' method to set the correct 'Content-Type'. For example, use 'render json: @object, content_type: 'application/json'' for JSON responses.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that all server-side responses include a proper `Content-Type` header. In Next.js, you can set headers by using the `res.setHeader` method in API routes or server-side functions. For example, to set the `Content-Type` for a JSON response, use `res.setHeader('Content-Type', 'application/json')` before sending the response.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, set the Content-Type header in the response using the `header` method.
+In Laravel, ensure that responses from the server explicitly set the 'Content-Type' header to the appropriate MIME type. For JSON responses, use the 'response()->json()' method, which automatically sets the 'Content-Type' header to 'application/json'. For other content types, use the 'header()' method on the response object to set the 'Content-Type' correctly. For example, for HTML content, you can use 'response($content)->header('Content-Type', 'text/html')'. Always validate and sanitize input data to prevent content sniffing attacks.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, set the Content-Type header using the `res` object.
+Ensure that all responses from the Express.js application explicitly set the 'Content-Type' header to the appropriate MIME type. For JSON responses, use 'res.type('application/json')' before sending the response to correctly set the header.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, set the Content-Type header using the `HttpResponse` object.
+Ensure that all responses from the Django application explicitly set the 'Content-Type' header. Use the 'HttpResponse' object's 'content_type' argument to set the appropriate MIME type, such as 'application/json' for JSON responses, or 'text/html' for HTML responses.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, set the Content-Type header using the `Response` object.
+In Symfony, ensure that the response object sets the 'Content-Type' header to the appropriate MIME type before returning it. For example, use '	extbackslash Symfony	extbackslash Component	extbackslash HttpFoundation	extbackslash Response' to set the header: '	extdollar response->headers->set('Content-Type', 'application/json');' if you are returning JSON data.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, set the Content-Type header using the `HttpServletResponse` object.
+Ensure that all responses from the Spring Boot application explicitly set the 'Content-Type' header. This can be achieved by configuring the HttpMessageConverters or by using the '@ResponseBody' annotation on controller methods to automatically set the header based on the returned object type. For any manual response setting, use 'HttpServletResponse.setContentType()' to specify the correct MIME type.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, set the Content-Type header using the `response` object.
+Ensure that all responses from the Flask application explicitly set the 'Content-Type' header to the appropriate MIME type. For example, use 'response.content_type = 'application/json'' for JSON responses.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, set the Content-Type header using the `res` object in serverMiddleware.
+Ensure that all server responses include a proper 'Content-Type' header. In Nuxt.js, you can set headers using the 'nuxt.config.js' file or within your API routes. For example, use 'res.setHeader('Content-Type', 'application/json')' for JSON responses.
 
 </details>
 
@@ -189,9 +164,9 @@ In Nuxt.js, set the Content-Type header using the `res` object in serverMiddlewa
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.1**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

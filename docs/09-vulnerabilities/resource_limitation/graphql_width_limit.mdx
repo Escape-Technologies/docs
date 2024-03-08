@@ -22,42 +22,42 @@ Set a threshold on the maximum number of subfields that can be queried simultane
 <details>
     <summary>Apollo</summary>
 
-Add a module to compute query complexity and set a threshold on this complexity so that overly broad requests get canceled.For a user-friendly module which requires no schema modification whatsoever, check out the [graphql-validation-complexity](https://github.com/4Catalyzer/graphql-validation-complexity) module.
+To address issues with the Apollo framework engine, ensure that you are using the latest stable version of the framework. Update your dependencies and check for any deprecated features that may need to be replaced. Additionally, review the Apollo documentation for best practices on schema design, query optimization, and error handling to improve the performance and reliability of your GraphQL API.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For `graphql-yoga`, you can use the `graphql-query-complexity` library to analyze and limit the complexity of incoming queries.
+To address issues within the Yoga framework engine, ensure that all components adhere to the specified width limits. This can be achieved by setting appropriate constraints within your CSS or inline styles. For instance, use 'max-width' property to prevent elements from stretching beyond the desired width. Additionally, consider utilizing responsive design techniques to maintain layout integrity across different screen sizes. Regularly test your application on various devices to confirm that width restrictions are properly enforced.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-AWS AppSync allows you to set query depth and complexity limits directly in the AWS Management Console.
+To address the width limit in AWS AppSync, ensure that your schema design is optimized for the queries you intend to run. Break down large queries into smaller, more manageable ones and consider implementing pagination to handle large datasets. Additionally, leverage AWS AppSync's built-in caching mechanisms to improve performance and reduce the data retrieval load. Monitor and adjust the response size limits as per your application's requirements.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-For `graphql-go`, you can use a similar approach to Apollo by integrating a query complexity analysis library. There isn't a specific library recommended for `graphql-go`, but you can implement your own complexity analysis based on the principles outlined in the Apollo documentation.
+To mitigate potential security risks in the GraphQL Go framework engine, ensure that you implement a width limit for your queries. This can be achieved by setting a maximum depth for each query to prevent excessively nested queries that could lead to performance issues or denial of service attacks. Use middleware or a query complexity analysis tool to enforce these limits and protect your GraphQL service.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In `graphql-ruby`, you can limit query complexity by using the query complexity analysis feature.
+In the GraphQL Ruby framework, ensure that you define a width limit for your queries to prevent overly complex queries that can lead to performance issues. Implement query complexity analysis to assign costs to different fields and types, and set a maximum query cost that can be executed. This can be done using the `max_complexity` method in your schema definition. Additionally, consider using the `throttle` gem to rate-limit queries based on their complexity and the time frame in which they are executed.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Hasura allows you to set a width (=node) limit. To do so:
+To address potential performance issues with the Hasura framework engine, ensure that you are using appropriate field-level permissions to limit the width of the data being fetched. This can be done by setting strict permissions on the GraphQL types and fields in your Hasura schema. Additionally, consider implementing query depth limiting and cost analysis to prevent overly complex queries from overloading the system. By managing the data returned through permissions and query analysis, you can optimize the performance and security of your Hasura engine.
 
 </details>
 
@@ -98,13 +98,13 @@ Hasura allows you to set a width (=node) limit. To do so:
 ### Compliance
 
 - OWASP: **[API4:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)**
-- pci: **6.5.8**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-94**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
-
+- fedramp: **SC-5**
 
 ### Classification
 
