@@ -21,42 +21,42 @@ Disable or limit queries batching in your GraphQL engine.
 <details>
     <summary>Apollo</summary>
 
-Disable query batching in `ApolloServer` constructor options. Install our open source package [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) for Apollo.Otherwise, you can switch off batching in the `ApolloServer` constructor options.
+To address potential issues within the Apollo framework engine, ensure that all dependencies are up-to-date, utilize the built-in security features such as schema validation and rate limiting, and follow best practices for error handling and logging. Regularly review the Apollo documentation for any updates on security advisories and recommended practices.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Yoga.
+For the Yoga framework engine, ensure that all user inputs are properly sanitized to prevent injection attacks. Implement input validation checks to restrict the type and format of data that can be entered. Regularly update the framework and its dependencies to patch any known vulnerabilities. Additionally, consider using security middleware that can help protect against common web threats. Always follow best practices for security within the Yoga framework environment.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-On AWSAppSync, batching is not supported.
+To address potential issues with the AWS AppSync framework engine, ensure that you implement batch limits to prevent overloading the system. This can be achieved by setting appropriate limits on the number of records processed in a single batch request. Additionally, monitor the performance and adjust the batch sizes as necessary to optimize throughput while maintaining system stability.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-On GraphQL Go, batching is not supported.
+To mitigate the risk of injection attacks in the GraphQL Go framework, ensure that all user-supplied inputs are validated and sanitized. Use prepared statements with variable binding for all database queries to prevent injection vulnerabilities. Additionally, implement proper error handling to avoid exposing sensitive information through error messages. Regularly review and update your security practices to address new and emerging threats.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-On GraphQL Ruby, batch limit is supported and enabled by default.
+In the GraphQL Ruby framework, ensure that you implement batch loading to avoid the N+1 query problem. Utilize the `batch-loader` gem or the built-in `GraphQL::Batch` mechanism to efficiently load associated records in a single query. This will help in reducing the number of database hits and improve the performance of your GraphQL API. Additionally, set a limit on the maximum query depth and complexity to prevent overly complex queries from overloading the server. Use the `max_depth` and `max_complexity` settings provided by the framework to enforce these limits.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-On Hashura, batching is not supported.
+To prevent potential performance issues with the Hasura framework engine, it is recommended to implement a batch limit on queries. This can be achieved by setting a maximum number of rows that can be fetched or mutated in a single request. You can configure this limit in the Hasura console under the 'Settings' tab, or by using the `HASURA_GRAPHQL_BATCH_SIZE` environment variable. By enforcing a batch limit, you ensure that the system remains responsive and stable, even when handling large datasets or complex queries.
 
 </details>
 
@@ -97,9 +97,9 @@ On Hashura, batching is not supported.
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-- pci: **6.5.8**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

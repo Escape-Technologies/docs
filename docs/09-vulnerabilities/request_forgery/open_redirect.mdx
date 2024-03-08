@@ -24,42 +24,42 @@ In many cases, this behavior can be avoided in two ways:
 <details>
     <summary>Apollo</summary>
 
-In Apollo, ensure that all redirects are validated against a whitelist of allowed URLs before redirecting. Use server-side logic to handle the redirection.
+To mitigate open redirection vulnerabilities in the Apollo framework engine, ensure that all URL redirections are validated against a whitelist of allowed URLs. Do not rely on user input for target URLs without proper validation. Implement server-side checks to verify that the redirection target is a trusted and intended destination. Additionally, consider using built-in security features of the framework that may automatically handle such validations.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For Yoga, validate all URLs against a list of approved destinations before performing a redirect. Avoid using user input directly in the redirection logic.
+To mitigate open redirection vulnerabilities in the Yoga framework engine, ensure that all URL redirections are validated against a whitelist of allowed URLs. Do not rely on user input for target URLs without validation. Implement server-side checks to verify that the redirection target is a trusted and intended destination. Additionally, avoid using unvalidated URL parameters to redirect users. If possible, use indirect mapping of URLs by assigning each allowed URL a unique identifier that is used in the redirection logic instead of the actual URL itself.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-With AWS AppSync, use VTL (Velocity Template Language) to validate the URL against a predefined list of safe URLs before redirecting.
+To mitigate Open Redirection vulnerabilities in AWS AppSync, ensure that all URLs and URI parameters are validated against a whitelist of allowed destinations before redirecting. Implement server-side checks and do not rely on client-side validation alone. Additionally, avoid using user input directly in redirection logic, and employ security features such as AWS WAF to filter out malicious requests.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL Go, validate the redirect URL against a list of allowed domains. Do not use user input directly for redirection without validation.
+To mitigate open redirection vulnerabilities in a GraphQL Go framework engine, ensure that all URLs and redirect parameters are validated against a whitelist of allowed destinations before redirecting. Implement strict input validation to ensure that only intended destinations are permissible, and avoid relying on user input for determining redirect targets. Additionally, use built-in URL parsing and validation functions provided by the Go standard library to further secure the application against open redirection attacks.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL Ruby, ensure that redirection URLs are validated against a whitelist. Use Ruby's URI module to parse and validate the URL.
+To mitigate open redirection vulnerabilities in a GraphQL Ruby framework, ensure that all URLs and redirect parameters are validated against a whitelist of allowed destinations before redirecting. Implement server-side checks to verify that the URL belongs to your application's domain or a list of approved domains. Additionally, avoid using user input directly in redirect functions without proper validation and sanitization. Consider using built-in Rails functions such as `url_for` and `redirect_to` which provide additional security measures against open redirection attacks.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-For Hasura, implement server-side validation to check the URL against a list of allowed domains before performing a redirect.
+To mitigate open redirection vulnerabilities in the Hasura framework, ensure that all URL redirections are validated against a whitelist of allowed URLs. Do not rely on user input for determining the destination URL without proper validation. Additionally, employ server-side checks to verify that the redirection target is a trusted and intended location before performing the redirect.
 
 </details>
 
@@ -67,72 +67,72 @@ For Hasura, implement server-side validation to check the URL against a list of 
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, use the Uri.IsWellFormedUriString method to validate URLs and ensure they belong to a whitelist of allowed domains before redirecting.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, use the URI module to parse the URL and compare the host against a whitelist of allowed domains before redirecting.
+To mitigate open redirection vulnerabilities in ASP.NET, validate and whitelist URLs before redirecting. Use the `Uri.IsWellFormedUriString` method to check if the URL is valid and ensure it points to a trusted destination. Additionally, avoid using user input directly in `Response.Redirect` or other redirection methods. If user input must be used for redirection, map expected inputs to valid destination URLs on the server side.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js, validate the URL on the server side before redirecting. Use a list of allowed domains to check against the URL's hostname.
+In Ruby on Rails, prevent open redirection vulnerabilities by validating the URL before performing a redirection. Use built-in methods such as 'url_for' or 'redirect_to' with only path helpers or known URLs, and avoid directly inserting user-supplied input into these methods. Implement a whitelist of allowed domains if redirection to different domains is necessary, and check the user input against this list before redirecting. Additionally, use Rails' 'URI' module to parse and validate URLs to ensure they are safe for redirection.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+In Next.js, to prevent open redirection vulnerabilities, validate and sanitize all user inputs used for redirection. Ensure that the destination URLs are either relative paths or match a whitelist of allowed domains. Use the built-in `next/router` or `next/link` for client-side redirection, and avoid directly using user input for the `href` attribute. Additionally, implement server-side checks in API routes or `getServerSideProps` to further enforce these restrictions.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use the validator to ensure the URL is a valid URL and belongs to a list of allowed domains before redirecting.
+In Laravel, to prevent open redirection vulnerabilities, always validate and sanitize external URLs before redirecting. Use the 'url' helper function to generate URLs to internal routes, and for external URLs, implement a whitelist of allowed domains. Additionally, avoid using user input directly in the 'redirect()' function without proper validation.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, validate the URL against a whitelist of allowed domains before redirecting. Use the URL module to parse and validate the URL.
+To mitigate open redirection vulnerabilities in Express.js, validate and sanitize all user input used for redirection. Ensure that the destination URLs are either relative paths or match a whitelist of allowed domains. Additionally, avoid directly using user input to set the 'Location' header or the 'res.redirect()' method's argument. Implementing strict input validation can prevent attackers from redirecting users to malicious sites.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the URLValidator to ensure the URL is valid and check the domain against a list of allowed domains before redirecting.
+In Django, ensure that all redirects are validated against a whitelist of allowed URLs or use Django's built-in `is_safe_url()` function to validate the URL before performing the redirect. Avoid using user input directly in the `redirect()` function without proper validation.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, use the Symfony's Validator component to validate the URL and ensure it matches a pattern that includes only allowed domains before redirecting.
+In Symfony, to prevent open redirection vulnerabilities, ensure that all redirects are to URLs that are either static, predefined, or validated against a whitelist of allowed domains. Use the 'Symfony\Component\HttpFoundation\RedirectResponse' class for redirection and avoid directly using user input in the 'Location' header. Additionally, implement CSRF tokens in forms to protect against cross-site request forgery, which can be related to open redirection attacks.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, use Java's URI class to validate the URL and check if the domain is in the list of allowed domains before redirecting.
+In Spring Boot, to prevent open redirection attacks, validate and sanitize all user-supplied URL redirection targets. Only allow redirects to a whitelist of trusted URLs or URI paths. Additionally, avoid directly using request parameters to construct redirection URLs. If dynamic redirection is necessary, map user input to a set of predefined paths or use a safe method like 'UriComponentsBuilder' from Spring Framework to construct the redirection URL.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, validate the URL with Werkzeug's url_parse and check the domain against a list of allowed domains before redirecting.
+In Flask, to prevent open redirection vulnerabilities, ensure that all URL redirections are validated against a whitelist of allowed domains or paths before redirecting. Use the 'url_for' function for internal redirects and validate external redirect targets against a predefined list of safe URLs.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, validate the URL on the server side before redirecting. Use a list of allowed domains to check against the URL's hostname.
+In Nuxt.js, to prevent open redirection vulnerabilities, ensure that all redirects are validated against a whitelist of allowed URLs. Do not use user input directly for redirection purposes without validation. Implement server-side checks to verify that the redirection URL is to a known and trusted destination. Additionally, consider using the built-in 'redirect' method provided by Nuxt.js, which can be configured to allow redirects only to certain predefined URLs.
 
 </details>
 
@@ -168,10 +168,10 @@ In Nuxt.js, validate the URL on the server side before redirecting. Use a list o
 ### Compliance
 
 - OWASP: **[API3:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa3-broken-object-property-level-authorization.md)**
-- pci: **6.5.5**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
-
+- soc2: **CC1**
+- psd2: **Article-97**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-4**

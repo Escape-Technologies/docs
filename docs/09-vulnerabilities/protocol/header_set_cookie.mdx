@@ -22,67 +22,42 @@ Set `HttpOnly`, `SameSite` and `Secure` directives in Set-Cookie header.
 <details>
     <summary>Apollo</summary>
 
-When using Apollo with Express.js, [helmet](https://www.npmjs.com/package/helmet) can take care of the security headers.
+Ensure that the Apollo framework engine is configured to set secure, HttpOnly, and SameSite attributes for all cookies. Secure attributes ensure cookies are sent over HTTPS, HttpOnly prevents JavaScript access to cookies, reducing the risk of cross-site scripting attacks, and SameSite attributes prevent the browser from sending cookies along with cross-site requests. Additionally, consider implementing a strong cookie policy that defines the scope and lifetime of cookies to minimize exposure to potential vulnerabilities.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For GraphQL Yoga, you can use middleware to set security headers. Here's an example using Express.js middleware:
+Ensure that the Yoga framework engine is configured to set secure, HttpOnly, and SameSite attributes for all cookies. Secure attributes ensure cookies are sent over HTTPS, HttpOnly prevents JavaScript access to cookies, reducing the risk of cross-site scripting attacks, and SameSite attributes prevent the browser from sending cookies along with cross-site requests. Additionally, consider implementing a Content Security Policy (CSP) to further mitigate the risk of XSS attacks.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-* Add security headers with the API Gateway
-Put your AppSync API behind an API Gateway and configure it to act as a proxy to your AppSync endpoint (e.g., using the HTTP Proxy feature).
-[API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
-Then you can manually add headers to each resource. (There is only one resource if your API Gateway is only used to proxy a single AppSync endpoint)
-Here is an example of security headers you can add :
-```Cache-Control: no-store
-Content-Security-Policy: default-src 'self'
-Strict-Transport-Security: max-age=63072000
-X-Content-Type-Options: nosniff
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block```
-* Add security headers using only AWS AppSync
-AWS AppSync currently does not allow to append custom headers to every response. However, custom response headers can be configured individually for every resolver by using response mapping templates.
-To do this, go to:
-  - AppSync > {Your App} > Schema
-For every attached resolver :
-  - Go to the resolver configuration
-  - In the "Configure the response mapping template" section, add this :
-```php
-$util.http.addResponseHeader("Cache-Control", "no-store")
-$util.http.addResponseHeader("Content-Security-Policy" , "default-src 'self'")
-$util.http.addResponseHeader("Strict-Transport-Security", "max-age=63072000")
-$util.http.addResponseHeader("X-Content-Type-Options", "nosniff")
-$util.http.addResponseHeader("X-Frame-Options", "SAMEORIGIN")
-$util.http.addResponseHeader("X-XSS-Protection", "1; mode=block")
-```
+Ensure that cookies used by AWS AppSync for authentication and session management are secured with appropriate flags such as 'Secure', 'HttpOnly', and 'SameSite'. Set the 'Secure' flag to ensure cookies are sent over HTTPS connections only. Use the 'HttpOnly' flag to prevent access to cookie data via JavaScript. Apply the 'SameSite' attribute with a value of 'Strict' or 'Lax' to mitigate the risk of cross-site request forgery (CSRF) attacks. Regularly review and validate the configuration to maintain strong cookie security.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-You can use a HTTP middleware to add security headers. For instance, with [srikrsna/security-headers](https://github.com/srikrsna/security-headers):
+For enhancing cookie security in a GraphQL Go framework engine, ensure that cookies used for sensitive operations like session handling are flagged with secure attributes. Set 'HttpOnly' to prevent client-side script access to the cookie, 'Secure' to ensure transmission over HTTPS, and consider 'SameSite' attributes to mitigate CSRF attacks. Additionally, implement proper cookie expiration and rotation policies.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In Ruby on Rails with GraphQL-Ruby, you can use the `secure_headers` gem to set security headers. Add the gem to your Gemfile and configure it:
+In the GraphQL Ruby framework, ensure that cookies used for session management or sensitive data storage are secure by setting the 'secure' flag, which ensures cookies are sent over HTTPS only. Additionally, set the 'HttpOnly' flag to prevent client-side scripts from accessing the cookie data. Implement 'SameSite' attribute to mitigate CSRF attacks. Regularly update the framework and dependencies to incorporate security patches. Use middleware for cookie management to abstract security complexities and ensure consistent application of these security measures across your application.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-For Hasura GraphQL engine, you can set security headers using a reverse proxy like Nginx or using Hasura's environment variables to configure the headers:
+Ensure that the Hasura engine's cookie settings include secure attributes and HttpOnly flags. Set the 'SameSite' attribute to 'Strict' or 'Lax' to mitigate CSRF attacks. Regularly update the Hasura engine to incorporate security patches for cookie handling.
 
 </details>
 
@@ -90,72 +65,72 @@ For Hasura GraphQL engine, you can set security headers using a reverse proxy li
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, use the web.config file or the HttpCookie object to set the Secure flag on cookies:
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, configure your application to set the Secure flag on cookies by editing the config/initializers/session_store.rb:
+In the ASP.NET framework, ensure that cookies, especially those containing sensitive information or used for session management, have the 'Secure' flag set. This can be done by setting the 'Secure' property to 'true' on the HttpCookie object before adding it to the response. Additionally, set the 'HttpOnly' flag to 'true' to prevent client-side scripts from accessing the cookie. This can help mitigate the risk of cookie theft via cross-site scripting (XSS) attacks.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js applications, set the Secure flag on cookies by configuring the server-side code that sets the cookies:
+In Ruby on Rails, ensure that cookies containing sensitive information are set with the 'secure' flag to prevent transmission over non-HTTPS connections. Additionally, use the 'http_only' flag to prevent client-side scripts from accessing the cookie. This can be implemented by setting 'secure: true' and 'http_only: true' in the cookie options. For example: `cookies[:user_session] = { value: 'session_token', secure: true, http_only: true }`.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that all cookies in your Next.js application are set with the 'Secure' attribute, which ensures they are only sent over HTTPS. Additionally, use the 'HttpOnly' attribute to prevent JavaScript access to the cookies, mitigating the risk of cross-site scripting (XSS) attacks. Implement these attributes in your server-side code where cookies are set, and consider using the 'next-cookies' library or similar middleware for better cookie management.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use the config/session.php file to set the Secure flag on cookies:
+In Laravel, ensure that cookies are set with the 'secure' flag by using the 'secure' option in your config/session.php configuration file. Set 'secure' to 'true' to enforce cookies to be sent over HTTPS only. Additionally, use the 'http_only' option to prevent JavaScript access to session cookies, mitigating the risk of client-side script attacks.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-When using Express.js, set the Secure flag on cookies by configuring the cookie options:
+In Express.js, ensure that cookies are set with the 'secure' flag and, if applicable, the 'httpOnly' flag to prevent access over unencrypted connections and to mitigate the risk of client-side script access. Use the 'cookie-parser' middleware to manage cookies and set these flags appropriately when setting cookies. For example, res.cookie('name', 'value', { secure: true, httpOnly: true });
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the settings.py file to set the Secure flag on cookies:
+In Django, ensure that the 'SESSION_COOKIE_SECURE' setting is set to True so that the session cookie is marked as 'secure' and transmitted only over HTTPS. Additionally, set 'CSRF_COOKIE_SECURE' to True to secure the CSRF cookie. Use 'SESSION_COOKIE_HTTPONLY' to prevent JavaScript access to session cookies. These settings help mitigate the risk of cookie theft via man-in-the-middle attacks or XSS.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, configure the framework.yaml file to set the Secure flag on cookies:
+In Symfony, ensure that all cookies, especially session cookies, are set with the 'secure' flag and the 'httpOnly' flag. This can be done by configuring the framework's session settings in the 'config/packages/framework.yaml' file. Set 'cookie_secure' to 'auto' or 'true' to enforce cookies over HTTPS, and 'cookie_httponly' to 'true' to prevent JavaScript access. For example: 'session: { cookie_secure: true, cookie_httponly: true }'. Additionally, review and update any manual setcookie() calls to include these flags.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, configure the application.properties or application.yml to set the Secure flag on cookies:
+In Spring Boot, ensure that cookies, especially session cookies, are secured by setting the 'secure' flag to true. This can be done by configuring the server.session.cookie.secure property in the application.properties or application.yml file. Additionally, set the 'HttpOnly' flag to prevent JavaScript access to the cookie. For example, in application.properties, add server.servlet.session.cookie.secure=true and server.servlet.session.cookie.http-only=true to enforce these security measures.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, set the Secure flag on cookies by configuring the response object:
+In Flask, ensure that cookies are set with the 'secure' flag by using the 'set_cookie' method with 'secure=True'. Additionally, set the 'HttpOnly' flag to prevent JavaScript access by using 'httponly=True'. For example: 'response.set_cookie('cookie_name', 'cookie_value', secure=True, httponly=True)'. This will help protect against interception and access by unauthorized parties.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, set the Secure flag on cookies by configuring the middleware or plugins that handle cookies:
+In Nuxt.js, ensure that all cookies are set with the 'secure' flag to enforce transmission over encrypted connections. Additionally, use the 'httpOnly' flag to prevent JavaScript access to the cookie. This can be achieved by configuring the cookie settings in your application's middleware or by using libraries such as 'cookie-universal-nuxt' for server-side cookie handling. Always validate and sanitize inputs to mitigate the risk of XSS attacks, which can lead to cookie theft.
 
 </details>
 
@@ -193,8 +168,8 @@ In Nuxt.js, set the Secure flag on cookies by configuring the middleware or plug
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
 - pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
-
+- soc2: **CC1**
+- psd2: **Article-95**
 - iso27001: **A.14.1**
 - nist: **SP800-53**
 - fedramp: **AC-4**

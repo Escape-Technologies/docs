@@ -22,42 +22,42 @@ If possible, ensure that the end user uses a standards-compliant and modern web 
 <details>
     <summary>Apollo</summary>
 
-Set the 'X-Content-Type-Options' header to 'nosniff'
+To mitigate the risk of MIME type sniffing attacks in the Apollo framework engine, set the 'X-Content-Type-Options' header to 'nosniff' for all responses served by the server. This can be achieved by configuring the server middleware to include this header, ensuring that browsers adhere to the declared content type as specified by the 'Content-Type' header.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Set the 'X-Content-Type-Options' header to 'nosniff'
+To mitigate the risk of MIME type sniffing attacks in the Yoga framework engine, ensure that the 'X-Content-Type-Options' header is set to 'nosniff' for all responses served by the server. This can typically be achieved by configuring the server settings or by including a middleware that sets this header appropriately for each outgoing response.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Set the 'X-Content-Type-Options' header to 'nosniff' in the response for all AppSync API responses to prevent MIME type sniffing
+To mitigate the risk of MIME type sniffing which can lead to security vulnerabilities, it is recommended to set the 'X-Content-Type-Options' header to 'nosniff' in all responses served by your AWS AppSync API. This can be achieved by configuring your resolvers or using a Lambda function to set the header on HTTP responses. Ensure that your API's integration responses include the header 'X-Content-Type-Options: nosniff' to instruct browsers to strictly adhere to the declared content type.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Set the 'X-Content-Type-Options' header to 'nosniff' in all responses
+Set the 'X-Content-Type-Options' header to 'nosniff' in the GraphQL Go framework engine to prevent MIME type sniffing.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Set the 'X-Content-Type-Options' header to 'nosniff' in the response to prevent MIME type sniffing
+Set the 'X-Content-Type-Options' header to 'nosniff' in the response to prevent MIME type sniffing.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Set the 'X-Content-Type-Options' header to 'nosniff' in the Hasura server responses
+Set the 'X-Content-Type-Options' header to 'nosniff' in the Hasura engine's response headers to prevent MIME type sniffing.
 
 </details>
 
@@ -67,63 +67,70 @@ Set the 'X-Content-Type-Options' header to 'nosniff' in the Hasura server respon
 <details>
     <summary>Asp_net</summary>
 
-In ASP.NET, configure your application to include the 'X-Content-Type-Options' header with the value 'nosniff' in all responses. This can be achieved by adding a custom HTTP header in your web.config file or by setting the header programmatically in your Global.asax.cs or in a custom HTTP module.
+In ASP.NET, ensure that all responses sent from the server include the 'X-Content-Type-Options' HTTP header with the value 'nosniff'. This can be achieved by adding a custom HTTP header in the web.config file or by setting the header directly in your application's response headers. 'nosniff'); to your application's response pipeline.
 
 </details>
 
 <details>
     <summary>Ruby_on_rails</summary>
 
-In Ruby on Rails, set the 'X-Content-Type-Options' header to 'nosniff' in your application's configuration. You can do this by adding 'config.action_dispatch.default_headers.merge!({'X-Content-Type-Options' => 'nosniff'})' to the 'config/application.rb' file. This will apply the header to all responses from your application, instructing browsers not to MIME-sniff the content type.
+In Ruby on Rails, set the 'X-Content-Type-Options' header to 'nosniff' in your application's configuration. Add 'config.action_dispatch.default_headers.merge!({'X-Content-Type-Options' => 'nosniff'})' to 'config/application.rb' or use 'response.headers['X-Content-Type-Options'] = 'nosniff'' in your controllers to prevent MIME-sniffing vulnerabilities.
 
 </details>
 
 <details>
     <summary>Next_js</summary>
 
-In your Next.js application, ensure that the `X-Content-Type-Options` header is set to `nosniff` for all responses. This can be achieved by configuring your server to include this header, or by using Next.js middleware to set the header programmatically for each response.
+In your Next.js application, ensure that the `X-Content-Type-Options` header is set to `nosniff` for all responses. You can achieve this by customizing the server configuration or by using middleware in the API routes to set the header appropriately. For example, you can add a custom server middleware that sets the header like so: `res.setHeader('X-Content-Type-Options', 'nosniff');` for each incoming request.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, set the 'X-Content-Type-Options' header to 'nosniff' in your middleware or global HTTP response headers to prevent MIME-sniffing vulnerabilities.
+In Laravel, set the 'X-Content-Type-Options' header to 'nosniff' for all responses by adding 'Header set X-Content-Type-Options "nosniff"' to your web server's configuration or by using middleware to include it in the HTTP response headers.
 
 </details>
 
 <details>
     <summary>Express_js</summary>
 
-In Express.js applications, ensure that the 'X-Content-Type-Options' header is set to 'nosniff' for all responses. This can be achieved by using the 'helmet' middleware, which sets this header among others. Install helmet using npm and include it in your application like so: `app.use(helmet.noSniff())`.
+In Express.js, ensure that the 'X-Content-Type-Options' header is set to 'nosniff' for all responses. This can be achieved by using the helmet middleware, which can be installed via npm and included in your application as follows: `const helmet = require('helmet'); app.use(helmet.noSniff());`
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, ensure that the 'X-Content-Type-Options' header is set to 'nosniff' for all responses. This can be achieved by using the 'SecurityMiddleware' or by manually setting the header in your views or middleware. Add 'django.middleware.security.SecurityMiddleware' to your 'MIDDLEWARE' setting, and ensure 'SECURE_CONTENT_TYPE_NOSNIFF' is set to True in your settings.py.
+In your Django application, ensure that the 'X-Content-Type-Options' header is set to 'nosniff' for all responses. This can be achieved by using the 'SecurityMiddleware' provided by Django, which sets this header by default. To enable the middleware, add 'django.middleware.security.SecurityMiddleware' to the 'MIDDLEWARE' setting in your settings.py file. If you have custom response handling, you can also set the header manually by adding 'response['X-Content-Type-Options'] = 'nosniff'' to your HttpResponse objects.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, ensure that the 'X-Content-Type-Options' header is set to 'nosniff' for all responses. This can be achieved by adding a response header in your controller or by using an event listener to set the header globally for all responses.
+In Symfony, ensure that the 'X-Content-Type-Options' header is set to 'nosniff' for all responses. This can be achieved by adding a response header in your controller or by using an event listener to set the header globally. For example, in your controller, you can use '	extbackslash Symfony	extbackslash Component	extbackslash HttpFoundation	extbackslash Response' to set the header like so: '	extbackslash$ response->headers->set('X-Content-Type-Options', 'nosniff');'. Alternatively, create an event listener for 'kernel.response' and set the header for each response sent by the application.
 
 </details>
 
 <details>
     <summary>Spring_boot</summary>
 
-In Spring Boot applications, configure the `X-Content-Type-Options` header to be set to `nosniff` for all responses. This can be achieved by implementing a WebSecurityConfigurerAdapter that adds the header to the security headers or by using a OncePerRequestFilter to ensure the header is included in every response.
+In Spring Boot applications, ensure that the 'X-Content-Type-Options' header is set to 'nosniff' for all responses. This can be achieved by configuring the security headers in the SecurityConfig class using the HttpSecurity object, or by implementing a custom filter that adds this header to every response.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, set the 'X-Content-Type-Options' header to 'nosniff' for all responses. This can be done by adding a response header in your view functions or by using the 'after_request' decorator to apply it to all responses. For example: `response.headers['X-Content-Type-Options'] = 'nosniff'`.
+In Flask, set the 'X-Content-Type-Options' header to 'nosniff' for all responses by adding the following line to your view functions or by using a response middleware: 'response.headers['X-Content-Type-Options'] = 'nosniff'.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In your Nuxt.js application, ensure that the `X-Content-Type-Options` header is set to `nosniff` for all responses. You can achieve this by using the `@nuxtjs/helmet` module, which sets security-related headers. After installing the module, add `'@nuxtjs/helmet'` to the `modules` section of your `nuxt.config.js` file, and configure it to include the `X-Content-Type-Options` header by setting `helmet: { contentSecurityPolicy: false, xContentTypeOptions: 'nosniff' }` in the same file.
 
 </details>
 
@@ -161,7 +168,7 @@ In Flask, set the 'X-Content-Type-Options' header to 'nosniff' for all responses
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
 - pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

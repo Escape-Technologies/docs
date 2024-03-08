@@ -21,42 +21,42 @@ Whenever possible, ensure the `Cache-Control` HTTP header is set with `no-cache`
 <details>
     <summary>Apollo</summary>
 
-Implement proper Cache-Control headers for sensitive information to ensure that private data is not stored in the browser cache. Set the 'Cache-Control' header to 'no-store' for responses containing sensitive data to prevent it from being cached on the client-side.
+To mitigate the risk of sensitive data exposure through caching, ensure that the Apollo server sets appropriate `Cache-Control` headers. Implement a middleware or use Apollo's built-in support to set the `Cache-Control` header to `no-store` for responses containing sensitive information, preventing them from being stored in the cache of the client's browser or intermediate proxies. This can be done by either configuring the Apollo server directly or by setting the headers in the response object within resolvers if using a web framework like Express.js alongside Apollo.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Implement proper cache control headers to ensure sensitive information is not stored in the cache of a user's browser. Set the 'Cache-Control' header to 'no-store' for responses containing sensitive data related to 'Yoga With' sessions to prevent unauthorized access.
+To mitigate the risks associated with improper cache control in the Yoga framework engine, it is recommended to set the 'Cache-Control' header appropriately for each response. This can be done by configuring the response headers to include 'Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0' for responses containing sensitive data, ensuring that such data is not stored in the cache of the client's browser or intermediate proxies. For static assets that do not change frequently and do not contain sensitive information, you can set a longer 'max-age' to improve performance. Always ensure that the cache control policy aligns with the sensitivity and nature of the content being served.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Configure the 'Cache-Control' header in AWS AppSync responses to define appropriate cacheability, set maximum age, and leverage validation tokens.
+To mitigate the risk of sensitive data exposure through caching, ensure that the Cache-Control header is set to 'no-store, no-cache' for all responses containing sensitive information in the AWS AppSync framework. This instructs browsers and intermediate caches to not store any part of the response. Additionally, review and implement appropriate caching strategies for your GraphQL APIs to balance performance and security.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Implement proper cache control headers for GraphQL responses to prevent sensitive information from being stored in cache. Set 'Cache-Control' to 'no-store' to ensure that responses are not cached on the client side.
+To mitigate the risk of sensitive data leakage through caching in a GraphQL Go framework, ensure that the HTTP response headers for GraphQL endpoints include appropriate Cache-Control directives. Set the 'Cache-Control' header to 'no-store' to prevent the caching of responses on the client side and any intermediate proxies. This can be implemented by adding middleware to your Go server that sets the header for each outgoing response, particularly for routes serving GraphQL queries and mutations. For example, you can use the 'net/http' package to set the header like this: 'w.Header().Set("Cache-Control", "no-store")', where 'w' is the http.ResponseWriter for the request.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Implement proper cache control headers for GraphQL responses to prevent sensitive data leakage and ensure that the data is not unnecessarily stored or cached by intermediaries. In Ruby on Rails, you can set the `Cache-Control` header in your GraphQL controller actions using `response.headers['Cache-Control'] = 'no-store'` to instruct clients and proxies not to cache the response.
+In the GraphQL Ruby framework, ensure that you set the 'Cache-Control' header to appropriate values that prevent sensitive information from being stored in cacheable responses. Use the 'before_action' callback in your controllers to set the header, for example: 'response.headers['Cache-Control'] = 'no-store' for actions that return sensitive data. Additionally, consider using the 'max-age' directive to specify the maximum amount of time a response can be cached when appropriate.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Configure the 'Cache-Control' header in the Hasura server responses to specify the appropriate caching policy. For example, set 'Cache-Control: no-store' to prevent sensitive data from being stored in the cache or Cache-Control: max-age=(seconds) to define the maximum amount of time a resource is considered fresh.
+To mitigate the risk of sensitive data being cached and potentially exposed, ensure that the Hasura GraphQL engine responses are served with appropriate Cache-Control headers. Set the 'Cache-Control' header to 'no-store' for responses containing sensitive information to prevent them from being stored in the cache of the client's browser or intermediate proxies. This can be achieved by configuring the web server hosting the Hasura engine or by setting the headers directly in the Hasura console for custom endpoints.
 
 </details>
 
@@ -66,63 +66,70 @@ Configure the 'Cache-Control' header in the Hasura server responses to specify t
 <details>
     <summary>Asp_net</summary>
 
-In ASP.NET, ensure that sensitive pages send appropriate 'Cache-Control' headers to prevent client-side caching. Use the 'HttpResponse.Cache' property to set the 'Cache-Control' header, for example: 'Response.Cache.SetCacheability(HttpCacheability.NoCache);' to specify that a response should not be cached.
+In the ASP.NET framework, ensure that all responses containing sensitive information have an appropriate 'Cache-Control' header set. Use the HttpResponse.Cache property to set the cache policy for individual responses. For example, to prevent caching, you can add 'Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate' to the header. This can be done by adding the following code to your Page_Load method or in a common method that is called for all page requests: 'Response.Cache.SetCacheability(HttpCacheability.NoCache); Response.Cache.SetNoStore(); Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1)); Response.Cache.SetProxyMaxAge(TimeSpan.Zero);'
 
 </details>
 
 <details>
     <summary>Ruby_on_rails</summary>
 
-In Ruby on Rails, ensure that the 'Cache-Control' header is set correctly in your responses, particularly for sensitive information. Use 'expires_now' to set 'Cache-Control' to 'no-cache, no-store', or manually set the header using 'response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'. This prevents the caching of sensitive pages on the client side.
+In Ruby on Rails, ensure that you set the 'Cache-Control' header to appropriate values for your responses. Use 'response.headers['Cache-Control'] = 'no-store'' for pages containing sensitive information to prevent them from being cached on the client side.
 
 </details>
 
 <details>
     <summary>Next_js</summary>
 
-In Next.js applications, ensure that your server-side code sets appropriate 'Cache-Control' headers for responses containing sensitive information. Use the 'res.setHeader()' function to set the 'Cache-Control' header to 'no-store' or 'no-cache, private' to prevent sensitive data from being stored in the browser cache. For example, in your API routes or getServerSideProps function, you can include 'res.setHeader('Cache-Control', 'no-store')' before sending the response.
+Ensure that your Next.js application sets appropriate 'Cache-Control' headers for responses containing sensitive information. Use the 'res.setHeader()' function in your API routes or getServerSideProps function to set 'Cache-Control' to 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0' to prevent sensitive data from being cached on the client side.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, ensure that your responses containing sensitive information have appropriate 'Cache-Control' headers set. You can use the 'header' method on the response object to set the 'Cache-Control' directive to 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0' to prevent caching. For example: `return response($content)->header('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');` This will instruct the browser and proxies not to cache the sensitive response.
+In Laravel, ensure that responses containing sensitive information have appropriate 'Cache-Control' headers set. Use the 'header' method on the response object to set 'Cache-Control' to 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0' to prevent caching of such responses.
 
 </details>
 
 <details>
     <summary>Express_js</summary>
 
-In Express.js, ensure that responses containing sensitive information have appropriate Cache-Control headers set. Use the 'res.set' function to set the header to 'no-store' to prevent caching of such responses. For example, use 'res.set('Cache-Control', 'no-store, max-age=0')' before sending the response.
+In Express.js, ensure that responses containing sensitive information have appropriate Cache-Control headers set. Use the response object's `set` method to set the header, like `res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate')`. This prevents the caching of sensitive data on the client side.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, ensure that your views that return sensitive information set the 'Cache-Control' header to 'no-store' to prevent the browser from caching the response. You can do this by using the 'cache_control' decorator or by manually setting the header in the response object. For example, use '@cache_control(no_store=True)' on your view functions or 'response['Cache-Control'] = 'no-store'' for HttpResponse objects.
+In Django, ensure that views serving sensitive information set the 'Cache-Control' header to 'no-store' to prevent caching of potentially sensitive data. This can be done by using the 'cache_control' decorator or middleware to set the appropriate headers. For example, you can use '@cache_control(no_store=True)' on your view functions.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, ensure that responses containing sensitive information have appropriate 'Cache-Control' headers set. Use the 'Response' object to add the header, for example: `$response->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0');`. This will instruct browsers and proxies not to cache the response.
+In Symfony, ensure that responses containing sensitive information have appropriate 'Cache-Control' headers set. Use the 'Response' object to add cache directives, for example: `$response->headers->set('Cache-Control', 'no-cache, no-store, must-revalidate');` Additionally, set 'Pragma' and 'Expires' headers to prevent caching: `$response->headers->set('Pragma', 'no-cache');` `$response->headers->set('Expires', '0');` This will instruct browsers not to cache the response, protecting sensitive data.
 
 </details>
 
 <details>
     <summary>Spring_boot</summary>
 
-In Spring Boot, ensure that responses containing sensitive information have appropriate 'Cache-Control' headers set. This can be achieved by configuring the 'CacheControl' in the response headers to 'no-store' or 'no-cache, no-store, must-revalidate' for such responses. You can do this programmatically within your controller methods or globally by implementing a WebMvcConfigurer and overriding the 'addInterceptors' method to add an interceptor that sets the header for each response.
+In Spring Boot, configure the 'Cache-Control' header by implementing a WebMvcConfigurer and overriding the addInterceptors method. Use the 'addHeader' method of the HttpServletResponse to set the 'Cache-Control' directives appropriately, such as 'no-cache, no-store, must-revalidate' for sensitive pages. Additionally, consider using the @CacheControl annotation at the controller level where applicable.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, ensure that responses containing sensitive information have the 'Cache-Control' header set with appropriate directives, such as 'no-store' to prevent caching. Use 'flask.make_response()' to create a response object and set the header using 'response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'. Apply this to all routes that serve sensitive data.
+In Flask, ensure that responses containing sensitive information have the 'Cache-Control' header set with appropriate directives. Use 'flask.make_response()' to create a response object and then set the header using 'response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0'. This prevents the caching of sensitive data on the client side.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+In Nuxt.js, ensure that all sensitive pages set the 'Cache-Control' header to 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0' to prevent the caching of sensitive information. This can be done by using the 'nuxtServerInit' action or middleware to set the headers appropriately for each request.
 
 </details>
 
@@ -160,7 +167,7 @@ In Flask, ensure that responses containing sensitive information have the 'Cache
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
 - pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

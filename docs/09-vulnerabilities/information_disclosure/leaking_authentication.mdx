@@ -18,72 +18,72 @@ Ensure that messages are neutral and do not disclose information about the user'
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Ensure that sensitive information is not included in the response. Use view models to selectively send only the required data to the client.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Filter out sensitive information from the user object before rendering the response.
+Implement proper error handling to prevent the server from sending verbose error messages to the client. Use custom error pages and configure the customErrors mode in the Web.config file to 'On' or 'RemoteOnly' to ensure detailed error information is only available locally. Additionally, review and sanitize outgoing responses to ensure no sensitive user information is included.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Avoid sending sensitive user information in API responses. Implement API routes to return only the necessary user data.
+Implement strong session management by using Rails' built-in mechanisms such as `has_secure_password` for password hashing and validations. Ensure that error messages are generic and do not disclose user information. Regularly update Rails and its dependencies to incorporate the latest security patches.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement proper session management using secure, HTTP-only cookies, and ensure sensitive information is not exposed through server responses. Utilize Next.js API routes to handle authentication with best practices, such as using environment variables for secret keys and leveraging built-in security features like CSRF protection.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Use Laravel's resource classes to transform models into JSON without exposing sensitive data.
+In Laravel, ensure that you are using built-in authentication methods and properly handling error messages. Avoid exposing sensitive user information in error responses by customizing the exception handling in the 'render' method of the 'App\Exceptions\Handler' class. Implement proper logging to record authentication failures without revealing confidential details.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Control the data output by explicitly defining which user object properties should be sent in the response.
+Implement proper error handling in Express.js to avoid sending verbose error messages to the client. Use a middleware that catches errors and sends generic responses to prevent information leakage. Additionally, ensure that sensitive endpoints are protected with strong authentication and authorization checks.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Utilize Django's serializers to manage the fields that are included in the response.
+Ensure that Django views and serializers only expose necessary user information. Implement proper permission checks and use Django's built-in authentication classes to manage access control. Avoid verbose error messages that reveal user details or system information.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Leverage Symfony's serializer component to define which fields of the user entity are exposed.
+In Symfony, ensure that sensitive user information is not exposed in API responses. Implement a strict data serialization group policy using the Symfony Serializer component. Define serialization groups for user entities and explicitly specify which properties can be serialized. Use the @Groups annotation to control the exposure of fields and avoid leaking authentication details. Additionally, review and secure exception handling to prevent verbose error messages that could reveal sensitive information.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Use DTOs (Data Transfer Objects) to ensure that only the necessary user information is sent to the client.
+Implement proper authentication handling in Spring Boot by utilizing Spring Security. Configure it to limit the amount of sensitive user information exposed in responses. Use OAuth2 or JWT for secure token-based authentication, and ensure that error messages are generic to prevent information leakage.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Implement a function to serialize user data, excluding sensitive information before sending it in the response.
+Implement proper error handling to avoid exposing sensitive information in error messages. Use Flask's error handling mechanisms to create custom error responses that do not include details about the user's data or the internal workings of the application. Additionally, ensure that debug mode is disabled in production to prevent the display of detailed error pages.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Ensure that the API endpoints in your Nuxt application do not expose sensitive user data.
+Implement proper access controls and ensure sensitive information is only sent over secure, authenticated channels. Utilize middleware to verify user permissions before sending any user-specific data. Additionally, review and sanitize all outgoing responses to prevent leakage of sensitive information.
 
 </details>
 
@@ -119,10 +119,10 @@ Ensure that the API endpoints in your Nuxt application do not expose sensitive u
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.1**
+- pci: **8.2.1**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.18.1**
 - nist: **SP800-53**
 - fedramp: **AC-6**

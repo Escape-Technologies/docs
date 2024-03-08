@@ -65,70 +65,117 @@ title: Headers
 <details>
     <summary>Apollo</summary>
 
-When using Apollo with Express.js, [helmet](https://www.npmjs.com/package/helmet) can take care of the security headers.
-
-</details>
-
-<details>
-    <summary>Awsappsync</summary>
-
-* Add security headers with the API Gateway
-Put your AppSync API behind an API Gateway and configure it to act as a proxy to your AppSync endpoint (e.g., using the HTTP Proxy feature).
-[API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) Then you can manually add headers to each resource. (There is only one resource if your API Gateway is only used to proxy a single AppSync endpoint)
-Here is an example of security headers you can add :
-```Cache-Control: no-store
-Content-Security-Policy: default-src 'self'
-Strict-Transport-Security: max-age=63072000
-X-Content-Type-Options: nosniff
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block```
-* Add security headers using only AWS AppSync
-AWS AppSync currently does not allow to append custom headers to every response. However, custom response headers can be configured individually for every resolver by using response mapping templates.
-To do this, go to:
-  - AppSync > {Your App} > Schema
-For every attached resolver :
-  - Go to the resolver configuration
-  - In the "Configure the response mapping template" section, add this :
-```php
-$util.http.addResponseHeader("Cache-Control", "no-store")
-$util.http.addResponseHeader("Content-Security-Policy" , "default-src 'self'")
-$util.http.addResponseHeader("Strict-Transport-Security", "max-age=63072000")
-$util.http.addResponseHeader("X-Content-Type-Options", "nosniff")
-$util.http.addResponseHeader("X-Frame-Options", "SAMEORIGIN")
-$util.http.addResponseHeader("X-XSS-Protection", "1; mode=block") 
-```
-
-</details>
-
-<details>
-    <summary>Graphqlgo</summary>
-
-You can use a HTTP middleware to add security headers.
-For instance, with [srikrsna/security-headers](https://github.com/srikrsna/security-headers):
-
-</details>
-
-<details>
-    <summary>Graphqlruby</summary>
-
-In Ruby on Rails with GraphQL-Ruby, you can use the `rack` middleware to set security headers. Add the following to your `config/application.rb`:
-
-</details>
-
-<details>
-    <summary>Hasura</summary>
-
-For Hasura GraphQL engine, you can set security headers directly in the Hasura console under the 'Settings' tab or by using environment variables. Here's an example of setting headers using environment variables:
+To mitigate security risks within the Apollo framework engine, ensure that all dependencies are kept up-to-date, implement proper error handling to avoid leaking sensitive information, and configure security features such as CORS and helmet appropriately to protect against common web vulnerabilities. Additionally, use Apollo's built-in support for validation and sanitization to prevent injection attacks.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For GraphQL Yoga, you can use middleware to set security headers. Here's an example using Express.js middleware:
+To mitigate security risks within the Yoga framework engine, ensure that all input is properly sanitized and validated. Implement strict type checking and input validation routines to prevent injection attacks. Regularly update the framework to the latest version to patch known vulnerabilities. Additionally, consider using Content Security Policy (CSP) headers to protect against XSS attacks by controlling the resources that the client is allowed to load.
 
 </details>
 
+<details>
+    <summary>Awsappsync</summary>
+
+To mitigate security risks in AWS AppSync, ensure that all GraphQL resolvers are properly configured to handle errors and exceptions. Implement authorization checks using AWS IAM or custom resolver logic to control access to your GraphQL API. Regularly review and update your security policies and IAM roles to adhere to the principle of least privilege. Additionally, enable logging and monitoring with AWS CloudTrail and Amazon CloudWatch to detect and respond to any suspicious activities promptly.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+To mitigate security risks in a GraphQL Go framework engine, ensure that all user-supplied inputs are validated and sanitized. Implement proper authentication and authorization checks for each GraphQL resolver. Use a well-maintained library to parse and validate incoming GraphQL queries to prevent injection attacks. Regularly update dependencies to incorporate security patches. Additionally, consider employing query complexity analysis to prevent denial-of-service attacks caused by resource-intensive queries.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In the GraphQL Ruby framework, ensure that all user-supplied inputs are validated and sanitized to prevent injection attacks. Use the built-in mechanisms for parameterized queries and avoid interpolating variables directly into queries. Additionally, implement proper authorization checks to ensure that users can only access data for which they have permissions.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+To mitigate the risk of injection attacks in Hasura, ensure that all GraphQL queries are constructed using parameterized arguments rather than string concatenation. This approach prevents attackers from manipulating the query structure. Additionally, apply strict access controls and validate all inputs to limit the exposure of sensitive data and operations.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp_net</summary>
+
+To enhance security in an ASP.NET application, ensure the following: Set 'Cache-Control' headers to 'no-store' for responses containing sensitive data to prevent caching on the client side. Add a 'Content-Type' header with the appropriate MIME type for each response. Implement 'X-Content-Type-Options: nosniff' to block MIME-sniffing and force the browser to stick to the declared content-type. Enable HSTS by adding 'Strict-Transport-Security' header to enforce secure connections. Mark cookies as secure by setting the 'Secure' flag, ensuring they are only sent over HTTPS. Use the 'HttpOnly' flag on cookies to prevent access by JavaScript. Remove or obscure server version information from HTTP response headers to prevent version disclosure. Regularly update the ASP.NET framework and dependencies to mitigate known vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+For Ruby on Rails applications, ensure the following: Set 'Cache-Control' headers appropriately, particularly for sensitive pages, to 'no-store, no-cache' to prevent caching. Use 'response.headers['Content-Type'] = 'application/json; charset=utf-8' or similar to explicitly set the content type. Add 'X-Content-Type-Options' header with a value of 'nosniff' to prevent MIME-sniffing. Implement HSTS by setting 'Strict-Transport-Security' header. Secure cookies by setting the 'secure' flag on all cookies and use 'HttpOnly' to prevent JavaScript access. Avoid disclosing server version information in HTTP headers. Use Rails security features and keep the framework updated.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+For a Next.js application, ensure the following security headers are properly set: Set 'Cache-Control' headers to define caching policies, preventing sensitive data from being stored on the client side. Use 'Content-Type' headers to specify the correct media type of the resource. Implement 'X-Content-Type-Options' with the value 'nosniff' to prevent MIME-sniffing. Enable 'Strict-Transport-Security' to enforce secure connections via HTTPS. Secure cookies by setting the 'Secure' flag, ensuring they are only sent over HTTPS. Add the 'HttpOnly' flag to cookies to prevent access by JavaScript. Lastly, avoid disclosing server version information in HTTP response headers to reduce information leakage.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, ensure secure headers are set by using middleware to add and configure the necessary HTTP headers. For 'Cache-Control', set appropriate cache directives. Use the 'Content-Type' header to specify the correct media type. Implement 'X-Content-Type-Options' with the value 'nosniff' to prevent MIME-sniffing. Enable 'Strict-Transport-Security' to enforce HTTPS. Set the 'secure' flag on cookies to restrict them to encrypted connections and use the 'HttpOnly' flag to protect cookies from being accessed by JavaScript. Avoid disclosing server version information in HTTP response headers.
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+For Express.js applications, ensure that security headers are properly set. Use middleware like helmet to set HTTP headers appropriately. Set 'Cache-Control' to 'no-store' for sensitive pages to prevent caching. Add 'Content-Type' with the correct MIME type for responses. Use 'X-Content-Type-Options' with the value 'nosniff' to prevent MIME-sniffing. Implement HSTS by setting 'Strict-Transport-Security' to enforce secure connections. Mark cookies as 'Secure' and 'HttpOnly' to protect them from interception and access by client-side scripts. Avoid disclosing server version information in HTTP headers. Regularly update Express.js and its dependencies to mitigate known vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+For a Django application, ensure the following settings are configured in your settings.py file: Set 'SECURE_BROWSER_XSS_FILTER = True' to enable the X-XSS-Protection header. Use 'SECURE_CONTENT_TYPE_NOSNIFF = True' to set the X-Content-Type-Options header to 'nosniff'. Implement 'SECURE_HSTS_SECONDS = 31536000' and 'SECURE_HSTS_INCLUDE_SUBDOMAINS = True' to enforce HSTS. Configure 'SESSION_COOKIE_SECURE = True' and 'CSRF_COOKIE_SECURE = True' to send cookies over HTTPS only. Use 'SESSION_COOKIE_HTTPONLY = True' to prevent JavaScript access to session cookies. Avoid disclosing server information by customizing the default error pages and suppressing the 'X-Powered-By' header. Regularly update Django to the latest version to mitigate known vulnerabilities and ensure 'DEBUG = False' in production.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+To enhance security in a Symfony application, set the 'Cache-Control' header to 'no-store' for responses containing sensitive data to prevent caching. Ensure 'Content-Type' is always specified and accurate. Use the 'X-Content-Type-Options' header with the value 'nosniff' to prevent MIME-sniffing. Implement HSTS by setting the 'Strict-Transport-Security' header. Mark cookies as secure by setting the 'secure' flag and prevent JavaScript access by setting the 'HttpOnly' flag. Avoid disclosing server version information by configuring the server not to send the 'Server' header or by using tools like 'web.config' or '.htaccess' to suppress version information.
+
+</details>
+
+<details>
+    <summary>Spring_boot</summary>
+
+For Spring Boot applications, ensure that security headers are properly set. Configure 'Cache-Control' to prevent sensitive data caching, set 'Content-Type' appropriately, use 'X-Content-Type-Options: nosniff' to block MIME-sniffing, enable HSTS with 'Strict-Transport-Security', and set 'Secure' and 'HttpOnly' flags on cookies. Remove server version information from headers to obscure potential attack vectors. Utilize Spring Security for comprehensive security configurations.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+For Flask applications, ensure the following practices: Set 'Cache-Control' headers appropriately, particularly for sensitive pages, to prevent unauthorized access to cached content. Use 'Response.headers' to add or modify headers. Implement 'Content-Type' headers to specify the media type of the resource. Use 'X-Content-Type-Options' with the value 'nosniff' to prevent MIME-sniffing. Enable 'Strict-Transport-Security' to enforce secure connections via HSTS. When setting cookies, use 'secure=True' to ensure they are only sent over HTTPS, and 'httponly=True' to prevent access to cookie values via JavaScript. Avoid disclosing server version information in HTTP response headers. Regularly update Flask and its dependencies to mitigate known vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+For Nuxt.js applications, ensure that your server configuration sets appropriate HTTP headers. Use the 'helmet' package to set security-related headers. Configure 'Cache-Control' to prevent sensitive data caching, set 'Content-Type' appropriately, enforce 'X-Content-Type-Options: nosniff' to disable MIME-sniffing, enable HSTS with 'Strict-Transport-Security', and set 'Secure' and 'HttpOnly' flags on cookies. Avoid disclosing server versions in headers. Regularly update Nuxt.js and dependencies to mitigate known vulnerabilities.
+
+</details>
 
 ## Configuration
 
@@ -164,11 +211,11 @@ For GraphQL Yoga, you can use middleware to set security headers. Here's an exam
 - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
 - pci: **6.5.10**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.14.2**
-
-
+- nist: **SP800-52**
+- fedramp: **SC-28**
 
 ### Classification
 

@@ -22,42 +22,42 @@ Because they are not maintained nor patched, they are a **privileged vector of a
 <details>
     <summary>Apollo</summary>
 
-Identify and remove zombie objects from your Apollo server schema to prevent potential security vulnerabilities.
+To address the 'Zombie object' issue within the Apollo framework engine, ensure that all references to objects are properly managed. Implement strong ownership and reference counting practices. Utilize the provided memory management tools and debugging facilities to track down and eliminate any retain cycles or orphaned objects that could lead to 'Zombie object' instances. Regularly review and test your code to prevent memory leaks and unintended object retention.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Clean up your GraphQL Yoga schema by eliminating zombie objects that are no longer in use.
+To address the 'Zombie object' issue within the Yoga framework engine, ensure that all objects are properly deallocated and references are cleared when they are no longer needed. Implement proper memory management practices, such as utilizing ARC (Automatic Reference Counting) effectively, and make sure to nullify any strong references to objects that should be released. Additionally, consider using weak references for delegates and other objects that may lead to retain cycles. Regularly profile your application with memory debugging tools to detect and fix any potential zombie objects.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Regularly audit your AWS AppSync schema to remove any zombie objects to maintain security and performance.
+To prevent 'Zombie object' issues within the AWS AppSync framework, ensure that all data sources and resolvers are properly managed and disposed of after use. Implement clean-up logic in your resolvers to delete or dereference objects that are no longer needed to avoid memory leaks. Regularly monitor and audit your GraphQL API with AWS CloudWatch to detect and address any anomalies that may indicate lingering objects. Additionally, consider using AWS Lambda functions with automatic scaling to manage resource utilization effectively.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Ensure your GraphQL Go implementation does not contain zombie objects by reviewing and pruning the schema definitions.
+To mitigate the risk of zombie objects in a GraphQL Go framework engine, ensure proper cleanup of resources and implement a garbage collection strategy. Utilize context cancellation to stop in-flight requests and release associated objects. Regularly review and update your code to manage object lifecycles effectively, preventing memory leaks and potential performance issues.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Review your GraphQL Ruby schema to remove any zombie objects, ensuring a clean and secure codebase.
+In the GraphQL Ruby framework, to prevent the creation of zombie objects, ensure that you properly dispose of objects that are no longer needed. Implement a cleanup strategy within your resolvers and mutations to release resources and avoid memory leaks. Additionally, consider using the `lazy_resolve` method to defer the execution of expensive operations until they are actually needed, which can help in managing resource allocation more efficiently.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-In Hasura, make sure to delete unused objects from your GraphQL schema to avoid security issues.
+To prevent the occurrence of zombie objects in the Hasura framework engine, ensure that all subscriptions and live queries are properly terminated when no longer needed. Implement cleanup logic to release resources and unsubscribe from events when components are unmounted or when user sessions end. Regularly monitor the active subscriptions and enforce limits if necessary to avoid resource leaks that can lead to zombie objects.
 
 </details>
 
@@ -93,10 +93,10 @@ In Hasura, make sure to delete unused objects from your GraphQL schema to avoid 
 ### Compliance
 
 - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
-- pci: **6.5.7**
+- pci: **6.5.4**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.18.1**
 - nist: **SP800-53**
 - fedramp: **AC-4**

@@ -25,42 +25,42 @@ One should prefer the better but more difficult to implement "query complexity" 
 <details>
     <summary>Apollo</summary>
 
-Reject requests containing more than a certain number of characters. For instance, `15000` is a coherent threshold for characters.Install our open source package [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) for Apollo.
+Ensure proper input validation and sanitization to prevent injection attacks when using Apollo framework engine.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Reject requests containing more than a certain number of characters. For instance, `15000` is a coherent threshold for characters.Install our open source package [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) for Yoga.Otherwise, you can use the standalone [envelop plugin](https://www.npmjs.com/package/@escape.tech/graphql-armor-character-limit) directly.
+To address issues within the Yoga framework engine, ensure that all components are updated to their latest versions, adhere to best practices in error handling, and maintain a consistent code review process to identify potential vulnerabilities or bugs early in the development cycle.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Add ACL rule to prevent requests bigger than a threshold. (e.g., 3000 characters)This would be entered into the Rule JSON editor when creating a web ACL in the AWS WAF Console.
+Ensure that AWS AppSync resolvers are using VTL templates to sanitize and validate input data to prevent injection attacks. Implement authorization checks and configure service limits to mitigate against denial-of-service attacks.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-You can limit query size with a net/http middleware in Go.
+To mitigate potential security risks in the GraphQL Go framework engine, ensure that all user-supplied inputs are validated and sanitized. Implement proper error handling to avoid leaking sensitive information in error messages. Regularly update dependencies to their latest secure versions. Additionally, consider using a query complexity analysis tool to prevent resource exhaustion attacks.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In Ruby on Rails, you can create a middleware to reject oversized requests for GraphQL endpoints.
+Ensure proper input validation and sanitization to prevent injection attacks. Use GraphQL's built-in mechanisms to define and enforce the types and shapes of allowable queries. Additionally, consider implementing query complexity analysis to prevent overly complex queries from consuming excessive resources.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-To prevent oversized requests in Hasura, you can set up a custom limit for the maximum size of a request body.
+To ensure the security and efficiency of your Hasura GraphQL engine, always use prepared statements or parameterized queries to prevent SQL injection attacks. Additionally, validate and sanitize all user inputs to maintain the integrity of your database operations.
 
 </details>
 
@@ -101,9 +101,9 @@ To prevent oversized requests in Hasura, you can set up a custom limit for the m
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-- pci: **6.5.8**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

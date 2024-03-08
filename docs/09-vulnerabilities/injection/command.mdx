@@ -24,42 +24,42 @@ To prevent command injection attacks:
 <details>
     <summary>Apollo</summary>
 
-To prevent command injection in Apollo, validate and sanitize all user inputs. Use a whitelist approach for allowed operations, and avoid passing user input directly to any system command.
+To mitigate command injection vulnerabilities in the Apollo framework engine, ensure that user-supplied input is properly sanitized and validated before being used in any command execution context. Employ whitelisting of allowed commands, use built-in libraries for command execution that abstract the underlying system calls, and avoid constructing shell commands with user input. Additionally, consider using security-focused libraries or modules that are designed to prevent command injection, and regularly update the Apollo framework and its dependencies to incorporate security patches.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In Yoga, ensure that user inputs are strictly validated and sanitized. Avoid using any form of eval or system command with user input. Instead, use parameterized APIs or safe libraries designed for the task at hand.
+To prevent command injection vulnerabilities in the Yoga framework engine, ensure that any external input is properly sanitized before being used in a command. Use built-in libraries or functions for command execution that avoid shell interpretation, such as execFile instead of exec in Node.js. Additionally, implement allowlists for system commands that the application is permitted to execute, and validate all inputs against these allowlists. Avoid constructing shell commands with user input, and employ security-focused libraries that are designed to handle command execution safely.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, use VTL (Velocity Template Language) resolvers and avoid calling out to AWS Lambda functions that might execute system commands with user input. Always validate and sanitize input before using it in your resolvers.
+To mitigate the risk of command injection in AWS AppSync, ensure that all user-supplied input is properly validated and sanitized. Use AWS AppSync's built-in VTL (Velocity Template Language) resolvers to handle data securely, and avoid constructing dynamic queries or commands with user input. Implement strict input validation routines to reject unexpected or malicious data. Additionally, employ the principle of least privilege by assigning minimal permissions necessary for the AppSync functions to operate. Regularly review and update your security policies and practices to protect against emerging threats.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL Go, validate all inputs using Go's strong typing and avoid using user input directly in any system commands. Use context-bound parameters and sanitize inputs.
+To mitigate command injection vulnerabilities in a GraphQL Go framework engine, ensure that all user-supplied input is properly sanitized and validated. Use allowlists for command inputs, employ strict type checking, and avoid using user input directly in shell commands. Additionally, leverage secure coding practices such as using safe APIs that abstract command execution details and provide built-in protections against injection attacks.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL Ruby, use strong parameters and input object types to ensure that only permitted and validated data is processed. Avoid using system commands with user input.
+To prevent command injection in the GraphQL Ruby framework, ensure that any user-supplied input is properly sanitized before being used in system commands. Use allow-lists for command and argument values, employ the built-in argument validation features of GraphQL Ruby to enforce strict type checking, and avoid directly passing user-controlled input to system-level operations. Additionally, consider using higher-level abstractions provided by the framework or the underlying operating system for executing actions instead of spawning system processes directly.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-With Hasura, avoid using raw SQL or system commands that could be injected with user input. Use prepared statements and parameterized queries to handle user input safely.
+To prevent command injection in the Hasura framework, ensure that all user inputs are properly validated and sanitized before being used in any dynamic GraphQL queries or database operations. Use prepared statements with variable binding for all database interactions, and avoid constructing queries with string concatenation. Additionally, employ allow-lists for command inputs where possible, and implement strict access controls to limit the exposure of the GraphQL API to untrusted inputs.
 
 </details>
 
@@ -67,72 +67,72 @@ With Hasura, avoid using raw SQL or system commands that could be injected with 
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, prevent command injection by using parameterized queries or ORM methods instead of concatenating strings to build SQL commands. Always validate and sanitize user inputs.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, use Active Record methods for database interactions to avoid SQL injection. Validate and sanitize user inputs before using them in system commands.
+To prevent command injection in ASP.NET, validate all user inputs rigorously to ensure they do not contain malicious content. Employ whitelisting for allowed commands and parameters instead of blacklisting bad inputs. Use secure coding practices such as parameterized APIs or stored procedures for database access, and avoid constructing OS commands with user input. Implement least privilege principles for the application's system access. Regularly update the ASP.NET framework and dependencies to mitigate known vulnerabilities.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js, avoid using exec or spawn with user inputs for system commands. Use parameterized APIs and validate all inputs to prevent command injection.
+In Ruby on Rails, prevent command injection by avoiding the use of methods that execute system commands with user-supplied input. Instead, use Rails built-in methods or, if system interaction is necessary, employ strong input validation, whitelisting, and the use of Ruby's `shellescape` method to sanitize user input. Additionally, consider using the `Open3` library to capture the stdout and stderr to avoid shell command execution.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+To prevent command injection in a Next.js application, validate and sanitize all user inputs to ensure they do not contain malicious content. Use built-in secure methods for spawning child processes, such as execFile() with a list of safe parameters, instead of exec(). Avoid using eval() or passing user-controlled data to any system shell command. Implement a strong Content Security Policy (CSP) to reduce the risk of XSS, which can lead to command injection. Regularly update dependencies to mitigate known vulnerabilities.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use Eloquent ORM or the query builder with parameter binding to prevent SQL injection. Do not pass user input directly to system commands.
+In Laravel, to prevent command injection, avoid using functions that execute system commands directly. Instead, use Laravel's built-in features and libraries that are designed to safely handle user input. If you must execute system commands, use the 'symfony/process' component that comes with Laravel to safely run those commands with proper argument escaping. Always validate and sanitize user input rigorously. Additionally, employ the use of Laravel's authorization and policy features to restrict access to functionalities that could potentially expose your application to command injection attacks.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, use middleware like helmet to protect against common vulnerabilities. Validate and sanitize user inputs before using them in system commands.
+To prevent command injection in Express.js applications, validate and sanitize all user inputs to ensure they do not contain malicious characters or patterns. Use child_process.execFile instead of child_process.exec when executing system commands, as execFile does not spawn a shell by default and requires explicit arguments, reducing the risk of shell parameter injection. Additionally, employ libraries like 'helmet' to enhance security headers and 'express-validator' for input validation. Always keep dependencies up-to-date and follow the principle of least privilege when setting permissions for the application.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the ORM to interact with the database and avoid raw SQL queries. Validate and sanitize user inputs before using them in system commands.
+In Django, ensure that any system commands executed by your application are using the `subprocess` module with a list of arguments rather than string concatenation. Always validate and sanitize user input to prevent injection, and consider using Django's built-in template system which automatically escapes context variables, rather than directly passing user input to system commands. Additionally, apply the principle of least privilege by running your application with minimal permissions that are necessary for it to function.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, use Doctrine's parameterized queries to prevent SQL injection. Always validate and sanitize user inputs before using them in system commands.
+In Symfony, to prevent command injection, validate and sanitize all user inputs. Use the Process component to safely execute system commands. Avoid directly passing user input to system functions. Implement strict input validation using Symfony's validation constraints to ensure only expected data is processed.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, use JPA repositories or JDBC templates with named parameters to prevent SQL injection. Validate and sanitize user inputs before using them in system commands.
+In Spring Boot applications, prevent command injection by avoiding the use of Runtime.exec() or ProcessBuilder with user-controlled input. Instead, use Spring's abstraction for executing system processes or, if necessary, whitelist specific commands and rigorously validate any input against this list. Employ strong input validation techniques, and consider using the OWASP Java Encoder for safely encoding user input. Additionally, ensure that the principle of least privilege is applied to the system's execution context to minimize the potential impact of a successful injection.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use SQLAlchemy ORM or raw SQL with placeholders to prevent SQL injection. Validate and sanitize user inputs before using them in system commands.
+To prevent command injection in Flask applications, validate and sanitize all user inputs to ensure they do not contain malicious content. Use the 'shlex' module to escape shell arguments, and avoid using Python's 'os.system' or 'subprocess.Popen' with user-supplied input. Instead, employ 'subprocess' with a list of arguments, and leverage the 'shell=False' option to mitigate the risk of command injection attacks.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, avoid using user inputs directly in system commands. Use context-bound parameters and validate all inputs to prevent command injection.
+To prevent command injection in a Nuxt.js application, validate and sanitize all user inputs rigorously. Avoid using user-controllable data to construct shell commands. If you must execute system commands, use secure methods provided by the framework or underlying Node.js environment, such as child_process.execFile with a list of predefined arguments, rather than exec. Additionally, employ libraries like 'helmet' to enhance security headers and use 'eslint-plugin-security' to identify potential security flaws in your code.
 
 </details>
 
@@ -175,7 +175,7 @@ In Nuxt.js, avoid using user inputs directly in system commands. Use context-bou
 - OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
 - pci: **6.5.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

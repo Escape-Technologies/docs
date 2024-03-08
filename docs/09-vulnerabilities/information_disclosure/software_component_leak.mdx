@@ -17,6 +17,78 @@ Filter out the data that is being returned from the server.
 
 
 
+### REST Specific
+
+<details>
+    <summary>Asp_net</summary>
+
+Configure the ASP.NET framework to suppress detailed error messages and headers that reveal server or framework versions. Use custom error pages and set the 'customErrors' mode to 'On' or 'RemoteOnly' in the web.config file. Additionally, ensure that the 'httpRuntime' element's 'enableVersionHeader' attribute is set to 'false' to prevent the ASP.NET version from being included in HTTP responses.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+In the Ruby on Rails framework, configure the environment files to suppress detailed error messages and stack traces in production. Use 'config.consider_all_requests_local = false' and 'config.action_dispatch.show_exceptions = true' to prevent leaking tech stack information to users. Additionally, ensure that 'config/environments/production.rb' has 'config.log_level = :info' to limit logging verbosity.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Configure the Next.js application to disable the 'x-powered-by' header by setting the 'poweredByHeader' option to false in the 'next.config.js' file. Additionally, ensure that error pages do not disclose stack traces or other sensitive information to the client by customizing the error handling logic.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In the Laravel framework, ensure that the 'APP_DEBUG' setting in the '.env' file is set to 'false' in the production environment to prevent the server from leaking stack trace information. Additionally, configure the 'ExceptionHandler' to handle errors without revealing sensitive information, and use middleware to suppress or customize server headers that disclose technology stack details.
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+Configure the Express.js application to suppress server version information by setting the 'x-powered-by' header to false using the line 'app.disable('x-powered-by');' in the application setup code.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Configure the Django settings to disable the 'X-Powered-By' header and set 'DEBUG' to False in production to prevent leakage of technical stack information.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In the Symfony framework, to prevent the web/application server from leaking tech stack information, configure the 'expose_php' and 'server_tokens' directives in the 'php.ini' and web server configuration files respectively to 'Off'. Additionally, ensure that the 'prod' environment is used for production, as it does not display error messages or stack traces to the end user. Review and adjust the 'security.yaml' configuration to restrict error output and use the 'WebProfilerBundle' only in the 'dev' environment.
+
+</details>
+
+<details>
+    <summary>Spring_boot</summary>
+
+In the Spring Boot application, configure the application.properties or application.yml file to disable the exposure of version information. Set 'management.endpoint.info.enabled' to false and 'endpoints.info.enabled' to false if using an older version of Spring Boot. Additionally, customize error handling to prevent stack traces from being sent to clients and review the server's HTTP response headers to remove or obscure any technology stack information.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Configure the Flask application to suppress server banners and error messages that reveal stack information. Use the 'Flask-Talisman' extension to set security headers and the 'WERKZEUG_DEBUG_PIN' environment variable to 'off' to prevent debug pin exposure. Additionally, ensure that 'DEBUG' mode is set to 'False' in the production environment.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Configure the Nuxt.js application to suppress server version headers and error messages that reveal stack details. Utilize the 'render' configuration to remove specific headers and customize error pages to prevent information leakage.
+
+</details>
+
 ## Configuration
 
 > Identifier: `information_disclosure/software_component_leak`
@@ -49,11 +121,11 @@ Filter out the data that is being returned from the server.
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-- pci: **6.5.10**
+- pci: **6.5.3**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
-- iso27001: **A.18.1.3**
+- iso27001: **A.18.1**
 - nist: **SP800-53**
 - fedramp: **AC-6**
 

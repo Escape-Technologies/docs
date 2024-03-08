@@ -1,15 +1,14 @@
 ---
-title: Circular introspection
+title: Cyclic Recursive Query
 ---
 
-# Circular introspection
+# Cyclic Recursive Query
 
 ## Description
 
-A circular introspection has been performed on the system.
+A circular introspection query has successded on the system.
 This can be exploited to conduct a Denial of Service attack.
 
-The GraphQL introspection is done recursively on your schema.
 By calling several objects that reference each other, an attacker can create a circular reference.
 
 ```graphql
@@ -46,42 +45,42 @@ To prevent circular introspection from being abused:
 <details>
     <summary>Apollo</summary>
 
-To prevent circular introspection in Apollo Server, you can use query complexity analysis to set a maximum depth for queries. This will limit the depth of introspection queries and prevent the possibility of a circular reference causing a Denial of Service attack.
+To address the issue of cyclic recursive queries within the Apollo framework engine, it is recommended to implement checks that detect cycles in the query structure. This can be achieved by maintaining a record of visited nodes or resolvers and verifying that a node is not revisited within the same query execution context. Additionally, consider setting a maximum depth for queries and using Apollo's query cost analysis to prevent overly complex queries from being executed. By doing so, you can prevent infinite recursion and ensure the stability and performance of your GraphQL service.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In GraphQL Yoga, to mitigate circular introspection, you can implement depth limiting by using a custom validation rule that checks the depth of the queries and restricts them to a certain threshold.
+To address the issue of cyclic recursive queries in the Yoga framework engine, it is recommended to implement checks that detect cycles in the query structure. This can be achieved by maintaining a record of visited nodes or paths and verifying that a new query does not reintroduce a previously visited node. Additionally, setting a maximum depth for recursive queries can prevent infinite recursion. If the framework allows, consider using built-in features or plugins that manage query depth and complexity. Always validate and sanitize user input to prevent malicious queries from exploiting recursive functionalities.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-AWS AppSync provides built-in security features to prevent complex queries, including circular introspection. You can set query depth and complexity limits in the AWS AppSync console or through the AWS CLI.
+To prevent issues with cyclic recursive queries in AWS AppSync, it is recommended to implement depth limiting in your resolvers. This can be achieved by setting a maximum depth for queries and using a depth counting mechanism to track the resolver's call depth. Additionally, consider using query complexity analysis to assign costs to fields and types, and enforce a maximum query cost. This helps to mitigate the risk of overly complex or malicious queries affecting the performance and stability of your GraphQL API.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-For GraphQL servers using Go, you can prevent circular introspection by implementing a query depth limit using middleware that checks the depth of incoming queries.
+To mitigate the risk of cyclic recursive queries in a GraphQL Go framework engine, implement depth limiting to restrict the complexity of the queries that can be executed. Additionally, consider using query cost analysis techniques to assign costs to different fields and types, and enforce a maximum query cost. This can be complemented with throttling based on the client's request rate to prevent abuse. It's also advisable to use persistent queries to allow only pre-approved query operations. Ensure proper monitoring and logging of query patterns to detect and respond to potential abuse.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, you can prevent circular introspection by using the max_depth query analyzer to limit the depth of accepted queries.
+To mitigate the risk of cyclic recursive queries in the GraphQL Ruby framework, implement query depth analysis to limit the complexity of accepted queries. Use the `max_depth` option provided by the framework to define the maximum allowed depth for queries. Additionally, consider employing query cost analysis techniques to assign costs to different fields and types, and set a maximum query cost to prevent overly complex queries from being executed. Regularly review and adjust these limits based on the application's performance and requirements.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Hasura allows you to set depth limits for queries in the console or through environment variables, which can help prevent circular introspection attacks.
+To prevent issues with cyclic recursive queries in Hasura, ensure that you set depth limits for queries in the Hasura console under 'Settings' > 'Limits'. Additionally, use query complexity analysis to assign costs to fields and use these costs to limit the depth and breadth of each query. This helps in avoiding performance bottlenecks and potential denial of service attacks caused by deeply nested queries.
 
 </details>
 
@@ -117,10 +116,10 @@ Hasura allows you to set depth limits for queries in the console or through envi
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-- pci: **6.5.8**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-97**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-4**

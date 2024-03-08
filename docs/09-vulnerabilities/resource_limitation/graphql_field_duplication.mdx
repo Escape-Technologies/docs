@@ -1,0 +1,111 @@
+---
+title: Field Duplication
+---
+
+# Field Duplication
+
+## Description
+
+Some GraphQL engines allow to send multiple times the exact same field in a single query. This behaviour does not have any practical applications for developers. However, an attacker can leverage this feature to perform a DoS attack by sending a large number of duplicated fields in a single query. This can lead to a high CPU and memory usage on the server side, and can cause the server to become unresponsive.
+
+## Remediation
+
+To remediate Field Duplication, ensure that your application's logic or database schema prevents the creation of duplicate entries. Implement checks to verify the uniqueness of fields that are required to be unique before inserting or updating records. Use database constraints like UNIQUE indexes to enforce uniqueness at the database level. Additionally, consider implementing application-level validation to provide user-friendly error messages when a duplication attempt is made. Regularly review your data to identify and resolve any existing duplicates.
+
+
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+To address field duplication in the Apollo framework engine, ensure that your GraphQL schema is designed with reusable fragments and interfaces to minimize redundancy. Utilize the DRY (Don't Repeat Yourself) principle by creating shared field definitions that can be included in multiple types or queries. Additionally, leverage Apollo's caching mechanisms to prevent unnecessary data fetching and reduce the likelihood of duplicating fields across different parts of your application.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+To address the issue of field duplication in the Yoga framework engine, ensure that your data models are properly designed to avoid redundancy. Utilize inheritance or composition to share fields between related models, and consider implementing a data normalization process. Additionally, review your database schema and object-relational mapping configurations to prevent unnecessary duplication of fields across your data storage and application layers. Regularly refactor your codebase to maintain clean and DRY (Don't Repeat Yourself) principles.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+To address field duplication issues in AWS AppSync, ensure that your GraphQL schema is designed with reusable fragments and interfaces to minimize redundancy. Utilize schema directives to enforce field uniqueness and consider implementing resolver mapping templates that abstract repetitive logic. Regularly review and refactor your schema to consolidate fields and types that serve similar purposes.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+To prevent field duplication in the GraphQL Go framework engine, ensure that your schema design is normalized to avoid redundant fields. Utilize GraphQL fragments to share common fields between queries, and leverage tools such as 'graphql-go-tools' or 'gqlgen' to detect and warn about duplicate fields during development. Additionally, consider implementing a custom validation rule that checks for field duplication within incoming queries and rejects those that do not adhere to the schema's best practices.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+To prevent field duplication in GraphQL Ruby, ensure that your queries are structured to avoid repetitive field requests. Utilize fragments to share fields between different queries and mutations, and consider implementing a query complexity analysis tool to detect and mitigate duplication issues. Additionally, leverage the GraphQL::Analysis::AST module to analyze query structures at runtime and provide feedback or restrictions on field duplication.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+To avoid field duplication in Hasura, ensure that your GraphQL queries are structured efficiently. Refactor your queries to use fragments for shared fields between different query parts or leverage Hasura's support for named operations to reuse the same query with different variables. Additionally, consider using aliases to differentiate between fields when necessary. This will help maintain clean and optimized data fetching operations.
+
+</details>
+
+## Configuration
+
+> Identifier: `resource_limitation/graphql_field_duplication`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```json
+{
+    "checks": {
+        "resource_limitation/graphql_field_duplication": {
+            "skip": true
+        }
+    }
+}
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+
+### Compliance
+
+- OWASP: **[API4:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-207**
+- fedramp: **SI-7**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

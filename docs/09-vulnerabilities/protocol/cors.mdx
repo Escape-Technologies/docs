@@ -24,42 +24,42 @@ See: [enable-cors.org](https://enable-cors.org/index.html).
 <details>
     <summary>Apollo</summary>
 
-Configure the 'Access-Control-Allow-Origin' HTTP header to a more restrictive set of domains, or remove all CORS headers entirely, to allow the web browser to enforce the Same Origin Policy (SOP) in a more restrictive manner.For instance, with `apollo-server-express`, you can restrain request origin to only a few whitelisted domains:
+To remediate CORS issues in the Apollo framework, ensure that the Apollo Server is configured to accept requests from trusted origins. This can be achieved by using the `cors` option in the Apollo Server constructor, where you can specify an array of allowed origins or set it to `true` to allow requests from any origin. It's important to restrict the origins to those that you trust to prevent security vulnerabilities. Additionally, consider using a package like `apollo-server-express` alongside `cors` middleware for more granular control over the CORS policy.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Ensure that the CORS configuration for Yoga server is set to allow requests only from trusted origins. Use the CORS middleware to define the allowed origins.
+To remediate CORS issues in the Yoga framework engine, ensure that the server is configured to set the appropriate 'Access-Control-Allow-Origin' header. This header should be set to the domains that are allowed to access the resources or use a wildcard '*' if the resources are public. Additionally, handle preflight requests by responding to 'OPTIONS' HTTP method with the correct 'Access-Control-Allow-Methods' and 'Access-Control-Allow-Headers' headers. It's important to only allow trusted domains and not use a wildcard if sensitive data is involved. Implementing a proper CORS policy will help prevent unauthorized access to your resources.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Add CORS headers with the API Gateway.Put your AppSync API behind an API Gateway and configure it to act as a proxy to your AppSync endpoint (e.g., using the HTTP Proxy feature).To learn how to do so, see [AWS's API Gateway documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html). You can then manually enable CORS for each resource (only for one if you created the gateway for a single AppSync endpoint):API Gateway console > {your api gateway} > Resources > {your created resource} > Actions : Enable CORS
+To remediate CORS issues in AWS AppSync, ensure that your GraphQL API is configured to allow cross-origin requests from trusted domains. This can be achieved by setting the appropriate CORS headers in the AWS AppSync console or through the AWS CLI. Specifically, update the 'Access-Control-Allow-Origin' header to include the domains that should be permitted to access your API. Additionally, verify that the 'Access-Control-Allow-Methods' and 'Access-Control-Allow-Headers' are correctly set to allow the necessary HTTP methods and headers required by your client-side application.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-For GraphQL servers using Go, configure the CORS middleware to restrict the 'Access-Control-Allow-Origin' header to trusted domains.
+To mitigate CORS (Cross-Origin Resource Sharing) issues in a GraphQL Go framework engine, ensure that the server is configured to set appropriate CORS headers. Implement a middleware that checks incoming requests for the 'Origin' header and sets the 'Access-Control-Allow-Origin' header in the response accordingly. This header can be set to a specific origin or '*' to allow all origins. Additionally, handle preflight requests by responding to 'OPTIONS' HTTP method with the correct 'Access-Control-Allow-Methods' and 'Access-Control-Allow-Headers' headers. It's important to only allow trusted origins and to validate and sanitize all inputs to prevent security vulnerabilities.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In Ruby on Rails with GraphQL, set up CORS in the application configuration to only allow trusted domains.
+To mitigate CORS (Cross-Origin Resource Sharing) issues in a GraphQL Ruby framework, ensure that the Rack CORS middleware is properly configured. This can be done by adding the `rack-cors` gem to your Gemfile and configuring it in `config.ru` or the appropriate configuration file for your server. Set up the CORS rules to allow only trusted origins, specify which HTTP methods are permitted, and control headers and credentials as needed. Regularly review and update your CORS policy to adhere to the principle of least privilege, allowing access only where necessary.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Configure Hasura's CORS policy to restrict the 'Access-Control-Allow-Origin' header to trusted domains via the environment variables or the console settings.
+To remediate CORS issues in the Hasura framework, ensure that the 'cors-config' section in the Hasura configuration file is properly set to allow requests from trusted origins. Use the 'HASURA_GRAPHQL_CORS_DOMAIN' environment variable to specify allowed origins or set it to '*' to allow all domains during development. For production, list specific domains to restrict access and prevent unwanted cross-origin requests. Additionally, review and apply appropriate CORS policies for security headers like 'Access-Control-Allow-Origin', 'Access-Control-Allow-Credentials', and others as per your application's requirements.
 
 </details>
 
@@ -97,7 +97,7 @@ Configure Hasura's CORS policy to restrict the 'Access-Control-Allow-Origin' hea
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
 - pci: **6.5.9**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

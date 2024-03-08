@@ -15,75 +15,120 @@ You must validate the token signature before thrusting the token content.
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure that the Apollo server implementation properly validates JWT signatures by using a robust library like `jsonwebtoken` with a secure, secret key or public/private key pair. Always verify the signature before trusting the payload of the token.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Ensure that the Yoga framework engine is configured to validate JWT signatures properly. Use a secure library for JWT processing and make sure that it checks the signature against the expected algorithm and secret or public key. Do not allow the algorithm to be specified in the header of the JWT. Keep your signing keys secure and rotate them periodically.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Ensure that the JWT signature is verified against a strong, trusted public key or secret. In AWS AppSync, configure the resolvers to use AWS Lambda functions or Amazon Cognito User Pools, which automatically handle the JWT signature verification. Avoid using simple token validation that only decodes the token without signature verification. Implement proper error handling to reject requests with invalid or expired JWTs.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Ensure that the JWT (JSON Web Token) signature is verified for each request to prevent unauthorized access. Implement a middleware in the GraphQL Go framework that checks the signature against the secret or public key before processing any query or mutation. This will help in mitigating risks associated with token tampering and replay attacks. Use a well-maintained library that conforms to the JWT specification (RFC 7519) for signature verification and token handling.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+Ensure that JWT tokens are validated properly by checking the signature with a secure algorithm. Use a well-maintained library for JWT handling that supports the necessary validation features. Configure the GraphQL Ruby framework to require signature verification for all JWTs, and reject any tokens with invalid signatures. Regularly update the library to incorporate security fixes and improvements.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Ensure that the Hasura engine is configured to validate JWT signatures with the correct algorithm and secret or public key. Update the 'HASURA_GRAPHQL_JWT_SECRET' environment variable with the appropriate JSON object containing the 'type', 'key', or 'jwk_url', depending on your setup. Regularly rotate secrets and use strong, asymmetric keys for production environments.
+
+</details>
+
+
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Ensure that the JWT token signature is validated against a strong secret key or public key. Use middleware to enforce signature checks on every request.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Use a library like 'jwt' to decode and verify the JWT signature. Ensure that the secret key is not hardcoded and is securely managed.
+Ensure that the ASP.NET application validates JWT signatures using a secure library. Configure the JWT middleware to use a strong algorithm like RS256 and verify the signature against a trusted public key or secret. Reject any tokens with invalid signatures immediately.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Implement signature verification in your API routes or use a middleware that checks the JWT signature before processing the request.
+Ensure that the JWT library in use is configured to validate the signature of the token against a known and trusted secret or public key. In Ruby on Rails, use a well-maintained JWT gem like 'jwt' and explicitly verify the signature in the authentication process. Avoid using 'none' as an algorithm, and do not trust user input for the key or algorithm used for verification.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that the JWT library used in the Next.js application is configured to validate the signature of the token against a strong, private key that is securely managed. Implement proper error handling to reject any tokens with invalid signatures, and regularly rotate the signing key as a security best practice.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Use Laravel's built-in JWT authentication guard to validate the token signature. Configure it properly in the auth.php config file.
+Ensure that the JWT library in Laravel is configured to validate the signature of the token against a secure server-side secret or private key. Use the built-in Laravel authentication guards or a reputable JWT package that adheres to the latest security standards for token verification. Regularly update the JWT library to incorporate security fixes and improvements.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Use a JWT middleware like 'express-jwt' to validate the token signature on each request. Configure it with the correct secret or key.
+Ensure that the Express.js application properly validates JWT signatures by using a robust library like jsonwebtoken. Configure it to verify the signature with the correct secret or public key, and reject any tokens with invalid signatures before processing any requests.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Use Django's authentication system to verify JWT tokens. A package like 'djangorestframework-jwt' can be used for this purpose.
+Ensure that the Django application is configured to validate JWT signatures using a secure algorithm like HS256, RS256, or ES256. Use a reputable JWT library that provides signature verification and configure it to reject tokens with invalid signatures. Regularly update the library to incorporate security fixes and improvements.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Use the 'lexik/jwt-authentication-bundle' to handle JWT tokens. Ensure the signature is verified with each request.
+Ensure that the JWT library in Symfony is configured to validate the signature of the token against a secure server-side secret or private key. Reject any tokens with invalid signatures immediately.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Use Spring Security with a JWT library to enforce signature validation. Configure it to use the correct signing key.
+Ensure that the Spring Boot application is configured to validate JWT signatures correctly. Use a reliable JWT library, such as `java-jwt` or `spring-security-oauth2`, and configure it to verify the signature with the appropriate public key or secret. Do not allow tokens with none algorithm, and ensure that the algorithm specified in the JWT header is expected and supported by your application. Regularly rotate keys and secrets, and handle exceptions properly to prevent unauthorized access.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Use Flask-JWT-Extended to handle JWT operations. Ensure that the token signature is validated on each protected endpoint.
+Ensure that the Flask application is configured to validate JWT signatures properly. Use a reputable library like PyJWT and set it to verify the signature with the appropriate secret or public key. Do not allow the 'none' algorithm, and ensure that the algorithm used to verify the token matches the one used to sign it. Regularly rotate your secret keys and handle exceptions to reject any tokens with invalid signatures.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Validate the JWT in your Nuxt application by using a middleware that checks the token signature before rendering the page or API call.
+Ensure that the server properly validates JWT signatures by using a secure library and rejecting tokens with invalid signatures. In Nuxt.js, use the `jsonwebtoken` or a similar trusted library to verify the token's signature before accepting it for authentication or authorization purposes.
 
 </details>
 
@@ -121,11 +166,11 @@ Validate the JWT in your Nuxt application by using a middleware that checks the 
 - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
 - pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-63B**
-
+- fedramp: **SI-7**
 
 ### Classification
 

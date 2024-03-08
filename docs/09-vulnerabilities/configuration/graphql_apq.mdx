@@ -26,21 +26,42 @@ To improve network performance for large query strings, enable APQ if your Graph
 <details>
     <summary>Apollo</summary>
 
-Enable Automatic Persisted queries.For a complete guide on how to do so, see [Apollo's Automatic Persisted Queries documentation](https://www.apollographql.com/docs/apollo-server/performance/apq/).
+To mitigate the risks associated with Automatic Persisted Queries (APQs) in the Apollo framework, ensure that you have proper security measures in place. This includes validating and sanitizing all user inputs, implementing a strict Content Security Policy (CSP), and using query whitelisting to allow only predefined queries. Additionally, monitor and rate-limit the APQs to prevent abuse. Keep the Apollo Engine and all dependencies up to date to benefit from the latest security patches.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-To enable Automatic Persisted Queries in GraphQL Yoga, you can use the `useAutomaticPersistedQueries` plugin from the `@envelop/automatic-persisted-queries` package.
+To mitigate the risks associated with Automatic Persisted Queries in the Yoga framework, ensure that the server only accepts predefined queries. This can be achieved by maintaining a whitelist of allowed query hashes and rejecting any queries that do not match the known hashes. Additionally, implement proper rate limiting and monitoring to detect and prevent abuse.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+To mitigate performance issues and reduce network traffic, implement Automatic Persisted Queries (APQs) with AWS AppSync. APQs allow clients to send a short hash instead of the full query, reducing the request size. When the server receives a hash, it retrieves the full query from a cache if available. To enable APQs in AWS AppSync, configure your client to support APQs and modify your AWS AppSync settings to enable caching of the queries. This will improve the efficiency of data retrieval and reduce latency.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+To mitigate potential performance issues and improve the security of your GraphQL Go framework engine, implement Automatic Persisted Queries (APQs). APQs allow clients to send a unique identifier generated from the query instead of the full query itself, reducing the size of the request and protecting against certain types of attacks. Ensure that your GraphQL server is configured to handle APQs by storing the mapping between the identifier and the query, and validate the queries to prevent unauthorized operations. This approach also enables caching at the network level, further enhancing the performance and scalability of your GraphQL service.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Add graphql-persisted_queries to your Gemfile `gem 'graphql-persisted_queries'` and add the plugin to your schema class:```ruby class GraphqlSchema < GraphQL::Schema use GraphQL::PersistedQueries end ``` Pass the `:extensions` argument as part of a context to all calls of `GraphqlSchema#execute`,usually it happens in `GraphqlController`, `GraphqlChannel` and tests:```ruby GraphqlSchema.execute( params[:query],   variables: ensure_hash(params[:variables]), context: {  extensions: ensure_hash(params[:extensions]) }, operation_name: params[:operationName])```Source: [https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries](https://github.com/DmitryTsepelev/graphql-ruby-persisted_queries).
+To mitigate potential performance issues and improve the efficiency of GraphQL queries within the Ruby framework, implement Automatic Persisted Queries (APQs). APQs allow clients to send a unique identifier generated from the query instead of the entire query string, reducing the size of the request. Ensure that the GraphQL-Ruby library is configured to support APQs by integrating with a compatible caching mechanism, such as Redis, to store the mapping between the identifiers and the query strings. This will also help in protecting against certain types of Denial of Service (DoS) attacks that involve sending large and complex queries to the server.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+To mitigate the risk of denial-of-service (DoS) attacks when using Automatic Persisted Queries (APQs) with Hasura, ensure that only known queries are allowed by maintaining a list of allowed persisted queries. Implement a strict content security policy, and monitor and rate-limit incoming requests to prevent abuse. Additionally, consider using a unique identifier for each persisted query to avoid collisions and to make it easier to manage the list of allowed queries.
 
 </details>
 
@@ -76,10 +97,10 @@ Add graphql-persisted_queries to your Gemfile `gem 'graphql-persisted_queries'` 
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-- pci: **6.5.8**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
-
+- soc2: **CC1**
+- psd2: **Article-97**
 - iso27001: **A.12.6**
 - nist: **SP800-53**
 - fedramp: **AC-2**

@@ -20,42 +20,42 @@ To mitigate this vulnerability, it is crucial to implement an effective rate lim
 <details>
     <summary>Apollo</summary>
 
-Implement rate limiting in Apollo Server to prevent brute force attacks. Use Apollo Server's built-in support for defining custom directives or integrate with existing rate-limiting libraries.
+To mitigate the risk of brute force attacks on sensitive endpoints in the Apollo framework engine, implement rate limiting and account lockout policies. Additionally, enforce strong password policies, utilize multi-factor authentication, and monitor logs for suspicious activities. Ensure that the Apollo server is up-to-date with the latest security patches and configure HTTPS to encrypt data in transit.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Incorporate rate limiting in GraphQL Yoga by using middleware that can limit the number of requests a user can make to an endpoint.
+To mitigate the risk of sensitive endpoint brute force attacks in the Yoga framework engine, implement rate limiting to restrict the number of requests a user can make within a given timeframe. Additionally, use CAPTCHA challenges after a certain number of failed attempts to ensure that the requests are made by humans rather than automated scripts. Employ multi-factor authentication to add an extra layer of security, and monitor logs for repeated failed attempts to detect potential attacks. Ensure that all sensitive endpoints are protected with strong access controls and authentication mechanisms.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Utilize AWS AppSync's built-in features to set up rate limiting. Configure the AWS AppSync API to use API keys or AWS IAM permissions to control and limit access rates.
+To mitigate the risk of sensitive endpoint brute force attacks in AWS AppSync, implement rate limiting to control the number of requests a user can make within a given timeframe. Utilize AWS WAF (Web Application Firewall) to set up rules that block or flag IP addresses that exceed request thresholds. Additionally, enable AWS AppSync's built-in authentication mechanisms and configure field-level authorization to ensure that only authenticated and authorized users can access sensitive data or operations. Regularly review and update your security policies to adapt to new threats.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Implement rate limiting in your GraphQL Go server by using a middleware that can restrict the rate of incoming requests.
+Implement rate limiting and request throttling to prevent brute force attacks on sensitive endpoints. Additionally, use strong authentication mechanisms and monitor logs for suspicious activities.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL Ruby, use the built-in complexity and depth analysis to mitigate against brute force attacks by limiting the complexity of the queries that can be executed.
+To mitigate the risk of sensitive endpoint brute force attacks in a GraphQL Ruby framework, implement rate limiting to restrict the number of requests a user can make within a given timeframe. Additionally, use strong authentication mechanisms and monitor logs for suspicious activities. Consider also implementing CAPTCHA challenges after a certain number of failed attempts to further protect against automated attacks.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Leverage Hasura's support for setting up rate limits on its actions and subscriptions to prevent abuse.
+To mitigate the risk of brute force attacks on sensitive endpoints in the Hasura framework, implement rate limiting to restrict the number of requests a user can make within a given time frame. Additionally, use strong authentication mechanisms such as multi-factor authentication (MFA) to protect against unauthorized access. Monitor logs for suspicious activities and consider using a Web Application Firewall (WAF) to detect and block malicious traffic patterns. Ensure that your Hasura GraphQL engine is up to date with the latest security patches.
 
 </details>
 
@@ -63,72 +63,72 @@ Leverage Hasura's support for setting up rate limits on its actions and subscrip
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Use ASP.NET's built-in rate limiting features or third-party libraries like AspNetCoreRateLimit to prevent brute force attacks on endpoints.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, use Rack::Attack or similar middleware to throttle requests and protect sensitive endpoints from brute force attacks.
+Implement a robust rate-limiting mechanism using ASP.NET's built-in features or third-party libraries. Configure the rate limiter to define thresholds for the number of requests allowed from a single IP address within a set time window. Utilize the `IApplicationBuilder.UseMiddleware` method to integrate the rate-limiting middleware into the request pipeline. Additionally, consider adding CAPTCHA challenges after a certain number of failed attempts to further protect against automated brute force attacks.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js applications, implement rate limiting using middleware or third-party libraries to protect API routes.
+Implement a robust rate-limiting mechanism using Rack::Attack or a similar middleware. Configure it to limit the number of requests allowed from a single IP address to the sensitive endpoint within a specified time window. This will help prevent brute force attacks by blocking excessive requests. Additionally, ensure that the endpoint implements strong authentication and logging to detect and respond to suspicious activities promptly.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement a robust rate-limiting mechanism using middleware such as 'express-rate-limit' for Next.js API routes. Configure it to limit the number of requests a user can make to the sensitive endpoint within a set time window. Additionally, consider adding CAPTCHA verification after a certain number of failed attempts to prevent automated brute force attacks.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Use Laravel's built-in rate limiting features to protect routes by limiting the number of requests that can be made within a certain time frame.
+Implement a robust rate-limiting mechanism using Laravel's built-in 'throttle' middleware. Configure the middleware to limit the number of requests allowed per minute per user or IP address. Adjust the thresholds according to the sensitivity of the endpoint and ensure that the system logs excessive access attempts for further analysis and response.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Implement rate limiting in Express.js applications using the express-rate-limit middleware to prevent brute force attacks.
+Implement a robust rate-limiting middleware in the Express.js application, such as 'express-rate-limit'. Configure it to limit the number of requests a user can make to the sensitive endpoint within a set period. Adjust the threshold and time window according to the endpoint's sensitivity and expected traffic. Additionally, consider adding CAPTCHA challenges after a certain number of failed attempts and ensure proper logging of request patterns to detect and respond to potential brute force attacks.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the django-ratelimit library to apply rate limiting to views and protect against brute force attacks.
+Implement a robust rate-limiting mechanism using Django's cache framework or third-party packages like 'django-ratelimit'. Configure the rate-limiter to track the number of requests per user/IP and set sensible thresholds to prevent brute force attacks. Additionally, enforce account lockout policies after a certain number of failed attempts and ensure logging of such events for monitoring and alerting purposes.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Utilize Symfony's rate limiter component to create custom rate limiting policies for your application's endpoints.
+Implement a robust rate-limiting mechanism using Symfony's 'RateLimiter' component. Configure it to define limits based on the number of requests over time from a single IP or user account. Set strict thresholds and use a sliding window algorithm to prevent brute force attacks. Additionally, ensure that the system logs excessive requests and alerts administrators to potential abuse. Consider using CAPTCHAs or requiring multi-factor authentication after a certain number of failed attempts to further enhance security.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, use a combination of HTTP request interceptors and a rate limiting service to protect your endpoints.
+Implement a robust rate-limiting mechanism using Spring Boot's built-in support or third-party libraries like Bucket4j or Guava RateLimiter. Configure the rate limiter to define the maximum number of requests allowed from a single IP address within a specific time window, and enforce a cooldown period after the limit is exceeded. Additionally, integrate the rate limiter with Spring Security to enhance the overall security posture of the application. Monitor and adjust the rate limits based on traffic patterns and threat intelligence to prevent brute force attacks effectively.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-For Flask applications, use Flask-Limiter to add rate limiting capabilities to your endpoints.
+Implement a robust rate-limiting mechanism using Flask extensions such as Flask-Limiter. Configure it to define request limits based on IP address or user account, and set appropriate time windows to prevent brute force attacks. Additionally, ensure that the endpoint implements account lockout policies after a certain number of failed attempts and provides alerts for multiple failed attempts to detect potential attacks.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, use middleware to implement rate limiting and protect your API routes from excessive requests.
+Implement robust rate-limiting on the vulnerable endpoint using Nuxt.js middleware or third-party libraries such as `express-rate-limit` for server-side rate-limiting. Configure the rate limiter to define a maximum number of allowed requests within a specific time window from a single IP address. Additionally, consider adding CAPTCHA challenges after a certain threshold of failed attempts to prevent automated attacks. Ensure that the rate-limiting mechanism is tested thoroughly to confirm its effectiveness against brute force attacks.
 
 </details>
 
@@ -166,11 +166,11 @@ In Nuxt.js, use middleware to implement rate limiting and protect your API route
 - OWASP: **[API3:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa3-broken-object-property-level-authorization.md)**
 - pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
-
+- fedramp: **AC-7**
 
 ### Classification
 

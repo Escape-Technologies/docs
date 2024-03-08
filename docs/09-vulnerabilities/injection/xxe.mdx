@@ -29,42 +29,42 @@ If it is not possible to disable DTDs completely, disable external entities and 
 <details>
     <summary>Apollo</summary>
 
-To prevent XXE in Apollo Server, ensure that any XML parsing, or libraries that parse XML, are configured to disallow the processing of external entities.
+To mitigate XXE (XML External Entity) injection vulnerabilities in the Apollo framework engine, ensure that any XML parsing libraries or components are configured to disallow the processing of external entities. Set features like 'disallow-doctype-decl' to true, and if possible, use less complex data formats such as JSON. Always validate and sanitize input to prevent malicious data from being processed. Additionally, keep all dependencies up-to-date to incorporate security patches that prevent XXE attacks.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In Yoga, disable external entity processing in XML parsing to mitigate XXE risks.
+To prevent XXE (XML External Entity) injection attacks in the Yoga framework engine, ensure that XML parsing is configured to disallow the processing of external entities. This can typically be achieved by setting features like 'disallow-doctype-decl' to true and 'external-general-entities' as well as 'external-parameter-entities' to false on the XML parser. Additionally, consider using less complex data formats such as JSON, and employ security-conscious libraries that are less susceptible to XXE attacks. Always keep the framework and its dependencies up to date with the latest security patches.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, avoid using any XML parsing libraries that do not allow you to disable external entities. If you must parse XML, configure the parser to disable external entities.
+To mitigate XXE (XML External Entity) injection vulnerabilities in AWS AppSync, ensure that the XML parsing library or framework in use is configured to disallow the processing of external entities. Set features like 'disallow-doctype-decl' to true, and disable external DTDs and external entity processing. Regularly update your XML parsers to the latest versions to incorporate security fixes. Additionally, implement input validation to reject XML documents containing DOCTYPE declarations or any suspicious XML constructs. As a best practice, consider using less complex data formats such as JSON that are less susceptible to XXE attacks.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-When using GraphQL with Go, ensure that your XML parser library is configured to ignore DOCTYPE and external entities.
+To mitigate XXE (XML External Entity) injection vulnerabilities in a GraphQL Go framework engine, ensure that any XML parsing library or functionality used within the GraphQL resolvers is configured to disallow the processing of external entities. This can typically be achieved by setting the appropriate parser flags or options to disable DTDs (Document Type Definitions), external entities, and external doctype declarations. Additionally, always validate and sanitize input to prevent malicious data from being processed, and consider implementing a content security policy that restricts the sources from which external content can be loaded.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, ensure that XML parsing is done with external entity processing disabled.
+To mitigate XXE (XML External Entity) injection vulnerabilities in a GraphQL Ruby framework, ensure that any XML parsing libraries or methods used within the application are configured to disallow the processing of external entities. Set options such as 'XML::XXE::Parser.default_options' to non-permissive values that prevent the expansion of external entities. Additionally, consider using a whitelist approach to filter out potentially malicious document type definitions (DTDs) and always validate and sanitize input to prevent the introduction of malicious XML content.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-For Hasura, it's important to validate and sanitize any user-supplied XML before processing and to configure the XML parser to disable external entities.
+To mitigate XXE (XML External Entity) injection vulnerabilities in the Hasura framework, ensure that any XML parsing libraries or processors used by the engine are configured to disallow the processing of external entities. Additionally, always validate and sanitize input to reject any XML or JSON that contains unexpected or unnecessary data. Keep the Hasura engine and all its dependencies up to date with the latest security patches.
 
 </details>
 
@@ -72,72 +72,72 @@ For Hasura, it's important to validate and sanitize any user-supplied XML before
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, use XmlReaderSettings with DtdProcessing set to Prohibit to prevent XXE.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-For Ruby on Rails applications, use Nokogiri with strict configuration to prevent XXE attacks.
+In ASP.NET, to prevent XXE (XML External Entity) injection attacks, ensure that your XML parsing is configured to disallow the processing of external entities. You can achieve this by setting the XmlReaderSettings.DtdProcessing property to DtdProcessing.Prohibit and creating an XmlReader instance with these settings. Additionally, avoid using XmlDocument and XmlTextReader unless you explicitly set their XmlResolver property to null. Always validate input and consider using secure coding practices such as encoding output and employing the principle of least privilege for your application's permissions.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js, ensure that any server-side XML parsing disallows the processing of external entities.
+In Ruby on Rails, ensure that XML parsing is configured to disallow the use of external entities. Set the 'XML::XXE' option to false when using libraries like Nokogiri for XML parsing, and avoid calling 'document.parse' with untrusted data. Additionally, consider using a safe parsing option like 'REXML::Document.new(xml, { safe: true })' to mitigate XXE risks.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+To prevent XXE Injection attacks in a Next.js application, ensure that any XML parsing library you use is configured to disallow the processing of external entities. Additionally, always validate and sanitize input data to restrict the inclusion of potentially malicious content.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Laravel should use libxml settings to disable external entities when parsing XML.
+In Laravel, disable XML external entity (XXE) processing in your XML parsing library or use a secure, modern library that is not vulnerable to XXE attacks. Additionally, ensure that any user-supplied XML or JSON is properly validated and sanitized before processing. Set the 'libxml_disable_entity_loader' function to true to prevent XXE in older PHP versions, and avoid using the 'simplexml_load_string' or 'DOMDocument::loadXML' functions with external entities. Always keep your Laravel framework and its dependencies up to date with the latest security patches.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-For Express.js, use body-parser-xml and configure it to reject external entities.
+To mitigate XXE (XML External Entity) injection attacks in Express.js applications, ensure that any XML parsing library you use is configured to disallow the processing of external entities. Set the 'xml2js' parser option 'explicitCharkey' to false and 'resolveEntities' to false. Additionally, disable DTDs (Document Type Definitions) by setting the 'xml2js' option 'disallowDoctype' to true. Always validate and sanitize input data rigorously, and consider using a less complex data format like JSON that is not susceptible to XXE attacks.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use defusedxml to parse XML and prevent XXE attacks.
+In Django, ensure that any XML parsing libraries or functions are configured to not resolve external entities. Use defusedxml, which is a Python package that provides a safer version of the standard XML libraries with protections against various XML attacks, including XXE. Always keep your Django framework and its dependencies up-to-date to benefit from the latest security patches.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Symfony applications should use the DOMDocument class with proper configuration to prevent XXE.
+In Symfony, to prevent XXE (XML External Entity) injection attacks, disable the loading of external entities in the libxml library by setting the 'LIBXML_NOENT' flag to 'false'. Use the 'disableEntityLoader' method if available, or ensure that any XML parsing libraries or components used in the framework are configured to not resolve external entities. Additionally, validate and sanitize all input data rigorously.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-For Spring Boot, configure XMLInputFactory to prevent XXE attacks.
+In Spring Boot applications, to prevent XXE Injection attacks, ensure that your XML processing libraries, such as JAXB, are configured to not resolve external entities. Set the 'FEATURE_SECURE_PROCESSING' feature to true on DocumentBuilderFactory, SAXParserFactory, and XMLReader instances. Additionally, disable support for external entities and DTDs by setting the 'disallow-doctype-decl' feature to true. Always validate and sanitize input, and consider using less complex data formats like JSON that are not susceptible to XXE attacks.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use lxml with proper configuration to parse XML and prevent XXE.
+In Flask applications, to prevent XXE (XML External Entity) attacks, ensure that any XML parsing libraries are configured to disallow the processing of external entities. For example, when using lxml, you can disable external entity processing by setting the 'no_network' and 'resolve_entities' options to False. Additionally, use defusedxml, which is a safer XML parsing library that prevents XXE by default. Always validate and sanitize input to ensure it does not contain unexpected or malicious data before processing it.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Nuxt.js applications should ensure server-side XML parsing libraries are configured to prevent XXE.
+In Nuxt.js, to prevent XXE (XML External Entity) injection attacks, ensure that any XML parsing library you use is configured to disallow the processing of external entities. Additionally, avoid serializing untrusted data to XML and use safe data handling libraries that are designed to resist XXE attacks. Always keep your dependencies up-to-date to incorporate security patches.
 
 </details>
 
@@ -175,7 +175,7 @@ Nuxt.js applications should ensure server-side XML parsing libraries are configu
 - OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
 - pci: **6.5.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-32**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

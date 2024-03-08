@@ -62,28 +62,42 @@ Depth alone is often not enough to cover all abusive queries. For example, a que
 <details>
     <summary>Apollo</summary>
 
-Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Apollo.Source: <https://escape.tech/blog/9-graphql-security-best-practices/>.
+For the Apollo framework engine, ensure that you are implementing depth limiting to prevent overly complex queries from overloading the server. This can be achieved by using a validation rule that checks the depth of each query and rejects those that exceed a certain threshold. Libraries such as `graphql-depth-limit` can be used to easily set up depth limiting in your Apollo server configuration.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Yoga.You can also use the standalone [envelop plugin](https://www.npmjs.com/package/@escape.tech/graphql-armor-max-depth).
+Ensure that the Yoga framework engine is updated to the latest version to mitigate any known vulnerabilities. Regularly review and apply security patches as they become available. Additionally, implement proper input validation to prevent injection attacks and configure the engine with secure defaults to minimize the risk of misconfiguration. Always follow best practices for authentication and authorization to protect sensitive data and resources.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For now, AppSync does not allow out-of-the-box query depth limit configuration.This can however be bypassed by implementing depth limit using Velocity Template Language VTL in Escape's Resolver.Below is an example of using the Matches regex to determine the length of selectionSetList. This example enforces a depth limit of 3 and can be added inside of an AppSync resolver function.
+To prevent issues with depth limits in AWS AppSync, it is recommended to define and enforce depth limiting on your GraphQL operations. This can be achieved by setting a maximum depth for queries in the AWS AppSync settings. Additionally, consider implementing cost analysis to ensure that queries do not exceed complexity that can impact performance. By using these strategies, you can protect your API against overly complex queries that could lead to performance degradation or abuse.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+To mitigate potential security vulnerabilities in the GraphQL Go framework engine, it is recommended to implement depth limiting on queries. Depth limiting restricts the complexity of the queries that can be executed by setting a maximum depth for each query. This prevents malicious users from crafting deeply nested queries that could potentially lead to performance issues or denial of service. To enforce depth limits, you can use middleware or custom logic that analyzes the query's abstract syntax tree (AST) before execution and rejects queries that exceed the specified depth threshold.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In the GraphQL Ruby framework, to mitigate the risk of overly complex queries that can lead to performance issues or denial of service, implement a depth limit for queries. You can use the `max_depth` option in your schema definition to enforce a maximum depth for incoming queries. This will ensure that users cannot submit queries that exceed a certain level of nested fields, which can protect your application from unnecessary load and potential abuse. Additionally, consider using the graphql-depth_limit gem for more advanced depth limiting features.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Hasura allows for manual query depth limit configuration directly in the security settings:- Go to Project Console > Security Settings > API Limits.- Click on "Global".- Set a depth limit (e.g., 3).
+To mitigate potential security risks in the Hasura framework engine, ensure that all GraphQL queries are validated against a strict schema and implement role-based access controls (RBAC) to limit permissions based on user roles. Additionally, use prepared statements or parameterized queries to prevent injection attacks, and regularly update the Hasura engine to the latest version to benefit from security patches and improvements.
 
 </details>
 
@@ -124,13 +138,13 @@ Hasura allows for manual query depth limit configuration directly in the securit
 ### Compliance
 
 - OWASP: **[API4:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)**
-- pci: **6.5.8**
+- pci: **6.5.1**
 - gdpr: **Article-32**
-
-
-
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **SC-5**
 
 ### Classification
 

@@ -15,6 +15,7 @@ alert:
   context: |
     The admin email has been changed. This should not been allowed by any API.
     For more information, please contact the security team.
+  category: ACCESS_CONTROL
 ```
 
 ### Properties
@@ -22,3 +23,4 @@ alert:
 - `severity`: Severity of the alert
 - `name`: Name of the alert
 - `context`: Context of the alert
+- `category`: Category of the alert

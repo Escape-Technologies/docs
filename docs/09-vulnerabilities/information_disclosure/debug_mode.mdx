@@ -20,42 +20,42 @@ Disabled Debug mode.
 <details>
     <summary>Apollo</summary>
 
-Ensure that Apollo Server is running in production mode, which disables detailed error messages that could leak sensitive information.
+To address potential issues within the Apollo framework engine, ensure that the debug mode is used only during development phases to prevent exposing sensitive information in production. Regularly update the Apollo libraries to their latest versions to incorporate security patches and improvements. Additionally, review and follow the Apollo documentation for best practices on securing your GraphQL implementation.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Disable debug mode in Yoga by setting the 'debug' option to 'false' to prevent leaking error details.
+To address issues within the Yoga framework engine while in debug mode, ensure that you are running the latest version of the framework to benefit from recent fixes and improvements. Additionally, enable detailed logging to track down errors more efficiently. If a problem persists, consult the Yoga framework's documentation for specific debug options or reach out to the community forums for support. Remember to disable debug mode in production environments to prevent exposing sensitive information.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Configure AWS AppSync error policies to restrict error message details in production environments.
+To address issues within the AWS AppSync framework engine, ensure that debug mode is enabled only during development or troubleshooting to avoid exposing sensitive information in error messages or logs. Once the necessary information has been gathered, disable debug mode to maintain the security and performance of your production environment. Additionally, regularly review and monitor the logs to detect and respond to any anomalies or issues promptly.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-For graphql-go, ensure that the handler does not expose debug information in production by controlling the 'debug' property.
+To mitigate potential security risks in a GraphQL Go framework engine, ensure that the debug mode is disabled in production environments. Debug mode can expose sensitive information about the backend structure and errors that can be exploited by attackers. Always review the configuration files and environment variables to confirm that debug mode is turned off before deploying the application. Additionally, consider implementing logging mechanisms that capture necessary information for debugging without exposing it through the API responses.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, disable detailed error messages by configuring the context or using a production-ready setup.
+In the GraphQL Ruby framework, ensure that the debug mode is disabled in production environments to prevent the exposure of sensitive information. This can be achieved by configuring the `debug` option to `false` within the GraphQL schema definition or by conditionally enabling debug mode based on the environment. Additionally, regularly review the codebase for accidental commits that may enable debug mode and establish a secure deployment process that verifies the configuration before release.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Turn off the 'graphql-engine' debug mode in Hasura by setting the 'HASURA_GRAPHQL_DEV_MODE' environment variable to 'false'.
+To address potential security risks in the Hasura framework engine, ensure that the 'debug mode' is disabled in production environments. Debug mode can leak sensitive information in error messages or logs, which could be exploited by attackers. You can disable debug mode by setting the 'HASURA_GRAPHQL_DEV_MODE' environment variable to 'false'. Additionally, always review and sanitize error messages to prevent the exposure of any sensitive data.
 
 </details>
 
@@ -63,72 +63,72 @@ Turn off the 'graphql-engine' debug mode in Hasura by setting the 'HASURA_GRAPHQ
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Configure custom error pages and disable detailed error reporting in production for ASP.NET applications.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, configure the 'config.consider_all_requests_local' setting to 'false' in the production environment to prevent detailed error reports.
+Ensure that the customErrors mode is set to 'RemoteOnly' or 'On' in the web.config file to prevent detailed error information from being sent to the client. Additionally, disable the 'trace' attribute in the system.web section to avoid exposing application behavior details to users.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js applications, ensure that the 'NODE_ENV' environment variable is set to 'production' to disable stack traces in error messages.
+In Ruby on Rails, ensure that the 'config.consider_all_requests_local' setting is set to 'false' in the 'config/environments/production.rb' file to prevent detailed error reports from being displayed to users. Additionally, disable the 'config.debug_exception_response_format' or set it to ':default' to avoid leaking stack traces in a production environment.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that the 'debug' flag is set to 'false' in the Next.js configuration file for production environments to prevent verbose error reporting that could expose sensitive information to attackers.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, set the 'APP_DEBUG' environment variable to 'false' in the '.env' file to turn off debug mode.
+In Laravel, ensure that the APP_DEBUG environment variable is set to false in your .env file when deploying to production to prevent detailed error messages from being displayed to users. Additionally, regularly review your logging and error handling configurations to avoid exposing sensitive information.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Use the 'NODE_ENV' environment variable to set the Express.js application to production mode, which limits error output.
+Ensure that the 'NODE_ENV' environment variable is set to 'production' to minimize verbose error reporting. Additionally, use middleware like 'express-error-handler' to catch and handle errors gracefully without exposing sensitive information.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, set 'DEBUG' to 'False' in the settings module to prevent the display of detailed error information.
+Ensure that the 'DEBUG' setting in Django's settings.py file is set to 'False' in production environments to prevent the display of sensitive error information.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-For Symfony applications, ensure that the 'APP_ENV' variable is set to 'prod' and 'APP_DEBUG' is set to '0' to suppress verbose error output.
+In Symfony, ensure that the 'debug' mode is set to 'false' in the 'app/config/config_prod.yml' file for production environments to prevent verbose error reporting. Additionally, regularly review the 'app/config/security.yml' to enforce proper error handling and logging strategies.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, configure 'server.error.include-stacktrace' to 'never' to avoid exposing stack traces in error responses.
+Ensure that the 'spring.profiles.active' property is set to 'prod' in the application properties or YAML configuration file for production environments, and that the 'debug' property is set to 'false'. Additionally, review and configure appropriate logging levels to prevent sensitive information from being logged.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Set the 'FLASK_ENV' environment variable to 'production' and disable the debug mode in Flask to reduce error verbosity.
+Ensure that the Flask application is configured to run with 'DEBUG' set to 'False' in production environments to prevent the exposure of sensitive error information. Use environment variables or a separate configuration file to manage the debug setting securely.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Ensure Nuxt.js is running in production mode by setting the 'NODE_ENV' environment variable to 'production', which disables stack traces in error messages.
+Ensure that the 'debug' property is set to 'false' in the Nuxt.js configuration file for production environments to prevent the exposure of sensitive error information.
 
 </details>
 
@@ -166,8 +166,8 @@ Ensure Nuxt.js is running in production mode by setting the 'NODE_ENV' environme
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
 - pci: **6.5.5**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-6**

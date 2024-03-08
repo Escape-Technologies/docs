@@ -21,42 +21,42 @@ Remove headers disclosing server-side softwares version.
 <details>
     <summary>Apollo</summary>
 
-To prevent Apollo Server from leaking tech stack information via HTTP headers, you can disable the 'ApolloServer' default headers.
+To address the header leak issue in the Apollo framework engine, ensure that sensitive information is not included in HTTP headers. Configure the server to remove or obfuscate headers that may reveal details about the backend systems, such as the 'Server', 'X-Powered-By', or custom headers that expose implementation details. Regularly review the headers sent by the server and update the Apollo server configuration to prevent information leakage.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-For GraphQL Yoga, ensure that server responses do not include any unnecessary headers that may reveal stack details.
+To address the header leak issue in the Yoga framework engine, ensure that sensitive information is not included in HTTP response headers. Configure the server to remove or obfuscate headers that may reveal details about the underlying software, such as the 'Server', 'X-Powered-By', or custom headers that expose stack traces or error messages. Regularly review the headers sent by the server and apply updates to the Yoga framework and related dependencies to incorporate security patches that prevent header leakage.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-In AWS AppSync, you can manage headers through the response mapping templates to avoid leaking information.
+To mitigate header leaks in AWS AppSync, ensure that your resolvers do not inadvertently pass sensitive information through HTTP headers. Implement strict output filtering to remove any headers that are not explicitly required for the client's functionality. Additionally, review your logging configuration to prevent sensitive header information from being stored in logs. Regularly audit your API and resolver configurations for security best practices.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-When using graphql-go, you should configure the HTTP server to strip out any headers that may disclose information about the backend.
+To mitigate the risk of header leaks in a GraphQL Go framework engine, ensure that sensitive information is not included in error messages or logging. Implement proper error handling that sanitizes data before it is sent to the client. Additionally, configure the server to use secure headers and consider employing middleware that can help manage and obscure headers that may contain sensitive information.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-For GraphQL-Ruby, customize the middleware to exclude headers that reveal server information.
+To mitigate header leaks in the GraphQL Ruby framework, ensure that sensitive information is not included in error messages or headers. Implement proper error handling to catch exceptions and sanitize the output. Additionally, configure the GraphQL context to exclude any sensitive data that should not be exposed to clients. Regularly review your code and headers to ensure that no sensitive information is being inadvertently leaked.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-In Hasura, you can configure the server to prevent sending headers that give away the technology stack.
+To mitigate header leaks in the Hasura framework engine, ensure that you configure the server to prevent sensitive information from being exposed through HTTP headers. This can be achieved by customizing the `webhook` or `jwt-secret` configurations to avoid sending detailed error messages or server information. Additionally, regularly review and update your security headers to use best practices for HTTP security.
 
 </details>
 
@@ -64,72 +64,72 @@ In Hasura, you can configure the server to prevent sending headers that give awa
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-For ASP.NET applications, remove server information from the headers in the web.config file or through middleware.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, configure the application to not leak server information through headers.
+Configure the ASP.NET application to remove or replace server headers that disclose detailed version information. This can be achieved by customizing the 'customHeaders' section in the web.config file or by implementing a response filter in the Global.asax.cs to strip out the 'Server' and 'X-AspNet-Version' headers from all outgoing responses.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Next.js applications should remove any headers that may disclose server details before sending the response.
+In the Ruby on Rails framework, configure the application to omit or customize HTTP response headers that reveal detailed version information. In the 'config/environments/production.rb' file, set 'config.action_dispatch.default_headers' to exclude headers like 'X-Powered-By' and 'Server', or use a middleware to filter out these headers before sending the response to the client.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Configure the Next.js application to remove or customize server-specific HTTP headers. Utilize middleware or custom server configurations to override or omit headers like 'X-Powered-By' that reveal the tech stack. Ensure that the 'server' header is not disclosing detailed version information, and consider using security-related headers such as 'Content-Security-Policy' to enhance protection against client-side attacks.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Laravel applications can use middleware to strip out headers that reveal information about the underlying technology.
+In the Laravel framework, to prevent the server from leaking tech stack information via HTTP response headers, you can use middleware to modify or remove headers that disclose sensitive information. Create a custom middleware that strips out headers like 'X-Powered-By', 'Server', or any other headers that reveal details about the underlying technology. Register this middleware in the global middleware stack to ensure it applies to all responses sent by the application.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-For Express.js, use middleware to remove headers that may leak stack information.
+Configure the Express.js application to suppress server information from the HTTP response headers. This can be achieved by setting the 'x-powered-by' header to false using app.disable('x-powered-by'), and by using middleware like 'helmet' to remove other common headers that might reveal sensitive information.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, adjust the settings to prevent the framework from sending headers that expose server details.
+Configure the Django application to remove or customize the 'X-Powered-By' and 'Server' HTTP response headers that disclose server information. This can be achieved by overriding the default headers using middleware or directly in the Django settings by setting 'SECURE_BROWSER_XSS_FILTER' and 'SECURE_CONTENT_TYPE_NOSNIFF' to True, and using the 'SecurityMiddleware' to remove the headers.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Symfony applications should configure response headers to avoid leaking server information.
+In the Symfony framework, to prevent leaking tech stack information through HTTP response headers, configure the web server to suppress or modify headers like 'X-Powered-By' and 'Server'. Additionally, use the 'security.headers' configuration in Symfony to remove or customize headers such as 'X-Symfony-Version'. Ensure that the 'expose_php' directive in 'php.ini' is set to 'off' to prevent PHP version disclosure.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Spring Boot applications can set properties to prevent the disclosure of application details in headers.
+In the Spring Boot application, configure the application.properties or application.yml file to include properties that suppress the server version information from the HTTP response headers. Set 'server.servlet.session.tracking-modes=cookie' to prevent the JSESSIONID from being appended to the URL, and use 'server.error.include-stacktrace=never' to avoid stack trace information leakage. Additionally, implement a custom WebSecurityConfigurerAdapter to further customize the HTTP headers using the headers() method to ensure no sensitive information is exposed.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Flask applications should remove headers in the response that may give away the technology stack.
+Configure the Flask application to suppress server information in HTTP response headers. This can be achieved by customizing the default Flask response object or by using extensions like Flask-Talisman to set server headers more securely.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Nuxt.js applications can customize the server configuration to remove headers that leak stack information.
+Configure the Nuxt.js application to suppress or customize server headers. Utilize the `render` configuration in `nuxt.config.js` to remove or modify the `X-Powered-By` header and any other headers that may reveal sensitive information about the server or framework. Additionally, consider using middleware or server configurations to further obscure headers that could leak tech stack details.
 
 </details>
 
@@ -165,11 +165,11 @@ Nuxt.js applications can customize the server configuration to remove headers th
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.10**
+- pci: **2.2.5**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
-- iso27001: **A.18.1.3**
+- iso27001: **A.18.1**
 - nist: **SP800-53**
 - fedramp: **AC-6**
 

@@ -21,72 +21,72 @@ potential vulnerabilities on the proxy servers and the presence or absence of an
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-To prevent proxy detection in ASP.NET, configure your server to remove or customize headers that reveal information about your proxy or software stack. Use middleware to filter out headers like 'Via', 'X-Powered-By', or 'Server'.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, you can mitigate proxy disclosure by configuring your environment to not leak server information. Remove or alter headers that can give away your proxy details.
+Implement custom error pages in the ASP.NET application to prevent default error messages from revealing sensitive information about the server or application structure. Additionally, configure the proxy to limit revealing headers and use encryption to protect against information disclosure.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js applications, ensure that your server configuration does not expose headers that can be used to identify the proxy. Customize the server response to omit sensitive headers.
+Implement strict filtering and validation of user inputs, use the Rails built-in mechanisms for escaping output, and regularly update the Rails framework and dependencies to mitigate the risk of proxy detection and fingerprinting.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that the Next.js server is configured to minimize the amount of information disclosed in HTTP headers or error messages. Use custom error pages and configure the server to suppress server version headers.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use middleware to strip out headers that disclose information about the proxy server. This can help obscure the details of the underlying infrastructure.
+Implement middleware to obscure server headers, use HTTPS to encrypt traffic, and regularly update the Laravel framework and dependencies to mitigate the risk of proxy detection and fingerprinting.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-With Express.js, use middleware to remove headers that could reveal the presence of a proxy server. This helps to minimize the information an attacker can gather.
+To mitigate the risk of proxy server detection in Express.js applications, ensure that the 'X-Powered-By' header is disabled using 'app.disable('x-powered-by')'. Additionally, consider implementing a reverse proxy like Nginx or Apache to obscure the details of the underlying server and apply regular updates to all server components.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-For Django applications, adjust the settings to prevent the server from sending headers that could disclose proxy information. Use middleware to remove or alter these headers.
+Ensure that Django's built-in security features are properly configured, such as setting 'SECURE_PROXY_SSL_HEADER' to the correct header and values that your proxy sets for HTTPS requests, and using 'SECURE_BROWSER_XSS_FILTER' to enable the browser's XSS filtering defenses. Regularly update Django to the latest version to benefit from security patches and improvements.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, configure your application to not send headers that could reveal information about the proxy server. Use event listeners to modify the response headers.
+In Symfony, ensure that the proxy configuration does not expose sensitive information. Use the 'trusted_proxies' setting to define trusted proxies and apply 'X-Forwarded-For' headers only from these trusted sources. Regularly update Symfony and its dependencies to mitigate known vulnerabilities and employ security headers to prevent fingerprinting of the proxy server.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-For Spring Boot applications, customize the server properties to avoid sending headers that could identify the proxy server. Use filters to control the headers being sent.
+In Spring Boot applications, ensure that sensitive endpoints are secured with proper authentication and authorization controls. Utilize Spring Security to configure these controls and apply regular updates to the Spring Boot framework to mitigate known vulnerabilities. Additionally, consider using a custom server header or disabling server signature to obscure the details of the underlying proxy or server technology.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use the after_request decorator to modify the response and remove headers that could give away proxy server information.
+Implement proper server configuration to obscure server banners, change default error pages, and use a web application firewall (WAF) to help mask the presence of the Flask framework and reduce the risk of fingerprinting.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-For Nuxt.js applications, configure your server middleware to remove headers that could disclose the use of a proxy server, thus reducing the attack surface.
+Ensure that the Nuxt.js server configuration is set to not disclose server signatures, versions, or other sensitive headers. Implement additional security headers and use middleware to filter out any information that could reveal the presence of a proxy or the specifics of the Nuxt.js framework.
 
 </details>
 
@@ -122,10 +122,10 @@ For Nuxt.js applications, configure your server middleware to remove headers tha
 ### Compliance
 
 - OWASP: **[API5:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa5-broken-function-level-authorization.md)**
-- pci: **6.5.10**
+- pci: **1.3.7**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.13.1**
 - nist: **SP800-53**
 - fedramp: **AC-4**

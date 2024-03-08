@@ -16,75 +16,120 @@ You must validate the algorithm used to sign the token before checking it's sign
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure that the Apollo server implementation validates the JWT with a secure, specified algorithm. Do not allow the 'none' algorithm, and always define the algorithm in the server configuration to prevent attackers from exploiting default or unspecified settings. Use libraries that enforce algorithm specification and do not default to 'none'.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Ensure that the Yoga framework engine is configured to reject JWTs with 'none' as the algorithm. Explicitly specify the algorithm expected in the JWT configuration and use a library that does not allow 'none' as a valid algorithm. Additionally, implement proper error handling to reject any JWT that does not meet the security requirements.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Ensure that the JWT tokens used in AWS AppSync are configured to use a secure and explicit algorithm for signature verification. Avoid using the 'none' algorithm, and instead specify a robust algorithm like HS256 or RS256 in the token's header. Update the authentication logic to reject tokens with 'alg' set to 'none' and validate the algorithm used in the token against a whitelist of secure algorithms.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Ensure that the JWT implementation in the GraphQL Go framework engine explicitly specifies and validates the algorithm used for token signing. Do not allow the 'none' algorithm, and reject any tokens that do not have a matching algorithm specified in the header. Configure the JWT middleware to require a secure, standard algorithm such as HS256, RS256, or ES256, and validate the JWT signature accordingly.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+Ensure that the JWT implementation in the GraphQL Ruby framework is configured to use a secure and explicit algorithm for token encoding and validation. Avoid using the 'none' algorithm, and instead specify a robust algorithm like 'HS256' or 'RS256'. Validate the 'alg' header of the JWT to prevent algorithm manipulation attacks. Additionally, consider using a library that adheres to the latest security standards for JWT handling.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Ensure that the Hasura engine is configured to reject JWTs with 'none' as the algorithm. Specify the allowed algorithms explicitly in the JWT configuration and use a library that supports algorithm whitelisting to prevent unauthorized access.
+
+</details>
+
+
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Ensure that the JWT middleware in ASP.NET is configured to reject tokens with 'none' as the algorithm. Explicitly specify allowed algorithms.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, configure JWT to disallow 'none' as an algorithm for token verification.
+Ensure that the JWT authentication handler in the ASP.NET application is configured to reject tokens with the 'none' algorithm. Implement strict checks to only accept tokens signed with secure and explicit algorithms that the server expects. Update the token validation parameters to specify the allowed algorithms and reject any JWT without a proper signature.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js applications, ensure that the JWT verification library is set to reject 'none' as an algorithm.
+In Ruby on Rails, ensure that JWT tokens are validated with a secure algorithm by explicitly specifying the algorithm in the decode method. Use a library like 'ruby-jwt' and configure it to reject 'none' as a valid algorithm. For example, use `JWT.decode(token, secret_key, true, { algorithm: 'HS256' })` to specify HMAC SHA-256 as the algorithm and prevent accepting tokens with 'none' algorithm.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that the JWT implementation in the Next.js application does not accept 'none' as a valid algorithm. Configure the JWT library to require a secure and explicit algorithm, such as HS256 or RS256, for token verification. Additionally, implement checks to reject any tokens that specify 'alg': 'none' in their headers to prevent unauthorized access.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use a JWT package that allows you to specify the allowed algorithms and reject 'none'.
+Ensure that the JWT package in use within the Laravel application is configured to reject tokens with the 'none' algorithm. Set a default algorithm in the configuration and validate the 'alg' header of the JWT to match the expected algorithm. Additionally, implement strict checks to ensure that the token's signature is verified against the server's secret or public key. Update the JWT middleware to enforce these security measures and prevent unauthorized token usage.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Configure the JWT middleware in Express.js to reject tokens with 'none' as the algorithm.
+Ensure that the JWT verification in Express.js strictly enforces a secure, non-'none' algorithm. Update the JWT verification middleware to reject tokens with 'none' as the algorithm and specify the accepted algorithms explicitly.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, ensure that the JWT authentication backend is configured to only allow specific algorithms and exclude 'none'.
+Ensure that the JWT library in Django is configured to reject tokens with 'none' as the algorithm. Explicitly specify the allowed algorithms in the JWT_AUTH settings and validate the JWT signature with a secure algorithm like HS256 or RS256. Update the authentication code to verify the algorithm used in the token matches the expected one.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, configure your JWT library to disallow 'none' as an algorithm for token verification.
+In the Symfony framework, ensure that the JWT library or bundle in use is configured to reject tokens with the 'none' algorithm. Set a strict policy to only accept tokens signed with secure and explicit algorithms, such as HS256 or RS256. Update the security settings to enforce this policy and add checks to reject any tokens that do not meet the required criteria. Additionally, implement robust logging and monitoring to detect and alert on any attempts to use tokens with the 'none' algorithm.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-For Spring Boot, ensure that the JWT token provider is set to reject 'none' as an algorithm.
+Ensure that the JWT parser in the Spring Boot application is configured to reject tokens with the 'none' algorithm. Set the expected signing algorithm explicitly and validate the JWT signature with a proper key. Update the security configuration to use a strong, standard algorithm like HS256, RS256, or ES256 for token verification. Additionally, implement checks to ensure that the 'alg' header in the JWT matches the expected algorithm.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use a JWT extension that allows you to specify the allowed algorithms and reject 'none'.
+Ensure the JWT library in Flask is configured to reject tokens with the 'none' algorithm. Set the 'algorithms' argument in the decode function to only accept secure and appropriate algorithms, such as HS256 or RS256. Additionally, implement checks to verify the integrity of the token's header before processing it.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-For Nuxt.js applications, ensure that the JWT verification process is configured to reject 'none' as an algorithm.
+Ensure the server validates the JWT with a secure and specified algorithm, rejecting any tokens with 'none' as the algorithm. Update the Nuxt.js application's authentication middleware to only accept tokens signed with robust algorithms like HS256 or RS256.
 
 </details>
 
@@ -122,7 +167,7 @@ For Nuxt.js applications, ensure that the JWT verification process is configured
 - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
 - pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-63B**

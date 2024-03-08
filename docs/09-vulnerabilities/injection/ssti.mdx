@@ -24,72 +24,72 @@ To prevent SSTI:
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, ensure that user input is not directly used in template generation. Use rigorous input validation and encoding to prevent SSTI. Additionally, restrict the template engine features that can be used if possible.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-For Ruby on Rails, avoid directly passing user input to the rendering engine. Validate and sanitize input rigorously. Use the 'html_escape' or 'sanitize' helpers to encode user input.
+To mitigate Server-Side Template Injection in ASP.NET, ensure that user input is strictly validated and sanitized before being passed to the template engine. Employ context-specific escaping and adhere to the principle of least privilege by restricting template engine permissions. Additionally, update to the latest version of the template engine and ASP.NET framework to benefit from security patches.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js, prevent SSTI by avoiding the use of user input in template literals or JSX without proper sanitization. Use a secure library for handling user input.
+In Ruby on Rails, ensure that user input is sanitized before being passed to the template engine. Use Rails' built-in escaping mechanisms to prevent the injection of malicious content. Additionally, configure the template engine to disable potentially dangerous features and adhere to the principle of least privilege, granting minimal permissions necessary for templates to function.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+To mitigate Server-Side Template Injection in Next.js, ensure user input is properly sanitized and validated before being passed to template engines. Employ context-aware escaping and adhere to the principle of least privilege by restricting template engine permissions. Regularly update Next.js and its dependencies to incorporate security patches.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use the built-in escaping functions like '{{ }}' in Blade templates to automatically escape output and prevent SSTI. Do not use '{!! !!}' with untrusted data as it does not escape output.
+In Laravel, always ensure that user input is sanitized before being passed to the template engine. Use Laravel's built-in escaping functions, such as '{{ }}' for output, and avoid using '{!! !!}' which does not escape content. Additionally, adhere to the principle of least privilege by restricting template engine permissions and capabilities.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-For Express.js applications, ensure that user input is not embedded directly into templates. Use template engines that automatically escape values, or manually escape input using a library.
+To mitigate Server-Side Template Injection in Express.js, ensure that user input is properly sanitized and validated before being passed to the template engine. Use context-aware escaping and adhere to the principle of least privilege by restricting template engine permissions. Additionally, avoid using eval() or allowing the execution of arbitrary code within templates. Keep the template engine and its dependencies up-to-date with the latest security patches.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the built-in template system which auto-escapes variables. Avoid using the 'safe' filter or 'mark_safe' function with untrusted data to prevent SSTI.
+In Django, ensure that you are using the latest version of the framework, as it includes built-in protections against SSTI. Always escape user input using Django's template system, which by default escapes variables unless explicitly told not to. Avoid using the 'safe' filter or marking content as 'mark_safe' unless absolutely necessary and you're sure about the safety of the content. Additionally, never allow user input to control the names of template tags or filters.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-For Symfony, utilize Twig's auto-escaping feature to prevent SSTI. Always validate and sanitize user input before rendering it in a template.
+In Symfony, ensure that user input is never directly passed into the template engine. Use the 'escape' function to sanitize output, adhere to the principle of least privilege when configuring template permissions, and employ a Content Security Policy (CSP) to mitigate the risk of XSS attacks. Additionally, regularly update the Symfony framework and its dependencies to incorporate security patches.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, use Thymeleaf or another template engine that automatically escapes user input. Avoid using SpEL expressions with untrusted data to prevent SSTI.
+In Spring Boot applications, to prevent Server-Side Template Injection, ensure that user input is never directly passed into template engines. Always sanitize and validate all user inputs. Use context-aware escaping and adhere to the principle of least privilege when configuring template engine permissions. Additionally, keep all dependencies, including the template engine, up to date with the latest security patches.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-With Flask, use Jinja2's autoescape feature to prevent SSTI. Ensure that you do not disable autoescaping and validate all user input before rendering.
+To mitigate Server-Side Template Injection in Flask, ensure that user input is properly sanitized before being passed to the template engine. Use the Jinja2 sandboxed environment to restrict the template's capabilities, and avoid using functions like 'from_string' that compile templates from user inputs. Additionally, always keep the Jinja2 library up-to-date with the latest security patches.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt, avoid directly using user input in templates. Use Vue's v-bind or mustache syntax which automatically escapes values to prevent SSTI.
+To mitigate Server-Side Template Injection in Nuxt.js, ensure that user input is properly sanitized and validated before being passed to the template engine. Utilize built-in escaping mechanisms to prevent the injection of malicious code. Additionally, adhere to the principle of least privilege by restricting template engine permissions and avoid using dangerous functions that can execute system-level commands. Keep Nuxt.js and its dependencies up to date to benefit from the latest security patches.
 
 </details>
 
@@ -127,8 +127,8 @@ In Nuxt, avoid directly using user input in templates. Use Vue's v-bind or musta
 - OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
 - pci: **6.5.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
-
+- soc2: **CC1**
+- psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-6**

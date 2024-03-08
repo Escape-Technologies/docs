@@ -18,72 +18,72 @@ To address this issue, regularly update your packages. Prioritize patching or up
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Ensure all NuGet packages are updated to their latest secure versions. Use the NuGet Package Manager to review and update packages.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Update all gem dependencies to versions without known vulnerabilities using the 'bundle update' command.
+Ensure that your ASP.NET framework is updated to the latest version to patch known vulnerabilities. Regularly check for security advisories from Microsoft and apply updates or patches as soon as they are released. Additionally, review your application's code to identify and fix any custom code that may introduce security issues.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Upgrade to the latest version of Next.js that has patched known vulnerabilities by updating your 'package.json' file.
+Ensure that all your Ruby on Rails gems are updated to the latest versions by regularly running 'bundle update' and checking for security advisories related to your project dependencies. Additionally, use tools like 'bundler-audit' to scan for vulnerable versions of gems and apply recommended updates or patches promptly. Always test the updates in a development or staging environment before deploying to production to avoid unexpected issues.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that your Next.js application is using the latest stable version of the framework by running 'npm install next@latest' or 'yarn add next@latest'. Regularly check for updates and apply them as they are released. Additionally, review your dependencies for any known vulnerabilities using tools like 'npm audit' or 'yarn audit' and update them accordingly. Follow best practices for secure coding to prevent introducing new vulnerabilities.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Update Laravel and its dependencies by using Composer to ensure you have the latest security patches.
+Ensure that your Laravel framework and all associated packages are updated to their latest versions. Use the `composer update` command to update dependencies and apply security patches. Regularly check for security advisories related to Laravel and its packages, and review your code to follow best practices for security, such as using Laravel's built-in security features like CSRF protection, validation, and authentication mechanisms.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Update Express.js and related packages to the latest versions using npm to mitigate known vulnerabilities.
+Ensure that all dependencies are up-to-date by regularly running 'npm update' and 'npm audit' to identify and fix vulnerable packages. Implement automated dependency checks as part of your continuous integration process. Additionally, consider using tools like Snyk or Dependabot for real-time alerts and automated pull requests to update vulnerable packages.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Use pip to upgrade Django to the latest secure version that has patched known vulnerabilities.
+Ensure that your Django application is using the latest stable version by regularly updating the framework and its dependencies. Apply security patches promptly, follow Django's security guidelines, and conduct periodic security reviews of your codebase.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Regularly update Symfony components using Composer to the latest versions to fix known security issues.
+Ensure that your Symfony framework and all associated packages are updated to their latest versions. Regularly check for security advisories related to Symfony and promptly apply updates or patches as they are released. Use the Symfony Security Checker or similar tools to detect vulnerable packages and follow the recommended steps to address any identified issues.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Ensure all Maven or Gradle dependencies are up-to-date with the latest security patches in your 'pom.xml' or 'build.gradle' files.
+Ensure that your Spring Boot application is using the latest stable version of the framework. Regularly check for updates and apply them to address known vulnerabilities. Additionally, follow best practices for dependency management by using tools like Maven or Gradle to automatically manage and update your project's dependencies.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Update Flask and its extensions using pip to incorporate security fixes from newer versions.
+Ensure that all Flask applications are updated to the latest version to mitigate known vulnerabilities. Use Flask extensions and libraries that are actively maintained and regularly updated. Regularly check for security advisories related to Flask and its extensions. Implement proper input validation and output encoding to prevent common web application vulnerabilities such as XSS and SQL injection. Additionally, consider using tools like Flask-Talisman to enforce security headers and Flask-SeaSurf to protect against CSRF attacks.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Upgrade Nuxt.js to the latest version by updating the version in 'package.json' and running npm update.
+Ensure that your Nuxt.js application dependencies are up-to-date by regularly checking for updates and applying them. Use tools like npm audit or yarn audit to identify and fix known vulnerabilities in packages. Additionally, consider setting up automated dependency monitoring with services like Dependabot or Snyk to receive alerts and patches for new security issues.
 
 </details>
 
@@ -119,13 +119,13 @@ Upgrade Nuxt.js to the latest version by updating the version in 'package.json' 
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-
-
-
-
-
-
-
+- pci: **6.2**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-40**
+- fedramp: **SI-2**
 
 ### Classification
 

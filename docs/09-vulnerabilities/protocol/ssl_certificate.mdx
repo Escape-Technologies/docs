@@ -18,72 +18,72 @@ Purchase a new SSL certificate.
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Renew the SSL certificate through your certificate provider and update it on your server. In IIS Manager, bind the renewed certificate to your website.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Update your SSL certificate in the server configuration. For Nginx or Apache, place the new certificate files in the appropriate directory and update the server block or virtual host configuration.
+Renew the expired SSL certificate for the website. Ensure that the new certificate is properly installed and configured within the ASP.NET framework's server settings. Set up auto-renewal if possible to prevent future expirations.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Next.js typically relies on a Node.js server or hosting provider for SSL. Update your SSL certificate with your hosting provider, or if using a custom server, update the certificate in your server configuration.
+To address the expired SSL certificate issue in a Ruby on Rails application, you should first acquire a new SSL certificate from a trusted Certificate Authority (CA). Once obtained, update your server configuration to use the new certificate. For servers running Nginx or Apache, this involves replacing the old certificate files with the new ones and restarting the server. Ensure that your Rails application is configured to force SSL usage with 'config.force_ssl = true' in the 'config/environments/production.rb' file to redirect all traffic over HTTPS. Additionally, set up automatic certificate renewal if your CA supports it to prevent future expirations.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Renew the expired SSL certificate for your Next.js application. Ensure that the new certificate is properly installed and configured on your web server. Set up auto-renewal if possible to prevent future expirations.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Renew and install the SSL certificate on your web server. For Apache or Nginx, update the SSL configuration block with the new certificate files.
+To address the expired SSL certificate issue in a Laravel application, you should first acquire a new SSL certificate from a trusted Certificate Authority (CA). Once you have the new certificate, update your web server configuration to use the new certificate files. For Apache, this involves editing the 'ssl.conf' file or the specific site's configuration file within '/etc/apache2/sites-available/'. For Nginx, you would update the 'nginx.conf' file or the server block file for your site within '/etc/nginx/sites-available/'. After updating the configuration, restart the web server to apply the changes. Additionally, consider setting up auto-renewal for your SSL certificates if your CA provides that service to prevent future expirations.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Renew the SSL certificate and update the server configuration to use the new certificate files.
+To remediate the expired SSL certificate issue in an Express.js application, you should first acquire a new SSL certificate from a trusted Certificate Authority (CA). Once you have the new certificate, update your Express.js server configuration to use the new certificate and private key files. Restart your Express.js server to apply the changes, ensuring that HTTPS connections are secure and trusted by clients.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Renew your SSL certificate and configure your web server (e.g., Nginx, Apache) to use the new certificate files.
+Ensure that the SSL certificate for the website is up-to-date. Renew the expired certificate immediately, and configure the server to use the new certificate. In Django, you can also set up automatic renewal with a tool like Certbot to prevent future expirations.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Renew the SSL certificate and update your web server configuration to include the new certificate files.
+To address the expired SSL certificate issue in a Symfony-based application, you should first acquire a new SSL certificate from a trusted Certificate Authority (CA). Once obtained, configure your web server (e.g., Apache, Nginx) to use the new certificate. For Apache, update the 'SSLCertificateFile' and 'SSLCertificateKeyFile' directives in the virtual host file. For Nginx, update the 'ssl_certificate' and 'ssl_certificate_key' directives. After making these changes, restart the web server to apply the new configuration. Additionally, consider setting up auto-renewal for your SSL certificates to prevent future expirations.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Renew the SSL certificate and configure it in your Spring Boot application properties or yml file.
+Renew the expired SSL certificate for your Spring Boot application. Ensure that the new certificate is properly installed and configured in the server where your application is hosted. After installation, restart the Spring Boot application to load the new certificate.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Renew the SSL certificate and update the Flask application to reference the new certificate files when starting the server.
+To address the expired SSL certificate issue in a Flask application, you should first obtain a new SSL certificate from a trusted Certificate Authority (CA). Once you have the new certificate, configure your Flask application to use it by setting the 'ssl_context' parameter in the 'app.run()' method with the paths to your new certificate and private key files. Ensure that your web server (e.g., Nginx or Apache) is also updated with the new certificate details if it's handling SSL termination.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Nuxt.js applications typically rely on a Node.js server or hosting provider for SSL. Update your SSL certificate with your hosting provider, or if using a custom server, update the certificate in your server configuration.
+Renew the expired SSL certificate for your Nuxt.js application. Ensure that the new certificate is properly installed and configured on your web server. Set up auto-renewal if possible to prevent future expirations.
 
 </details>
 
@@ -119,13 +119,13 @@ Nuxt.js applications typically rely on a Node.js server or hosting provider for 
 ### Compliance
 
 - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
-- pci: **6.5.4**
+- pci: **4.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-52**
-
+- fedramp: **SC-17**
 
 ### Classification
 

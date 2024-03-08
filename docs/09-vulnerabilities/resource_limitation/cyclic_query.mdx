@@ -25,42 +25,42 @@ Although the ability to fetch a cyclic query is necessary for some GraphQL appli
 <details>
     <summary>Apollo</summary>
 
-Although the ability to fetch a cyclic query is necessary for some GraphQL application, it is best to always implement security measures to control these cyclic queries:-**Set a maximum query depth**: limit the depth of allowed queries in order to prevent overly deep queries from abusing GraphQL resources.  You can easily limit query depth with the very light [graphql-depth-limit](https://www.npmjs.com/package/graphql-depth-limit) library.Add a maximum query depth limit based on your knowledge of the schema and how deep you believe a legitimate query could go.  ```javascript  import depthLimit from 'graphql-depth-limit'  const server = new ApolloServer({    ...    validationRules: [depthLimit(5)]    });  ```  Source: <https://escape.tech/blog/9-graphql-security-best-practices/>.-**Set maximum query complexity**: limit the complexity of allowed queries to prevent overly complex queries from abusing GraphQL resources.  To do so, add a module to compute the complexity of each query and set a threshold on this complexity so that overly broad requests get canceled.    For a user-friendly module which requires no schema modification whatsoever, check out the [graphql-validation-complexity](https://github.com/4Catalyzer/graphql-validation-complexity) module.    ```javascript    import { createComplexityLimitRule } from 'graphql-validation-complexity';    const ComplexityLimitRule = createComplexityLimitRule(1000);const apolloServer = new ApolloServer({        ...        validationRules: [ComplexityLimitRule],    });    ```    For a more customizable module that lets you manually configure the cost of each field/type of your schema, take a look at the [graphql-cost-analysis](https://github.com/pa-bru/graphql-cost-analysis) module.    This second option is best suited for a more realistic complexity estimator as all fields may not be equal in terms of complexity.    To learn more about complexity estimation, you can read: [Securing Your GraphQL API from Malicious Queries](https://www.apollographql.com/blog/graphql/security/securing-your-graphql-api-from-malicious-queries/).Source: <https://escape.tech/blog/9-graphql-security-best-practices/>.
+To mitigate potential risks associated with the Apollo framework engine, ensure that all data inputs are properly sanitized and validated. Utilize built-in security features and follow best practices for authentication and authorization. Regularly update the Apollo libraries to their latest versions to benefit from security patches and improvements. Additionally, consider implementing security tools and services that can provide extra layers of protection for your application.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In GraphQL Yoga, you can use the `depthLimit` and `createComplexityLimitRule` middleware to prevent deeply nested or complex queries.
+To address vulnerabilities within the Yoga framework engine, it is recommended to regularly update the framework to the latest version, as updates often include security patches for known issues. Additionally, ensure that all data inputs are properly sanitized to prevent injection attacks, and implement strong access controls to restrict unauthorized access to sensitive components. Regular security audits and code reviews can also help identify and remediate potential security weaknesses in the application.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-AWS AppSync provides built-in mechanisms to protect against complex queries. You can set query depth and complexity limits in the AWS AppSync console or via AWS CLI.
+To ensure the security and performance of your AWS AppSync GraphQL APIs, it is recommended to use parameterized queries to prevent injection attacks and to optimize query execution. Avoid using inline arguments within the queries. Instead, define variables outside of your query and pass them as separate parameters. This approach allows AWS AppSync to prepare the execution plan once and execute it multiple times with different variables, reducing the risk of injection attacks and improving performance.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-For GraphQL servers using Go, you can use the `graphql-go` library with a custom query complexity analysis middleware to limit the depth and complexity of queries.
+To mitigate potential security risks in a GraphQL Go framework engine, it is recommended to use parameterized queries to prevent injection attacks. Additionally, implement proper validation and sanitization of user inputs, enforce strict type checking, and use query depth limiting to avoid denial-of-service attacks caused by overly complex queries. Regularly update dependencies to incorporate security patches.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, you can define a custom analysis engine to limit query depth and complexity.
+In the GraphQL Ruby framework, ensure that all queries are properly sanitized and parameterized to prevent injection attacks. Use the built-in mechanisms for argument handling and avoid interpolating variables directly into query strings. Always validate and sanitize input from users, and consider using the graphql-ruby's authorization features to control access to sensitive data. Regularly update the framework and dependencies to incorporate security fixes.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Hasura allows you to set depth limits and complexity limits on queries directly from the console or using environment variables.
+To mitigate the risk of SQL injection and ensure the security of your Hasura GraphQL engine, it is crucial to avoid using raw SQL queries with user-provided input. Instead, utilize Hasura's built-in parameterized queries feature. This allows you to define variables in your GraphQL queries, which Hasura will safely interpolate, preventing malicious actors from injecting arbitrary SQL code. Always validate and sanitize user inputs on the server side, even when using GraphQL variables, to further enhance the security of your application.
 
 </details>
 
@@ -101,10 +101,10 @@ Hasura allows you to set depth limits and complexity limits on queries directly 
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.8**
+- pci: **6.5.1**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-97**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-4**

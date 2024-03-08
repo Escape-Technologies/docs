@@ -26,42 +26,42 @@ Forbid API calls through `GET` requests to prevent CSRF attacks.
 <details>
     <summary>Apollo</summary>
 
-Pass `csrfPrevention: true` to `new ApolloServer()`. Check out the [CSRF prevention documentation](https://www.apollographql.com/docs/apollo-server/security/cors#preventing-cross-site-request-forgery-csrf) for the best CSRF prevention techniques.
-
-</details>
-
-<details>
-    <summary>Awsappsync</summary>
-
-Make sure that your API does not use Cookie-based authentication. There are many other ways to authenticate a user with AppSync:- API Keys - Amazon Cognito User Pools- OpenID Connect- AWS Identity and Access Management (IAM)- AWS Lamba custom authentication[AppSync: Authorization and Authentication](https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html) Whichever method you use, verify that authentication occurs through headers because authentication headers are not automatically added by the targeted user browser (while Cookies are).To avoid any risk, you can block every `GET` request and allow only `POST` requests, which are immune to this attack, but it comes at a cost. (see AWS pricing for the corresponding services) * Block GET requests with AWS API Gateway (prefered method):Put your AppSync API behind an API Gateway.[API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) You can then configure the API Gateway to act as an HTTP Proxy to your AppSync endpoint and configure it to allow only POST requests.* Block GET requests with AWS Web Application Firewall:Add the following Web ACL rule in the AWS WAF Console to block every GET request to the API:
+To mitigate GET based CSRF vulnerabilities in the Apollo framework engine, ensure that state-changing actions are only performed via POST requests and not GET requests. Implement anti-CSRF tokens in forms and verify them on the server side for each POST request. Additionally, consider using the 'SameSite' attribute for cookies to restrict their sending to only first-party contexts. It's also advisable to check the 'Referer' header to validate that requests are coming from your own domain. For sensitive actions, re-authentication of the user may be appropriate.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Ensure that your GraphQL Yoga server does not allow GET requests for operations that cause state changes. Use POST requests for mutations and consider implementing additional CSRF protection measures such as anti-CSRF tokens or same-site cookies.
+To mitigate GET based CSRF (Cross-Site Request Forgery) in the Yoga framework engine, ensure that state-changing actions are only performed via POST requests and not GET requests. Implement anti-CSRF tokens in forms and verify them on the server side for each POST request. Additionally, consider using the SameSite cookie attribute to control cross-origin requests and ensure that sensitive actions require re-authentication or additional user confirmation.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+To mitigate GET based CSRF vulnerabilities in AWS AppSync, ensure that all state-changing operations are performed using POST requests with appropriate CSRF tokens. Additionally, implement strict CORS policies to restrict cross-origin requests, and consider using AWS WAF to apply custom security rules that block suspicious or malicious requests.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Configure your GraphQL Go server to reject GET requests for mutations. Use POST requests for all operations that modify state and implement CSRF tokens to protect against CSRF attacks.
+Implement anti-CSRF tokens in your GraphQL API by generating a unique token for each session and requiring that token to be included as a header or in the payload of mutating requests. Validate the token on the server side before processing any changes.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In your GraphQL Ruby application, ensure that state-changing operations are only accessible via POST requests. Implement CSRF protection by using Rails' built-in CSRF tokens and consider using sessionless authentication methods.
+To mitigate GET based CSRF vulnerabilities in a GraphQL Ruby framework, ensure that mutations are only allowed via POST requests and that proper CSRF tokens are implemented and validated for each session. Additionally, consider using the same-site cookie attribute to prevent CSRF attacks. Always validate and sanitize input data to prevent unauthorized operations.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Configure Hasura to only allow POST requests for GraphQL operations. Use Hasura's webhook or JWT modes for authentication to ensure that the browser does not automatically attach credentials.
+To mitigate GET based CSRF vulnerabilities in the Hasura framework, ensure that all state-changing operations are performed using POST requests with appropriate CSRF tokens. Additionally, implement and enforce a Content Security Policy (CSP) to restrict the sources from which scripts can be executed, and configure same-origin policy to prevent CSRF attacks. It's also recommended to use Hasura's webhook or JWT-based authentication to secure your GraphQL endpoints.
 
 </details>
 
@@ -92,18 +92,18 @@ Configure Hasura to only allow POST requests for GraphQL operations. Use Hasura'
 
 ## Score
 
-- Escape Severity: **<span className="high-severity">HIGH</span>**
+- Escape Severity: **<span className="medium-severity">MEDIUM</span>**
 
 ### Compliance
 
 - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
 - pci: **6.5.9**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
-- fedramp: **AR-4**
+- fedramp: **SC-7**
 
 ### Classification
 

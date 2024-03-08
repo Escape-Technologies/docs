@@ -20,42 +20,115 @@ Do not resolve queries with a wrong argument type.
 <details>
     <summary>Apollo</summary>
 
-Ensure correct keyboard layout is selected and check for any software updates that may address typing issues. Verify that all keys are functioning properly and clean the keyboard if necessary. If the problem persists, consider resetting keyboard settings to default or replacing the keyboard if it is damaged.
+Ensure that all configurations in the Apollo framework engine are correctly set according to the official Apollo documentation. Double-check environment variables, API endpoints, and other settings for accuracy. Use a version control system to track changes and facilitate rollback in case of misconfiguration. Additionally, consider implementing automated checks or a configuration management tool to validate settings before deployment.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Ensure correct spelling of 'Yoga' in all digital content and promotional materials to maintain professionalism and avoid confusion.
+Ensure that the Yoga framework engine configuration files are correctly set with the appropriate parameters, paying close attention to syntax and data types. Validate the configuration by using schema validation tools or built-in framework validators if available. Regularly review and test the configuration in a controlled environment before deploying to production.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Ensure that AWS AppSync API keys are rotated regularly to prevent unauthorized access due to potential key leaks or misuse. Implement a key rotation policy and automate the process using AWS Lambda functions to generate new keys and update the relevant applications or services with the new credentials.
+To address typing misconfigurations in AWS AppSync, ensure that your schema definitions match the expected types in your resolvers. Validate the schema with AWS AppSync's built-in tools before deployment. Additionally, implement unit tests for your resolvers to catch typing issues early in the development process. Use AWS CloudFormation or the AWS CLI to automate and roll back deployments in case of configuration errors.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Ensure proper validation and sanitization of user inputs to prevent typing misconfigurations. Utilize strict type checking in your GraphQL schema definitions to enforce the correct data types and adhere to best practices in error handling to provide clear feedback on typing issues.
+Ensure proper validation and sanitization of user inputs to prevent injection attacks. Implement strict type checking and use parameterized queries or prepared statements to handle data passed to the GraphQL engine. Regularly review and update security configurations and dependencies to mitigate potential vulnerabilities.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Ensure proper validation and sanitization of user inputs to prevent injection attacks. Use GraphQL-Ruby's built-in mechanisms for argument validation, and avoid interpolating variables directly into queries or mutations.
+Ensure that the GraphQL Ruby framework is properly configured to use prepared statements or parameterized queries to prevent potential injection attacks. Regularly review and update the configuration settings to maintain security as the application evolves.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Ensure that the Hasura GraphQL engine configuration is set correctly, with appropriate environment variables, permissions, and secure endpoints. Review the Hasura documentation for best practices on configuration settings.
+Ensure that the Hasura GraphQL engine configuration is set correctly by reviewing the environment variables and settings in the `config.yaml` file. Verify that the database connection strings, API ports, and other critical settings are accurate and secure. Additionally, use role-based access control to restrict permissions and apply policies that enforce strong security practices. Regularly update the Hasura engine to the latest version to benefit from security patches and improvements.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp_net</summary>
+
+Ensure strong typing in ASP.NET by using explicit data types and model binding. Validate all inputs against expected types and handle parsing errors gracefully to prevent type-related vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+In Ruby on Rails, ensure strong parameter validation by using the built-in `require` and `permit` methods to whitelist allowed parameters. Additionally, employ Active Record validations to enforce data types and constraints at the model level.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure proper validation of input types and implement strict type checking in API endpoints to prevent typing misconfigurations in the Next.js application.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, ensure that you are using Eloquent ORM or the query builder's parameter binding to prevent typing misconfigurations and SQL injection vulnerabilities. Avoid using raw queries with user input. Always validate and sanitize input data.
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+Ensure proper validation of input types and implement middleware such as `express-validator` to check for data types and patterns before processing requests.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, ensure that all query parameters are properly escaped by using the ORM's built-in querysets or by employing parameterized queries with `raw()` or `execute()` methods. Avoid string formatting or concatenation to prevent SQL injection vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, ensure that you use the built-in form component with proper data types and validation rules to prevent typing misconfigurations. Additionally, leverage the ParamConverter feature for type-hinting and automatic validation of request parameters.
+
+</details>
+
+<details>
+    <summary>Spring_boot</summary>
+
+Ensure strong typing in Spring Boot by using DTOs (Data Transfer Objects) with proper validation annotations, and leverage Spring's built-in type conversion to prevent type-related misconfigurations. Additionally, use @Valid on controller method parameters to enforce validation rules.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Ensure proper type checking of user inputs and utilize Flask-WTF or similar extensions to validate form data. Implement custom validation logic if necessary to catch typing misconfigurations.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Ensure proper validation of input types and implement strict type checking before passing data to components or API endpoints in Nuxt.js applications to prevent typing misconfigurations.
 
 </details>
 
@@ -96,9 +169,9 @@ Ensure that the Hasura GraphQL engine configuration is set correctly, with appro
 ### Compliance
 
 - OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
-- pci: **6.5.8**
+- pci: **6.5.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

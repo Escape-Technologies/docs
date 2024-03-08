@@ -29,35 +29,42 @@ Additional defenses:
 <details>
     <summary>Apollo</summary>
 
-Use Apollo Server's built-in validation features to sanitize and validate user input. Define strict GraphQL schemas and avoid using any form of string concatenation or template literals to inject variables directly into queries.
+To prevent SQL injection in the Apollo framework engine, ensure that all database queries are constructed using parameterized statements or prepared statements. This approach separates the SQL logic from the data input, effectively neutralizing the potential for malicious input to alter the structure of the SQL command. Additionally, employ input validation to whitelist acceptable input patterns and reject any suspicious or unexpected data. Regularly update the Apollo framework and its dependencies to incorporate security patches. Implement proper error handling to avoid revealing sensitive information in error messages that could aid an attacker. Lastly, consider using ORM (Object-Relational Mapping) libraries that inherently use parameterized queries to further reduce the risk of SQL injection attacks.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In GraphQL Yoga, ensure that all inputs are validated using the GraphQL schema and avoid using raw SQL queries. Use parameterized queries or ORM libraries to handle database interactions.
+To prevent SQL injection in the Yoga framework engine, ensure that all database queries are performed using parameterized statements or prepared statements. This approach allows the database to distinguish between code and data, regardless of user input. The Yoga framework should utilize its database abstraction layer correctly to prepare queries, which will effectively mitigate the risk of SQL injection attacks. Additionally, always validate and sanitize user input to reduce the attack surface further. Implementing proper error handling and logging mechanisms can also help in identifying and responding to any attempted attacks promptly.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, utilize AWS WAF to block common SQL injection patterns and use VTL resolvers to sanitize user input. Always use parameterized queries when accessing databases.
+To mitigate SQL injection vulnerabilities in AWS AppSync, ensure that all database queries are constructed using parameterized statements or prepared statements, which separate the SQL logic from the input data. Additionally, use AWS AppSync's built-in VTL (Velocity Template Language) resolvers to sanitize and validate all input data before it is processed in your queries. Implement proper authorization checks and access controls to limit data exposure. Regularly update and patch your GraphQL schema and underlying data sources to address any security vulnerabilities. Employ AWS WAF (Web Application Firewall) to provide an additional layer of security with custom rules designed to block malicious SQL injection attempts.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL Go, validate and sanitize all user inputs. Use the 'github.com/graphql-go/graphql' package to create type-safe resolvers, avoiding raw SQL queries.
+To mitigate SQL injection risks in a GraphQL Go framework engine, ensure that all database queries are constructed using parameterized statements or prepared statements, which separate the query structure from the data inputs. Additionally, employ input validation to whitelist allowable characters and reject potentially malicious input. Implement proper error handling to avoid exposing database schema information. Regularly review and update dependencies to incorporate security patches for the GraphQL framework and associated libraries.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL Ruby, use the built-in validation rules and avoid string interpolation in queries. Prefer using ActiveRecord or another ORM to build SQL queries safely.
+In the GraphQL Ruby framework, to prevent SQL injection, ensure that all user-supplied input is validated and sanitized. Use the built-in mechanisms for parameterization provided by GraphQL types and avoid directly interpolating variables into queries. Always use the query object's methods to construct conditions, and never construct SQL fragments manually. Additionally, employ Active Record or another ORM's built-in protections, which use parameterized queries to safely handle user input.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+To prevent SQL injection in Hasura, ensure that all user inputs are validated and use prepared statements with variable binding. Avoid constructing SQL queries with string concatenation. Additionally, leverage Hasura's role-based access control to restrict data access and permissions.
 
 </details>
 
@@ -65,72 +72,72 @@ In GraphQL Ruby, use the built-in validation rules and avoid string interpolatio
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, use parameterized queries with SqlCommand or Entity Framework to prevent SQL injection. Validate all user inputs before processing.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, use Active Record's query interface to avoid SQL injection. Never directly interpolate user input into SQL strings.
+In ASP.NET, prevent SQL injection by utilizing parameterized queries with SqlCommand or Entity Framework, employing stored procedures, and validating user inputs. Additionally, use ORM tools like Entity Framework which inherently protect against SQL injection by handling data as strongly typed objects rather than constructing SQL queries using string concatenation. Always encode user inputs if they are used in SQL queries, and regularly update your database management system to patch any known vulnerabilities.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js API routes, use prepared statements or ORM libraries like Sequelize or TypeORM to interact with databases safely.
+In Ruby on Rails, use the ActiveRecord query interface which automatically handles parameterized queries to prevent SQL injection. For example, instead of using string interpolation, use the `where` method like this: `User.where('name = ?', params[:name])`. Also, ensure that raw SQL is avoided unless absolutely necessary and always sanitize input with methods like `quote` or `sanitize_sql_array` if you must use raw SQL.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+In Next.js applications, prevent SQL injection by using parameterized queries or prepared statements with libraries like `pg` for PostgreSQL. Avoid concatenating user input directly into SQL queries. Instead, use query parameters to ensure that user input is treated as data, not executable code. Additionally, employ input validation and ORM libraries that provide built-in protections against SQL injection.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use Eloquent ORM or the query builder's parameter binding to protect against SQL injection. Always validate and sanitize user inputs.
+In Laravel, use Eloquent ORM or the query builder's parameter binding to prevent SQL injection. Both methods ensure that user input is treated as data rather than executable code. For raw SQL queries, use prepared statements with named or positional binding. Additionally, validate and sanitize user inputs to strengthen security.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, use parameterized queries with libraries like mysql or Sequelize to prevent SQL injection. Validate all inputs using middleware like express-validator.
+In Express.js, prevent SQL injection by using parameterized queries with libraries like 'mysql' or 'pg'. Avoid concatenating user inputs directly into SQL statements. Instead, use placeholders (e.g., '?', '$1') for inputs and provide parameters separately to the query function. This ensures that user input is treated as data, not executable code. Additionally, employ ORM libraries like Sequelize which automatically handle parameterization, and regularly validate and sanitize user input to further reduce injection risks.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use the ORM to construct database queries and avoid raw SQL whenever possible. Use form validation to sanitize user input.
+In Django, use the ORM to create SQL queries, as it automatically escapes user inputs. If raw SQL must be used, employ Django's built-in parameterized query support with the 'params' argument to avoid SQL injection by ensuring that user inputs are properly escaped.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-In Symfony, use Doctrine's DQL or query builder to prevent SQL injection. Always validate and sanitize user inputs with Symfony's form component.
+In Symfony, use the Doctrine ORM or DBAL's prepared statements to mitigate SQL injection risks. Always use parameterized queries or Doctrine's DQL (Doctrine Query Language) to ensure that user input is handled safely. Avoid concatenating or interpolating user input directly into SQL queries. Additionally, regularly validate and sanitize user input to prevent malicious data from being processed.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, use JPA Repository or JDBC Template with named parameters to avoid SQL injection. Employ Spring's validation API to validate user inputs.
+In Spring Boot, prevent SQL injection by using JPA Repository or Spring Data interfaces for database access. These abstractions use parameterized queries, which ensure that user input is treated as data rather than executable code. Additionally, avoid constructing SQL queries through string concatenation with user input, and use Hibernate's Criteria API or JPQL with bind parameters to further safeguard against injection attacks.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use SQLAlchemy ORM or raw SQL with parameterized queries to protect against SQL injection. Validate inputs using libraries like WTForms.
+In Flask, use SQLAlchemy or another ORM that supports parameterized queries to prevent SQL injection. Ensure that raw SQL queries are avoided, or if necessary, use contextually appropriate escaping functions provided by the database driver, such as `escape()` in MySQL-Python. Additionally, validate and sanitize all user inputs to enforce proper input format.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, use server-side validation and ORM libraries to interact with databases safely. Avoid concatenating SQL queries with user inputs and use parameterized queries.
+In Nuxt.js applications, prevent SQL injection by using libraries that support parameterized queries or prepared statements, such as `knex.js` or `sequelize`. Always validate and sanitize user input, and avoid directly concatenating user input into SQL queries. Implement proper error handling to prevent the exposure of database details. Additionally, use ORM (Object-Relational Mapping) libraries that abstract SQL execution and inherently protect against SQL injection.
 
 </details>
 
@@ -173,7 +180,7 @@ In Nuxt.js, use server-side validation and ORM libraries to interact with databa
 - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
 - pci: **6.5.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

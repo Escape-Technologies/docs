@@ -21,42 +21,42 @@ To do so, access control must be applied to every object and every link in the g
 <details>
     <summary>Apollo</summary>
 
-See [Apollo's Access Control documentation](https://www.apollographql.com/docs/apollo-server/security/authentication/#in-resolvers). For large scale applications, you'll want to use a specific package like [GraphQL Shield](https://github.com/maticzav/graphql-shield) for quick and easy Access Control management.
-
-</details>
-
-<details>
-    <summary>Hasura</summary>
-
-See Hasura's detailed [documentation for Authorization Management](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/).
-
-</details>
-
-<details>
-    <summary>Awsappsync</summary>
-
-Appsync provides several methods for protecting critical information. - To learn more on implementing fine-grained access control, head over to https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#fine-grained-access-control.
+To mitigate the risk of unauthorized access or data leakage within the Apollo framework engine, ensure that all sensitive data is handled securely. Implement proper access controls, encrypt sensitive information both at rest and in transit, and regularly audit logs to detect any abnormal access patterns or breaches. Additionally, keep the Apollo framework and its dependencies up to date with the latest security patches.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Ensure that Yoga server implements proper authentication and authorization checks. Use middleware for access control and validate user permissions.
+To address vulnerabilities within the Yoga framework engine related to private data exposure, ensure that all sensitive information is encrypted both at rest and in transit. Implement access controls and authentication mechanisms to restrict unauthorized access. Regularly audit the codebase for potential data leakage and adhere to best practices for data privacy, such as following the principles of the General Data Protection Regulation (GDPR) or similar regulations. Additionally, consider using environment variables for sensitive configuration details instead of hardcoding them within the application.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+To mitigate the risk of exposing private data in AWS AppSync, ensure that all GraphQL resolvers are properly configured to enforce authentication and authorization checks. Implement field-level authorization to control access to sensitive data, and use AWS Identity and Access Management (IAM) roles or Amazon Cognito user pools to manage permissions. Regularly audit your API configurations and access patterns to ensure compliance with data privacy requirements.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Use the graphql-go library to implement authentication and authorization middleware to protect private data.
+To mitigate the risk of private data exposure in a GraphQL Go framework engine, ensure that access control checks are implemented at the resolver level. Use middleware to authenticate and authorize users, and apply field-level security to prevent unauthorized retrieval of sensitive data. Additionally, consider implementing query complexity analysis to prevent resource exhaustion attacks, and regularly audit your schema to ensure that no private data is unintentionally exposed.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, use the `authorized?` method to check if a user is allowed to access a given field or object.
+To mitigate the risk of exposing sensitive data in your GraphQL Ruby framework, ensure that you implement proper authentication and authorization checks. Use the pundit or cancancan gems for fine-grained access control, and always filter the data based on the current user's permissions. Additionally, consider using GraphQL's field-level permissions to restrict access to certain fields within your schema. Regularly audit your resolvers and mutations to ensure they do not inadvertently expose private information. Lastly, keep your GraphQL Ruby framework and its dependencies up to date to benefit from the latest security patches.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+To mitigate the risk of unauthorized access to private data in the Hasura framework, ensure that all GraphQL queries and mutations are authenticated and authorized appropriately. Implement role-based access control (RBAC) to restrict data access based on user roles. Use Hasura's permission system to define granular permissions for each table and operation. Regularly audit your permission rules and update them as necessary to adhere to the principle of least privilege. Additionally, consider using environment variables for sensitive information and enable Hasura's webhook or JWT modes for enhanced security. Always keep the Hasura engine and its dependencies up to date with the latest security patches.
 
 </details>
 
@@ -64,72 +64,72 @@ In GraphQL-Ruby, use the `authorized?` method to check if a user is allowed to a
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Use ASP.NET Core's built-in authorization features to protect endpoints. Apply the [Authorize] attribute to controllers or actions.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, use `before_action` to check for a logged-in user and `current_user` to check for permissions.
+Implement proper authentication and authorization checks before allowing access to private data. Use ASP.NET Identity for managing users and roles, and ensure that [Authorize] attributes are applied to controllers and actions to restrict access as necessary. Additionally, employ secure coding practices to prevent SQL injection and other vulnerabilities that could lead to unauthorized data access.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Secure API routes in Next.js by checking the user's session or token in the API route and returning an error if unauthorized.
+Implement strong access control checks and use Rails' built-in mechanisms such as 'before_action' callbacks in controllers to verify user permissions before allowing access to private data.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement server-side checks to validate user permissions before serving private data, and use Next.js API routes to securely handle data fetching.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Use Laravel's middleware for route protection and policies for authorization logic.
+In Laravel, ensure that you use Eloquent ORM or Query Builder for database interactions, which automatically use parameterized queries to prevent SQL injection. Additionally, utilize Laravel's built-in authorization features such as Gates and Policies to control access to private data, and always validate and sanitize user input to prevent unauthorized access.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Implement middleware in Express.js to verify authentication tokens and user permissions before processing a request.
+Implement proper access controls and authentication mechanisms to ensure that only authorized users can access private data. Use middleware such as `helmet` to secure Express.js applications by setting various HTTP headers and `express-session` for handling sessions. Regularly audit your code and dependencies for vulnerabilities and keep them up-to-date.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use decorators like `@login_required` for function-based views or `LoginRequiredMixin` for class-based views to protect views.
+Ensure that Django's built-in authentication system is properly implemented to control access to sensitive data. Use the `@login_required` decorator for views that handle private data, set proper permissions with the Django permissions framework, and always filter QuerySets based on the requesting user's privileges to prevent unauthorized access to private data.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Utilize Symfony's security component to set up access control in `security.yaml` and use annotations to secure controller methods.
+In the Symfony framework, ensure that access control is properly implemented by using the security component. Define access control rules in the security.yaml configuration file, utilize voters to manage permissions, and apply annotations or attributes for controller methods to restrict access to sensitive data. Regularly update Symfony and its dependencies to incorporate security fixes.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, secure endpoints using Spring Security. Configure HTTP security and method security to restrict access.
+Implement proper access control checks and enforce authentication and authorization mechanisms to restrict unauthorized access to private data. Utilize Spring Security to configure role-based access control and secure endpoints.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-For Flask, use the `@login_required` decorator from Flask-Login to protect routes, and check user permissions manually.
+Implement proper access controls and authentication mechanisms to ensure that only authorized users can access private data. Use Flask's `flask_login` or `flask_principal` extensions for managing user sessions and permissions. Additionally, apply `@login_required` decorators to protect routes that handle sensitive information.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, use middleware to check if the user is authenticated before rendering a page or processing an API request.
+Implement robust access controls and server-side validation to ensure that only authorized users can access private data. Use middleware to check user permissions, and apply encryption for sensitive data both in transit and at rest.
 
 </details>
 
@@ -318,13 +318,13 @@ In Nuxt.js, use middleware to check if the user is authenticated before renderin
 ### Compliance
 
 - OWASP: **[API3:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa3-broken-object-property-level-authorization.md)**
-- pci: **6.5.8**
+- pci: **3.4**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-32**
 - iso27001: **A.18.1**
-- nist: **SP800-53-AC-3**
-- fedramp: **AR-2**
+- nist: **SP800-53**
+- fedramp: **AC-3**
 
 ### Classification
 

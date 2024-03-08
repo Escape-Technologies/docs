@@ -21,42 +21,42 @@ Use non-sequential identifiers.
 <details>
     <summary>Apollo</summary>
 
-Use Apollo Server's context to pass the user's session and validate permissions in your resolvers.
+Implement robust access control checks within the Apollo framework to ensure that users can only access objects for which they have explicit authorization. Use middleware to verify the user's permissions against the requested resource's access control list (ACL) before performing any actions. Regularly audit and test these authorization checks to prevent Broken Object Level Authorization vulnerabilities.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-In GraphQL Yoga, implement authorization logic in your resolvers to protect data access.
+Implement robust access control checks within the Yoga framework engine to ensure that users can only access or modify resources for which they have explicit authorization. This should include server-side checks against the user's permissions before any object-level operations are allowed. Additionally, employ the principle of least privilege by default, and regularly audit and test authorization checks to prevent Broken Object Level Authorization vulnerabilities.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Utilize AWS AppSync's built-in authorization mechanisms to control access at the resolver level.
+Implement strict access controls and authorization checks on all GraphQL resolvers within AWS AppSync to ensure that users can only access objects for which they have explicit permissions. Use AWS Cognito or IAM policies to manage and validate user permissions against the requested resources.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL-go, validate the user's permissions within the resolver functions before accessing the data.
+Implement strict access control checks in your GraphQL Go framework to ensure that users can only access objects for which they have explicit authorization. Use middleware to verify the user's permissions against the requested object's ID before processing any query or mutation. Regularly audit your authorization logic to prevent Broken Object Level Authorization vulnerabilities.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Use GraphQL-Ruby's authorization framework to define access policies for your resources.
+In the GraphQL Ruby framework, ensure that authorization checks are performed at the object level within resolvers. Implement a policy-based authorization system, such as Pundit or GraphQL-Pro's built-in authorization framework, to manage access control. Define policies for each GraphQL type and enforce these policies in the corresponding field resolvers to prevent unauthorized access to sensitive data. Additionally, consider using scoped queries that inherently respect the permissions of the current user, and always validate that the current user has the right to access or modify the requested resources.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Configure Hasura's permission rules to restrict access to data based on user roles and session variables.
+Implement strict access control checks in Hasura by using permission rules to ensure that users can only access data they are authorized for. Define roles and permissions meticulously, and use Hasura's role-based access control (RBAC) to limit access to queries, mutations, and subscriptions based on the user's role. Regularly audit and test your permission configurations to prevent unauthorized access to sensitive data.
 
 </details>
 
@@ -64,72 +64,72 @@ Configure Hasura's permission rules to restrict access to data based on user rol
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Implement user-specific checks to ensure that the logged-in user has the appropriate permissions to access or modify the requested resource.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Use the Pundit or CanCanCan gem for authorization to ensure that users can only access objects they are allowed to.
+Implement proper access control checks in the ASP.NET application to verify that the current user has the required permissions to access or modify the requested resources. Use the built-in ASP.NET Identity framework for managing user roles and permissions, and ensure that every API endpoint that accesses user data performs an authorization check before proceeding with the operation.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Verify the user's permissions in API routes before returning sensitive data or allowing modifications.
+Implement strong access control checks in Ruby on Rails by using the 'cancancan' or 'pundit' gems to manage authorizations. Ensure that controllers perform resource loading through these libraries, which enforce that a user can only access objects they are permitted to. Additionally, always validate that the current user owns or has explicit access to the object they are attempting to interact with before processing the request.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement robust access control checks within your Next.js API routes or middleware to validate that the requesting user has the necessary permissions to access or modify the requested resource. Use a combination of authentication mechanisms, such as JSON Web Tokens (JWT), and authorization checks against user roles or permissions before processing any request that involves object references.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Utilize Laravel's authorization policies to check if a user can view or edit a given resource.
+In Laravel, implement a robust authorization strategy using built-in features like Gates and Policies to check user permissions before accessing any object. Leverage route model binding to ensure only authorized users can access specific resources. Additionally, use Laravel's middleware to enforce user access control at the route level.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Use middleware to validate the user's permissions before processing a request.
+Implement robust access control checks within your Express.js application to verify that the logged-in user has the appropriate permissions to access or modify the requested resource. Use middleware to validate the user's rights against the resource's ownership or access rules before processing the request. Additionally, employ a combination of JWT tokens, user roles, and resource identifiers to ensure secure object level authorization. Always validate that the user making the request is authorized to perform the action on the specific object by checking against the server-side list of permissions.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Leverage Django's permission classes in your views to protect object access.
+In Django, ensure proper object-level authorization by implementing access control checks using Django's permissions framework or third-party packages like `django-guardian`. Always verify that the current user has the right to access or modify an object before processing the request. Use Django's `get_object_or_404()` with filtering based on the user's permissions to prevent unauthorized access to objects.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Implement access control in your controllers using Symfony's security component.
+In the Symfony framework, mitigate Broken Object Level Authorization by implementing proper access control checks. Use Symfony's security voters or access decision managers to verify that the authenticated user has the necessary permissions to access or modify a specific resource. Additionally, always validate and sanitize user input to prevent unauthorized access to object references.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Use Spring Security's method security annotations to secure object access.
+Implement proper access control checks in the Spring Boot application. Use Spring Security to authenticate users and check if they have the required permissions or roles before granting access to a resource. Additionally, employ the principle of least privilege, ensuring users can only access resources that are necessary for their role. For each API endpoint that accesses user data, verify the logged-in user has the right to access the requested object by comparing the user's ID from the security context with the owner ID of the object.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-In Flask, use decorators to check user permissions before accessing an object.
+Implement robust access control checks within Flask route handlers to verify that the requesting user has the necessary permissions to access or modify the requested resource. Use Flask's 'before_request' or 'after_request' decorators to create a centralized authorization mechanism. Additionally, employ Flask-Security or Flask-Principal extensions to manage user roles and permissions effectively.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Ensure that your Nuxt server-side methods or middleware validate user permissions before serving content.
+In Nuxt.js, to remediate Broken Object Level Authorization, ensure that user permissions are properly verified on the server-side for each request that accesses a sensitive object. Implement robust access control checks using middleware or within your API logic to confirm that the requesting user has the necessary rights to perform the action on the specific resource. Additionally, avoid using sequential or predictable object IDs, and consider using UUIDs to make it harder for attackers to guess object identifiers. Always enforce the principle of least privilege, granting users the minimum access necessary to perform their tasks.
 
 </details>
 
@@ -173,7 +173,7 @@ Ensure that your Nuxt server-side methods or middleware validate user permission
 - OWASP: **[API1:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
 - pci: **6.5.8**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.9.4**
 - nist: **SP800-53**

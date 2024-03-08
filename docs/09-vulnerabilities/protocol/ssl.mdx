@@ -39,42 +39,42 @@ If you are using **Let's Encrypt** certificates, make sure to authorize HTTPS to
 <details>
     <summary>Apollo</summary>
 
-Ensure that your Apollo server is configured to only serve traffic over HTTPS to protect against data interception and alteration.
+Ensure that the Apollo framework engine is configured to enforce SSL/TLS encryption for all incoming and outgoing connections to prevent data interception and man-in-the-middle attacks. This can typically be achieved by setting up HTTPS for your Apollo server and using secure WebSockets (WSS) for subscriptions.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Configure Yoga server to use HTTPS by setting up an SSL certificate and enforcing secure connections.
+Ensure that the Yoga framework engine is configured to enforce SSL/TLS for all connections to prevent data interception and man-in-the-middle attacks. This can typically be achieved by configuring the server to redirect all HTTP requests to HTTPS, setting up HSTS (HTTP Strict Transport Security), and ensuring that SSL certificates are valid and up-to-date. Additionally, consider implementing TLS 1.2 or higher for enhanced security.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-AWS AppSync is managed by AWS and enforces HTTPS by default. Ensure all clients are configured to use HTTPS endpoints.
+Ensure that SSL is enforced for all data in transit to and from AWS AppSync by configuring the API to require HTTPS for all requests and by using AWS-managed certificates for SSL/TLS termination.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-When setting up your GraphQL server with graphql-go, make sure to configure it to serve only over HTTPS to prevent unsecured data transmission.
+Ensure that the GraphQL Go framework engine is configured to enforce SSL/TLS connections for all incoming and outgoing communications to prevent data interception and man-in-the-middle attacks. This can typically be achieved by setting up an SSL-enabled proxy in front of the application or by configuring the server to only accept secure connections. Additionally, consider implementing HSTS (HTTP Strict Transport Security) to enforce SSL/TLS usage for all clients.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-For GraphQL-Ruby, use a secure web server like Puma or Passenger that supports SSL, and ensure it's configured to use HTTPS.
+Ensure that SSL is enforced for all GraphQL Ruby framework engine connections to prevent data interception and man-in-the-middle attacks. Configure the server to redirect all HTTP requests to HTTPS and use SSL certificates from a trusted certificate authority. Additionally, set the 'force_ssl' configuration option to 'true' in the environment configuration file to enforce SSL usage.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Configure Hasura to use HTTPS by setting up an SSL certificate with your reverse proxy or load balancer.
+Ensure that SSL is enforced for all connections to the Hasura GraphQL engine by setting the environment variable `HASURA_GRAPHQL_SSL_CERT_DIR` to the directory containing your SSL certificates. Additionally, configure your reverse proxy or load balancer to only accept secure HTTPS connections.
 
 </details>
 
@@ -82,72 +82,72 @@ Configure Hasura to use HTTPS by setting up an SSL certificate with your reverse
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-In ASP.NET, enforce HTTPS by using the 'RequireHttps' attribute on your controllers or globally in 'FilterConfig'.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-In Ruby on Rails, enforce SSL by setting 'config.force_ssl = true' in your environment configuration file.
+Implement SSL/TLS to encrypt all data in transit. Ensure all ASP.NET applications redirect HTTP traffic to HTTPS, utilize the `RequireHttpsAttribute` for MVC controllers, and set `Strict-Transport-Security` headers to enforce HSTS, while ensuring cookies have the `secure` flag set to prevent transmission over unencrypted connections.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-For Next.js, ensure your server is set up to handle HTTPS requests, and use a reverse proxy like Nginx to manage SSL/TLS.
+In Ruby on Rails, enforce SSL by setting 'config.force_ssl = true' in the 'config/environments/production.rb' file. This will ensure that all access to your application's routes is over HTTPS, redirecting any HTTP requests to HTTPS, and securing your data with SSL/TLS encryption.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement SSL/TLS to ensure all data transmitted between the Next.js server and clients is encrypted. Configure your server to redirect all HTTP traffic to HTTPS and use HSTS to enforce SSL. Update all internal links to use HTTPS and set secure attributes on cookies.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-In Laravel, use the 'AppServiceProvider' to force a secure schema with 'URL::forceScheme('https')' in the boot method.
+In Laravel, enforce SSL by adding a middleware that redirects all HTTP requests to HTTPS. Use the 'forceScheme' method on the URL facade within the middleware to ensure all generated URLs are HTTPS. Additionally, set the 'SECURE_COOKIES' environment variable to true to make all cookies secure by default.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-With Express.js, use the 'https' module to create an HTTPS server with your SSL certificates.
+Implement SSL/TLS encryption for all Express.js routes by configuring the server to only serve content over HTTPS. Acquire and install an SSL certificate, redirect all HTTP traffic to HTTPS, and use the 'helmet' middleware to set HTTP headers for security, including HSTS, to prevent any non-encrypted connections.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use 'SECURE_SSL_REDIRECT = True' in your settings to redirect all HTTP traffic to HTTPS.
+In Django, ensure SSL/TLS is enforced by setting the 'SECURE_SSL_REDIRECT' to 'True' in your settings.py file. This will redirect all HTTP requests to HTTPS. Additionally, set 'SESSION_COOKIE_SECURE' and 'CSRF_COOKIE_SECURE' to 'True' to prevent cookies from being transmitted over non-HTTPS connections. Use Django's built-in '@require_https' decorator for views that require SSL. For added security, consider implementing HSTS by setting 'SECURE_HSTS_SECONDS', 'SECURE_HSTS_INCLUDE_SUBDOMAINS', and 'SECURE_HSTS_PRELOAD' appropriately.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-For Symfony, configure your web server to handle SSL/TLS and redirect all HTTP traffic to HTTPS.
+In Symfony, enforce SSL by configuring your web server to redirect all HTTP traffic to HTTPS. Additionally, set the 'security.yml' to require HTTPS for all routes by using the 'requires_channel: https' under your firewall settings. Implement HSTS by adding the 'Strict-Transport-Security' header in your response. This ensures all data is encrypted during transit, protecting against eavesdropping and tampering.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, configure your application to use HTTPS by setting server.ssl.key-store properties in application.properties.
+In Spring Boot applications, enforce SSL by configuring the server to redirect all HTTP requests to HTTPS. This can be achieved by setting the 'security.require-ssl=true' property in the application.properties file or by implementing a WebSecurityConfigurerAdapter that redirects all incoming HTTP requests to HTTPS. Additionally, use the '@EnableWebSecurity' annotation to activate security features and configure HSTS headers to instruct browsers to only communicate over HTTPS.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-With Flask, use 'flask-talisman' to enforce HTTPS or configure your WSGI server to handle SSL.
+In Flask, ensure SSL/TLS is enforced by redirecting all HTTP requests to HTTPS. Use the 'Flask-Talisman' extension to set strict HTTPS-only transport security headers and manage secure cookies. Configure your web server to handle SSL termination and always serve your Flask application over a secure connection.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-For Nuxt.js, ensure your server is set up to handle HTTPS requests, and use a reverse proxy like Nginx to manage SSL/TLS.
+Ensure all Nuxt.js applications are configured to use HTTPS by default. Set up a permanent redirect from HTTP to HTTPS to prevent any unencrypted traffic. Utilize the `server.https` option in `nuxt.config.js` to specify the SSL certificate and key, and consider implementing HSTS headers to enforce secure connections. Regularly update your SSL certificates and use strong encryption protocols to maintain the highest level of security.
 
 </details>
 
@@ -183,9 +183,9 @@ For Nuxt.js, ensure your server is set up to handle HTTPS requests, and use a re
 ### Compliance
 
 - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
-- pci: **6.5.4**
+- pci: **4.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.1**
 - nist: **SP800-53**

@@ -21,42 +21,42 @@ Make sure you also refer to the query we sent to the server to reproduce the iss
 <details>
     <summary>Apollo</summary>
 
-Ensure that Apollo Server is properly configured to handle errors and to log them for further analysis. Use the 'formatError' function to customize error responses and avoid exposing stack traces or sensitive information to clients.
+To address server errors in the Apollo framework engine, ensure that your resolvers are correctly implemented and handle exceptions properly. Use try-catch blocks to catch unexpected errors and return user-friendly error messages. Additionally, validate input data to prevent invalid queries from causing errors. Monitor your server's performance and logs to identify and fix issues promptly. Keep the Apollo server and its dependencies up to date with the latest security patches and performance improvements.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Regularly update GraphQL Yoga to the latest version to benefit from security patches. Implement proper error handling and logging to monitor and address issues promptly.
+To address the 'Server Error' in the Yoga framework engine, ensure that the server-side code is properly handling exceptions and providing meaningful error messages. Check the server logs for detailed error information, verify the configurations, and ensure all dependencies are correctly installed and up-to-date. If the error persists, consider reaching out to the Yoga framework community or consulting the documentation for specific guidance related to the error encountered.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-Configure AWS AppSync resolvers and data sources to handle errors gracefully. Use CloudWatch to monitor and log errors for analysis and ensure IAM roles and security are correctly set up.
+To address a server error in the AWS AppSync framework engine, ensure that your GraphQL schema is correctly defined and that the resolvers are properly configured. Check the CloudWatch logs for any specific error messages and take corrective actions based on the logs. Additionally, confirm that your AWS IAM roles and permissions are set up correctly to allow AppSync to access the necessary resources. If the issue persists, consider increasing the memory or timeout settings for your Lambda functions if they are part of the data source. Lastly, consult the AWS AppSync documentation for troubleshooting guidance or reach out to AWS support for further assistance.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Keep the GraphQL Go library updated and use middleware for error handling to log and mask errors before they reach the client.
+To address server errors in a GraphQL Go framework engine, ensure that your resolvers handle errors gracefully and return meaningful error messages to the client. Implement proper error logging to monitor and troubleshoot issues. Use middleware for error handling to catch and format errors consistently. Additionally, validate and sanitize all inputs to prevent injection attacks, and consider using a well-maintained library to help manage these concerns.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL Ruby, use rescue_from within your base field or base object to catch exceptions and handle them appropriately.
+Ensure that the GraphQL Ruby framework is updated to the latest version to address any known vulnerabilities. Implement proper error handling to avoid exposing stack traces or sensitive information to the client. Use parameterized queries to prevent injection attacks, and consider implementing rate limiting and authentication to protect against abusive requests. Regularly review your schema and resolvers for security best practices.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Monitor Hasura logs and set up alerts for internal server errors. Ensure that the Hasura engine is up-to-date and that error handling is configured to prevent information leaks.
+To address server errors in the Hasura framework, ensure that your GraphQL queries are correctly structured and that the Hasura engine has the appropriate permissions to access the underlying database. Check the error logs for specific messages and consider increasing logging levels for more detailed information. Verify that all required services and dependencies are running and properly configured. If the issue persists, consult the Hasura documentation and community forums for troubleshooting guidance or consider reaching out to Hasura support for professional assistance.
 
 </details>
 
@@ -64,72 +64,72 @@ Monitor Hasura logs and set up alerts for internal server errors. Ensure that th
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Use custom error handling middleware in ASP.NET to catch and log exceptions. Ensure that detailed error information is not returned to the client.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Implement exception handling in your Rails controllers and use a centralized logging system to track errors. Avoid exposing stack traces to end-users.
+Ensure that all exception handling in the ASP.NET application is robust, logging detailed error information to a secure location while presenting generic error messages to users. Regularly review logs to identify and address underlying issues. Update the web.config file to disable detailed error messages to users and enable custom error pages. Additionally, conduct thorough testing and code reviews to prevent common vulnerabilities that may lead to internal server errors.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Create a custom error handling API in Next.js to intercept and log server errors. Ensure that the API does not send sensitive error details to the client.
+Ensure that the Ruby on Rails application is running the latest stable version to benefit from security patches. Regularly update all dependencies, and employ comprehensive error handling to prevent detailed error messages from being displayed to users. Utilize Rails' built-in security features such as Active Record validations and strong parameters to mitigate risks of SQL injection and other vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that your Next.js application is running on the latest stable version to benefit from security patches and performance improvements. Regularly update dependencies, and use error handling middleware to catch and address internal server errors. Implement comprehensive logging to monitor and quickly respond to any unexpected behavior or errors.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Use Laravel's exception handler to manage exceptions and log them. Ensure that the debug mode is off in production to prevent sensitive information disclosure.
+Ensure that Laravel's environment configuration files are correctly set up to handle errors and exceptions. Utilize the built-in logging features to monitor and record issues. Regularly update the Laravel framework and all dependencies to their latest versions to patch known vulnerabilities. Implement thorough testing of all routes and middleware to catch potential errors in the development stage. Additionally, consider setting up a custom error page to handle 500 Internal Server Errors gracefully, informing users that the issue is being addressed.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Implement error-handling middleware in Express.js to catch and log errors. Make sure to send generic error messages to the client.
+Ensure that all routes in the Express.js application have proper error handling. Use middleware for catching and logging errors and for sending appropriate error responses to the client. Regularly update the Express.js framework and all dependencies to their latest secure versions to mitigate known vulnerabilities. Additionally, implement rate limiting and input validation to protect against common attack vectors.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-In Django, use custom middleware to handle server errors and log them. Ensure DEBUG is set to False in production settings.
+Ensure Django settings are configured correctly, particularly DEBUG mode, which should be set to False in production to prevent sensitive data exposure. Regularly update Django to the latest version to patch known vulnerabilities. Use Django's built-in logging to monitor and record server errors for timely investigation and resolution.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Configure Symfony's exception listener to log errors and return a generic response to the client to avoid information leakage.
+Ensure that the Symfony framework and all associated bundles are up to date with the latest security patches. Utilize Symfony's built-in functions to handle exceptions and log errors for further analysis. Regularly review and audit the code to identify potential security issues. Implement proper error handling to prevent information leakage and configure the server to display generic error messages to users while detailed logs are kept secure on the server.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Use @ControllerAdvice in Spring Boot to handle exceptions globally. Log the exceptions and return a ResponseEntity with a generic error message.
+Ensure that the Spring Boot application is using the latest stable version with security patches applied. Regularly review and update dependencies to mitigate known vulnerabilities. Implement comprehensive error handling to prevent detailed error messages from being displayed to users, and log errors internally for analysis. Configure a custom error page to handle internal server errors gracefully.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Utilize Flask's error handling capabilities to log exceptions and return a generic error message to the client.
+Ensure that Flask applications are running in a production-ready environment with a proper WSGI server, such as Gunicorn, and are behind a reverse proxy like Nginx. Implement comprehensive error handling to catch exceptions and log errors without exposing sensitive information to the users. Regularly update Flask and its dependencies to mitigate known vulnerabilities.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, create a custom error page to handle server errors and ensure that error details are logged but not displayed to the user.
+Ensure that all dependencies are up-to-date and that the Nuxt.js configuration is properly set to handle exceptions and errors gracefully. Implement comprehensive logging to track down the source of internal server errors and address them promptly. Regularly review and test the application for potential vulnerabilities and performance bottlenecks.
 
 </details>
 
@@ -165,11 +165,11 @@ In Nuxt.js, create a custom error page to handle server errors and ensure that e
 ### Compliance
 
 - OWASP: **[API5:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa5-broken-function-level-authorization.md)**
-- pci: **6.5.8**
+- pci: **6.5.5**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
-- iso27001: **A.12.6.1**
+- iso27001: **A.12.6**
 - nist: **SP800-53**
 - fedramp: **AC-2**
 

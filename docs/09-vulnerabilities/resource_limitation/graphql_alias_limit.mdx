@@ -42,35 +42,42 @@ Response example:
 <details>
     <summary>Apollo</summary>
 
-Install our open source package [GraphQL Armor](https://escape.tech/graphql-armor/docs/getting-started) for Apollo.
+To address potential issues within the Apollo framework engine, ensure that you are following best practices for GraphQL server implementations. This includes validating and sanitizing user inputs, implementing proper error handling, and using query complexity analysis to prevent resource exhaustion. Additionally, keep the Apollo server and all dependencies up to date to mitigate known vulnerabilities.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-To prevent abuse of query aliasing in Yoga, you can use GraphQL middleware to analyze and limit the complexity of incoming queries. Implementing a query depth limit can also help mitigate this issue.
+To address issues within the Yoga framework engine, ensure that you are using the latest stable version of the framework. Regularly update your dependencies to incorporate security patches and bug fixes. Additionally, review the framework's documentation for best practices on security and performance, and adhere to recommended guidelines for safe and efficient use of the Yoga engine.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-For AWS AppSync, you can use AWS WAF to create rules that limit the complexity and depth of GraphQL queries to prevent abuse through excessive aliasing.
+To address the alias limit in AWS AppSync, ensure that your GraphQL queries are structured efficiently. Refactor your queries to reduce the number of aliases used, and consider leveraging pagination to handle large datasets. Additionally, review your schema to optimize the use of nested queries and avoid unnecessary aliasing of fields. If you are reaching the limit due to batch operations, try to break down the operations into smaller batches. For complex data requirements, consider implementing a custom resolver that can handle data aggregation and batching more effectively.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+To mitigate potential risks associated with the alias limit in a GraphQL Go framework engine, it is recommended to implement a query complexity analysis mechanism. This mechanism should calculate the cost of each query based on factors such as depth, breadth, and requested field complexity. Set a maximum allowed cost for queries and block or reject those that exceed this limit. Additionally, consider using a library or tool that provides this functionality out-of-the-box to streamline the implementation process.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-In GraphQL-Ruby, you can use the query complexity analysis feature to set limits on query complexity and depth, which can help prevent abuse through aliasing.
+In the GraphQL Ruby framework, to prevent potential performance issues or denial-of-service attacks through overly complex queries, it is recommended to implement an alias limit. This can be achieved by configuring a query analyzer that checks for the number of aliases used in a query and enforces a maximum limit. If the number of aliases exceeds the permitted threshold, the query should be rejected. This helps to ensure that clients cannot craft queries that create an excessive load on the server by using multiple aliases to duplicate fields excessively.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Hasura provides built-in mechanisms to limit query complexity and depth. Use the `HASURA_GRAPHQL_MAX_QUERY_DEPTH` and `HASURA_GRAPHQL_MAX_COMPLEXITY` environment variables to configure these limits and prevent aliasing abuse.
+To mitigate the risk of reaching the alias limit in Hasura, consider restructuring your GraphQL queries to reduce the number of nested fields. If you have control over the GraphQL schema, try to flatten the structure where possible. Additionally, you can increase the alias limit by setting the `HASURA_GRAPHQL_MAX_ALIAS_COUNT` environment variable to a higher value, but do so with caution as it may affect performance. For complex data requirements, look into implementing custom business logic on the server side that can pre-aggregate data, thus reducing the need for deeply nested queries on the client side.
 
 </details>
 
@@ -111,10 +118,10 @@ Hasura provides built-in mechanisms to limit query complexity and depth. Use the
 ### Compliance
 
 - OWASP: **[API5:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa5-broken-function-level-authorization.md)**
-- pci: **6.5.8**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
-
+- soc2: **CC1**
+- psd2: **Article-97**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
 - fedramp: **AC-2**

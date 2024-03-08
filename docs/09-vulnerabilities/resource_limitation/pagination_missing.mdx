@@ -21,42 +21,42 @@ Implement pagination on the specified queries.
 <details>
     <summary>Apollo</summary>
 
-Implement pagination in your Apollo server by using cursor-based pagination, which involves passing a cursor that points to the last item in the previous fetch.
+Implement pagination in the Apollo framework engine by using cursor-based or offset-based strategies to manage large sets of data efficiently. This can be achieved by modifying the GraphQL schema to include pagination arguments such as 'limit' and 'after' for cursor-based pagination or 'offset' for offset-based pagination, and updating resolvers to handle these arguments appropriately. Ensure that the client-side queries also include these pagination parameters to fetch data in chunks.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Use the Prisma client's pagination capabilities to implement cursor-based pagination in your GraphQL Yoga server.
+Implement pagination in the Yoga framework engine to manage data sets efficiently. This can be achieved by using built-in pagination support or by creating custom pagination logic. Ensure that the pagination mechanism includes features such as page number, page size, and total record count to provide a seamless user experience.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-In AWS AppSync, implement pagination by using the 'limit' and 'nextToken' arguments in your resolvers to manage the data returned.
+To address the issue of missing pagination in AWS AppSync, implement pagination logic in your GraphQL schema by using arguments such as 'limit' and 'nextToken' for list queries. This will allow clients to request a specific number of items and to navigate through large sets of data by providing a token from the previous response. Ensure that your resolvers support this pagination mechanism and that they handle the 'nextToken' appropriately to fetch the subsequent set of results.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-In GraphQL Go, implement pagination by using the 'after' and 'first' arguments in your schema to fetch slices of data.
+Implement pagination in your GraphQL queries by using cursor-based or offset-based methods. This can be achieved by adding arguments such as 'first', 'last', 'before', and 'after' for cursor-based pagination, or 'limit' and 'offset' for offset-based pagination, to your GraphQL schema. Ensure that your Go framework's resolver functions are designed to handle these arguments and return the appropriate subset of data. This will help manage large datasets efficiently and prevent performance issues.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Use the 'graphql-ruby' gem's built-in pagination features to add cursor-based pagination to your queries.
+Implement pagination in your GraphQL queries by using the `graphql-ruby` gem's built-in features. Define a `max_page_size` to limit the number of records returned in a single request and use `after` and `before` cursors to navigate between pages. This will help prevent performance issues and potential denial-of-service attacks due to large, unpaginated result sets.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-Leverage Hasura's built-in support for cursor-based pagination using the 'limit' and 'offset' fields in your GraphQL queries.
+Implement pagination in your Hasura queries by using the 'limit' and 'offset' arguments to control the number of records returned and to skip over records of a set. This will help in managing and optimizing the data load, especially for large datasets. Additionally, consider using cursor-based pagination with 'where' conditions for more efficient and performant data fetching.
 
 </details>
 
@@ -64,72 +64,72 @@ Leverage Hasura's built-in support for cursor-based pagination using the 'limit'
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Implement pagination in your ASP.NET Core Web API by adding parameters for page number and page size in your action methods.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Use the 'will_paginate' or 'kaminari' gem to add pagination to your Rails API endpoints.
+Implement pagination in your API endpoints by using Skip and Take methods in LINQ queries or leveraging the built-in pagination support in Entity Framework. This will help manage and limit the amount of data returned in a single request, improving performance and reducing server load.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In Next.js API routes, implement pagination by parsing query parameters for page and limit to slice the data returned.
+Implement pagination using gems like 'kaminari' or 'will_paginate' to break the dataset into manageable chunks and return it page by page.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement server-side pagination in your API by using query parameters such as 'page' and 'limit' to return a subset of results per request. In Next.js, you can handle this logic within your API routes or when fetching data in 'getServerSideProps' or 'getStaticProps'.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Use Laravel's built-in pagination methods to easily paginate the results of a query in your API.
+Implement pagination in Laravel by using the 'paginate' method on the Eloquent query, which automatically handles large datasets and provides a simple way to access paginated data.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-In Express.js, use query parameters to implement pagination in your API routes by limiting the results returned from the database.
+Implement pagination in your Express.js routes by using query parameters such as 'page' and 'limit' to control the amount of data returned per request. Utilize middleware or a library like 'mongoose-paginate' for MongoDB to handle the pagination logic efficiently.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Utilize Django's built-in Paginator class to add pagination to your Django REST Framework views.
+Implement pagination in your Django views by using Django's Paginator class. This will help to split the large data set into manageable pages and reduce server load.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Implement pagination in your Symfony API by using the 'Pagerfanta' bundle or similar to paginate query results.
+Implement pagination in your Symfony application by using the Pagerfanta bundle or the KnpPaginatorBundle to efficiently handle large datasets and limit the amount of data returned per request. Adjust your queries to fetch only a subset of data based on the page number and size parameters.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-In Spring Boot, use the Pageable interface to handle pagination automatically in your REST controllers.
+Implement pagination in the Spring Boot application by using Pageable interface in the repository methods and applying @PageableDefault or @RequestParam to controller endpoints to handle page size, number, and sorting.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Use Flask's request object to parse pagination parameters and SQLAlchemy's paginate method to return paginated results.
+Implement pagination in your Flask route by using request arguments to define page number and limit, and apply these to your database query to return a subset of data.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In Nuxt.js, you can create a server middleware or API route that accepts pagination parameters and returns a sliced array of data.
+Implement pagination in your Nuxt.js application by using the 'fetch' or 'asyncData' methods to retrieve data in chunks. Utilize query parameters such as 'page' and 'limit' to request specific subsets of data from the API.
 
 </details>
 
@@ -142,6 +142,7 @@ In Nuxt.js, you can create a server middleware or API route that accepts paginat
 - **threshold_low** : Maximum number of nodes returned before raising a low level alert.
 - **threshold_medium** : Maximum number of nodes returned before raising a low level alert.
 - **threshold_high** : Maximum number of nodes returned before raising a low level alert.
+
 
 
 
@@ -189,11 +190,11 @@ In Nuxt.js, you can create a server middleware or API route that accepts paginat
 ### Compliance
 
 - OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
-- pci: **6.5.8**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
-- iso27001: **A.18.1.3**
+- iso27001: **A.18.1**
 - nist: **SP800-53**
 - fedramp: **AC-4**
 

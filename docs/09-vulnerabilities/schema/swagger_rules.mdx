@@ -19,72 +19,72 @@ Comply with the Swagger rules.
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Ensure that your Swagger schema is properly structured and validated to prevent security issues. Use attributes and filters to enforce schema constraints.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Validate your Swagger schema with tools like swagger-blocks or rswag to ensure it adheres to the OpenAPI specification.
+Ensure that all user inputs are validated using strong type checking and regular expressions, and encode outputs to prevent XSS attacks. Implement proper exception handling to avoid revealing sensitive information in error messages. Regularly update the ASP.NET framework to patch known vulnerabilities.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Use libraries like swagger-jsdoc to integrate Swagger with your Next.js API routes, ensuring proper schema validation.
+Ensure that you use strong parameters in Ruby on Rails to prevent mass assignment vulnerabilities. Always whitelist controller parameters to control which attributes should be allowed for mass updating.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure server-side rendering processes user input securely to prevent XSS attacks, and validate all API requests to avoid injection vulnerabilities. Keep Next.js and its dependencies up to date to mitigate known vulnerabilities.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Utilize Laravel packages like L5-Swagger to automatically generate and validate Swagger documentation for your API.
+Ensure that all user inputs are properly sanitized and validated before processing. Utilize Laravel's built-in security features such as prepared statements, CSRF protection, and input validation rules to mitigate the risk of injection attacks and other vulnerabilities.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Incorporate swagger-ui-express and swagger-jsdoc to create and serve Swagger documentation, ensuring your API schema is validated.
+Ensure that all routes in the Express.js application are validated against a strict schema to prevent unstructured input, and implement middleware such as 'express-validator' for input validation to mitigate potential security vulnerabilities.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Use Django REST framework with drf-yasg to generate a real-time validated Swagger schema for your API endpoints.
+Ensure that Django's built-in protections against XSS, CSRF, and SQL injection are enabled and properly configured. Use Django's template system to automatically escape variables, and never mark safe any user-provided strings unless absolutely necessary. Regularly update the Django framework to incorporate security patches.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Leverage the NelmioApiDocBundle to integrate Swagger with your Symfony project, ensuring your API schema is properly validated.
+Ensure that all user inputs are properly sanitized and validated within your Symfony application. Use Symfony's built-in functions like 'filter_var' for input validation and 'htmlspecialchars' for output escaping to prevent XSS attacks. Additionally, leverage the 'ParamConverter' for automatic parameter conversion and validation, and consistently apply 'Security' annotations to enforce access controls on your controllers.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Use Springfox or springdoc-openapi to automatically generate and validate Swagger API documentation in your Spring Boot application.
+Ensure that your Spring Boot application is using the latest version of the Spring Framework, which includes security enhancements and bug fixes. Regularly update dependencies to mitigate known vulnerabilities. Additionally, implement proper input validation and output encoding to protect against injection attacks. Use Spring Security for comprehensive security configuration and enable CSRF protection. Always run your application as a user with the least necessary privileges.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Implement Flask-RESTPlus or Flask-RESTx to automatically create Swagger documentation that is validated against your API schema.
+Ensure that all Flask routes and view functions properly validate and sanitize user input to prevent common vulnerabilities such as SQL injection, Cross-Site Scripting (XSS), and Cross-Site Request Forgery (CSRF). Utilize Flask extensions like Flask-WTF for form validation and Flask-Talisman for setting security-related HTTP headers.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-For Nuxt.js applications, use nuxt-swagger to define and validate your Swagger schema for API routes.
+Ensure that all dynamic data is properly sanitized and validated on both the client and server sides to prevent XSS attacks. Use Nuxt.js's built-in escaping mechanisms to handle user-generated content safely, and regularly update dependencies to mitigate known vulnerabilities.
 
 </details>
 
@@ -122,11 +122,11 @@ For Nuxt.js applications, use nuxt-swagger to define and validate your Swagger s
 - OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
 - pci: **6.5.1**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**
-- fedramp: **AR-1**
+- fedramp: **SA-11**
 
 ### Classification
 

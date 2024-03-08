@@ -22,42 +22,42 @@ This security check detects this sensitive data.
 <details>
     <summary>Apollo</summary>
 
-* If there is a chance that unauthorized individuals have already accessed the secret, revoke it immediately and notify the concerned team. * If the leak happens through another vulnerability, such as a [Server-Side Request Forgery](https://docs.escape.tech/vulnerabilities/request_forgery/ssrf), fix this issue to avoid further secret leaks.* Have your developers implement these best practices to avoid leaking secrets:    -Inside logs: [keeping sensitive data out of logs](https://medium.com/@joecrobak/seven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904).    -Inside commits: [Pre-commit](https://pre-commit.com/) or [Gitleaks](https://github.com/zricethezav/gitleaks).    -In the configuration, using an environment variable manager like [Hashicorp Vault](https://www.hashicorp.com/products/vault).See [Apollo's Access Control Documentation](https://www.apollographql.com/docs/apollo-server/security/authentication/#in-resolvers).
+To address a data leak within the Apollo framework engine, ensure that all sensitive data is handled securely by implementing proper access controls, encrypting data at rest and in transit, and conducting regular security audits to identify and patch vulnerabilities. Additionally, utilize Apollo's built-in features for privacy, such as private schema fields, and adhere to best practices for API security.
 
 </details>
 
 <details>
     <summary>Yoga</summary>
 
-Ensure that your Yoga server is configured to not expose sensitive information. Use environment variables and secret management systems to handle sensitive data. Regularly audit your GraphQL schema to ensure that no sensitive fields are unintentionally exposed.
+To address the data leak issue within the Yoga framework engine, ensure that all sensitive data is encrypted both at rest and in transit. Implement access controls and audit logs to monitor data access. Regularly update the framework to the latest version to patch any security vulnerabilities. Additionally, conduct thorough security assessments and code reviews to identify and mitigate potential data exposure points.
 
 </details>
 
 <details>
     <summary>Awsappsync</summary>
 
-* If there is a chance that unauthorized individuals have already accessed the secret, revoke it immediately and notify the concerned team. * If the leak happens through another vulnerability, such as a [Server-Side Request Forgery](https://docs.escape.tech/vulnerabilities/request_forgery/ssrf), fix this issue to avoid further secret leaks.* Have your developers implement these best practices to avoid leaking secrets:    -Inside logs: [keeping sensitive data out of logs](https://medium.com/@joecrobak/seven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904)    -Inside commits: [Pre-commit](https://pre-commit.com/) or [Gitleaks](https://github.com/zricethezav/gitleaks)    -In the configuration, using an environment variable manager like [Hashicorp Vault](https://www.hashicorp.com/products/vault)Appsync provides several other methods for protecting critical information.-To learn more on implementing fine-grained access control, head over to https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#fine-grained-access-control. -To learn more on filtering critical data directly from responses, see https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html#aws-appsync-filtering-information.
+To mitigate data leaks in AWS AppSync, ensure that all GraphQL queries and mutations are properly authenticated and authorized. Implement fine-grained access control using AWS Identity and Access Management (IAM) and Amazon Cognito. Regularly audit your API configurations and access patterns, and encrypt sensitive data both at rest and in transit using AWS encryption services. Additionally, enable logging and monitoring with AWS CloudTrail and Amazon CloudWatch to detect and respond to any unauthorized access or anomalies.
 
 </details>
 
 <details>
     <summary>Graphqlgo</summary>
 
-Review your GraphQL Go implementation to ensure that resolvers do not inadvertently expose sensitive data. Use environment variables for configuration and consider using a secret management tool like Vault for storing secrets.
+To mitigate data leaks in a GraphQL Go framework engine, ensure that all sensitive fields are properly secured and that access control policies are in place to restrict unauthorized access. Implement field-level security to limit exposure of data based on user roles and permissions. Regularly audit your GraphQL schema and resolvers for potential vulnerabilities, and use query complexity analysis to prevent abusive queries. Additionally, consider using a GraphQL security library or middleware that provides features such as depth limiting, amount limiting, and introspection disabling to further protect against data leaks.
 
 </details>
 
 <details>
     <summary>Graphqlruby</summary>
 
-Audit your GraphQL Ruby application to ensure that sensitive data is not being exposed through your queries or mutations. Use Rails' built-in secret management for handling sensitive configuration data.
+To mitigate data leaks in the GraphQL Ruby framework, ensure that proper authentication and authorization checks are in place before allowing access to sensitive data. Implement field-level permissions to control access to specific parts of your schema. Use the graphql-guards gem to easily define policies for your GraphQL fields. Additionally, consider rate limiting to prevent excessive requests that could lead to data exposure. Regularly audit your GraphQL queries and mutations for potential vulnerabilities and apply the principle of least privilege when assigning data access to different roles.
 
 </details>
 
 <details>
     <summary>Hasura</summary>
 
-* If there is a chance that unauthorized individuals have already accessed the secret, revoke it immediately and notify the concerned team. * If the leak happens through another vulnerability, such as a [Server-Side Request Forgery](https://docs.escape.tech/vulnerabilities/request_forgery/ssrf), fix this issue to avoid further secret leaks.* Have your developers implement these best practices to avoid leaking secrets:    -Inside logs: [keeping sensitive data out of logs](https://medium.com/@joecrobak/seven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904)    -Inside commits: [Pre-commit](https://pre-commit.com/) or [Gitleaks](https://github.com/zricethezav/gitleaks)    -In the configuration, using an environment variable manager like [Hashicorp Vault](https://www.hashicorp.com/products/vault)See Hasura's detailed documentation for [authorization management](https://hasura.io/docs/latest/graphql/core/auth/authorization/permission-rules/).
+To mitigate data leaks in the Hasura framework, ensure that all GraphQL queries are properly authenticated and authorized. Implement role-based access control (RBAC) to restrict data access based on user roles. Regularly audit your access control policies and review logs to detect any unauthorized access. Additionally, use environment variables for sensitive information instead of hardcoding them in the application code or configuration files. Keep the Hasura engine and all dependencies up to date with the latest security patches.
 
 </details>
 
@@ -65,72 +65,72 @@ Audit your GraphQL Ruby application to ensure that sensitive data is not being e
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Ensure that your ASP.NET application does not log sensitive information and that all configurations that contain secrets are secured and not checked into source control. Use the built-in Secret Manager tool for development and Azure Key Vault for production secrets.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Check your Rails application for inadvertent exposure of sensitive data. Use Rails' encrypted credentials feature to manage secrets and ensure that logs are filtered to prevent accidental logging of sensitive information.
+Implement proper access controls and ensure sensitive data is encrypted both in transit and at rest. Utilize ASP.NET's built-in features such as the Secure Socket Layer (SSL) for data in transit and the Data Protection API for encrypting sensitive data at rest. Regularly audit your API endpoints for unintended data exposure and adhere to the principle of least privilege when assigning permissions.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-In your Next.js application, avoid exposing sensitive data through APIs or logs. Use environment variables for storing secrets and ensure that API routes are properly secured.
+In Ruby on Rails, ensure that sensitive data is not included in the output of APIs by using strong parameters to whitelist only the necessary attributes for exposure. Additionally, configure the application to use environment variables or encrypted secrets management for handling confidential information, and never hardcode sensitive data within the codebase. Regularly audit your code and dependencies for vulnerabilities that could lead to data exposure.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that sensitive data is not included in the API responses or client-side code. Use environment variables and server-side logic to handle secrets, and never expose them to the frontend. Implement proper access controls and audit logs to monitor data access.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Ensure that your Laravel application does not expose sensitive data through routes or logs. Use Laravel's built-in environment file and secure storage mechanisms for sensitive data.
+Ensure that sensitive data is not included in API responses. Review the code to remove any direct references to private keys, tokens, or passwords. Use Laravel's built-in functions to secure environment variables and leverage access control mechanisms to protect API endpoints. Implement proper logging to detect any unauthorized access attempts.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Audit your Express.js routes and middleware to ensure that sensitive data is not being exposed. Use environment variables and a package like dotenv for managing secrets.
+Ensure that all sensitive data is properly encrypted and that API endpoints are secured with authentication and authorization checks. Implement environment variables to store secrets and use middleware like 'helmet' to set security-related HTTP headers. Regularly audit your code and dependencies for vulnerabilities.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Review your Django views and settings to ensure that no sensitive data is exposed. Use Django's settings module to handle secrets and ensure that DEBUG is set to False in production to prevent sensitive data leaks in error messages.
+Ensure that Django's DEBUG mode is set to False in production to prevent the exposure of sensitive information. Use environment variables or a secure key management system to handle secrets and credentials. Regularly audit your code and use tools like Django's built-in 'check' framework to detect potential data leaks. Implement proper access controls and permissions for API endpoints.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Check your Symfony application to prevent any sensitive data leaks. Use Symfony's .env files for managing environment variables and secrets.
+In the Symfony framework, ensure that all sensitive data is properly secured by using environment variables for storing secrets and access credentials. Utilize the 'dotenv' component for local environments and secure production secrets with a vault service or server environment variables. Implement access controls and use Symfony's 'secrets' management for sensitive values. Regularly audit your codebase to ensure that no sensitive data is hard-coded or exposed through APIs. Additionally, employ HTTPS and proper authentication mechanisms to protect data in transit.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Ensure that your Spring Boot application does not log sensitive information. Use Spring's configuration properties to externalize secrets and the @Value annotation to inject them.
+Ensure that sensitive data is not logged or exposed in API responses. Use environment variables or a secure vault service to manage secrets, and implement proper access controls and encryption for data in transit and at rest. Regularly audit your code and use automated tools to detect potential leaks. Update your Spring Boot application properties to exclude sensitive information from being exposed and configure proper logging levels to prevent accidental leaks.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Secure your Flask application by not exposing sensitive data in routes or logs. Use environment variables for configuration and Flask extensions like Flask-Talisman for security headers.
+Ensure that Flask endpoints handling sensitive data implement proper access controls and do not return confidential information in responses. Use environment variables or secure storage solutions to manage secrets, and never hardcode them in the source code. Regularly audit your code and use tools like static analyzers to detect accidental exposure of sensitive data.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-In your Nuxt.js application, ensure that no sensitive data is exposed through the API or server logs. Use environment variables and the nuxt.config.js file to manage secrets securely.
+Ensure that all sensitive data is stored in environment variables and not hardcoded in the application code. Use .env files for local development and secure secret management systems for production. Additionally, implement proper access controls and audit logs to monitor access to sensitive data. Regularly review and update API endpoints to ensure they do not inadvertently expose sensitive information.
 
 </details>
 
@@ -172,9 +172,9 @@ In your Nuxt.js application, ensure that no sensitive data is exposed through th
 ### Compliance
 
 - OWASP: **[API1:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
-- pci: **6.5.8**
+- pci: **3.4**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.18.1**
 - nist: **SP800-53**

@@ -18,72 +18,72 @@ Either remove the endpoint from your schema or create a handler for them.
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Ensure all routes have corresponding action methods in your controllers. Use attribute routing to define routes.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Check your routes.rb file for any routes without actions and implement the missing actions in the corresponding controllers.
+Ensure that all endpoints defined in the API are properly handled in the ASP.NET routing configuration. Implement appropriate action methods in the controllers for each endpoint, and if an endpoint should not be available, remove it from the API routing table or return a 'Not Implemented' status code.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Create API route files for unhandled endpoints in the pages/api directory.
+Ensure that all routes defined in the Rails application have corresponding controller actions implemented. Use route constraints to limit unexpected routes and provide a catch-all route at the bottom of your routes file to handle unmatched requests with a custom 404 error page.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that all endpoints defined in the API are properly handled in the Next.js pages or API routes. Implement appropriate request handlers for each endpoint or remove unused endpoints from the introspection system to prevent potential security vulnerabilities.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Define missing route handlers in your routes/web.php or routes/api.php and create corresponding methods in your controllers.
+Ensure that all routes defined in the Laravel application have corresponding controller methods implemented. Use route:list command to review registered routes and verify that each one has an appropriate handler. Implement middleware to catch any unhandled routes and provide a default response or redirect to a known route.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Add middleware functions to handle unimplemented routes in your Express application.
+Ensure that all defined routes in your Express.js application have corresponding route handlers. For any unhandled endpoints, implement a catch-all route handler to return an appropriate error message, such as 404 Not Found, to the client. Additionally, consider using middleware for logging and monitoring to track these unhandled endpoints and take corrective actions.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Map unhandled URLs to views by adding entries in your urls.py and create corresponding view functions or classes.
+Ensure that all endpoints defined in your Django application's URL configurations have corresponding view functions or classes implemented. Use Django's built-in 404 error handling to catch any unhandled endpoints and provide a user-friendly error page.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Define routes in your config/routes.yaml or annotations and create corresponding controller actions.
+Ensure that all endpoints defined in the routing configuration have corresponding controller actions implemented. Use Symfony's debug:router console command to list all registered routes and verify that each one is handled properly. If an endpoint is not needed, remove it from the routing configuration to prevent unintended access.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Ensure that all endpoints are mapped to methods in your @RestController classes using @RequestMapping or its shortcut annotations.
+Ensure that all endpoints defined in the Spring Boot application are mapped to appropriate handler methods. If an endpoint is discovered during introspection without a corresponding handler, implement the necessary @RequestMapping or specific mapping annotations like @GetMapping, @PostMapping, etc., to handle the request properly. Additionally, consider using a global @ControllerAdvice to handle unmapped endpoints and provide a default response.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Add route decorators to functions in your Flask application to handle unimplemented endpoints.
+Ensure that all endpoints defined in the Flask application have corresponding view functions. Use the `@app.route` decorator to map URLs to view functions and return appropriate responses. If an endpoint should not be accessible, remove it from the URL map or implement a handler that returns a 404 or 403 status code. Regularly review your routing table and update the handlers as necessary to prevent unhandled endpoints.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Create server middleware or extend the server routes to handle the unimplemented endpoints.
+Ensure that all defined routes in your Nuxt.js application have corresponding page components or server middleware to handle the requests. If an endpoint is not meant to be accessible, remove it from the configuration or set up a catch-all route to handle undefined paths and provide a proper response, such as a 404 error page.
 
 </details>
 
@@ -119,9 +119,9 @@ Create server middleware or extend the server routes to handle the unimplemented
 ### Compliance
 
 - OWASP: **[API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md)**
-- pci: **6.5.8**
+- pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.2**
 - nist: **SP800-53**

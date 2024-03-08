@@ -19,78 +19,83 @@ API should provide pagination or a similar way to limit the size of the response
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Implement response compression and set maximum response size limits to prevent large responses.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Use Rack::Deflater middleware for compression and monitor response sizes to mitigate large responses.
+Implement pagination or limit the size of responses to avoid large payloads that can affect performance and lead to potential denial of service. Consider using the 'Skip' and 'Take' LINQ methods for efficient data fetching in ASP.NET.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Enable compression in Next.js and set up a custom server to handle response size limits.
+Implement pagination or limit the number of records retrieved in a single request to avoid large responses that can degrade performance.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement server-side pagination or streaming to handle large datasets efficiently, and consider compressing responses with gzip or Brotli.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Utilize middleware for response compression and set limits on response size in Laravel configurations.
+Implement pagination or limit the number of items returned in a single request to reduce response size in Laravel.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Use compression middleware and limit the size of JSON payloads in Express.js applications.
+Implement pagination or limit the size of responses to avoid sending excessively large payloads. Use stream processing if dealing with large datasets.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Configure Django's data upload handlers and use middleware for response compression to manage large responses.
+Implement pagination or limit the size of the response by using Django's QuerySet slicing. For example, use `MyModel.objects.all()[:100]` to limit the response to the first 100 records.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Enable Gzip compression in Symfony and set limits for maximum response size in your controller.
+In Symfony, to handle very large responses, consider using the StreamedResponse feature. This allows you to stream the response back to the client in smaller chunks, reducing memory usage and improving performance for large datasets.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Use Spring Boot's properties to configure response compression and set maximum response size.
+Implement pagination or limit the size of the response using Spring Data's Pageable interface to prevent excessively large data transfers.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Implement Flask response compression and monitor response sizes to ensure they do not exceed a certain threshold.
+Implement pagination or limit the size of responses by using Flask's request.args to retrieve query parameters and slicing query results accordingly.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Configure Nuxt.js server middleware to compress and limit the size of HTTP responses.
+Implement pagination or limit the number of items returned in a single request to reduce response size in Nuxt.js applications.
 
 </details>
 
 ## Configuration
 
 > Identifier: `resource_limitation/response_size`
+
+### Options
+
+- **threshold** : Minimum size before raising an alert
+
 
 
 
@@ -122,7 +127,7 @@ Configure Nuxt.js server middleware to compress and limit the size of HTTP respo
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
 - pci: **6.5.10**
 - gdpr: **Article-32**
-- soc2: **CC6.1**
+- soc2: **CC1**
 - psd2: **Article-95**
 - iso27001: **A.14.1**
 - nist: **SP800-53**

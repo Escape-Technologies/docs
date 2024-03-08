@@ -18,72 +18,72 @@ Remove the file from the web server.
 ### REST Specific
 
 <details>
-    <summary>Asp.net</summary>
+    <summary>Asp_net</summary>
 
-Ensure that sensitive files are not stored in publicly accessible directories and configure proper access permissions.
-
-</details>
-
-<details>
-    <summary>Ruby on rails</summary>
-
-Configure the web server to deny access to critical files and ensure they are not served as static assets.
+Implement proper access controls and ensure sensitive files are not stored within web-accessible directories. Use the web.config file to restrict unauthorized access to critical files and employ ASP.NET features like the element to specify access rules for different users and roles.
 
 </details>
 
 <details>
-    <summary>Next.js</summary>
+    <summary>Ruby_on_rails</summary>
 
-Use Next.js server-side configurations to prevent serving sensitive files.
+Ensure proper access controls are in place for sensitive files and configure the web server to restrict access to critical file paths. Use the 'send_file' method in Ruby on Rails controllers to securely serve files, and validate user permissions before allowing file access.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure that server-side configurations or Next.js API routes do not inadvertently serve sensitive files. Use a well-configured .next/static folder for static assets and restrict access to any critical files through proper server rules or middleware. Regularly audit your file-serving routes to prevent unintended file disclosures.
 
 </details>
 
 <details>
     <summary>Laravel</summary>
 
-Set up middleware to restrict access to sensitive files in Laravel.
+Ensure proper access controls are in place for sensitive files and directories. Use Laravel's built-in authorization features to restrict access, and configure your web server to deny direct access to critical files. Additionally, regularly audit your storage directories and .env file to prevent unintended exposure.
 
 </details>
 
 <details>
-    <summary>Express.js</summary>
+    <summary>Express_js</summary>
 
-Use middleware in Express.js to prevent the disclosure of sensitive files.
+To prevent critical file disclosure in an Express.js application, ensure that user input is not directly used to serve files from the server. Implement strict access controls and use a whitelist approach to serve only intended public files. Additionally, employ middleware like 'helmet' to secure Express apps by setting various HTTP headers and 'express-rate-limit' to prevent brute-force attempts at discovering files. Regularly audit your application for unintended static directories or routes that may expose sensitive files.
 
 </details>
 
 <details>
     <summary>Django</summary>
 
-Configure Django's URL dispatcher to block access to sensitive files.
+Ensure that Django's built-in security features are properly configured to prevent unauthorized file disclosures. Use the 'X-Sendfile' header for serving protected files, set 'DEBUG' to False in production, and restrict file access by implementing proper user authentication and permissions checks.
 
 </details>
 
 <details>
     <summary>Symfony</summary>
 
-Use Symfony's security controls to restrict access to sensitive files.
+In the Symfony framework, ensure that your server configuration or .htaccess file properly denies access to sensitive files. Use the 'access_control' feature in the security.yaml configuration file to restrict access based on patterns. Additionally, regularly audit your code to ensure that no critical files are being exposed through routes or public directories.
 
 </details>
 
 <details>
-    <summary>Spring boot</summary>
+    <summary>Spring_boot</summary>
 
-Configure Spring Security to prevent unauthorized access to sensitive files.
+Ensure that the Spring Boot application is configured to restrict access to sensitive files. Implement proper access controls and use the Spring Security framework to define security constraints. Regularly audit your application's security configuration and update the security rules as necessary to prevent unauthorized file disclosure.
 
 </details>
 
 <details>
     <summary>Flask</summary>
 
-Use Flask to define routes that explicitly block access to sensitive files.
+To prevent critical file disclosure in a Flask application, ensure that the web server is properly configured to deny access to sensitive files and directories. Use Flask's `send_from_directory` function with caution, explicitly defining accessible paths, and avoid serving dynamic content from user input. Implement proper access control checks within your application logic to restrict unauthorized users from accessing protected resources. Additionally, regularly review and update your `.htaccess` or web server configuration files to prevent directory listing and secure file permissions.
 
 </details>
 
 <details>
     <summary>Nuxt</summary>
 
-Configure Nuxt.js server middleware to prevent serving of sensitive files.
+Ensure that the Nuxt.js server configuration properly restricts access to sensitive files and directories. Implement access control checks and serve static files explicitly through Nuxt.js configuration to prevent unintended file disclosure. Regularly audit file permissions and use middleware to filter out requests for critical files.
 
 </details>
 
@@ -119,10 +119,10 @@ Configure Nuxt.js server middleware to prevent serving of sensitive files.
 ### Compliance
 
 - OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.5**
+- pci: **6.5.3**
 - gdpr: **Article-32**
-
-
+- soc2: **CC6**
+- psd2: **Article-95**
 - iso27001: **A.14.1**
 - nist: **SP800-53**
 - fedramp: **AC-3**
