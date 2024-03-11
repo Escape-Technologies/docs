@@ -43,6 +43,8 @@ docker run -it --rm --name escape-repeater \
 You can find in the example folder more deployment examples.
 Feel free to contribute and add your own.
 
+### Custom CA certificate
+
 If you need to add a custom ca certificate, you can mount it in the container:
 
 ```bash
@@ -52,11 +54,32 @@ docker run -it --rm --name escape-repeater \
     escapetech/repeater:latest
 ```
 
+### Allow any SSL certificate
+
 If you want to allow insecure connections, you can set the `ESCAPE_REPEATER_INSECURE` environment variable to `true`:
 
 ```bash
 docker run -it --rm --name escape-repeater \
     -e ESCAPE_REPEATER_INSECURE=true \
+    -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+    escapetech/repeater:latest
+```
+
+### Using mTLS
+
+mTLS or mutual TLS is a security measure that requires both the client and the server to present a certificate to authenticate each other. This is a more secure way to authenticate the client and the server.
+
+To use mTLS, you need to provide the following environment variables:
+
+- `ESCAPE_REPEATER_mTLS_CRT_FILE`: The path to the mTLS certificate file.
+- `ESCAPE_REPEATER_mTLS_KEY_FILE`: The path to the mTLS private key.
+
+```bash
+docker run -it --rm --name escape-repeater \
+    -v /path/to/mtls.crt:/usr/local/share/mtls.crt \
+    -v /path/to/mtls.key:/usr/local/share/mtls.key \
+    -e ESCAPE_REPEATER_mTLS_CRT_FILE=/usr/local/share/mtls.crt \
+    -e ESCAPE_REPEATER_mTLS_KEY_FILE=/usr/local/share/mtls.key \
     -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
     escapetech/repeater:latest
 ```
