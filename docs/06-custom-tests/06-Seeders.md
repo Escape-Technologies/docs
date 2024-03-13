@@ -1,7 +1,5 @@
 # Seeders
-
 ## HTTP seeder
-
 `protocol: http`
 
 The HTTP seeder allows you to send a request at the start of the scan.
@@ -28,3 +26,5 @@ seed:
 
 - `raw`: The raw HTTP request in [nuclei format](https://docs.projectdiscovery.io/templates/protocols/http/raw-http).
 - `user`: The user to use for the request. If not provided, the request is sent without authentication.
+
+
