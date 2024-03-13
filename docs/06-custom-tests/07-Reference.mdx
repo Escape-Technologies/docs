@@ -62,8 +62,8 @@ toc_max_heading_level: 2
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| trigger | `RequestBodyTextDetector | RequestHeadersDetector | CrudDetector | ResponseDurationDetector | ScanTypeDetector | ResponseBodyJSONDetector | RequestUserDetector | RequestBodyJSONDetector | SchemaUrlDetector | ResponseObjectDetector | ResponseIsSuccessfulDetector | ResponseHeadersDetector | ResponseStatusCodeDetector | SchemaNeedAuthenticationDetector | RequestIsAuthenticatedDetector | ResponseBodyTextDetector | SchemaPathRefDetector | RequestObjectDetector | MethodDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
-| mutate | `MethodMutator | RequestBodyTextMutator | RequestObjectMutator | RequestBodyJSONMutator | RequestUserMutator | SchemaUrlMutator | RequestHeadersMutator | SchemaPathRefMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
+| trigger | `CrudDetector | MethodDetector | RequestBodyJSONDetector | RequestBodyTextDetector | RequestHeadersDetector | RequestIsAuthenticatedDetector | RequestObjectDetector | RequestUserDetector | ResponseBodyJSONDetector | ResponseBodyTextDetector | ResponseDurationDetector | ResponseHeadersDetector | ResponseIsSuccessfulDetector | ResponseObjectDetector | ResponseStatusCodeDetector | ScanTypeDetector | SchemaNeedAuthenticationDetector | SchemaPathRefDetector | SchemaUrlDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
+| mutate | `MethodMutator | RequestBodyJSONMutator | RequestBodyTextMutator | RequestHeadersMutator | RequestObjectMutator | RequestUserMutator | SchemaPathRefMutator | SchemaUrlMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
 
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher
