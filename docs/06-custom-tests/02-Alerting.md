@@ -1,5 +1,4 @@
 # Alerting
-
 Configure how the alert will be displayed in the Escape interface.
 
 This block configure your alert rendering in the Escape interface.
@@ -24,3 +23,5 @@ alert:
 - `name`: Name of the alert
 - `context`: Context of the alert
 - `category`: Category of the alert
+
+
