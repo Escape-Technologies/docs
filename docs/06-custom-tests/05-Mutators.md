@@ -177,7 +177,7 @@ transform:
 
 `key: schema.path_ref`
 
-You can use this mutator to change the operation name in GraphQL or the path in REST before resending it.
+You can use this mutator to change the operation name in GraphQL or the path in REST (keeping the domain) before resending it.
 
 ### Example
 
