@@ -84,6 +84,19 @@ docker run -it --rm --name escape-repeater \
     escapetech/repeater:latest
 ```
 
+After that, you can authenticate your application using the repeater by adding the `repeater_mtls: true` flag.
+For example, the following configuration declare two users, one unauthenticated and one with mTLS:
+
+```yaml
+users:
+  # without mTLS
+  - name: public
+
+  # with mTLS
+  - name: using-mtls
+    repeater_mtls: true
+```
+
 ### Configure your firewall
 
 Make sure the following **outgoing** connections are allowed by your network configuration:
@@ -124,9 +137,3 @@ Go to the Advanced Settings of the applications and add the following configurat
     // ...
 }
 ```
-
-### Configure a custom certificate
-
-See instructions on the [Repeater Github documentation](https://github.com/Escape-Technologies/repeater#escape-repeater-proxy)
-
-For more information about how to whitelist Escape scans, read the [Scan Internal APIs](/advanced-usage/internal-apis) page.
