@@ -35,7 +35,7 @@ toc_max_heading_level: 2
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | protocol | `Const[http]` | `False` | The HTTP seeder allows you to send a request at the start of the scan. |  |
-| raw | `string` | `True` | The raw HTTP request in [nuclei format]([docs.projectdiscovery.io](https://docs.projectdiscovery.io/templates/protocols/http/raw-http).) |  |
+| raw | `string` | `True` | The raw HTTP request in [nuclei format](https://docs.projectdiscovery.io/templates/protocols/http/raw-http). |  |
 | user | `string` | `False` | The user to use for the request. If not provided, the request is sent without authentication. |  |
 
 
@@ -46,14 +46,14 @@ toc_max_heading_level: 2
 | is | `HTTP_METHOD` | `False` | Condition is the request is this CRUD operation | [HTTP_METHOD](#HTTP_METHOD) |
 | is_not | `HTTP_METHOD` | `False` | Condition is the request is not this CRUD operation | [HTTP_METHOD](#HTTP_METHOD) |
 | in | `HTTP_METHOD` | `False` | Condition is the request is in this list of CRUD operations (exact match) | [HTTP_METHOD](#HTTP_METHOD) |
-| if | `Const[request.method]` | `False` | Use this to select against the request [HTTP method]([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).) |  |
+| if | `Const[request.method]` | `False` | Use this to select against the request [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). |  |
 
 
 ## <a id="MethodMutator"></a>MethodMutator
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| key | `Const[request.method]` | `False` | You can use this mutator to change the [HTTP method]([developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)) of the |  |
+| key | `Const[request.method]` | `False` | You can use this mutator to change the [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) of the |  |
 | value | `HTTP_METHOD` | `False` | The value to set. | [HTTP_METHOD](#HTTP_METHOD) |
 | values | `HTTP_METHOD` | `False` | The values to set, generates multiple queries. | [HTTP_METHOD](#HTTP_METHOD) |
 
@@ -62,8 +62,8 @@ toc_max_heading_level: 2
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| trigger | `RequestBodyTextDetector | CrudDetector | RequestObjectDetector | ResponseDurationDetector | RequestBodyJSONDetector | SchemaNeedAuthenticationDetector | ResponseBodyJSONDetector | ResponseObjectDetector | RequestHeadersDetector | SchemaUrlDetector | ScanTypeDetector | ResponseIsSuccessfulDetector | RequestIsAuthenticatedDetector | RequestUserDetector | MethodDetector | ResponseHeadersDetector | SchemaPathRefDetector | ResponseStatusCodeDetector | ResponseBodyTextDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
-| mutate | `RequestHeadersMutator | RequestBodyJSONMutator | SchemaUrlMutator | RequestUserMutator | RequestObjectMutator | RequestBodyTextMutator | SchemaPathRefMutator | MethodMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
+| trigger | `RequestBodyTextDetector | RequestHeadersDetector | CrudDetector | ResponseDurationDetector | ScanTypeDetector | ResponseBodyJSONDetector | RequestUserDetector | RequestBodyJSONDetector | SchemaUrlDetector | ResponseObjectDetector | ResponseIsSuccessfulDetector | ResponseHeadersDetector | ResponseStatusCodeDetector | SchemaNeedAuthenticationDetector | RequestIsAuthenticatedDetector | ResponseBodyTextDetector | SchemaPathRefDetector | RequestObjectDetector | MethodDetector` | `True` | The detectors to trigger the transform, on the request or response. See [Detectors](./detectors) |  |
+| mutate | `MethodMutator | RequestBodyTextMutator | RequestObjectMutator | RequestBodyJSONMutator | RequestUserMutator | SchemaUrlMutator | RequestHeadersMutator | SchemaPathRefMutator` | `True` | The mutations to apply to the request and replay it. See [Mutators](./mutators) |  |
 
 
 ## <a id="ObjectMatcher"></a>ObjectMatcher
@@ -117,7 +117,7 @@ toc_max_heading_level: 2
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | key | `Const[request.body.json]` | `False` | You can use this mutator to change the JSON body of the request before resending it. |  |
-| jq | `string` | `False` | JQ query to apply to the JSON body. See [stedolan.github.io](https://stedolan.github.io/jq/manual/) |  |
+| jq | `string` | `False` | JQ query to apply to the JSON body. See[stedolan.github.io](https://stedolan.github.io/jq/manual/) |  |
 
 
 ## <a id="RequestBodyTextDetector"></a>RequestBodyTextDetector
