@@ -141,6 +141,13 @@ In Nuxt.js applications, prevent SQL injection by using libraries that support p
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, to prevent SQL injection, use ORM libraries like SQLAlchemy which employ parameterized queries. Ensure that all database queries are constructed using ORM methods rather than string concatenation or interpolation. For raw SQL queries, use FastAPI's database dependencies with query parameters instead of formatting strings directly. Regularly update dependencies to incorporate security fixes.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/sql`

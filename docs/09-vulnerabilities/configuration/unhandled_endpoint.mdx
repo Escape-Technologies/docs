@@ -87,6 +87,13 @@ Ensure that all defined routes in your Nuxt.js application have corresponding pa
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+Ensure that all endpoints defined in the API documentation are implemented with corresponding request handlers in the FastAPI application. For any endpoints that are currently unhandled, create appropriate route functions with the @app.route decorator, specifying the path, HTTP method, and request handling logic. Additionally, consider implementing a default route handler for undefined routes to return a 404 error with a clear message indicating that the endpoint is not available.
+
+</details>
+
 ## Configuration
 
 > Identifier: `configuration/unhandled_endpoint`

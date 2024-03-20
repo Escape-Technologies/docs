@@ -93,6 +93,13 @@ To mitigate Server-Side Template Injection in Nuxt.js, ensure that user input is
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+To mitigate Server-Side Template Injection in FastAPI, ensure that user input is properly sanitized and validated before being passed to the template engine. Use built-in escaping mechanisms provided by the template engine, and avoid allowing users to control template logic or structure. Additionally, configure the template engine to disable or restrict dangerous functionalities that can execute arbitrary code. Regularly update FastAPI and its dependencies to incorporate security fixes.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/ssti`

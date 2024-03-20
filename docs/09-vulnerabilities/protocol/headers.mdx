@@ -177,6 +177,13 @@ For Nuxt.js applications, ensure that your server configuration sets appropriate
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+For FastAPI applications, ensure the following security practices: Set 'Cache-Control' headers appropriately for each response, particularly for sensitive data, to prevent improper caching. Use the 'Content-Type' header to specify the correct MIME type for each response. Implement 'X-Content-Type-Options' with the value 'nosniff' to prevent MIME-sniffing. Enforce HTTPS by setting 'Strict-Transport-Security' headers. Secure cookies by setting the 'Secure' flag, ensuring they are only sent over HTTPS. Protect cookies from client-side scripts by setting the 'HttpOnly' flag. Avoid disclosing server version information in HTTP response headers. Regularly update FastAPI and its dependencies to mitigate known vulnerabilities.
+
+</details>
+
 ## Configuration
 
 > Identifier: `protocol/headers`

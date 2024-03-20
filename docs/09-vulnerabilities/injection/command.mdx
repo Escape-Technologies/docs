@@ -136,6 +136,13 @@ To prevent command injection in a Nuxt.js application, validate and sanitize all
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+To prevent command injection in FastAPI, validate and sanitize all user inputs rigorously. Use built-in libraries for system operations that avoid shell execution, such as 'subprocess' with 'shell=False'. Implement least privilege principles, and consider using an allowlist for system commands that can be executed if necessary.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/command`

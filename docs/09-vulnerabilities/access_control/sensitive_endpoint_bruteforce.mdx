@@ -132,6 +132,13 @@ Implement robust rate-limiting on the vulnerable endpoint using Nuxt.js middlewa
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+Implement a robust rate-limiting mechanism using a middleware that tracks the number of requests from a single IP address or user account over a given time period. This can be achieved by integrating a library like `slowapi` with FastAPI, which leverages `limits` and `redis` to enforce rate limits. Configure the limits to be strict enough to prevent brute force attacks but lenient enough to allow for normal user interaction. Additionally, ensure that the endpoint implements account lockout policies after a certain number of failed attempts and provides alerts for multiple failed attempts, which could indicate a brute force attack in progress.
+
+</details>
+
 ## Configuration
 
 > Identifier: `access_control/sensitive_endpoint_bruteforce`

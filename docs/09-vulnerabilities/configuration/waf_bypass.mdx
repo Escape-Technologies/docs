@@ -87,6 +87,13 @@ Ensure that the Nuxt.js application strictly validates and sanitizes all user in
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+To mitigate WAF bypass in FastAPI, ensure that you are using the latest version of FastAPI and any dependencies, as updates often include security patches. Implement strict input validation to reject unexpected or malicious data. Use secure coding practices, such as parameterized statements or ORMs for database interactions to prevent SQL injection. Regularly review and update your WAF rules to cover new vulnerabilities and exploit techniques. Additionally, consider adding rate limiting, CAPTCHA, and other layers of security to protect against automated attacks.
+
+</details>
+
 ## Configuration
 
 > Identifier: `configuration/waf_bypass`

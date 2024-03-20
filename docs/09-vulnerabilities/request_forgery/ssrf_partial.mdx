@@ -138,6 +138,13 @@ In Nuxt.js, to mitigate partial SSRF vulnerabilities, validate and sanitize all 
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, to mitigate partial SSRF vulnerabilities, validate all URLs and hostname inputs against a whitelist of allowed destinations before making any outbound requests. Additionally, employ client-side libraries that offer safe request functions and avoid directly concatenating user input with request URLs.
+
+</details>
+
 ## Configuration
 
 > Identifier: `request_forgery/ssrf_partial`

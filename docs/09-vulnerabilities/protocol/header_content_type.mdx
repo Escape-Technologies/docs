@@ -132,6 +132,13 @@ Ensure that all server responses include a proper 'Content-Type' header. In Nuxt
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+Ensure that all responses from FastAPI endpoints explicitly set the `Content-Type` header to the appropriate MIME type. For JSON responses, use `Response(content, media_type='application/json')` or utilize FastAPI's automatic JSON response conversion by returning Python dictionaries or Pydantic models.
+
+</details>
+
 ## Configuration
 
 > Identifier: `protocol/header_content_type`

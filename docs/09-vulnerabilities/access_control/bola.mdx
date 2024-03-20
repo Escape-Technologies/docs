@@ -133,6 +133,13 @@ In Nuxt.js, to remediate Broken Object Level Authorization, ensure that user per
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, to remediate Broken Object Level Authorization (BOLA), ensure that proper access control checks are in place before allowing users to access or modify a resource. Implement function-based or role-based access control (FBAC/RBAC) using FastAPI dependencies to verify that the current user has the necessary permissions for the requested action. Additionally, use scoped tokens or API keys to limit access to resources based on the user's role or scope. Always validate that the user is authorized to access the specific object by checking ownership or permission levels against the user's credentials.
+
+</details>
+
 ## Configuration
 
 > Identifier: `access_control/bola`

@@ -133,6 +133,13 @@ Ensure the server validates the JWT with a secure and specified algorithm, rejec
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+Ensure that the FastAPI application is configured to reject JWT tokens with the 'none' algorithm. Implement checks to validate the algorithm used in the JWT header, and only accept tokens signed with secure and expected algorithms. Update the JWT authentication dependency to explicitly specify the allowed algorithms and to disallow the 'none' option. Additionally, consider using a robust library like PyJWT with a clear specification of the signing algorithm, and always keep the library up to date to incorporate any security fixes.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/jwt_alg_none`

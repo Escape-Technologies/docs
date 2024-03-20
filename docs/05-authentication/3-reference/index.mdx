@@ -179,6 +179,9 @@ description: All objects available
 | queryParameters | `HTTPQueryParameter` | `True` | The list of query parameters to attach to the request. Query parameters are merged with the user credentials query parameters. It is possible to attach mutliple values to a query parameter. Query parameter values are url-encoded before being sent. | [HTTPQueryParameter](#HTTPQueryParameter) |
 | body | `Any` | `False` | The body of the request. It can be a string or a JSON object. It is merged with the user credentials body if provided. If bodies of the HTTP request and of the user credentials are both JSON objects, they are merged. If the two bodies are strings, they are concatenated. If the two bodies are of different types, the body of the user credentials is used instead of this value. |  |
 | proxy | `string` | `False` | An eventual proxy used for this request |  |
+| timeout | `integer` | `False` | The timeout of the request in seconds |  |
+| insecure | `boolean` | `False` | If the SSL certificate should be verified |  |
+| follow_redirects | `integer` | `False` | The number of redirects to follow |  |
 
 
 ## <a id="HTTPRequestPreset"></a>HTTPRequestPreset
@@ -270,7 +273,7 @@ description: All objects available
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | name | `string` | `True` | The name of the procedure. It must be unique and is used to reference the procedure in users. |  |
-| operations | `DigestOperation | HTTPOperation | SeleniumOperation` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
+| operations | `HTTPOperation | DigestOperation | SeleniumOperation` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
 | injections | `TokenInjection` | `True` | The list of injections to perform at the end of the procedure. Injections are used to inject the variables extracted from the procedure into the user authentication. | [TokenInjection](#TokenInjection) |
 
 

@@ -133,6 +133,13 @@ Ensure the server validates the JWT's 'alg' header. Configure the JWT library to
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+Ensure the FastAPI application explicitly verifies the JWT algorithm used. Configure the JWT library to only accept a predefined list of secure algorithms, such as RS256, and reject tokens with non-matching algorithms. This can be done by setting the appropriate parameters in the JWT decoding function, such as `algorithms=['RS256']`, to prevent algorithm confusion attacks.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/jwt_alg_confusion`

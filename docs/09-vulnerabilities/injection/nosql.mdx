@@ -135,6 +135,13 @@ In Nuxt.js applications, to prevent NoSQL injection attacks, ensure that all dat
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, to prevent NoSQL injection attacks, ensure that you use a proper database driver that supports parameterized queries or prepared statements. Avoid constructing queries using string concatenation with user input. Instead, leverage the features of the chosen ODM (Object Document Mapper) like `motor` for MongoDB, which typically provide methods to safely create queries with placeholders for parameters. Additionally, validate and sanitize all user input rigorously to ensure that it conforms to expected formats. Implement proper error handling to avoid revealing sensitive information about the database structure in error messages.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/nosql`

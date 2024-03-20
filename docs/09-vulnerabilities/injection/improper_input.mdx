@@ -140,6 +140,13 @@ In Nuxt.js, prevent XSS by escaping user input, using the built-in 'v-html' dire
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, ensure that all user-provided data is sanitized and validated using Pydantic models for request bodies, Query, Path, and Header parameters. Utilize FastAPI's built-in security utilities, such as the `Depends` function with OAuth2PasswordBearer or APIKeyHeader for authentication, to further protect against injection attacks. Additionally, employ auto-escaping templates when rendering HTML responses to prevent XSS.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/improper_input`

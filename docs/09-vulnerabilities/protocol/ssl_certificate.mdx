@@ -87,6 +87,13 @@ Renew the expired SSL certificate for your Nuxt.js application. Ensure that the 
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+To remediate the expired SSL certificate issue in a FastAPI application, you should first acquire a new SSL certificate from a trusted Certificate Authority (CA). Once you have the new certificate, configure your FastAPI server to use it by updating the SSL context in your application's startup code. Ensure that the paths to the new certificate file and private key are correctly specified. Additionally, set up auto-renewal for your SSL certificates to prevent future expirations.
+
+</details>
+
 ## Configuration
 
 > Identifier: `protocol/ssl_certificate`

@@ -89,6 +89,13 @@ Configure the Nuxt.js application to suppress server version headers and error m
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+Configure FastAPI to suppress server banners and error messages that reveal stack details. Use middleware to intercept responses and remove headers like 'server' and 'x-powered-by', and customize error handlers to prevent leaking stack information in error responses.
+
+</details>
+
 ## Configuration
 
 > Identifier: `information_disclosure/software_component_leak`

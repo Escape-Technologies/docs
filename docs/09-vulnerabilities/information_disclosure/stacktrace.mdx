@@ -140,6 +140,13 @@ In Nuxt.js applications, ensure that error handling is properly implemented to a
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, ensure that error handlers are configured to catch exceptions and return generic error messages. Avoid exposing stack traces or specific error details in production environments. Use logging to record detailed errors internally, and consider implementing security middleware to manage how errors are reported to clients.
+
+</details>
+
 ## Configuration
 
 > Identifier: `information_disclosure/stacktrace`

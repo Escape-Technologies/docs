@@ -89,6 +89,13 @@ Ensure that server-side code does not include private IP addresses or sensitive 
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+To prevent private IP addresses from being exposed in HTTP response bodies within the FastAPI framework, ensure that any sensitive information is not included in the response models or is explicitly excluded using Pydantic's `exclude` parameter. Additionally, implement middleware to filter out private IPs from responses before they are sent to the client.
+
+</details>
+
 ## Configuration
 
 > Identifier: `information_disclosure/private_ip`

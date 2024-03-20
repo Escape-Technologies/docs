@@ -130,6 +130,13 @@ Ensure that the server-side application sets the 'Access-Control-Allow-Origin' h
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, ensure that the CORS (Cross-Origin Resource Sharing) middleware is properly configured. Use the `CORSMiddleware` and specify the `allow_origins` parameter with a list of allowed domains instead of using `*`. For example, `app.add_middleware(CORSMiddleware, allow_origins=['https://example.com'], allow_credentials=True, allow_methods=['*'], allow_headers=['*'])`. This will restrict cross-origin requests to the specified domains and mitigate potential security risks associated with the `Access-Control-Allow-Origin` header.
+
+</details>
+
 ## Configuration
 
 > Identifier: `protocol/header_access_control_allow_origin`

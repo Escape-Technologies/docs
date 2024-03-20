@@ -133,6 +133,13 @@ In Nuxt.js, ensure that all sensitive pages set the 'Cache-Control' header to 'n
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In the FastAPI framework, ensure that responses containing sensitive information have appropriate Cache-Control headers set. Use the 'Response' class to add the 'Cache-Control' header with directives such as 'no-store' to prevent caching of sensitive data. For example, you can include the header in your endpoint function like this: `response.headers['Cache-Control'] = 'no-store, max-age=0'`. This will instruct the client's browser not to cache the response, mitigating the risk of sensitive information being stored and potentially exposed.
+
+</details>
+
 ## Configuration
 
 > Identifier: `protocol/header_cache_control`

@@ -132,6 +132,13 @@ In your Nuxt.js application, ensure that the `X-Frame-Options` header is set to 
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, to mitigate clickjacking attacks by preventing your application from being embedded in an iframe, set the 'X-Frame-Options' header to 'DENY' or 'SAMEORIGIN'. You can do this by using FastAPI's middleware functionality. For example, you can add a middleware that sets the 'X-Frame-Options' header for every response like this: `app.add_middleware(Middleware, headers={'X-Frame-Options': 'SAMEORIGIN'})`. Replace 'SAMEORIGIN' with 'DENY' if you want to block all framing attempts.
+
+</details>
+
 ## Configuration
 
 > Identifier: `protocol/header_x_frame_options`

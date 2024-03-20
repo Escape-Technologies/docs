@@ -135,6 +135,13 @@ Implement strict access control checks based on user roles and permissions to en
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+Implement role-based access control (RBAC) and scope-based authorization to ensure that users can only access objects within their permitted areas. Use FastAPI's dependency injection system to create security dependencies that verify the user's role and scope before granting access to any object instance. Additionally, ensure that all database queries are properly scoped to the user's context to prevent cross-tenant data access.
+
+</details>
+
 ## Configuration
 
 > Identifier: `access_control/tenant_isolation`

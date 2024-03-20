@@ -134,6 +134,13 @@ To prevent CRLF injection attacks in a Nuxt.js application, ensure that user inp
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, to prevent CRLF injection attacks, ensure that user input is properly sanitized by escaping CRLF characters. Use built-in security features such as automatic data validation and avoid directly passing user input to response headers or status codes. Implement strict input validation using Pydantic models to define acceptable patterns and types.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/crlf`

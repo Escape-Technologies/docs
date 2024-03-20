@@ -134,6 +134,13 @@ In Nuxt.js, ensure that all cookies are set with the 'secure' flag to enforce tr
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, ensure that cookies are set with the 'secure' flag by using the 'response.set_cookie' method with the 'secure=True' parameter. Additionally, set the 'httponly=True' parameter to prevent JavaScript access to the cookie. This will help protect the cookie during transmission over unencrypted connections and from access by client-side scripts.
+
+</details>
+
 ## Configuration
 
 > Identifier: `protocol/header_set_cookie`

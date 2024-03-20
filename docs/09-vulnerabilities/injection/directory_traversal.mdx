@@ -92,6 +92,13 @@ In Nuxt.js, to prevent directory traversal attacks, ensure that user input is no
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, to prevent directory traversal attacks, ensure that user-supplied file paths are strictly validated against a whitelist of allowed paths. Use secure functions for file access, avoid direct filesystem access with user input, and employ the `pathlib` library to safely construct file paths. Additionally, set proper permissions on the server to restrict access to sensitive directories.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/directory_traversal`

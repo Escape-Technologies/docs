@@ -136,6 +136,13 @@ In Nuxt.js, to prevent open redirection vulnerabilities, ensure that all redirec
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, to prevent open redirection vulnerabilities, validate and sanitize all user-supplied URLs before redirecting. Use a whitelist of allowed domains to compare against the user input, and only perform the redirection if the target URL matches an entry in the whitelist. Additionally, avoid using raw user input directly in redirection functions; instead, parse the URL and ensure it leads to a safe and intended destination.
+
+</details>
+
 ## Configuration
 
 > Identifier: `request_forgery/open_redirect`

@@ -133,6 +133,13 @@ Implement HSTS in Nuxt.js by adding the `helmet` package to set the `Strict-Tran
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, ensure that all responses set the 'Strict-Transport-Security' header with an appropriate 'max-age' value. This can be achieved by using middleware to automatically add the header to all responses. For example, you can use the 'fastapi.middleware.httpsredirect.HTTPSRedirectMiddleware' to enforce HTTPS, which will also set the HSTS header for you.
+
+</details>
+
 ## Configuration
 
 > Identifier: `protocol/header_strict_transport_security`

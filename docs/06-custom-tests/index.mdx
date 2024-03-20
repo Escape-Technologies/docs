@@ -58,7 +58,7 @@ transform:
     - key: request.method
       value: DELETE
     - key: request.body.json
-      jq: '{"id": .id}'  # only keep the id in the delete body
+      jq: '{"id": .id}' # only keep the id in the delete body
 alert:
   name: Deletion successful forced
   context: >
@@ -78,11 +78,11 @@ detect:
 
 ```yaml
 seed:
-    - protocol: http
-      raw: |
-        @Host: https://backend-api.escape.tech
-        GET /data HTTP/1.1
-        Host: backend-api.tools.escape.tech
+  - protocol: http
+    raw: |
+      @Host: https://backend-api.escape.tech
+      GET /data HTTP/1.1
+      Host: backend-api.tools.escape.tech
 alert:
   name: Environment isolation
   context: >
@@ -93,7 +93,6 @@ detect:
   - if: helpers.response.is_successful
     is: true
 ```
-
 
 ### Seeded
 
@@ -130,5 +129,3 @@ detect:
 - `transform`: Defines lists of triggers and mutations (combined with AND operators).See [Transformations](./transformations)
 - `detect`: The conditions to trigger the alert. See [Detectors](./detectors)
 - `alert`: The alert to raise if the detection conditions are met. See [Alerting](./alerting)
-
-

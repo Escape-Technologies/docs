@@ -133,6 +133,13 @@ Ensure that all private fields in Nuxt.js components are properly encapsulated a
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+Ensure that all endpoint handlers in FastAPI validate user permissions before accessing or modifying private fields. Implement role-based access control (RBAC) and use dependency injection to verify the user's role at the start of each request. Additionally, consider using Pydantic models to explicitly define which fields are accessible for reading or writing based on the user's role.
+
+</details>
+
 ## Configuration
 
 > Identifier: `access_control/private_fields`

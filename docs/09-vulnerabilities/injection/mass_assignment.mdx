@@ -88,6 +88,13 @@ In Nuxt.js, to prevent mass assignment vulnerabilities, explicitly define the pr
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, to prevent mass assignment vulnerabilities, explicitly define which fields are allowed to be updated in your Pydantic models using the `Field` function with the `exclude` parameter. Additionally, use the `Body` function with the `embed` parameter to ensure that only the specified fields can be received from the request payload. Implement role-based access control (RBAC) checks to ensure users can only modify fields they are authorized to change.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/mass_assignment`

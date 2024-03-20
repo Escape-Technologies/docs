@@ -87,6 +87,13 @@ Implement proper access controls and ensure sensitive information is only sent o
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+Implement proper error handling in FastAPI to avoid leaking sensitive information. Use custom exception handlers to control the output of error messages and ensure that they do not contain details about the user's data or the internal workings of the application. Additionally, configure FastAPI's response models to exclude sensitive fields when sending data to clients.
+
+</details>
+
 ## Configuration
 
 > Identifier: `information_disclosure/leaking_authentication`

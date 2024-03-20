@@ -134,6 +134,13 @@ In your Nuxt.js application, ensure that the `X-Content-Type-Options` header is 
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, ensure that all responses include the 'X-Content-Type-Options' header with the value 'nosniff'. This can be achieved by using FastAPI's middleware to add this header to all outgoing responses. For example, you can create a middleware function that sets the 'X-Content-Type-Options' header to 'nosniff' and add it to your FastAPI application instance using the 'app.add_middleware' method.
+
+</details>
+
 ## Configuration
 
 > Identifier: `protocol/header_x_content_type_options`

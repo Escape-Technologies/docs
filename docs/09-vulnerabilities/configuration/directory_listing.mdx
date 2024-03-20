@@ -89,6 +89,13 @@ In Nuxt.js, to prevent directory listing, ensure that the static file serving co
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, to prevent directory listing, ensure that static file serving is configured correctly. Use the 'StaticFiles' class from 'fastapi.staticfiles' to serve static files and explicitly define which directories should be accessible. Avoid serving the entire root directory. Additionally, set 'use_directory_listing' to 'False' to disable directory listing for the specified static directories.
+
+</details>
+
 ## Configuration
 
 > Identifier: `configuration/directory_listing`

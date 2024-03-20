@@ -141,6 +141,13 @@ In Nuxt.js, to prevent XXE (XML External Entity) injection attacks, ensure that 
 
 </details>
 
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, to prevent XXE (XML External Entity) injection attacks, ensure that any XML parsing libraries are configured to disallow the processing of external entities. Additionally, use dependency injection to provide XML parsers with secure configurations, and avoid serializing sensitive data to XML when possible. Always validate and sanitize input to reject any XML or JSON that contains unexpected external entity references.
+
+</details>
+
 ## Configuration
 
 > Identifier: `injection/xxe`

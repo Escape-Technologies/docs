@@ -3,10 +3,12 @@
 toc_min_heading_level: 2
 toc_max_heading_level: 2
 ---
-# Mutators
-## Request Body JSON Mutator
-`key: request.body.json`
 
+# Mutators
+
+## Request Body JSON Mutator
+
+`key: request.body.json`
 
 You can use this mutator to change the JSON body of the request before resending it.
 
@@ -14,26 +16,23 @@ You can use this mutator to change the JSON body of the request before resending
 
 ```yaml
 transform:
-    trigger:
-      - if: request.body.json
-        is: {"user": "admin"}
-    mutate:
-      - key: request.body.json
-        jq: '. | {"user": .user + " {{modify_value}}"}'
+  trigger:
+    - if: request.body.json
+      is: { "user": "admin" }
+  mutate:
+    - key: request.body.json
+      jq: '. | {"user": .user + " {{modify_value}}"}'
 ```
 
 ### Properties
 
 - `jq`: JQ query to apply to the JSON body. See https://stedolan.github.io/jq/manual/
 
-
-
-
 ---
 
 ## Request Body Text Mutator
-`key: request.body.text`
 
+`key: request.body.text`
 
 You can use this mutator to change the body (as text) of the request before resending it.
 
@@ -43,13 +42,13 @@ You can use this mutator to change the body (as text) of the request before rese
 transform:
   trigger:
     - if: request.body.text
-      contains: 'hello'
+      contains: "hello"
   mutate:
     - key: request.body.text
       values:
-        - 'injection 1'
-        - 'injection 2'
-        - 'injection 3'
+        - "injection 1"
+        - "injection 2"
+        - "injection 3"
 ```
 
 ### Properties
@@ -58,14 +57,11 @@ transform:
 - `values`: The values to set, generates multiple queries.
 - `regex_replace`: Regex replace pattern.
 
-
-
-
 ---
 
 ## Request Headers Mutator
-`key: request.headers`
 
+`key: request.headers`
 
 You can use this mutator to change the headers of the request before resending it.
 
@@ -73,13 +69,13 @@ You can use this mutator to change the headers of the request before resending i
 
 ```yaml
 transform:
-    trigger:
-      - if: schema.url
-        is: '/api/v1/tested/route'
-    mutate:
-      - key: request.headers
-        name: X-API-version
-        value: 'APIV2'
+  trigger:
+    - if: schema.url
+      is: "/api/v1/tested/route"
+  mutate:
+    - key: request.headers
+      name: X-API-version
+      value: "APIV2"
 ```
 
 ### Properties
@@ -90,14 +86,11 @@ transform:
 - `name`: The header name to match, supports regex.
 - `delete`: Delete the matched headers.
 
-
-
-
 ---
 
 ## Request Object Mutator
-`key: request.object`
 
+`key: request.object`
 
 The detected object scalars (including custom scalars) in the request, with their kind, name and value.
 
@@ -105,31 +98,29 @@ The detected object scalars (including custom scalars) in the request, with thei
 
 ```yaml
 transform:
-    trigger:
-      - if: schema.url
-        is: '/api/v1/tested/route'
-    mutate:
-      - key: request.object
-        select:
-          type:
-            is: email
-          name:
-            is: 'admin_email'
-          value:
-            regex: .*@escape.tech
-        mutate:
-          regex_replace:
-            pattern: (.*)@escape.tech
-            replacement: \1@attacker.com
+  trigger:
+    - if: schema.url
+      is: "/api/v1/tested/route"
+  mutate:
+    - key: request.object
+      select:
+        type:
+          is: email
+        name:
+          is: "admin_email"
+        value:
+          regex: .*@escape.tech
+      mutate:
+        regex_replace:
+          pattern: (.*)@escape.tech
+          replacement: \1@attacker.com
 ```
-
-
 
 ---
 
 ## Request User Mutator
-`key: request.user`
 
+`key: request.user`
 
 You can use this mutator to change the user of the request before resending it.
 
@@ -137,15 +128,14 @@ You can use this mutator to change the user of the request before resending it.
 
 ```yaml
 transform:
-    trigger:
-      - if: schema.url
-        is: '/api/v1/tested/route'
-    mutate:
-      - key: request.user
-        mutate:
-          value: admin
+  trigger:
+    - if: schema.url
+      is: "/api/v1/tested/route"
+  mutate:
+    - key: request.user
+      mutate:
+        value: admin
 ```
-        
 
 ### Properties
 
@@ -154,14 +144,11 @@ transform:
 - `regex_replace`: Regex replace pattern.
 - `drop_user`: Remove the user authentication from the request.
 
-
-
-
 ---
 
 ## Schema URL Mutator
-`key: schema.url`
 
+`key: schema.url`
 
 You can use this mutator to change the URL of the request before resending it.
 
@@ -169,15 +156,14 @@ You can use this mutator to change the URL of the request before resending it.
 
 ```yaml
 transform:
-    trigger:
-      - if: schema.url
-        is: '/api/v1/tested/route'
-    mutate:
-      - key: schema.url
-        mutate:
-          value: '/api/v2/'
+  trigger:
+    - if: schema.url
+      is: "/api/v1/tested/route"
+  mutate:
+    - key: schema.url
+      mutate:
+        value: "/api/v2/"
 ```
-        
 
 ### Properties
 
@@ -185,14 +171,11 @@ transform:
 - `values`: The values to set, generates multiple queries.
 - `regex_replace`: Regex replace pattern.
 
-
-
-
 ---
 
 ## Schema Path Reference Mutator
-`key: schema.path_ref`
 
+`key: schema.path_ref`
 
 You can use this mutator to change the operation name in GraphQL or the path in REST (keeping the domain) before resending it.
 
@@ -200,15 +183,14 @@ You can use this mutator to change the operation name in GraphQL or the path in 
 
 ```yaml
 transform:
-    trigger:
-      - if: schema.path_ref
-        is: '/api/v1/tested/route'
-    mutate:
-      - key: schema.path_ref
-        mutate:
-          value: '/api/v2/tested/route'
+  trigger:
+    - if: schema.path_ref
+      is: "/api/v1/tested/route"
+  mutate:
+    - key: schema.path_ref
+      mutate:
+        value: "/api/v2/tested/route"
 ```
-        
 
 ### Properties
 
@@ -216,8 +198,4 @@ transform:
 - `values`: The values to set, generates multiple queries.
 - `regex_replace`: Regex replace pattern.
 
-
-
-
 ---
-
