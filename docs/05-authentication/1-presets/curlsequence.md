@@ -6,7 +6,7 @@ description: cURL Sequence Authentication Preset
 # cURL Sequence Authentication with Escape
 
 ## Description
-The &#39;cURL Sequence&#39; authentication preset facilitates complex authentication flows by executing a templated sequence of cURL requests:
+The &#39;cURL Sequence&#39; authentication preset facilitates complex authentication flows by executing a templated sequence of cURL requests in a secure sandboxed cURL simulator:
 
 - **Templated cURL Requests**: Enables the definition of a sequence of cURL requests, where each request can be templated with variables.
 - **Dynamic Token Extractions**: Variables are dynamically extracted from the responses of these requests, allowing for sequential data dependency across requests.
@@ -14,6 +14,8 @@ The &#39;cURL Sequence&#39; authentication preset facilitates complex authentica
 - **User-Specific Variables**: Supports defining user-specific variables that can be injected into the cURL sequences.
 
 This preset is particularly useful for complex authentication scenarios where multiple steps or interactions are required, and where each step might depend on the outcome of the previous one.
+
+**Info**: The list of supported cURL options is limited to a subset of the most commonly used options. The options are defined in the `cURL Preset` documentation.
 
 **Warning**: This preset requires to name your variables in order to be able to extract and inject them properly in the templates or the final injections.
 

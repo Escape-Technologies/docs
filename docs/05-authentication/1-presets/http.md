@@ -49,7 +49,7 @@ presets:
             addtional: cookie
         headers:
             addtional: header
-        query_parameters:
+        queryParameters:
             addtional: query param
 
 ```

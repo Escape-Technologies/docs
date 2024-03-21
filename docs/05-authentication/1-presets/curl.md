@@ -6,17 +6,26 @@ description: cURL Authentication Preset
 # cURL Authentication with Escape
 
 ## Description
-The &#39;cURL&#39; authentication preset is designed for dynamic token generation and reuse:
+The `cURL` authentication preset is designed for dynamic token generation and reuse:
 
-- **cURL Command Parsing**: Parses a cURL command to send an authentication request.
+- **cURL Command Parsing**: Parses a cURL command and executes it in a secure sandboxed cURL simulator.
 - **Dynamic Token Extraction**: Extracts the authentication token from the cURL command&#39;s HTTP response.
 - **Token Re-injection**: Reinjects the extracted token into subsequent authenticated requests.
 
 This preset is particularly useful for scenarios where authentication tokens are dynamically generated and need to be efficiently extracted and reused in ongoing requests.
 
-Two common use cases are:
-- **Bearer JWT Token**: A REST API request that generates a Bearer JWT Token, which is then reinjected into the Authorization header for subsequent requests.
-- **Set-Cookie**: A REST API request that generates a cookie, which is then set in the cookies for subsequent requests.
+The simulator supports a subset of arguments commonly used in cURL, facilitating various HTTP requests and options:
+- `url`: The URL for the HTTP request.
+- `-A`, `--user-agent`: Sets the user agent string for the HTTP request.
+- `-H`, `--header`: Add a header to the request (can be used multiple times for multiple headers).
+- `-b`, `--cookie`: Add a cookie to the request (can be used multiple times for multiple cookies).
+- `-d`, `--data`, `--data-ascii`, `--data-binary`, `--data-raw`: Sends the specified data in a POST request.
+- `-u`, `--user`: Specify the user and password for server authentication.
+- `-X`, `--request`: Specify a custom request method to use when communicating with the HTTP server.
+- `-x`, `--proxy`: Use the specified proxy.
+- `-k`, `--insecure`: Allow connections to SSL sites without certificates.
+- `-L`, `--location`: Follow redirects (the maximum number of redirects is defined by `--max-redirs`).
+- `--max-redirs`: Set the maximum number of redirections to follow for `-L`.
 
 ## Examples
 

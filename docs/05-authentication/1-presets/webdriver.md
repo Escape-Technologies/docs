@@ -28,6 +28,7 @@ presets:
         variable: token
     extractions:
     -   name: token
+        key: Authorization
         location: query
         regex: example-portal.*portal-session-id=([^&]*)
     users:
@@ -100,7 +101,7 @@ presets:
 |----------|------|----------|-------------|-----------|
 | type | `Const[webdriver]` | `True` |  |  |
 | users | `WebdriverUserPreset` | `True` | The list of users to generate tokens for. | [WebdriverUserPreset](#WebdriverUserPreset) |
-| wait_for_seconds | `integer` | `True` | The number of seconds to wait at various steps of the script. For example when waiting for a page to load. |  |
+| wait_for_seconds | `integer` | `False` | The number of seconds to wait at various steps of the script. For example when waiting for a page to load. |  |
 | extractions | `TokenExtraction` | `False` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
 | injections | `TokenInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
 
