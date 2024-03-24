@@ -6,7 +6,7 @@ description: cURL Sequence Authentication Preset
 # cURL Sequence Authentication with Escape
 
 ## Description
-The &#39;cURL Sequence&#39; authentication preset facilitates complex authentication flows by executing a templated sequence of cURL requests in a secure sandboxed cURL simulator:
+The `cURL Sequence` authentication preset facilitates complex authentication flows by executing a templated sequence of cURL requests in a secure sandboxed cURL simulator:
 
 - **Templated cURL Requests**: Enables the definition of a sequence of cURL requests, where each request can be templated with variables.
 - **Dynamic Token Extractions**: Variables are dynamically extracted from the responses of these requests, allowing for sequential data dependency across requests.
@@ -15,9 +15,24 @@ The &#39;cURL Sequence&#39; authentication preset facilitates complex authentica
 
 This preset is particularly useful for complex authentication scenarios where multiple steps or interactions are required, and where each step might depend on the outcome of the previous one.
 
-**Info**: The list of supported cURL options is limited to a subset of the most commonly used options. The options are defined in the `cURL Preset` documentation.
-
 **Warning**: This preset requires to name your variables in order to be able to extract and inject them properly in the templates or the final injections.
+
+The simulator supports a subset of arguments commonly used in `cURL`:
+- `url`: The URL for the HTTP request.
+- `-X`, `--request`: Specify a custom request method to use when communicating with the HTTP server.
+- `-H`, `--header`: Add a header to the request (can be used multiple times for multiple headers).
+- `-b`, `--cookie`: Add a cookie to the request (can be used multiple times for multiple cookies).
+- `-d`, `--data`, `--data-ascii`, `--data-binary`, `--data-raw`: Sends the specified data in a POST request.
+- `-u`, `--user`: Specify the user and password for server authentication.
+- `-A`, `--user-agent`: Sets the user agent string for the HTTP request.
+- `-x`, `--proxy`: Use the specified proxy.
+- `-k`, `--insecure`: Allow connections to SSL sites without certificates.
+- `-L`, `--location`: Follow redirects (the maximum number of redirects is defined by `--max-redirs`).
+- `--max-redirs`: Set the maximum number of redirections to follow for `-L`.
+
+**Note**: The simulator does not support all `cURL` arguments. Adding unsupported arguments may result in an error.
+
+
 
 ## Examples
 

@@ -14,18 +14,22 @@ The `cURL` authentication preset is designed for dynamic token generation and re
 
 This preset is particularly useful for scenarios where authentication tokens are dynamically generated and need to be efficiently extracted and reused in ongoing requests.
 
-The simulator supports a subset of arguments commonly used in cURL, facilitating various HTTP requests and options:
+The simulator supports a subset of arguments commonly used in `cURL`:
 - `url`: The URL for the HTTP request.
-- `-A`, `--user-agent`: Sets the user agent string for the HTTP request.
+- `-X`, `--request`: Specify a custom request method to use when communicating with the HTTP server.
 - `-H`, `--header`: Add a header to the request (can be used multiple times for multiple headers).
 - `-b`, `--cookie`: Add a cookie to the request (can be used multiple times for multiple cookies).
 - `-d`, `--data`, `--data-ascii`, `--data-binary`, `--data-raw`: Sends the specified data in a POST request.
 - `-u`, `--user`: Specify the user and password for server authentication.
-- `-X`, `--request`: Specify a custom request method to use when communicating with the HTTP server.
+- `-A`, `--user-agent`: Sets the user agent string for the HTTP request.
 - `-x`, `--proxy`: Use the specified proxy.
 - `-k`, `--insecure`: Allow connections to SSL sites without certificates.
 - `-L`, `--location`: Follow redirects (the maximum number of redirects is defined by `--max-redirs`).
 - `--max-redirs`: Set the maximum number of redirections to follow for `-L`.
+
+**Note**: The simulator does not support all `cURL` arguments. Adding unsupported arguments may result in an error.
+
+
 
 ## Examples
 
