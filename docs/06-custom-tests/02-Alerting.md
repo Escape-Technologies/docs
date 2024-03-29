@@ -24,3 +24,4 @@ alert:
 - `name`: Name of the alert
 - `context`: Context of the alert
 - `category`: Category of the alert
+- `remediation`: Remediation of the alert

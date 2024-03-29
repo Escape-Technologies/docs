@@ -10,12 +10,13 @@ toc_max_heading_level: 2
 
 ## <a id="AlertModel"></a>AlertModel
 
-| Property | Type       | Required | Description           | Reference             |
-| -------- | ---------- | -------- | --------------------- | --------------------- |
-| severity | `SEVERITY` | `True`   | Severity of the alert | [SEVERITY](#SEVERITY) |
-| name     | `string`   | `True`   | Name of the alert     |                       |
-| context  | `string`   | `True`   | Context of the alert  |                       |
-| category | `CATEGORY` | `False`  | Category of the alert | [CATEGORY](#CATEGORY) |
+| Property    | Type       | Required | Description              | Reference             |
+| ----------- | ---------- | -------- | ------------------------ | --------------------- |
+| severity    | `SEVERITY` | `True`   | Severity of the alert    | [SEVERITY](#SEVERITY) |
+| name        | `string`   | `True`   | Name of the alert        |                       |
+| context     | `string`   | `True`   | Context of the alert     |                       |
+| category    | `CATEGORY` | `False`  | Category of the alert    | [CATEGORY](#CATEGORY) |
+| remediation | `string`   | `False`  | Remediation of the alert |                       |
 
 ## <a id="CrudDetector"></a>CrudDetector
 
@@ -26,13 +27,13 @@ toc_max_heading_level: 2
 | in       | `CRUD`                        | `False`  | Condition is the request is in this list of CRUD operations (exact match) | [CRUD](#CRUD) |
 | if       | `Const[helpers.request.crud]` | `False`  | Use this to select against the detected CRUD operation of the request.    |               |
 
-## <a id="HTTPSeeder"></a>HTTPSeeder
+## <a id="HTTPRAWSeeder"></a>HTTPRAWSeeder
 
-| Property | Type          | Required | Description                                                                                                  | Reference |
-| -------- | ------------- | -------- | ------------------------------------------------------------------------------------------------------------ | --------- |
-| protocol | `Const[http]` | `False`  | The HTTP seeder allows you to send a request at the start of the scan.                                       |           |
-| raw      | `string`      | `True`   | The raw HTTP request in [nuclei format](https://docs.projectdiscovery.io/templates/protocols/http/raw-http). |           |
-| user     | `string`      | `False`  | The user to use for the request. If not provided, the request is sent without authentication.                |           |
+| Property | Type              | Required | Description                                                                                                  | Reference |
+| -------- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------ | --------- |
+| protocol | `Const[http_raw]` | `False`  | The HTTP seeder allows you to send a request at the start of the scan.                                       |           |
+| raw      | `string`          | `True`   | The raw HTTP request in [nuclei format](https://docs.projectdiscovery.io/templates/protocols/http/raw-http). |           |
+| user     | `string`          | `False`  | The user to use for the request. If not provided, the request is sent without authentication.                |           |
 
 ## <a id="MethodDetector"></a>MethodDetector
 
@@ -81,6 +82,18 @@ toc_max_heading_level: 2
 | is       | `OBJECT_TYPE` | `False`  | Object type is exactly this type             | [OBJECT_TYPE](#OBJECT_TYPE) |
 | is_not   | `OBJECT_TYPE` | `False`  | Object type is any this type except this one | [OBJECT_TYPE](#OBJECT_TYPE) |
 | in       | `OBJECT_TYPE` | `False`  | Object type is in the following list         | [OBJECT_TYPE](#OBJECT_TYPE) |
+
+## <a id="RESTSeeder"></a>RESTSeeder
+
+| Property | Type                   | Required | Description                                                                                   | Reference                   |
+| -------- | ---------------------- | -------- | --------------------------------------------------------------------------------------------- | --------------------------- |
+| protocol | `Const[rest]`          | `False`  | The REST seeder allows you to send a request that adapts to the host of your current scan.    |                             |
+| user     | `string`               | `False`  | The user to use for the request. If not provided, the request is sent without authentication. |                             |
+| path     | `string`               | `False`  |                                                                                               |                             |
+| method   | `HTTP_METHOD`          | `False`  |                                                                                               | [HTTP_METHOD](#HTTP_METHOD) |
+| headers  | `Dict[string, string]` | `False`  |                                                                                               |                             |
+| body     | `string`               | `False`  |                                                                                               |                             |
+| params   | `Dict[string, string]` | `False`  |                                                                                               |                             |
 
 ## <a id="RegexReplace"></a>RegexReplace
 
@@ -877,6 +890,8 @@ toc_max_heading_level: 2
 - `dropbox_short_lived_api_token`
 
 - `duffel_api_token`
+
+- `duration`
 
 - `dwolla`
 
