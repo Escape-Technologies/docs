@@ -29,11 +29,11 @@ toc_max_heading_level: 2
 
 ## <a id="HTTPRAWSeeder"></a>HTTPRAWSeeder
 
-| Property | Type              | Required | Description                                                                                                  | Reference |
-| -------- | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------ | --------- |
-| protocol | `Const[http_raw]` | `False`  | The HTTP seeder allows you to send a request at the start of the scan.                                       |           |
-| raw      | `string`          | `True`   | The raw HTTP request in [nuclei format](https://docs.projectdiscovery.io/templates/protocols/http/raw-http). |           |
-| user     | `string`          | `False`  | The user to use for the request. If not provided, the request is sent without authentication.                |           |
+| Property | Type          | Required | Description                                                                                                  | Reference |
+| -------- | ------------- | -------- | ------------------------------------------------------------------------------------------------------------ | --------- |
+| protocol | `Const[http]` | `False`  | The HTTP seeder allows you to send a request at the start of the scan.                                       |           |
+| raw      | `string`      | `True`   | The raw HTTP request in [nuclei format](https://docs.projectdiscovery.io/templates/protocols/http/raw-http). |           |
+| user     | `string`      | `False`  | The user to use for the request. If not provided, the request is sent without authentication.                |           |
 
 ## <a id="MethodDetector"></a>MethodDetector
 
@@ -92,6 +92,7 @@ toc_max_heading_level: 2
 | path     | `string`               | `False`  |                                                                                               |                             |
 | method   | `HTTP_METHOD`          | `False`  |                                                                                               | [HTTP_METHOD](#HTTP_METHOD) |
 | headers  | `Dict[string, string]` | `False`  |                                                                                               |                             |
+| raw      | `string`               | `False`  |                                                                                               |                             |
 | body     | `string`               | `False`  |                                                                                               |                             |
 | params   | `Dict[string, string]` | `False`  |                                                                                               |                             |
 
