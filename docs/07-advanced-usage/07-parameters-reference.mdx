@@ -12,25 +12,19 @@ Here is the list of all available parameters in the `escaperc`. Some of them are
 
 The parameters related to the scan.
 
-:::note JSON Schema example
+:::note YAML Schema example
 
 ```
-{
-    "scan": {
-        "blacklist": {},
-        "hotstart": [
-            "**value**"
-        ],
-        "profile": "surface | default",
-        "read_only": "true | false",
-        "scalars": {
-            "**value**": {}
-        },
-        "whitelist": [
-            "**value**"
-        ]
-    }
-}
+scan:
+  blacklist: {}
+  hotstart:
+    - '**value**'
+  profile: surface | default
+  read_only: true | false
+  scalars:
+    '**value**': {}
+  whitelist:
+    - '**value**'
 ```
 
 :::
@@ -63,20 +57,17 @@ The parameters related to the scan.
 
 All parameters available in our `client`:
 
-:::note JSON Schema example
+:::note YAML Schema example
 
 ```
-{
-    "client": {
-        "concurrent_connection": "**value**",
-        "concurrent_tasks": "**value**",
-        "proxy": {
-            "type": "escape | http | repeater"
-        },
-        "request_timeout": "**value**",
-        "requests_per_minute": "**value**"
-    }
-}
+client:
+  concurrent_connection: '**value**'
+  concurrent_tasks: '**value**'
+  proxy:
+    type: escape | http | repeater
+  request_timeout: '**value**'
+  requests_per_minute: '**value**'
+
 ```
 
 :::
@@ -106,15 +97,13 @@ All parameters available in our `client`:
 
 The `PyMultiAuth` authentication configuration. See advanced configuration documentation.
 
-:::note JSON Schema example
+:::note YAML Schema example
 
 ```
-{
-    "authentication": {
-        "methods": {},
-        "users": {}
-    }
-}
+authentication:
+  methods: {}
+  users: {}
+
 ```
 
 :::
