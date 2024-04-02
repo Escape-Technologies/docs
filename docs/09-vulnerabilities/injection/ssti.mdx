@@ -112,14 +112,10 @@ To mitigate Server-Side Template Injection in FastAPI, ensure that user input is
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/ssti": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/ssti:
+    skip: true
 ```
 
 

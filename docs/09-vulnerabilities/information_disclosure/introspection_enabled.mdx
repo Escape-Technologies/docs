@@ -73,14 +73,10 @@ To mitigate security risks in the Hasura framework, ensure that introspection is
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "information_disclosure/introspection_enabled": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  information_disclosure/introspection_enabled:
+    skip: true
 ```
 
 

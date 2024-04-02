@@ -152,14 +152,10 @@ For FastAPI applications, ensure that exception handling is properly implemented
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/server_error": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/server_error:
+    skip: true
 ```
 
 

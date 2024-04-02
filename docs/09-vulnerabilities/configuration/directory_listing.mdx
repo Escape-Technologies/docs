@@ -108,14 +108,10 @@ In FastAPI, to prevent directory listing, ensure that static file serving is con
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "configuration/directory_listing": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  configuration/directory_listing:
+    skip: true
 ```
 
 

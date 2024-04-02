@@ -77,14 +77,10 @@ To mitigate the risk of denial-of-service (DoS) attacks when using Automatic Per
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "configuration/graphql_apq": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  configuration/graphql_apq:
+    skip: true
 ```
 
 

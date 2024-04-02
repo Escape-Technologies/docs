@@ -149,14 +149,10 @@ Implement the Content-Security-Policy (CSP) header in FastAPI by using a middlew
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/header_content_security_policy": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/header_content_security_policy:
+    skip: true
 ```
 
 

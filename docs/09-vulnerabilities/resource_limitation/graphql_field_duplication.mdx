@@ -69,14 +69,10 @@ To avoid field duplication in Hasura, ensure that your GraphQL queries are struc
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/graphql_field_duplication": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/graphql_field_duplication:
+    skip: true
 ```
 
 

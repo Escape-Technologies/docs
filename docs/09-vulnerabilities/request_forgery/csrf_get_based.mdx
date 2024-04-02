@@ -77,14 +77,10 @@ To mitigate GET based CSRF vulnerabilities in the Hasura framework, ensure that 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "request_forgery/csrf_get_based": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  request_forgery/csrf_get_based:
+    skip: true
 ```
 
 

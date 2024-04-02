@@ -72,14 +72,10 @@ To address issues with undefined objects in the Hasura framework, ensure that al
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "schema/undefined_object": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  schema/undefined_object:
+    skip: true
 ```
 
 

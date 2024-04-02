@@ -106,14 +106,10 @@ To remediate vulnerabilities in the FastAPI framework, ensure that you are using
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "information_disclosure/potential_cve": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  information_disclosure/potential_cve:
+    skip: true
 ```
 
 

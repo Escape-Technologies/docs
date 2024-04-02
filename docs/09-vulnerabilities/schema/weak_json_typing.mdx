@@ -72,14 +72,10 @@ Ensure strict type checking in Hasura by using explicit casting or type annotati
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "schema/weak_json_typing": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  schema/weak_json_typing:
+    skip: true
 ```
 
 

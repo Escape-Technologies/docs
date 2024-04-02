@@ -39,56 +39,44 @@ The ID of the organization on Escape. It can be found on [the organization secti
 
 ### Example response
 
-```json
-[
-  {
-    "name": "Gontoz",
-    "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
-    "url": "https://gontoz.escape.tech/graphql",
-    "createdAt": "2022-03-07T11:44:20.968Z",
-    "hasCI": true,
-    "cron": "0 3 * * *",
-    "scans": [
-      {
-        "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
-        "status": "SUCCESS",
-        "createdAt": "2022-12-05T14:32:32.968Z",
-        "alertCounts": {
-          "HIGH": 10,
-          "MEDIUM": 7,
-          "LOW": 9,
-          "INFO": 3
-        },
-        "commitHash": "11fb1c9f83f371ca9c1e353ef9f16bc36934ab83",
-        "betterThan": 0.7205479452054795
-      },
-      {
-        "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
-        "status": "SUCCESS",
-        "createdAt": "2022-10-24T09:02:05.662Z",
-        "alertCounts": {
-          "HIGH": 1,
-          "MEDIUM": 8,
-          "LOW": 9,
-          "INFO": 2
-        },
-        "commitHash": "11fb1c9f83f371ca9c1e353ef9f16bc36934ab83",
-        "betterThan": 0.7205479452054795
-    ],
-    "lastSuccessfulScan": {
-      "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
-      "createdAt": "2022-12-05T14:32:32.968Z",
-      "alertCounts": {
-        "HIGH": 10,
-        "MEDIUM": 7,
-        "LOW": 9,
-        "INFO": 3
-      },
-      "commitHash": "11fb1c9f83f371ca9c1e353ef9f16bc36934ab83",
-      "betterThan": 0.7205479452054795
-    }
-  }
-]
+```yaml
+- name: Gontoz
+  id: 5d1b0249-a6fd-4d64-997a-99675ca6afac
+  url: https://gontoz.escape.tech/graphql
+  createdAt: '2022-03-07T11:44:20.968Z'
+  hasCI: true
+  cron: 0 3 * * *
+  scans:
+  - id: 5d1b0249-a6fd-4d64-997a-99675ca6afac
+    status: SUCCESS
+    createdAt: '2022-12-05T14:32:32.968Z'
+    alertCounts:
+      HIGH: 10
+      MEDIUM: 7
+      LOW: 9
+      INFO: 3
+    commitHash: 11fb1c9f83f371ca9c1e353ef9f16bc36934ab83
+    betterThan: 0.7205479452054795
+  - id: 5d1b0249-a6fd-4d64-997a-99675ca6afac
+    status: SUCCESS
+    createdAt: '2022-10-24T09:02:05.662Z'
+    alertCounts:
+      HIGH: 1
+      MEDIUM: 8
+      LOW: 9
+      INFO: 2
+    commitHash: 11fb1c9f83f371ca9c1e353ef9f16bc36934ab83
+    betterThan: 0.7205479452054795
+  lastSuccessfulScan:
+    id: 5d1b0249-a6fd-4d64-997a-99675ca6afac
+    createdAt: '2022-12-05T14:32:32.968Z'
+    alertCounts:
+      HIGH: 10
+      MEDIUM: 7
+      LOW: 9
+      INFO: 3
+    commitHash: 11fb1c9f83f371ca9c1e353ef9f16bc36934ab83
+    betterThan: 0.7205479452054795
 ```
 
 ## `GET /scans/:scanId`
@@ -103,72 +91,53 @@ The ID of the scan on Escape.
 
 ### Example response
 
-```json
-{
-  "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
-  "status": "SUCCESS",
-  "createdAt": "2022-12-05T14:32:32.968Z",
-  "score": 0.009737885064620144,
-  "completionRatio": 1,
-  "commitHash": "11fb1c9f83f371ca9c1e353ef9f16bc36934ab83",
-  "application": {
-    "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
-    "createdAt": "2022-03-07T11:44:20.968Z",
-    "engine": "Ariadne",
-    "manuallySetEngine": null,
-    "name": "Gontoz",
-    "updatedAt": "2022-12-15T14:42:23.275Z",
-    "activeIntrospection": {
-      "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
-      "applicationId": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
-      "createdAt": "2022-08-05T07:42:54.562Z"
-    }
-  },
-  "configuration": {
-    "applicationId": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
-    "content": {
-      "auth": {
-        "schema1": {
-          "tech": "manual"
-        }
-      },
-      "users": {
-        "user0": {
-          "auth": "schema1",
-          "headers": {
-            "hello": "world"
-          }
-        }
-      },
-      "checks": {},
-      "scan": {
-        "read_only": false
-      }
-    },
-    "createdAt": "2022-08-08T10:32:37.140Z",
-    "isAuthenticationValid": true,
-    "isConfigurationValid": true,
-    "readWrite": true,
-    "updatedAt": "2022-08-08T10:32:37.140Z",
-    "applicationUsers": [
-      {
-        "headerName": "hello",
-        "headerValue": "world",
-        "name": "user0"
-      }
-    ]
-  },
-  "alerts": [
-    {
-      "id": "99679d55-b4f5-4edb-b558-4c1cefda870c",
-      "status": "NO_STATUS",
-      "severity": "HIGH",
-      "tags": [],
-      "securityTestUid": "injection/xxe"
-    },
-    ...,
-  ]
-}
+```yaml
+id: 5d1b0249-a6fd-4d64-997a-99675ca6afac
+status: SUCCESS
+createdAt: '2022-12-05T14:32:32.968Z'
+score: 0.009737885064620144
+completionRatio: 1
+commitHash: 11fb1c9f83f371ca9c1e353ef9f16bc36934ab83
+application:
+  id: 5d1b0249-a6fd-4d64-997a-99675ca6afac
+  createdAt: '2022-03-07T11:44:20.968Z'
+  engine: Ariadne
+  manuallySetEngine: null
+  name: Gontoz
+  updatedAt: '2022-12-15T14:42:23.275Z'
+  activeIntrospection:
+    id: 5d1b0249-a6fd-4d64-997a-99675ca6afac
+    applicationId: 5d1b0249-a6fd-4d64-997a-99675ca6afac
+    createdAt: '2022-08-05T07:42:54.562Z'
+configuration:
+  applicationId: 5d1b0249-a6fd-4d64-997a-99675ca6afac
+  content:
+    auth:
+      schema1:
+        tech: manual
+    users:
+      user0:
+        auth: schema1
+        headers:
+          hello: world
+    checks: {}
+    scan:
+      read_only: false
+  createdAt: '2022-08-08T10:32:37.140Z'
+  isAuthenticationValid: true
+  isConfigurationValid: true
+  readWrite: true
+  updatedAt: '2022-08-08T10:32:37.140Z'
+  applicationUsers:
+  - headerName: hello
+    headerValue: world
+    name: user0
+alerts:
+- id: 99679d55-b4f5-4edb-b558-4c1cefda870c
+  status: NO_STATUS
+  severity: HIGH
+  tags: []
+  securityTestUid: injection/xxe
 ```
 
 ## `POST /application/:applicationId/start-scan`
@@ -219,11 +188,9 @@ The stringified JSON introspection.
 
 ### Example response
 
-```json
-{
-  "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
-  "applicationId": "5d1b0249-a6fd-4d64-997a-99675ca6afac"
-}
+```yaml
+id: 5d1b0249-a6fd-4d64-997a-99675ca6afac
+applicationId: 5d1b0249-a6fd-4d64-997a-99675ca6afac
 ```
 
 ## `POST /create-application`
@@ -234,64 +201,54 @@ Programmatically create an application on Escape and start a scan.
 
 The route expects a JSON body with the following fields:
 
-```json
-{
-  // Application settings
-  "organizationId": "<organizationId>",
-  "name": "Application name",
-  "type": "GRAPHQL" | "REST",
-  "serverUrl": "<url>",
+```yaml
+# Application settings
 
-  // Application schema, provide exactly one of the two fields
-  "schema": "<stringified schema>",
-  "schemaUrl": "<public schema url>",
+organizationId: <organizationId>
+name: Application name
+type: GRAPHQL # Possible values: "GRAPHQL", "REST"
+serverUrl: <url>
 
-  // Scan settings
-  "readWrite": true | false, // false makes the scan safe for production
-  "applicationUsers": [
-    // Authentication settings for the scan
-    {"name": "User name", "headerName": "Authorization", "headerValue": "Bearer ..."},
-    ...
-    // Send an empty array if you don't want to authenticate
-  ],
-  "repeaterId": "<repeaterId>" // Optional, if you want to use a repeater
-}
+# Application schema, provide exactly one of the two fields
+schema: <stringified schema>
+schemaUrl: <public schema url>
+
+# Scan settings
+readWrite: true
+applicationUsers:
+- name: User name
+  headerName: Authorization
+  headerValue: Bearer ...
+# Send an empty array if you don't want to authenticate
+
+repeaterId: <repeaterId> # Optional, if you want to use a repeater
 ```
 
 If you are adding a GraphQL application with an open introspection endpoint, set `schemaUrl` to `serverUrl`.
 
 **Example:**
 
-```json
-{
-  "organizationId": "<uuid>",
-  "name": "Gontoz",
-  "type": "GRAPHQL",
-  "serverUrl": "https://gontoz.escape.tech/graphql",
-  "schemaUrl": "https://gontoz.escape.tech/graphql",
-  "readWrite": true,
-  "applicationUsers": []
-}
+```yaml
+organizationId: <uuid>
+name: Gontoz
+type: GRAPHQL
+serverUrl: https://gontoz.escape.tech/graphql
+schemaUrl: https://gontoz.escape.tech/graphql
+readWrite: true
+applicationUsers: []
 ```
 
 ### Response body
 
-```json
-{
-  "id": "<application uuid>",
-  "name": "Application name",
-  "scans": {
-    "edges": [
-      {
-        "node": {
-          // A scan is created and started automatically
-          "id": "<scan uuid>"
-        }
-      }
-    ]
-  },
-  "href": "https://app.escape.tech/scan/<scan uuid>"
-}
+```yaml
+id: <application uuid>
+name: Application name
+scans:
+  edges:
+  - node:
+      id: <scan uuid> # A scan is created and started automatically
+
+href: https://app.escape.tech/scan/<scan uuid>
 ```
 
 # OpenAPI Specifcation

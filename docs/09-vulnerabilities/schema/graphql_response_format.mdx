@@ -149,14 +149,10 @@ Ensure that FastAPI endpoints are defined with appropriate response models to en
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "schema/graphql_response_format": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  schema/graphql_response_format:
+    skip: true
 ```
 
 

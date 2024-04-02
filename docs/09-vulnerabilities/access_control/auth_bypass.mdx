@@ -106,14 +106,10 @@ Ensure that all routes in the FastAPI application require proper authentication 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "access_control/auth_bypass": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  access_control/auth_bypass:
+    skip: true
 ```
 
 

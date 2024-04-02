@@ -108,14 +108,10 @@ To prevent private IP addresses from being exposed in HTTP response bodies withi
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "information_disclosure/private_ip": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  information_disclosure/private_ip:
+    skip: true
 ```
 
 

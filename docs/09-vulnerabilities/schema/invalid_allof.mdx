@@ -104,14 +104,10 @@ Ensure that the allOf condition in your OpenAPI schema is correctly defined with
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "schema/invalid_allof": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  schema/invalid_allof:
+    skip: true
 ```
 
 

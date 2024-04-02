@@ -305,14 +305,10 @@ Implement proper access control checks within FastAPI route handlers to ensure o
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "access_control/private_data": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  access_control/private_data:
+    skip: true
 ```
 
 

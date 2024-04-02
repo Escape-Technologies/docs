@@ -153,14 +153,10 @@ In FastAPI, to prevent CRLF injection attacks, ensure that user input is properl
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/crlf": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/crlf:
+    skip: true
 ```
 
 

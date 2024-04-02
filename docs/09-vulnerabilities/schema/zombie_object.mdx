@@ -73,14 +73,10 @@ To prevent the occurrence of zombie objects in the Hasura framework engine, ensu
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "schema/zombie_object": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  schema/zombie_object:
+    skip: true
 ```
 
 

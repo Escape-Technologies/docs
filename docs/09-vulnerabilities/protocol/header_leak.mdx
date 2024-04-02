@@ -152,14 +152,10 @@ Configure the FastAPI application to suppress or customize server headers. Utili
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/header_leak": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/header_leak:
+    skip: true
 ```
 
 

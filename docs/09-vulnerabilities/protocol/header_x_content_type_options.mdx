@@ -153,14 +153,10 @@ In FastAPI, ensure that all responses include the 'X-Content-Type-Options' heade
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/header_x_content_type_options": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/header_x_content_type_options:
+    skip: true
 ```
 
 

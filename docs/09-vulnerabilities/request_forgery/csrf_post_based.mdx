@@ -75,14 +75,10 @@ To mitigate POST-based CSRF attacks in the Hasura framework, ensure that all sta
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "request_forgery/csrf_post_based": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  request_forgery/csrf_post_based:
+    skip: true
 ```
 
 

@@ -152,14 +152,10 @@ In the FastAPI framework, ensure that responses containing sensitive information
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/header_cache_control": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/header_cache_control:
+    skip: true
 ```
 
 

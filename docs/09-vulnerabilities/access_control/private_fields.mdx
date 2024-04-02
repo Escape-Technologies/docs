@@ -365,14 +365,10 @@ Ensure that all endpoint handlers in FastAPI validate user permissions before ac
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "access_control/private_fields": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  access_control/private_fields:
+    skip: true
 ```
 
 

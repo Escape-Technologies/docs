@@ -71,14 +71,10 @@ To address potential issues with the Hasura framework engine, ensure that all Gr
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/graphql_recursive_fragment": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/graphql_recursive_fragment:
+    skip: true
 ```
 
 

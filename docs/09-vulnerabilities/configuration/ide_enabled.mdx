@@ -72,14 +72,10 @@ To mitigate the risk of injection attacks in Hasura, ensure that all GraphQL que
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "configuration/ide_enabled": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  configuration/ide_enabled:
+    skip: true
 ```
 
 

@@ -77,14 +77,10 @@ To prevent directive overloading in Hasura, ensure that custom directives are cl
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/graphql_directive_overload": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/graphql_directive_overload:
+    skip: true
 ```
 
 

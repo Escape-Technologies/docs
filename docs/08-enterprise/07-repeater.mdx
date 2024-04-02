@@ -126,14 +126,9 @@ Select the Repeater you want to use.
 
 Go to the Advanced Settings of the applications and add the following configuration:
 
-```json
-{
-    "client": {
-        "proxy": {
-            "type": "repeater",
-            "target": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" // Put here your repeater id
-        }
-    }
-    // ...
-}
+```yaml
+client:
+  proxy:
+    type: repeater
+    target: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  # Put here your repeater id
 ```

@@ -159,14 +159,10 @@ In FastAPI, to prevent NoSQL injection attacks, ensure that you use a proper dat
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/nosql": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/nosql:
+    skip: true
 ```
 
 

@@ -41,14 +41,9 @@ By analyzing the query document's abstract syntax tree (AST), a GraphQL server i
 
 For instance, using graphql-ruby with the max query depth setting set to `3` gives the following result:
 
-```json
-{
-  "errors": [
-    {
-      "message": "Query has depth of 6, which exceeds max depth of 3"
-    }
-  ]
-}
+```yaml
+errors:
+- message: Query has depth of 6, which exceeds max depth of 3
 ```
 
 Since the document's AST is analyzed statically, the query does not even execute, which adds no load on your GraphQL server.
@@ -118,14 +113,10 @@ To mitigate potential security risks in the Hasura framework engine, ensure that
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/graphql_depth_limit": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/graphql_depth_limit:
+    skip: true
 ```
 
 

@@ -149,14 +149,10 @@ In FastAPI, ensure that the CORS (Cross-Origin Resource Sharing) middleware is p
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/header_access_control_allow_origin": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/header_access_control_allow_origin:
+    skip: true
 ```
 
 

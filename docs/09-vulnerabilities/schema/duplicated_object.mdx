@@ -106,14 +106,10 @@ In FastAPI, ensure that your schema definitions are centralized and reused rathe
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "schema/duplicated_object": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  schema/duplicated_object:
+    skip: true
 ```
 
 

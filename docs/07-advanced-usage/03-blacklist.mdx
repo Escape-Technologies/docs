@@ -14,68 +14,51 @@ Identify the operations that you'd like Escape to skip during its security tests
 
 The `blacklist` parameter is part of the global `scan` keys, referenced [here](/advanced-usage/parameters-reference).
 
-```json
-{
-    "scan": {
-        "blacklist": {
-            "mutation": [
-                "**operationName**"
-            ],
-            "objects": [
-                "**objectName**"
-            ],
-            "query": [
-                "**queryName**"
-            ]
-        }
-    }
-}
+```yaml
+scan:
+  blacklist:
+    mutation:
+    - '**operationName**'
+    objects:
+    - '**objectName**'
+    query:
+    - '**queryName**'
 ```
 
 ### REST
 
 The `blacklist` parameter in REST is a list of path and methods used to identify the routes to blacklist. The path is a valid OpenAPI path and the method is an HTTP method (GET, POST, PUT, DELETE, etc.).
 
-```json
-{
-    "scan": {
-        "blacklist": {
-            "routes": [
-                {"path": "/a/path/to/blacklist", "method": "GET"},
-                {"path": "/another/path/to/blacklist", "method": "POST"},
-            ],
-        }
-    }
-}
+```yaml
+scan:
+  blacklist:
+    routes:
+    - path: /a/path/to/blacklist
+      method: GET
+    - path: /another/path/to/blacklist
+      method: POST
 ```
 
 You can also blacklist some routes using regexes on the path. If we found a [fullmatch](https://docs.python.org/3/library/re.html#re.fullmatch) between the path and the regex, the route will be blacklisted.
 
-```json
-{
-    "scan": {
-        "blacklist": {
-            "routes": [
-                {"path": "/user/.*", "method": "POST"},
-            ],
-        }
-    }
-}
+```yaml
+scan:
+  blacklist:
+    routes:
+    - path: /user/.*
+      method: POST
 ```
 
 ## Whitelist ✅
 
 By employing a whitelist, you instruct Escape to focus its exploration phase solely on the specified operations. This can make the scan process faster, as Escape narrows its evaluation to just these queries.
 
-```json
-{
-    "scan": {
-        "whitelist": [
-            "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
-            "query { bank(account: 1337) { id address }}"
-        ]
-    }
-}
+```yaml
+scan:
+  whitelist:
+  - 'query { child(parentId: "b63f4020-45f6-4f33-9747-32ac8f270097" ) { id name birthdate
+    }}'
+  - 'query { bank(account: 1337) { id address }}'
 ```
 
 
@@ -89,30 +72,41 @@ The operations you provide should be listed under the hotstart key. You have the
 
 In graphql, the hotstart key is a list of strings, each string representing a graphql query. The query can be as simple as a query with no parameters, or as complex as a query with multiple parameters and nested objects.
 
-```json
-{
-    "scan": {
-        "hotstart": [
-            "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
-            "query { bank(account: 1337) { id address }}"
-        ]
-    }
-}
+```yaml
+scan:
+  hotstart:
+  - 'query { child(parentId: "b63f4020-45f6-4f33-9747-32ac8f270097" ) { id name birthdate
+    }}'
+  - 'query { bank(account: 1337) { id address }}'
 ```
 
 ### REST
 
 In REST, the hotstart is a list of HTTP document to execute.
 
-```json
-{
-  "scan": {
-    "hotstart": [
-      "POST /register HTTP/1.1\nHost: example.com\nContent-Type: application/json\nContent-Length: 194\n\n{\"my\": \"data\"}",
-      "GET /users HTTP/1.1\nHost: example.com\nContent-Type: application/json\nContent-Length: 194\n\n",
-    ]
-  }
-}
+```yaml
+scan:
+  hotstart:
+  - 'POST /register HTTP/1.1
+
+    Host: example.com
+
+    Content-Type: application/json
+
+    Content-Length: 194
+
+
+    {"my": "data"}'
+  - 'GET /users HTTP/1.1
+
+    Host: example.com
+
+    Content-Type: application/json
+
+    Content-Length: 194
+
+
+    '
 ```
 
 To easily encode your raw request located in a req.txt file, execute the following Python command:

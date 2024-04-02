@@ -109,14 +109,10 @@ Implement proper input validation, use dependency injection with security in min
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "configuration/proxy_disclosure": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  configuration/proxy_disclosure:
+    skip: true
 ```
 
 

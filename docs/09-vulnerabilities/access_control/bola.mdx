@@ -158,14 +158,10 @@ In FastAPI, to remediate Broken Object Level Authorization (BOLA), ensure that p
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "access_control/bola": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  access_control/bola:
+    skip: true
 ```
 
 

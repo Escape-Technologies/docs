@@ -28,27 +28,21 @@ To initiate a new static security assessment, navigate to the Expert tab in your
 
 Below is a sample configuration that illustrates a static security assessment aimed at sending a request to a specified endpoint. The assessment will then validate if the server's response status is 200.
 
-```json
-{
-  "custom_checks": [
-    {
-      "name": "Example-1",
-      "severity": "high",
-      "http": [
-        {
-          "user": "public",
-          "raw": "@Host: https://[REDACTED]\nPOST / HTTP/1.1\nHost: [REDACTED]\nContent-Type: application/json\nContent-Length: 194\n\n{\"query\":\"query {\n    debug(test: \\\"y\\\") {\n        id\n        username\n        credit_card {\n            belong_to {\n                id\n            }\n        }\n    }\n}\",\"variables\":{}}",
-          "matchers": [
-            {
-              "status": [200],
-              "part": "status"
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
+```yaml
+custom_checks:
+- name: Example-1
+  severity: high
+  http:
+  - user: public
+    raw: "@Host: https://[REDACTED]\nPOST / HTTP/1.1\nHost: [REDACTED]\nContent-Type:\
+      \ application/json\nContent-Length: 194\n\n{\"query\":\"query {\n    debug(test:\
+      \ \\\"y\\\") {\n        id\n        username\n        credit_card {\n      \
+      \      belong_to {\n                id\n            }\n        }\n    }\n}\"\
+      ,\"variables\":{}}"
+    matchers:
+    - status:
+      - 200
+      part: status
 ```
 
 To easily encode your raw request located in a req.txt file, execute the following Python command:
@@ -119,30 +113,41 @@ The `hotstart` parameter allows users to provide specific requests. This not onl
 
 In GraphQL, only the GraphQL document is required to declare operations to run at the beginning of the scan.
 
-```json
-{
-  "scan": {
-    "hotstart": [
-      "query { child(parentId: \"b63f4020-45f6-4f33-9747-32ac8f270097\" ) { id name birthdate }}",
-      "query { bank(account: 1337) { id address }}"
-    ]
-  }
-}
+```yaml
+scan:
+  hotstart:
+  - 'query { child(parentId: "b63f4020-45f6-4f33-9747-32ac8f270097" ) { id name birthdate
+    }}'
+  - 'query { bank(account: 1337) { id address }}'
 ```
 
 #### Hotstarting a REST scan
 
 In REST, the hotstart is a list of HTTP document to execute.
 
-```json
-{
-  "scan": {
-    "hotstart": [
-      "POST /register HTTP/1.1\nHost: example.com\nContent-Type: application/json\nContent-Length: 194\n\n{\"my\": \"data\"}",
-      "GET /users HTTP/1.1\nHost: example.com\nContent-Type: application/json\nContent-Length: 194\n\n",
-    ]
-  }
-}
+```yaml
+scan:
+  hotstart:
+  - 'POST /register HTTP/1.1
+
+    Host: example.com
+
+    Content-Type: application/json
+
+    Content-Length: 194
+
+
+    {"my": "data"}'
+  - 'GET /users HTTP/1.1
+
+    Host: example.com
+
+    Content-Type: application/json
+
+    Content-Length: 194
+
+
+    '
 ```
 
 To easily encode your raw request located in a req.txt file, execute the following Python command:
@@ -157,23 +162,27 @@ Escape operates on a [comprehensive scalar architecture](/advanced-usage/data-ty
 
 ### Structure for custom scalars:
 
-```json
-{
-  "scan": {
-    "scalars": {
-      "custom_scalar_identifier": {
-        "description": "value",
-        "examples": ["value"],
-        "names": ["value"],
-        "parents": ["ID", "Int", "String", "Boolean", "Float"],
-        "patterns": ["regex"],
-        "sensitivity": "NONE | LOW | MEDIUM | HIGH",
-        "detection": "key | value | value_strict | key_or_value | key_or_value_strict | key_and_value_strict",
-        "entropy": (optional) "float"
-      }
-    }
-  }
-}
+```yaml
+scan:
+  scalars:
+    custom_scalar_identifier:
+      description: value
+      examples:
+      - value
+      names:
+      - value
+      parents:
+      - ID
+      - Int
+      - String
+      - Boolean
+      - Float
+      patterns:
+      - regex
+      sensitivity: NONE | LOW | MEDIUM | HIGH
+      detection: key | value | value_strict | key_or_value | key_or_value_strict |
+        key_and_value_strict
+      entropy: float # optional
 ```
 
 ### Fields
@@ -201,23 +210,25 @@ All of this fields are optionals and can be omitted.
 
 Let's say you want to add a new scalar for the Super Secret Example Token inside your company :
 
-```json
-{
-  "scan": {
-    "scalars": {
-      "SSET": {
-        "description": "The Super Secret Example Token is internal to our company and should never been exposed by any APIs.",
-        "examples": ["SSET-ABC12"],
-        "names": ["SSET", "super_secret_example_token", "SuperSecretExampleToken"],
-        "parents": ["String"],
-        "patterns": ["SSET-[A-Z0-9]{5}"],
-        "sensitivity": "HIGH",
-        "detection": "key_or_value_strict",
-        "entropy": 2.0
-      }
-    }
-  }
-}
+```yaml
+scan:
+  scalars:
+    SSET:
+      description: The Super Secret Example Token is internal to our company and should
+        never been exposed by any APIs.
+      examples:
+      - SSET-ABC12
+      names:
+      - SSET
+      - super_secret_example_token
+      - SuperSecretExampleToken
+      parents:
+      - String
+      patterns:
+      - SSET-[A-Z0-9]{5}
+      sensitivity: HIGH
+      detection: key_or_value_strict
+      entropy: 2.0
 ```
 
 This is how JWT is defined by default in Escape's engine:

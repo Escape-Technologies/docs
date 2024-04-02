@@ -108,14 +108,10 @@ Configure FastAPI to suppress server banners and error messages that reveal stac
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "information_disclosure/software_component_leak": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  information_disclosure/software_component_leak:
+    skip: true
 ```
 
 

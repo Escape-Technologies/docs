@@ -155,14 +155,10 @@ In FastAPI, to prevent open redirection vulnerabilities, validate and sanitize a
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "request_forgery/open_redirect": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  request_forgery/open_redirect:
+    skip: true
 ```
 
 

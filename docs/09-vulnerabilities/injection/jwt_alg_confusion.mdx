@@ -152,14 +152,10 @@ Ensure the FastAPI application explicitly verifies the JWT algorithm used. Confi
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/jwt_alg_confusion": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/jwt_alg_confusion:
+    skip: true
 ```
 
 

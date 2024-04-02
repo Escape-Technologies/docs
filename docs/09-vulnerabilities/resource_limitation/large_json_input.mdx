@@ -76,14 +76,10 @@ To mitigate the risk of large JSON input vulnerabilities in Hasura, ensure that 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/large_json_input": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/large_json_input:
+    skip: true
 ```
 
 

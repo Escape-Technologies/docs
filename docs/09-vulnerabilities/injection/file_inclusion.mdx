@@ -83,14 +83,10 @@ To mitigate file inclusion vulnerabilities in the Hasura framework, ensure that 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/file_inclusion": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/file_inclusion:
+    skip: true
 ```
 
 

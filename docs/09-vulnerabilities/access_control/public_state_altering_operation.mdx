@@ -152,14 +152,10 @@ In FastAPI, secure state-altering endpoints by integrating security dependencies
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "access_control/public_state_altering_operation": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  access_control/public_state_altering_operation:
+    skip: true
 ```
 
 

@@ -160,14 +160,10 @@ In FastAPI, use Pydantic models to define expected data structures with fields t
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "schema/positive_integer_validation": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  schema/positive_integer_validation:
+    skip: true
 ```
 
 
