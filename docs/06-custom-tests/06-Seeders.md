@@ -6,9 +6,9 @@
 
 The REST seeder allows you to send a request that adapts to the host of your current scan.
 
-You can also use a raw HTTP text format, but we'll automatically fill the host and scheme for you with the scanned host.
+You can still use a raw HTTP text format, but we'll automatically fill the host and scheme for you.
 
-This request will be sent at the same time as the hotstart, the syntax is similar to it but
+This requests will be sent at the same time as the hotstart, the syntax is similar to it but
 you can configure for which user the request must be sent.
 
 The main difference between this two features it that a seeded request is bound to a custom security check.
