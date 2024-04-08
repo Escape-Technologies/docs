@@ -15,6 +15,51 @@ Remove duplicated objects from the schema.
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+In Apollo framework, ensure that your GraphQL schema definitions are modularized and use schema stitching or type extensions to avoid duplication. Employ tools like Apollo's schema validation to detect and merge duplicate types and resolvers, streamlining your API and improving maintainability.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+In the Yoga framework, ensure that your schema definitions are modular and leverage schema stitching or directives to avoid duplication. Refactor any repeated types, fields, or resolvers to maintain a single source of truth, which simplifies maintenance and prevents inconsistencies.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+In AWS AppSync, ensure that your GraphQL schema is designed with single sources of truth for object types and avoid duplicating type definitions. Utilize schema stitching or modularization to share common types across different schema parts. Regularly refactor your schema to merge or alias duplicated objects, and consider implementing schema validation tools to detect and prevent duplication during development.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+In the GraphQLGo framework, ensure that your schema definitions are modular and leverage schema stitching to combine them. Avoid defining the same types, fields, or resolvers multiple times across different parts of your schema. Utilize GraphQL directives, interfaces, or unions to create reusable components. Regularly refactor your schema to merge or abstract duplicated elements, and consider using schema validation tools to detect and resolve duplications early in the development process.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In the GraphQL-Ruby framework, ensure that types, fields, and resolvers are defined only once and reused across the schema. Utilize modules or Ruby classes to encapsulate common structures and logic, and apply the DRY (Don't Repeat Yourself) principle to avoid duplication. Regularly refactor your schema to merge similar types and fields, and consider using interfaces or unions for shared functionality. This will help maintain a clean and efficient codebase, reduce potential errors, and simplify both development and API consumption.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+In Hasura, ensure that your GraphQL schema is designed with reusable fragments and input types to avoid duplication. Regularly refactor your schema to merge similar types and use abstract types like interfaces or unions to handle overlapping fields. This will help maintain a clean and efficient API structure.
+
+</details>
+
+
 ### REST Specific
 
 <details>
