@@ -17,6 +17,51 @@ Filter out the data that is being returned from the server.
 
 
 
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Configure the Apollo server to disable the inclusion of stack trace information in error messages sent to clients. Ensure that the 'debug' option is set to 'false' in production environments to prevent leaking detailed server implementation details.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Configure the Yoga framework server to suppress version and technology stack details in HTTP response headers and error messages to prevent information leakage that could aid attackers in exploiting known vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Configure AWS AppSync resolvers to prevent information leakage by ensuring error messages are generic and do not expose stack details or sensitive information. Utilize AWS AppSync settings to control and mask error responses.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Configure the GraphQLGo server to suppress detailed error messages and stack traces in production environments. Implement middleware or custom error handling that returns generic error messages to the client, thus preventing the leakage of sensitive information about the underlying technology stack.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In the GraphQLRuby framework, ensure that the server configuration is set to minimize information leakage by disabling verbose error messages and introspection in production environments. Use the `debug: false` option in the GraphQL schema definition and restrict access to introspection queries to authorized personnel only.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Configure the Hasura GraphQL engine to prevent exposing server version information by setting the 'HASURA_GRAPHQL_HIDE_SERVER_HEADER' environment variable to 'true'. Additionally, review and adjust the 'HASURA_GRAPHQL_DEV_MODE' setting to ensure that detailed error messages are not sent to the client in production environments.
+
+</details>
+
+
 ### REST Specific
 
 <details>
