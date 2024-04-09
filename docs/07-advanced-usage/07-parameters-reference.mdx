@@ -1,140 +1,79 @@
 ---
-title: Parameters Reference
+title: Reference
+description: All objects available
 ---
 
-# ⚙️ Parameters Reference
 
-Here is the list of all available parameters in the `escaperc`. Some of them are detailed more thorougly in their dedicated documentation section.
-
+# Objects
 
 
-## `scan`
+## <a id="BlackListParams"></a>BlackListParams
 
-The parameters related to the scan.
-
-:::note JSON Schema example
-
-```
-{
-    "scan": {
-        "blacklist": {},
-        "hotstart": [
-            "**value**"
-        ],
-        "profile": "surface | default",
-        "read_only": "true | false",
-        "scalars": {
-            "**value**": {}
-        },
-        "whitelist": [
-            "**value**"
-        ]
-    }
-}
-```
-
-:::
-
-***
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| routes | `BlacklistRouteRule` | `False` |  | [BlacklistRouteRule](#BlacklistRouteRule) |
+| query | `string` | `False` |  |  |
+| mutation | `string` | `False` |  |  |
+| subscription | `string` | `False` |  |  |
+| objects | `string` | `False` |  |  |
 
 
+## <a id="BlacklistRouteRule"></a>BlacklistRouteRule
 
-- `Blacklist` : The operations that will be skipped by security tests. See more in the dedicated documentation section..
-
-
-- `Hotstart` : Raw queries to hotstart the API exploration.
-
-
-- `Profile` : The scan profile. Must be one of `['surface', 'default']`.
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| method | `string` | `True` |  |  |
+| path | `string` | `True` |  |  |
 
 
-- `Read only` : The choosen mode for the tested API. Default mode is read-write and suited to development environment. The `read_only` mode is safe for production environments, but will reduce the number of tests performed and the scan coverage..
+## <a id="ClientParams"></a>ClientParams
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| request_timeout | `integer` | `False` | The maximum timeout duration for each request (in seconds). See more in the dedicated documentation section. |  |
+| concurrent_connection | `integer` | `False` | The maximum size of the connections pool. |  |
+| concurrent_tasks | `integer` | `False` | The maximum number of parallel tasks. |  |
+| requests_per_minute | `integer` | `False` | The maximum number of request per minute. Which will be used on a per second window. |  |
+| proxy | `HTTPProxyType | EscapeProxyType | RepeaterProxyType` | `False` | The Proxy to use for the requests. See more in the Scan Internal APIs documentation section. |  |
+| x_tracing_header | `string` | `False` |  |  |
+| user_agent | `string` | `False` |  |  |
+| discret_mode | `boolean` | `False` |  |  |
+| max_requests | `integer` | `False` |  |  |
 
 
-- `Scalars` : The user's defined scalars.
+## <a id="CustomScalarParams"></a>CustomScalarParams
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| description | `string` | `True` |  |  |
+| examples | `string` | `False` |  |  |
+| names | `string` | `False` |  |  |
+| parents | `string` | `False` |  |  |
+| patterns | `string` | `False` |  |  |
+| sensitivity | `string` | `False` |  |  |
+| strategy | `string` | `False` |  |  |
+| entropy | `number` | `False` |  |  |
 
 
-- `Whitelist` : Whitelisted raw queries to explore the API.
+## <a id="ScanParams"></a>ScanParams
 
-
-
-
-## `client`
-
-All parameters available in our `client`:
-
-:::note JSON Schema example
-
-```
-{
-    "client": {
-        "concurrent_connection": "**value**",
-        "concurrent_tasks": "**value**",
-        "proxy": {
-            "type": "escape | http | repeater"
-        },
-        "request_timeout": "**value**",
-        "requests_per_minute": "**value**"
-    }
-}
-```
-
-:::
-
-***
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| profile | `ScanProfile` | `False` | The scan profile | [ScanProfile](#ScanProfile) |
+| read_only | `boolean` | `False` | The choosen mode for the tested API. Default mode is read-write and suited to development environment. The read_only mode is safe for production environments, but will reduce the number of tests performed and the scan coverage.. |  |
+| hotstart | `string` | `False` | Raw queries to hotstart the API exploration. |  |
+| whitelist | `string` | `False` | Whitelisted raw queries to explore the API. |  |
+| blacklist | `BlackListParams` | `False` | The operations that will be skipped by security tests. See more in the dedicated documentation section.. | [BlackListParams](#BlackListParams) |
+| scalars | `Dict[string, CustomScalarParams]` | `False` | The user&#39;s defined scalars. | [CustomScalarParams](#CustomScalarParams) |
 
 
 
-- `Concurrent connection` : The maximum size of the connections pool.
+# Enums
 
+## <a id="ScanProfile"></a>ScanProfile
 
-- `Concurrent tasks` : The maximum number of parallel tasks.
-
-
-- `Proxy` : The Proxy to use for the requests. See more in the `Scan Internal APIs` documentation section.
-
-
-- `Request timeout` : The maximum timeout duration for each request (in seconds). See more in the dedicated documentation section.
-
-
-- `Requests per minute` : The maximum number of request per minute. Which will be used on a per second window.
-
-
-
-
-## `authentication`
-
-The `PyMultiAuth` authentication configuration. See advanced configuration documentation.
-
-:::note JSON Schema example
-
-```
-{
-    "authentication": {
-        "methods": {},
-        "users": {}
-    }
-}
-```
-
-:::
-
-***
-
-
-
-- `Methods` : The `methods` as descibed in PyMultiAuth.
-
-
-- `Users` : The `users` as descibed in PyMultiAuth.
-
-
-
-
-## `custom_checks`
-
-See the Custom Payload documentation.
-
-## `checks`
-
-See the Security Reference.
+- `surface`
+- `cicd`
+- `default`
+- `deep`
+- `unrestricted`
