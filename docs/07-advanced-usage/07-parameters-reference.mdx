@@ -3,7 +3,9 @@ title: Reference
 description: All objects available
 ---
 
-# Example
+# Scan Parameters
+
+## Example
 
 Here is an example of a `ScanParams` object:
 
@@ -50,21 +52,7 @@ scan:
       entropy: 2
 
 ```
-
-Here is an example of a `ClientParams` object:
-
-```yaml
-client:
-  concurrent_connection: '64'
-  concurrent_tasks: '8'
-  proxy:
-    type: escape | http | repeater
-  request_timeout: 5
-  requests_per_minute: 50 * 60
-```
-
-
-# Objects
+## Reference
 
 
 ## <a id="BlackListParams"></a>BlackListParams
@@ -86,31 +74,6 @@ client:
 | path | `string` | `False` | The path is a valid OpenAPI path. |  |
 
 
-## <a id="ClientParams"></a>ClientParams
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| request_timeout | `integer` | `False` | The maximum timeout duration for each request (in seconds). See more in the dedicated documentation section. |  |
-| concurrent_connection | `integer` | `False` | The maximum size of the connections pool. |  |
-| concurrent_tasks | `integer` | `False` | The maximum number of parallel tasks. |  |
-| requests_per_minute | `integer` | `False` | The maximum number of request per minute. Which will be used on a per second window. |  |
-| proxy | `RepeaterProxyType HTTPProxyType EscapeProxyType` | `False` | The Proxy to use for the requests. See more in the Scan Internal APIs documentation section. |  |
-
-
-## <a id="CustomScalarParams"></a>CustomScalarParams
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| description | `string` | `True` | The description of the scalar. |  |
-| examples | `string` | `False` | Sample values for the scalar (used in the explore phase as default values). |  |
-| names | `string` | `False` | Possible names for the scalar. |  |
-| parents | `string` | `False` | default type the scalar is compatible with. |  |
-| patterns | `string` | `False` | Potential regex-friendly values for the scalar (utilized for the checks). |  |
-| sensitivity | `string` | `False` | Data sensitivity level. Allowed values are NONE, LOW, MEDIUM and HIGH.Values MEDIUM and HIGH will serve to raise Sensitive Data issues in Escape. |  |
-| strategy | `string` | `False` | The detection strategy |  |
-| entropy | `number` | `False` | The minimum shannon entropy of the matched value. |  |
-
-
 ## <a id="ScanParams"></a>ScanParams
 
 | Property   | Type       | Required | Description | Reference |
@@ -123,6 +86,9 @@ client:
 | scalars | `Dict[string, CustomScalarParams]` | `False` | The user&#39;s defined scalars. | [CustomScalarParams](#CustomScalarParams) |
 
 
+
+
+
 ## <a id="ScanProfile"></a>ScanProfile
 
 - `surface`
@@ -130,3 +96,34 @@ client:
 - `default`
 - `deep`
 - `unrestricted`
+
+
+
+# Client Parameters
+
+## Example
+
+Here is an example of a `ClientParams` object:
+
+```yaml
+client:
+  concurrent_connection: 64
+  concurrent_tasks: 8
+  proxy:
+    type: escape | http | repeater
+  request_timeout: 5
+  requests_per_minute: 50 * 60
+```
+# Reference
+
+
+## <a id="ClientParams"></a>ClientParams
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| request_timeout | `integer` | `False` | The maximum timeout duration for each request (in seconds). See more in the dedicated documentation section. |  |
+| concurrent_connection | `integer` | `False` | The maximum size of the connections pool. |  |
+| concurrent_tasks | `integer` | `False` | The maximum number of parallel tasks. |  |
+| requests_per_minute | `integer` | `False` | The maximum number of request per minute. Which will be used on a per second window. |  |
+| proxy | `RepeaterProxyType HTTPProxyType EscapeProxyType` | `False` | The Proxy to use for the requests. See more in the Scan Internal APIs documentation section. |  |
+
