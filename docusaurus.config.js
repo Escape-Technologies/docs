@@ -32,6 +32,17 @@ const config = {
         disableInDev: false
       }
     ],
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            to: '/',
+            from: '/dast',
+          },
+        ],
+      },
+    ],
     require.resolve('docusaurus-lunr-search')
   ],
 
@@ -67,6 +78,18 @@ const config = {
           height: "300px",
         },
         items: [
+          {
+            type: 'doc',
+            position: 'left',
+            docId: 'dast/getting-started/index',
+            label: 'DAST',
+          },
+          {
+            type: 'doc',
+            position: 'left',
+            docId: 'inventory/introduction/index',
+            label: 'Inventory',
+          },
           {
             href: 'https://calendly.com/d/46g-xzy-dgw',
             label: 'New to Escape? Chat with our team',

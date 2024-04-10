@@ -1,6 +1,6 @@
 ---
-title: Azure DevOps
-description: Use Escape on Azure DevOps
+title: Gitlab CI
+description: Use Escape on Gitlab
 ---
 
 import RequiredTag from "@site/src/components/RequiredTag";
@@ -8,38 +8,25 @@ import TypeTag from "@site/src/components/TypeTag";
 
 ## Basic example
 
-Here's how you can integrate Escape with Azure DevOps:
-
 ```yaml
-trigger:
-  branches:
-    include:
+Escape:
+  stage: post-deploy
+  needs:
+    - deploy # name of your deployment job
+  variables: # you can find those secrets directly in your Escape Application Settings
+    - ESCAPE_APPLICATION_ID: $ESCAPE_APPLICATION_ID
+    - ESCAPE_API_KEY: $ESCAPE_API_KEY
+  image: node:alpine
+  before_script:
+    - npm install -g @escape.tech/action
+    - npm show @escape.tech/action version
+  script:
+    - escape-action
+  allow_failure: true
+  only:
+    refs:
       - staging
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-jobs:
-- job: EscapeScan
-  displayName: 'Escape Scan'
-  dependsOn: deploy # name of your deployment job
-  
-  variables:
-    ESCAPE_APPLICATION_ID: $(EscapeAppId) # Define these in the Azure DevOps Pipeline environment variables or in a variable group.
-    ESCAPE_API_KEY: $(EscapeApiKey)
-
-  steps:
-  - script: |
-      npm install -g @escape.tech/action
-      npm show @escape.tech/action version
-      escape-action
-    displayName: 'Run Escape Action'
-    env: 
-      ESCAPE_APPLICATION_ID: $(EscapeAppId)
-      ESCAPE_API_KEY: $(EscapeApiKey)
-    continueOnError: true
 ```
-
 
 ## Failure behavior
 
@@ -80,31 +67,31 @@ For example, `export FAIL_ON_SEVERITIES=HIGH,MEDIUM` will make the cli fail if a
 
 The timeout of the job. If set to 0, the scan will be started, but the job will not wait for it to be finished before terminating.
 
-The triggered scan will run asynchronously on Escape, and your team will be notified once it is done using your desired [notifications](/integrations) settings.
+The triggered scan will run asynchronously on Escape, and your team will be notified once it is done using your desired [notifications](/dast/integrations) settings.
 
 ### `CONFIGURATION_OVERRIDE` <TypeTag type="string"/>
 
-[See the configuration override section](/ci-cd/configuration-override).
+[See the configuration override section](/dast/ci-cd/configuration-override).
 
 ### `CONFIGURATION_OVERRIDE_PATH` <TypeTag type="string"/>
 
-[See the configuration override section](/ci-cd/configuration-override).
+[See the configuration override section](/dast/ci-cd/configuration-override).
 
 ### `REF_NAME` <TypeTag type="string"/>
 
-[See the commit identification section](/ci-cd/commit-sha).
+[See the commit identification section](/dast/ci-cd/commit-sha).
 
 ### `COMMIT_HASH` <TypeTag type="string"/>
 
-[See the commit identification section](/ci-cd/commit-sha).
+[See the commit identification section](/dast/ci-cd/commit-sha).
 
 ### `USER_EMAIL` <TypeTag type="string"/>
 
-[See the commit identification section](/ci-cd/commit-sha).
+[See the commit identification section](/dast/ci-cd/commit-sha).
 
 ### `INTROSPECTION_FILE` <TypeTag type="path"/>
 
-[See the introspection update section](/ci-cd/introspection-update).
+[See the introspection update section](/dast/ci-cd/introspection-update).
 
 ## Command-line options
 
