@@ -9,27 +9,58 @@ Here is an example of a `ScanParams` object:
 
 ```yaml
 scan:
-  blacklist: {}
+  blacklist:
+    routes:
+    - path: "/a/path/to/blacklist"
+      method: GET
+    - path: "/another/path/to/blacklist"
+      method: POST
   hotstart:
-    - '**value**'
+  - |-
+    POST /register HTTP/1.1
+    Host: example.com
+    Content-Type: application/json
+    Content-Length: 194
+
+    {"my": "data"}
+  - |+
+    GET /users HTTP/1.1
+    Host: example.com
+    Content-Type: application/json
+    Content-Length: 194
+
   profile: surface | cicd | default | deep | unrestricted
   read_only: true | false
   scalars:
-    '**value**': {}
-  whitelist:
-    - '**value**'
+    SSET:
+      description: The Super Secret Example Token is internal to our company and should
+        never been exposed by any APIs.
+      examples:
+      - SSET-ABC12
+      names:
+      - SSET
+      - super_secret_example_token
+      - SuperSecretExampleToken
+      parents:
+      - String
+      patterns:
+      - SSET-[A-Z0-9]{5}
+      sensitivity: HIGH
+      detection: key_or_value_strict
+      entropy: 2
+
 ```
 
 Here is an example of a `ClientParams` object:
 
 ```yaml
 client:
-  concurrent_connection: '**value**'
-  concurrent_tasks: '**value**'
+  concurrent_connection: '64'
+  concurrent_tasks: '8'
   proxy:
     type: escape | http | repeater
-  request_timeout: '**value**'
-  requests_per_minute: '**value**'
+  request_timeout: 5
+  requests_per_minute: 50 * 60
 ```
 
 
