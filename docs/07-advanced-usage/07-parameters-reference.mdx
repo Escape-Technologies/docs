@@ -3,6 +3,35 @@ title: Reference
 description: All objects available
 ---
 
+# Example
+
+Here is an example of a `ScanParams` object:
+
+```yaml
+scan:
+  blacklist: {}
+  hotstart:
+    - '**value**'
+  profile: surface | cicd | default | deep | unrestricted
+  read_only: true | false
+  scalars:
+    '**value**': {}
+  whitelist:
+    - '**value**'
+```
+
+Here is an example of a `ClientParams` object:
+
+```yaml
+client:
+  concurrent_connection: '**value**'
+  concurrent_tasks: '**value**'
+  proxy:
+    type: escape | http | repeater
+  request_timeout: '**value**'
+  requests_per_minute: '**value**'
+```
+
 
 # Objects
 
@@ -22,8 +51,8 @@ description: All objects available
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| method | `string` | `True` |  |  |
-| path | `string` | `True` |  |  |
+| method | `string` | `False` | The method is an HTTP method (GET, POST, PUT, DELETE, etc.). |  |
+| path | `string` | `False` | The path is a valid OpenAPI path. |  |
 
 
 ## <a id="ClientParams"></a>ClientParams
@@ -34,25 +63,21 @@ description: All objects available
 | concurrent_connection | `integer` | `False` | The maximum size of the connections pool. |  |
 | concurrent_tasks | `integer` | `False` | The maximum number of parallel tasks. |  |
 | requests_per_minute | `integer` | `False` | The maximum number of request per minute. Which will be used on a per second window. |  |
-| proxy | `HTTPProxyType | EscapeProxyType | RepeaterProxyType` | `False` | The Proxy to use for the requests. See more in the Scan Internal APIs documentation section. |  |
-| x_tracing_header | `string` | `False` |  |  |
-| user_agent | `string` | `False` |  |  |
-| discret_mode | `boolean` | `False` |  |  |
-| max_requests | `integer` | `False` |  |  |
+| proxy | `RepeaterProxyType HTTPProxyType EscapeProxyType` | `False` | The Proxy to use for the requests. See more in the Scan Internal APIs documentation section. |  |
 
 
 ## <a id="CustomScalarParams"></a>CustomScalarParams
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
-| description | `string` | `True` |  |  |
-| examples | `string` | `False` |  |  |
-| names | `string` | `False` |  |  |
-| parents | `string` | `False` |  |  |
-| patterns | `string` | `False` |  |  |
-| sensitivity | `string` | `False` |  |  |
-| strategy | `string` | `False` |  |  |
-| entropy | `number` | `False` |  |  |
+| description | `string` | `True` | The description of the scalar. |  |
+| examples | `string` | `False` | Sample values for the scalar (used in the explore phase as default values). |  |
+| names | `string` | `False` | Possible names for the scalar. |  |
+| parents | `string` | `False` | default type the scalar is compatible with. |  |
+| patterns | `string` | `False` | Potential regex-friendly values for the scalar (utilized for the checks). |  |
+| sensitivity | `string` | `False` | Data sensitivity level. Allowed values are NONE, LOW, MEDIUM and HIGH. Values MEDIUM and HIGH will serve to raise Sensitive Data issues in Escape. |  |
+| strategy | `string` | `False` | The detection strategy |  |
+| entropy | `number` | `False` | The minimum shannon entropy of the matched value. |  |
 
 
 ## <a id="ScanParams"></a>ScanParams
