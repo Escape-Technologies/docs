@@ -196,14 +196,10 @@ For FastAPI applications, ensure the following security practices: Set 'Cache-Co
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/headers": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/headers:
+    skip: true
 ```
 
 

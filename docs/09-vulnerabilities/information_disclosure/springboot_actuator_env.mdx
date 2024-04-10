@@ -1,0 +1,66 @@
+---
+title: Springboot Actuator Disclosure
+---
+
+# Springboot Actuator Disclosure
+
+## Description
+
+Spring Boot Actuator is a sub-project of Spring Boot that provides production-ready features to help you monitor and manage your application. Spring Boot Actuator exposes sensitive information about your application such as environment variables, configuration properties, and more. This information can be used by attackers to gain insights into your application and potentially exploit vulnerabilities.
+
+
+## Remediation
+
+It is recommended to secure the Spring Boot Actuator endpoints by restricting access to authorized users only. You can achieve this by configuring security settings in your application properties or by using Spring Security to define access rules for the Actuator endpoints.
+
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/springboot_actuator_env`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/springboot_actuator_env:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="medium-severity">MEDIUM</span>**
+
+### Compliance
+
+- OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
+- pci: **6.5.5**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-6**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:H/RL:O/RC:C**
+- CVSS_SCORE: **5.1**
+

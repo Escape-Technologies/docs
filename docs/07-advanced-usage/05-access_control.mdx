@@ -20,16 +20,13 @@ Escape's advanced Tenant Isolation security tests ensure that separate users sho
 - `scalars`: Define scalar fields within their encompassing objects. Separate users shouldn't access the same values in these fields.
 
 Example Configuration:
-```json
-{
-    "checks": {
-        "access_control/tenant_isolation": { 
-            "parameters":{ 
-                "scalars": {"User": ["email"]}
-            },
-        }
-    }
-}
+```yaml
+checks:
+  access_control/tenant_isolation:
+    parameters:
+      scalars:
+        User:
+        - email
 ```
 
 
@@ -49,19 +46,15 @@ The Private Field security test accepts:
 
 Example Configuration:
 
-```json
-{
-    "checks": {
-        "access_control/private_fields": { 
-            "parameters": { 
-                {"Bob": {"mutations": ["createUser"]}}
-            },
-            "options": {
-                "empty_values_are_positive": true,
-            }
-        }
-    }
-}
+```yaml
+checks:
+  access_control/private_fields:
+    parameters:
+      Bob:
+        mutations:
+        - createUser
+    options:
+      empty_values_are_positive: true
 ```
 
 
@@ -76,14 +69,11 @@ Configuration for this test requires:
 
 
 Example Configuration:
-```json
-{
-    "checks": {
-        "access_control/private_data": { 
-            "parameters": { 
-                {"Bob": {".*": ["alice@example.com"]}}
-            }
-        }
-    }
-}
+```yaml
+checks:
+  access_control/private_data:
+    parameters:
+      Bob:
+        .*:
+        - alice@example.com
 ```

@@ -111,14 +111,10 @@ In FastAPI, to mitigate SSRF injection in headers, ensure that all user-supplied
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "request_forgery/ssrf_header": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  request_forgery/ssrf_header:
+    skip: true
 ```
 
 

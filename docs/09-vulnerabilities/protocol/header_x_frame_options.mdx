@@ -151,14 +151,10 @@ In FastAPI, to mitigate clickjacking attacks by preventing your application from
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/header_x_frame_options": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/header_x_frame_options:
+    skip: true
 ```
 
 

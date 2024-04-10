@@ -160,14 +160,10 @@ In FastAPI, to prevent XXE (XML External Entity) injection attacks, ensure that 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/xxe": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/xxe:
+    skip: true
 ```
 
 

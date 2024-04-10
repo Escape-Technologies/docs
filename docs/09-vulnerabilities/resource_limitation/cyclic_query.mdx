@@ -81,14 +81,10 @@ To mitigate the risk of SQL injection and ensure the security of your Hasura Gra
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/cyclic_query": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/cyclic_query:
+    skip: true
 ```
 
 

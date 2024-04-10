@@ -30,14 +30,10 @@ If you can whitelist some IPs in your firewall, you can use the Escape proxy to 
 
 To do so, you need to add the following parameter to your scan configuration :
 
-```json
-{
-  "client": {
-    "proxy": {
-      "type": "escape"
-    }
-  }
-}
+```yaml
+client:
+  proxy:
+    type: escape
 ```
 
 All requests sent by the scanner will be sent to your application through this proxy. The following IPs are used :
@@ -64,15 +60,11 @@ Now you must have the following information :
 
 Then you can add the following parameter to your scan configuration :
 
-```json
-{
-  "client": {
-    "proxy": {
-      "type": "http",
-      "target": "http://[user]:[password]@[ip]:[port]"
-    }
-  }
-}
+```yaml
+client:
+  proxy:
+    type: http
+    target: http://[user]:[password]@[ip]:[port]
 ```
 
 Check the [Client](https://docs.escape.tech/advanced-usage/parameters-reference#client) for more details.

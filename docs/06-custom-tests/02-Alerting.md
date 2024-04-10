@@ -24,4 +24,6 @@ alert:
 - `name`: Name of the alert
 - `context`: Context of the alert
 - `category`: Category of the alert
+- `description`: Description of the alert
 - `remediation`: Remediation of the alert
+- `compliance`: Compliance standards violated by this alert

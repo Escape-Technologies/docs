@@ -106,14 +106,10 @@ To mitigate WAF bypass in FastAPI, ensure that you are using the latest version 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "configuration/waf_bypass": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  configuration/waf_bypass:
+    skip: true
 ```
 
 

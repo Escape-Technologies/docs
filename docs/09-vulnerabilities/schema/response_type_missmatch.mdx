@@ -71,14 +71,10 @@ Ensure that the expected response type in the client matches the actual response
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "schema/response_type_missmatch": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  schema/response_type_missmatch:
+    skip: true
 ```
 
 

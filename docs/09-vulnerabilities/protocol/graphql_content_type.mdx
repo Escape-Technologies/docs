@@ -72,14 +72,10 @@ To mitigate potential security risks in the Hasura framework engine, ensure that
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/graphql_content_type": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/graphql_content_type:
+    skip: true
 ```
 
 

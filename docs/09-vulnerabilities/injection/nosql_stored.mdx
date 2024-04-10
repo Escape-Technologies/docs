@@ -81,14 +81,10 @@ To prevent NoSQL injection attacks in the Hasura framework, ensure that all user
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/nosql_stored": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/nosql_stored:
+    skip: true
 ```
 
 

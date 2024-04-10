@@ -106,14 +106,10 @@ Implement proper error handling in FastAPI to avoid leaking sensitive informatio
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "information_disclosure/leaking_authentication": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  information_disclosure/leaking_authentication:
+    skip: true
 ```
 
 

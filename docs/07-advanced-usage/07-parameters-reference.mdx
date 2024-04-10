@@ -1,140 +1,128 @@
 ---
-title: Parameters Reference
+title: Reference
+description: All objects available
 ---
 
-# ⚙️ Parameters Reference
 
-Here is the list of all available parameters in the `escaperc`. Some of them are detailed more thorougly in their dedicated documentation section.
+## Scan Parameters
 
+### Example
 
+Here is an example of a `ScanParams` object:
 
-## `scan`
+```yaml
+scan:
+  blacklist:
+    routes:
+    - path: "/a/path/to/blacklist"
+      method: GET
+    - path: "/another/path/to/blacklist"
+      method: POST
+  hotstart:
+  - |-
+    POST /register HTTP/1.1
+    Host: example.com
+    Content-Type: application/json
+    Content-Length: 194
 
-The parameters related to the scan.
+    {"my": "data"}
+  - |+
+    GET /users HTTP/1.1
+    Host: example.com
+    Content-Type: application/json
+    Content-Length: 194
 
-:::note JSON Schema example
-
-```
-{
-    "scan": {
-        "blacklist": {},
-        "hotstart": [
-            "**value**"
-        ],
-        "profile": "surface | default",
-        "read_only": "true | false",
-        "scalars": {
-            "**value**": {}
-        },
-        "whitelist": [
-            "**value**"
-        ]
-    }
-}
-```
-
-:::
-
-***
-
-
-
-- `Blacklist` : The operations that will be skipped by security tests. See more in the dedicated documentation section..
-
-
-- `Hotstart` : Raw queries to hotstart the API exploration.
-
-
-- `Profile` : The scan profile. Must be one of `['surface', 'default']`.
-
-
-- `Read only` : The choosen mode for the tested API. Default mode is read-write and suited to development environment. The `read_only` mode is safe for production environments, but will reduce the number of tests performed and the scan coverage..
-
-
-- `Scalars` : The user's defined scalars.
-
-
-- `Whitelist` : Whitelisted raw queries to explore the API.
-
-
-
-
-## `client`
-
-All parameters available in our `client`:
-
-:::note JSON Schema example
+  profile: surface | cicd | default | deep | unrestricted
+  read_only: true | false
+  scalars:
+    SSET:
+      description: The Super Secret Example Token is internal to our company and should
+        never been exposed by any APIs.
+      examples:
+      - SSET-ABC12
+      names:
+      - SSET
+      - super_secret_example_token
+      - SuperSecretExampleToken
+      parents:
+      - String
+      patterns:
+      - SSET-[A-Z0-9]{5}
+      sensitivity: HIGH
+      detection: key_or_value_strict
+      entropy: 2
 
 ```
-{
-    "client": {
-        "concurrent_connection": "**value**",
-        "concurrent_tasks": "**value**",
-        "proxy": {
-            "type": "escape | http | repeater"
-        },
-        "request_timeout": "**value**",
-        "requests_per_minute": "**value**"
-    }
-}
+
+
+### <a id="BlackListParams"></a>BlackListParams
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| routes | `BlacklistRouteRule` | `False` |  | [BlacklistRouteRule](#BlacklistRouteRule) |
+| query | `string` | `False` |  |  |
+| mutation | `string` | `False` |  |  |
+| subscription | `string` | `False` |  |  |
+| objects | `string` | `False` |  |  |
+
+
+### <a id="BlacklistRouteRule"></a>BlacklistRouteRule
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| method | `string` | `False` | The method is an HTTP method (GET, POST, PUT, DELETE, etc.). |  |
+| path | `string` | `False` | The path is a valid OpenAPI path. |  |
+
+
+### <a id="ScanParams"></a>ScanParams
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| profile | `ScanProfile` | `False` | The scan profile | [ScanProfile](#ScanProfile) |
+| read_only | `boolean` | `False` | The choosen mode for the tested API. Default mode is read-write and suited to development environment. The read_only mode is safe for production environments, but will reduce the number of tests performed and the scan coverage.. |  |
+| hotstart | `string` | `False` | Raw queries to hotstart the API exploration. |  |
+| whitelist | `string` | `False` | Whitelisted raw queries to explore the API. |  |
+| blacklist | `BlackListParams` | `False` | The operations that will be skipped by security tests. See more in the dedicated documentation section.. | [BlackListParams](#BlackListParams) |
+| scalars | `Dict[string, CustomScalarParams]` | `False` | The user&#39;s defined scalars. | [CustomScalarParams](#CustomScalarParams) |
+
+
+
+
+
+### <a id="ScanProfile"></a>ScanProfile
+
+- `surface`
+- `cicd`
+- `default`
+- `deep`
+- `unrestricted`
+
+
+
+## Client Parameters
+
+### Example
+
+Here is an example of a `ClientParams` object:
+
+```yaml
+client:
+  concurrent_connection: 64
+  concurrent_tasks: 8
+  proxy:
+    type: escape | http | repeater
+  request_timeout: 5
+  requests_per_minute: 50 * 60
 ```
 
-:::
 
-***
+### <a id="ClientParams"></a>ClientParams
 
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| request_timeout | `integer` | `False` | The maximum timeout duration for each request (in seconds). See more in the dedicated documentation section. |  |
+| concurrent_connection | `integer` | `False` | The maximum size of the connections pool. |  |
+| concurrent_tasks | `integer` | `False` | The maximum number of parallel tasks. |  |
+| requests_per_minute | `integer` | `False` | The maximum number of request per minute. Which will be used on a per second window. |  |
+| proxy | `RepeaterProxyType HTTPProxyType EscapeProxyType` | `False` | The Proxy to use for the requests. See more in the Scan Internal APIs documentation section. |  |
 
-
-- `Concurrent connection` : The maximum size of the connections pool.
-
-
-- `Concurrent tasks` : The maximum number of parallel tasks.
-
-
-- `Proxy` : The Proxy to use for the requests. See more in the `Scan Internal APIs` documentation section.
-
-
-- `Request timeout` : The maximum timeout duration for each request (in seconds). See more in the dedicated documentation section.
-
-
-- `Requests per minute` : The maximum number of request per minute. Which will be used on a per second window.
-
-
-
-
-## `authentication`
-
-The `PyMultiAuth` authentication configuration. See advanced configuration documentation.
-
-:::note JSON Schema example
-
-```
-{
-    "authentication": {
-        "methods": {},
-        "users": {}
-    }
-}
-```
-
-:::
-
-***
-
-
-
-- `Methods` : The `methods` as descibed in PyMultiAuth.
-
-
-- `Users` : The `users` as descibed in PyMultiAuth.
-
-
-
-
-## `custom_checks`
-
-See the Custom Payload documentation.
-
-## `checks`
-
-See the Security Reference.

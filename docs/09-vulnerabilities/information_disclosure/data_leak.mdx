@@ -159,14 +159,10 @@ Ensure that all sensitive data is properly encrypted and that API endpoints are 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "information_disclosure/data_leak": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  information_disclosure/data_leak:
+    skip: true
 ```
 
 

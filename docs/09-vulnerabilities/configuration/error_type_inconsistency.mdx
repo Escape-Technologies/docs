@@ -75,14 +75,10 @@ Ensure that the error types returned by the Hasura engine are consistent across 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "configuration/error_type_inconsistency": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  configuration/error_type_inconsistency:
+    skip: true
 ```
 
 

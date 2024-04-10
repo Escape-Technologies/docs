@@ -78,14 +78,10 @@ To prevent issues related to field limits in the Hasura framework engine, ensure
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/graphql_field_limit": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/graphql_field_limit:
+    skip: true
 ```
 
 

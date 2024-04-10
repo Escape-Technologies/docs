@@ -159,14 +159,10 @@ In FastAPI, ensure that error handlers are configured to catch exceptions and re
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "information_disclosure/stacktrace": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  information_disclosure/stacktrace:
+    skip: true
 ```
 
 

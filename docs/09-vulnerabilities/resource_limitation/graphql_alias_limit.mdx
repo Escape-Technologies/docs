@@ -98,14 +98,10 @@ To mitigate the risk of reaching the alias limit in Hasura, consider restructuri
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/graphql_alias_limit": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/graphql_alias_limit:
+    skip: true
 ```
 
 

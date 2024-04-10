@@ -106,14 +106,10 @@ To remediate the expired SSL certificate issue in a FastAPI application, you sho
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/ssl_certificate": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/ssl_certificate:
+    skip: true
 ```
 
 

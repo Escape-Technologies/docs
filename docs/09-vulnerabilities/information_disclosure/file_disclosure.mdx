@@ -106,14 +106,10 @@ To prevent critical file disclosure in FastAPI, ensure that sensitive files are 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "information_disclosure/file_disclosure": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  information_disclosure/file_disclosure:
+    skip: true
 ```
 
 

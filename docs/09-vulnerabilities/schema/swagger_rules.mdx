@@ -107,14 +107,10 @@ Ensure that FastAPI endpoints validate and sanitize all input data rigorously to
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "schema/swagger_rules": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  schema/swagger_rules:
+    skip: true
 ```
 
 

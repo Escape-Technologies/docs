@@ -116,14 +116,10 @@ In FastAPI, to prevent directory traversal attacks, ensure that user-supplied fi
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/directory_traversal": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/directory_traversal:
+    skip: true
 ```
 
 

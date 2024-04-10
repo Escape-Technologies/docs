@@ -6,12 +6,9 @@ When running scans, it's a common scenario for applications to set a limit on th
 
 If you find Escape being rate limited by your application, there's a simple tweak you can make: adjust the `requests_per_minute` parameter of the `client` section. Setting this to a lower value will tell Escape to make fewer requests within each minute, ensuring you stay within the acceptable request limits set by your application.
 
-```json
-{
-    "client": {
-        "requests_per_minute": 300
-    }
-}
+```yaml
+client:
+  requests_per_minute: 300
 ```
 
 By default, Escape aims for optimization. It automatically adjusts the `requests_per_minute` value to make your scans as short and efficient as possible. However, it's a delicate balance – while reducing the `requests_per_minute` value can ensure you aren't rate-limited, it also means your scans will take longer to complete.

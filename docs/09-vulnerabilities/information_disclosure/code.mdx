@@ -78,14 +78,10 @@ To prevent source code disclosure in the Hasura framework engine, ensure that pr
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "information_disclosure/code": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  information_disclosure/code:
+    skip: true
 ```
 
 

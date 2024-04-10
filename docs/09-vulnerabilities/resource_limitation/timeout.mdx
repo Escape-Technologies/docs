@@ -164,14 +164,10 @@ Implement request timeout handling in FastAPI by using dependencies to create a 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/timeout": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/timeout:
+    skip: true
 ```
 
 

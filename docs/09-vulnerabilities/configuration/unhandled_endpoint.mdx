@@ -106,14 +106,10 @@ Ensure that all endpoints defined in the API documentation are implemented with 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "configuration/unhandled_endpoint": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  configuration/unhandled_endpoint:
+    skip: true
 ```
 
 

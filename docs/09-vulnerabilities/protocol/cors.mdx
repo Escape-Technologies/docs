@@ -75,14 +75,10 @@ To remediate CORS issues in the Hasura framework, ensure that the 'cors-config' 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/cors": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/cors:
+    skip: true
 ```
 
 

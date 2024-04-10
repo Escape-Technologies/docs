@@ -70,14 +70,10 @@ To ensure secure and efficient data handling with the Hasura framework engine, i
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "information_disclosure/graphql_field_suggestion": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  information_disclosure/graphql_field_suggestion:
+    skip: true
 ```
 
 

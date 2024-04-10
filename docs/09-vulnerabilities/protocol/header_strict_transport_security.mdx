@@ -152,14 +152,10 @@ In FastAPI, ensure that all responses set the 'Strict-Transport-Security' header
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/header_strict_transport_security": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/header_strict_transport_security:
+    skip: true
 ```
 
 

@@ -165,14 +165,10 @@ In FastAPI, to prevent SQL injection, use ORM libraries like SQLAlchemy which em
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/sql": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/sql:
+    skip: true
 ```
 
 

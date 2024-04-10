@@ -74,14 +74,10 @@ To mitigate the Heartbleed vulnerability within a Hasura framework engine, ensur
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/heartbleed": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/heartbleed:
+    skip: true
 ```
 
 

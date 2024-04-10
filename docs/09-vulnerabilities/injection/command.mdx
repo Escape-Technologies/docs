@@ -160,14 +160,10 @@ To prevent command injection in FastAPI, validate and sanitize all user inputs r
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/command": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/command:
+    skip: true
 ```
 
 

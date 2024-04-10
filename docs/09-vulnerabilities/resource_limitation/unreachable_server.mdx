@@ -153,14 +153,10 @@ Check the server logs for any exceptions or errors that could indicate the cause
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/unreachable_server": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/unreachable_server:
+    skip: true
 ```
 
 

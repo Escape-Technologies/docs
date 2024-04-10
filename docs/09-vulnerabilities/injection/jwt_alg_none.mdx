@@ -152,14 +152,10 @@ Ensure that the FastAPI application is configured to reject JWT tokens with the 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/jwt_alg_none": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/jwt_alg_none:
+    skip: true
 ```
 
 

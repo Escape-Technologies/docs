@@ -96,14 +96,10 @@ To prevent issues with cyclic recursive queries in Hasura, ensure that you set d
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/graphql_circular_introspection": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/graphql_circular_introspection:
+    skip: true
 ```
 
 

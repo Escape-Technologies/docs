@@ -85,14 +85,10 @@ To prevent improper input validation and injection vulnerabilities in Hasura, en
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/improper_input_stored": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/improper_input_stored:
+    skip: true
 ```
 
 

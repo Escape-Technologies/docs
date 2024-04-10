@@ -107,14 +107,10 @@ In FastAPI, to prevent mass assignment vulnerabilities, explicitly define which 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/mass_assignment": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/mass_assignment:
+    skip: true
 ```
 
 

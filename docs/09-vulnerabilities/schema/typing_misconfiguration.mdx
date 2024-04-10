@@ -156,14 +156,10 @@ In FastAPI, ensure that all endpoint parameters are explicitly typed and validat
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "schema/typing_misconfiguration": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  schema/typing_misconfiguration:
+    skip: true
 ```
 
 

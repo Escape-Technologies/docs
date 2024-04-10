@@ -77,14 +77,10 @@ To prevent potential performance issues with the Hasura framework engine, it is 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/graphql_batch_limit": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/graphql_batch_limit:
+    skip: true
 ```
 
 

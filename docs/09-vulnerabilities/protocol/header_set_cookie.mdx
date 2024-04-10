@@ -153,14 +153,10 @@ In FastAPI, ensure that cookies are set with the 'secure' flag by using the 'res
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "protocol/header_set_cookie": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  protocol/header_set_cookie:
+    skip: true
 ```
 
 

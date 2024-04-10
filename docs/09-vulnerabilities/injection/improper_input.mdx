@@ -164,14 +164,10 @@ In FastAPI, ensure that all user-provided data is sanitized and validated using 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "injection/improper_input": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  injection/improper_input:
+    skip: true
 ```
 
 

@@ -81,14 +81,10 @@ To ensure the security and efficiency of your Hasura GraphQL engine, always use 
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/character_limit": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/character_limit:
+    skip: true
 ```
 
 

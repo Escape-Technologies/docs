@@ -236,14 +236,10 @@ Implement role-based access control (RBAC) and scope-based authorization to ensu
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "access_control/tenant_isolation": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  access_control/tenant_isolation:
+    skip: true
 ```
 
 

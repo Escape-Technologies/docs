@@ -112,14 +112,10 @@ Implement pagination or limit the size of responses by using query parameters to
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/response_size": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/response_size:
+    skip: true
 ```
 
 

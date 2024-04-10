@@ -159,17 +159,13 @@ Implement pagination in FastAPI by using query parameters such as 'skip' and 'li
 
 #### Increase the threshold
 
-```json
-{
-  "checks": {
-      "resource_limitation/pagination_missing": {
-          "skip": true
-          "threshold_low": 1000,
-          "threshold_medium": 2000,
-          "threshold_high": 5000,
-      }
-  }
-}
+```yaml
+checks:
+  resource_limitation/pagination_missing:
+    skip: true
+    threshold_low: 1000
+    threshold_medium: 2000
+    threshold_high: 5000
 ```
 
 
@@ -177,14 +173,10 @@ Implement pagination in FastAPI by using query parameters such as 'skip' and 'li
 
 #### Ignore this check
 
-```json
-{
-    "checks": {
-        "resource_limitation/pagination_missing": {
-            "skip": true
-        }
-    }
-}
+```yaml
+checks:
+  resource_limitation/pagination_missing:
+    skip: true
 ```
 
 
