@@ -3,7 +3,7 @@
     "collapsed": true,
     "link": {
         "type": "generated-index",
-        "slug": "/request_forgery",
+        "slug": "/dast/vulnerabilities/request_forgery",
         "description": "Request Forgery reference"
     }
 }
