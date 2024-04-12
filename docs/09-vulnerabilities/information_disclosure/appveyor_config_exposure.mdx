@@ -1,0 +1,75 @@
+---
+title: AppVeyor Config Exposure
+---
+
+# AppVeyor Config Exposure
+
+## Description
+
+Detects publicly accessible AppVeyor configuration files which may leak sensitive information.
+
+## Remediation
+
+To remediate AppVeyor Config Exposure:
+
+1. Rotate any exposed secrets, such as API keys or passwords, that were present in the configuration file.
+2. Remove sensitive data from the AppVeyor configuration file (`appveyor.yml`) and use encrypted variables or secure storage for sensitive information.
+3. Update the `.gitignore` file to exclude configuration files containing sensitive data from being committed to version control.
+4. Review access controls and permissions to ensure that only authorized personnel can view or edit the CI/CD configuration.
+5. Audit commit history to check if sensitive data was committed previously and use tools like BFG Repo-Cleaner or `git filter-branch` to remove it from the history.
+6. Implement a policy for code reviews to catch accidental commits of sensitive data in the future.
+7. Regularly scan your repositories for exposed secrets using automated tools.
+8. Enable branch protection rules to prevent direct pushes to critical branches and enforce pull requests for code changes.
+9. Educate team members about the importance of handling sensitive data securely within CI/CD pipelines.
+10. Monitor and set up alerts for any unusual activity in the CI/CD environment that could indicate a security breach.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/appveyor_config_exposure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/appveyor_config_exposure:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **2.2**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-123**
+- fedramp: **AC-22**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

@@ -1,0 +1,73 @@
+---
+title: Exposed settings.php
+---
+
+# Exposed settings.php
+
+## Description
+
+Detects backup files of settings.php that may disclose sensitive information.
+
+## Remediation
+
+To remediate an exposed settings.php file:
+
+1. Change file permissions to restrict public access. Set the file to be readable only by the server process (e.g., chmod 400 settings.php).
+2. Move sensitive information to a non-web-accessible location or environment variables if possible.
+3. Ensure the settings.php file is not included in any public repositories or backups.
+4. Implement access controls and firewall rules to limit access to the file.
+5. Regularly audit file permissions and access controls to ensure they remain secure.
+6. Update the .htaccess file to deny direct access to settings.php.
+7. Use security modules/plugins provided by the CMS to enhance file security.
+8. Regularly update the CMS and all associated plugins/modules to their latest secure versions.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/exposed_settings.php`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/exposed_settings.php:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **2.2**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.3**
+- nist: **SP800-123**
+- fedramp: **SI-2**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

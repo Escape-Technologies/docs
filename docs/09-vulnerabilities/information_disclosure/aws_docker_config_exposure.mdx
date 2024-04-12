@@ -1,0 +1,72 @@
+---
+title: AWS Docker Config Exposure
+---
+
+# AWS Docker Config Exposure
+
+## Description
+
+Detects publicly accessible AWS Docker configuration files.
+
+## Remediation
+
+To remediate AWS Docker Config Exposure, follow these steps:
+
+1. Rotate any exposed credentials immediately to prevent unauthorized access.
+2. Audit your AWS IAM roles and policies to ensure they follow the principle of least privilege.
+3. Review your Docker configurations and ensure that sensitive data is not hardcoded in Dockerfiles or image configurations.
+4. Use AWS Secrets Manager or Parameter Store to manage secrets and credentials securely.
+5. Implement proper logging and monitoring to detect any future exposures or unauthorized access attempts.
+6. Update your security policies and training to prevent similar incidents.
+7. If necessary, conduct a thorough security audit of your environment to identify and fix any related vulnerabilities.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/aws_docker_config_exposure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/aws_docker_config_exposure:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **2.2.2**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-190**
+- fedramp: **AC-6**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

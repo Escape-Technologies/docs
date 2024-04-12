@@ -1,0 +1,73 @@
+---
+title: Exposed MySQL Config
+---
+
+# Exposed MySQL Config
+
+## Description
+
+Detects publicly accessible MySQL initial configuration file.
+
+## Remediation
+
+1. Ensure the MySQL configuration file (my.cnf or my.ini) has proper file permissions set to restrict access to authorized users only, typically with chmod 600 on Linux systems.
+2. Store the configuration file in a secure location and avoid placing it in publicly accessible directories.
+3. Use firewall rules to restrict access to the MySQL server from unauthorized IP addresses.
+4. Implement strong passwords for all MySQL accounts and avoid using default credentials.
+5. Regularly update MySQL to the latest version to address any security vulnerabilities.
+6. Disable remote root login and create specific user accounts with limited privileges for remote access.
+7. Use SSL connections for remote MySQL access to encrypt data in transit.
+8. Audit your MySQL configuration and remove any unnecessary or insecure settings.
+9. Consider using MySQL configuration management tools to maintain and deploy secure configurations.
+10. Regularly review and monitor access logs for any unauthorized access attempts.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/exposed_mysql_config`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/exposed_mysql_config:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **2.2.2**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-123**
+- fedramp: **AC-22**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

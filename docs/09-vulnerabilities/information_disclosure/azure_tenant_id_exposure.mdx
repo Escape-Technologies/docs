@@ -1,0 +1,72 @@
+---
+title: Azure Tenant ID Exposure
+---
+
+# Azure Tenant ID Exposure
+
+## Description
+
+Detects the exposure of Microsoft Azure Domain Tenant ID in the application.
+
+## Remediation
+
+To remediate Azure Tenant ID Exposure:
+
+1. Review and restrict access to any services or components that may expose the Tenant ID unnecessarily.
+2. Implement proper access controls and permissions to ensure that only authorized users can retrieve the Tenant ID.
+3. Use Azure Policy to audit and enforce security controls that prevent Tenant ID exposure.
+4. Regularly audit your Azure environment for exposed Tenant IDs and take corrective actions if any are found.
+5. Educate users and developers about the risks of exposing sensitive information, including Tenant IDs.
+6. Ensure that logging and monitoring are in place to detect any unauthorized access or exposure of Tenant IDs.
+7. If a Tenant ID has been exposed, assess the potential impact and consider rotating any secrets or credentials that may be affected.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/azure_tenant_id_exposure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/azure_tenant_id_exposure:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="medium-severity">MEDIUM</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **12.8**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-53**
+- fedramp: **AC-6**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

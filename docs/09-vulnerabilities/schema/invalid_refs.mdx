@@ -1,0 +1,67 @@
+---
+title: Invalid references
+---
+
+# Invalid references
+
+## Description
+
+In your schema, some references target non-existent components. Currently, we only support references inside the same file.
+
+## Remediation
+
+Update your schema by merging all external references into the main file or by ensuring that all referenced components exist in the same file.
+
+
+## Configuration
+
+> Identifier: `schema/invalid_refs`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  schema/invalid_refs:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+
+### Compliance
+
+- OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
+- pci: **1.1**
+- gdpr: **Article-32**
+- soc2: **CC1**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-2**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N**
+
+
+## References
+
+- [https://swagger.io/specification/#relative-references-in-uris](https://swagger.io/specification/#relative-references-in-uris)
+  

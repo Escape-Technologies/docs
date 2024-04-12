@@ -1,0 +1,84 @@
+---
+title: AWStats Config Exposure
+---
+
+# AWStats Config Exposure
+
+## Description
+
+Detects publicly accessible AWStats configuration information.
+
+## Remediation
+
+To remediate AWStats Config Exposure, follow these steps:
+
+1. Restrict access to the AWStats configuration file (usually `awstats.model.conf` or any `awstats.*.conf`) using `.htaccess` or equivalent web server configuration to deny access from unauthorized users.
+
+2. Set correct file permissions to limit who can read or modify the configuration files on the server.
+
+3. Ensure that your AWStats installation is up to date with the latest security patches.
+
+4. Configure your web server to not serve `.conf` files directly to users.
+
+5. Regularly review your web server's access logs for any unauthorized attempts to access configuration files.
+
+6. Consider using authentication mechanisms to protect sensitive directories and files.
+
+7. If possible, place configuration files outside of the web-accessible directory.
+
+8. Use strong passwords and change them regularly if authentication is used.
+
+9. Conduct regular security audits to ensure that no unauthorized changes have been made to the configuration files.
+
+10. Educate users and administrators about the importance of securing configuration files and monitoring access logs.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/awstats_config_exposure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/awstats_config_exposure:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **2.2.5**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-44**
+- fedramp: **AC-22**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

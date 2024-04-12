@@ -1,0 +1,151 @@
+---
+title: Invalid parameters in path
+---
+
+# Invalid parameters in path
+
+## Description
+
+Your current schema doesn't follow the OpenAPI Specification for path parameters. Ensure that the parameters are correctly defined in the path.
+
+In the OpenAPI 3.0 specification, parameters in the path should be defined using curly braces, like so: `/user/{id}/books`.
+
+
+## Remediation
+
+Update your OpenAPI schema to correctly define the path parameters according to the OpenAPI Specification. Ensure that the parameters are correctly defined in the path and that they follow the required format.
+
+
+
+### REST Specific
+
+<details>
+    <summary>Asp_net</summary>
+
+Ensure that all path parameters in your ASP.NET routes match the OpenAPI Specification by verifying the route templates in your controller actions. Use the [FromRoute] attribute to bind path parameters to action method parameters correctly.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+In Ruby on Rails, ensure that your route parameters are properly defined in the config/routes.rb file using the ':parameter' syntax. Validate the presence and types of path parameters in your controller actions, and use strong parameters to prevent unwanted parameters from being processed.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+In Next.js, ensure that dynamic routes are correctly defined using file and folder naming conventions. For example, use `[param]` for dynamic parameters in the file name. Validate and sanitize path parameters in `getServerSideProps` or API routes to adhere to the OpenAPI Specification.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, ensure that your route parameters match the expected pattern by using regular expression constraints in your route definitions. Also, validate path parameters using Laravel's built-in validation features or form request validation to adhere to the OpenAPI Specification.
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+In Express.js, define path parameters using the colon syntax in your route definitions. For example, use app.get('/users/:userId', handler) to capture the 'userId' parameter. Ensure all path parameters are declared in this manner and match the OpenAPI Specification.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, ensure that your URL patterns use angle brackets to capture parameters from the path. For example, use 'path('items/<int:item_id>/', views.item_detail)' to define a path with an integer parameter 'item_id'. Update your views to accept and handle these parameters according to the OpenAPI Specification.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, ensure that your route definitions include proper placeholders for parameters, and that the corresponding controller methods accept these parameters as arguments. Use the 'requirements' attribute to define parameter patterns according to the OpenAPI Specification.
+
+</details>
+
+<details>
+    <summary>Spring_boot</summary>
+
+In Spring Boot, ensure that path variables in your controller methods are properly annotated with @PathVariable and match the corresponding template placeholders in your @RequestMapping or @GetMapping annotations. Also, validate that the data types of the path variables are consistent with the expected parameter types in the OpenAPI definition.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+In Flask, ensure that path parameters are defined using angle brackets in your route. For example, use '@app.route('/resource/<resource_id>')' to define a path with a parameter. Match this with the corresponding parameter in your view function, and validate the input to adhere to the expected schema.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Ensure that all dynamic segments in your Nuxt.js routes are properly defined according to the framework's conventions. Use the params object in your page components to access the path parameters.
+
+</details>
+
+<details>
+    <summary>Fastapi</summary>
+
+In FastAPI, ensure that path parameters match the function arguments and are of the correct type. Use Pydantic models for validation and declare path parameters using FastAPI's Path function for additional validation.
+
+</details>
+
+## Configuration
+
+> Identifier: `schema/invalid_parameters_in_path`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  schema/invalid_parameters_in_path:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+
+### Compliance
+
+- OWASP: **[API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md)**
+- pci: **1.1**
+- gdpr: **Article-32**
+- soc2: **CC1**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-2**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N**
+
+
+## References
+
+- [https://swagger.io/docs/specification/paths-and-operations/](https://swagger.io/docs/specification/paths-and-operations/)
+  - [https://swagger.io/specification/#path-templating](https://swagger.io/specification/#path-templating)
+  

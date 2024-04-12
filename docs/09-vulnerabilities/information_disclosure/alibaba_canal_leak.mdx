@@ -1,0 +1,74 @@
+---
+title: Alibaba Canal Leak
+---
+
+# Alibaba Canal Leak
+
+## Description
+
+Detects exposed Alibaba Canal configuration containing access and secret keys.
+
+## Remediation
+
+To remediate the Alibaba Canal Leak, follow these steps:
+
+1. Identify the source of the leak and assess the extent of the data exposure.
+2. Patch the vulnerability that led to the leak, which could involve updating software, fixing coding errors, or securing database configurations.
+3. Invalidate any exposed credentials and issue new ones to affected users.
+4. Notify all impacted parties and advise them to change passwords or take other security measures.
+5. Enhance monitoring to detect any suspicious activity resulting from the leak.
+6. Conduct a thorough security audit to prevent similar vulnerabilities in the future.
+7. Implement stricter access controls and encryption to protect sensitive data.
+8. Educate staff on security best practices to prevent human error-related leaks.
+9. Regularly update and patch systems to mitigate new vulnerabilities.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/alibaba_canal_leak`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/alibaba_canal_leak:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **2.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-53**
+- fedramp: **AC-6**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+
