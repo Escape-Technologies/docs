@@ -1,0 +1,73 @@
+---
+title: Airflow Config Exposure
+---
+
+# Airflow Config Exposure
+
+## Description
+
+Detects public exposure of Apache Airflow configuration file.
+
+## Remediation
+
+To remediate an Airflow Config Exposure, follow these steps:
+
+1. Identify and restrict access to the Airflow configuration file (`airflow.cfg`) to only authorized users.
+2. Ensure that the Airflow metadata database password and other sensitive information are not stored in plain text within the configuration file.
+3. Use environment variables or a secrets backend to manage sensitive information securely.
+4. Regularly audit and rotate credentials and secrets.
+5. Implement file system permissions and access controls to prevent unauthorized reading or modification of the configuration file.
+6. Review and update your Airflow webserver configuration to disable the exposure of sensitive configuration variables via the web interface.
+7. Apply network security measures to limit access to the Airflow webserver and metadata database to trusted networks only.
+8. Keep Airflow and its dependencies up to date with the latest security patches.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/airflow_config_exposure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/airflow_config_exposure:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **2.2**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-123**
+- fedramp: **AC-6**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

@@ -1,0 +1,72 @@
+---
+title: Appspec Exposure
+---
+
+# Appspec Exposure
+
+## Description
+
+Detects if Appspec YML or YAML files are publicly accessible, potentially revealing sensitive information.
+
+## Remediation
+
+To remediate AppSpec Exposure, follow these steps:
+
+1. Review and update the permissions on your AppSpec file to restrict access to authorized users only.
+2. Ensure that the AppSpec file does not contain sensitive information or credentials.
+3. Implement proper version control and change management procedures to prevent unauthorized modifications.
+4. Use environment variables or a secure configuration management system to handle sensitive data.
+5. Regularly audit your deployment process and access logs to detect any unauthorized access or changes.
+6. Apply encryption to the AppSpec file during transmission and at rest if it must contain sensitive data.
+7. Educate team members about the importance of security best practices related to deployment configurations.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/appspec_exposure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/appspec_exposure:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **2.2.5**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-123**
+- fedramp: **AC-22**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

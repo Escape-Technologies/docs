@@ -1,0 +1,74 @@
+---
+title: AWS Config Exposure
+---
+
+# AWS Config Exposure
+
+## Description
+
+Detects exposed AWS configuration files at /.aws/config, potentially revealing sensitive credentials.
+
+## Remediation
+
+To remediate AWS Config Exposure, follow these steps:
+
+1. Review the AWS Config rules and ensure they are configured to monitor for unintended changes and compliance with your security policies.
+2. Modify the AWS Config service role to restrict permissions, ensuring it has only the necessary access to perform its functions.
+3. Enable encryption for AWS Config data using AWS Key Management Service (KMS) to protect the data at rest.
+4. Regularly audit and rotate IAM credentials and keys to minimize the risk of unauthorized access.
+5. Implement least privilege access by ensuring that only necessary permissions are granted to IAM roles and users that interact with AWS Config.
+6. Use AWS CloudTrail to monitor and log all actions taken by AWS Config, including configuration changes and data access.
+7. Review and update security groups and network access control lists (NACLs) to restrict network access to AWS Config resources.
+8. Regularly review and update your AWS Config rules and remediation actions to ensure they align with the latest security best practices.
+9. Enable AWS Config conformance packs to apply a group of AWS Config rules and remediation actions across an entire organization or specific accounts.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/aws_config_exposure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/aws_config_exposure:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **2.2.2**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-53**
+- fedramp: **CM-2**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

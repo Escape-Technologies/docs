@@ -1,0 +1,75 @@
+---
+title: Exposed SQL Dumps
+---
+
+# Exposed SQL Dumps
+
+## Description
+
+Detects publicly accessible MySQL dump files that may contain sensitive data.
+
+## Remediation
+
+To remediate exposed SQL dumps, follow these steps:
+
+1. Immediately remove any publicly accessible SQL dumps from the server or storage location.
+2. Secure the storage location with proper access controls to prevent unauthorized access.
+3. Change any credentials that may have been exposed in the SQL dump.
+4. Review server logs to determine the scope of the exposure and identify any unauthorized access.
+5. Conduct a vulnerability assessment to understand how the SQL dumps were exposed and address the root cause.
+6. Implement regular monitoring to detect any future unauthorized access or exposure of sensitive data.
+7. Update your incident response plan to include steps for handling exposed data.
+8. Consider notifying affected users if any personal or sensitive information was compromised.
+9. Ensure that backups and dumps are encrypted and stored securely.
+10. Educate staff on best practices for data security and the importance of safeguarding backups.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/exposed_sql_dumps`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/exposed_sql_dumps:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **3.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-92**
+- fedramp: **AC-22**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

@@ -1,0 +1,73 @@
+---
+title: Ansible Config Exposure
+---
+
+# Ansible Config Exposure
+
+## Description
+
+Detects publicly accessible Ansible configuration files.
+
+## Remediation
+
+To remediate an Ansible configuration exposure, follow these steps:
+
+1. Identify and secure exposed Ansible configuration files (e.g., `ansible.cfg`) by setting proper file permissions (e.g., `chmod 600 ansible.cfg`).
+2. Rotate any credentials or secrets that may have been compromised due to the exposure.
+3. Use Ansible Vault to encrypt sensitive variables and files, or store secrets in a secure secrets management tool.
+4. Review and update `.gitignore` or equivalent in your version control system to prevent accidental commits of sensitive files.
+5. Implement access controls and audit logs to monitor access to Ansible configurations and sensitive data.
+6. Regularly review and audit your Ansible playbooks and roles for hard-coded sensitive data and remove them.
+7. Conduct security training for team members to prevent future misconfigurations or exposures.
+8. If using a public repository, consider changing its status to private or ensure no sensitive data is pushed to it.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/ansible_config_exposure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/ansible_config_exposure:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="medium-severity">MEDIUM</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **2.2.2**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-123**
+- fedramp: **AC-6**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+

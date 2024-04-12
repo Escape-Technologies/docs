@@ -1,0 +1,72 @@
+---
+title: AWStats Exposure
+---
+
+# AWStats Exposure
+
+## Description
+
+Detects publicly accessible AWStats configuration data.
+
+## Remediation
+
+To remediate AWStats Exposure, follow these steps:
+
+1. Update AWStats to the latest version to address any known vulnerabilities.
+2. Restrict access to the AWStats installation directory using .htaccess or equivalent web server configuration to allow only authorized IP addresses.
+3. Implement strong password protection for the AWStats administrative interface.
+4. Ensure that directory listings are disabled on the server to prevent unauthorized directory browsing.
+5. Regularly review and update AWStats configuration settings to ensure they adhere to security best practices.
+6. Monitor access logs for any suspicious activity related to AWStats.
+7. If AWStats is not required, consider removing or disabling it to reduce the attack surface.
+
+
+
+## Configuration
+
+> Identifier: `information_disclosure/awstats_exposure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/awstats_exposure:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **2.2.5**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-53**
+- fedramp: **AC-22**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+
