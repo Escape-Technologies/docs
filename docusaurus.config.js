@@ -36,10 +36,6 @@ const config = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
-          {
-            from: "/getting-started/registration",
-            to: "/testing/getting-started/registration",
-          },
           { from: "/getting-started/", to: "/testing/getting-started/" },
           {
             from: "/getting-started/scan-results",
@@ -61,22 +57,22 @@ const config = {
             from: "/getting-started/scan-scheduling",
             to: "/testing/getting-started/scan-scheduling",
           },
-          { from: "/integrations/snyk", to: "/testing/integrations/snyk" },
-          { from: "/integrations/email", to: "/testing/integrations/email" },
-          { from: "/integrations/", to: "/testing/integrations/" },
-          { from: "/integrations/slack", to: "/testing/integrations/slack" },
-          { from: "/integrations/pdf", to: "/testing/integrations/pdf" },
+          { from: "/integrations/snyk", to: "/platform/integrations/snyk" },
+          { from: "/integrations/email", to: "/platform/integrations/email" },
+          { from: "/integrations/", to: "/platform/integrations/" },
+          { from: "/integrations/slack", to: "/platform/integrations/slack" },
+          { from: "/integrations/pdf", to: "/platform/integrations/pdf" },
           {
             from: "/integrations/discord",
-            to: "/testing/integrations/discord",
+            to: "/platform/integrations/discord",
           },
           {
             from: "/integrations/kong-gw",
-            to: "/testing/integrations/kong-gw",
+            to: "/platform/integrations/kong-gw",
           },
           {
             from: "/integrations/postman",
-            to: "/testing/integrations/postman",
+            to: "/platform/integrations/postman",
           },
           {
             from: "/custom-tests/Seeders",
@@ -156,25 +152,25 @@ const config = {
             from: "/authentication/presets/curlsequence",
             to: "/testing/authentication/presets/curlsequence",
           },
-          { from: "/enterprise/repeater", to: "/testing/enterprise/repeater" },
+          { from: "/enterprise/repeater", to: "/platform/enterprise/repeater" },
           {
             from: "/enterprise/deployment-options",
-            to: "/testing/enterprise/deployment-options",
+            to: "/platform/enterprise/deployment-options",
           },
-          { from: "/enterprise/rbac", to: "/testing/enterprise/rbac" },
-          { from: "/enterprise/", to: "/testing/enterprise/" },
+          { from: "/enterprise/rbac", to: "/platform/enterprise/rbac" },
+          { from: "/enterprise/", to: "/platform/enterprise/" },
           {
             from: "/enterprise/sla-support",
-            to: "/testing/enterprise/sla-support",
+            to: "/platform/enterprise/sla-support",
           },
           {
             from: "/enterprise/audit-logs",
-            to: "/testing/enterprise/audit-logs",
+            to: "/platform/enterprise/audit-logs",
           },
-          { from: "/enterprise/sso", to: "/testing/enterprise/sso" },
+          { from: "/enterprise/sso", to: "/platform/enterprise/sso" },
           {
             from: "/enterprise/rotating-encryption",
-            to: "/testing/enterprise/rotating-encryption",
+            to: "/platform/enterprise/rotating-encryption",
           },
           {
             from: "/vulnerabilities/configuration/directory_listing",
@@ -644,7 +640,6 @@ const config = {
             to: "/testing/ci-cd/configuration-override",
           },
           { from: "/ci-cd/commit-sha", to: "/testing/ci-cd/commit-sha" },
-          { from: "/features/catalog", to: "/testing/features/catalog" },
           {
             from: "/features/sensitive-data",
             to: "/testing/features/sensitive-data",
