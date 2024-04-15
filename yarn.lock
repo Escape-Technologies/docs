@@ -1856,6 +1856,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@docusaurus/plugin-client-redirects@npm:2.4.1":
+  version: 2.4.1
+  resolution: "@docusaurus/plugin-client-redirects@npm:2.4.1"
+  dependencies:
+    "@docusaurus/core": "npm:2.4.1"
+    "@docusaurus/logger": "npm:2.4.1"
+    "@docusaurus/utils": "npm:2.4.1"
+    "@docusaurus/utils-common": "npm:2.4.1"
+    "@docusaurus/utils-validation": "npm:2.4.1"
+    eta: "npm:^2.0.0"
+    fs-extra: "npm:^10.1.0"
+    lodash: "npm:^4.17.21"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    react: ^16.8.4 || ^17.0.0
+    react-dom: ^16.8.4 || ^17.0.0
+  checksum: 243702c353276c8b71fa8f85ebab8d40a9447cbb45f5339930b7b580d53814ed618c0ca6888bbeb02eeabcab3660f94ac435eb3f55067a16e4e4410054365f99
+  languageName: node
+  linkType: hard
+
 "@docusaurus/plugin-content-blog@npm:2.4.1":
   version: 2.4.1
   resolution: "@docusaurus/plugin-content-blog@npm:2.4.1"
@@ -2282,6 +2302,7 @@ __metadata:
   dependencies:
     "@docusaurus/core": "npm:^2.4.1"
     "@docusaurus/module-type-aliases": "npm:^2.4.1"
+    "@docusaurus/plugin-client-redirects": "npm:2.4.1"
     "@docusaurus/plugin-ideal-image": "npm:^2.4.1"
     "@docusaurus/preset-classic": "npm:^2.4.1"
     "@mdx-js/react": "npm:^1.6.22"
