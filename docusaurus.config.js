@@ -731,13 +731,19 @@ const config = {
             type: "doc",
             position: "left",
             docId: "testing/getting-started/index",
-            label: "DAST",
+            label: "Testing",
           },
           {
             type: "doc",
             position: "left",
-            docId: "inventory/introduction/index",
+            docId: "inventory/index",
             label: "Inventory",
+          },
+          {
+            type: "doc",
+            position: "left",
+            docId: "platform/index",
+            label: "Platform",
           },
           {
             href: "https://calendly.com/d/46g-xzy-dgw",
@@ -767,8 +773,8 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Discord",
-                href: "https://discord.escape.tech",
+                label: "Slack",
+                href: "https://slack.escape.tech",
               },
               {
                 label: "GitHub",

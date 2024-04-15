@@ -12,4 +12,4 @@ The documentation you are looking for is not yet ready, but we are working on it
 
 <Image img={typewriter} alt="Typewriter illustration" style={{width: 300, margin: '1em auto'}} />
 
-You can contact us by email at [support@escape.tech](mailto:support@escape.tech) or on our [Discord server](https://discord.escape.tech/).
+You can contact us by email at [support@escape.tech](mailto:support@escape.tech) or on our [Slack Server](https://discord.escape.tech/).
