@@ -731,13 +731,13 @@ const config = {
           {
             type: "doc",
             position: "left",
-            docId: "inventory/index",
+            docId: "inventory/introduction/index",
             label: "Inventory",
           },
           {
             type: "doc",
             position: "left",
-            docId: "platform/index",
+            docId: "platform/introduction/index",
             label: "Platform",
           },
           {
