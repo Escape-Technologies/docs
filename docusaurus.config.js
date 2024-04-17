@@ -706,7 +706,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       colorMode: {
-        defaultMode: "light",
+        defaultMode: "dark",
         disableSwitch: false,
       },
       navbar: {
@@ -719,14 +719,14 @@ const config = {
           {
             type: "doc",
             position: "left",
-            docId: "testing/getting-started/index",
-            label: "Testing",
+            docId: "inventory/introduction/index",
+            label: "Inventory",
           },
           {
             type: "doc",
             position: "left",
-            docId: "inventory/introduction/index",
-            label: "Inventory",
+            docId: "testing/getting-started/index",
+            label: "Testing",
           },
           {
             type: "doc",
@@ -736,7 +736,7 @@ const config = {
           },
           {
             href: "https://calendly.com/d/46g-xzy-dgw",
-            label: "New to Escape? Chat with our team",
+            label: "Chat with our Team",
             position: "right",
           },
           {
@@ -745,13 +745,13 @@ const config = {
             position: "right",
           },
           {
-            href: "https://app.escape.tech/login",
-            label: "Login",
+            href: "https://github.com/Escape-Technologies",
+            label: "GitHub",
             position: "right",
           },
           {
-            href: "https://github.com/Escape-Technologies",
-            label: "GitHub",
+            href: "https://app.escape.tech/login",
+            label: "Login",
             position: "right",
           },
         ],
