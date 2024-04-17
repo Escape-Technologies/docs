@@ -57,17 +57,17 @@ const config = {
             from: "/getting-started/scan-scheduling",
             to: "/testing/getting-started/scan-scheduling",
           },
-          { from: "/integrations/snyk", to: "/platform/collaboration/snyk" },
-          { from: "/integrations/email", to: "/platform/collaboration/email" },
-          { from: "/integrations/slack", to: "/platform/collaboration/slack" },
-          { from: "/integrations/pdf", to: "/platform/collaboration/pdf" },
+          { from: "/integrations/snyk", to: "/platform/workflows/snyk" },
+          { from: "/integrations/email", to: "/platform/workflows/email" },
+          { from: "/integrations/slack", to: "/platform/workflows/slack" },
+          { from: "/integrations/pdf", to: "/platform/workflows/pdf" },
           {
             from: "/integrations/discord",
-            to: "/platform/collaboration/discord",
+            to: "/platform/workflows/discord",
           },
           {
             from: "/integrations/postman",
-            to: "/platform/collaboration/postman",
+            to: "/platform/workflows/postman",
           },
           {
             from: "/custom-tests/Seeders",
