@@ -1,3 +1,56 @@
 ---
 title: Business Logic Enrichment
 ---
+
+Escape's advanced machine learning and AI algorithms provide deep insights into the business logic and various characteristics of API endpoints, enhancing the security and governance of your API infrastructure. Here's an overview of the information that Escape can automatically infer from the endpoint context:
+
+### API Characteristics and Environment
+
+Escape provides a comprehensive view of each API's characteristics and the environment in which it operates, including:
+
+- **Associated Firewall**: Identifies firewalls protecting the API, such as Cloudflare, AWS ELB, Azure WAF, etc.
+- **Cloud Hosting Provider**: Determines whether the API is hosted on platforms like AWS, Azure, OVH, and others.
+- **API Stage**: Distinguishes between production and development APIs.
+- **API Type and Framework**: Recognizes the API technology and framework, including REST, GraphQL, SOAP, WebSocket, gRPC, etc.
+- **API Authentication**: Analyzes the authentication methods and technologies used, such as OAuth, Basic, Digest, and integrations with services like Keycloak, Cognito, etc.
+
+### Ownership
+
+Understanding who owns and maintains an API is crucial for managing its lifecycle and security:
+
+- **Business Unit**: Identifies the business unit responsible for the API.
+- **Code Owners and Maintainers**: Lists individuals or teams responsible for the API's maintenance and development.
+
+### Data Type
+
+The AI identifies the types of data exchanged through the API, enhancing data protection and compliance:
+
+- **Personal Identifiable Information (PII)**: Detects if the API handles personal details.
+- **Financial Data**: Recognizes APIs dealing with payment or other financial information.
+- **Authentication Information and Tokens**: Notes APIs transmitting authentication details and tokens.
+
+### Associated Risks
+
+Escape evaluates the risks associated with each API, such as:
+
+- **Sensitive Data Leakage**: Identifies potential points where sensitive data could be exposed.
+- **External Exposure**: Highlights APIs that are exposed to the public internet.
+- **API Schema Disclosure**: Detects potential unauthorized disclosures of API schemas.
+- **Authentication and Authorization Issues**: Flags APIs with potential security issues in authentication or authorization processes.
+- **Critical Vulnerabilities**: Identifies APIs that may be vulnerable to critical security threats.
+
+### Usage Context
+
+Escape's analysis extends to how and where the API is used within the organization:
+
+- **Third-Party Services**: Documents interactions with external services like GitLab, Jira, Confluence, SQL databases, Keycloak, etc., without needing traffic analysis.
+- **Internal Service Classification**: Classifies internal services based on usage, providing a clearer picture of the API's role within organizational processes.
+
+### Business Logic
+
+By examining the operational details, Escape detects various operational patterns:
+
+- **Shadow, Zombie, and Legacy APIs**: Identifies APIs that are outdated, no longer actively maintained, or not officially recognized by IT.
+- **Duplicate or Similar APIs**: Detects and reports instances of APIs that perform similar functions, which could be optimized or consolidated.
+
+Escape’s enrichment of API endpoints using generative AI and machine learning offers organizations an unparalleled depth of insight, aiding in more informed decision-making and enhanced security practices.

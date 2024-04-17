@@ -1,3 +1,32 @@
 ---
 title: Automatic API Schema Generation
 ---
+
+## Automatic API Schema Generation
+
+Escape's advanced capabilities extend to automatically generating API schemas, a crucial component for comprehensive API management and security testing. This feature is particularly powerful for REST APIs, where it leverages the structure of code to create precise specifications.
+
+### Overview of Schema Generation
+
+Escape reconstructs API schemas by parsing the abstract syntax tree (AST) of both frontend and backend source code. This process allows Escape to accurately infer the endpoints, parameters, and structures used within the API, even when explicit documentation is lacking.
+
+- **Frontend and Backend Code Analysis**: By analyzing the source code available on the frontend, Escape can generate schemas directly from user interactions and visible API calls. For APIs without frontend components, Escape utilizes Git integrations to access backend code, enabling comprehensive schema generation across all server-side APIs.
+- **AST Parsing**: The AST of the code is meticulously parsed to extract meaningful information that contributes to building a complete API schema. For more technical details on this process, see our [technical blog on automating API specifications](https://escape.tech/blog/how-to-automate-api-specifications/).
+
+### Integration with Git
+
+The integration with Git repositories enhances Escape's ability to generate schemas by providing direct access to source code, even for APIs that are not exposed through a frontend. This access allows Escape to cover more ground by including APIs that are purely backend-focused or in development stages, ensuring that all potential security vulnerabilities can be identified and addressed.
+
+### Schema Use in Dynamic Application Security Testing (DAST)
+
+Once an API schema is generated, integrating it into the DAST process is seamless:
+
+- **Scan Initiation**: Users can start a security scan by simply clicking "Scan now". This initiates a dynamic application security test using the newly generated schema, making it one of the simplest yet most effective DAST implementations available.
+
+### Handling GraphQL APIs
+
+For GraphQL APIs, the schema generation process is straightforward since the schema is always explicitly defined as part of the GraphQL standard. Escape automatically retrieves and utilizes these schemas for security testing and integration purposes, ensuring that GraphQL APIs are as robustly tested and secured as their REST counterparts.
+
+### Conclusion
+
+Automatic API schema generation by Escape not only simplifies the task of API documentation and security testing but also enhances the accuracy and efficacy of security practices. By automatically generating and utilizing API schemas in DAST, Escape provides a robust platform for ensuring API security across a variety of technologies and implementation styles.
