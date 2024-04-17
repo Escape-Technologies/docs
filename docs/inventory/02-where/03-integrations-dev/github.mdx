@@ -2,3 +2,26 @@
 title: GitHub
 ---
 
+Integrating GitHub with Escape's Inventory allows for enhanced visibility into your repositories, ensuring that API endpoints and secrets within your GitHub projects are accurately cataloged. Follow these concise steps to create a GitHub personal access token required for integration:
+
+### Creating a GitHub Personal Access Token
+
+1. **Navigate to GitHub Settings**:
+   - Go to your profile settings on GitHub and select "Developer settings" from the left-hand menu.
+
+2. **Personal Access Tokens**:
+   - Choose "Personal access tokens" and then click on "Generate new token".
+
+3. **Token Configuration**:
+   - **Resource Owner**: Select your organization. Ensure that the organization is public.
+   - **Repository Owner**: Grant the token access to all repositories.
+   - **Repository Permissions**:
+     - Set to "read-only" for both contents and metadata.
+   - **Organization Permissions**:
+     - Set to "read-only" for members.
+
+4. **Generate and Copy Your Token**:
+   - Click the "Generate token" button at the bottom of the page.
+   - **Important**: Be sure to copy the generated token immediately. GitHub does not allow you to view the token again after you navigate away from the page.
+
+This token will allow Escape's Inventory to access and analyze your GitHub repositories securely and non-intrusively, maintaining your organization's data privacy and security.

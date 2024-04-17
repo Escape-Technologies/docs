@@ -2,3 +2,21 @@
 title: AWS
 ---
 
+Integrating AWS with Escape's Inventory enhances visibility and management of your API deployments across AWS services. This integration not only supports general API management but also enriches the inventory with detailed data from specific AWS services:
+
+### Supported AWS Services
+
+- **API Gateway v1 & v2**: Ensures comprehensive coverage of all versions of API Gateway, capturing configurations and API interactions.
+- **AWS DNS (Route 53)**: Incorporates DNS configuration and management details, vital for understanding domain and subdomain structures.
+- **AWS IPs (ELB, NLB, etc.)**: Includes information about AWS load balancers and network interfaces, providing insights into the network architecture and traffic management.
+
+### Creating an AWS IAM User and Access Key
+
+- Navigate to the [IAM users tab](https://console.aws.amazon.com/iam/home#/users) in the AWS console.
+- Create a new user and attach the [ReadOnlyAccess](https://us-east-1.console.aws.amazon.com/iam/home#/policies/details/arn%3Aaws%3Aiam%3A%3Aaws%3Apolicy%2FReadOnlyAccess?section=permissions) policy directly to this user. This policy grants the necessary read-only permissions without modifying your AWS resources.
+- Go to the `Security credentials` tab for your newly created user, and click on the `Create access key` button.
+- For the `Use case`, select `Other`, provide a description, and then create the key.
+- **Important**: The access key values will be displayed only once upon creation. Ensure you save these credentials in a secure location.
+- Should you need to revoke the key at any future point, navigate back to the [IAM users tab](https://console.aws.amazon.com/iam/home#/users), select the user, and remove the key under their `Security credentials` settings.
+
+By following these steps, you will securely integrate AWS Gateway with Escape’s Inventory, enabling comprehensive monitoring and governance of your APIs deployed within AWS, including specific services that provide crucial infrastructure insights.
