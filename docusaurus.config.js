@@ -57,22 +57,17 @@ const config = {
             from: "/getting-started/scan-scheduling",
             to: "/testing/getting-started/scan-scheduling",
           },
-          { from: "/integrations/snyk", to: "/platform/integrations/snyk" },
-          { from: "/integrations/email", to: "/platform/integrations/email" },
-          { from: "/integrations/", to: "/platform/integrations/" },
-          { from: "/integrations/slack", to: "/platform/integrations/slack" },
-          { from: "/integrations/pdf", to: "/platform/integrations/pdf" },
+          { from: "/integrations/snyk", to: "/platform/collaboration/snyk" },
+          { from: "/integrations/email", to: "/platform/collaboration/email" },
+          { from: "/integrations/slack", to: "/platform/collaboration/slack" },
+          { from: "/integrations/pdf", to: "/platform/collaboration/pdf" },
           {
             from: "/integrations/discord",
-            to: "/platform/integrations/discord",
-          },
-          {
-            from: "/integrations/kong-gw",
-            to: "/platform/integrations/kong-gw",
+            to: "/platform/collaboration/discord",
           },
           {
             from: "/integrations/postman",
-            to: "/platform/integrations/postman",
+            to: "/platform/collaboration/postman",
           },
           {
             from: "/custom-tests/Seeders",
@@ -158,7 +153,6 @@ const config = {
             to: "/platform/enterprise/deployment-options",
           },
           { from: "/enterprise/rbac", to: "/platform/enterprise/rbac" },
-          { from: "/enterprise/", to: "/platform/enterprise/" },
           {
             from: "/enterprise/sla-support",
             to: "/platform/enterprise/sla-support",
