@@ -705,7 +705,7 @@ const config = {
       },
       navbar: {
         logo: {
-          src: "img/logo-dark.svg",
+          src: "img/logo.svg",
           alt: "Escape logo",
           height: "300px",
           },
@@ -785,13 +785,6 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-  // Dark theme logo configuration
-      darkTheme: {
-          logo: {
-              src: "img/logo-dark.svg",   // Path to the dark theme logo
-              alt: "Escape logo",         // Alternative text for the logo
-              height: "300px",            // Height of the logo
-          },
     }),
 };
 
