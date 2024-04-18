@@ -705,10 +705,7 @@ const config = {
       },
       navbar: {
         logo: {
-          src: {
-                light: "img/logo.svg", // Path to the light theme logo
-                dark: "img/logo-dark.svg", // Path to the dark theme logo
-            },
+          src: "img/logo-dark.svg",
           alt: "Escape logo",
           height: "300px",
           },
