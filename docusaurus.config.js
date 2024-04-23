@@ -592,7 +592,7 @@ const config = {
           },
           {
             from: "/ci-cd/references/api",
-            to: "/testing/ci-cd/references/api",
+            to: "/platform/ci-cd/reference/api",
           },
           {
             from: "/ci-cd/references/circleci",
@@ -654,7 +654,7 @@ const config = {
           { from: "/advanced-usage/", to: "/testing/advanced-usage/" },
           {
             from: "/advanced-usage/data-types-reference",
-            to: "/testing/advanced-usage/data-types-reference",
+            to: "/platform/reference/data-types-reference",
           },
           {
             from: "/advanced-usage/blacklist",
