@@ -592,7 +592,7 @@ const config = {
           },
           {
             from: "/ci-cd/references/api",
-            to: "/platform/ci-cd/reference/api",
+            to: "/platform/reference/api",
           },
           {
             from: "/ci-cd/references/circleci",
