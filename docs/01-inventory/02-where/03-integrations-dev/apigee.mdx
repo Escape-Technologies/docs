@@ -1,0 +1,25 @@
+---
+title: Apigee
+---
+
+Integrating Apigee with Escape's Inventory enhances the management of your API ecosystem by incorporating your Apigee Setup. Here is how to generate a service account and key for this integration:
+
+### Generating a Apigee OAuth Credentials
+
+Follow these steps to create your API Credentials in Apigee:
+
+- Go to your [API Credentials page](https://console.cloud.google.com/apis/credentials) to generate a service account
+- Click on **Create Service Account** and follow instructions to create a service account.
+- Add on role of **Viewer** from **Basic** roles in the permissions
+- Click on **Done** to create the service account.
+- After creating, Open the service account by clicking on it
+- Go to **Keys** tab and click on **Add Key** to create a new key
+- Click on **Create new key** and select **JSON** and click on **Create**
+- This will download a JSON file with the key details. Open the file and copy the contents.
+- Copy the contents of the JSON file and paste it in the text area above.
+- **Important**: enable the following APIs in the GCP console:
+- Enable the [API Connector API](https://console.cloud.google.com/apis/enableflow?apiid=connectors.googleapis.com)
+- Enable the [Apigee API](https://console.cloud.google.com/apis/enableflow?apiid=apigee.googleapis.com)
+- Enable the [Apigee Registry API](https://console.cloud.google.com/apis/enableflow?apiid=apigeeregistry.googleapis.com)
+
+By setting up this integration, you ensure that all endpoints are accounted for in Escape's Inventory, aiding in thorough security and compliance assessments.
