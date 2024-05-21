@@ -1,0 +1,109 @@
+---
+title: Permissive JSON Input
+---
+
+# Permissive JSON Input
+
+## Description
+
+Inputable JSON scalars are an arbitrary scalar type that allow users to return JSON objects from the schema.
+It is a weak typing **bad practice** and may represent an unhandled data leak risk for your application.
+
+## Remediation
+
+When possible, use typed input objects instead.
+
+
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Ensure strong typing in JSON schemas and validate the types of all inputs rigorously to prevent type-related security issues. In the Apollo framework, use resolvers to enforce the correct types and consider implementing additional middleware for input validation.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Ensure strong typing in JSON parsing within the Yoga framework engine by explicitly defining and validating the types of all data fields. Avoid relying on implicit or weak typing to prevent type-related security vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Ensure strong typing in your schema definitions and resolvers to prevent type coercion vulnerabilities. Explicitly define types for all fields in your GraphQL schema and avoid using generic types like 'JSON' or 'AWSJSON' unless absolutely necessary. When using resolvers, validate the input types and enforce strict type checking before processing the data within your AWS AppSync functions.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Ensure strong typing in GraphQL schema definitions and validate incoming JSON requests against the schema to prevent type-related issues. Avoid implicit type coercion by explicitly defining scalar types and using custom scalar types if necessary to handle complex data structures or validation requirements.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In the GraphQL Ruby framework, ensure that you define your types explicitly and handle the parsing of input values carefully. Use the built-in scalar types provided by GraphQL Ruby, such as Int, Float, Boolean, and ID, to enforce strict typing. Avoid using generic types like JSON or String for complex inputs when possible. If you must accept JSON inputs, parse and validate them thoroughly on the server side before processing to prevent type-related security vulnerabilities. Additionally, consider implementing custom scalar types with validation logic to enforce the correct structure and data types of the input.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Ensure strict type checking in Hasura by using explicit casting or type annotations in your GraphQL queries and mutations to prevent weak typing issues. Additionally, validate the JSON inputs against predefined schemas to enforce the correct types.
+
+</details>
+
+
+## Configuration
+
+> Identifier: `schema/permissive_json_input`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  schema/permissive_json_input:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+
+### Compliance
+
+- OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
+- pci: **6.5.9**
+- gdpr: **Article-32**
+- soc2: **CC1**
+- psd2: **Article-95**
+- iso27001: **A.18.1**
+- nist: **SP800-53**
+- fedramp: **SI-10**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N/E:H/RL:O/RC:C**
+
+

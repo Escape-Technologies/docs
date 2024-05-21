@@ -54,7 +54,7 @@ presets:
 | cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | client_id | `string` | `True` | The client ID to use for the OAuth requests |  |
 | client_secret | `string` | `True` | The client secret to use for the OAuth requests |  |
-| scopes | `string` | `False` | A list of scopes to request for the user. If not specified, no scopes will be requested. |  |
+| scopes | `string` | `False` | A list of scopes to request for the user. If not specified, no scope will be requested. |  |
 
 
 
