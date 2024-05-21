@@ -57,7 +57,7 @@ presets:
 | headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
 | cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
 | password | `string` | `True` | The password of the user. |  |
-| scopes | `string` | `False` | A list of scopes to request for the user. If not specified, no scopes will be requested. |  |
+| scopes | `string` | `False` | A list of scopes to request for the user. If not specified, no scope will be requested. |  |
 
 
 
