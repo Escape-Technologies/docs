@@ -23,6 +23,11 @@ When you start a scan on Escape, instead of sending the requests directly to you
 Your client will receive the requests and send them to your server (3 & 4).
 The results are sent back to Escape to allow you to see scans results.
 
+## Resources
+
+The Repeater Proxy is an open source docker image available on Github [Escape-Technologies/Repeater](https://github.com/Escape-Technologies/Repeater/).
+
+The resources needed to run it depends on the trafic you will have. We recommend to start with an instance with 1 vCPU and 2GB of RAM and monitor the usage.
 
 ## Setup a repeater
 
@@ -101,12 +106,11 @@ users:
 
 Make sure the following **outgoing** connections are allowed by your network configuration:
 
-| Address                 | Protocol             | Port   |
-|-------------------------|----------------------|--------|
-| `repeater.escape.tech`  | `TCP`/`RPC`          | `443`  |
-| `51.159.205.221`        | `TCP`/`HTTP`         | `80`   |
-| `51.159.205.221`        | `TCP`/`HTTPS`        | `443`  |
-
+| Address                | Protocol      | Port  |
+| ---------------------- | ------------- | ----- |
+| `repeater.escape.tech` | `TCP`/`RPC`   | `443` |
+| `51.159.205.221`       | `TCP`/`HTTP`  | `80`  |
+| `51.159.205.221`       | `TCP`/`HTTPS` | `443` |
 
 ### Connect a repeater
 
@@ -115,12 +119,10 @@ Make sure the following **outgoing** connections are allowed by your network con
 3. Follow the deployment intrusctions directly in the Network page. The Repeater is available via a Docker image accessible on [DockerHub](https://hub.docker.com/r/escapetech/repeater).
 4. The connection status is refreshed every minute in the **Last seen** column.
 
-
 ### Use a repeater on a new application
 
 While additing a new app to Escape, the Repeater list will be proposed when try to reach your API.
 Select the Repeater you want to use.
-
 
 ### Use a repeater on an existing application.
 
@@ -130,5 +132,5 @@ Go to the Advanced Settings of the applications and add the following configurat
 client:
   proxy:
     type: repeater
-    target: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  # Put here your repeater id
+    target: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx # Put here your repeater id
 ```
