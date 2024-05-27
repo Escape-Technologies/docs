@@ -64,29 +64,29 @@ const config = {
             to: "/platform/workflows/discord",
           },
           {
-            from: "/custom-tests/Seeders",
-            to: "/testing/custom-tests/Seeders",
+            from: "/custom-rules/Seeders",
+            to: "/testing/custom-rules/Seeders",
           },
-          { from: "/custom-tests/", to: "/testing/custom-tests/" },
+          { from: "/custom-rules/", to: "/testing/custom-rules/" },
           {
-            from: "/custom-tests/Mutators",
-            to: "/testing/custom-tests/Mutators",
-          },
-          {
-            from: "/custom-tests/Transformations",
-            to: "/testing/custom-tests/Transformations",
+            from: "/custom-rules/Mutators",
+            to: "/testing/custom-rules/Mutators",
           },
           {
-            from: "/custom-tests/Alerting",
-            to: "/testing/custom-tests/Alerting",
+            from: "/custom-rules/Transformations",
+            to: "/testing/custom-rules/Transformations",
           },
           {
-            from: "/custom-tests/Reference",
-            to: "/testing/custom-tests/Reference",
+            from: "/custom-rules/Alerting",
+            to: "/testing/custom-rules/Alerting",
           },
           {
-            from: "/custom-tests/Detectors",
-            to: "/testing/custom-tests/Detectors",
+            from: "/custom-rules/Reference",
+            to: "/testing/custom-rules/Reference",
+          },
+          {
+            from: "/custom-rules/Detectors",
+            to: "/testing/custom-rules/Detectors",
           },
           {
             from: "/authentication/reference/",
