@@ -1,18 +1,18 @@
 ---
-title: ⚡ Custom Tests
+title: ⚡ Custom Rules
 ---
 
 As you already know, [Escape's built-in tests](../vulnerabilities) are
 pretty extensive and cover a lot of security vulnerabilities and concerns.
 But we know that you might have very specific use-cases, and that's why
-we've made it possible for you to create your own custom tests.
+we've made it possible for you to create your own custom rules.
 
 These will enable you to build your own governance and apply it at scale,
 in a simple language that is powerful thanks to Escape's inference engine.
 
 ## Format
 
-A custom test is a YAML file that defines the following blocks:
+A custom rule is a YAML file that defines the following blocks:
 
 - [Alerting](./alerting) is used define the alert format, it's severity…
 - [Detectors](./detectors) are used to detect if an alert must be raised by inspecting queries.
@@ -124,7 +124,7 @@ detect:
 
 ### Properties
 
-- `id`: The unique identifier of the custom check. It is provided by Escape, do not set it manually.
+- `id`: The unique identifier of the custom rule. It is provided by Escape, do not set it manually.
 - `seed`: A list of requests to seed the scan. See [Seeders](./seeders)
 - `transform`: Defines lists of triggers and mutations (combined with AND operators).See [Transformations](./transformations)
 - `detect`: The conditions to trigger the alert. See [Detectors](./detectors)
