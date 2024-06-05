@@ -29,24 +29,12 @@ seed:
       id: 1
 ```
 
-Or using raw:
-
-```yaml
-seed:
-  - protocol: rest
-    raw: |
-      GET /books/some-title HTTP/1.1
-      Content-Type: application/json
-      {"hello": "world"}
-```
-
 ### Properties
 
 - `user`: The user to use for the request. If not provided, the request is sent without authentication.
 - `path`: None
 - `method`: None
 - `headers`: None
-- `raw`: None
 - `body`: None
 - `params`: None
 
