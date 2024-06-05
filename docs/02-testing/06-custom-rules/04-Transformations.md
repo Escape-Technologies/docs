@@ -28,5 +28,5 @@ transform:
 
 ### Properties
 
-- `trigger`: The detectors to trigger the transform, on the request or response. See [Detectors](./detectors)
-- `mutate`: The mutations to apply to the request and replay it. See [Mutators](./mutators)
+- `trigger`: The detectors to trigger the transform, on the request or response.
+- `mutate`: The mutations to apply to the request and replay it.
