@@ -1,0 +1,73 @@
+---
+title: TLS Configuration
+---
+
+# TLS Configuration
+
+## Description
+
+Sensitive data must be protected when it is transmitted through the network. HTTP is a clear-text protocol and it is normally secured via an SSL/TLS tunnel, resulting in HTTPS traffic. The use of this protocol ensures not only confidentiality, but also authentication. Servers are authenticated using digital certificates and it is also possible to use client certificate for mutual authentication.
+A vulnerability occurs if the HTTP protocol is used to transmit sensitive information (e.g. credentials transmitted over HTTP). When the SSL/TLS service is present it is good but it increments the attack surface and the following vulnerabilities exist:
+- SSL/TLS protocols, ciphers, keys and renegotiation must be properly configured.
+- Certificate validity must be ensured.
+
+## Remediation
+
+Check your TLS configuration to prevent severe cipher key exchange weaknesses. You can use [mozilla's SSL Configuration Generator](https://ssl-config.mozilla.org/) to generate a new SSL configuration. You can also consult [RFC 9325](https://datatracker.ietf.org/doc/html/rfc9325) or [mozilla's TLS recommendations](https://wiki.mozilla.org/Security/Server_Side_TLS) for more details on how to configure a secure TLS configuration.
+
+
+
+## Configuration
+
+> Identifier: `protocol/tls_configuration_key`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  protocol/tls_configuration_key:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **4.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.10.1**
+- nist: **SP800-52**
+- fedramp: **SC-17**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N**
+- CVSS_SCORE: **7.5**
+
+## References
+
+- [https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html)
+  - [https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/01-Testing_for_Weak_SSL_TLS_Ciphers_Insufficient_Transport_Layer_Protection](https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/01-Testing_for_Weak_SSL_TLS_Ciphers_Insufficient_Transport_Layer_Protection)
+  - [https://github.com/ssllabs/research/wiki/SSL-and-TLS-Deployment-Best-Practices](https://github.com/ssllabs/research/wiki/SSL-and-TLS-Deployment-Best-Practices)
+  

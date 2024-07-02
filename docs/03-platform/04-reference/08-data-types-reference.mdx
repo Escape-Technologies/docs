@@ -4,7 +4,7 @@ title: Data Types Reference
 
 # 🔣 Data Types Reference (Scalars)
 
-Escape scanners support 876 types of data (171 Low, 365 Medium, 340 High), named `scalars`. Here is a list of all the supported types. 
+Escape scanners support 870 types of data (170 Low, 364 Medium, 336 High), named `scalars`. Here is a list of all the supported types. 
 
 :::tip 🌱 Custom Data Types
 To define your own Data Types (Scalars) and Payloads, check out the `Custom Payloads` documentation section.
@@ -338,13 +338,6 @@ To define your own Data Types (Scalars) and Payloads, check out the `Custom Payl
 | digitalocean_pat | Discovered a DigitalOcean Personal Access Token, posing a threat to cloud infrastructure security and data privacy. | <span className="high-severity">HIGH</span> |
 | digitalocean_refresh_token | Uncovered a DigitalOcean OAuth Refresh Token, which could allow prolonged unauthorized access and resource manipulation. | <span className="high-severity">HIGH</span> |
 | digitaloceantoken | DigitalOcean API Token | <span className="high-severity">HIGH</span> |
-| discord_api_token | Detected a Discord API key, potentially compromising communication channels and user data privacy on Discord. | <span className="high-severity">HIGH</span> |
-| discord_bot_token | Identified a Discord bot token, which could lead to unauthorized communication and data exposure. | <span className="high-severity">HIGH</span> |
-| discord_client_id | Identified a Discord client ID, which may lead to unauthorized integrations and data exposure in Discord applications. | <span className="high-severity">HIGH</span> |
-| discord_client_secret | Discovered a potential Discord client secret, risking compromised Discord bot integrations and data leaks. | <span className="high-severity">HIGH</span> |
-| discord_webhook_url | Identified a Discord webhook URL, which could lead to unauthorized communication and data exposure. | <span className="medium-severity">MEDIUM</span> |
-| discordbottoken | Discord bot token | <span className="high-severity">HIGH</span> |
-| discordwebhook | Discord webhook is used to send messages from external sources to a Discord channel. It is used for integrating external services and applications with Discord. | <span className="medium-severity">MEDIUM</span> |
 | ditto | This API key is used for authentication and authorization purposes. | <span className="high-severity">HIGH</span> |
 | dnscheck | Dnscheck is an API key used for performing DNS checks and analysis. It is likely associated with a service or tool related to DNS management or security. | <span className="medium-severity">MEDIUM</span> |
 | documo | The Documo API key is used for authentication and authorization purposes for accessing the Documo API services. | <span className="medium-severity">MEDIUM</span> |
@@ -905,9 +898,10 @@ To define your own Data Types (Scalars) and Payloads, check out the `Custom Payl
 |----|-----------|-----------|
 | authentication | authentication | <span className="low-severity">LOW</span> |
 | authorization_code | authorization code | <span className="low-severity">LOW</span> |
-| aws_client_id | aws client id | <span className="low-severity">LOW</span> |
 | aws_mws_id | Amazon Marketplace Web Service identifier | <span className="low-severity">LOW</span> |
 | aws_secret_key | Amazon secret key | <span className="high-severity">HIGH</span> |
+| bearer | Bearer | <span className="medium-severity">MEDIUM</span> |
+| bearer_uuid | Bearer with UUID | <span className="high-severity">HIGH</span> |
 | boolean_wannabe | Looks like a boolean but not a boolean | <span className="low-severity">LOW</span> |
 | command | Command input, often used in interfaces that accept system commands | <span className="medium-severity">MEDIUM</span> |
 | confirmation_code | confirmation code | <span className="low-severity">LOW</span> |
