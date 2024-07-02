@@ -81,7 +81,6 @@ scan:
 | profile | `ScanProfile` | `False` | The scan profile | [ScanProfile](#ScanProfile) |
 | read_only | `boolean` | `False` | The choosen mode for the tested API. Default mode is read-write and suited to development environment. The read_only mode is safe for production environments, but will reduce the number of tests performed and the scan coverage.. |  |
 | hotstart | `string` | `False` | Raw queries to hotstart the API exploration. |  |
-| whitelist | `string` | `False` | Whitelisted raw queries to explore the API. |  |
 | blacklist | `BlackListParams` | `False` | The operations that will be skipped by security tests. See more in the dedicated documentation section.. | [BlackListParams](#BlackListParams) |
 | scalars | `Dict[string, CustomScalarParams]` | `False` | The user&#39;s defined scalars. | [CustomScalarParams](#CustomScalarParams) |
 

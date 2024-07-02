@@ -1,10 +1,10 @@
 ---
-title: Blacklist & Whitelist
+title: Blacklist & Hotstart
 ---
 
-# Directing Your Scan: Blacklist, Whitelist & Hotstart 🎯
+# Directing Your Scan: Blacklist & Hotstart 🎯
 
-Gain finer control over how Escape interacts with your API by employing the Blacklist, Whitelist, and Hotstart features.
+Gain finer control over how Escape interacts with your API by employing the Blacklist, and Hotstart features.
 
 ## Blacklist 🚫
 
@@ -48,19 +48,6 @@ scan:
     - path: /user/.*
       method: POST
 ```
-
-## Whitelist ✅
-
-By employing a whitelist, you instruct Escape to focus its exploration phase solely on the specified operations. This can make the scan process faster, as Escape narrows its evaluation to just these queries.
-
-```yaml
-scan:
-  whitelist:
-  - 'query { child(parentId: "b63f4020-45f6-4f33-9747-32ac8f270097" ) { id name birthdate
-    }}'
-  - 'query { bank(account: 1337) { id address }}'
-```
-
 
 ## Hotstart 🚀
 
