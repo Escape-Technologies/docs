@@ -1,8 +1,8 @@
 ---
-title: Springboot Actuator Disclosure of Environment
+title: Springboot Actuator Disclosure of Heap Dump
 ---
 
-# Springboot Actuator Disclosure of Environment
+# Springboot Actuator Disclosure of Heap Dump
 
 ## Description
 
@@ -18,7 +18,7 @@ It is recommended to secure the Spring Boot Actuator endpoints by restricting ac
 
 ## Configuration
 
-> Identifier: `information_disclosure/springboot_actuator_env`
+> Identifier: `information_disclosure/springboot_actuator_heapdump`
 
 
 
@@ -30,7 +30,7 @@ It is recommended to secure the Spring Boot Actuator endpoints by restricting ac
 
 ```yaml
 checks:
-  information_disclosure/springboot_actuator_env:
+  information_disclosure/springboot_actuator_heapdump:
     skip: true
 ```
 
@@ -39,17 +39,17 @@ checks:
 
 ## Score
 
-- Escape Severity: **<span className="medium-severity">MEDIUM</span>**
+- Escape Severity: **<span className="high-severity">HIGH</span>**
 
 ### Compliance
 
-- OWASP: **[API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md)**
-- pci: **6.5.5**
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.10**
 - gdpr: **Article-32**
 - soc2: **CC6**
 - psd2: **Article-95**
-- iso27001: **A.14.2**
-- nist: **SP800-53**
+- iso27001: **A.12.6**
+- nist: **SP800-123**
 - fedramp: **AC-6**
 
 ### Classification
@@ -61,6 +61,6 @@ checks:
 
 ### Score
 
-- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:H/RL:O/RC:C**
-- CVSS_SCORE: **5.1**
+- CVSS_VECTOR: **AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H**
+- CVSS_SCORE: **9.8**
 

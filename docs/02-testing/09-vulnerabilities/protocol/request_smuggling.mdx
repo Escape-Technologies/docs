@@ -1,0 +1,202 @@
+---
+title: request smuggling
+---
+
+# request smuggling
+
+## Description
+
+Request smuggling is a web security vulnerability that occurs when a front-end server (like a reverse proxy or load balancer) forwards an HTTP request to a back-end server without properly validating the requests structure.
+This can lead to discrepancies in how the servers interpret the request, potentially allowing an attacker to smuggle malicious requests through the front-end server undetected. Exploiting this vulnerability can result in unauthorized actions, data leakage, and other security risks.
+
+## Remediation
+
+To remediate HTTP request smuggling vulnerabilities:
+
+1. Ensure that the web server and proxy are configured to handle the Transfer-Encoding and Content-Length headers consistently.
+2. Update all web servers, proxies, and other intermediary components to the latest versions with security patches applied.
+3. Use the same web server software across all layers to minimize discrepancies in request parsing.
+4. Regularly test your infrastructure with tools designed to detect request smuggling vulnerabilities.
+5. Implement robust input validation to reject ambiguous or malformed requests.
+6. Consider using a web application firewall (WAF) that can identify and block smuggling attempts.
+7. Disable support for legacy Transfer-Encoding values if they are not needed.
+8. Monitor and log all discrepancies in request sizes and headers for analysis and early detection of potential smuggling attempts.
+
+
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+To mitigate request smuggling vulnerabilities in the Apollo framework, ensure consistent parsing between the front-end and back-end servers by using the same HTTP parsing library, validate and sanitize headers and payloads rigorously, and configure timeouts to prevent desynchronization attacks.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+To mitigate request smuggling vulnerabilities in the Yoga framework, ensure consistent handling of Content-Length and Transfer-Encoding headers between the front-end and back-end servers. Update the framework and any dependencies to the latest versions to benefit from security patches. Regularly review and apply security best practices for parsing HTTP requests, and consider implementing robust input validation and normalization at the entry point of your application.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Ensure that AWS AppSync is configured to validate input schemas strictly and that resolvers do not trust the structure of incoming requests implicitly. Implement strict content-length checks and proper parsing logic to prevent desynchronization between the front-end and back-end servers.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+To mitigate request smuggling vulnerabilities in the GraphQLGo framework, ensure that the framework is updated to the latest version, as patches for known vulnerabilities are regularly released. Additionally, configure the front-end server to validate Content-Length and Transfer-Encoding headers accurately and consistently with the back-end server. Employ strict parsing rules that reject ambiguous or malformed requests, and consider using a WAF (Web Application Firewall) that has specific rules to detect and block request smuggling attempts.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In the GraphQL-Ruby framework, mitigate request smuggling by ensuring consistent parsing between the front-end and back-end servers. Implement strict content-length headers validation, utilize the framework's built-in parser settings to reject ambiguous requests, and regularly update the GraphQL-Ruby gem to incorporate security patches.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+To mitigate request smuggling vulnerabilities in Hasura, ensure that the Hasura engine is deployed behind a well-configured reverse proxy that sanitizes and validates incoming HTTP requests. Regularly update Hasura to the latest version to benefit from security patches, and configure the 'allowed-origins' and 'ws-read-cookie' settings to control cross-origin requests and WebSocket connections.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp_net</summary>
+
+To mitigate HTTP request smuggling vulnerabilities in ASP.NET, ensure that both the front-end and back-end servers parse HTTP requests consistently. Apply strict content-length and transfer-encoding headers validation, update to the latest versions of ASP.NET and related libraries, and configure the web server to use the same HTTP request parsing logic as the application framework.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+In Ruby on Rails, ensure that the Rack middleware is configured to parse incoming requests correctly and consistently. Update to the latest version of Rails that includes security patches for request smuggling vulnerabilities. Additionally, use a well-configured reverse proxy that sanitizes and standardizes all incoming requests before they reach the Rails application.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Ensure consistent parsing between the front-end and back-end servers by standardizing the HTTP request parsing mechanism, updating both servers to the latest versions, and rigorously testing the system to prevent discrepancies that could lead to request smuggling vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+In Laravel, ensure that all incoming requests are properly validated using Laravel's built-in validation mechanisms. Utilize middleware to inspect and sanitize headers and body content. Keep Laravel and all dependencies up to date to benefit from security patches. Configure web servers and proxies to consistently handle request boundaries and transfer encoding.
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+To mitigate HTTP request smuggling in Express.js, ensure that both the front-end and back-end servers parse HTTP requests consistently. Update to the latest versions of Express.js and any reverse proxy software you are using. Configure them to use the same rules for parsing request headers and transfer encoding. Additionally, employ strict content-length and transfer-encoding header validation to prevent ambiguous requests. Regularly review your server's configuration and apply security patches promptly.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+In Django, ensure that any custom middleware or request handling properly adheres to the framework's request and response flow. Use Django's built-in security features to manage request parsing and be cautious with middleware order. Regularly update Django to incorporate security patches that address potential request smuggling vulnerabilities.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+In Symfony, to mitigate HTTP request smuggling vulnerabilities, ensure that you consistently use the latest version of Symfony and its components, as security fixes are regularly provided. Configure your web server and reverse proxy to parse HTTP requests in a uniform manner, and validate Content-Length and Transfer-Encoding headers to prevent ambiguity. Additionally, employ Symfony's built-in security features, such as proper input validation and output escaping, to further safeguard your application.
+
+</details>
+
+<details>
+    <summary>Spring_boot</summary>
+
+In Spring Boot, to mitigate HTTP request smuggling, ensure that the server properly parses and validates the Content-Length and Transfer-Encoding headers. Configure the embedded server to reject ambiguous requests with conflicting headers and update to the latest version of Spring Boot to benefit from security patches. Additionally, use a WAF (Web Application Firewall) that can detect and block smuggling attempts.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+To mitigate HTTP request smuggling in Flask, ensure that the web server (e.g., Nginx, Apache) used in front of Flask is configured to handle ambiguous requests consistently with Flask's built-in server. Regularly update Flask and any dependencies to incorporate security patches. Additionally, validate and sanitize all headers and content lengths within Flask routes to prevent discrepancies that could be exploited.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Ensure consistent parsing by aligning the configurations of both the front-end and back-end servers, validate and sanitize all headers and inputs, and employ robust proxy and server software that can handle ambiguous requests effectively.
+
+</details>
+
+<details>
+    <summary>Fastapi</summary>
+
+To mitigate request smuggling in FastAPI, ensure that both the front-end and back-end servers parse HTTP requests consistently. Update FastAPI and any reverse proxy or load balancer to the latest versions to benefit from security patches. Configure them to use the same HTTP parsing library if possible, and validate Content-Length and Transfer-Encoding headers to prevent ambiguous requests. Regularly review your setup for compliance with the latest HTTP specification.
+
+</details>
+
+## Configuration
+
+> Identifier: `protocol/request_smuggling`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  protocol/request_smuggling:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.10**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.13.1**
+- nist: **SP800-95**
+- fedramp: **SI-10**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H**
+- CVSS_SCORE: **7.5**
+
+## References
+
+- [https://portswigger.net/web-security/request-smuggling](https://portswigger.net/web-security/request-smuggling)
+  - [https://en.wikipedia.org/wiki/HTTP_request_smuggling](https://en.wikipedia.org/wiki/HTTP_request_smuggling)
+  
