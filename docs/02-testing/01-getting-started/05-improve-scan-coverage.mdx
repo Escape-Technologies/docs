@@ -1,45 +1,66 @@
 ---
-title: Improve scan coverage
+title: Improve Scan Coverage
 ---
 
-# 🎯 Improve coverage
+# 🎯 Improve Scan Coverage
 
-## Improving your application coverage:
+The goals of coverage are:
+- **Transparency**: Escape gives full visibility on scans, logging each request executed during the scan.
+- **Actionability**: Escape provides step-by-step recommendations to configure scans properly and benefit from Escape’s full testing engine capabilities.
 
-The coverage statistic is available in the summary tab of successful scans. It measures the percentage of queries and mutations escape could perform among the full schema.
+## Reading the Logs Status
 
-### Set scan type to read & write:
+In the Scan Logs, each endpoint (or "operation" in GraphQL) comes back with one of the following statuses:
+- `UNAUTHORIZED`: All requests sent to the endpoint came back with an authentication or authorization error message.
+- `RATE LIMITED`: All requests sent to the endpoint came back with a rate limit error message.
+- `SERVER ERROR`: All requests sent to the endpoint came back with a server error message.
+- `REDIRECTED`: All requests sent to the endpoint came back with a redirection error message.
+- `NOT FOUND`: All requests sent to the endpoint came back with a "not found" error message, although it is defined in the schema provided for the scan.
+- `OK`: At least one request sent to the endpoint does not fall into one of the previous categories.
+- `BLACKLISTED`: The endpoint has been blacklisted in the configuration. No request has been sent to it.
+- `SKIPPED`: The endpoint is not blacklisted, but still no operation has been sent to the endpoint.
 
-A read-only scan does not run mutations.
+### Error Message Classification
+The error message is not based on the HTTP Status Code only. For example, this would not work on GraphQL applications that are supposed to return a `200` Error Code all the time. This is why Escape AI classifies all application responses into one of the Error Messages defined above.
 
-This will be checked if the scan is indeed in read & write mode.
+### Why Are Some of My Endpoints `SKIPPED`?
+The two most common reasons are: 
+1. The server stopped responding during the scan, and therefore the scan was stopped early. This should also raise an issue in the scan results.
+2. The selected scan mode focuses on speed instead of exhaustiveness. Changing the scan mode in the settings can bring better results.
 
-The message: `In this scan, x% of operations were attempted.` will be displayed if less than 100% operations were attempted and the scan is not in read and write mode.
+### About the `BLACKLISTED` Operations
+Production (Read-only) scans automatically blacklist all data-mutation endpoints, depending on the API kind:
+- REST: `POST`, `PUT`, `PATCH`, `DELETE` methods
+- GraphQL: `mutations` operations
 
-### Provide authentication with enough permissions:
+A default blacklist is generated when creating your application, mainly to prevent the authentication session from being destroyed during the scan. It can be edited in the Advanced Settings.
 
-You can provide custom authentication headers in your application configuration to allow escape to run authenticated operations.
+## How Is Coverage Computed?
 
-This will be checked if the application has headers configured and no operations were unauthorized or forbidden.
+\[ \text{Coverage} = \frac{\text{Covered Endpoints}}{\text{Total Number of Endpoints}} \]
 
-The message: `In this scan. x% of operations were unauthorized or forbidden.` will be displayed if at least one operation was unauthorized/forbidden.
+\[ \text{Covered Endpoints} = \text{OK} + \text{SERVER ERROR} \]
 
-### Make sure the scan is not rate limited:
+\[ \text{Total Number of Endpoints} = \text{OK} + \text{SERVER ERROR} + \text{UNAUTHORIZED} + \text{RATE LIMITED} + \text{REDIRECTED} + \text{SKIPPED} \]
 
-You can setup rate limit in your application settings [(learn more)](https://docs.escape.tech/advanced-usage/rate-limiting), though it may have an impact on the scan coverage, as operation can be rate limited.
+So, `BLACKLISTED` and `NOT FOUND` are not taken into account in the coverage.
 
-This will be checked if no operations are rate limited.
+## How to Improve Your Coverage?
 
-The message: `In this scan, x% of operations were discarded because of your rate limit configuration.` will be displayed if at least one operation was rate limited.
+### Set Scan Type to Staging (Read & Write)
+A Product (Read-Only) scan keeps your application safe. It does not perform thorough security tests that could damage your database or infrastructure. In particular, it blacklists all data-mutating endpoints.
 
-### Avoid server errors:
+### Provide Enough Authorizations to Cover All Endpoints
+Configure your authentication method in the Settings to allow Escape to run authenticated scans.
 
-Your server might return some errors during the scan that prevents Escape from performing some operations. This can be due to a bug in your application or a misconfiguration.
+### Improve the Quality of Your Schema
+Make sure to provide an up-to-date schema that respects the most recent standards.
 
-The message: `In this scan, x% of operations were discarded because of server errors.` will be displayed if at least one operation was rate limited.
+### Fix Redirection Errors Using the Escape Repeater
+For security reasons, Escape only follows redirection using the Repeater.
 
-Learn more about Internal Server Errors (`500`), Bad Gateway (`502`), Service Unavailable (`503`), Gateway Timeout (`504`), and other server errors on [Mozzila's documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
+### Ensure Your Server Remains Reachable During the Scan
+The scan is intense and attempts complex attack scenarios. In some cases, this will make the server unreachable for a few dozen seconds, causing the scan to stop early.
 
-### Blacklisting operations
-
-Please be aware that **ignoring security checks or alerts** may decrease the coverage statistics of your application, as our scanner will skip those tests.
+### Make Sure the Scan Is Not Rate Limited
+Scans can be slowed down using [rate-limiting configuration](https://docs.escape.tech/advanced-usage/rate-limiting), though it may impact the scan duration.
