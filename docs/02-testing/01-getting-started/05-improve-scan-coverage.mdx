@@ -18,7 +18,7 @@ In the Scan Logs, each endpoint (or "operation" in GraphQL) comes back with one 
 - `NOT FOUND`: All requests sent to the endpoint came back with a "not found" error message, although it is defined in the schema provided for the scan.
 - `OK`: At least one request sent to the endpoint does not fall into one of the previous categories.
 - `BLACKLISTED`: The endpoint has been blacklisted in the configuration. No request has been sent to it.
-- `SKIPPED`: The endpoint is not blacklisted, but still no operation has been sent to the endpoint.
+- `SKIPPED`: The endpoint is not blacklisted, but still no request has been sent to the endpoint.
 
 :::success Error Message Classification
 The error message is not based on the HTTP Status Code only. For example, this would not work on GraphQL applications that are supposed to return a `200` Error Code all the time. This is why Escape AI classifies all application responses into one of the Error Messages defined above.
