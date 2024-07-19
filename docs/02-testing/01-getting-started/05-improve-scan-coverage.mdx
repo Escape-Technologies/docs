@@ -20,30 +20,33 @@ In the Scan Logs, each endpoint (or "operation" in GraphQL) comes back with one 
 - `BLACKLISTED`: The endpoint has been blacklisted in the configuration. No request has been sent to it.
 - `SKIPPED`: The endpoint is not blacklisted, but still no operation has been sent to the endpoint.
 
-### Error Message Classification
+:::success Error Message Classification
 The error message is not based on the HTTP Status Code only. For example, this would not work on GraphQL applications that are supposed to return a `200` Error Code all the time. This is why Escape AI classifies all application responses into one of the Error Messages defined above.
+:::
 
-### Why Are Some of My Endpoints `SKIPPED`?
+:::info Why Are Some of My Endpoints `SKIPPED`?
 The two most common reasons are: 
 1. The server stopped responding during the scan, and therefore the scan was stopped early. This should also raise an issue in the scan results.
 2. The selected scan mode focuses on speed instead of exhaustiveness. Changing the scan mode in the settings can bring better results.
+:::
 
-### About the `BLACKLISTED` Operations
-Production (Read-only) scans automatically blacklist all data-mutation endpoints, depending on the API kind:
-- REST: `POST`, `PUT`, `PATCH`, `DELETE` methods
-- GraphQL: `mutations` operations
+:::info About the `BLACKLISTED` Operations
+1. Production (Read-only) scans automatically blacklist all data-mutation endpoints, depending on the API kind:
+    - REST: `POST`, `PUT`, `PATCH`, `DELETE` methods
+    - GraphQL: `mutations` operations
 
-A default blacklist is generated when creating your application, mainly to prevent the authentication session from being destroyed during the scan. It can be edited in the Advanced Settings.
+2. A default blacklist is generated when creating your application, mainly to prevent the authentication session from being destroyed during the scan. It can be edited in the Advanced Settings.
+::: 
 
 ## How Is Coverage Computed?
 
-\[ \text{Coverage} = \frac{\text{Covered Endpoints}}{\text{Total Number of Endpoints}} \]
+Coverage is calculated using the following formula:
 
-\[ \text{Covered Endpoints} = \text{OK} + \text{SERVER ERROR} \]
+`Coverage` = `Covered Endpoints` / `Total Number of Endpoints`, where:
+- `Covered Endpoints` = `OK` + `SERVER ERROR`
+- `Total Number of Endpoints` = `OK` + `SERVER ERROR` + `UNAUTHORIZED` + `RATE LIMITED` + `REDIRECTED` + `SKIPPED`
 
-\[ \text{Total Number of Endpoints} = \text{OK} + \text{SERVER ERROR} + \text{UNAUTHORIZED} + \text{RATE LIMITED} + \text{REDIRECTED} + \text{SKIPPED} \]
-
-So, `BLACKLISTED` and `NOT FOUND` are not taken into account in the coverage.
+Note: `BLACKLISTED` and `NOT FOUND` are not taken into account in the coverage.
 
 ## How to Improve Your Coverage?
 
