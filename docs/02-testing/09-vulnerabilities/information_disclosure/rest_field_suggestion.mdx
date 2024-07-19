@@ -1,0 +1,148 @@
+---
+title: Field Suggestion
+---
+
+# Field Suggestion
+
+## Description
+
+**Field Suggestion** allows users to infer the entire schema. Example of errors: ``` Error: Field "XYZ" is missing ```. 
+
+## Remediation
+
+Avoid providing verbose error messages to users in production.
+
+
+
+### REST Specific
+
+<details>
+    <summary>Asp_net</summary>
+
+Avoid returning verbose error messages.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+Avoid returning verbose error messages.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Avoid returning verbose error messages.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Avoid returning verbose error messages.
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+Avoid returning verbose error messages.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Avoid returning verbose error messages.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Avoid returning verbose error messages.
+
+</details>
+
+<details>
+    <summary>Spring_boot</summary>
+
+Avoid returning verbose error messages.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Avoid returning verbose error messages.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Avoid returning verbose error messages.
+
+</details>
+
+<details>
+    <summary>Fastapi</summary>
+
+Avoid returning verbose error messages.
+
+</details>
+
+## Configuration
+
+> Identifier: `information_disclosure/rest_field_suggestion`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/rest_field_suggestion:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+
+### Compliance
+
+- OWASP: **[API3:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa3-broken-object-property-level-authorization.md)**
+- pci: **5.2.6**
+
+
+
+
+
+
+
+### Classification
+
+
+
+
+
+
+### Score
+
+
+
+
+## References
+
+- [https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A3-Sensitive_Data_Exposure](https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A3-Sensitive_Data_Exposure)
+  - [https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html)
+  

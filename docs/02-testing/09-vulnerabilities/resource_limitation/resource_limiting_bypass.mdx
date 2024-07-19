@@ -1,0 +1,198 @@
+---
+title: Resource limiting bypass
+---
+
+# Resource limiting bypass
+
+## Description
+
+Resource limiting bypass occurs when a pagination or another limiting method has no upper limit and can create large responses or crash the server, causing a Denial Of Service.
+
+## Remediation
+
+To remediate a resource limiting bypass vulnerability, follow these steps:
+
+1. Implement strict resource usage quotas and limits for users and processes.
+2. Regularly review and adjust the limits based on usage patterns and requirements.
+3. Use monitoring tools to detect unusual activity that could indicate an attempt to bypass resource limits.
+4. Apply rate limiting to prevent abuse of services and APIs.
+5. Ensure that all input validation checks are in place to prevent malicious input from triggering a bypass.
+6. Update the application and system software to the latest versions to patch known vulnerabilities.
+7. Conduct regular security audits and penetration testing to identify and fix potential bypass methods.
+8. Enforce the principle of least privilege by granting minimal access rights necessary for users and services.
+9. Use security mechanisms like Web Application Firewalls (WAFs) to detect and block exploit attempts.
+10. Educate users and administrators about the importance of adhering to resource usage policies.
+
+
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+Implement strict pagination controls in Apollo server by setting a maximum limit for the number of records retrievable in a single request and enforce this limit within resolvers to prevent resource exhaustion and potential Denial of Service attacks.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+Implement strict pagination controls in the Yoga framework by setting a maximum limit for the number of records that can be fetched in a single request. Additionally, enforce server-side checks to prevent clients from overriding these limits, thus avoiding large responses or potential server crashes due to resource exhaustion.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+Implement strict pagination controls in AWS AppSync by setting maximum limits on the number of items returned in a single request and enforcing these limits within the GraphQL schema to prevent large responses or server overload.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+Implement query complexity analysis in GraphQLGo to prevent resource exhaustion. Set sensible defaults and maximum limits for query depths and returned object counts to avoid large responses or server crashes.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+Implement query complexity analysis in GraphQLRuby to ensure that the cost of a query does not exceed a predefined threshold, thus preventing excessively large queries that could lead to resource exhaustion or server crashes.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+Implement strict query depth limits and cost analysis to prevent complex queries from overloading the Hasura engine, and enforce pagination with maximum page size limits to mitigate potential denial of service attacks.
+
+</details>
+
+
+### REST Specific
+
+<details>
+    <summary>Asp_net</summary>
+
+Implement server-side input validation to enforce strict pagination limits and use robust error handling to prevent users from requesting excessively large datasets that could lead to server strain or Denial of Service (DoS) conditions.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+Implement server-side pagination with strict upper limits and enforce them using ActiveRecord's `limit` and `offset` methods to prevent large or unbounded result sets that could lead to performance issues or Denial of Service.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement server-side checks to enforce pagination limits and validate user input to prevent excessively large data requests that could lead to a Denial of Service (DoS). Utilize Next.js API routes to control data fetching and ensure that the limits are respected.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Implement server-side checks in Laravel to enforce upper limits on pagination and other resource queries. Use Laravel's built-in pagination methods, such as 'paginate()', 'simplePaginate()', or 'cursorPaginate()', to automatically handle safe data fetching with sensible limits. Additionally, validate and sanitize all user inputs to prevent excessively large requests that could lead to a Denial of Service (DoS).
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+Implement middleware in Express.js to validate and enforce pagination limits, such as maximum page size, to prevent large responses or server overload.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Implement pagination with Django's Paginator class, set a reasonable default page size, and enforce a maximum page size limit to prevent large queries. Use Django's built-in query parameter validation to ensure users cannot bypass the limits.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Implement strict pagination controls in Symfony by using the 'setMaxResults' method from the Doctrine QueryBuilder to define an upper limit for query results. Additionally, validate and sanitize all user inputs for pagination to prevent excessively large data requests that could lead to a Denial of Service (DoS).
+
+</details>
+
+<details>
+    <summary>Spring_boot</summary>
+
+Implement server-side pagination with sensible defaults and maximum limits for page sizes, and enforce strict type checking on user-supplied parameters to prevent large or unexpected queries that could lead to a Denial of Service.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Implement server-side checks to enforce maximum limits on pagination and request sizes within your Flask application to prevent large or unlimited result sets that could lead to Denial of Service.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Implement server-side checks to enforce maximum limits on pagination and request sizes within the Nuxt application to prevent large responses or server overload, ensuring stability and availability.
+
+</details>
+
+<details>
+    <summary>Fastapi</summary>
+
+Implement pagination with maximum page size limits and enforce strict parameter validation to prevent excessively large requests in FastAPI routes.
+
+</details>
+
+## Configuration
+
+> Identifier: `resource_limitation/resource_limiting_bypass`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  resource_limitation/resource_limiting_bypass:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API4:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)**
+- pci: **6.5.10**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-44**
+- fedramp: **SC-5**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H**
+- CVSS_SCORE: **5.3**
+

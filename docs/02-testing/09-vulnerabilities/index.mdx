@@ -6,9 +6,9 @@ description: Dive in Escape Security Reference table. This table covers vulnerab
 
 # ✅ Security Tests Reference
 
-### Escape currently supports 116 tests
+### Escape currently supports 119 tests
 
-| Name | Category | GraphQL Support(100)| REST Support(88) | Default Severity | OWASP 2023 |
+| Name | Category | GraphQL Support(103)| REST Support(91) | Default Severity | OWASP 2023 |
 | ---- | -------- | --------------- | ------------ | ---------------- | ---------- |
 | [Private data](./access_control/private_data) | [Access control](../access_control)  | ✅ | ✅ |**<span className="high-severity">HIGH</span>** | [API3:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa3-broken-object-property-level-authorization.md) |
 | [Private fields](./access_control/private_fields) | [Access control](../access_control)  | ✅ | ✅ |**<span className="high-severity">HIGH</span>** | [API1:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md) |
@@ -48,6 +48,7 @@ description: Dive in Escape Security Reference table. This table covers vulnerab
 | [Stacktrace](./information_disclosure/stacktrace) | [Information disclosure](../information_disclosure)  | ✅ | ✅ |**<span className="medium-severity">MEDIUM</span>** | [API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md) |
 | [Vulnerable Package](./information_disclosure/potential_cve) | [Information disclosure](../information_disclosure)  | ✅ | ✅ |**<span className="medium-severity">MEDIUM</span>** | [API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md) |
 | [Debug mode](./information_disclosure/debug_mode) | [Information disclosure](../information_disclosure)  | ✅ | ✅ |**<span className="low-severity">LOW</span>** | [API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md) |
+| [Field Suggestion](./information_disclosure/rest_field_suggestion) | [Information disclosure](../information_disclosure)  | ✅ | ✅ |**<span className="low-severity">LOW</span>** | [API3:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa3-broken-object-property-level-authorization.md) |
 | [File disclosure](./information_disclosure/file_disclosure) | [Information disclosure](../information_disclosure)  |  | ✅ |**<span className="low-severity">LOW</span>** | [API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md) |
 | [Private IP](./information_disclosure/private_ip) | [Information disclosure](../information_disclosure)  |  | ✅ |**<span className="low-severity">LOW</span>** | [API1:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md) |
 | [Software Component Leak](./information_disclosure/software_component_leak) | [Information disclosure](../information_disclosure)  | ✅ | ✅ |**<span className="low-severity">LOW</span>** | [API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md) |
@@ -68,6 +69,7 @@ description: Dive in Escape Security Reference table. This table covers vulnerab
 | [SQL Injection](./injection/sql) | [Injection](../injection)  | ✅ | ✅ |**<span className="high-severity">HIGH</span>** | [API9:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa9-improper-inventory-management.md) |
 | [SSTI (Server-Side Template Injection)](./injection/ssti) | [Injection](../injection)  |  | ✅ |**<span className="high-severity">HIGH</span>** | [API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md) |
 | [Stored Improper Input Validation Injection](./injection/improper_input_stored) | [Injection](../injection)  | ✅ |  |**<span className="high-severity">HIGH</span>** | [API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md) |
+| [Vulnerable LLM](./injection/llm) | [Injection](../injection)  | ✅ | ✅ |**<span className="high-severity">HIGH</span>** | [API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md) |
 | [XXE Injection](./injection/xxe) | [Injection](../injection)  | ✅ | ✅ |**<span className="high-severity">HIGH</span>** | [API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md) |
 | [CRLF Injection](./injection/crlf) | [Injection](../injection)  | ✅ | ✅ |**<span className="medium-severity">MEDIUM</span>** | [API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md) |
 | [SSL Certificate](./protocol/ssl_certificate) | [Protocol](../protocol)  | ✅ | ✅ |**<span className="high-severity">HIGH</span>** | [API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md) |
@@ -98,6 +100,7 @@ description: Dive in Escape Security Reference table. This table covers vulnerab
 | [GET based CSRF](./request_forgery/csrf_get_based) | [Request forgery](../request_forgery)  | ✅ |  |**<span className="medium-severity">MEDIUM</span>** | [API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md) |
 | [POST based CSRF](./request_forgery/csrf_post_based) | [Request forgery](../request_forgery)  | ✅ |  |**<span className="medium-severity">MEDIUM</span>** | [API2:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa2-broken-authentication.md) |
 | [SSRF Injection in headers](./request_forgery/ssrf_header) | [Request forgery](../request_forgery)  |  | ✅ |**<span className="low-severity">LOW</span>** | [API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md) |
+| [Resource limiting bypass](./resource_limitation/resource_limiting_bypass) | [Resource limitation](../resource_limitation)  | ✅ | ✅ |**<span className="high-severity">HIGH</span>** | [API4:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) |
 | [Security timeout](./resource_limitation/timeout) | [Resource limitation](../resource_limitation)  | ✅ | ✅ |**<span className="high-severity">HIGH</span>** | [API7:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa7-server-side-request-forgery.md) |
 | [Depth limit](./resource_limitation/graphql_depth_limit) | [Resource limitation](../resource_limitation)  | ✅ |  |**<span className="medium-severity">MEDIUM</span>** | [API4:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md) |
 | [Directive overloading](./resource_limitation/graphql_directive_overload) | [Resource limitation](../resource_limitation)  | ✅ |  |**<span className="medium-severity">MEDIUM</span>** | [API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md) |
