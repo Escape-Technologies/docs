@@ -1,0 +1,82 @@
+---
+title: Vulnerable LLM
+---
+
+# Vulnerable LLM
+
+## Description
+
+Large Language Models (LLMs) are powerful tools that can be used to generate text, code, and other content. However, they can also be used to generate malicious content. To prevent these attacks, it is important to carefully validate and sanitize user input before passing it to an LLM.
+LLM vulnerabilities can arise when users input data that manipulates the model to produce harmful or unintended outputs. These vulnerabilities are categorized under the LLM OWASP Top 10, a set of guidelines and potential risks associated with LLM deployment.
+A successful exploitation of LLM vulnerabilities can lead to a variety of adverse effects, such as unauthorized access to sensitive data, unintended disclosure of information, manipulation of the model's responses to perform harmful actions, and the generation of offensive or misleading content. For instance, an attacker might craft inputs to trick the LLM into producing text that discloses confidential information, or they might induce the model to generate code that could compromise the security of a system.
+Mitigating these risks requires robust security measures, including input validation, rate limiting, and continuous monitoring of the model's outputs. Additionally, implementing comprehensive logging and alerting mechanisms can help identify and respond to suspicious activities promptly.
+By understanding and addressing the LLM OWASP Top 10 vulnerabilities, organizations can better secure their LLM implementations and protect against potential threats.
+
+
+## Remediation
+
+To remediate a vulnerability named "Vulnerable LLM," follow these steps:
+
+1. Update the software or system that contains the "Vulnerable LLM" to the latest version provided by the vendor.
+2. If a patch is available specifically for the vulnerability, apply it immediately following the vendor's instructions.
+3. Review and apply the principle of least privilege to limit access to the affected component.
+4. Monitor for any unusual activity that may indicate exploitation attempts.
+5. If possible, enable additional security features or controls that can mitigate the risk of exploitation.
+6. Ensure that all dependencies and related software are also updated to prevent indirect exploitation.
+7. Conduct regular vulnerability scans to ensure the issue is resolved and no new related vulnerabilities have emerged.
+8. Educate users and administrators about the vulnerability and best practices for avoiding similar issues in the future.
+
+
+
+## Configuration
+
+> Identifier: `injection/llm`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  injection/llm:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.10**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-53**
+- fedramp: **SI-10**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H**
+- CVSS_SCORE: **5.3**
+
+## References
+
+- [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+  
