@@ -23,7 +23,7 @@ presets:
         url: https://api.example.com/authenticate
         method: POST
         body:
-            addtional: body
+            additional: body
             for: authentication
         headers:
             Content-Type: application/json
@@ -46,11 +46,11 @@ presets:
             login: user2
             password: pass2
         cookies:
-            addtional: cookie
+            additional: cookie
         headers:
-            addtional: header
+            additional: header
         queryParameters:
-            addtional: query param
+            additional: query param
 
 ```
 
