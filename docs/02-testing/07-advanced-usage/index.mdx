@@ -22,3 +22,91 @@ This configuration file, affectionately named `escaperc`, is your gateway to fin
 Our vibrant community is always excited to share their perfected `escaperc` configurations, pooling collective expertise for everyone's benefit. Feel free to dive in, learn from others, and share your own expert configurations!
 
 If mastering every nook and cranny of your security strategy is your game, the "Expert Mode" is your playground. Dive in and harness the unparalleled depth Escape offers!
+
+#### Example
+Here is an example using the expert tab
+
+```yaml
+scan:
+  blacklist:
+    routes:
+    - path: "/a/path/to/blacklist"
+      method: GET
+    - path: "/another/path/to/blacklist"
+      method: POST
+  hotstart:
+  - |-
+    POST /register HTTP/1.1
+    Host: example.com
+    Content-Type: application/json
+    Content-Length: 194
+
+    {"my": "data"}
+  - |+
+    GET /users HTTP/1.1
+    Host: example.com
+    Content-Type: application/json
+    Content-Length: 194
+
+  profile: deep
+  read_only: true
+  scalars:
+    SSET:
+      description: The Super Secret Example Token is internal to our company and should
+        never been exposed by any APIs.
+      examples:
+      - SSET-ABC12
+      names:
+      - SSET
+      - super_secret_example_token
+      - SuperSecretExampleToken
+      parents:
+      - String
+      patterns:
+      - SSET-[A-Z0-9]{5}
+      sensitivity: HIGH
+      entropy: 2
+
+client:
+  concurrent_connection: 64
+  concurrent_tasks: 8
+  proxy:
+    type: repeater
+    target: ESCAPE_REPEATER_ID=e8be7999-6b9c-49ba-9c44-8c0a2c07c100
+  request_timeout: 5
+  requests_per_minute: 100
+authentication:
+  presets:
+  -   type: digest
+      first_request:
+          url: https://api.example.com/request
+          method: GET
+          cookies:
+              session_id: '123456'
+          headers:
+              Accept: application/json
+          query_parameters:
+              query: info
+      second_request:
+          url: https://api.example.com/authenticate
+          method: POST
+      users:
+      -   username: alice
+          password: aliceSecret
+      -   username: bob
+          password: bobSecret
+checks: 
+  alert:
+    name: Deletion successful
+    context: >
+      For compliance reasons, the non admin user must not be able to delete some
+      data via the API.
+    severity: HIGH
+  detect:
+    - if: helpers.request.crud
+      is: DELETE
+    - if: request.user
+      is_not: admin
+    - if: helpers.response.is_successful
+      is: true
+```
