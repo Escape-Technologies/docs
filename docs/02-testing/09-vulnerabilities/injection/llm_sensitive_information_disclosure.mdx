@@ -1,0 +1,69 @@
+---
+title: LLM Sensitive Information Disclosure
+---
+
+# LLM Sensitive Information Disclosure
+
+## Description
+
+Large Language Models (LLMs) are powerful tools that can be used to generate text, code, and other content. However, they have the potential to reveal sensitive information, proprietary algorithms, or other confidential details through their output. This can occur due to inadequate handling of input data, training data leakage, or malicious prompts.
+
+## Remediation
+
+To prevent sensitive information disclosure, it is crucial to: - Implement strict data governance and access controls. - Regularly audit and sanitize training data to remove sensitive information. - Use differential privacy techniques to protect data during training. - Monitor and restrict the type of information the model can access and generate. - Conduct regular security assessments to identify and mitigate risks.
+
+
+
+## Configuration
+
+> Identifier: `injection/llm_sensitive_information_disclosure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  injection/llm_sensitive_information_disclosure:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.2**
+- nist: **SP800-53**
+- fedramp: **SI-3**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N**
+- CVSS_SCORE: **6.5**
+
+## References
+
+- [https://genai.owasp.org/llmrisk/llm06-sensitive-information-disclosure/](https://genai.owasp.org/llmrisk/llm06-sensitive-information-disclosure/)
+  - [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+  

@@ -1,0 +1,23 @@
+---
+title: LLM Security Testing
+description: Dive in Escape Security Reference table. This table covers LLM vulnerabilities, GraphQL and REST support, severity, and OWASP LLM 2023 compliance.
+---
+
+# 🤖 LLM Security Testing
+
+### Escape currently supports 12 tests
+
+| Name                                                                                        | GraphQL Support | REST Support | Default Severity                                | OWASP LLM 2023                                                                                                                          |
+| ------------------------------------------------------------------------------------------- | --------------- | ------------ | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| [LLM Excessive Agency](./../injection/llm_excessive_agency)                                 | ✅              | ✅           | **<span className="high-severity">HIGH</span>** | [LLM08:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf) |
+| [LLM Insecure Output Handling](./../injection/llm_insecure_output_handling)                 | ✅              | ✅           | **<span className="high-severity">HIGH</span>** | [LLM02:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf) |
+| [LLM Insecure Plugin Design](./../injection/llm_insecure_plugin_design)                     | ✅              | ✅           | **<span className="high-severity">HIGH</span>** | [LLM07:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf) |
+| [LLM JailBreak](./../injection/llm_jail_break)                                              | ✅              | ✅           | **<span className="high-severity">HIGH</span>** | [LLM01:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf) |
+| [LLM Model Denial of Service](./../injection/llm_model_dos)                                 | ✅              | ✅           | **<span className="high-severity">HIGH</span>** | [LLM04:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf) |
+| [LLM Model Theft](./../injection/llm_model_theft)                                           | ✅              | ✅           | **<span className="high-severity">HIGH</span>** | [LLM10:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf) |
+| [LLM Overreliance](./../injection/llm_overreliance)                                         | ✅              | ✅           | **<span className="high-severity">HIGH</span>** | [LLM09:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf) |
+| [LLM Prompt Injection](./../injection/llm_prompt_injection)                                 | ✅              | ✅           | **<span className="high-severity">HIGH</span>** | [LLM01:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf) |
+| [LLM Sensitive Information Disclosure](./../injection/llm_sensitive_information_disclosure) | ✅              | ✅           | **<span className="high-severity">HIGH</span>** | [LLM06:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf) |
+| [LLM Supply Chain Vulnerabilities](./../injection/llm_supply_chain_vulnerabilities)         | ✅              | ✅           | **<span className="high-severity">HIGH</span>** | [LLM05:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf) |
+| [LLM Training Data Poisoning](./../injection/llm_training_data_poisoning)                   | ✅              | ✅           | **<span className="high-severity">HIGH</span>** | [LLM03:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf) |
+| [LLM Endpoint Detection](./../injection/llm_detection)                                      | ✅              | ✅           | **<span className="low-severity">LOW</span>**   | -                                                                                                                                       |

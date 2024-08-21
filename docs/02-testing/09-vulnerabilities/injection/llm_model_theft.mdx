@@ -1,0 +1,71 @@
+---
+title: LLM Model Theft
+---
+
+# LLM Model Theft
+
+## Description
+
+Large Language Models (LLMs) are powerful tools that can be used to generate text, code, and other content. However, they are vulnerable to model theft. This occurs when an attacker gains unauthorized access to and exfiltrates the LLM models. Such theft can lead to significant economic and reputational damage, erosion of competitive advantage, and unauthorized usage of the model or sensitive information contained within it.
+
+
+## Remediation
+
+To prevent model theft, it is crucial to: - Implement strong access controls (e.g., RBAC and least privilege) and strong authentication mechanisms. - Use centralized ML Model Inventory or Registry with access controls, authentication, and monitoring. - Restrict LLM's access to network resources, internal services, and APIs. - Regularly monitor and audit access logs and activities related to LLM model repositories. - Automate MLOps deployment with governance, tracking, and approval workflows. - Implement controls and mitigation strategies to reduce the risk of prompt injection techniques causing side-channel attacks. - Employ rate limiting of API calls and filters to detect and prevent data exfiltration. - Use adversarial robustness training to detect extraction queries and tighten physical security measures. - Implement a watermarking framework in the LLM lifecycle.
+
+
+
+
+## Configuration
+
+> Identifier: `injection/llm_model_theft`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  injection/llm_model_theft:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.2**
+- nist: **SP800-53**
+- fedramp: **SI-3**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N**
+- CVSS_SCORE: **5.3**
+
+## References
+
+- [https://genai.owasp.org/llmrisk/llm10-model-theft/](https://genai.owasp.org/llmrisk/llm10-model-theft/)
+  - [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+  

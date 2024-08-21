@@ -1,0 +1,68 @@
+---
+title: LLM Endpoint Detection
+---
+
+# LLM Endpoint Detection
+
+## Description
+
+Large Language Models (LLMs) are powerful tools that can be used to generate text, code, and other content. Detecting the presence of an LLM endpoint is crucial for understanding potential attack surfaces and securing the application from various injection and exploitation techniques.
+
+## Remediation
+
+To secure LLM endpoints, it is crucial to: - Implement strong access controls (e.g., RBAC and least privilege) and strong authentication mechanisms. - Use centralized logging and monitoring to detect unauthorized access and suspicious activities. - Restrict LLM's access to network resources, internal services, and APIs. - Regularly audit and review security policies and configurations for LLM endpoints. - Apply rate limiting and input validation to prevent misuse and abuse of the LLM services. - Conduct regular security assessments and penetration testing on LLM endpoints.
+
+
+
+## Configuration
+
+> Identifier: `injection/llm_detection`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  injection/llm_detection:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.2**
+- nist: **SP800-53**
+- fedramp: **SI-3**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:N/I:N/A:N**
+
+
+## References
+
+- [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+  

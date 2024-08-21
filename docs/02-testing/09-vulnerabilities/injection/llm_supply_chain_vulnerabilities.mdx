@@ -1,0 +1,69 @@
+---
+title: LLM Supply Chain Vulnerabilities
+---
+
+# LLM Supply Chain Vulnerabilities
+
+## Description
+
+Large Language Models (LLMs) are powerful tools that can be used to generate text, code, and other content. However, they can be vulnerable to supply chain attacks. The supply chain in LLMs can be vulnerable, impacting the integrity of training data, ML models, and deployment platforms. These vulnerabilities can lead to biased outcomes, security breaches, or even complete system failures.
+
+## Remediation
+
+To prevent supply chain vulnerabilities, it is crucial to: - Carefully vet data sources and suppliers, including their privacy policies and security practices. - Use reputable plug-ins and ensure they have been tested for your application requirements. - Maintain an up-to-date inventory of components using a Software Bill of Materials (SBOM). - Apply MLOps best practices and use secure model repositories with data, model, and experiment tracking. - Implement anomaly detection and adversarial robustness tests on supplied models and data. - Conduct thorough security testing and regularly review and audit supplier security and access.
+
+
+
+## Configuration
+
+> Identifier: `injection/llm_supply_chain_vulnerabilities`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  injection/llm_supply_chain_vulnerabilities:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.2**
+- nist: **SP800-53**
+- fedramp: **SI-3**
+
+### Classification
+
+
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N**
+- CVSS_SCORE: **5.0**
+
+## References
+
+- [https://genai.owasp.org/llmrisk/llm05-supply-chain-vulnerabilities/](https://genai.owasp.org/llmrisk/llm05-supply-chain-vulnerabilities/)
+  - [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+  
