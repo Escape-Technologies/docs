@@ -2,7 +2,7 @@
 title: ⚡ Custom Rules
 ---
 
-As you already know, [Escape's built-in tests](https://docs.escape.tech/testing/vulnerabilities/) are
+As you already know, [Escape's built-in tests](../vulnerabilities/) are
 pretty extensive and cover a lot of security vulnerabilities and concerns.
 But we know that you might have very specific use-cases, and that's why
 we've made it possible for you to create your own custom rules.
@@ -14,11 +14,11 @@ in a simple language that is powerful thanks to Escape's inference engine.
 
 A custom rule is a YAML file that defines the following blocks:
 
-- [Alerting](https://docs.escape.tech/testing/custom-rules/Alerting) is used define the alert format, it's severity…
-- [Detectors](https://docs.escape.tech/testing/custom-rules/Detectors) are used to detect if an alert must be raised by inspecting queries.
-- [Transformations](https://docs.escape.tech/testing/custom-rules/Transformations) are used to mutate the requests (optional).
-- [Mutators](https://docs.escape.tech/testing/custom-rules/Mutators) are used inside the transformations.
-- [Seeders](https://docs.escape.tech/testing/custom-rules/Seeders) are used to seed the scan with requests (optional).
+- [Alerting](./Alerting) is used define the alert format, it's severity…
+- [Detectors](./Detectors) are used to detect if an alert must be raised by inspecting queries.
+- [Transformations](./Transformations) are used to mutate the requests (optional).
+- [Mutators](./Mutators) are used inside the transformations.
+- [Seeders](./Seeders) are used to seed the scan with requests (optional).
 
 ## Examples
 
@@ -125,7 +125,7 @@ detect:
 ### Properties
 
 - `id`: The unique identifier of the custom rule. It is provided by Escape, do not set it manually.
-- `seed`: A list of requests to seed the scan. See [Seeders](https://docs.escape.tech/testing/custom-rules/Seeders)
-- `transform`: Defines lists of triggers and mutations (combined with AND operators).See [Transformations](https://docs.escape.tech/testing/custom-rules/Transformations)
-- `detect`: The conditions to trigger the alert. See [Detectors](https://docs.escape.tech/testing/custom-rules/Detectors)
-- `alert`: The alert to raise if the detection conditions are met. See [Alerting](https://docs.escape.tech/testing/custom-rules/Alerting)
+- `seed`: A list of requests to seed the scan. See [Seeders](./Seeders)
+- `transform`: Defines lists of triggers and mutations (combined with AND operators).See [Transformations](./Transformations)
+- `detect`: The conditions to trigger the alert. See [Detectors](./Detectors)
+- `alert`: The alert to raise if the detection conditions are met. See [Alerting](./Alerting)
