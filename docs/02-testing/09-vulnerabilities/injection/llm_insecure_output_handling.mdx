@@ -1,0 +1,70 @@
+---
+title: LLM Insecure Output Handling
+---
+
+# LLM Insecure Output Handling
+
+## Description
+
+Large Language Models (LLMs) are powerful tools that can be used to generate text, code, and other content. However, they can also be susceptible to insecure output handling. This occurs when there is insufficient validation, sanitization, or encoding of the generated outputs, leading to vulnerabilities such as Cross-Site Scripting (XSS), Server-Side Request Forgery (SSRF), or data leakage. Attackers may exploit these weaknesses to inject malicious content, retrieve sensitive data, or manipulate the model's output for malicious purposes.
+
+## Remediation
+
+To mitigate insecure output handling, it is crucial to implement robust validation, sanitization, and encoding mechanisms for all generated outputs. This includes: - Validating the structure and content of the output before it is used or displayed. - Sanitizing outputs to remove any potentially harmful content. - Encoding outputs appropriately to prevent injection attacks. Additionally, regularly update and patch the LLM software to address known vulnerabilities, and conduct thorough security testing to identify and fix potential issues.
+
+
+
+## Configuration
+
+> Identifier: `injection/llm_insecure_output_handling`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  injection/llm_insecure_output_handling:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- OWASP LLM: **[LLM02:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.2**
+- nist: **SP800-53**
+- fedramp: **SI-3**
+
+### Classification
+
+- CWE: **200**
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N**
+- CVSS_SCORE: **5.3**
+
+## References
+
+- [https://genai.owasp.org/llmrisk/llm02-insecure-output-handling/](https://genai.owasp.org/llmrisk/llm02-insecure-output-handling/)
+  - [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+  

@@ -1,0 +1,70 @@
+---
+title: LLM Training Data Poisoning
+---
+
+# LLM Training Data Poisoning
+
+## Description
+
+Large Language Models (LLMs) are powerful tools that can be used to generate text, code, and other content. However, they are vulnerable to training data poisoning attacks. This occurs when an attacker manipulates the training data used to build and fine-tune the model, causing it to learn and reproduce malicious behaviors. This can lead to biased outputs, misinformation, or the model performing unintended actions.
+
+
+## Remediation
+
+To prevent training data poisoning attacks, it is crucial to: - Carefully vet and curate training data sources to ensure their integrity and reliability. - Implement data validation and anomaly detection techniques to identify and remove poisoned data. - Use robust data preprocessing methods to sanitize training data. - Regularly update and retrain models with verified and clean data. - Conduct thorough security testing and monitoring to detect and respond to poisoning attempts.
+
+
+## Configuration
+
+> Identifier: `injection/llm_training_data_poisoning`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  injection/llm_training_data_poisoning:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- OWASP LLM: **[LLM03:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf)**
+- pci: **6.5.2**
+- gdpr: **Article-33**
+- soc2: **CC7**
+- psd2: **Article-96**
+- iso27001: **A.12.3**
+- nist: **SP800-53**
+- fedramp: **SI-4**
+
+### Classification
+
+- CWE: **20**
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N**
+- CVSS_SCORE: **5.5**
+
+## References
+
+- [https://genai.owasp.org/llmrisk/llm03-training-data-poisoning/](https://genai.owasp.org/llmrisk/llm03-training-data-poisoning/)
+  - [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+  

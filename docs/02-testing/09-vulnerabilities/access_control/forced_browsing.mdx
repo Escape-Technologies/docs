@@ -1,0 +1,141 @@
+---
+title: Forced Browsing
+---
+
+# Forced Browsing
+
+## Description
+
+Forced browsing occurs when an attacker is able to access parts of a web application that are not intended to be accessible. This can happen due to missing or incorrect authorization checks on certain resources or functionalities.
+Example: An attacker accesses a restricted admin page by directly entering the URL (e.g., `http://example.com/admin`) without proper authorization.
+
+## Remediation
+
+To prevent forced browsing vulnerabilities, take the following actions:
+
+- Implement strict authorization checks for all resources and functionalities, ensuring that only authorized users can access restricted areas.
+- Use security frameworks and libraries that enforce access control policies.
+- Regularly audit and test your application for unauthorized access points.
+- Ensure proper configuration of access control mechanisms in your web server and application code.
+
+### REST Specific
+
+<details>
+    <summary>Asp_net</summary>
+
+Ensure that all routes in the ASP.NET application are properly protected by implementing and enforcing authorization checks. Use the [Authorize] attribute on controllers and actions to restrict access to authenticated users.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+In Ruby on Rails, use before_action callbacks in your controllers to verify that the current user is authorized to access the route. Implement robust authorization frameworks like Pundit or CanCanCan.
+
+</details>
+
+<details>
+    <summary>Next_js</summary>
+
+Implement middleware in Next.js to verify user credentials or tokens before processing requests. Ensure consistent application of these checks across all endpoints.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Use Laravel's built-in middleware to enforce authentication and authorization. Apply the 'auth' middleware to routes that need protection, and use Laravel's gate features for fine-grained access control.
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+Protect routes in Express.js using middleware like Passport.js or express-jwt. Ensure that user credentials and permissions are verified before processing requests.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Use Django's built-in decorators such as @login_required for function-based views or LoginRequiredMixin for class-based views. Ensure that all routes correctly check user permissions.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Implement access controls in Symfony using the 'security.yaml' configuration file. Use voters or access decision managers to check user permissions before granting access to sensitive routes.
+
+</details>
+
+<details>
+    <summary>Spring_boot</summary>
+
+Use Spring Security to authenticate and authorize requests in Spring Boot applications. Protect controller methods with annotations like @PreAuthorize to enforce role-based access control.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Protect Flask routes by using decorators like @login_required. Ensure user authentication and authorization before allowing access to state-altering operations.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Implement middleware in Nuxt.js to verify user credentials before granting access to sensitive data or actions. Regularly review and update route permissions.
+
+</details>
+
+<details>
+    <summary>Fastapi</summary>
+
+Secure FastAPI routes by integrating security dependencies such as OAuth2 with JWT tokens. Apply these dependencies to route operations to ensure that only authenticated users can access certain functionalities.
+
+</details>
+
+## Configuration
+
+> Identifier: `access_control/forced_browsing`
+
+### Examples
+
+#### Ignore this check
+
+```yaml
+checks:
+  access_control/forced_browsing:
+    skip: true
+```
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API1:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
+
+- pci: **6.5.4**
+- gdpr: **Article-32**
+- soc2: **CC6**
+
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **AC-6**
+
+### Classification
+
+- CWE: **862**
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N/E:H/RL:O/RC:C**
+- CVSS_SCORE: **8.8**
+
+## References
+
+- [https://cwe.mitre.org/data/definitions/862.html](https://cwe.mitre.org/data/definitions/862.html)

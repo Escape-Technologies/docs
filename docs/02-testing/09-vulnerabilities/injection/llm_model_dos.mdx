@@ -1,0 +1,70 @@
+---
+title: LLM Model Denial of Service
+---
+
+# LLM Model Denial of Service
+
+## Description
+
+Large Language Models (LLMs) are powerful tools that can be used to generate text, code, and other content. However, they are vulnerable to denial of service (DoS) attacks. This occurs when an attacker interacts with an LLM in a way that consumes an exceptionally high amount of resources, leading to degraded performance or system crashes. Such attacks can disrupt services and lead to significant operational issues.
+
+## Remediation
+
+To prevent DoS attacks, it is crucial to: - Implement rate limiting and throttling to control the number of requests. - Monitor resource usage and set thresholds to detect and mitigate abnormal activities. - Use anomaly detection to identify and block potential DoS attacks. - Regularly update and patch the LLM software to address known vulnerabilities. - Conduct thorough security testing to identify and fix potential issues.
+
+
+
+## Configuration
+
+> Identifier: `injection/llm_model_dos`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  injection/llm_model_dos:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API4:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa4-unrestricted-resource-consumption.md)**
+- OWASP LLM: **[LLM04:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.1**
+- nist: **SP800-53**
+- fedramp: **SI-4**
+
+### Classification
+
+- CWE: **770**
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N**
+- CVSS_SCORE: **6.5**
+
+## References
+
+- [https://genai.owasp.org/llmrisk/llm04-model-denial-of-service/](https://genai.owasp.org/llmrisk/llm04-model-denial-of-service/)
+  - [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+  

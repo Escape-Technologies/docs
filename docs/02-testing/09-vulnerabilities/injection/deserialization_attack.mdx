@@ -1,0 +1,149 @@
+---
+title: Deserialization Attack
+---
+
+# Deserialization Attack
+
+## Description
+
+Deserialization attacks occur when untrusted data is used to construct objects, potentially leading to remote code execution, denial of service, or other malicious actions.
+Example: Deserializing a crafted payload that includes malicious code to be executed upon deserialization.
+
+
+## Remediation
+
+To prevent deserialization vulnerabilities, take the following actions:
+- Avoid deserializing untrusted data whenever possible.
+- Use safe deserialization libraries that parovide security features.
+- Implement strict input validation and sanitization to ensure that only trusted data is deserialized.
+- Use whitelisting techniques to restrict the types of objects that can be deserialized.
+- Apply security controls such as application-level sandboxing to limit the impact of a potential deserialization attack.
+
+
+
+### REST Specific
+
+<details>
+    <summary>Spring_boot</summary>
+
+Use a secure deserialization library like Jackson with a safe module configuration. Avoid using Java native serialization and enforce strict input validation. Implement a whitelist of allowed classes for deserialization and apply security controls to limit the impact of any exploitation attempts.
+
+</details>
+
+<details>
+    <summary>Django</summary>
+
+Use Django's built-in JSON deserialization mechanisms and avoid custom deserialization code. Implement strict input validation and whitelisting of acceptable object types. Regularly update Django to benefit from security patches.
+
+</details>
+
+<details>
+    <summary>Flask</summary>
+
+Use secure deserialization libraries such as itsdangerous to handle untrusted data. Validate and sanitize inputs before deserialization and avoid using pickle or other unsafe methods. Implement security controls to sandbox deserialization processes.
+
+</details>
+
+<details>
+    <summary>Nodejs</summary>
+
+Use libraries like `serialize-javascript` and `safe-eval` to handle deserialization securely. Avoid using `eval()` or `Function()` to process deserialized data. Validate all inputs and use a strict schema to define acceptable data structures.
+
+</details>
+
+<details>
+    <summary>Ruby_on_rails</summary>
+
+Use Rails' built-in mechanisms for safe deserialization, such as JSON.parse. Avoid using YAML.load or Marshal.load with untrusted data. Enforce input validation and use a whitelist approach for deserializable classes.
+
+</details>
+
+<details>
+    <summary>Laravel</summary>
+
+Use Laravel's native serialization mechanisms to handle data securely. Avoid using PHP's `unserialize()` on untrusted data. Validate and sanitize inputs before processing and enforce strict type checks.
+
+</details>
+
+<details>
+    <summary>Express_js</summary>
+
+Use secure libraries for deserialization in Express.js applications. Validate and sanitize all inputs before deserialization and avoid using `eval()` or other unsafe methods. Implement strict schema validation to ensure only trusted data is processed.
+
+</details>
+
+<details>
+    <summary>Symfony</summary>
+
+Use Symfony's Serializer component securely by validating and sanitizing inputs. Avoid using `unserialize()` on untrusted data and enforce strict class type whitelisting. Regularly update Symfony components to incorporate security fixes.
+
+</details>
+
+<details>
+    <summary>Nuxt</summary>
+
+Use secure libraries for deserialization in Nuxt.js applications. Validate and sanitize all inputs before deserialization and avoid using unsafe methods like `eval()`. Implement strict schema validation to ensure only trusted data is processed.
+
+</details>
+
+<details>
+    <summary>Fastapi</summary>
+
+Use Pydantic models in FastAPI to validate and deserialize data securely. Avoid using `eval()` or other unsafe methods for processing deserialized data. Enforce strict schema validation and regularly update dependencies to benefit from security patches.
+
+</details>
+
+## Configuration
+
+> Identifier: `injection/deserialization_attack`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  injection/deserialization_attack:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API10:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xaa-unsafe-consumption-of-apis.md)**
+
+- pci: **6.5.2**
+- gdpr: **Article-32**
+- soc2: **CC6**
+
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **SI-10**
+
+### Classification
+
+- CWE: **502**
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:H/RL:O/RC:C**
+- CVSS_SCORE: **9.8**
+
+## References
+
+- [https://cwe.mitre.org/data/definitions/502.html](https://cwe.mitre.org/data/definitions/502.html)
+  - [https://owasp.org/www-project-top-ten/2017/A8_2017-Insecure_Deserialization.html](https://owasp.org/www-project-top-ten/2017/A8_2017-Insecure_Deserialization.html)
+  

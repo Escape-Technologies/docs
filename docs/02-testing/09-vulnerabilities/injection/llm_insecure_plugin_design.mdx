@@ -1,0 +1,70 @@
+---
+title: LLM Insecure Plugin Design
+---
+
+# LLM Insecure Plugin Design
+
+## Description
+
+Large Language Models (LLMs) are powerful tools that can be used to generate text, code, and other content. LLM plugins are extensions that, when enabled, are called automatically by the model during user interactions. These plugins can be susceptible to insecure design if they do not implement proper validation and access controls, allowing attackers to exploit them to perform malicious actions such as remote code execution, data exfiltration, or privilege escalation.
+
+## Remediation
+
+To prevent insecure plugin design vulnerabilities, it is crucial to: - Enforce strict parameterized input and include type and range checks on inputs. - Apply OWASP’s recommendations in ASVS (Application Security Verification Standard) for effective input validation and sanitization. - Inspect and test plugins thoroughly using Static Application Security Testing (SAST), Dynamic and Interactive application testing (DAST, IAST). - Design plugins to minimize the impact of insecure input parameter exploitation following OWASP ASVS Access Control Guidelines. - Use appropriate authentication identities, such as OAuth2, and API keys for effective authorization and access control. - Require manual user authorization and confirmation for sensitive plugin actions. - Apply recommendations from OWASP Top 10 API Security Risks – 2023 to minimize generic vulnerabilities.
+
+
+
+## Configuration
+
+> Identifier: `injection/llm_insecure_plugin_design`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  injection/llm_insecure_plugin_design:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- OWASP LLM: **[LLM07:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf)**
+- pci: **6.5.1**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.12.2**
+- nist: **SP800-53**
+- fedramp: **SI-3**
+
+### Classification
+
+- CWE: **915**
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L**
+- CVSS_SCORE: **5.0**
+
+## References
+
+- [https://genai.owasp.org/llmrisk/llm07-insecure-plugin-design/](https://genai.owasp.org/llmrisk/llm07-insecure-plugin-design/)
+  - [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+  
