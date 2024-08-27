@@ -1,21 +1,21 @@
 ---
-title: Invalid references
+title: Invalid Persisted Query
 ---
 
-# Invalid references
+# Invalid Persisted Query
 
 ## Description
 
-In your schema, some references target non-existent components. Currently, we only support references inside the same file.
+In your schema, some persisted queries target non existant objects.
 
 ## Remediation
 
-Update your schema by merging all external references into the main file or by ensuring that all referenced components exist in the same file.
+Make sure your graphql schema and persisted queries schema are in sync.
 
 
 ## Configuration
 
-> Identifier: `schema/invalid_refs`
+> Identifier: `schema/invalid_persisted_query`
 
 
 
@@ -27,7 +27,7 @@ Update your schema by merging all external references into the main file or by e
 
 ```yaml
 checks:
-  schema/invalid_refs:
+  schema/invalid_persisted_query:
     skip: true
 ```
 
@@ -62,7 +62,3 @@ checks:
 - CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N**
 
 
-## References
-
-- [https://swagger.io/specification/#relative-references-in-uris](https://swagger.io/specification/#relative-references-in-uris)
-  

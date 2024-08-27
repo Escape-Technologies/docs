@@ -9,16 +9,14 @@ title: Forced Browsing
 Forced browsing occurs when an attacker is able to access parts of a web application that are not intended to be accessible. This can happen due to missing or incorrect authorization checks on certain resources or functionalities.
 Example: An attacker accesses a restricted admin page by directly entering the URL (e.g., `http://example.com/admin`) without proper authorization.
 
-
 ## Remediation
 
 To prevent forced browsing vulnerabilities, take the following actions:
+
 - Implement strict authorization checks for all resources and functionalities, ensuring that only authorized users can access restricted areas.
 - Use security frameworks and libraries that enforce access control policies.
 - Regularly audit and test your application for unauthorized access points.
 - Ensure proper configuration of access control mechanisms in your web server and application code.
-
-
 
 ### REST Specific
 
@@ -103,11 +101,7 @@ Secure FastAPI routes by integrating security dependencies such as OAuth2 with J
 
 > Identifier: `access_control/forced_browsing`
 
-
-
 ### Examples
-
-
 
 #### Ignore this check
 
@@ -117,9 +111,6 @@ checks:
     skip: true
 ```
 
-
-
-
 ## Score
 
 - Escape Severity: **<span className="high-severity">HIGH</span>**
@@ -127,6 +118,7 @@ checks:
 ### Compliance
 
 - OWASP: **[API1:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa1-broken-object-level-authorization.md)**
+
 - pci: **6.5.4**
 - gdpr: **Article-32**
 - soc2: **CC6**
@@ -139,9 +131,6 @@ checks:
 
 - CWE: **862**
 
-
-
-
 ### Score
 
 - CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N/E:H/RL:O/RC:C**
@@ -150,4 +139,3 @@ checks:
 ## References
 
 - [https://cwe.mitre.org/data/definitions/862.html](https://cwe.mitre.org/data/definitions/862.html)
-  
