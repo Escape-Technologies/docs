@@ -72,3 +72,26 @@ presets:
           Authorization: Bearer user1Token
 validation: false
 ```
+
+## Overall structure of an authentication configuration
+
+For detailed information on each section, please refer to the respective sections in the [reference documentation](/testing/authentication/reference).
+
+```yaml
+
+procedures:
+  description: The list of authentication procedures to rely on when authenticating users
+
+presets:
+  description: A list of presets used to easily generate procedures and users automatically following common authentication standards
+
+users:
+  description: List of users that multiauth will generate authentications for.
+
+proxy:
+  description: An eventual global proxy used for all HTTP requests
+
+validation:
+  description: A flag to enable or disable the generated tokens validations. Set this to false to skip the validation. Set to true by default
+  
+```
