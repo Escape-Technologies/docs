@@ -248,12 +248,24 @@ The route expects a JSON body with the following fields:
 
   // Scan settings
   "readWrite": true | false, // false makes the scan safe for production
-  "applicationUsers": [
-    // Authentication settings for the scan
-    {"name": "User name", "headerName": "Authorization", "headerValue": "Bearer ..."},
-    ...
-    // Send an empty array if you don't want to authenticate
-  ],
+  
+  // Other settings
+  "authentication": { // authentication details as documented in https://docs.escape.tech/testing/authentication/#overall-structure-of-an-authentication-configuration
+    "presets": [
+      {
+        "type": "headers",
+        "users": [
+          {
+            "username": "user1",
+            "headers": {
+              "Authorization": "Bearer user1Token"
+            }
+          }
+        ]
+      }
+    ],
+    "validation": false
+  },
   "repeaterId": "<repeaterId>" // Optional, if you want to use a repeater
 }
 ```
@@ -270,7 +282,6 @@ If you are adding a GraphQL application with an open introspection endpoint, set
   "serverUrl": "https://gontoz.escape.tech/graphql",
   "schemaUrl": "https://gontoz.escape.tech/graphql",
   "readWrite": true,
-  "applicationUsers": []
 }
 ```
 
