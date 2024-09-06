@@ -104,23 +104,20 @@ users:
 
 ### Configure your firewall
 
+To allow the Repeater to connect to Escape, you need to allow in your firewall this service to connect to escape services.
 Make sure the following **outgoing** connections are allowed by your network configuration:
 
-We recommend you also validate the ips by simply doing the command:
+The repeater endpoint `repeater.escape.tech` should be reachable via `TCP` on port `443`.
+It is deployed on AWS with high availability, so the IPs can change,
+if your firewall only supports IPs, you can run the `nslookup repeater.escape.tech` command to retrieve the current IPs,
+if the repeater lose connection, check again that the IPs are still the same.
 
-```sh
-nslookup repeater.escape.tech
-```
+The following IPs are also used by the repeater to ensure a stable connection:
 
-| Address                | Protocol      | Port  |
-| ---------------------- | ------------- | ----- |
-| `repeater.escape.tech` | `TCP`/`RPC`   | `443` |
-| `52.6.17.196`       | `TCP`/`HTTP`  | `80`  |
-| `52.6.17.196`       | `TCP`/`HTTP`  | `443`  |
-| `52.5.35.215`       | `TCP`/`HTTPS` | `80` |
-| `52.5.35.215`       | `TCP`/`HTTPS` | `443` |
-| `34.225.45.162`       | `TCP`/`HTTPS` | `80` |
-| `34.225.45.162`       | `TCP`/`HTTPS` | `443` |
+| Address          | Protocol      | Port  |
+| ---------------- | ------------- | ----- |
+| `51.159.205.221` | `TCP`/`HTTP`  | `80`  |
+| `51.159.205.221` | `TCP`/`HTTPS` | `443` |
 
 ### Connect a repeater
 
