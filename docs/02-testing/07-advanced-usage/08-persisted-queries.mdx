@@ -25,8 +25,21 @@ Go to your application page, then go to `Settings` (top right corner) and click 
 
 To add the persited queries, you have two options:
 
-- Add the persisted queries directly in the configuration
-- Refer an external url containing your persisted queries
+- If you have a large amount of queries : Refer an external url containing your persisted queries
+- If you have a small amount of queries : Add the persisted queries directly in the configuration
+
+### Refer an external url containing your persisted queries
+
+In the `yaml` definition of your configuration, you can add the `internal.graphql_persisted_queries_url` key.
+
+Example:
+
+```yaml
+internal:
+  graphql_persisted_queries_url: https://example.com/path/to/persited-queries.json
+```
+
+Escape will get the content of the url and parse the JSON object contained in it.
 
 ### Add the persisted queries directly in the configuration
 
@@ -45,18 +58,7 @@ internal:
 
 Escape will load this string as a JSON object and parse the contained queries.
 
-### Refer an external url containing your persisted queries
-
-In the `yaml` definition of your configuration, you can add the `internal.graphql_persisted_queries_url` key.
-
-Example:
-
-```yaml
-internal:
-  graphql_persisted_queries_url: https://example.com/path/to/persited-queries.json
-```
-
-Escape will get the content of the url and parse the JSON object contained in it.
+If you have more that 20 persisted queries, we recommend to use the `graphql_persisted_queries_url` option.
 
 ## Supported formats
 
