@@ -1,0 +1,68 @@
+---
+title: Persisted Queries
+---
+
+:::warning Enterprise Feature
+
+This feature is only available to Enterprise Customers. Contact us via email or your Private Slack Support Channel for more information.
+
+:::
+
+## Overview
+
+Persisted queries are a mechanism to improve the performance and security of GraphQL APIs.
+By storing (or persisting) the queries on the server, clients can refer to these queries using a unique identifier instead of sending the entire query string.
+This reduces the payload size, minimizes parsing overhead, and helps prevent certain types of attacks, such as query injection.
+
+If persisted queries are enabled on your server, Escape is enable to scan your API by default as it doesn't know the persited queries hashs.
+You need to configure your application to allow Escape to scan it.
+
+## Configuring the application
+
+As this feature is actually in beta, the configuration is only available on the `Expert` tab of your application.
+
+Go to your application page, then go to `Settings` (top right corner) and click on the `Expert` tab (on the left).
+
+To add the persited queries, you have two options:
+
+- If you have a large amount of queries : Refer an external url containing your persisted queries
+- If you have a small amount of queries : Add the persisted queries directly in the configuration
+
+### Refer an external url containing your persisted queries
+
+In the `yaml` definition of your configuration, you can add the `internal.graphql_persisted_queries_url` key.
+
+Example:
+
+```yaml
+internal:
+  graphql_persisted_queries_url: https://example.com/path/to/persited-queries.json
+```
+
+Escape will get the content of the url and parse the JSON object contained in it.
+
+### Add the persisted queries directly in the configuration
+
+In the `yaml` definition of your configuration, you can add the `internal.graphql_persisted_queries_raw` key.
+
+Example:
+
+```yaml
+internal:
+  graphql_persisted_queries_raw: >
+    {
+      "86f01e23de1c770cabbc35b2d87f2e5fd7557b6f": "query HelloQuery { hello }",
+      "c59d86fc8f3c9617a5aacc7f22c04d539b8e6c46": "..."
+    }
+```
+
+Escape will load this string as a JSON object and parse the contained queries.
+
+If you have more that 20 persisted queries, we recommend to use the `graphql_persisted_queries_url` option.
+
+## Supported formats
+
+The persisted queries can be provided in two formats:
+
+- Apollo format : [Apollo persited queries manifest format](https://www.apollographql.com/docs/graphos/operations/persisted-queries/#manifest-format)
+- Hashdoc format : [Yoga persited queries format](https://the-guild.dev/graphql/yoga-server/docs/features/persisted-operations#extracting-client-operations)
