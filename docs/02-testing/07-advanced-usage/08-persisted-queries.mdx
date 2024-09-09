@@ -22,3 +22,27 @@ You need to configure your application to allow Escape to scan it.
 As this feature is actually in beta, the configuration is only available on the `Expert` tab of your application.
 
 Go to your application page, then go to `Settings` (top right corner) and click on the `Expert` tab (on the left).
+
+To add the persited queries, you have two options:
+
+- Add the persisted queries directly in the configuration
+- Refer an external url containing your persisted queries
+
+### Add the persisted queries directly in the configuration
+
+In the `yaml` definition of your configuration, you can add the `internal.graphql_persisted_queries_raw` key.
+
+Example:
+
+```yaml
+internal:
+  graphql_persisted_queries_raw: >
+    {
+      "86f01e23de1c770cabbc35b2d87f2e5fd7557b6f": "query HelloQuery { hello }",
+      "c59d86fc8f3c9617a5aacc7f22c04d539b8e6c46": "..."
+    }
+```
+
+### Refer an external url containing your persisted queries
+
+- todo
