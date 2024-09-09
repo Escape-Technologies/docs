@@ -2,6 +2,23 @@
 title: Persisted Queries
 ---
 
-# Configuring Persisted Queries on a GraphQL scan
+:::warning Enterprise Feature
 
-todo: docs
+This feature is only available to Enterprise Customers. Contact us via email or your Private Slack Support Channel for more information.
+
+:::
+
+## Overview
+
+Persisted queries are a mechanism to improve the performance and security of GraphQL APIs.
+By storing (or persisting) the queries on the server, clients can refer to these queries using a unique identifier instead of sending the entire query string.
+This reduces the payload size, minimizes parsing overhead, and helps prevent certain types of attacks, such as query injection.
+
+If persisted queries are enabled on your server, Escape is enable to scan your API by default as it doesn't know the persited queries hashs.
+You need to configure your application to allow Escape to scan it.
+
+## Configuring the application
+
+As this feature is actually in beta, the configuration is only available on the `Expert` tab of your application.
+
+Go to your application page, then go to `Settings` (top right corner) and click on the `Expert` tab (on the left).
