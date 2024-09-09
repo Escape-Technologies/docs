@@ -6,11 +6,9 @@ description: Unleashing Escape's Full Potential
 Escape's core philosophy revolves around being intuitive and accessible right out of the box. But, for those power users who crave granular control and fine-tuning, welcome to the "Expert Mode."
 
 ### What's in the Box: `escaperc` 📦
-
 This configuration file, affectionately named `escaperc`, is your gateway to fine-grained control over Escape's behavior. While it's completely optional, editing this file lets you go beyond the defaults, optimizing Escape for your unique application needs. You can either tweak it directly within our SaaS Platform or commit the configurations into your CI/CD for seamless integration.
 
 ### Features at a Glance 🔍
-
 - **[Access Control Testing](./access_control):** Ensure only the right users access the right resources.
 - **[Tenant Isolation](./access_control#tenant-isolation-guarding-each-users-data-in-its-own-sandbox):** Validate segregation between different users and groups.
 - **[Private Data Protection](./access_control#protecting-private-data-%EF%B8%8F%EF%B8%8F):** Keep sensitive information under wraps.
@@ -20,54 +18,53 @@ This configuration file, affectionately named `escaperc`, is your gateway to fin
 - **[Coverage Improvement](../getting-started/improve-scan-coverage):** Make sure no endpoint is left untested.
 - **[Request Frequency & Rate Limiting](./rate-limiting):** Adjust how Escape interacts with your systems, ensuring optimal performance and thorough scanning.
 
+
 🌟 **Community Contributions**  
 Our vibrant community is always excited to share their perfected `escaperc` configurations, pooling collective expertise for everyone's benefit. Feel free to dive in, learn from others, and share your own expert configurations!
 
 If mastering every nook and cranny of your security strategy is your game, the "Expert Mode" is your playground. Dive in and harness the unparalleled depth Escape offers!
 
 #### Example
-
 Here is an example using the expert tab
 
 ```yaml
 scan:
   blacklist:
     routes:
-      - path: "/a/path/to/blacklist"
-        method: GET
-      - path: "/another/path/to/blacklist"
-        method: POST
+    - path: "/a/path/to/blacklist"
+      method: GET
+    - path: "/another/path/to/blacklist"
+      method: POST
   hotstart:
-    - |-
-      POST /register HTTP/1.1
-      Host: example.com
-      Content-Type: application/json
-      Content-Length: 194
+  - |-
+    POST /register HTTP/1.1
+    Host: example.com
+    Content-Type: application/json
+    Content-Length: 194
 
-      {"my": "data"}
-    - |+
-      GET /users HTTP/1.1
-      Host: example.com
-      Content-Type: application/json
-      Content-Length: 194
+    {"my": "data"}
+  - |+
+    GET /users HTTP/1.1
+    Host: example.com
+    Content-Type: application/json
+    Content-Length: 194
 
   profile: deep
   read_only: true
   scalars:
     SSET:
-      description:
-        The Super Secret Example Token is internal to our company and should
+      description: The Super Secret Example Token is internal to our company and should
         never been exposed by any APIs.
       examples:
-        - SSET-ABC12
+      - SSET-ABC12
       names:
-        - SSET
-        - super_secret_example_token
-        - SuperSecretExampleToken
+      - SSET
+      - super_secret_example_token
+      - SuperSecretExampleToken
       parents:
-        - String
+      - String
       patterns:
-        - SSET-[A-Z0-9]{5}
+      - SSET-[A-Z0-9]{5}
       sensitivity: HIGH
       entropy: 2
 
@@ -81,25 +78,25 @@ client:
   requests_per_minute: 100
 authentication:
   presets:
-    - type: digest
+  -   type: digest
       first_request:
-        url: https://api.example.com/request
-        method: GET
-        cookies:
-          session_id: "123456"
-        headers:
-          Accept: application/json
-        query_parameters:
-          query: info
+          url: https://api.example.com/request
+          method: GET
+          cookies:
+              session_id: '123456'
+          headers:
+              Accept: application/json
+          query_parameters:
+              query: info
       second_request:
-        url: https://api.example.com/authenticate
-        method: POST
+          url: https://api.example.com/authenticate
+          method: POST
       users:
-        - username: alice
+      -   username: alice
           password: aliceSecret
-        - username: bob
+      -   username: bob
           password: bobSecret
-checks:
+checks: 
   alert:
     name: Deletion successful
     context: >
