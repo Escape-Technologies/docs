@@ -43,6 +43,17 @@ internal:
     }
 ```
 
+Escape will load this string as a JSON object and parse the contained queries.
+
 ### Refer an external url containing your persisted queries
 
-- todo
+In the `yaml` definition of your configuration, you can add the `internal.graphql_persisted_queries_url` key.
+
+Example:
+
+```yaml
+internal:
+  graphql_persisted_queries_url: https://example.com/path/to/persited-queries.json
+```
+
+Escape will get the content of the url and parse the JSON object contained in it.
