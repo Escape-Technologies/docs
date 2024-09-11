@@ -266,6 +266,25 @@ The route expects a JSON body with the following fields:
     ],
     "validation": false
   },
+  "fullConfiguration": { // full expert configuration as documented in https://docs.escape.tech/testing/ci-cd/configuration-override and https://docs.escape.tech/testing/advanced-usage/
+    // you can simply copy your expert configuration from a scan and use it here
+    // fullConfiguration and authentication are mutually exclusive
+    "scan": {
+      "profile": "default",
+      "blacklist": {},
+      "read_only": false
+    },
+    "client": {
+      "requests_per_minute": 300
+    },
+    "authentication": {
+      "users": [
+        {
+          "name": "public"
+        }
+      ]
+    }
+  },
   "repeaterId": "<repeaterId>" // Optional, if you want to use a repeater
 }
 ```
