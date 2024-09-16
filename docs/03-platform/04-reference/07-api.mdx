@@ -92,7 +92,7 @@ The ID of the organization on Escape. It can be found on [the organization secti
 ```
 
 
-## `GET /organization/:organizationId/services`
+## `GET /v1/organization/:organizationId/services`
 
 Retrieve the list of services bound to an organization
 
@@ -143,6 +143,34 @@ The ID of the organization on Escape. It can be found on [the organization secti
     ]
   }
 ]
+```
+
+
+## `POST /v1/organization/:organizationId/domains`
+
+Set the domains for an organization, will fully replace the existing domains and preserve existing ones (they have to be included).
+
+### Request parameters
+
+#### `organizationId`
+
+The ID of the organization on Escape. It can be found on [the organization section](https://app.escape.tech/organization/)
+
+### Example request
+
+```json
+{
+    "domains": ["test.com", "example.com"] // the list must be non-empty
+}
+```
+
+
+### Example response
+
+```json
+{
+    "message": "Domains set successfully"
+}
 ```
 
 ## `GET /scans/:scanId`
