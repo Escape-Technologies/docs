@@ -91,6 +91,60 @@ The ID of the organization on Escape. It can be found on [the organization secti
 ]
 ```
 
+
+## `GET /organization/:organizationId/services`
+
+Retrieve the list of services bound to an organization
+
+### Request parameters
+
+#### `organizationId`
+
+The ID of the organization on Escape. It can be found on [the organization section](https://app.escape.tech/organization/)
+
+### Example response
+
+```json
+[
+  {
+    "id": "99092d10-69a2-45b3-80f8-d35b04ede64e",
+    "url": "https://gontoz.escape.tech/graphql",
+    "cloudProvider": "AWS",
+    "wafProvider": "AWS_ELASTIC_LOAD_BALANCER",
+    "authTechnology": "AUTH0",
+    "type": "GRAPHQL",
+    "createdAt": "2024-09-03T10:24:29.412Z",
+    "lastSeenAt": "2024-09-03T10:24:29.412Z",
+    "tags": [
+      {
+        "id": "497639c6-70b7-443f-bb9f-2639c01b711b",
+        "name": "tag",
+        "color": "a271b5"
+      }
+    ],
+    "domain": {
+        "id": "escape.tech",
+        "faviconUrl": ""
+    },
+    "applicationsCount": 0,
+    "softwareType": "FIRST_PARTY",
+    "framework": "apollo",
+    "ipAddresses": [
+      "192.168.0.1",
+      "192.168.0.2"
+    ],
+    "countryCodes": [],
+    "endpoints": [
+      {
+        "id": "770235b7-36f6-44c9-b150-98c31cf4ce47",
+        "operation": "query",
+        "name": "me"
+      }
+    ]
+  }
+]
+```
+
 ## `GET /scans/:scanId`
 
 Retrieve a specific scan and its results
