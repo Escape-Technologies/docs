@@ -3,7 +3,7 @@ title: Public API Reference
 description: Use Escape's public API
 ---
 
-import TypeTag from '@site/src/components/TypeTag';
+import TypeTag from "@site/src/components/TypeTag";
 
 ## API base URL
 
@@ -91,7 +91,6 @@ The ID of the organization on Escape. It can be found on [the organization secti
 ]
 ```
 
-
 ## `GET /v1/organization/:organizationId/services`
 
 Retrieve the list of services bound to an organization
@@ -123,16 +122,13 @@ The ID of the organization on Escape. It can be found on [the organization secti
       }
     ],
     "domain": {
-        "id": "escape.tech",
-        "faviconUrl": ""
+      "id": "escape.tech",
+      "faviconUrl": ""
     },
     "applicationsCount": 0,
     "softwareType": "FIRST_PARTY",
     "framework": "apollo",
-    "ipAddresses": [
-      "192.168.0.1",
-      "192.168.0.2"
-    ],
+    "ipAddresses": ["192.168.0.1", "192.168.0.2"],
     "countryCodes": [],
     "endpoints": [
       {
@@ -144,7 +140,6 @@ The ID of the organization on Escape. It can be found on [the organization secti
   }
 ]
 ```
-
 
 ## `POST /v1/organization/:organizationId/domains`
 
@@ -160,16 +155,15 @@ The ID of the organization on Escape. It can be found on [the organization secti
 
 ```json
 {
-    "domains": ["test.com", "example.com"] // the list can be empty if you want to reset all domains
+  "domains": ["test.com", "example.com"] // the list can be empty if you want to reset all domains
 }
 ```
-
 
 ### Example response
 
 ```json
 {
-    "message": "Domains set successfully"
+  "message": "Domains set successfully"
 }
 ```
 
@@ -253,7 +247,7 @@ The ID of the scan on Escape.
 }
 ```
 
-## `POST /application/:applicationId/start-scan`
+## `POST /applications/:applicationId/start-scan`
 
 Start a new scan for the given application.
 
@@ -330,7 +324,7 @@ The route expects a JSON body with the following fields:
 
   // Scan settings
   "readWrite": true | false, // false makes the scan safe for production
-  
+
   // Other settings
   "authentication": { // authentication details as documented in https://docs.escape.tech/testing/authentication/#overall-structure-of-an-authentication-configuration
     "presets": [
@@ -383,7 +377,7 @@ If you are adding a GraphQL application with an open introspection endpoint, set
   "type": "GRAPHQL",
   "serverUrl": "https://gontoz.escape.tech/graphql",
   "schemaUrl": "https://gontoz.escape.tech/graphql",
-  "readWrite": true,
+  "readWrite": true
 }
 ```
 
@@ -434,7 +428,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Application'
+                  $ref: "#/components/schemas/Application"
 
   /scans/{scanId}:
     get:
@@ -451,7 +445,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Scan'
+                $ref: "#/components/schemas/Scan"
 
   /application/{applicationId}/start-scan:
     post:
@@ -511,7 +505,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IntrospectionResponse'
+                $ref: "#/components/schemas/IntrospectionResponse"
 
 components:
   schemas:
@@ -533,9 +527,9 @@ components:
         scans:
           type: array
           items:
-            $ref: '#/components/schemas/Scan'
+            $ref: "#/components/schemas/Scan"
         lastSuccessfulScan:
-          $ref: '#/components/schemas/Scan'
+          $ref: "#/components/schemas/Scan"
 
     Scan:
       type: object
@@ -553,7 +547,7 @@ components:
         commitHash:
           type: string
         application:
-          $ref: '#/components/schemas/Application'
+          $ref: "#/components/schemas/Application"
         configuration:
           type: object
         alerts:
