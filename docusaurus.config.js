@@ -141,7 +141,8 @@ const config = {
             from: "/authentication/presets/curlsequence",
             to: "/testing/authentication/presets/curlsequence",
           },
-          { from: "/enterprise/repeater", to: "/platform/enterprise/repeater" },
+          { from: "/enterprise/repeater", to: "/platform/enterprise/private-location" },
+          { from: "/platform/enterprise/repeater", to: "/platform/enterprise/private-location" },
           {
             from: "/enterprise/deployment-options",
             to: "/platform/enterprise/deployment-options",

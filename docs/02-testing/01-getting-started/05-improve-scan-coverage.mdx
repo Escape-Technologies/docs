@@ -87,11 +87,11 @@ Make sure to provide an up-to-date schema that respects the most recent standard
 If you provide escape an old schema, we might try to access endpoints that do not exist anymore.
 They will count in the `[Total Number of Endpoints]` part of the coverage formula and so reducing the coverage.
 
-### Fix Redirection Errors Using the Escape Repeater
+### Fix Redirection Errors Using Private Locations
 
 If you see a lot of redirection errors, it can be a sign that your endpoint or your schema is not perfectly configured.
 
-For security reasons, Escape only follows redirection using the Repeater.
+For security reasons, Escape only follows redirection using Private Locations.
 
 For example if you see a redirection for the `/user` route to `/user/`, you may want to update your schema to reflect this change.
 
