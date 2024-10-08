@@ -17,8 +17,7 @@ export default function FooterWrapper(props) {
                 />{' '}
               </a>
               <p>
-                The agentless API Inventory, API Security and Attack Surface
-                Management platform to secure your business.
+                The agentless API Discovery & API Security platform. No traffic monitoring, lower time to value.
               </p>
               <div class="soc-desktop">
                 <a href="https://app.vanta.com/escape/trust/o59eptrutija9j25586wav">
@@ -30,14 +29,6 @@ export default function FooterWrapper(props) {
                 </a>
               </div>
               <div class="social-links">
-                <a
-                  class="button"
-                  href="https://app.escape.tech/register/?ref=doc"
-                  target="register"
-                  rel="nofollow"
-                >
-                  Try for free
-                </a>
 
                 <a
                   class="button"
