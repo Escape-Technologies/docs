@@ -8,9 +8,9 @@ Integrating GCP with Escape's Inventory enhances visibility and management of yo
 
 - **GKE**: GKE is a Google-managed implementation of the Kubernetes open source container orchestration platform. We use Kubernetes API to interact with your clusters and gather information about the resources running on them.
 
-### Generating a GCP OAuth Credentials
+### Generating a GCP OAuth Credentials (for a project)
 
-Follow these steps to create your API Credentials in GCP:
+Follow these steps to create your API Credentials in GCP for a project:
 
 - Go to your [API Credentials page](https://console.cloud.google.com/apis/credentials) to generate a service account
 - Click on **Create Service Account** and follow instructions to create a service account.
@@ -24,5 +24,45 @@ Follow these steps to create your API Credentials in GCP:
 - **Important**: enable the following APIs in the GCP console:
 - Enable the [GKE API](https://console.cloud.google.com/apis/enableflow?apiid=gkehub.googleapis.com)
 - Enable the [DNS API](https://console.cloud.google.com/apis/enableflow?apiid=dns.googleapis.com)
+
+### Generating a GCP OAuth Credentials (for an organization)
+
+Follow these steps to create your API Credentials in GCP for an organization:
+
+- Go to your [GCP IAM Admin Console](https://console.cloud.google.com/iam-admin/iam) on the organization-level (*you need to be an organization owner*).
+- Ensure your user has the `Organization Administrator` and `Organization Role Administrator` roles. (You can add your roles via the **edit button** *(pencil icon)* next to your user).
+- Click on [organization-level roles](https://console.cloud.google.com/iam-admin/roles) to create a new custom role.
+- Click on `Create Role` and fill with those details:
+  - **Title**: Escape Integration Role
+  - **ID**: *escape_integration_role*
+  - **Role Launch Stage**: `General availability`
+  - **Permissions**: Add the following permissions by checking the boxes:
+    - `apigateway.apiconfigs.list`
+    - `apigateway.apis.get`
+    - `apigateway.apis.list`
+    - `apigateway.gateways.get`
+    - `apigateway.gateways.list`
+    - `apigateway.locations.get`
+    - `apigateway.locations.list`
+    - `apigateway.operations.get`
+    - `apigateway.operations.list`
+    - `apigee.apiproducts.get`
+    - `apigee.apiproducts.list`
+    - `apigee.organizations.get`
+    - `apigee.organizations.list`
+    - `apigeeregistry.specs.get`
+    - `apigeeregistry.specs.list`
+    - `cloudasset.assets.searchAllIamPolicies`
+    - `dns.managedZoneOperations.get`
+    - `dns.managedZoneOperations.list`
+    - `dns.managedZones.get`
+    - `dns.managedZones.list`
+    - `resourcemanager.folders.get`
+    - `resourcemanager.folders.list`
+    - `resourcemanager.organizations.get`
+    - `resourcemanager.organizations.getIamPolicy`
+    - `resourcemanager.projects.get`
+    - `resourcemanager.projects.list`
+
 
 By setting up this integration, you ensure that all endpoints are accounted for in Escape's Inventory, aiding in thorough security and compliance assessments.
