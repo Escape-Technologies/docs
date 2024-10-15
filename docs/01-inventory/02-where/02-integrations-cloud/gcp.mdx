@@ -12,18 +12,18 @@ Integrating GCP with Escape's Inventory enhances visibility and management of yo
 
 Follow these steps to create your API Credentials in GCP for a project:
 
-- Go to your [API Credentials page](https://console.cloud.google.com/apis/credentials) to generate a service account
+- Go to your [API Credentials page](https://console.cloud.google.com/apis/credentials) to generate a service account.
 - Click on **Create Service Account** and follow instructions to create a service account.
-- Add on role of **Viewer** from **Basic** roles in the permissions
+- Add on role of **Viewer** from **Basic** roles in the permissions.
 - Click on **Done** to create the service account.
-- After creating, Open the service account by clicking on it
-- Go to **Keys** tab and click on **Add Key** to create a new key
-- Click on **Create new key** and select **JSON** and click on **Create**
+- After creating, open the service account by clicking on it.
+- Go to **Keys** tab and click on **Add Key** to create a new key.
+- Click on **Create new key** and select **JSON** and click on **Create**.
 - This will download a JSON file with the key details. Open the file and copy the contents.
 - Copy the contents of the JSON file and paste it in the text area above.
 - **Important**: enable the following APIs in the GCP console:
-- Enable the [GKE API](https://console.cloud.google.com/apis/enableflow?apiid=gkehub.googleapis.com)
-- Enable the [DNS API](https://console.cloud.google.com/apis/enableflow?apiid=dns.googleapis.com)
+  - Enable the [GKE API](https://console.cloud.google.com/apis/enableflow?apiid=gkehub.googleapis.com).
+  - Enable the [DNS API](https://console.cloud.google.com/apis/enableflow?apiid=dns.googleapis.com).
 
 ### Generating a GCP OAuth Credentials (for an organization)
 
@@ -64,5 +64,19 @@ Follow these steps to create your API Credentials in GCP for an organization:
     - `resourcemanager.projects.get`
     - `resourcemanager.projects.list`
 
+- Now, we are going to create the Service Account, Keys, and Associating the Role
+
+  - Create a new GCP Project or use an existing project to create the new Service Account used by Escape.  
+  - Visit [this link](https://console.cloud.google.com/iam-admin/serviceaccounts/create) and fill the following details:
+  - **Name**: `Escape Integration Service Account`
+  - **ID**: should be `escape-integration-service-acc`, but feel free to use your naming convention.
+
+  - Add a Service Account Key by navigating to the newly created SA Details, going to Keys, clicking on Add Key, and creating a new key in JSON format. 
+
+  - The key file should be downloaded to your computer; ensure that it was downloaded. You will have to simply paste this JSON into the Escape UI.  
+  - Copy the email of the service account you just created; it should be `escape-integration-service-acc@<yourprojectid>.iam.gserviceaccount.com`.  
+  - The last step is to grant access to your Service Account by associating the org-level role with it. Navigate back to [this link](https://console.cloud.google.com/iam-admin/iam) and view the Organization-level IAM (by ensuring the Organization is selected in the top-left).  
+  - Click on Grant Access, paste the Service Account email in the principals, and select the custom role previously created (search for Escape).  
+  - Save, you're done! Simply paste the JSON into Escape's GCP integration setup page [here](https://app.escape.tech/integrations/gcp/new).
 
 By setting up this integration, you ensure that all endpoints are accounted for in Escape's Inventory, aiding in thorough security and compliance assessments.
