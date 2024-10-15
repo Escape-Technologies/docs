@@ -37,6 +37,7 @@ Follow these steps to create your API Credentials in GCP for an organization:
   - **ID**: *escape_integration_role*
   - **Role Launch Stage**: `General availability`
   - **Permissions**: Add the following permissions by checking the boxes:
+    - `apigateway.apiconfigs.get`
     - `apigateway.apiconfigs.list`
     - `apigateway.apis.get`
     - `apigateway.apis.list`
@@ -52,6 +53,12 @@ Follow these steps to create your API Credentials in GCP for an organization:
     - `apigee.organizations.list`
     - `apigeeregistry.specs.get`
     - `apigeeregistry.specs.list`
+    - `cloudasset.assets.exportApigatewayApi`
+    - `cloudasset.assets.exportApigatewayApiConfig`
+    - `cloudasset.assets.exportApigatewayGateway`
+    - `cloudasset.assets.listApigatewayApi`
+    - `cloudasset.assets.listApigatewayApiConfig`
+    - `cloudasset.assets.listApigatewayGateway`
     - `cloudasset.assets.searchAllIamPolicies`
     - `dns.managedZoneOperations.get`
     - `dns.managedZoneOperations.list`
