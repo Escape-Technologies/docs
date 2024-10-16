@@ -1,5 +1,5 @@
 ---
-title: Repeater Proxy
+title: Private Locations
 ---
 
 :::warning Enterprise Feature
@@ -10,34 +10,34 @@ This feature is only available to Enterprise Customers. Contact us via email or 
 
 ## Overview
 
-Escape's Repeater Proxy allows you to scan scan Internal Apps behind your organization's firewall or VPN.
+Private Locations allow you to scan scan Internal Apps behind your organization's firewall or VPN.
 
-This repeater creates a private tunnel between Escape and one of your servers. All the Ecape requests will comes from this server.
+The Private Location Worker creates a private tunnel between Escape and one of your servers. All the Ecape requests will comes from this server.
 
 Here is a schema of the infrastructure :
 
-![Escape repeater](./img/repeater.drawio.svg)
+![Escape Private Locations](./img/repeater.drawio.svg)
 
-First, the repeater client you have deployed locally will connect to the Repeater manager (1).
+First, the Private Location Worker you have deployed locally will connect to the Private Locations manager (1).
 When you start a scan on Escape, instead of sending the requests directly to your server, Escape will send them to the Repeater manager (2).
 Your client will receive the requests and send them to your server (3 & 4).
 The results are sent back to Escape to allow you to see scans results.
 
 ## Resources
 
-The Repeater Proxy is an open source docker image available on Github [Escape-Technologies/Repeater](https://github.com/Escape-Technologies/Repeater/).
+The Private Location Worker is an open source Docker image available on Github [Escape-Technologies/Repeater](https://github.com/Escape-Technologies/Repeater/).
 
 The resources needed to run it depends on the trafic you will have. We recommend to start with an instance with 1 vCPU and 2GB of RAM and monitor the usage.
 
-## Setup a repeater
+## Getting Started with Private Locations
 
-Escape's Repeater Proxy is available as a Docker image. You can deploy it on any server that can reach your internal applications. The agent's code can also be found on [Github](https://github.com/Escape-Technologies/repeater).
+Escape's Private Location Worker is available as a Docker image. You can deploy it on any server that can reach your internal applications. The code can also be found and audited on [Github](https://github.com/Escape-Technologies/repeater).
 
 As it is a Docker image, you can deploy it using docker cli, docker compose or any other container orchestration tool. In this tutorial, we will use docker cli but for production setup, we recommend you to use a container orchestration tool like docker compose.
 
-You now need to run the repeater with the following environment variables:
+You now need to run the Worker with the following environment variables:
 
-- `ESCAPE_REPEATER_ID`: Your repeater id.
+- `ESCAPE_REPEATER_ID`: Your Private Location ID.
 
 ```bash
 docker run -it --rm --name escape-repeater \
@@ -89,7 +89,7 @@ docker run -it --rm --name escape-repeater \
     escapetech/repeater:latest
 ```
 
-After that, you can authenticate your application using the repeater by adding the `repeater_mtls: true` flag.
+After that, you can authenticate your application using the Private Location Worker by adding the `repeater_mtls: true` flag.
 For example, the following configuration declare two users, one unauthenticated and one with mTLS:
 
 ```yaml
@@ -104,13 +104,13 @@ users:
 
 ### Configure your firewall
 
-To allow the Repeater to connect to Escape, you need to allow in your firewall this service to connect to escape services.
+To allow the Private Location Worker to connect to Escape, you need to allow in your firewall this service to connect to escape services.
 Make sure the following **outgoing** connections are allowed by your network configuration:
 
-The repeater endpoint `repeater.escape.tech` should be reachable via `TCP` on port `443`.
+The Private Location Worker endpoint `repeater.escape.tech` should be reachable via `TCP` on port `443`.
 It is deployed on AWS with high availability, so the IPs can change,
 if your firewall only supports IPs, you can run the `nslookup repeater.escape.tech` command to retrieve the current IPs,
-if the repeater lose connection, check again that the IPs are still the same.
+if the Private Location Worker lose connection, check again that the IPs are still the same.
 
 The last updated IPs (`2024/09/09`) are :
 
@@ -120,26 +120,26 @@ The last updated IPs (`2024/09/09`) are :
 | `44.210.73.138`  | `TCP`/`GRPC` | `443` |
 | `54.172.108.134` | `TCP`/`GRPC` | `443` |
 
-The following IPs are also used by the repeater to ensure a stable connection:
+The following IPs are also used by the Private Location Worker to ensure a stable connection:
 
 | Address          | Protocol      | Port  |
 | ---------------- | ------------- | ----- |
 | `51.159.205.221` | `TCP`/`HTTP`  | `80`  |
 | `51.159.205.221` | `TCP`/`HTTPS` | `443` |
 
-### Connect a repeater
+### Connect a Private Location
 
 1. Go to the [Network Configuration](https://app.staging.escape.tech/organization/network/) page.
-2. Create a Repeater or use an existing one.
-3. Follow the deployment intrusctions directly in the Network page. The Repeater is available via a Docker image accessible on [DockerHub](https://hub.docker.com/r/escapetech/repeater).
+2. Create a new Private Location or use an existing one.
+3. Follow the deployment intrusctions directly in the Network page. The Private Location Worker is available via a Docker image accessible on [DockerHub](https://hub.docker.com/r/escapetech/repeater).
 4. The connection status is refreshed every minute in the **Last seen** column.
 
-### Use a repeater on a new application
+### Use a Private Location on a new application
 
-While additing a new app to Escape, the Repeater list will be proposed when try to reach your API.
-Select the Repeater you want to use.
+While additing a new app to Escape, the Private Locations list will be proposed when try to reach your API.
+Select the Private Location you want to use.
 
-### Use a repeater on an existing application.
+### Use a Private Location on an existing application.
 
 Go to the Advanced Settings of the applications and add the following configuration:
 
