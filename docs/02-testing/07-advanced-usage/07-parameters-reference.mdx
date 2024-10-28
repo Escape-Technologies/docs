@@ -83,6 +83,10 @@ scan:
 | hotstart | `string` | `False` | Raw queries to hotstart the API exploration. |  |
 | blacklist | `BlackListParams` | `False` | The operations that will be skipped by security tests. See more in the dedicated documentation section.. | [BlackListParams](#BlackListParams) |
 | scalars | `Dict[string, CustomScalarParams]` | `False` | The user&#39;s defined scalars. | [CustomScalarParams](#CustomScalarParams) |
+| api_type | `ApiType` | `False` |  | [ApiType](#ApiType) |
+| null_is_unauthenticated | `boolean` | `False` | In order to improve error inference, on some scans we want to be able to consider that a null aswerimplies that the request should have been authenticated |  |
+| hotstart_only | `boolean` | `False` | If true, the scan will only perform the hotstart phase and stop after. |  |
+| force_full_scan | `boolean` | `False` | Will perform a full scan, without listening your API health and timeout. It may degrade your results quality but will unsure that all your operations are checked. |  |
 
 
 
@@ -107,8 +111,6 @@ Here is an example of a `ClientParams` object:
 
 ```yaml
 client:
-  concurrent_connection: 64
-  concurrent_tasks: 8
   proxy:
     type: escape | http | repeater
   request_timeout: 5
@@ -121,8 +123,6 @@ client:
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | request_timeout | `integer` | `False` | The maximum timeout duration for each request (in seconds). See more in the dedicated documentation section. |  |
-| concurrent_connection | `integer` | `False` | The maximum size of the connections pool. |  |
-| concurrent_tasks | `integer` | `False` | The maximum number of parallel tasks. |  |
 | requests_per_minute | `integer` | `False` | The maximum number of request per minute. Which will be used on a per second window. |  |
 | proxy | `RepeaterProxyType HTTPProxyType EscapeProxyType` | `False` | The Proxy to use for the requests. See more in the Scan Internal APIs documentation section. |  |
 
