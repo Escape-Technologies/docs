@@ -1,0 +1,114 @@
+---
+title: GraphQL Extension Disclosure
+---
+
+# GraphQL Extension Disclosure
+
+## Description
+
+GraphQL extensions are a powerful feature that can be used to add custom functionality to your GraphQL server. However, they can also expose sensitive information about your server configuration, such as the schema, resolvers, and other implementation details. This information can be used by attackers to craft more effective attacks against your server.
+
+To prevent GraphQL extension disclosure, ensure that you do not expose sensitive information in your GraphQL extensions. If you need to use extensions for debugging or monitoring purposes, make sure to disable them in production environments.
+
+
+## Remediation
+
+To prevent GraphQL extension disclosure, follow these best practices:
+
+  - Limit the information exposed in your GraphQL extensions to only what is necessary for debugging or monitoring purposes.
+
+
+
+### GraphQL Specific
+
+<details>
+    <summary>Apollo</summary>
+
+For Apollo Server, disable introspection and the GraphQL Playground in production by setting 'introspection' and 'playground' to false in the server configuration. Additionally, consider using the 'apollo-server-plugin-response-cache' to add caching and reduce the risk of information leakage through error messages or extensions.
+
+</details>
+
+<details>
+    <summary>Yoga</summary>
+
+For Yoga framework engine, ensure that GraphQL extensions are disabled in production to prevent sensitive information disclosure. Use environment variables to conditionally enable extensions only in development or staging environments.
+
+</details>
+
+<details>
+    <summary>Awsappsync</summary>
+
+For AWS AppSync, ensure that the 'aws_appsync_graphqlEndpoint' is not publicly exposed and that appropriate authentication mechanisms are in place. Disable unnecessary extensions and verbose error messages in production to prevent information leakage. Implement fine-grained access controls using AWS IAM and AppSync resolvers to limit access to sensitive data and operations.
+
+</details>
+
+<details>
+    <summary>Graphqlgo</summary>
+
+To mitigate the risk of GraphQL extension disclosure in the GraphQLGo framework, configure the server to disable extensions in production. Use environment variables to conditionally enable extensions only in development or staging environments. Regularly audit your GraphQL extensions to ensure they do not leak sensitive information and adhere to the principle of least privilege by only granting necessary access rights to the extensions.
+
+</details>
+
+<details>
+    <summary>Graphqlruby</summary>
+
+In the GraphQLRuby framework, disable introspection and extension information in production by setting `introspection` and `debug` to false within your GraphQL schema configuration. This prevents the exposure of sensitive schema details and ensures that extensions do not reveal implementation specifics that could be leveraged by attackers.
+
+</details>
+
+<details>
+    <summary>Hasura</summary>
+
+For Hasura GraphQL engine, ensure that introspection and the GraphQL Playground are disabled in production. Use environment variables to configure the engine, setting 'HASURA_GRAPHQL_ENABLE_INTROSPECTION' and 'HASURA_GRAPHQL_ENABLE_PLAYGROUND' to 'false'. Additionally, implement proper authentication and authorization mechanisms to restrict access to the GraphQL API.
+
+</details>
+
+## Configuration
+
+> Identifier: `configuration/graphql_extension_disclosure`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  configuration/graphql_extension_disclosure:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="medium-severity">MEDIUM</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- OWASP LLM: **[LLM06:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf)**
+- pci: **6.5.10**
+- gdpr: **Article-32**
+- soc2: **CC6**
+- psd2: **Article-95**
+- iso27001: **A.13.1**
+- nist: **SP800-95**
+- fedramp: **AC-6**
+
+### Classification
+
+- CWE: **16**
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N**
+- CVSS_SCORE: **4.3**
+
