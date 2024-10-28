@@ -40,6 +40,8 @@ jobs:
           schema_file: relative/path/to/schema/from/repo/root/schema.graphql
           // or
           introspection_file: relative/path/to/schema/from/repo/root/introspection.json
+          // or
+          schema_url: https://url.to/schema/from/repo/root/schema.graphql
 ```
 
   </TabItem>
@@ -56,6 +58,8 @@ Escape:
     - SCHEMA_FILE: relative/path/to/schema/from/repo/root/schema.graphql
     // or
     - INTROSPECTION_FILE: relative/path/to/schema/from/repo/root/introspection.json
+    // or
+    - SCHEMA_URL: https://url.to/schema/from/repo/root/schema.graphql
   image: node:alpine
   before_script:
     - npm install -g @escape.tech/action
@@ -104,6 +108,8 @@ pipelines:
           SCHEMA_FILE: relative/path/to/schema/from/repo/root/schema.graphql
           # or
           # INTROSPECTION_FILE: relative/path/to/schema/from/repo/root/introspection.json
+          # or
+          # SCHEMA_URL: https://url.to/schema/from/repo/root/schema.graphql
 ```
   </TabItem>
 
@@ -139,6 +145,8 @@ jobs:
         SCHEMA_FILE: relative/path/to/schema/from/repo/root/schema.graphql
         # or
         # INTROSPECTION_FILE: relative/path/to/schema/from/repo/root/introspection.json
+        # or
+        # SCHEMA_URL: https://url.to/schema/from/repo/root/schema.graphql
 
 workflows:
   version: 2
@@ -171,6 +179,8 @@ pipeline {
         SCHEMA_FILE = 'relative/path/to/schema/from/repo/root/schema.graphql'
         // Alternatively, you can use INTROSPECTION_FILE for the schema
         // INTROSPECTION_FILE = 'relative/path/to/schema/from/repo/root/introspection.json'
+        // or
+        // SCHEMA_URL = 'https://url.to/schema/from/repo/root/schema.graphql'
     }
     
     stages {
@@ -235,6 +245,8 @@ jobs:
     SCHEMA_FILE: relative/path/to/schema/from/repo/root/schema.graphql
     # Optionally define INTROSPECTION_FILE instead of SCHEMA_FILE if using the introspection.json approach.
     # INTROSPECTION_FILE: relative/path/to/schema/from/repo/root/introspection.json
+    # or
+    # SCHEMA_URL: https://url.to/schema/from/repo/root/schema.graphql
 
   steps:
   - script: |
@@ -247,6 +259,8 @@ jobs:
       ESCAPE_API_KEY: $(EscapeApiKey)
       SCHEMA_FILE: $(SCHEMA_FILE)
       # INTROSPECTION_FILE: $(INTROSPECTION_FILE) # Uncomment if using the introspection.json approach.
+      # or
+      # SCHEMA_URL: $(SCHEMA_URL)
     continueOnError: true
 ```
 
