@@ -8,13 +8,14 @@ If you find Escape being rate limited by your application, there's a simple twea
 
 ```yaml
 client:
-  requests_per_minute: 300
+  requests_per_minute: 1000
 ```
 
 By default, Escape aims for optimization. It automatically adjusts the `requests_per_minute` value to make your scans as short and efficient as possible, but always staying at or below the initial 300 requests per minute. However, it's a delicate balance – while reducing the `requests_per_minute` value can ensure you aren't rate-limited, it also means your scans will take longer to complete.
 
 It's all about finding the right balance for your specific application needs. Remember, ensuring thoroughness and accuracy is paramount, even if it requires a tad more patience!
 
+To allow the scanner to finish in time, the minimun requests per second sent will be `15`.
 
 :::info 🤖 Reference:
 For more information, head to the [`escaperc` Reference](/testing/advanced-usage/parameters-reference) is always here to back you up. 🚀
