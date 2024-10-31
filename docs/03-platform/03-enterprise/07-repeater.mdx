@@ -102,6 +102,22 @@ users:
     repeater_mtls: true
 ```
 
+### Use a custom proxy to connect to escape
+
+As this software use two types of connections : connection for the repeater to escape and connection from the repeater to your internal APIs, we ignore the `HTTP_PROXY` and `HTTPS_PROXY` environment variables.
+
+If you want to connect to the escape tenant (`repeater.escape.tech`) via a proxy, you can use the `ESCAPE_REPEATER_PROXY_URL` environment variable.
+
+```bash
+docker run -it --rm --name escape-repeater \
+    -e ESCAPE_REPEATER_PROXY_URL=http://user:pass@my-proxy.server.tld:1234 \
+    -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+    escapetech/repeater:latest
+```
+
+Note that as we use gRPC, the proxy must support it.
+You so need an HTTP/2 proxy.
+
 ### Configure your firewall
 
 To allow the Repeater to connect to Escape, you need to allow in your firewall this service to connect to escape services.
@@ -114,9 +130,9 @@ if the repeater lose connection, check again that the IPs are still the same.
 
 The last updated IPs (`2024/09/09`) are :
 
-| Address          | Protocol      | Port  |
-| ---------------- | ------------- | ----- |
-| `52.6.17.196`    | `TCP`/`GRPC`  | `443`  |
+| Address          | Protocol     | Port  |
+| ---------------- | ------------ | ----- |
+| `52.6.17.196`    | `TCP`/`GRPC` | `443` |
 | `44.210.73.138`  | `TCP`/`GRPC` | `443` |
 | `54.172.108.134` | `TCP`/`GRPC` | `443` |
 
