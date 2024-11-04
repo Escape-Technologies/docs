@@ -16,3 +16,11 @@ To securely integrate your internal networks and services into Escape's Inventor
 For detailed installation instructions, configuration options, and best practices, please refer to the [Escape Reverse Proxy Documentation](/platform/enterprise/repeater).
 
 By utilizing the Escape reverse proxy, organizations can seamlessly include internal APIs and services within their overall inventory scope, enhancing visibility into hidden or isolated parts of the network and ensuring that all elements are secured and managed effectively.
+
+### Whitelisting FQDNs
+
+When integrating Escape, internal networks and services should be accessible. It's important to ensure that the app can communicate with the necessary services. To do this, you'll need to whitelist the following FQDNs :
+
+- `public.escape.tech`
+- `repeater.escape.tech`
+- `api.escape.tech`
