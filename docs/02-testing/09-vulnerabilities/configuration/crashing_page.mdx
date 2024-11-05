@@ -1,0 +1,64 @@
+---
+title: crashing page
+---
+
+# crashing page
+
+## Description
+
+A frontend page crashed due to an unhandled JavaScript error at runtime.
+
+## Remediation
+
+Implement robust exception and error handling to prevent crashes. Validate inputs to exclude unexpected or malicious data. Optimize resource management to avoid memory leaks and excessive consumption. Regularly update and patch the application and its dependencies to address known vulnerabilities. Perform comprehensive testing, including stress tests, to identify and resolve potential crash scenarios.
+
+
+## Configuration
+
+> Identifier: `configuration/crashing_page`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  configuration/crashing_page:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="info-severityom">INFO</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- OWASP LLM: **[LLM04:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf)**
+- pci: **6.5.5**
+- gdpr: **Article-32**
+- soc2: **CC7**
+- psd2: **Article-95**
+- iso27001: **A.14.2**
+- nist: **SP800-53**
+- fedramp: **SI-11**
+
+### Classification
+
+- CWE: **116**
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H**
+
+
