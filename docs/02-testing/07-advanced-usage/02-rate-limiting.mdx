@@ -6,7 +6,7 @@ When running scans, it's a common scenario for applications to set a limit on th
 
 If you find Escape being rate limited by your application, there's a simple tweak you can make: adjust the `requests_per_minute` parameter of the `client` section. Setting this to a lower value will tell Escape to make fewer requests within each minute, ensuring you stay within the acceptable request limits set by your application.
 
-Note that the lower bound for this parameter is `600` (which means `10` requests per seconds).
+Note that the lower bound for this parameter is `600` (which is equivalent to `10` requests per seconds).
 
 ```yaml
 client:
