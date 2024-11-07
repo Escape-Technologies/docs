@@ -53,17 +53,83 @@ Follow these steps to create your API Credentials in GCP for an organization:
     - `apigee.organizations.list`
     - `apigeeregistry.specs.get`
     - `apigeeregistry.specs.list`
+    - `appengine.applications.get`
+    - `appengine.instances.get`
+    - `appengine.services.get`
+    - `appengine.versions.list`
     - `cloudasset.assets.exportApigatewayApi`
     - `cloudasset.assets.exportApigatewayApiConfig`
     - `cloudasset.assets.exportApigatewayGateway`
+    - `cloudasset.assets.exportIamPolicy`
+    - `cloudasset.assets.exportResource`
+    - `cloudasset.assets.list`
     - `cloudasset.assets.listApigatewayApi`
     - `cloudasset.assets.listApigatewayApiConfig`
     - `cloudasset.assets.listApigatewayGateway`
     - `cloudasset.assets.searchAllIamPolicies`
+    - `cloudasset.assets.searchAllIamPolicies`
+    - `cloudasset.assets.searchAllResources`
+    - `compute.addresses.get`
+    - `compute.addresses.list`
+    - `compute.backendBuckets.get`
+    - `compute.backendBuckets.list`
+    - `compute.backendServices.get`
+    - `compute.backendServices.list`
+    - `compute.firewallPolicies.get`
+    - `compute.firewallPolicies.getIamPolicy`
+    - `compute.firewallPolicies.list`
+    - `compute.firewallPolicies.listEffectiveTags`
+    - `compute.firewallPolicies.listTagBindings`
+    - `compute.firewalls.get`
+    - `compute.firewalls.list`
+    - `compute.firewalls.listEffectiveTags`
+    - `compute.firewalls.listTagBindings`
+    - `compute.forwardingRules.get`
+    - `compute.forwardingRules.get`
+    - `compute.forwardingRules.list`
+    - `compute.forwardingRules.list`
+    - `compute.forwardingRules.listEffectiveTags`
+    - `compute.forwardingRules.listTagBindings`
+    - `compute.globalAddresses.get`
+    - `compute.globalAddresses.list`
+    - `compute.globalForwardingRules.get`
+    - `compute.globalForwardingRules.list`
+    - `compute.globalNetworkEndpointGroups.get`
+    - `compute.globalNetworkEndpointGroups.list`
+    - `compute.globalNetworkEndpointGroups.listEffectiveTags`
+    - `compute.globalNetworkEndpointGroups.listTagBindings`
+    - `compute.healthChecks.get`
+    - `compute.healthChecks.list`
+    - `compute.healthChecks.listEffectiveTags`
+    - `compute.healthChecks.listTagBindings`
+    - `compute.httpHealthChecks.get`
+    - `compute.httpHealthChecks.list`
+    - `compute.httpHealthChecks.listEffectiveTags`
+    - `compute.httpHealthChecks.listTagBindings`
+    - `compute.httpsHealthChecks.get`
+    - `compute.httpsHealthChecks.list`
+    - `compute.httpsHealthChecks.listEffectiveTags`
+    - `compute.httpsHealthChecks.listTagBindings`
+    - `compute.instanceGroups.get`
+    - `compute.instanceGroups.list`
+    - `compute.instances.get`
+    - `compute.instances.list`
+    - `compute.networks.get`
+    - `compute.networks.list`
+    - `compute.routes.get`
+    - `compute.routes.list`
+    - `compute.subnetworks.get`
+    - `compute.subnetworks.list`
+    - `compute.urlMaps.get`
+    - `compute.urlMaps.get`
+    - `compute.urlMaps.list`
+    - `compute.urlMaps.list`
     - `dns.managedZoneOperations.get`
     - `dns.managedZoneOperations.list`
     - `dns.managedZones.get`
     - `dns.managedZones.list`
+    - `dns.policies.get`
+    - `dns.policies.list`
     - `dns.resourceRecordSets.get`
     - `dns.resourceRecordSets.list`
     - `resourcemanager.folders.get`
@@ -72,6 +138,10 @@ Follow these steps to create your API Credentials in GCP for an organization:
     - `resourcemanager.organizations.getIamPolicy`
     - `resourcemanager.projects.get`
     - `resourcemanager.projects.list`
+    - `run.locations.list`
+    - `run.services.get`
+    - `run.services.list`
+
 
 - Now, we are going to create the Service Account, Keys, and Associating the Role
 
@@ -86,6 +156,7 @@ Follow these steps to create your API Credentials in GCP for an organization:
   - Copy the email of the service account you just created; it should be `escape-integration-service-acc@<yourprojectid>.iam.gserviceaccount.com`.  
   - The last step is to grant access to your Service Account by associating the org-level role with it. Navigate back to [this link](https://console.cloud.google.com/iam-admin/iam) and view the Organization-level IAM (by ensuring the Organization is selected in the top-left).  
   - Click on Grant Access, paste the Service Account email in the principals, and select the custom role previously created (search for Escape).  
+  - You can also use GCP predefined roles such as `roles/compute.networkViewer` and `roles/iam.securityReviewer` to simplify the process.
   - Save, you're done! Simply paste the JSON into Escape's GCP integration setup page [here](https://app.escape.tech/integrations/gcp/new).
 
 By setting up this integration, you ensure that all endpoints are accounted for in Escape's Inventory, aiding in thorough security and compliance assessments.
