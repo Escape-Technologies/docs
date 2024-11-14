@@ -87,6 +87,8 @@ scan:
 | null_is_unauthenticated | `boolean` | `False` | In order to improve error inference, on some scans we want to be able to consider that a null aswerimplies that the request should have been authenticated |  |
 | hotstart_only | `boolean` | `False` | If true, the scan will only perform the hotstart phase and stop after. |  |
 | force_full_scan | `boolean` | `False` | Will perform a full scan, without listening your API health and timeout. It may degrade your results quality but will unsure that all your operations are checked. |  |
+| frontend_scopes_regexes | `string` | `False` | The list of extra regexes to match the frontend scopes. |  |
+| frontend_base_urls | `Dict[string, integer]` | `False` | A map of additional base URLs to scan with their respective depth. |  |
 
 
 
