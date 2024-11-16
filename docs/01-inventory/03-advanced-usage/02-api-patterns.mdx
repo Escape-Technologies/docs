@@ -1,0 +1,33 @@
+---
+title: API Endpoint Patterns
+description: Creating and Managing API Endpoint patterns
+---
+
+:::warning Design Partner
+
+This feature is only available under feature flag to Design Partners.
+
+:::
+
+
+Extraction patterns are crucial in tailoring the scope of Escape's Inventory to pinpoint specific API endpoints and schemas that are of interest to your organization. This section details how these patterns operate, especially concerning API endpoints found within specified domains and cloud providers.
+
+### Default Filter Configuration
+
+Escape's Inventory system intelligently populates extraction patterns with domains from major cloud providers to ensure comprehensive coverage. These include domains like `aws.amazon.com`, `azure.com`, and `googleapis.com`, among others. Additionally, whenever a new domain is added to the exploration scope, a corresponding wildcard entry, such as `*.icloud.com`, is automatically included in the extraction patterns. This ensures that any subdomain within `icloud.com` is also considered during the inventory process.
+
+### AI-Driven Suggestions
+
+Escape leverages advanced AI to suggest smart wildcards for extraction patterns. These suggestions are generated based on the system's continuous learning from the network's structure, existing security configurations, and common patterns across similar organizational profiles. This AI-driven approach simplifies the customization of patterns, enabling users to enhance their API endpoint and schema detection with just one click.
+
+### Targeted API Detection
+
+#### Example 1: Targeting Specific Domains
+For an organization with domains such as `apple.com`, if the aim is to monitor API calls that involve `icloud.com` but without direct scanning of `icloud.com`, Escape's patterns manage this efficiently. While `apple.com` is fully explored—including subdomains and frontends—the references to `icloud.com` are specifically looked for within the interactions found on `apple.com`. This method ensures that APIs calling `icloud.com` are captured as long as they are initiated or referenced within `apple.com`.
+
+#### Example 2: Cloud Provider Hosted APIs
+When it comes to identifying APIs hosted directly by cloud providers, Escape's patterns are configured to detect these endpoints on the main domain, say `example.com`, without needing to scan the entire breadth of the cloud provider's infrastructure. This is particularly useful for tracking APIs that are managed through cloud services but are referenced within the company's primary domain.
+
+### Conclusion
+
+By configuring extraction patterns to include both broad and specific criteria, Escape's Inventory allows organizations to maintain focused and effective oversight of their API landscape. This targeted approach not only enhances security monitoring but also ensures that the inventory remains relevant and manageable, avoiding unnecessary data overload while still capturing critical API interactions.

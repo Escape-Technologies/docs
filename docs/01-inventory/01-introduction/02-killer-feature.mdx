@@ -1,0 +1,38 @@
+---
+title: API Discovery from Code
+---
+
+# Killer feature: API Discovery from Code and Automated API Schema generation
+
+Escape reconstructs API schemas by parsing the abstract syntax tree (AST) of both frontend and backend source code. This allows for an accurate reconstruction of the API's structure, endpoints, and expected parameters, especially beneficial for REST APIs with OpenAPI specifications.
+Escape not only detect API Endpoints from Code and Generates API Schemas, but also continuously monitors for and detects any changes or versions in the API schema over time. This capability allows teams to track how their APIs evolve and ensure that all changes are documented and understood, reducing the risk of inconsistencies or integration issues.
+
+
+## How does it work?
+
+API Discovery from Code and Automated API Schema generation are based on a using proprietary technology leveraging Graph Theory and Generative AI. This technology consists in 3 main steps:
+1. After creating a single-file Abstract Syntax Tree (AST) representation of the entire code — including by resolving imports and dependencies, Escape detects API calls (including those with variables and parameters that may contain Sensitive Data or Secrets). 
+2. A pre-trained open-source LLM uses this information to reconstruct an accurate representation of the API Schema behind the frontend. 
+3. Escape then links the generated API Schemas with discovered API Services in the overall flow, with API Endpoints from the Schema used as inputs for brute-forcing in the Escape API Inventory.
+
+
+## Inputs
+
+To get started, API Discovery from Code and Automated API Schema Generation only require a single domain name. In that case, Escape has to preprocess publicly exposed Frontends ans SPAs that are often bundled and minified (via Webpack for examples) in order to be able to parse their AST and resolve their dependencies properly.
+
+Complementarily, leveraging Git integrations enhances Escape’s capabilities by providing access to raw frontend and backend code. This access is powerful for creating a complete view of an API that may be under development or only partially exposed to the Internet.
+
+
+## Exposed Secrets and Sensitive Data Detection
+
+By having access to the AST of publicly-exposed frontend, Escape is able to examine the context in which a potential Secret is found, considering factors like the surrounding code — including API calls, data flow, and access patterns.
+
+
+## Application in DAST
+
+Once generated, these schemas are seamlessly integrated into the DAST process. Users can initiate dynamic application security testing with a simple click, employing the latest schema versions to ensure thorough and accurate testing coverage.
+
+
+## Handling GraphQL APIs
+
+For GraphQL APIs, where the schema is inherently defined and exposed by the nature of the technology, Escape ensures that the schema is always current and reflects the latest API structure. This is crucial for maintaining the effectiveness of security and compliance checks.
