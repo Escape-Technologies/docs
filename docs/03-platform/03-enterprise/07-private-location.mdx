@@ -15,13 +15,13 @@ Private Locations enable secure detection, fingerprinting, and scanning of inter
 
 ![Escape Private Locations](./img/repeater.drawio.svg)
 
-## Resources
-
-The Repeater is provided as an open-source Docker image, available on [GitHub](https://github.com/Escape-Technologies/Repeater). The resource requirements depend on expected traffic; a 1 vCPU instance with 2GB RAM is typically sufficient to start, with usage monitored and scaled as necessary.
-
 ## Getting Started with Private Locations
 
-Escape's Private Locations can be easily deployed using the Repeater Docker image, which can run on any server with access to your internal applications. You can deploy it using Docker CLI, Docker Compose, or other container orchestration tools.
+Escape's Private Locations can be easily deployed using the Repeater, an open-source Docker image, available on [GitHub](https://github.com/Escape-Technologies/Repeater). It can be deployed using Docker CLI, Docker Compose, or other container orchestration tools.
+
+### Resource Requirements
+
+ The resource requirements depend on expected traffic; a 1 vCPU instance with 2GB RAM is typically sufficient to start, with usage monitored and scaled as necessary.
 
 ### Basic Deployment
 
@@ -36,26 +36,6 @@ docker run -it --rm --name escape-repeater \
 ```
 
 More deployment examples are available in the example folder of the GitHub repository. Contributions for additional configurations are welcome.
-
-### Custom CA Certificate
-
-For environments that require a custom CA certificate:
-```bash
-docker run -it --rm --name escape-repeater \
-    -v /path/to/ca.crt:/usr/local/share/ca-certificates/ca.crt \
-    -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-    escapetech/repeater:latest
-```
-
-### Allowing SSL Connections
-
-To allow insecure connections, set `ESCAPE_REPEATER_INSECURE=true`:
-```bash
-docker run -it --rm --name escape-repeater \
-    -e ESCAPE_REPEATER_INSECURE=true \
-    -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-    escapetech/repeater:latest
-```
 
 ### Firewall Configuration
 
@@ -75,6 +55,7 @@ Additional IPs for stability:
 | ---------------- | ------------- | ----- |
 | `51.159.205.221` | `TCP`/`HTTP`  | `80`  |
 | `51.159.205.221` | `TCP`/`HTTPS` | `443` |
+
 
 ## Connecting a Private Location
 
@@ -99,6 +80,26 @@ client:
 ```
 
 ## Advanced Configuration Options
+
+### Custom CA Certificate
+
+For environments that require a custom CA certificate:
+```bash
+docker run -it --rm --name escape-repeater \
+    -v /path/to/ca.crt:/usr/local/share/ca-certificates/ca.crt \
+    -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+    escapetech/repeater:latest
+```
+
+### Allowing SSL Connections
+
+To allow insecure connections, set `ESCAPE_REPEATER_INSECURE=true`:
+```bash
+docker run -it --rm --name escape-repeater \
+    -e ESCAPE_REPEATER_INSECURE=true \
+    -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+    escapetech/repeater:latest
+```
 
 ### Using mTLS
 
