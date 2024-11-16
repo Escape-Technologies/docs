@@ -2,7 +2,7 @@
 
 ## Overview
 
-Private Locations enable secure detection, fingerprinting, and scanning of internal applications behind your organization’s firewall or VPN. This is achieved through the Escape Repeater, a lightweight, open-source tool developed in Golang. The Repeater establishes a reverse tunnel between Escape and your internal network, providing a secure channel for performing scans and retrieving results.
+Private Locations enable secure detection, fingerprinting, and scanning of internal applications behind your organization’s firewall or VPN. This is achieved through the Escape Repeater, a lightweight, open-source tool developed in Golang ([GitHub](https://github.com/Escape-Technologies/Repeater)). The Repeater establishes a reverse tunnel between Escape and your internal network, providing a secure channel for performing scans and retrieving results.
 
 ### Infrastructure Workflow
 
@@ -57,14 +57,14 @@ Additional IPs for stability:
 | `51.159.205.221` | `TCP`/`HTTPS` | `443` |
 
 
-## Connecting a Private Location
+### Connecting a Private Location
 
 1. Visit the [Network Configuration](https://app.staging.escape.tech/organization/network/) page.
 2. Create a new Private Location or select an existing one.
 3. Follow deployment instructions provided on the Network page. The Repeater is available on [DockerHub](https://hub.docker.com/r/escapetech/repeater).
 4. Connection status updates every minute in the **Last seen** column.
 
-## Using a Private Location with Applications
+## Using a Private Location with DAST
 
 ### Adding to a New Application
 When setting up a new application in Escape, choose a Private Location to enable scanning for internal applications.
