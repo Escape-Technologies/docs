@@ -1,29 +1,41 @@
 ---
-title: Inventory
-description: Welcome to the Escape Inventory Documentation
+title: 🏎️ Getting Started
 ---
 
-import Image from '@theme/IdealImage';
+Escape Inventory is uniquely capable of detecting and classifying Application Assets exposed by an organization without requiring any agent or traffic interception.
 
-# Inventory Documentation
+## Supported Application Assets:
 
-## Overview
+* **APIs:** REST, GraphQL, gRPC, WebSocket, SOAP, etc.  
+* **API Schemas:** OpenAPI Specification, GraphQL Introspection, Postman Collections, etc.  
+* **Web Apps:** Frontends, Single Page Applications (SPA), etc.
 
-The Escape Inventory is designed to empower organizations by providing a comprehensive and automated inventory of all exposed APIs and potential secret leakages. Whether your architecture involves multiple backends, services, or microservices, internal or external, our tool ensures that everything is accounted for. This documentation will guide you through utilizing the powerful features of Escape's AI-powered cataloging to secure, govern, and maintain visibility over your applications.
+## Fingerprinted Characteristics of Application Assets:
 
-<Image img={require('./catalog.png')} alt="catalog"/>
+* **Network Scope:** External, Internal  
+* **Status:** Current, Zombie, Legacy, Shadow  
+* **Environment:** Production, Staging, Development  
+* **Technology:** REST, GraphQL, etc.  
+* **Framework:** Flask, Laravel, Next.js, etc.  
+* **Cloud Hosting:** AWS, Azure, OVH, Akamai, GCP, etc.  
+* **Firewall:** Cloudflare, AWS ELB, Azure WAF, Akamai Firewall, etc.  
+* **Authentication:** Keycloak, Auth0, API Key, etc.
 
-## What You Will Achieve
+## Risk Detection for Exposed APIs
 
-With Escape's Inventory, you can expect to:
+* Leakage of Sensitive Data and Secrets  
+* External Exposure  
+* Disclosure of API Documentation  
+* Lack of Authentication or Authorization  
+* Detection of Critical Vulnerabilities
 
-- **Automate the Discovery and Mapping**: Utilize state-of-the-art artificial intelligence to automatically catalog APIs and detect secret leakages across various platforms, including online repositories and frontend applications.
-- **Enhance Security Posture**: By having a detailed and continuously updated view of your API landscape and exposed secrets, you can proactively manage vulnerabilities and reduce the risk of breaches.
-- **Streamline Compliance and Governance**: Maintain compliance with industry standards and regulations through comprehensive oversight of all application security elements, managed from a single point of control.
-- **Real-Time Updates and Integration**: Keep your inventory always current with real-time updates and seamlessly integrate with existing tools and workflows, enhancing both security and operational efficiency.
+## Output
 
-## Designed for Developers and Security Teams
+![The Escape API Services Inventory](api-inventory.png)
 
-Escape's Inventory combines the technical depth required by security professionals with the simplicity and automation that developers love. Inspired by the best features of industry-leading tools for backstage management and secret protection, Escape's Inventory simplifies the complex task of API and secret management, providing a centralized, AI-enhanced solution that supports the security and development processes across your entire organization.
+The output consists of four filterable, sortable, and searchable dataframes listing all detected and fingerprinted Application Assets.
 
-This documentation will provide you with all the information needed to effectively use the Inventory features, ensuring you can maximize the benefits for your organization's specific needs.
+* **Dataframe 1:** **API Services** – Represents root API services, each potentially encompassing multiple API Endpoints exposed on the Internet. Escape can detect or generate the associated API Schema, which contains multiple API Endpoints.  
+* **Dataframe 2:** **API Schemas** – Offers a schema-first perspective on API Services. This view is especially valuable as some API Schemas, although detected within the research scope, are not linked to any specific API Service.  
+* **Dataframe 3:** **Frontends** – Lists all detected web applications, frontends, and SPAs within the research scope.
+* **Dataframe 4:** **Sensitive Data & Secrets** – List all potential Senstive Data and Secret exposed on the Internet with a very low false positive rate, considering factors like the surrounding code, data flow, and access patterns.
