@@ -1,0 +1,71 @@
+---
+title: console error
+---
+
+# console error
+
+## Description
+
+A console error has been detected on the webpage
+
+## Remediation
+
+1. Ensure that all console errors are logged and monitored to identify patterns or recurring issues.
+2. Regularly update and patch software to fix known bugs that may cause console errors.
+3. Validate and sanitize all inputs to prevent unexpected data from causing errors.
+4. Implement error handling in your code to gracefully manage exceptions and provide meaningful feedback.
+5. Review and refactor code to improve stability and reduce the likelihood of errors.
+6. Use debugging tools to trace and resolve the root cause of console errors.
+7. Conduct code reviews and testing to catch potential errors before deployment.
+8. Educate developers on best practices for error handling and prevention.
+
+
+## Configuration
+
+> Identifier: `information_disclosure/console_error`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  information_disclosure/console_error:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="low-severity">LOW</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- OWASP LLM: **[LLM02:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf)**
+- pci: **6.5.5**
+- gdpr: **Article-32**
+- soc2: **CC7**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-92**
+- fedramp: **SI-11**
+
+### Classification
+
+- CWE: **209**
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L**
+
+

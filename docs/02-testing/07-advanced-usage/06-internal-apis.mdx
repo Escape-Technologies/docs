@@ -10,19 +10,34 @@ Usecases:
 - Enable the introspection of your server only to the security scanner on your staging environment.
 - Scan Internal APIs
 
-## Using HTTP Header
+## Escape Identifier
 
-Escape's scanner sends a secure token attached to every requests it sends. The header name is `x-escape-identifier` and its value is an identification token attached to your organization.
+Escape's scanner sends a secure token attached to every requests it sends. The header name is `X-Escape-Identifier` and its value is an identification token attached to your organization.
 
 ```http
-x-escape-identifier: {{your-escape-identifier}}
+X-Escape-Identifier: {{your-escape-identifier}}
 ```
 
 Thanks to this header you can detect incoming requests from the scanner in your server, to add any custom handling logic you might want on top of this.
 
-You can find this token in your [organization settings](https://app.escape.tech/organization/network/).
+We recommend, for example, to whitelist this secret header in your WAF, to avoid any false positive alerts, and avoid blocking the detection of your attack surface.
+
+You can find this token in your [Organization Settings](https://app.escape.tech/organization/network/).
 
 You should keep this token secret. If you think it has been compromised, you can regenerate it in your [organization settings](https://app.escape.tech/organization/network/) using the `Revoke` button.
+
+You can also define your own custom header, in your scan configuration, as an alternative to the default `X-Escape-Identifier` header.
+
+Simply go to the Authentication section of your scan configuration and add the following header auth configuration:
+
+```yaml
+presets:
+  - type: headers
+    users:
+      - headers:
+          X-MySecretHeader: my-secret-value
+        username: user1
+```
 
 ## Using the Escape Proxy
 

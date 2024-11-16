@@ -1,0 +1,73 @@
+---
+title: Mismatching persisted queries and schema
+---
+
+# Mismatching persisted queries and schema
+
+## Description
+
+Your persisted queries are not aligning with your schema, which leads to unusable queries due to mistyping.
+
+## Remediation
+
+To remediate mismatching persisted queries and schema, follow these steps:
+
+1. Update persisted queries to align with the current schema.
+2. Validate persisted queries against the updated schema before deployment.
+3. Implement a versioning system for the schema to manage changes.
+4. Use automated tools to detect and alert on mismatches.
+5. Establish a process for deprecating and removing outdated queries.
+6. Ensure backward compatibility during schema updates when possible.
+7. Regularly audit and test persisted queries for compliance with the schema.
+8. Educate developers on best practices for maintaining query and schema compatibility.
+
+
+## Configuration
+
+> Identifier: `schema/mismatching_persisted_queries_and_schema`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  schema/mismatching_persisted_queries_and_schema:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="medium-severity">MEDIUM</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- OWASP LLM: **[LLM02:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf)**
+- pci: **6.5.10**
+- gdpr: **Article-5**
+- soc2: **CC6**
+- psd2: **Article-94**
+- iso27001: **A.14.2**
+- nist: **SP800-95**
+- fedramp: **CM-3**
+
+### Classification
+
+- CWE: **20**
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N**
+- CVSS_SCORE: **4.3**
+

@@ -1,0 +1,162 @@
+---
+title: GCP
+---
+
+Integrating GCP with Escape's Inventory enhances visibility and management of your GKE deployments across GCP services. This integration not only supports general API management but also enriches the inventory with detailed data from GKE Clusters:
+
+### Supported GCP Services
+
+- **GKE**: GKE is a Google-managed implementation of the Kubernetes open source container orchestration platform. We use Kubernetes API to interact with your clusters and gather information about the resources running on them.
+
+### Generating a GCP OAuth Credentials (for a project)
+
+Follow these steps to create your API Credentials in GCP for a project:
+
+- Go to your [API Credentials page](https://console.cloud.google.com/apis/credentials) to generate a service account.
+- Click on **Create Service Account** and follow instructions to create a service account.
+- Add on role of **Viewer** from **Basic** roles in the permissions.
+- Click on **Done** to create the service account.
+- After creating, open the service account by clicking on it.
+- Go to **Keys** tab and click on **Add Key** to create a new key.
+- Click on **Create new key** and select **JSON** and click on **Create**.
+- This will download a JSON file with the key details. Open the file and copy the contents.
+- Copy the contents of the JSON file and paste it in the text area above.
+- **Important**: enable the following APIs in the GCP console:
+  - Enable the [GKE API](https://console.cloud.google.com/apis/enableflow?apiid=gkehub.googleapis.com).
+  - Enable the [DNS API](https://console.cloud.google.com/apis/enableflow?apiid=dns.googleapis.com).
+
+### Generating a GCP OAuth Credentials (for an organization)
+
+Follow these steps to create your API Credentials in GCP for an organization:
+
+- Go to your [GCP IAM Admin Console](https://console.cloud.google.com/iam-admin/iam) on the organization-level (*you need to be an organization owner*).
+- Ensure your user has the `Organization Administrator` and `Organization Role Administrator` roles. (You can add your roles via the **edit button** *(pencil icon)* next to your user).
+- Click on [organization-level roles](https://console.cloud.google.com/iam-admin/roles) to create a new custom role.
+- Click on `Create Role` and fill with those details:
+  - **Title**: Escape Integration Role
+  - **ID**: *escape_integration_role*
+  - **Role Launch Stage**: `General availability`
+  - **Permissions**: Add the following permissions by checking the boxes:
+    - `apigateway.apiconfigs.get`
+    - `apigateway.apiconfigs.list`
+    - `apigateway.apis.get`
+    - `apigateway.apis.list`
+    - `apigateway.gateways.get`
+    - `apigateway.gateways.list`
+    - `apigateway.locations.get`
+    - `apigateway.locations.list`
+    - `apigateway.operations.get`
+    - `apigateway.operations.list`
+    - `apigee.apiproducts.get`
+    - `apigee.apiproducts.list`
+    - `apigee.organizations.get`
+    - `apigee.organizations.list`
+    - `apigeeregistry.specs.get`
+    - `apigeeregistry.specs.list`
+    - `appengine.applications.get`
+    - `appengine.instances.get`
+    - `appengine.services.get`
+    - `appengine.versions.list`
+    - `cloudasset.assets.exportApigatewayApi`
+    - `cloudasset.assets.exportApigatewayApiConfig`
+    - `cloudasset.assets.exportApigatewayGateway`
+    - `cloudasset.assets.exportIamPolicy`
+    - `cloudasset.assets.exportResource`
+    - `cloudasset.assets.list`
+    - `cloudasset.assets.listApigatewayApi`
+    - `cloudasset.assets.listApigatewayApiConfig`
+    - `cloudasset.assets.listApigatewayGateway`
+    - `cloudasset.assets.searchAllIamPolicies`
+    - `cloudasset.assets.searchAllIamPolicies`
+    - `cloudasset.assets.searchAllResources`
+    - `compute.addresses.get`
+    - `compute.addresses.list`
+    - `compute.backendBuckets.get`
+    - `compute.backendBuckets.list`
+    - `compute.backendServices.get`
+    - `compute.backendServices.list`
+    - `compute.firewallPolicies.get`
+    - `compute.firewallPolicies.getIamPolicy`
+    - `compute.firewallPolicies.list`
+    - `compute.firewallPolicies.listEffectiveTags`
+    - `compute.firewallPolicies.listTagBindings`
+    - `compute.firewalls.get`
+    - `compute.firewalls.list`
+    - `compute.firewalls.listEffectiveTags`
+    - `compute.firewalls.listTagBindings`
+    - `compute.forwardingRules.get`
+    - `compute.forwardingRules.get`
+    - `compute.forwardingRules.list`
+    - `compute.forwardingRules.list`
+    - `compute.forwardingRules.listEffectiveTags`
+    - `compute.forwardingRules.listTagBindings`
+    - `compute.globalAddresses.get`
+    - `compute.globalAddresses.list`
+    - `compute.globalForwardingRules.get`
+    - `compute.globalForwardingRules.list`
+    - `compute.globalNetworkEndpointGroups.get`
+    - `compute.globalNetworkEndpointGroups.list`
+    - `compute.globalNetworkEndpointGroups.listEffectiveTags`
+    - `compute.globalNetworkEndpointGroups.listTagBindings`
+    - `compute.healthChecks.get`
+    - `compute.healthChecks.list`
+    - `compute.healthChecks.listEffectiveTags`
+    - `compute.healthChecks.listTagBindings`
+    - `compute.httpHealthChecks.get`
+    - `compute.httpHealthChecks.list`
+    - `compute.httpHealthChecks.listEffectiveTags`
+    - `compute.httpHealthChecks.listTagBindings`
+    - `compute.httpsHealthChecks.get`
+    - `compute.httpsHealthChecks.list`
+    - `compute.httpsHealthChecks.listEffectiveTags`
+    - `compute.httpsHealthChecks.listTagBindings`
+    - `compute.instanceGroups.get`
+    - `compute.instanceGroups.list`
+    - `compute.instances.get`
+    - `compute.instances.list`
+    - `compute.networks.get`
+    - `compute.networks.list`
+    - `compute.routes.get`
+    - `compute.routes.list`
+    - `compute.subnetworks.get`
+    - `compute.subnetworks.list`
+    - `compute.urlMaps.get`
+    - `compute.urlMaps.get`
+    - `compute.urlMaps.list`
+    - `compute.urlMaps.list`
+    - `dns.managedZoneOperations.get`
+    - `dns.managedZoneOperations.list`
+    - `dns.managedZones.get`
+    - `dns.managedZones.list`
+    - `dns.policies.get`
+    - `dns.policies.list`
+    - `dns.resourceRecordSets.get`
+    - `dns.resourceRecordSets.list`
+    - `resourcemanager.folders.get`
+    - `resourcemanager.folders.list`
+    - `resourcemanager.organizations.get`
+    - `resourcemanager.organizations.getIamPolicy`
+    - `resourcemanager.projects.get`
+    - `resourcemanager.projects.list`
+    - `run.locations.list`
+    - `run.services.get`
+    - `run.services.list`
+
+
+- Now, we are going to create the Service Account, Keys, and Associating the Role
+
+  - Create a new GCP Project or use an existing project to create the new Service Account used by Escape.  
+  - Visit [this link](https://console.cloud.google.com/iam-admin/serviceaccounts/create) and fill the following details:
+  - **Name**: `Escape Integration Service Account`
+  - **ID**: should be `escape-integration-service-acc`, but feel free to use your naming convention.
+
+  - Add a Service Account Key by navigating to the newly created SA Details, going to Keys, clicking on Add Key, and creating a new key in JSON format. 
+
+  - The key file should be downloaded to your computer; ensure that it was downloaded. You will have to simply paste this JSON into the Escape UI.  
+  - Copy the email of the service account you just created; it should be `escape-integration-service-acc@<yourprojectid>.iam.gserviceaccount.com`.  
+  - The last step is to grant access to your Service Account by associating the org-level role with it. Navigate back to [this link](https://console.cloud.google.com/iam-admin/iam) and view the Organization-level IAM (by ensuring the Organization is selected in the top-left).  
+  - Click on Grant Access, paste the Service Account email in the principals, and select the custom role previously created (search for Escape).  
+  - You can also use GCP predefined roles such as `roles/compute.networkViewer` and `roles/iam.securityReviewer` to simplify the process.
+  - Save, you're done! Simply paste the JSON into Escape's GCP integration setup page [here](https://app.escape.tech/integrations/gcp/new).
+
+By setting up this integration, you ensure that all endpoints are accounted for in Escape's Inventory, aiding in thorough security and compliance assessments.

@@ -1,57 +1,45 @@
----
-title: Private Locations
----
-
-:::warning Enterprise Feature
-
-This feature is only available to Enterprise Customers. Contact us via email or your Private Slack Support Channel for more information.
-
-:::
+# Private Locations
 
 ## Overview
 
-Private Locations allow you to scan scan Internal Apps behind your organization's firewall or VPN.
+Private Locations enable secure detection, fingerprinting, and scanning of internal applications behind your organization’s firewall or VPN. This is achieved through the Escape Repeater, a lightweight, open-source tool developed in Golang. The Repeater establishes a reverse tunnel between Escape and your internal network, providing a secure channel for performing scans and retrieving results.
 
-The Private Location Worker creates a private tunnel between Escape and one of your servers. All the Ecape requests will comes from this server.
+### Infrastructure Workflow
 
-Here is a schema of the infrastructure :
+1. The locally deployed Repeater connects to the Repeater manager.
+2. When a scan is initiated, Escape sends requests to the Repeater manager rather than directly to your servers.
+3. The Repeater manager forwards the requests to the local Repeater, which relays them to your internal applications.
+4. Scan results are then returned to Escape for reporting and analysis.
+
+**Diagram of Private Location Infrastructure:**
 
 ![Escape Private Locations](./img/repeater.drawio.svg)
 
-First, the Private Location Worker you have deployed locally will connect to the Private Locations manager (1).
-When you start a scan on Escape, instead of sending the requests directly to your server, Escape will send them to the Repeater manager (2).
-Your client will receive the requests and send them to your server (3 & 4).
-The results are sent back to Escape to allow you to see scans results.
-
 ## Resources
 
-The Private Location Worker is an open source Docker image available on Github [Escape-Technologies/Repeater](https://github.com/Escape-Technologies/Repeater/).
-
-The resources needed to run it depends on the trafic you will have. We recommend to start with an instance with 1 vCPU and 2GB of RAM and monitor the usage.
+The Repeater is provided as an open-source Docker image, available on [GitHub](https://github.com/Escape-Technologies/Repeater). The resource requirements depend on expected traffic; a 1 vCPU instance with 2GB RAM is typically sufficient to start, with usage monitored and scaled as necessary.
 
 ## Getting Started with Private Locations
 
-Escape's Private Location Worker is available as a Docker image. You can deploy it on any server that can reach your internal applications. The code can also be found and audited on [Github](https://github.com/Escape-Technologies/repeater).
+Escape's Private Locations can be easily deployed using the Repeater Docker image, which can run on any server with access to your internal applications. You can deploy it using Docker CLI, Docker Compose, or other container orchestration tools.
 
-As it is a Docker image, you can deploy it using docker cli, docker compose or any other container orchestration tool. In this tutorial, we will use docker cli but for production setup, we recommend you to use a container orchestration tool like docker compose.
+### Basic Deployment
 
-You now need to run the Worker with the following environment variables:
+To deploy the Repeater, configure it with the following environment variable:
+- `ESCAPE_REPEATER_ID`: Unique ID for your Private Location.
 
-- `ESCAPE_REPEATER_ID`: Your Private Location ID.
-
+Example deployment command:
 ```bash
 docker run -it --rm --name escape-repeater \
     -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
     escapetech/repeater:latest
 ```
 
-You can find in the example folder more deployment examples.
-Feel free to contribute and add your own.
+More deployment examples are available in the example folder of the GitHub repository. Contributions for additional configurations are welcome.
 
-### Custom CA certificate
+### Custom CA Certificate
 
-If you need to add a custom ca certificate, you can mount it in the container:
-
+For environments that require a custom CA certificate:
 ```bash
 docker run -it --rm --name escape-repeater \
     -v /path/to/ca.crt:/usr/local/share/ca-certificates/ca.crt \
@@ -59,10 +47,9 @@ docker run -it --rm --name escape-repeater \
     escapetech/repeater:latest
 ```
 
-### Allow any SSL certificate
+### Allowing SSL Connections
 
-If you want to allow insecure connections, you can set the `ESCAPE_REPEATER_INSECURE` environment variable to `true`:
-
+To allow insecure connections, set `ESCAPE_REPEATER_INSECURE=true`:
 ```bash
 docker run -it --rm --name escape-repeater \
     -e ESCAPE_REPEATER_INSECURE=true \
@@ -70,15 +57,57 @@ docker run -it --rm --name escape-repeater \
     escapetech/repeater:latest
 ```
 
+### Firewall Configuration
+
+To connect your Repeater to Escape, ensure that **outgoing** connections to `repeater.escape.tech` on `TCP` port `443` are allowed. Use the command `nslookup repeater.escape.tech` to retrieve current IPs if firewall configurations are IP-specific.
+
+#### Required Outgoing IPs (as of 2024/09/09):
+
+| Address          | Protocol     | Port  |
+| ---------------- | ------------ | ----- |
+| `52.6.17.196`    | `TCP`/`GRPC` | `443` |
+| `44.210.73.138`  | `TCP`/`GRPC` | `443` |
+| `54.172.108.134` | `TCP`/`GRPC` | `443` |
+
+Additional IPs for stability:
+
+| Address          | Protocol      | Port  |
+| ---------------- | ------------- | ----- |
+| `51.159.205.221` | `TCP`/`HTTP`  | `80`  |
+| `51.159.205.221` | `TCP`/`HTTPS` | `443` |
+
+## Connecting a Private Location
+
+1. Visit the [Network Configuration](https://app.staging.escape.tech/organization/network/) page.
+2. Create a new Private Location or select an existing one.
+3. Follow deployment instructions provided on the Network page. The Repeater is available on [DockerHub](https://hub.docker.com/r/escapetech/repeater).
+4. Connection status updates every minute in the **Last seen** column.
+
+## Using a Private Location with Applications
+
+### Adding to a New Application
+When setting up a new application in Escape, choose a Private Location to enable scanning for internal applications.
+
+### Configuring for an Existing Application
+In the application’s Advanced Settings, add the following configuration to specify the Repeater:
+
+```yaml
+client:
+  proxy:
+    type: repeater
+  target: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx # Replace with your Repeater ID
+```
+
+## Advanced Configuration Options
+
 ### Using mTLS
 
-mTLS or mutual TLS is a security measure that requires both the client and the server to present a certificate to authenticate each other. This is a more secure way to authenticate the client and the server.
+To enable mTLS (mutual TLS), configure the following variables:
 
-To use mTLS, you need to provide the following environment variables:
+- `ESCAPE_REPEATER_mTLS_CRT_FILE`: Path to the mTLS certificate.
+- `ESCAPE_REPEATER_mTLS_KEY_FILE`: Path to the mTLS private key.
 
-- `ESCAPE_REPEATER_mTLS_CRT_FILE`: The path to the mTLS certificate file.
-- `ESCAPE_REPEATER_mTLS_KEY_FILE`: The path to the mTLS private key.
-
+Example command:
 ```bash
 docker run -it --rm --name escape-repeater \
     -v /path/to/mtls.crt:/usr/local/share/mtls.crt \
@@ -89,8 +118,7 @@ docker run -it --rm --name escape-repeater \
     escapetech/repeater:latest
 ```
 
-After that, you can authenticate your application using the Private Location Worker by adding the `repeater_mtls: true` flag.
-For example, the following configuration declare two users, one unauthenticated and one with mTLS:
+To declare users with and without mTLS, add the `repeater_mtls: true` flag:
 
 ```yaml
 users:
@@ -102,50 +130,16 @@ users:
     repeater_mtls: true
 ```
 
-### Configure your firewall
+### Proxy Configuration for Escape Connection
 
-To allow the Private Location Worker to connect to Escape, you need to allow in your firewall this service to connect to escape services.
-Make sure the following **outgoing** connections are allowed by your network configuration:
+If a proxy is required to connect the Repeater to Escape, configure it using `ESCAPE_REPEATER_PROXY_URL`. Note: the proxy must support HTTP/2 as gRPC connections are used.
 
-The Private Location Worker endpoint `repeater.escape.tech` should be reachable via `TCP` on port `443`.
-It is deployed on AWS with high availability, so the IPs can change,
-if your firewall only supports IPs, you can run the `nslookup repeater.escape.tech` command to retrieve the current IPs,
-if the Private Location Worker lose connection, check again that the IPs are still the same.
-
-The last updated IPs (`2024/09/09`) are :
-
-| Address          | Protocol      | Port  |
-| ---------------- | ------------- | ----- |
-| `52.6.17.196`    | `TCP`/`GRPC`  | `443`  |
-| `44.210.73.138`  | `TCP`/`GRPC` | `443` |
-| `54.172.108.134` | `TCP`/`GRPC` | `443` |
-
-The following IPs are also used by the Private Location Worker to ensure a stable connection:
-
-| Address          | Protocol      | Port  |
-| ---------------- | ------------- | ----- |
-| `51.159.205.221` | `TCP`/`HTTP`  | `80`  |
-| `51.159.205.221` | `TCP`/`HTTPS` | `443` |
-
-### Connect a Private Location
-
-1. Go to the [Network Configuration](https://app.staging.escape.tech/organization/network/) page.
-2. Create a new Private Location or use an existing one.
-3. Follow the deployment intrusctions directly in the Network page. The Private Location Worker is available via a Docker image accessible on [DockerHub](https://hub.docker.com/r/escapetech/repeater).
-4. The connection status is refreshed every minute in the **Last seen** column.
-
-### Use a Private Location on a new application
-
-While additing a new app to Escape, the Private Locations list will be proposed when try to reach your API.
-Select the Private Location you want to use.
-
-### Use a Private Location on an existing application.
-
-Go to the Advanced Settings of the applications and add the following configuration:
-
-```yaml
-client:
-  proxy:
-    type: repeater
-    target: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx # Put here your repeater id
+Example:
+```bash
+docker run -it --rm --name escape-repeater \
+    -e ESCAPE_REPEATER_PROXY_URL=http://user:pass@my-proxy.server.tld:1234 \
+    -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+    escapetech/repeater:latest
 ```
+
+This concludes the setup and usage guide for Escape’s Private Locations.
