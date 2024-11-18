@@ -23,19 +23,12 @@ Escape's Private Locations can be easily deployed using the Repeater, an open-so
 
  The resource requirements depend on expected traffic; a 1 vCPU instance with 2GB RAM is typically sufficient to start, with usage monitored and scaled as necessary.
 
-### Basic Deployment
+### Connecting a Private Location
 
-To deploy the Repeater, configure it with the following environment variable:
-- `ESCAPE_REPEATER_ID`: Unique ID for your Private Location.
-
-Example deployment command:
-```bash
-docker run -it --rm --name escape-repeater \
-    -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-    escapetech/repeater:latest
-```
-
-More deployment examples are available in the example folder of the GitHub repository. Contributions for additional configurations are welcome.
+1. Visit the [Private Location Configuration](https://app.staging.escape.tech/organization/) page.
+2. Create a new Private Location or select an existing one.
+3. Follow deployment instructions provided below. The Repeater is available on [DockerHub](https://hub.docker.com/r/escapetech/repeater).
+4. Connection status updates every minute in the **Last seen** column.
 
 ### Firewall Configuration
 
@@ -57,27 +50,78 @@ Additional IPs for stability:
 | `51.159.205.221` | `TCP`/`HTTPS` | `443` |
 
 
-### Connecting a Private Location
+## Deployment Methods
 
-1. Visit the [Network Configuration](https://app.staging.escape.tech/organization/network/) page.
-2. Create a new Private Location or select an existing one.
-3. Follow deployment instructions provided on the Network page. The Repeater is available on [DockerHub](https://hub.docker.com/r/escapetech/repeater).
-4. Connection status updates every minute in the **Last seen** column.
+### Docker Deployment
 
-## Using a Private Location with DAST
+To deploy the Repeater, configure it with the following environment variable:
+- `ESCAPE_REPEATER_ID`: Unique ID for your Private Location.
 
-### Adding to a New Application
-When setting up a new application in Escape, choose a Private Location to enable scanning for internal applications.
+Example deployment command:
+```bash
+docker run -it --network host --rm --name escape-repeater \
+    -e ESCAPE_REPEATER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+    escapetech/repeater:latest
+```
 
-### Configuring for an Existing Application
-In the application’s Advanced Settings, add the following configuration to specify the Repeater:
+More deployment examples are available in the example folder of the GitHub repository. Contributions for additional configurations are welcome.
+
+
+### Docker Compose Deployment
 
 ```yaml
-client:
-  proxy:
-    type: repeater
-  target: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx # Replace with your Repeater ID
+---
+version: '3.8'
+services:
+  repeater:
+    image: escapetech/repeater
+    restart: always
+    environment:
+      - ESCAPE_REPEATER_ID=<ESCAPE_REPEATER_ID>
 ```
+
+### Kubernetes Deployment
+
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: repeater
+  labels:
+    app: repeater
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: repeater
+  template:
+    metadata:
+      labels:
+        app: repeater
+    spec:
+      containers:
+        - name: repeater
+          image: escapetech/repeater:latest
+          imagePullPolicy: Always
+          env:
+            - name: ESCAPE_REPEATER_ID
+              value: <ESCAPE_REPEATER_ID>
+          resources:
+            limits:
+              cpu: 500m
+              memory: 500Mi
+            requests:
+              cpu: 500m
+              memory: 500Mi
+```
+
+### Podman Deployment
+
+```
+podman run --name escape-repeater --restart=always -e ESCAPE_REPEATER_ID=<ESCAPE_REPEATER_ID> docker.io/escapetech/repeater:latest
+```
+
 
 ## Advanced Configuration Options
 
@@ -144,3 +188,19 @@ docker run -it --rm --name escape-repeater \
 ```
 
 This concludes the setup and usage guide for Escape’s Private Locations.
+
+
+## Using a Private Location with DAST
+
+### Adding to a New Application
+When setting up a new application in Escape, choose a Private Location to enable scanning for internal applications.
+
+### Configuring for an Existing Application
+In the application’s Advanced Settings, add the following configuration to specify the Repeater:
+
+```yaml
+client:
+  proxy:
+    type: repeater
+  target: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx # Replace with your Repeater ID
+```
