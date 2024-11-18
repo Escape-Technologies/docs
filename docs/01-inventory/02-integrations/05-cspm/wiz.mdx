@@ -1,0 +1,37 @@
+---
+title: Wiz
+---
+
+
+<Image img={require('./img/wiz.svg')} alt="wiz logo"/>
+
+
+Integrating Wiz with Escape's Inventory allows for enhanced visibility into your attack surface exposure, ensuring that API endpoints are truly secured from an external point of view.
+
+
+### Creating a Wiz Service Account
+
+Escape needs a few details to connect to your Wiz account.
+
+- Client ID
+- Client Secret
+- Token url
+- API Endpoint url
+
+1. **Getting your API Endpoint URL**:
+   - Navigate to your user profile and copy the API Endpoint URL.
+
+2. **Getting your Client ID and secret**:
+   - In the Wiz dashboard Navigate to Settings > Service Accounts.
+   - Click Add Service Account.
+   - Name the new service account, for example: Escape Integration.
+   - If you desire, narrow the scope of this service account to specific projects.
+   - Select the following permissions
+      - read:resources
+      - read:network_exposure
+      - read:projects
+   - Click Add Service Account
+   - Copy the Client Secret. Note that you won't be able to copy it after this stage.
+   - Copy the Client ID, which is displayed under the Service Accounts page.
+
+Done !
