@@ -141,8 +141,14 @@ const config = {
             from: "/authentication/presets/curlsequence",
             to: "/api-dast/authentication/presets/curlsequence",
           },
-          { from: "/enterprise/repeater", to: "/platform/enterprise/private-location" },
-          { from: "/platform/enterprise/repeater", to: "/platform/enterprise/private-location" },
+          {
+            from: "/enterprise/repeater",
+            to: "/platform/enterprise/private-location",
+          },
+          {
+            from: "/platform/enterprise/repeater",
+            to: "/platform/enterprise/private-location",
+          },
           {
             from: "/enterprise/deployment-options",
             to: "/platform/enterprise/deployment-options",
@@ -586,7 +592,10 @@ const config = {
             from: "/vulnerabilities/custom/security_checks",
             to: "/api-dast/vulnerabilities/custom/security_checks",
           },
-          { from: "/ci-cd/references", to: "/api-dast/ci-cd/references/gitlab" },
+          {
+            from: "/ci-cd/references",
+            to: "/api-dast/ci-cd/references/gitlab",
+          },
           {
             from: "/ci-cd/references/gitlab",
             to: "/api-dast/ci-cd/references/gitlab",
@@ -674,6 +683,12 @@ const config = {
             to: "/api-dast/advanced-usage/custom-payloads",
           },
         ],
+        createRedirects(existingPath) {
+          if (existingPath.includes("/testing")) {
+            return [existingPath.replace("/testing", "/api-dast")];
+          }
+          return undefined; // Return a falsy value: no redirect created
+        },
       },
     ],
     require.resolve("docusaurus-lunr-search"),
@@ -709,7 +724,7 @@ const config = {
           src: "img/logo.svg",
           alt: "Escape logo",
           height: "300px",
-          },
+        },
         items: [
           {
             type: "doc",
