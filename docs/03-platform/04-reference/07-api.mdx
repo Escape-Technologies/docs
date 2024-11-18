@@ -263,16 +263,16 @@ You can pass additional parameters via the request body.
 
 #### `configurationOverride` <TypeTag type="string"/>
 
-[See the configuration override section](/testing/ci-cd/configuration-override).
+[See the configuration override section](/api-testing/ci-cd/configuration-override).
 
 #### `commitHash` <TypeTag type="string"/>
 
-[See the commit identification section](/testing/ci-cd/commit-sha).
+[See the commit identification section](/api-testing/ci-cd/commit-sha).
 
 #### `introspection` <TypeTag type="string"/>
 
 The stringified JSON introspection.
-[See the introspection update section](/testing/ci-cd/introspection-update).
+[See the introspection update section](/api-testing/ci-cd/introspection-update).
 
 ## `POST /applications/:applicationId/upload-introspection`
 
@@ -291,7 +291,7 @@ Providing an introspection response within the body is mandatory
 #### `introspectionResponse` <TypeTag type="string"/>
 
 The stringified JSON introspection.
-[See the introspection update section](/testing/ci-cd/introspection-update).
+[See the introspection update section](/api-testing/ci-cd/introspection-update).
 
 ### Example response
 
@@ -326,7 +326,7 @@ The route expects a JSON body with the following fields:
   "readWrite": true | false, // false makes the scan safe for production
 
   // Other settings
-  "authentication": { // authentication details as documented in https://docs.escape.tech/testing/authentication/#overall-structure-of-an-authentication-configuration
+  "authentication": { // authentication details as documented in https://docs.escape.tech/api-testing/authentication/#overall-structure-of-an-authentication-configuration
     "presets": [
       {
         "type": "headers",
@@ -342,7 +342,7 @@ The route expects a JSON body with the following fields:
     ],
     "validation": false
   },
-  "fullConfiguration": { // full expert configuration as documented in https://docs.escape.tech/testing/ci-cd/configuration-override and https://docs.escape.tech/testing/advanced-usage/
+  "fullConfiguration": { // full expert configuration as documented in https://docs.escape.tech/api-testing/ci-cd/configuration-override and https://docs.escape.tech/api-testing/advanced-usage/
     // you can simply copy your expert configuration from a scan and use it here
     // fullConfiguration and authentication are mutually exclusive
     "scan": {

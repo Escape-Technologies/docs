@@ -1,6 +1,6 @@
 ---
-title: CircleCI
-description: Use Escape on CircleCI
+title: Jenkins Pipeline
+description: Use Escape on Jenkins Pipeline
 ---
 
 import RequiredTag from "@site/src/components/RequiredTag";
@@ -8,49 +8,59 @@ import TypeTag from "@site/src/components/TypeTag";
 
 ## Basic example
 
-Here's how you can integrate Escape into your CircleCI pipeline using a `.circleci/config.yml` configuration:
+Here's how you can integrate Escape into your Jenkins Pipeline in your `Jenkinsfile`:
 
-```yaml
-version: 2.1
+```javascript
+pipeline {
+    agent { label 'node' } // Use a node with Node.js installed
 
-jobs:
-  deploy: 
-    docker:
-      - image: node:alpine
-    steps:
-      - checkout
-      # Your deployment steps here
+    environment {
+        ESCAPE_APPLICATION_ID = credentials('ESCAPE_APPLICATION_ID')
+        ESCAPE_API_KEY = credentials('ESCAPE_API_KEY')
+    }
 
-  escape_scan:
-    docker:
-      - image: node:alpine
-    steps:
-      - checkout
-      - run:
-          name: Install Escape CLI
-          command: |
-            npm install -g @escape.tech/action
-            npm show @escape.tech/action version
-      - run:
-          name: Run Escape Scan
-          command: escape-action
-      environment:
-        ESCAPE_APPLICATION_ID: $ESCAPE_APPLICATION_ID
-        ESCAPE_API_KEY: $ESCAPE_API_KEY
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm // Checkout the codebase from the SCM provider
+            }
+        }
+        
+        stage('Post-Deploy') {
+            when {
+                branch 'staging' // Only run on the 'staging' branch
+            }
 
-workflows:
-  version: 2
-  deploy_and_scan:
-    jobs:
-      - deploy
-      - escape_scan:
-          requires:
-            - deploy
-          filters:
-            branches:
-              only: staging
+            steps {
+                script {
+                    // Install the Escape CLI tool
+                    sh 'npm install -g @escape.tech/action'
+                    
+                    // Show the installed Escape CLI version
+                    sh 'npm show @escape.tech/action version'
+                    
+                    // Run Escape action
+                    sh 'escape-action'
+                }
+            }
 
+            post {
+                always {
+                    // Configuration to allow failure
+                }
+            }
+        }
+    }
+}
 ```
+
+This example Jenkinsfile does the following:
+- Sets up an environment with Node.js.
+- Loads the `ESCAPE_APPLICATION_ID` and `ESCAPE_API_KEY` from Jenkins' stored credentials.
+- Checks out the codebase from your SCM (Source Control Management).
+- Runs the Escape action in the Post-Deploy stage, specifically when the branch is staging.
+
+
 
 ## Failure behavior
 
@@ -95,27 +105,27 @@ The triggered scan will run asynchronously on Escape, and your team will be noti
 
 ### `CONFIGURATION_OVERRIDE` <TypeTag type="string"/>
 
-[See the configuration override section](/testing/ci-cd/configuration-override).
+[See the configuration override section](/api-testing/ci-cd/configuration-override).
 
 ### `CONFIGURATION_OVERRIDE_PATH` <TypeTag type="string"/>
 
-[See the configuration override section](/testing/ci-cd/configuration-override).
+[See the configuration override section](/api-testing/ci-cd/configuration-override).
 
 ### `REF_NAME` <TypeTag type="string"/>
 
-[See the commit identification section](/testing/ci-cd/commit-sha).
+[See the commit identification section](/api-testing/ci-cd/commit-sha).
 
 ### `COMMIT_HASH` <TypeTag type="string"/>
 
-[See the commit identification section](/testing/ci-cd/commit-sha).
+[See the commit identification section](/api-testing/ci-cd/commit-sha).
 
 ### `USER_EMAIL` <TypeTag type="string"/>
 
-[See the commit identification section](/testing/ci-cd/commit-sha).
+[See the commit identification section](/api-testing/ci-cd/commit-sha).
 
 ### `INTROSPECTION_FILE` <TypeTag type="path"/>
 
-[See the introspection update section](/testing/ci-cd/introspection-update).
+[See the introspection update section](/api-testing/ci-cd/introspection-update).
 
 ## Command-line options
 

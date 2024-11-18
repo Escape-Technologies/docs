@@ -1,6 +1,6 @@
 ---
-title: Bitbucket Pipelines
-description: Use Escape on Bitbucket
+title: CircleCI
+description: Use Escape on CircleCI
 ---
 
 import RequiredTag from "@site/src/components/RequiredTag";
@@ -8,35 +8,48 @@ import TypeTag from "@site/src/components/TypeTag";
 
 ## Basic example
 
+Here's how you can integrate Escape into your CircleCI pipeline using a `.circleci/config.yml` configuration:
+
 ```yaml
-image: node:alpine
+version: 2.1
 
-pipelines:
-  default:
-    - step:
-        name: Deploy
-        script:
-          # Your deployment scripts here
+jobs:
+  deploy: 
+    docker:
+      - image: node:alpine
+    steps:
+      - checkout
+      # Your deployment steps here
 
-    - step:
-        name: Escape
-        trigger: manual  # Set to manual if you wish to run this step manually
-        after-script:   # Similar to post-deploy in GitLab
-          - npm install -g @escape.tech/action
-          - npm show @escape.tech/action version
-          - escape-action
-        deployment: staging  # Assuming staging environment for deployment
-        script:
-          - echo "Starting Escape scan..."
-        services:
-          - docker
-        caches:
-          - node
-        size: 2x
-        max-time: 10
-        variables:
-          ESCAPE_APPLICATION_ID: $ESCAPE_APPLICATION_ID
-          ESCAPE_API_KEY: $ESCAPE_API_KEY
+  escape_scan:
+    docker:
+      - image: node:alpine
+    steps:
+      - checkout
+      - run:
+          name: Install Escape CLI
+          command: |
+            npm install -g @escape.tech/action
+            npm show @escape.tech/action version
+      - run:
+          name: Run Escape Scan
+          command: escape-action
+      environment:
+        ESCAPE_APPLICATION_ID: $ESCAPE_APPLICATION_ID
+        ESCAPE_API_KEY: $ESCAPE_API_KEY
+
+workflows:
+  version: 2
+  deploy_and_scan:
+    jobs:
+      - deploy
+      - escape_scan:
+          requires:
+            - deploy
+          filters:
+            branches:
+              only: staging
+
 ```
 
 ## Failure behavior
@@ -82,27 +95,27 @@ The triggered scan will run asynchronously on Escape, and your team will be noti
 
 ### `CONFIGURATION_OVERRIDE` <TypeTag type="string"/>
 
-[See the configuration override section](/testing/ci-cd/configuration-override).
+[See the configuration override section](/api-testing/ci-cd/configuration-override).
 
 ### `CONFIGURATION_OVERRIDE_PATH` <TypeTag type="string"/>
 
-[See the configuration override section](/testing/ci-cd/configuration-override).
+[See the configuration override section](/api-testing/ci-cd/configuration-override).
 
 ### `REF_NAME` <TypeTag type="string"/>
 
-[See the commit identification section](/testing/ci-cd/commit-sha).
+[See the commit identification section](/api-testing/ci-cd/commit-sha).
 
 ### `COMMIT_HASH` <TypeTag type="string"/>
 
-[See the commit identification section](/testing/ci-cd/commit-sha).
+[See the commit identification section](/api-testing/ci-cd/commit-sha).
 
 ### `USER_EMAIL` <TypeTag type="string"/>
 
-[See the commit identification section](/testing/ci-cd/commit-sha).
+[See the commit identification section](/api-testing/ci-cd/commit-sha).
 
 ### `INTROSPECTION_FILE` <TypeTag type="path"/>
 
-[See the introspection update section](/testing/ci-cd/introspection-update).
+[See the introspection update section](/api-testing/ci-cd/introspection-update).
 
 ## Command-line options
 
@@ -121,4 +134,3 @@ Download a PDF report of the scan results.
 ### `--zip` <TypeTag type="boolean"/>
 
 Download a exchange archive (zip file) of the scan results.
-

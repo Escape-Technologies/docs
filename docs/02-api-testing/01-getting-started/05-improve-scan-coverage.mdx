@@ -77,7 +77,7 @@ In particular, it blacklists all data-mutating endpoints.
 ### Provide Enough Authorizations to Cover All Endpoints
 
 If you see a lot of `UNAUTHORIZED` errors, it can be a sign that you need to configure authentication.
-Refer to the [Authentication](/testing/authentication/) section for more information.
+Refer to the [Authentication](/api-testing/authentication/) section for more information.
 
 If you already configured your authentication, make sure the token is still valid, for example by copying the `curl` command and trying to run it in your terminal.
 
@@ -107,4 +107,4 @@ Making your application more resilient or blacklisting the problematic endpoints
 
 If your application (or a firewall in front of it) implements rate limiting, you may want to relate that in the scan configuration.
 
-Scans can be slowed down using [rate-limiting configuration](/testing/advanced-usage/rate-limiting), though it may impact the scan duration.
+Scans can be slowed down using [rate-limiting configuration](/api-testing/advanced-usage/rate-limiting), though it may impact the scan duration.
