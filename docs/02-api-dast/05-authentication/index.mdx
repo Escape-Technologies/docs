@@ -1,0 +1,97 @@
+---
+title: 🔐 Authentication
+description: Seamlessly generate tokens for authenticated security scans with extensive logging support
+---
+
+Advanced Authentication for security scans can be configured in the `Settings` > `Authentication` section of your Application.
+
+## Understanding Authentication
+
+Authentication, a cornerstone in programming, involves verifying the identity of a user or process. This process is fundamental for secure and authorized access.
+
+:::info The Mechanics of HTTP Authentication
+
+Authentication is generally server-based, using client-provided data, that can be injected into various parts of an HTTP request:
+
+- Headers
+- Cookies
+- Body
+- Query parameters
+
+:::
+
+## A Versatile Framework for Universal API Authentication
+
+Escape's authentication feature is underpinned by key principles, forming a robust and adaptable authentication engine:
+
+1. **Workflows**: Every authentication process, from HTTP requests to RPC procedures or web form submissions, consists of a series of server interactions.
+2. **Credential Extraction**: Authentication data (most of the time, a token) is generated from server responses during these interactions.
+3. **Credential Injection**: Credentials are essentially a set of extra parameters to be included in subsequent requests.
+4. **Comprehensive logging**: These logs provide detailed insights into each step of the authentication process, aiding users in fine-tuning their authentication workflows. The logs are designed to be clear and informative, ensuring that both security engineers and developers can easily understand and utilize them for optimal configuration.
+5. **Session management**: Escape Authentication is able to manage sessions, and to store the authentication data extracted from the responses of the operations of a procedure. This data can then be reused in the requests of the procedure, or in the requests of other procedures.
+6. **Refresh**: When storing the authentication data, Escape Authentication can automatically identify the time to live of the data, and automatically refresh it when it expires. It is also possible to manually declare the generated token's TTL in the configuration file for each user.
+
+## Authentication Options in Escape
+
+Escape offers multiple methods for managing authentication:
+
+### Public authentication
+
+If you want to create a user that is not authenticated, you can use the `public` authentication.
+
+It's defined as follows:
+
+```yaml
+users:
+  - name: public
+```
+
+If no authentication is defined, the `public` authentication will be used by default.
+
+### Standard Workflows
+
+For common authentication methods, Escape provides Standard Authentication Workflow Presets, including Basic, REST, Digest, GraphQL, OAuth, AWS Cognito, Webdriver, etc. Detailed instructions for these presets are available in the "Preset" Section.
+
+### Advanced Workflows
+
+For more complex needs, users can combine multiple workflows, like Webdriver and HTTP Requests, to create advanced authentication procedures. This offers unmatched flexibility and is detailed in the "Advanced" section.
+
+## Validating your authentication
+
+By default, Escape will validate the authentication process by injecting the credentials generated into a request and checking the response.
+If you want to skip this step, you can add the `validation: false` parameter to the authentication configuration.
+
+Here is an simple example of a configuration without validation:
+
+```yaml
+presets:
+  - type: headers
+    users:
+      - username: user1
+        headers:
+          Authorization: Bearer user1Token
+validation: false
+```
+
+## Overall structure of an authentication configuration
+
+For detailed information on each section, please refer to the respective sections in the [reference documentation](/api-dast/authentication/reference).
+
+```yaml
+
+procedures:
+  description: The list of authentication procedures to rely on when authenticating users
+
+presets:
+  description: A list of presets used to easily generate procedures and users automatically following common authentication standards
+
+users:
+  description: List of users that multiauth will generate authentications for.
+
+proxy:
+  description: An eventual global proxy used for all HTTP requests
+
+validation:
+  description: A flag to enable or disable the generated tokens validations. Set this to false to skip the validation. Set to true by default
+  
+```

@@ -1,0 +1,36 @@
+---
+title: Start your first scan
+description: Scan your API in 5 minutes
+---
+
+import Image from '@theme/IdealImage';
+
+:::note
+🚧 **Early Alpha Feature**
+This feature is currently in early alpha and is not yet available to all users. If you would like to try it out, please reach out to support.
+:::
+
+# 🔎 Start your first scan
+
+## Application creation stepper
+
+<Image img={require('./img/stepper.png')} alt="test"/>
+
+
+1. Go to your [applications list](https://app.escape.tech) and click on `Secure a new app`
+2. Select Frontend (alpha)
+2. Enter your application's deployment URL and click on `Validate`
+3. Select a name for the application, and select if you want the scan to run in development (read-write mode) or production (read-only) environment.
+5. You are all set!
+
+## Common pitfalls
+
+### My application requires authentication
+
+You can of course configure a header to be sent with the requests, in order to authenticate your application. 
+
+This can be done after creating the scan, by visiting the Settings page of your scan, and configuring headers like any other API scan.
+
+You can read about this in the [Headers](/api-dast/authentication/presets/headers) section.
+
+

@@ -1,0 +1,63 @@
+---
+title: Scan Configuration
+description: Customize your scan to fit your needs
+---
+
+import Image from '@theme/IdealImage';
+
+:::note
+🚧 **Early Alpha Feature**
+This feature is currently in early alpha and is not yet available to all users. If you would like to try it out, please reach out to support.
+:::
+
+
+# 🛠️ Scan Configuration
+
+Most of your scan configuration already follows the existing API DAST scan configuration, such as authentication.
+
+However, there are a few additional configurations and limitations (for the alpha) that are specific to Frontend Scans.
+
+## Authentication
+
+
+Just like API scans you can configure a simple header authentication preset for now.
+
+```yaml
+presets:
+  - type: headers
+    users:
+      - headers:
+          Authorization: Bearer user1Token
+        username: user1
+validation: false
+```
+
+## Scope Configuration
+
+In your Expert Configuration section in the settings of your scan, you can configure the scope of your scan.
+Scopes are regexes to match allowed URLs that the scanner should crawl and test.
+
+```yaml
+scan:
+  profile: default
+  frontend_scopes_regexes:
+    - '.*/dashboard/.*'
+authentication: {}
+```
+
+## Base URLs
+
+In your Expert Configuration section in the settings of your scan, you can configure the base URLs of your scan.
+Base URLs is a map of base URLs to their respective depth.
+You can therefore pre-seed the scanner with a list of URLs to start the scan from, and enrich the crawling process by boosting the knowns URLs.
+
+```yaml
+scan:
+  profile: default
+  frontend_base_urls: 
+    'https://example.com/user': 1
+    'https://example.com/user/profile': 2
+authentication: {}
+```
+
+

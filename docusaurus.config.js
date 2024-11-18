@@ -36,26 +36,666 @@ const config = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
-          { from: "/getting-started/", to: "/testing/getting-started/" },
+          {
+            from: "/getting-started/",
+            to: "/api-dast/getting-started/",
+          },
+          {
+            from: "/testing/getting-started/",
+            to: "/api-dast/getting-started/",
+          },
+          {
+            from: "/testing/getting-started/scan-results",
+            to: "/api-dast/getting-started/scan-results",
+          },
+          {
+            from: "/testing/getting-started/retrieve-schema",
+            to: "/api-dast/getting-started/retrieve-schema",
+          },
+          {
+            from: "/testing/getting-started/scan-your-first-app",
+            to: "/api-dast/getting-started/scan-your-first-app",
+          },
+          {
+            from: "/testing/getting-started/improve-scan-coverage",
+            to: "/api-dast/getting-started/improve-scan-coverage",
+          },
+          {
+            from: "/testing/getting-started/scan-scheduling",
+            to: "/api-dast/getting-started/scan-scheduling",
+          },
+          {
+            from: "/testing/custom-rules/Seeders",
+            to: "/api-dast/custom-rules/Seeders",
+          },
+          {
+            from: "/testing/custom-rules/",
+            to: "/api-dast/custom-rules/",
+          },
+          {
+            from: "/testing/custom-rules/Mutators",
+            to: "/api-dast/custom-rules/Mutators",
+          },
+          {
+            from: "/testing/custom-rules/Transformations",
+            to: "/api-dast/custom-rules/Transformations",
+          },
+          {
+            from: "/testing/custom-rules/Alerting",
+            to: "/api-dast/custom-rules/Alerting",
+          },
+          {
+            from: "/testing/custom-rules/Reference",
+            to: "/api-dast/custom-rules/Reference",
+          },
+          {
+            from: "/testing/custom-rules/Detectors",
+            to: "/api-dast/custom-rules/Detectors",
+          },
+          {
+            from: "/testing/authentication/reference/",
+            to: "/api-dast/authentication/reference/",
+          },
+          {
+            from: "/testing/authentication/advanced/",
+            to: "/api-dast/authentication/advanced/",
+          },
+          {
+            from: "/testing/authentication/",
+            to: "/api-dast/authentication/",
+          },
+          {
+            from: "/testing/authentication/presets/awscognito",
+            to: "/api-dast/authentication/presets/awscognito",
+          },
+          {
+            from: "/testing/authentication/presets/http",
+            to: "/api-dast/authentication/presets/http",
+          },
+          {
+            from: "/testing/authentication/presets/oauthclientcredentials",
+            to: "/api-dast/authentication/presets/oauthclientcredentials",
+          },
+          {
+            from: "/testing/authentication/presets/basic",
+            to: "/api-dast/authentication/presets/basic",
+          },
+          {
+            from: "/testing/authentication/presets/webdriver",
+            to: "/api-dast/authentication/presets/webdriver",
+          },
+          {
+            from: "/testing/authentication/presets/headers",
+            to: "/api-dast/authentication/presets/headers",
+          },
+          {
+            from: "/testing/authentication/presets/oauthuserpassword",
+            to: "/api-dast/authentication/presets/oauthuserpassword",
+          },
+          {
+            from: "/testing/authentication/presets/curl",
+            to: "/api-dast/authentication/presets/curl",
+          },
+          {
+            from: "/testing/authentication/presets/digest",
+            to: "/api-dast/authentication/presets/digest",
+          },
+          {
+            from: "/testing/authentication/presets/graphql",
+            to: "/api-dast/authentication/presets/graphql",
+          },
+          {
+            from: "/testing/authentication/presets/curlsequence",
+            to: "/api-dast/authentication/presets/curlsequence",
+          },
+          {
+            from: "/testing/vulnerabilities/configuration/directory_listing",
+            to: "/api-dast/vulnerabilities/configuration/directory_listing",
+          },
+          {
+            from: "/testing/vulnerabilities/configuration/error_type_inconsistency",
+            to: "/api-dast/vulnerabilities/configuration/error_type_inconsistency",
+          },
+          {
+            from: "/testing/vulnerabilities/configuration/unhandled_endpoint",
+            to: "/api-dast/vulnerabilities/configuration/unhandled_endpoint",
+          },
+          {
+            from: "/testing/vulnerabilities/configuration/ide_enabled",
+            to: "/api-dast/vulnerabilities/configuration/ide_enabled",
+          },
+          {
+            from: "/testing/vulnerabilities/configuration/waf_bypass",
+            to: "/api-dast/vulnerabilities/configuration/waf_bypass",
+          },
+          {
+            from: "/testing/vulnerabilities/configuration/graphql_apq",
+            to: "/api-dast/vulnerabilities/configuration/graphql_apq",
+          },
+          {
+            from: "/testing/vulnerabilities/configuration/proxy_disclosure",
+            to: "/api-dast/vulnerabilities/configuration/proxy_disclosure",
+          },
+          {
+            from: "/testing/vulnerabilities/",
+            to: "/api-dast/vulnerabilities/",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/heartbleed",
+            to: "/api-dast/vulnerabilities/protocol/heartbleed",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/header_access_control_allow_origin",
+            to: "/api-dast/vulnerabilities/protocol/header_access_control_allow_origin",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/header_strict_transport_security",
+            to: "/api-dast/vulnerabilities/protocol/header_strict_transport_security",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/ssl_certificate",
+            to: "/api-dast/vulnerabilities/protocol/ssl_certificate",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/header_content_security_policy",
+            to: "/api-dast/vulnerabilities/protocol/header_content_security_policy",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/header_x_frame_options",
+            to: "/api-dast/vulnerabilities/protocol/header_x_frame_options",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/headers",
+            to: "/api-dast/vulnerabilities/protocol/headers",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/header_set_cookie",
+            to: "/api-dast/vulnerabilities/protocol/header_set_cookie",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/cors",
+            to: "/api-dast/vulnerabilities/protocol/cors",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/header_leak",
+            to: "/api-dast/vulnerabilities/protocol/header_leak",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/header_x_content_type_options",
+            to: "/api-dast/vulnerabilities/protocol/header_x_content_type_options",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/graphql_content_type",
+            to: "/api-dast/vulnerabilities/protocol/graphql_content_type",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/server_error",
+            to: "/api-dast/vulnerabilities/protocol/server_error",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/header_content_type",
+            to: "/api-dast/vulnerabilities/protocol/header_content_type",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/ssl",
+            to: "/api-dast/vulnerabilities/protocol/ssl",
+          },
+          {
+            from: "/testing/vulnerabilities/protocol/header_cache_control",
+            to: "/api-dast/vulnerabilities/protocol/header_cache_control",
+          },
+          {
+            from: "/testing/vulnerabilities/request_forgery/csrf_post_based",
+            to: "/api-dast/vulnerabilities/request_forgery/csrf_post_based",
+          },
+          {
+            from: "/testing/vulnerabilities/request_forgery/ssrf_header",
+            to: "/api-dast/vulnerabilities/request_forgery/ssrf_header",
+          },
+          {
+            from: "/testing/vulnerabilities/request_forgery/open_redirect",
+            to: "/api-dast/vulnerabilities/request_forgery/open_redirect",
+          },
+          {
+            from: "/testing/vulnerabilities/request_forgery/ssrf",
+            to: "/api-dast/vulnerabilities/request_forgery/ssrf",
+          },
+          {
+            from: "/testing/vulnerabilities/request_forgery/ssrf_partial",
+            to: "/api-dast/vulnerabilities/request_forgery/ssrf_partial",
+          },
+          {
+            from: "/testing/vulnerabilities/request_forgery/csrf_get_based",
+            to: "/api-dast/vulnerabilities/request_forgery/csrf_get_based",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/graphql_batch_limit",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_batch_limit",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/response_size",
+            to: "/api-dast/vulnerabilities/resource_limitation/response_size",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/graphql_depth_limit",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_depth_limit",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/graphql_alias_limit",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_alias_limit",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/graphql_directive_overload",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_directive_overload",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/timeout",
+            to: "/api-dast/vulnerabilities/resource_limitation/timeout",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/graphql_width_limit",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_width_limit",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/graphql_recursive_fragment",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_recursive_fragment",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/graphql_field_limit",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_field_limit",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/large_json_input",
+            to: "/api-dast/vulnerabilities/resource_limitation/large_json_input",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/unreachable_server",
+            to: "/api-dast/vulnerabilities/resource_limitation/unreachable_server",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/character_limit",
+            to: "/api-dast/vulnerabilities/resource_limitation/character_limit",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/cyclic_query",
+            to: "/api-dast/vulnerabilities/resource_limitation/cyclic_query",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/graphql_circular_introspection",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_circular_introspection",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/pagination_missing",
+            to: "/api-dast/vulnerabilities/resource_limitation/pagination_missing",
+          },
+          {
+            from: "/testing/vulnerabilities/resource_limitation/graphql_field_duplication",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_field_duplication",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/weak_json_typing",
+            to: "/api-dast/vulnerabilities/schema/weak_json_typing",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/zombie_object",
+            to: "/api-dast/vulnerabilities/schema/zombie_object",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/duplicated_object",
+            to: "/api-dast/vulnerabilities/schema/duplicated_object",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/response_type_missmatch",
+            to: "/api-dast/vulnerabilities/schema/response_type_missmatch",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/invalid_refs",
+            to: "/api-dast/vulnerabilities/schema/invalid_refs",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/invalid_allof",
+            to: "/api-dast/vulnerabilities/schema/invalid_allof",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/positive_integer_validation",
+            to: "/api-dast/vulnerabilities/schema/positive_integer_validation",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/swagger_rules",
+            to: "/api-dast/vulnerabilities/schema/swagger_rules",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/undefined_object",
+            to: "/api-dast/vulnerabilities/schema/undefined_object",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/graphql_response_format",
+            to: "/api-dast/vulnerabilities/schema/graphql_response_format",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/self_compliant_spec",
+            to: "/api-dast/vulnerabilities/schema/self_compliant_spec",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/invalid_parameters_in_path",
+            to: "/api-dast/vulnerabilities/schema/invalid_parameters_in_path",
+          },
+          {
+            from: "/testing/vulnerabilities/schema/typing_misconfiguration",
+            to: "/api-dast/vulnerabilities/schema/typing_misconfiguration",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/improper_input",
+            to: "/api-dast/vulnerabilities/injection/improper_input",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/jwt_alg_none",
+            to: "/api-dast/vulnerabilities/injection/jwt_alg_none",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/ssti",
+            to: "/api-dast/vulnerabilities/injection/ssti",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/sql",
+            to: "/api-dast/vulnerabilities/injection/sql",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/jwt_alg_confusion",
+            to: "/api-dast/vulnerabilities/injection/jwt_alg_confusion",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/directory_traversal",
+            to: "/api-dast/vulnerabilities/injection/directory_traversal",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/file_inclusion",
+            to: "/api-dast/vulnerabilities/injection/file_inclusion",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/nosql",
+            to: "/api-dast/vulnerabilities/injection/nosql",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/jwt_sign_check",
+            to: "/api-dast/vulnerabilities/injection/jwt_sign_check",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/mass_assignment",
+            to: "/api-dast/vulnerabilities/injection/mass_assignment",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/improper_input_stored",
+            to: "/api-dast/vulnerabilities/injection/improper_input_stored",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/command",
+            to: "/api-dast/vulnerabilities/injection/command",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/crlf",
+            to: "/api-dast/vulnerabilities/injection/crlf",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/xxe",
+            to: "/api-dast/vulnerabilities/injection/xxe",
+          },
+          {
+            from: "/testing/vulnerabilities/injection/nosql_stored",
+            to: "/api-dast/vulnerabilities/injection/nosql_stored",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/exposed_settings.php",
+            to: "/api-dast/vulnerabilities/information_disclosure/exposed_settings.php",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/debug_mode",
+            to: "/api-dast/vulnerabilities/information_disclosure/debug_mode",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/alibaba_canal_leak",
+            to: "/api-dast/vulnerabilities/information_disclosure/alibaba_canal_leak",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/appveyor_config_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/appveyor_config_exposure",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/file_disclosure",
+            to: "/api-dast/vulnerabilities/information_disclosure/file_disclosure",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/introspection_enabled",
+            to: "/api-dast/vulnerabilities/information_disclosure/introspection_enabled",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/data_leak",
+            to: "/api-dast/vulnerabilities/information_disclosure/data_leak",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/awstats_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/awstats_exposure",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/code",
+            to: "/api-dast/vulnerabilities/information_disclosure/code",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/ansible_config_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/ansible_config_exposure",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/aws_config_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/aws_config_exposure",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/potential_cve",
+            to: "/api-dast/vulnerabilities/information_disclosure/potential_cve",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/exposed_mysql_config",
+            to: "/api-dast/vulnerabilities/information_disclosure/exposed_mysql_config",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/springboot_actuator_env",
+            to: "/api-dast/vulnerabilities/information_disclosure/springboot_actuator_env",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/graphql_field_suggestion",
+            to: "/api-dast/vulnerabilities/information_disclosure/graphql_field_suggestion",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/airflow_config_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/airflow_config_exposure",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/stacktrace",
+            to: "/api-dast/vulnerabilities/information_disclosure/stacktrace",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/appspec_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/appspec_exposure",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/azure_tenant_id_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/azure_tenant_id_exposure",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/aws_docker_config_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/aws_docker_config_exposure",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/leaking_authentication",
+            to: "/api-dast/vulnerabilities/information_disclosure/leaking_authentication",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/awstats_config_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/awstats_config_exposure",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/exposed_sql_dumps",
+            to: "/api-dast/vulnerabilities/information_disclosure/exposed_sql_dumps",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/private_ip",
+            to: "/api-dast/vulnerabilities/information_disclosure/private_ip",
+          },
+          {
+            from: "/testing/vulnerabilities/information_disclosure/software_component_leak",
+            to: "/api-dast/vulnerabilities/information_disclosure/software_component_leak",
+          },
+          {
+            from: "/testing/vulnerabilities/access_control/private_fields",
+            to: "/api-dast/vulnerabilities/access_control/private_fields",
+          },
+          {
+            from: "/testing/vulnerabilities/access_control/public_state_altering_operation",
+            to: "/api-dast/vulnerabilities/access_control/public_state_altering_operation",
+          },
+          {
+            from: "/testing/vulnerabilities/access_control/bola",
+            to: "/api-dast/vulnerabilities/access_control/bola",
+          },
+          {
+            from: "/testing/vulnerabilities/access_control/auth_bypass",
+            to: "/api-dast/vulnerabilities/access_control/auth_bypass",
+          },
+          {
+            from: "/testing/vulnerabilities/access_control/private_data",
+            to: "/api-dast/vulnerabilities/access_control/private_data",
+          },
+          {
+            from: "/testing/vulnerabilities/access_control/tenant_isolation",
+            to: "/api-dast/vulnerabilities/access_control/tenant_isolation",
+          },
+          {
+            from: "/testing/vulnerabilities/access_control/sensitive_endpoint_bruteforce",
+            to: "/api-dast/vulnerabilities/access_control/sensitive_endpoint_bruteforce",
+          },
+          {
+            from: "/testing/vulnerabilities/custom/security_checks",
+            to: "/api-dast/vulnerabilities/custom/security_checks",
+          },
+          {
+            from: "/testing/ci-cd/references/gitlab",
+            to: "/api-dast/ci-cd/references/gitlab",
+          },
+          {
+            from: "/testing/ci-cd/references/gitlab",
+            to: "/api-dast/ci-cd/references/gitlab",
+          },
+          {
+            from: "/testing/ci-cd/references/circleci",
+            to: "/api-dast/ci-cd/references/circleci",
+          },
+          {
+            from: "/testing/ci-cd/references/cli",
+            to: "/api-dast/ci-cd/references/cli",
+          },
+          {
+            from: "/testing/ci-cd/references/bitbucket",
+            to: "/api-dast/ci-cd/references/bitbucket",
+          },
+          {
+            from: "/testing/ci-cd/references/azure",
+            to: "/api-dast/ci-cd/references/azure",
+          },
+          {
+            from: "/testing/ci-cd/references/jenkins",
+            to: "/api-dast/ci-cd/references/jenkins",
+          },
+          {
+            from: "/testing/ci-cd/references/github",
+            to: "/api-dast/ci-cd/references/github",
+          },
+          {
+            from: "/testing/ci-cd/",
+            to: "/api-dast/ci-cd/",
+          },
+          {
+            from: "/testing/ci-cd/introspection-update",
+            to: "/api-dast/ci-cd/introspection-update",
+          },
+          {
+            from: "/testing/ci-cd/configuration-override",
+            to: "/api-dast/ci-cd/configuration-override",
+          },
+          {
+            from: "/testing/ci-cd/commit-sha",
+            to: "/api-dast/ci-cd/commit-sha",
+          },
+          {
+            from: "/testing/features/sensitive-data",
+            to: "/api-dast/features/sensitive-data",
+          },
+          {
+            from: "/testing/features/remediation",
+            to: "/api-dast/features/remediation",
+          },
+          {
+            from: "/testing/features/",
+            to: "/api-dast/features/",
+          },
+          {
+            from: "/testing/features/posture-management",
+            to: "/api-dast/features/posture-management",
+          },
+          {
+            from: "/testing/features/reporting",
+            to: "/api-dast/features/reporting",
+          },
+          {
+            from: "/testing/features/compliance",
+            to: "/api-dast/features/compliance",
+          },
+          {
+            from: "/testing/advanced-usage/access_control",
+            to: "/api-dast/advanced-usage/access_control",
+          },
+          {
+            from: "/testing/advanced-usage/internal-apis",
+            to: "/api-dast/advanced-usage/internal-apis",
+          },
+          {
+            from: "/testing/advanced-usage/",
+            to: "/api-dast/advanced-usage/",
+          },
+          {
+            from: "/testing/advanced-usage/blacklist",
+            to: "/api-dast/advanced-usage/blacklist",
+          },
+          {
+            from: "/testing/advanced-usage/rate-limiting",
+            to: "/api-dast/advanced-usage/rate-limiting",
+          },
+          {
+            from: "/testing/advanced-usage/parameters-reference",
+            to: "/api-dast/advanced-usage/parameters-reference",
+          },
+          {
+            from: "/testing/advanced-usage/custom-payloads",
+            to: "/api-dast/advanced-usage/custom-payloads",
+          }, // end of redirect from testing to api-dast
+          // start of redirect from legacy nothing directly to api-dast
           {
             from: "/getting-started/scan-results",
-            to: "/testing/getting-started/scan-results",
+            to: "/api-dast/getting-started/scan-results",
           },
           {
             from: "/getting-started/retrieve-schema",
-            to: "/testing/getting-started/retrieve-schema",
+            to: "/api-dast/getting-started/retrieve-schema",
           },
           {
             from: "/getting-started/scan-your-first-app",
-            to: "/testing/getting-started/scan-your-first-app",
+            to: "/api-dast/getting-started/scan-your-first-app",
           },
           {
             from: "/getting-started/improve-scan-coverage",
-            to: "/testing/getting-started/improve-scan-coverage",
+            to: "/api-dast/getting-started/improve-scan-coverage",
           },
           {
             from: "/getting-started/scan-scheduling",
-            to: "/testing/getting-started/scan-scheduling",
+            to: "/api-dast/getting-started/scan-scheduling",
           },
           { from: "/integrations/email", to: "/platform/workflows/email" },
           { from: "/integrations/slack", to: "/platform/workflows/slack" },
@@ -65,84 +705,90 @@ const config = {
           },
           {
             from: "/custom-rules/Seeders",
-            to: "/testing/custom-rules/Seeders",
+            to: "/api-dast/custom-rules/Seeders",
           },
-          { from: "/custom-rules/", to: "/testing/custom-rules/" },
+          { from: "/custom-rules/", to: "/api-dast/custom-rules/" },
           {
             from: "/custom-rules/Mutators",
-            to: "/testing/custom-rules/Mutators",
+            to: "/api-dast/custom-rules/Mutators",
           },
           {
             from: "/custom-rules/Transformations",
-            to: "/testing/custom-rules/Transformations",
+            to: "/api-dast/custom-rules/Transformations",
           },
           {
             from: "/custom-rules/Alerting",
-            to: "/testing/custom-rules/Alerting",
+            to: "/api-dast/custom-rules/Alerting",
           },
           {
             from: "/custom-rules/Reference",
-            to: "/testing/custom-rules/Reference",
+            to: "/api-dast/custom-rules/Reference",
           },
           {
             from: "/custom-rules/Detectors",
-            to: "/testing/custom-rules/Detectors",
+            to: "/api-dast/custom-rules/Detectors",
           },
           {
             from: "/authentication/reference/",
-            to: "/testing/authentication/reference/",
+            to: "/api-dast/authentication/reference/",
           },
           {
             from: "/authentication/advanced/",
-            to: "/testing/authentication/advanced/",
+            to: "/api-dast/authentication/advanced/",
           },
-          { from: "/authentication/", to: "/testing/authentication/" },
+          { from: "/authentication/", to: "/api-dast/authentication/" },
           {
             from: "/authentication/presets/awscognito",
-            to: "/testing/authentication/presets/awscognito",
+            to: "/api-dast/authentication/presets/awscognito",
           },
           {
             from: "/authentication/presets/http",
-            to: "/testing/authentication/presets/http",
+            to: "/api-dast/authentication/presets/http",
           },
           {
             from: "/authentication/presets/oauthclientcredentials",
-            to: "/testing/authentication/presets/oauthclientcredentials",
+            to: "/api-dast/authentication/presets/oauthclientcredentials",
           },
           {
             from: "/authentication/presets/basic",
-            to: "/testing/authentication/presets/basic",
+            to: "/api-dast/authentication/presets/basic",
           },
           {
             from: "/authentication/presets/webdriver",
-            to: "/testing/authentication/presets/webdriver",
+            to: "/api-dast/authentication/presets/webdriver",
           },
           {
             from: "/authentication/presets/headers",
-            to: "/testing/authentication/presets/headers",
+            to: "/api-dast/authentication/presets/headers",
           },
           {
             from: "/authentication/presets/oauthuserpassword",
-            to: "/testing/authentication/presets/oauthuserpassword",
+            to: "/api-dast/authentication/presets/oauthuserpassword",
           },
           {
             from: "/authentication/presets/curl",
-            to: "/testing/authentication/presets/curl",
+            to: "/api-dast/authentication/presets/curl",
           },
           {
             from: "/authentication/presets/digest",
-            to: "/testing/authentication/presets/digest",
+            to: "/api-dast/authentication/presets/digest",
           },
           {
             from: "/authentication/presets/graphql",
-            to: "/testing/authentication/presets/graphql",
+            to: "/api-dast/authentication/presets/graphql",
           },
           {
             from: "/authentication/presets/curlsequence",
-            to: "/testing/authentication/presets/curlsequence",
+            to: "/api-dast/authentication/presets/curlsequence",
           },
-          { from: "/enterprise/repeater", to: "/platform/enterprise/private-location" },
-          { from: "/platform/enterprise/repeater", to: "/platform/enterprise/private-location" },
+          {
+            from: "/enterprise/repeater",
+            to: "/platform/enterprise/private-location",
+          },
+          {
+            from: "/platform/enterprise/repeater",
+            to: "/platform/enterprise/private-location",
+          },
           {
             from: "/enterprise/deployment-options",
             to: "/platform/enterprise/deployment-options",
@@ -163,433 +809,436 @@ const config = {
           },
           {
             from: "/vulnerabilities/configuration/directory_listing",
-            to: "/testing/vulnerabilities/configuration/directory_listing",
+            to: "/api-dast/vulnerabilities/configuration/directory_listing",
           },
           {
             from: "/vulnerabilities/configuration/error_type_inconsistency",
-            to: "/testing/vulnerabilities/configuration/error_type_inconsistency",
+            to: "/api-dast/vulnerabilities/configuration/error_type_inconsistency",
           },
           {
             from: "/vulnerabilities/configuration/unhandled_endpoint",
-            to: "/testing/vulnerabilities/configuration/unhandled_endpoint",
+            to: "/api-dast/vulnerabilities/configuration/unhandled_endpoint",
           },
           {
             from: "/vulnerabilities/configuration/ide_enabled",
-            to: "/testing/vulnerabilities/configuration/ide_enabled",
+            to: "/api-dast/vulnerabilities/configuration/ide_enabled",
           },
           {
             from: "/vulnerabilities/configuration/waf_bypass",
-            to: "/testing/vulnerabilities/configuration/waf_bypass",
+            to: "/api-dast/vulnerabilities/configuration/waf_bypass",
           },
           {
             from: "/vulnerabilities/configuration/graphql_apq",
-            to: "/testing/vulnerabilities/configuration/graphql_apq",
+            to: "/api-dast/vulnerabilities/configuration/graphql_apq",
           },
           {
             from: "/vulnerabilities/configuration/proxy_disclosure",
-            to: "/testing/vulnerabilities/configuration/proxy_disclosure",
+            to: "/api-dast/vulnerabilities/configuration/proxy_disclosure",
           },
-          { from: "/vulnerabilities/", to: "/testing/vulnerabilities/" },
+          { from: "/vulnerabilities/", to: "/api-dast/vulnerabilities/" },
           {
             from: "/vulnerabilities/protocol/heartbleed",
-            to: "/testing/vulnerabilities/protocol/heartbleed",
+            to: "/api-dast/vulnerabilities/protocol/heartbleed",
           },
           {
             from: "/vulnerabilities/protocol/header_access_control_allow_origin",
-            to: "/testing/vulnerabilities/protocol/header_access_control_allow_origin",
+            to: "/api-dast/vulnerabilities/protocol/header_access_control_allow_origin",
           },
           {
             from: "/vulnerabilities/protocol/header_strict_transport_security",
-            to: "/testing/vulnerabilities/protocol/header_strict_transport_security",
+            to: "/api-dast/vulnerabilities/protocol/header_strict_transport_security",
           },
           {
             from: "/vulnerabilities/protocol/ssl_certificate",
-            to: "/testing/vulnerabilities/protocol/ssl_certificate",
+            to: "/api-dast/vulnerabilities/protocol/ssl_certificate",
           },
           {
             from: "/vulnerabilities/protocol/header_content_security_policy",
-            to: "/testing/vulnerabilities/protocol/header_content_security_policy",
+            to: "/api-dast/vulnerabilities/protocol/header_content_security_policy",
           },
           {
             from: "/vulnerabilities/protocol/header_x_frame_options",
-            to: "/testing/vulnerabilities/protocol/header_x_frame_options",
+            to: "/api-dast/vulnerabilities/protocol/header_x_frame_options",
           },
           {
             from: "/vulnerabilities/protocol/headers",
-            to: "/testing/vulnerabilities/protocol/headers",
+            to: "/api-dast/vulnerabilities/protocol/headers",
           },
           {
             from: "/vulnerabilities/protocol/header_set_cookie",
-            to: "/testing/vulnerabilities/protocol/header_set_cookie",
+            to: "/api-dast/vulnerabilities/protocol/header_set_cookie",
           },
           {
             from: "/vulnerabilities/protocol/cors",
-            to: "/testing/vulnerabilities/protocol/cors",
+            to: "/api-dast/vulnerabilities/protocol/cors",
           },
           {
             from: "/vulnerabilities/protocol/header_leak",
-            to: "/testing/vulnerabilities/protocol/header_leak",
+            to: "/api-dast/vulnerabilities/protocol/header_leak",
           },
           {
             from: "/vulnerabilities/protocol/header_x_content_type_options",
-            to: "/testing/vulnerabilities/protocol/header_x_content_type_options",
+            to: "/api-dast/vulnerabilities/protocol/header_x_content_type_options",
           },
           {
             from: "/vulnerabilities/protocol/graphql_content_type",
-            to: "/testing/vulnerabilities/protocol/graphql_content_type",
+            to: "/api-dast/vulnerabilities/protocol/graphql_content_type",
           },
           {
             from: "/vulnerabilities/protocol/server_error",
-            to: "/testing/vulnerabilities/protocol/server_error",
+            to: "/api-dast/vulnerabilities/protocol/server_error",
           },
           {
             from: "/vulnerabilities/protocol/header_content_type",
-            to: "/testing/vulnerabilities/protocol/header_content_type",
+            to: "/api-dast/vulnerabilities/protocol/header_content_type",
           },
           {
             from: "/vulnerabilities/protocol/ssl",
-            to: "/testing/vulnerabilities/protocol/ssl",
+            to: "/api-dast/vulnerabilities/protocol/ssl",
           },
           {
             from: "/vulnerabilities/protocol/header_cache_control",
-            to: "/testing/vulnerabilities/protocol/header_cache_control",
+            to: "/api-dast/vulnerabilities/protocol/header_cache_control",
           },
           {
             from: "/vulnerabilities/request_forgery/csrf_post_based",
-            to: "/testing/vulnerabilities/request_forgery/csrf_post_based",
+            to: "/api-dast/vulnerabilities/request_forgery/csrf_post_based",
           },
           {
             from: "/vulnerabilities/request_forgery/ssrf_header",
-            to: "/testing/vulnerabilities/request_forgery/ssrf_header",
+            to: "/api-dast/vulnerabilities/request_forgery/ssrf_header",
           },
           {
             from: "/vulnerabilities/request_forgery/open_redirect",
-            to: "/testing/vulnerabilities/request_forgery/open_redirect",
+            to: "/api-dast/vulnerabilities/request_forgery/open_redirect",
           },
           {
             from: "/vulnerabilities/request_forgery/ssrf",
-            to: "/testing/vulnerabilities/request_forgery/ssrf",
+            to: "/api-dast/vulnerabilities/request_forgery/ssrf",
           },
           {
             from: "/vulnerabilities/request_forgery/ssrf_partial",
-            to: "/testing/vulnerabilities/request_forgery/ssrf_partial",
+            to: "/api-dast/vulnerabilities/request_forgery/ssrf_partial",
           },
           {
             from: "/vulnerabilities/request_forgery/csrf_get_based",
-            to: "/testing/vulnerabilities/request_forgery/csrf_get_based",
+            to: "/api-dast/vulnerabilities/request_forgery/csrf_get_based",
           },
           {
             from: "/vulnerabilities/resource_limitation/graphql_batch_limit",
-            to: "/testing/vulnerabilities/resource_limitation/graphql_batch_limit",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_batch_limit",
           },
           {
             from: "/vulnerabilities/resource_limitation/response_size",
-            to: "/testing/vulnerabilities/resource_limitation/response_size",
+            to: "/api-dast/vulnerabilities/resource_limitation/response_size",
           },
           {
             from: "/vulnerabilities/resource_limitation/graphql_depth_limit",
-            to: "/testing/vulnerabilities/resource_limitation/graphql_depth_limit",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_depth_limit",
           },
           {
             from: "/vulnerabilities/resource_limitation/graphql_alias_limit",
-            to: "/testing/vulnerabilities/resource_limitation/graphql_alias_limit",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_alias_limit",
           },
           {
             from: "/vulnerabilities/resource_limitation/graphql_directive_overload",
-            to: "/testing/vulnerabilities/resource_limitation/graphql_directive_overload",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_directive_overload",
           },
           {
             from: "/vulnerabilities/resource_limitation/timeout",
-            to: "/testing/vulnerabilities/resource_limitation/timeout",
+            to: "/api-dast/vulnerabilities/resource_limitation/timeout",
           },
           {
             from: "/vulnerabilities/resource_limitation/graphql_width_limit",
-            to: "/testing/vulnerabilities/resource_limitation/graphql_width_limit",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_width_limit",
           },
           {
             from: "/vulnerabilities/resource_limitation/graphql_recursive_fragment",
-            to: "/testing/vulnerabilities/resource_limitation/graphql_recursive_fragment",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_recursive_fragment",
           },
           {
             from: "/vulnerabilities/resource_limitation/graphql_field_limit",
-            to: "/testing/vulnerabilities/resource_limitation/graphql_field_limit",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_field_limit",
           },
           {
             from: "/vulnerabilities/resource_limitation/large_json_input",
-            to: "/testing/vulnerabilities/resource_limitation/large_json_input",
+            to: "/api-dast/vulnerabilities/resource_limitation/large_json_input",
           },
           {
             from: "/vulnerabilities/resource_limitation/unreachable_server",
-            to: "/testing/vulnerabilities/resource_limitation/unreachable_server",
+            to: "/api-dast/vulnerabilities/resource_limitation/unreachable_server",
           },
           {
             from: "/vulnerabilities/resource_limitation/character_limit",
-            to: "/testing/vulnerabilities/resource_limitation/character_limit",
+            to: "/api-dast/vulnerabilities/resource_limitation/character_limit",
           },
           {
             from: "/vulnerabilities/resource_limitation/cyclic_query",
-            to: "/testing/vulnerabilities/resource_limitation/cyclic_query",
+            to: "/api-dast/vulnerabilities/resource_limitation/cyclic_query",
           },
           {
             from: "/vulnerabilities/resource_limitation/graphql_circular_introspection",
-            to: "/testing/vulnerabilities/resource_limitation/graphql_circular_introspection",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_circular_introspection",
           },
           {
             from: "/vulnerabilities/resource_limitation/pagination_missing",
-            to: "/testing/vulnerabilities/resource_limitation/pagination_missing",
+            to: "/api-dast/vulnerabilities/resource_limitation/pagination_missing",
           },
           {
             from: "/vulnerabilities/resource_limitation/graphql_field_duplication",
-            to: "/testing/vulnerabilities/resource_limitation/graphql_field_duplication",
+            to: "/api-dast/vulnerabilities/resource_limitation/graphql_field_duplication",
           },
           {
             from: "/vulnerabilities/schema/weak_json_typing",
-            to: "/testing/vulnerabilities/schema/weak_json_typing",
+            to: "/api-dast/vulnerabilities/schema/weak_json_typing",
           },
           {
             from: "/vulnerabilities/schema/zombie_object",
-            to: "/testing/vulnerabilities/schema/zombie_object",
+            to: "/api-dast/vulnerabilities/schema/zombie_object",
           },
           {
             from: "/vulnerabilities/schema/duplicated_object",
-            to: "/testing/vulnerabilities/schema/duplicated_object",
+            to: "/api-dast/vulnerabilities/schema/duplicated_object",
           },
           {
             from: "/vulnerabilities/schema/response_type_missmatch",
-            to: "/testing/vulnerabilities/schema/response_type_missmatch",
+            to: "/api-dast/vulnerabilities/schema/response_type_missmatch",
           },
           {
             from: "/vulnerabilities/schema/invalid_refs",
-            to: "/testing/vulnerabilities/schema/invalid_refs",
+            to: "/api-dast/vulnerabilities/schema/invalid_refs",
           },
           {
             from: "/vulnerabilities/schema/invalid_allof",
-            to: "/testing/vulnerabilities/schema/invalid_allof",
+            to: "/api-dast/vulnerabilities/schema/invalid_allof",
           },
           {
             from: "/vulnerabilities/schema/positive_integer_validation",
-            to: "/testing/vulnerabilities/schema/positive_integer_validation",
+            to: "/api-dast/vulnerabilities/schema/positive_integer_validation",
           },
           {
             from: "/vulnerabilities/schema/swagger_rules",
-            to: "/testing/vulnerabilities/schema/swagger_rules",
+            to: "/api-dast/vulnerabilities/schema/swagger_rules",
           },
           {
             from: "/vulnerabilities/schema/undefined_object",
-            to: "/testing/vulnerabilities/schema/undefined_object",
+            to: "/api-dast/vulnerabilities/schema/undefined_object",
           },
           {
             from: "/vulnerabilities/schema/graphql_response_format",
-            to: "/testing/vulnerabilities/schema/graphql_response_format",
+            to: "/api-dast/vulnerabilities/schema/graphql_response_format",
           },
           {
             from: "/vulnerabilities/schema/self_compliant_spec",
-            to: "/testing/vulnerabilities/schema/self_compliant_spec",
+            to: "/api-dast/vulnerabilities/schema/self_compliant_spec",
           },
           {
             from: "/vulnerabilities/schema/invalid_parameters_in_path",
-            to: "/testing/vulnerabilities/schema/invalid_parameters_in_path",
+            to: "/api-dast/vulnerabilities/schema/invalid_parameters_in_path",
           },
           {
             from: "/vulnerabilities/schema/typing_misconfiguration",
-            to: "/testing/vulnerabilities/schema/typing_misconfiguration",
+            to: "/api-dast/vulnerabilities/schema/typing_misconfiguration",
           },
           {
             from: "/vulnerabilities/injection/improper_input",
-            to: "/testing/vulnerabilities/injection/improper_input",
+            to: "/api-dast/vulnerabilities/injection/improper_input",
           },
           {
             from: "/vulnerabilities/injection/jwt_alg_none",
-            to: "/testing/vulnerabilities/injection/jwt_alg_none",
+            to: "/api-dast/vulnerabilities/injection/jwt_alg_none",
           },
           {
             from: "/vulnerabilities/injection/ssti",
-            to: "/testing/vulnerabilities/injection/ssti",
+            to: "/api-dast/vulnerabilities/injection/ssti",
           },
           {
             from: "/vulnerabilities/injection/sql",
-            to: "/testing/vulnerabilities/injection/sql",
+            to: "/api-dast/vulnerabilities/injection/sql",
           },
           {
             from: "/vulnerabilities/injection/jwt_alg_confusion",
-            to: "/testing/vulnerabilities/injection/jwt_alg_confusion",
+            to: "/api-dast/vulnerabilities/injection/jwt_alg_confusion",
           },
           {
             from: "/vulnerabilities/injection/directory_traversal",
-            to: "/testing/vulnerabilities/injection/directory_traversal",
+            to: "/api-dast/vulnerabilities/injection/directory_traversal",
           },
           {
             from: "/vulnerabilities/injection/file_inclusion",
-            to: "/testing/vulnerabilities/injection/file_inclusion",
+            to: "/api-dast/vulnerabilities/injection/file_inclusion",
           },
           {
             from: "/vulnerabilities/injection/nosql",
-            to: "/testing/vulnerabilities/injection/nosql",
+            to: "/api-dast/vulnerabilities/injection/nosql",
           },
           {
             from: "/vulnerabilities/injection/jwt_sign_check",
-            to: "/testing/vulnerabilities/injection/jwt_sign_check",
+            to: "/api-dast/vulnerabilities/injection/jwt_sign_check",
           },
           {
             from: "/vulnerabilities/injection/mass_assignment",
-            to: "/testing/vulnerabilities/injection/mass_assignment",
+            to: "/api-dast/vulnerabilities/injection/mass_assignment",
           },
           {
             from: "/vulnerabilities/injection/improper_input_stored",
-            to: "/testing/vulnerabilities/injection/improper_input_stored",
+            to: "/api-dast/vulnerabilities/injection/improper_input_stored",
           },
           {
             from: "/vulnerabilities/injection/command",
-            to: "/testing/vulnerabilities/injection/command",
+            to: "/api-dast/vulnerabilities/injection/command",
           },
           {
             from: "/vulnerabilities/injection/crlf",
-            to: "/testing/vulnerabilities/injection/crlf",
+            to: "/api-dast/vulnerabilities/injection/crlf",
           },
           {
             from: "/vulnerabilities/injection/xxe",
-            to: "/testing/vulnerabilities/injection/xxe",
+            to: "/api-dast/vulnerabilities/injection/xxe",
           },
           {
             from: "/vulnerabilities/injection/nosql_stored",
-            to: "/testing/vulnerabilities/injection/nosql_stored",
+            to: "/api-dast/vulnerabilities/injection/nosql_stored",
           },
           {
             from: "/vulnerabilities/information_disclosure/exposed_settings.php",
-            to: "/testing/vulnerabilities/information_disclosure/exposed_settings.php",
+            to: "/api-dast/vulnerabilities/information_disclosure/exposed_settings.php",
           },
           {
             from: "/vulnerabilities/information_disclosure/debug_mode",
-            to: "/testing/vulnerabilities/information_disclosure/debug_mode",
+            to: "/api-dast/vulnerabilities/information_disclosure/debug_mode",
           },
           {
             from: "/vulnerabilities/information_disclosure/alibaba_canal_leak",
-            to: "/testing/vulnerabilities/information_disclosure/alibaba_canal_leak",
+            to: "/api-dast/vulnerabilities/information_disclosure/alibaba_canal_leak",
           },
           {
             from: "/vulnerabilities/information_disclosure/appveyor_config_exposure",
-            to: "/testing/vulnerabilities/information_disclosure/appveyor_config_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/appveyor_config_exposure",
           },
           {
             from: "/vulnerabilities/information_disclosure/file_disclosure",
-            to: "/testing/vulnerabilities/information_disclosure/file_disclosure",
+            to: "/api-dast/vulnerabilities/information_disclosure/file_disclosure",
           },
           {
             from: "/vulnerabilities/information_disclosure/introspection_enabled",
-            to: "/testing/vulnerabilities/information_disclosure/introspection_enabled",
+            to: "/api-dast/vulnerabilities/information_disclosure/introspection_enabled",
           },
           {
             from: "/vulnerabilities/information_disclosure/data_leak",
-            to: "/testing/vulnerabilities/information_disclosure/data_leak",
+            to: "/api-dast/vulnerabilities/information_disclosure/data_leak",
           },
           {
             from: "/vulnerabilities/information_disclosure/awstats_exposure",
-            to: "/testing/vulnerabilities/information_disclosure/awstats_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/awstats_exposure",
           },
           {
             from: "/vulnerabilities/information_disclosure/code",
-            to: "/testing/vulnerabilities/information_disclosure/code",
+            to: "/api-dast/vulnerabilities/information_disclosure/code",
           },
           {
             from: "/vulnerabilities/information_disclosure/ansible_config_exposure",
-            to: "/testing/vulnerabilities/information_disclosure/ansible_config_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/ansible_config_exposure",
           },
           {
             from: "/vulnerabilities/information_disclosure/aws_config_exposure",
-            to: "/testing/vulnerabilities/information_disclosure/aws_config_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/aws_config_exposure",
           },
           {
             from: "/vulnerabilities/information_disclosure/potential_cve",
-            to: "/testing/vulnerabilities/information_disclosure/potential_cve",
+            to: "/api-dast/vulnerabilities/information_disclosure/potential_cve",
           },
           {
             from: "/vulnerabilities/information_disclosure/exposed_mysql_config",
-            to: "/testing/vulnerabilities/information_disclosure/exposed_mysql_config",
+            to: "/api-dast/vulnerabilities/information_disclosure/exposed_mysql_config",
           },
           {
             from: "/vulnerabilities/information_disclosure/springboot_actuator_env",
-            to: "/testing/vulnerabilities/information_disclosure/springboot_actuator_env",
+            to: "/api-dast/vulnerabilities/information_disclosure/springboot_actuator_env",
           },
           {
             from: "/vulnerabilities/information_disclosure/graphql_field_suggestion",
-            to: "/testing/vulnerabilities/information_disclosure/graphql_field_suggestion",
+            to: "/api-dast/vulnerabilities/information_disclosure/graphql_field_suggestion",
           },
           {
             from: "/vulnerabilities/information_disclosure/airflow_config_exposure",
-            to: "/testing/vulnerabilities/information_disclosure/airflow_config_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/airflow_config_exposure",
           },
           {
             from: "/vulnerabilities/information_disclosure/stacktrace",
-            to: "/testing/vulnerabilities/information_disclosure/stacktrace",
+            to: "/api-dast/vulnerabilities/information_disclosure/stacktrace",
           },
           {
             from: "/vulnerabilities/information_disclosure/appspec_exposure",
-            to: "/testing/vulnerabilities/information_disclosure/appspec_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/appspec_exposure",
           },
           {
             from: "/vulnerabilities/information_disclosure/azure_tenant_id_exposure",
-            to: "/testing/vulnerabilities/information_disclosure/azure_tenant_id_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/azure_tenant_id_exposure",
           },
           {
             from: "/vulnerabilities/information_disclosure/aws_docker_config_exposure",
-            to: "/testing/vulnerabilities/information_disclosure/aws_docker_config_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/aws_docker_config_exposure",
           },
           {
             from: "/vulnerabilities/information_disclosure/leaking_authentication",
-            to: "/testing/vulnerabilities/information_disclosure/leaking_authentication",
+            to: "/api-dast/vulnerabilities/information_disclosure/leaking_authentication",
           },
           {
             from: "/vulnerabilities/information_disclosure/awstats_config_exposure",
-            to: "/testing/vulnerabilities/information_disclosure/awstats_config_exposure",
+            to: "/api-dast/vulnerabilities/information_disclosure/awstats_config_exposure",
           },
           {
             from: "/vulnerabilities/information_disclosure/exposed_sql_dumps",
-            to: "/testing/vulnerabilities/information_disclosure/exposed_sql_dumps",
+            to: "/api-dast/vulnerabilities/information_disclosure/exposed_sql_dumps",
           },
           {
             from: "/vulnerabilities/information_disclosure/private_ip",
-            to: "/testing/vulnerabilities/information_disclosure/private_ip",
+            to: "/api-dast/vulnerabilities/information_disclosure/private_ip",
           },
           {
             from: "/vulnerabilities/information_disclosure/software_component_leak",
-            to: "/testing/vulnerabilities/information_disclosure/software_component_leak",
+            to: "/api-dast/vulnerabilities/information_disclosure/software_component_leak",
           },
           {
             from: "/vulnerabilities/access_control/private_fields",
-            to: "/testing/vulnerabilities/access_control/private_fields",
+            to: "/api-dast/vulnerabilities/access_control/private_fields",
           },
           {
             from: "/vulnerabilities/access_control/public_state_altering_operation",
-            to: "/testing/vulnerabilities/access_control/public_state_altering_operation",
+            to: "/api-dast/vulnerabilities/access_control/public_state_altering_operation",
           },
           {
             from: "/vulnerabilities/access_control/bola",
-            to: "/testing/vulnerabilities/access_control/bola",
+            to: "/api-dast/vulnerabilities/access_control/bola",
           },
           {
             from: "/vulnerabilities/access_control/auth_bypass",
-            to: "/testing/vulnerabilities/access_control/auth_bypass",
+            to: "/api-dast/vulnerabilities/access_control/auth_bypass",
           },
           {
             from: "/vulnerabilities/access_control/private_data",
-            to: "/testing/vulnerabilities/access_control/private_data",
+            to: "/api-dast/vulnerabilities/access_control/private_data",
           },
           {
             from: "/vulnerabilities/access_control/tenant_isolation",
-            to: "/testing/vulnerabilities/access_control/tenant_isolation",
+            to: "/api-dast/vulnerabilities/access_control/tenant_isolation",
           },
           {
             from: "/vulnerabilities/access_control/sensitive_endpoint_bruteforce",
-            to: "/testing/vulnerabilities/access_control/sensitive_endpoint_bruteforce",
+            to: "/api-dast/vulnerabilities/access_control/sensitive_endpoint_bruteforce",
           },
           {
             from: "/vulnerabilities/custom/security_checks",
-            to: "/testing/vulnerabilities/custom/security_checks",
+            to: "/api-dast/vulnerabilities/custom/security_checks",
           },
-          { from: "/ci-cd/references", to: "/testing/ci-cd/references/gitlab" },
+          {
+            from: "/ci-cd/references",
+            to: "/api-dast/ci-cd/references/gitlab",
+          },
           {
             from: "/ci-cd/references/gitlab",
-            to: "/testing/ci-cd/references/gitlab",
+            to: "/api-dast/ci-cd/references/gitlab",
           },
           {
             from: "/ci-cd/references/api",
@@ -597,81 +1246,85 @@ const config = {
           },
           {
             from: "/ci-cd/references/circleci",
-            to: "/testing/ci-cd/references/circleci",
+            to: "/api-dast/ci-cd/references/circleci",
           },
           {
             from: "/ci-cd/references/cli",
-            to: "/testing/ci-cd/references/cli",
+            to: "/api-dast/ci-cd/references/cli",
           },
           {
             from: "/ci-cd/references/bitbucket",
-            to: "/testing/ci-cd/references/bitbucket",
+            to: "/api-dast/ci-cd/references/bitbucket",
           },
           {
             from: "/ci-cd/references/azure",
-            to: "/testing/ci-cd/references/azure",
+            to: "/api-dast/ci-cd/references/azure",
           },
           {
             from: "/ci-cd/references/jenkins",
-            to: "/testing/ci-cd/references/jenkins",
+            to: "/api-dast/ci-cd/references/jenkins",
           },
           {
             from: "/ci-cd/references/github",
-            to: "/testing/ci-cd/references/github",
+            to: "/api-dast/ci-cd/references/github",
           },
-          { from: "/ci-cd/", to: "/testing/ci-cd/" },
+          { from: "/ci-cd/", to: "/api-dast/ci-cd/" },
           {
             from: "/ci-cd/introspection-update",
-            to: "/testing/ci-cd/introspection-update",
+            to: "/api-dast/ci-cd/introspection-update",
           },
           {
             from: "/ci-cd/configuration-override",
-            to: "/testing/ci-cd/configuration-override",
+            to: "/api-dast/ci-cd/configuration-override",
           },
-          { from: "/ci-cd/commit-sha", to: "/testing/ci-cd/commit-sha" },
+          { from: "/ci-cd/commit-sha", to: "/api-dast/ci-cd/commit-sha" },
           {
             from: "/features/sensitive-data",
-            to: "/testing/features/sensitive-data",
+            to: "/api-dast/features/sensitive-data",
           },
           {
             from: "/features/remediation",
-            to: "/testing/features/remediation",
+            to: "/api-dast/features/remediation",
           },
-          { from: "/features/", to: "/testing/features/" },
+          { from: "/features/", to: "/api-dast/features/" },
           {
             from: "/features/posture-management",
-            to: "/testing/features/posture-management",
+            to: "/api-dast/features/posture-management",
           },
-          { from: "/features/reporting", to: "/testing/features/reporting" },
-          { from: "/features/compliance", to: "/testing/features/compliance" },
+          { from: "/features/reporting", to: "/api-dast/features/reporting" },
+          { from: "/features/compliance", to: "/api-dast/features/compliance" },
           {
             from: "/advanced-usage/access_control",
-            to: "/testing/advanced-usage/access_control",
+            to: "/api-dast/advanced-usage/access_control",
           },
           {
             from: "/advanced-usage/internal-apis",
-            to: "/testing/advanced-usage/internal-apis",
+            to: "/api-dast/advanced-usage/internal-apis",
           },
-          { from: "/advanced-usage/", to: "/testing/advanced-usage/" },
+          { from: "/advanced-usage/", to: "/api-dast/advanced-usage/" },
           {
             from: "/advanced-usage/data-types-reference",
             to: "/platform/reference/data-types-reference",
           },
           {
             from: "/advanced-usage/blacklist",
-            to: "/testing/advanced-usage/blacklist",
+            to: "/api-dast/advanced-usage/blacklist",
           },
           {
             from: "/advanced-usage/rate-limiting",
-            to: "/testing/advanced-usage/rate-limiting",
+            to: "/api-dast/advanced-usage/rate-limiting",
           },
           {
             from: "/advanced-usage/parameters-reference",
-            to: "/testing/advanced-usage/parameters-reference",
+            to: "/api-dast/advanced-usage/parameters-reference",
           },
           {
             from: "/advanced-usage/custom-payloads",
-            to: "/testing/advanced-usage/custom-payloads",
+            to: "/api-dast/advanced-usage/custom-payloads",
+          },
+          {
+            from: "/testing/features/sensitive-data",
+            to: "/api-dast/features/sensitive-data",
           },
         ],
       },
@@ -709,7 +1362,7 @@ const config = {
           src: "img/logo.svg",
           alt: "Escape logo",
           height: "300px",
-          },
+        },
         items: [
           {
             type: "doc",
@@ -720,8 +1373,14 @@ const config = {
           {
             type: "doc",
             position: "left",
-            docId: "testing/getting-started/index",
-            label: "Testing",
+            docId: "api-dast/getting-started/index",
+            label: "API DAST",
+          },
+          {
+            type: "doc",
+            position: "left",
+            docId: "frontend-dast/getting-started/index",
+            label: "Frontend DAST",
           },
           {
             type: "doc",

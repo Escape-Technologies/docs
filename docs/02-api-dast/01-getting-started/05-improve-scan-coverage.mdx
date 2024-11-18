@@ -1,0 +1,110 @@
+---
+title: Improve Scan Coverage
+---
+
+# 🎯 Improve Scan Coverage
+
+The goals of coverage are:
+
+- **Transparency**: Escape gives full visibility on scans, logging each request executed during the scan.
+- **Actionability**: Escape provides step-by-step recommendations to configure scans properly and benefit from Escape’s full testing engine capabilities.
+
+## Reading the Logs Status
+
+In the Scan Logs, each endpoint (or "operation" in GraphQL) comes back with one of the following statuses:
+
+- `UNAUTHORIZED`: All requests sent to the endpoint came back with an authentication or authorization error message.
+- `RATE LIMITED`: All requests sent to the endpoint came back with a rate limit error message.
+- `SERVER ERROR`: All requests sent to the endpoint came back with a server error message.
+- `REDIRECTED`: All requests sent to the endpoint came back with a redirection error message.
+- `NOT FOUND`: All requests sent to the endpoint came back with a "not found" error message, although it is defined in the schema provided for the scan.
+- `OK`: At least one request sent to the endpoint does not fall into one of the previous categories.
+- `BLACKLISTED`: The endpoint has been blacklisted in the configuration. No request has been sent to it.
+- `SKIPPED`: The endpoint is not blacklisted, but still no request has been sent to the endpoint.
+
+:::success Error Message Classification
+The error message is not based on the HTTP Status Code only. For example, this would not work on GraphQL applications that are supposed to return a `200` Error Code all the time. This is why Escape AI classifies all application responses into one of the Error Messages defined above.
+:::
+
+:::info Why Are Some of My Endpoints `SKIPPED`?
+The two most common reasons are:
+
+1. The server stopped responding during the scan, and therefore the scan was stopped early. This should also raise an issue in the scan results.
+2. The selected scan mode focuses on speed instead of exhaustiveness. Changing the scan mode in the settings can bring better results.
+
+:::
+
+:::info About the `BLACKLISTED` Operations
+
+1. Production (Read-only) scans automatically blacklist all data-mutation endpoints, depending on the API kind:
+
+   - REST: `POST`, `PUT`, `PATCH`, `DELETE` methods
+   - GraphQL: `mutations` operations
+
+2. A default blacklist is generated when creating your application, mainly to prevent the authentication session from being destroyed during the scan. It can be edited in the Advanced Settings.
+
+:::
+
+## How Is Coverage Computed?
+
+Coverage is calculated using the following formula:
+
+`Coverage = [Covered Endpoints] / [Total Number of Endpoints]`, where:
+
+- `Covered Endpoints = OK + SERVER ERROR`
+- `Total Number of Endpoints = All endpoints except BLACKLISTED and NOT FOUND`
+
+Example:
+
+If you have a GraphQL API with 5 queries and 5 mutations, the total number of endpoints is 10.
+If two of the queries are `UNAUTHORIZED` and the rest is `OK`.
+
+- With a read and write scan, the coverage would be `8/10 = 80%`.
+- With a read-only scan, the coverage would be `3/5 = 60%` (in this scan the mutations will be blacklisted).
+
+## How to Improve Your Coverage?
+
+After your first scan, you can go in the `Logs` pannel to understand what is your current application coverage.
+
+Depending on the response of your API, you have multiples actions that can greatly improve your coverage.
+
+### Set Scan Type to Staging (Read & Write)
+
+A Product (Read-Only) scan keeps your application safe.
+It does not perform thorough security tests that could damage your database or infrastructure.
+In particular, it blacklists all data-mutating endpoints.
+
+### Provide Enough Authorizations to Cover All Endpoints
+
+If you see a lot of `UNAUTHORIZED` errors, it can be a sign that you need to configure authentication.
+Refer to the [Authentication](/api-dast/authentication/) section for more information.
+
+If you already configured your authentication, make sure the token is still valid, for example by copying the `curl` command and trying to run it in your terminal.
+
+### Improve the Quality of Your Schema
+
+Make sure to provide an up-to-date schema that respects the most recent standards.
+If you provide escape an old schema, we might try to access endpoints that do not exist anymore.
+They will count in the `[Total Number of Endpoints]` part of the coverage formula and so reducing the coverage.
+
+### Fix Redirection Errors Using Private Locations
+
+If you see a lot of redirection errors, it can be a sign that your endpoint or your schema is not perfectly configured.
+
+For security reasons, Escape only follows redirection using Private Locations.
+
+For example if you see a redirection for the `/user` route to `/user/`, you may want to update your schema to reflect this change.
+
+### Ensure Your Server Remains Reachable During the Scan
+
+The scan is intense and attempts complex attack scenarios.
+In some cases, this will make the server unreachable for a few dozen seconds, causing the scan to stop early.
+
+By looking at the infered status code over time or your internal monitoring, you can see if the server has been unreachable during the scan.
+Making your application more resilient or blacklisting the problematic endpoints can help.
+
+### Make Sure the Scan Is Not Rate Limited
+
+If your application (or a firewall in front of it) implements rate limiting, you may want to relate that in the scan configuration.
+
+Scans can be slowed down using [rate-limiting configuration](/api-dast/advanced-usage/rate-limiting), though it may impact the scan duration.
