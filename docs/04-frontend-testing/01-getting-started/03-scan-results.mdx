@@ -15,11 +15,39 @@ This feature is currently in early alpha and is not yet available to all users. 
 
 Once the scan is over, you are automatically redirected to the scan results page, where you can easily find the following:
 
-- Common vulnerabilities and their remediations
+- Common vulnerabilities or issues and their remediations
 - Secret leaks
 - Performance issues
 - Exports (PDF, Postman)
 
 You can also configure the application from this page or start a new scan to verify if vulnerabilities are fixed correctly.
 
+
+The main pages for Frontend scans are:
+- Issues
+- Visited Pages
+
+
+## Issues
+
+This page lists all the issues found during the scan, with a brief description and a link to the remediation page.
+It is very similar to the API scan issues page, but with a focus on frontend vulnerabilities.
+
+
+You also can open a sidepanel to view more information regarding each issue.
+We include a link to the Trace Viewer which will show you the exact steps that led to the issue being found.
+
+The trace format is based on a Playwright trace, which includes screenshots and elements crawled during the scan so you can debug in depth.
+
+<Image img={require('./img/frontend-issues.png')} />
+
+## Visited Pages
+
+The Visited Pages is also an important part of your scan results.
+Contrary to API Scans, the scanner does not have a predefined list of endpoints, so it's scanning is based on a crawling system, and a security checks engine.
+This way you can validate the pages that were visited and the issues found on each page.
+
 <Image img={require('./img/scan-results.png')} />
+
+
+

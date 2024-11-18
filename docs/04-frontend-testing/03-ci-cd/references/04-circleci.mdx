@@ -1,0 +1,136 @@
+---
+title: CircleCI
+description: Use Escape on CircleCI
+---
+
+import RequiredTag from "@site/src/components/RequiredTag";
+import TypeTag from "@site/src/components/TypeTag";
+
+## Basic example
+
+Here's how you can integrate Escape into your CircleCI pipeline using a `.circleci/config.yml` configuration:
+
+```yaml
+version: 2.1
+
+jobs:
+  deploy: 
+    docker:
+      - image: node:alpine
+    steps:
+      - checkout
+      # Your deployment steps here
+
+  escape_scan:
+    docker:
+      - image: node:alpine
+    steps:
+      - checkout
+      - run:
+          name: Install Escape CLI
+          command: |
+            npm install -g @escape.tech/action
+            npm show @escape.tech/action version
+      - run:
+          name: Run Escape Scan
+          command: escape-action
+      environment:
+        ESCAPE_APPLICATION_ID: $ESCAPE_APPLICATION_ID
+        ESCAPE_API_KEY: $ESCAPE_API_KEY
+
+workflows:
+  version: 2
+  deploy_and_scan:
+    jobs:
+      - deploy
+      - escape_scan:
+          requires:
+            - deploy
+          filters:
+            branches:
+              only: staging
+
+```
+
+## Failure behavior
+
+By default, Escape cli will fail if any High issues are flagged, and will exit with an error code 1.
+
+## Available variables
+
+### `ESCAPE_APPLICATION_ID` <TypeTag type="string"/> <RequiredTag/>
+
+The id of the application on Escape that will be scanned continuously.  
+You can find it in your [Escape application settings](https://app.escape.tech).
+
+### `ESCAPE_API_KEY` <TypeTag type="string"/> <RequiredTag/>
+
+Your API key on the Escape platform.  
+You can find it in your [Escape settings](https://app.escape.tech/user/profile/).
+
+### `SCHEMA_URL` <TypeTag type="string"/>
+
+The URL to your API schema, that you want to upload to the specific application `ESCAPE_APPLICATION_ID`
+
+### `SCHEMA_FILE` <TypeTag type="string"/>
+
+The filepath to your API schema, that you want to upload to the specific application `ESCAPE_APPLICATION_ID`
+
+### `FAIL_ON_SEVERITIES` <TypeTag type="string"/>
+
+A csv-delimited string that should contain either of these severities to define a failure of the cli (exit code 1):
+
+- HIGH
+- MEDIUM
+- LOW
+- INFO
+
+For example, `export FAIL_ON_SEVERITIES=HIGH,MEDIUM` will make the cli fail if any HIGH or MEDIUM issues are flagged.
+
+### `TIMEOUT` <TypeTag type="number"/>
+
+The timeout of the job. If set to 0, the scan will be started, but the job will not wait for it to be finished before terminating.
+
+The triggered scan will run asynchronously on Escape, and your team will be notified once it is done using your desired [notifications](/platform/workflows) settings.
+
+### `CONFIGURATION_OVERRIDE` <TypeTag type="string"/>
+
+[See the configuration override section](/api-testing/ci-cd/configuration-override).
+
+### `CONFIGURATION_OVERRIDE_PATH` <TypeTag type="string"/>
+
+[See the configuration override section](/api-testing/ci-cd/configuration-override).
+
+### `REF_NAME` <TypeTag type="string"/>
+
+[See the commit identification section](/api-testing/ci-cd/commit-sha).
+
+### `COMMIT_HASH` <TypeTag type="string"/>
+
+[See the commit identification section](/api-testing/ci-cd/commit-sha).
+
+### `USER_EMAIL` <TypeTag type="string"/>
+
+[See the commit identification section](/api-testing/ci-cd/commit-sha).
+
+### `INTROSPECTION_FILE` <TypeTag type="path"/>
+
+[See the introspection update section](/api-testing/ci-cd/introspection-update).
+
+## Command-line options
+
+### `--output <path>` <TypeTag type="string"/>
+
+The path to the output file that will contain the scan results.
+
+### `--r` <TypeTag type="boolean"/>
+
+Include remediations in the report. Remediations are recommended actions that can be taken to address any security vulnerabilities that are found during the scan.
+
+### `--pdf` <TypeTag type="boolean"/>
+
+Download a PDF report of the scan results.
+
+### `--zip` <TypeTag type="boolean"/>
+
+Download a exchange archive (zip file) of the scan results.
