@@ -33,6 +33,26 @@ description: All objects available
 | password | `string` | `True` | The Basic password of the user. |  |
 
 
+## <a id="BrowserExtraction"></a>BrowserExtraction
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| location | `BrowserLocation` | `True` | The location of the browser where the value should be extracted | [BrowserLocation](#BrowserLocation) |
+| origin | `string` | `True` | The origin of the local storage or session storage where the value should be extracted |  |
+| key | `string` | `True` | The key to use for the extracted value, depending on the location |  |
+| name | `string` | `True` | The name of the variable to store the extracted value into |  |
+
+
+## <a id="BrowserInjection"></a>BrowserInjection
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| location | `BrowserLocation` | `True` | The location of the browser where the token should be injected | [BrowserLocation](#BrowserLocation) |
+| origin | `string` | `True` | The origin of the local storage or session storage where the token should be injected |  |
+| key | `string` | `True` | The key to use for the injected token. Its usage depends on the location. |  |
+| variable | `string` | `True` | The name of a variable to retrieve to create the token&#39;s value. If not provided, the token will be infered as the first successful extraction of the procedure |  |
+
+
 ## <a id="CognitoUserpassPreset"></a>CognitoUserpassPreset
 
 | Property   | Type       | Required | Description | Reference |
@@ -75,7 +95,7 @@ description: All objects available
 |------------|------------|-----|-------------|-----------|
 | tech | `Const[digest]` | `True` |  |  |
 | parameters | `DigestRequestSequence` | `True` | The parameters of the HTTP requests executed during the digest procedure.It features two HTTP requests: the first one is the one that returns the WWW-Authenticate header,and the second one is the one that uses the digest authentication. | [DigestRequestSequence](#DigestRequestSequence) |
-| extractions | `TokenExtraction` | `True` |  | [TokenExtraction](#TokenExtraction) |
+| extractions | `BrowserExtraction` | `True` |  | [BrowserExtraction](#BrowserExtraction) |
 
 
 ## <a id="DigestPreset"></a>DigestPreset
@@ -270,65 +290,55 @@ description: All objects available
 | scopes | `string` | `False` | A list of scopes to request for the user. If not specified, no scope will be requested. |  |
 
 
+## <a id="PlaywrightOperation"></a>PlaywrightOperation
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| tech | `Const[playwright]` | `True` |  |  |
+| parameters | `PlaywrightOperationParameters` | `True` | The parameters of the operation. | [PlaywrightOperationParameters](#PlaywrightOperationParameters) |
+| extractions | `BrowserExtraction` | `True` |  | [BrowserExtraction](#BrowserExtraction) |
+
+
+## <a id="PlaywrightOperationParameters"></a>PlaywrightOperationParameters
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| login_url | `string` | `True` | The url that presents the login form |  |
+| username | `string` | `True` | The username that will be used to auto login |  |
+| password | `string` | `True` | The password that will be used to auto login |  |
+| email | `string` | `True` | The email that will be used to auto login |  |
+
+
+## <a id="PlaywrightPreset"></a>PlaywrightPreset
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| type | `Const[playwright]` | `True` |  |  |
+| users | `PlaywrightUserPreset` | `True` | The list of users to generate tokens for. | [PlaywrightUserPreset](#PlaywrightUserPreset) |
+| login_url | `string` | `True` | The url that presents the login form |  |
+| extractions | `BrowserExtraction` | `False` | The token extraction configuration used to extract the tokens
+        from the HTTP response or the browser storage itself. | [BrowserExtraction](#BrowserExtraction) |
+| injections | `TokenInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
+
+
+## <a id="PlaywrightUserPreset"></a>PlaywrightUserPreset
+
+| Property   | Type       | Required | Description | Reference |
+|------------|------------|-----|-------------|-----------|
+| username | `string` | `True` | The arbitrary name that identifies the user. |  |
+| headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
+| cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
+| email | `string` | `True` | The email that will be used to auto login |  |
+| password | `string` | `True` | The password that will be used to auto login |  |
+
+
 ## <a id="Procedure"></a>Procedure
 
 | Property   | Type       | Required | Description | Reference |
 |------------|------------|-----|-------------|-----------|
 | name | `string` | `True` | The name of the procedure. It must be unique and is used to reference the procedure in users. |  |
-| operations | `DigestOperation | HTTPOperation | SeleniumOperation` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Selenium script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
+| operations | `DigestOperation | HTTPOperation | PlaywrightOperation` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Playwright autologin script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
 | injections | `TokenInjection` | `True` | The list of injections to perform at the end of the procedure. Injections are used to inject the variables extracted from the procedure into the user authentication. | [TokenInjection](#TokenInjection) |
-
-
-## <a id="SeleniumCommand"></a>SeleniumCommand
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| id | `string` | `True` |  |  |
-| command | `string` | `True` | The command of the test. |  |
-| target | `string` | `True` | The target of the test. |  |
-| targets | `string` | `False` | The targets of the test. |  |
-| value | `string` | `False` | The value of the test. |  |
-
-
-## <a id="SeleniumOperation"></a>SeleniumOperation
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| tech | `Const[selenium]` | `True` |  |  |
-| parameters | `SeleniumOperationParameters` | `True` | The parameters of the Selenium operation. | [SeleniumOperationParameters](#SeleniumOperationParameters) |
-| extractions | `TokenExtraction` | `True` |  | [TokenExtraction](#TokenExtraction) |
-
-
-## <a id="SeleniumOperationParameters"></a>SeleniumOperationParameters
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| project | `SeleniumProject` | `True` | The Selenium project used to run the script. It is the one that contains the tests and commands to run. The project script can be generated using the Selenium IDE. See [selenium.dev](https://www.selenium.dev/selenium-ide/docs/en/introduction/getting-started/) | [SeleniumProject](#SeleniumProject) |
-| options | `SeleniumScriptOptions` | `True` | The options of the Selenium script. | [SeleniumScriptOptions](#SeleniumScriptOptions) |
-
-
-## <a id="SeleniumProject"></a>SeleniumProject
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| tests | `SeleniumTest` | `True` | The tests of the Selenium script. | [SeleniumTest](#SeleniumTest) |
-
-
-## <a id="SeleniumScriptOptions"></a>SeleniumScriptOptions
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| wait_for_seconds | `integer` | `False` | The number of seconds to wait at various steps of the script. For example when waiting for a page to load. |  |
-| proxy | `string` | `False` | The proxy used to run the script. |  |
-
-
-## <a id="SeleniumTest"></a>SeleniumTest
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| id | `string` | `True` | The id of the test. |  |
-| name | `string` | `True` | The name of the test. |  |
-| commands | `SeleniumCommand` | `True` | The commands of the test. | [SeleniumCommand](#SeleniumCommand) |
 
 
 ## <a id="TokenExtraction"></a>TokenExtraction
@@ -372,27 +382,6 @@ description: All objects available
 | keep | `boolean` | `True` | If true, multiauth will keep the current tokens and use a merge of the refreshed authenticationand the current one. |  |
 | credentials | `Credentials` | `False` | Credentials to use to refresh the authentication. If not provided, the user credentials will be used. | [Credentials](#Credentials) |
 | variables | `AuthenticationVariable` | `False` | List of variables that will be injected at the beginning of the user&#39;srefresh procedure. If not provided, the user&#39;s variables will be used instead. | [AuthenticationVariable](#AuthenticationVariable) |
-
-
-## <a id="WebdriverPreset"></a>WebdriverPreset
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| type | `Const[webdriver]` | `True` |  |  |
-| users | `WebdriverUserPreset` | `True` | The list of users to generate tokens for. | [WebdriverUserPreset](#WebdriverUserPreset) |
-| wait_for_seconds | `integer` | `False` | The number of seconds to wait at various steps of the script. For example when waiting for a page to load. |  |
-| extractions | `TokenExtraction` | `False` | The token extraction configuration used to extract the tokens from the HTTP response. | [TokenExtraction](#TokenExtraction) |
-| injections | `TokenInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
-
-
-## <a id="WebdriverUserPreset"></a>WebdriverUserPreset
-
-| Property   | Type       | Required | Description | Reference |
-|------------|------------|-----|-------------|-----------|
-| username | `string` | `True` | The arbitrary name that identifies the user. |  |
-| headers | `Dict[string, string]` | `False` | Optional headers injected during the authentication process and in authentified requests. |  |
-| cookies | `Dict[string, string]` | `False` | Optional cookies injected during the authentication process and in authentified requests. |  |
-| project | `SeleniumProject` | `True` | The Selenium project used to run the script. It is the one that contains the tests and commands to run. The project script can be generated using the Selenium IDE. See [selenium.dev](https://www.selenium.dev/selenium-ide/docs/en/introduction/getting-started/) | [SeleniumProject](#SeleniumProject) |
 
 
 ## <a id="cURLPreset"></a>cURLPreset
@@ -471,6 +460,11 @@ description: All objects available
 - `eu-north-1`
 - `me-south-1`
 - `sa-east-1`
+
+## <a id="BrowserLocation"></a>BrowserLocation
+
+- `browser_local_storage`
+- `browser_session_storage`
 
 ## <a id="HTTPLocation"></a>HTTPLocation
 

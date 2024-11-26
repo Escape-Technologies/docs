@@ -122,7 +122,7 @@ const config = {
           },
           {
             from: "/testing/authentication/presets/webdriver",
-            to: "/api-dast/authentication/presets/webdriver",
+            to: "/api-dast/authentication/presets/playwright",
           },
           {
             from: "/testing/authentication/presets/headers",
@@ -755,7 +755,7 @@ const config = {
           },
           {
             from: "/authentication/presets/webdriver",
-            to: "/api-dast/authentication/presets/webdriver",
+            to: "/api-dast/authentication/presets/playwright",
           },
           {
             from: "/authentication/presets/headers",
