@@ -65,6 +65,8 @@ description: All objects available
 | cookies | `HTTPCookie` | `False` | A list of cookies to attach to every HTTP requests sent for this user | [HTTPCookie](#HTTPCookie) |
 | queryParameters | `HTTPQueryParameter` | `False` | A list of query parameters to attach to every HTTP requests sent for this user | [HTTPQueryParameter](#HTTPQueryParameter) |
 | body | `Any` | `False` | A body to merge with the bodies of every HTTP requests sent for this user |  |
+| local_storage | `Dict[string, Dict[string, string]]` | `False` | A dictionary of origins and key values for a local storage to attach to the user |  |
+| session_storage | `Dict[string, Dict[string, string]]` | `False` | A dictionary of origins and key values for a session storage to attach to the user |  |
 
 
 ## <a id="DigestOperation"></a>DigestOperation
