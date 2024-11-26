@@ -1,0 +1,70 @@
+---
+title: domain takeover
+---
+
+# domain takeover
+
+## Description
+
+Domain takeover occurs when an attacker gains control of a domain due to misconfigurations, expired services, or DNS vulnerabilities. This allows the attacker to redirect traffic, impersonate the domain, and potentially steal sensitive information.
+
+## Remediation
+
+1. Remove or update DNS records that point to unused or expired domains.
+2. Implement strict access controls and regularly audit domain ownership.
+3. Use domain registrar features like domain locking to prevent unauthorized changes.
+4. Regularly monitor and renew domain registrations to prevent expiration.
+5. Implement security measures such as DNSSEC to protect DNS records.
+6. Conduct regular security assessments to identify potential domain vulnerabilities.
+7. Educate staff on the importance of domain security and best practices.
+
+
+## Configuration
+
+> Identifier: `configuration/domain_takeover`
+
+
+
+### Examples
+
+
+
+#### Ignore this check
+
+```yaml
+checks:
+  configuration/domain_takeover:
+    skip: true
+```
+
+
+
+
+## Score
+
+- Escape Severity: **<span className="high-severity">HIGH</span>**
+
+### Compliance
+
+- OWASP: **[API8:2023](https://github.com/OWASP/API-Security/blob/master/editions/2023/en/0xa8-security-misconfiguration.md)**
+- OWASP LLM: **[LLM05:2023](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf)**
+- pci: **6.1**
+- gdpr: **Article-32**
+- soc2: **CC9**
+- psd2: **Article-95**
+- iso27001: **A.12.6**
+- nist: **SP800-81-2**
+- fedramp: **SC-20**
+
+### Classification
+
+- CWE: **284**
+
+
+
+
+### Score
+
+- CVSS_VECTOR: **AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H**
+- CVSS_SCORE: **3.0**
+
