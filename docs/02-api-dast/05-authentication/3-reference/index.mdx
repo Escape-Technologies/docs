@@ -95,7 +95,7 @@ description: All objects available
 |------------|------------|-----|-------------|-----------|
 | tech | `Const[digest]` | `True` |  |  |
 | parameters | `DigestRequestSequence` | `True` | The parameters of the HTTP requests executed during the digest procedure.It features two HTTP requests: the first one is the one that returns the WWW-Authenticate header,and the second one is the one that uses the digest authentication. | [DigestRequestSequence](#DigestRequestSequence) |
-| extractions | `BrowserExtraction` | `True` |  | [BrowserExtraction](#BrowserExtraction) |
+| extractions | `TokenExtraction` | `True` |  | [TokenExtraction](#TokenExtraction) |
 
 
 ## <a id="DigestPreset"></a>DigestPreset
@@ -296,7 +296,7 @@ description: All objects available
 |------------|------------|-----|-------------|-----------|
 | tech | `Const[playwright]` | `True` |  |  |
 | parameters | `PlaywrightOperationParameters` | `True` | The parameters of the operation. | [PlaywrightOperationParameters](#PlaywrightOperationParameters) |
-| extractions | `BrowserExtraction` | `True` |  | [BrowserExtraction](#BrowserExtraction) |
+| extractions | `TokenExtraction` | `True` |  | [TokenExtraction](#TokenExtraction) |
 
 
 ## <a id="PlaywrightOperationParameters"></a>PlaywrightOperationParameters
@@ -316,9 +316,9 @@ description: All objects available
 | type | `Const[playwright]` | `True` |  |  |
 | users | `PlaywrightUserPreset` | `True` | The list of users to generate tokens for. | [PlaywrightUserPreset](#PlaywrightUserPreset) |
 | login_url | `string` | `True` | The url that presents the login form |  |
-| extractions | `BrowserExtraction` | `False` | The token extraction configuration used to extract the tokens
-        from the HTTP response or the browser storage itself. | [BrowserExtraction](#BrowserExtraction) |
-| injections | `TokenInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [TokenInjection](#TokenInjection) |
+| extractions | `TokenExtraction` | `False` | The token extraction configuration used to extract the tokens
+        from the HTTP response or the browser storage itself. | [TokenExtraction](#TokenExtraction) |
+| injections | `BrowserInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [BrowserInjection](#BrowserInjection) |
 
 
 ## <a id="PlaywrightUserPreset"></a>PlaywrightUserPreset
@@ -338,7 +338,7 @@ description: All objects available
 |------------|------------|-----|-------------|-----------|
 | name | `string` | `True` | The name of the procedure. It must be unique and is used to reference the procedure in users. |  |
 | operations | `DigestOperation | HTTPOperation | PlaywrightOperation` | `True` | The list of operations executed during the procedure. An operation is a unit transaction, like an HTTP request, or a Playwright autologin script. Operations are ordered, and the variables extracted from an operation can be used in the next operations. |  |
-| injections | `TokenInjection` | `True` | The list of injections to perform at the end of the procedure. Injections are used to inject the variables extracted from the procedure into the user authentication. | [TokenInjection](#TokenInjection) |
+| injections | `BrowserInjection` | `True` | The list of injections to perform at the end of the procedure. Injections are used to inject the variables extracted from the procedure into the user authentication. | [BrowserInjection](#BrowserInjection) |
 
 
 ## <a id="TokenExtraction"></a>TokenExtraction
