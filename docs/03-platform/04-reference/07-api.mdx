@@ -91,6 +91,44 @@ The ID of the organization on Escape. It can be found on [the organization secti
 ]
 ```
 
+## `GET /organization/:organizationId/applications/search`
+
+Retrieve a paginated list of applications based on some search criteria
+
+### Request parameters
+
+#### `organizationId`
+
+The ID of the organization on Escape. It can be found on [the organization section](https://app.escape.tech/organization/)
+
+### Query parameters
+
+#### `search`
+
+The search query to filter applications by name or url.
+
+#### `cursor`
+
+The cursor to paginate the results.
+
+### Example response
+
+```json
+{
+  "cursor": "eyJ2Ij...",
+  "data": [
+    {
+      "name": "Gontoz",
+      "id": "5d1b0249-a6fd-4d64-997a-99675ca6afac",
+      "url": "https://gontoz.escape.tech/graphql",
+      "createdAt": "2022-03-07T11:44:20.968Z",
+      "hasCI": true,
+      "cron": "0 3 * * *"
+    }
+  ]
+}
+```
+
 ## `GET /v1/organization/:organizationId/services`
 
 Retrieve the list of services bound to an organization
