@@ -363,6 +363,10 @@ The route expects a JSON body with the following fields:
   // Scan settings
   "readWrite": true | false, // false makes the scan safe for production
 
+  // Scheduling
+  "cron": "0 3 * * *", // Optional, cron expression to customize the scheduling
+  "disableScheduling": true | false, // Optional, disable scheduling, false by default
+
   // Other settings
   "authentication": { // authentication details as documented in https://docs.escape.tech/api-dast/authentication/#overall-structure-of-an-authentication-configuration
     "presets": [
