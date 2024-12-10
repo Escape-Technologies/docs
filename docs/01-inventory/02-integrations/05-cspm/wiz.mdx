@@ -7,6 +7,8 @@ title: Wiz
 
 
 Integrating Wiz with Escape's Inventory allows for enhanced visibility into your attack surface exposure, ensuring that API endpoints are truly secured from an external point of view.
+Escape will also push its DAST findings to Wiz through the External Enrichment feature, allowing you to have a comprehensive view of your security posture.
+This is currently a preview feature, please reach out to us if you would like to try it out.
 
 
 ### Creating a Wiz Service Account
@@ -30,6 +32,9 @@ Escape needs a few details to connect to your Wiz account.
       - read:resources
       - read:network_exposure
       - read:projects
+      - create:external_data_ingestion (for External Enrichment)
+      - read:system_activities (for External Enrichment)
+
    - Click Add Service Account
    - Copy the Client Secret. Note that you won't be able to copy it after this stage.
    - Copy the Client ID, which is displayed under the Service Accounts page.
