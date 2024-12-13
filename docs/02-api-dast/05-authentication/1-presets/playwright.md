@@ -41,8 +41,8 @@ presets:
 | type | `Const[playwright]` | `True` |  |  |
 | users | `PlaywrightUserPreset` | `True` | The list of users to generate tokens for. | [PlaywrightUserPreset](#PlaywrightUserPreset) |
 | login_url | `string` | `True` | The url that presents the login form |  |
-| extractions | `TokenExtraction` | `False` | The token extraction configuration used to extract the tokens
-        from the HTTP response or the browser storage itself. | [TokenExtraction](#TokenExtraction) |
+| extractions | `BrowserExtraction` | `False` | The token extraction configuration used to extract the tokens
+        from the HTTP response or the browser storage itself. | [BrowserExtraction](#BrowserExtraction) |
 | injections | `BrowserInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [BrowserInjection](#BrowserInjection) |
 
 
@@ -59,12 +59,12 @@ presets:
 | password | `string` | `True` | The password that will be used to auto login |  |
 
 
-### <a id="TokenExtraction"></a>TokenExtraction
+### <a id="BrowserExtraction"></a>BrowserExtraction
 | Property | Type | Required | Description | Reference |
 |----------|------|----------|-------------|-----------|
-| location | `HTTPLocation` | `True` | The location of the HTTP request where the value should be extracted | [HTTPLocation](#HTTPLocation) |
+| location | `BrowserLocation` | `True` | The location of the browser where the value should be extracted | [BrowserLocation](#BrowserLocation) |
+| origin | `string` | `True` | The origin of the local storage or session storage where the value should be extracted |  |
 | key | `string` | `True` | The key to use for the extracted value, depending on the location |  |
-| regex | `string` | `False` | The regex to use to extract the token from the key value. By default the entire value is taken. |  |
 | name | `string` | `True` | The name of the variable to store the extracted value into |  |
 
 
@@ -81,17 +81,6 @@ presets:
 
 
 ## Enums
-
-
-### <a id="HTTPLocation"></a>HTTPLocation
-
-- `header`
-
-- `cookie`
-
-- `body`
-
-- `query`
 
 
 ### <a id="BrowserLocation"></a>BrowserLocation
