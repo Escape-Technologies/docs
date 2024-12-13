@@ -95,7 +95,7 @@ description: All objects available
 |------------|------------|-----|-------------|-----------|
 | tech | `Const[digest]` | `True` |  |  |
 | parameters | `DigestRequestSequence` | `True` | The parameters of the HTTP requests executed during the digest procedure.It features two HTTP requests: the first one is the one that returns the WWW-Authenticate header,and the second one is the one that uses the digest authentication. | [DigestRequestSequence](#DigestRequestSequence) |
-| extractions | `TokenExtraction` | `True` |  | [TokenExtraction](#TokenExtraction) |
+| extractions | `BrowserExtraction` | `True` |  | [BrowserExtraction](#BrowserExtraction) |
 
 
 ## <a id="DigestPreset"></a>DigestPreset
@@ -296,7 +296,7 @@ description: All objects available
 |------------|------------|-----|-------------|-----------|
 | tech | `Const[playwright]` | `True` |  |  |
 | parameters | `PlaywrightOperationParameters` | `True` | The parameters of the operation. | [PlaywrightOperationParameters](#PlaywrightOperationParameters) |
-| extractions | `TokenExtraction` | `True` |  | [TokenExtraction](#TokenExtraction) |
+| extractions | `BrowserExtraction` | `True` |  | [BrowserExtraction](#BrowserExtraction) |
 
 
 ## <a id="PlaywrightOperationParameters"></a>PlaywrightOperationParameters
@@ -316,8 +316,8 @@ description: All objects available
 | type | `Const[playwright]` | `True` |  |  |
 | users | `PlaywrightUserPreset` | `True` | The list of users to generate tokens for. | [PlaywrightUserPreset](#PlaywrightUserPreset) |
 | login_url | `string` | `True` | The url that presents the login form |  |
-| extractions | `TokenExtraction` | `False` | The token extraction configuration used to extract the tokens
-        from the HTTP response or the browser storage itself. | [TokenExtraction](#TokenExtraction) |
+| extractions | `BrowserExtraction` | `False` | The token extraction configuration used to extract the tokens
+        from the HTTP response or the browser storage itself. | [BrowserExtraction](#BrowserExtraction) |
 | injections | `BrowserInjection` | `False` | The injection configuration used to inject the tokens into the HTTP requests. | [BrowserInjection](#BrowserInjection) |
 
 

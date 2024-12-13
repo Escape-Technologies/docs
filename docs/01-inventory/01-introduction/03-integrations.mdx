@@ -4,13 +4,12 @@ title: Optional Integrations
 
 Escape Inventory is capable of ingesting data from various kinds of integrations to enhance the quality of the results.
 
-| Integration Type | Examples | Use Case |
-| ----- | ----- | ----- |
-| **CDN** | Akamai CDN, Cloudflare CDN | Supplies a complementary initial set of domains and subdomains as primary inputs for Escape Inventory. |
-| **Cloud Hosting** | Azure, GCP, AWS | Serve as additional inputs for the crawling and brute-forcing phase in Escape Inventory. |
-| **Monitoring (Beta)** | Datadog, Grafana, Dynatrace | Extracts endpoint data from logs to support crawling and brute-forcing in the inventory process. |
-| **Gateways** | Apigee, Kong, Mulesoft | Serve as additional inputs for the fingerprinting and enrichment phase in Escape Inventory. |
+| Integration Type                 | Examples                                | Use Case                                                                                                                                 |
+| -------------------------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **CDN**                          | Akamai CDN, Cloudflare CDN              | Supplies a complementary initial set of domains and subdomains as primary inputs for Escape Inventory.                                   |
+| **Cloud Hosting**                | Azure, GCP, AWS, Kubernetes             | Serve as additional inputs for the crawling and brute-forcing phase in Escape Inventory.                                                 |
+| **Monitoring (Beta)**            | Datadog, Grafana, Dynatrace             | Extracts endpoint data from logs to support crawling and brute-forcing in the inventory process.                                         |
+| **Gateways**                     | Apigee, Kong, Mulesoft                  | Serve as additional inputs for the fingerprinting and enrichment phase in Escape Inventory.                                              |
 | **Catalogs, CSPM & ASPM (Beta)** | Enso Security, Wiz, Ox Security, Apiiro | Serve to feed fingerprinting in Escape Inventory, and enhance enrichment accuracy by contributing detailed application and API metadata. |
-| **Git Hosting Services** | GitHub, GitLab, Bitbucket | Serve as input for the API Discovery from Code and API Schema Generation, which then feed back into brute-forcing in Escape Inventory. |
-| **API Developer Portals (Beta)** | Backstage, Postman, custom portals | Directly provides schemas which feed back into brute-forcing in Escape Inventory. |
-
+| **Git Hosting Services**         | GitHub, GitLab, Bitbucket               | Serve as input for the API Discovery from Code and API Schema Generation, which then feed back into brute-forcing in Escape Inventory.   |
+| **API Developer Portals (Beta)** | Backstage, Postman, custom portals      | Directly provides schemas which feed back into brute-forcing in Escape Inventory.                                                        |
