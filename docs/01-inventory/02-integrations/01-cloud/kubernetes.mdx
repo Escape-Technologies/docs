@@ -1,0 +1,58 @@
+---
+title: Kubernetes
+---
+
+Integrating Kubernetes with Escape's Inventory will allow Escape to discover services running on your Kubernetes cluster.
+
+### Discovered resources
+
+Escape will read your [services](https://kubernetes.io/docs/concepts/services-networking/service/) and [ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/) you defined in your cluster.
+
+This services will be tested to know it these are APIs then you will be able to se them in the services section of the inventory.
+
+### Configuration
+
+To enable the Kubernetes integration, you need to set up a [Private Location as a Kubernetes deployment](/platform/enterprise/private-location#kubernetes-deployment).
+
+To allow this deployment to access resources in your Kubernetes cluster, you need to create a Service Account and a ClusterRoleBinding.
+
+Here is the sample YAML to create these authorizations (replace `default` with the right namespace if needed):
+
+```yaml
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: escape-repeater
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: escape-repeater
+rules:
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["get", "list"]
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["get", "list"]
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["ingresses"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: escape-repeater
+subjects:
+  - kind: ServiceAccount
+    name: escape-repeater
+    namespace: default # the namespace where the ServiceAccount is created
+roleRef:
+  kind: ClusterRole
+  name: escape-repeater
+  apiGroup: rbac.authorization.k8s.io
+```
+
+Finally, add `serviceAccountName: escape-repeater` to the `spec` section of your deployment to bind the Service Account to the pod.
