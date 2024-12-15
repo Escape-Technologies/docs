@@ -10,6 +10,37 @@ Role-Based Access Control (RBAC) is a cornerstone of modern access management, e
 
 Escape's RBAC is accessible under the "Organization" Settings, and at the "Application" settings level.
 
+
+## Managing User Access in the Escape Platform
+
+### Where to find user and role settings in the Escape platform?
+
+<Image img={require('./img/rbac-role-create.png')} alt="Invite users"/>
+
+You can find user and role settings by clicking your organization’s name in the sidebar. To configure user roles, click on the “Roles” tab.
+
+
+### How to add roles and set permissions for each user role?
+
+<Image img={require('./img/rbac-role-edit.png')} alt="Invite users"/>
+
+Use the “Create a new role” feature to create new user roles. You can also modify the access rights of existing roles. When creating a new role, a side panel opens where you can adjust the permissions and access rights for that role in detail.
+
+
+### How to invite users and assign roles to them?
+
+<Image img={require('./img/rbac-user-invite.png')} alt="Invite users"/>
+
+Click on the “Team” tab at the top left of the platform.
+This will open the user management panel. From here, you can invite new users by entering their email and assigning them a specific role.
+
+### How to edit the roles of a specific user?
+
+<Image img={require('./img/rbac-user-edit.png')} alt="Invite users"/>
+
+To change a user’s role, click the “EDIT” button next to their name in the user table.
+
+
 ## Core Roles
 
 Escape defines roles via a mapping between features and CRUD permissions for each features. The following are the core features that can be configured in Escape:
@@ -20,9 +51,6 @@ Escape defines roles via a mapping between features and CRUD permissions for eac
     - [Integrations Docs](/ci-cd/references) or [Jump to your integrations](https://app.escape.tech/integrations/)
 - **Reporting**: Your organizational dashboard to visualize the data from the inventory and the applications, your progress and security posture.
 - **Notifications**: Your configured notification workflows, and the history of the triggered notificat. 
-
-
-## RBAC Table
 
 | Feature         | Administrator                                                      | Editor | Viewer | None             |
 |-----------------|--------------------------------------------------------------------|--------|--------|------------------|
