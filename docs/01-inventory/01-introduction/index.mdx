@@ -2,7 +2,18 @@
 title: 🏎️ Getting Started
 ---
 
-Escape Inventory is uniquely capable of detecting and classifying Application Assets exposed (externally or internally) by an organization in a few minutes without requiring any agent or traffic interception.
+# 🏎️ Getting Started with the Inventory of your Applicative Assets
+
+Escape Inventory gives a full view of every exposed API and Web Application across their entire Code-to-Cloud environments. It works with only a domain name and optional read-only integrations. By using advanced discovery without agents or traffic interception, it helps teams detect, fingerprint and classify all their applicative assets no matter where they are hosted. This level of visibility helps organizations understand their complete attack surface, making it easier to safeguard their assets.
+
+![The Escape API Services Inventory](api-inventory.png)
+
+The output consists of five filterable, sortable, and searchable tables or data frames listing all detected and fingerprinted Application Assets.
+- **Table 1: API Services** – Represents root API services, each potentially encompassing multiple API Endpoints exposed on the Internet. Escape can detect or generate the associated API Schema, which contains multiple API Endpoints.
+- **Table 2: API Schemas** – Offers a schema-first perspective on API Services. This view is especially valuable as some API Schemas, although detected within the research scope, are not linked to any specific API Service.
+- **Table 3: Frontends** – Lists all detected web applications, frontends, and SPAs within the research scope.
+- **Table 4: Sensitive Data & Secrets** – Lists all potential Sensitive Data and Secrets exposed on the Internet with a very low false positive rate, considering factors like the surrounding code, data flow, and access patterns.
+- **Table 5: Repositories & Code Projects** – When a Git-based Version Control System (VCS) is connected, this allows linking directly the exposed API Services with the right Code Projects in Repositories, including the Code Owners.
 
 ## How does it work? 
 
@@ -10,7 +21,6 @@ Escape Inventory requires at least a domain name as input, and optionally a vari
 It uses a combination of open-source and proprietary AI-technologies to provide an exhaustive and enriched Inventory of all the Applicative Assets exposed by an organization.
 
 ![A simplified version of how Escape Inventory technically works](inventory-diagram.svg)
-
 
 ### Supported Application Assets:
 
@@ -37,15 +47,3 @@ It uses a combination of open-source and proprietary AI-technologies to provide 
 * Disclosure of API Documentation  
 * Lack of Authentication or Authorization  
 * Detection of Critical Vulnerabilities
-
-## Output
-
-![The Escape API Services Inventory](api-inventory.png)
-
-The output consists of five filterable, sortable, and searchable dataframes listing all detected and fingerprinted Application Assets.
-
-* **Dataframe 1:** **API Services** – Represents root API services, each potentially encompassing multiple API Endpoints exposed on the Internet. Escape can detect or generate the associated API Schema, which contains multiple API Endpoints.  
-* **Dataframe 2:** **API Schemas** – Offers a schema-first perspective on API Services. This view is especially valuable as some API Schemas, although detected within the research scope, are not linked to any specific API Service.  
-* **Dataframe 3:** **Frontends** – Lists all detected web applications, frontends, and SPAs within the research scope.
-* **Dataframe 4:** **Sensitive Data & Secrets** – Lists all potential Sensitive Data and Secret exposed on the Internet with a very low false positive rate, considering factors like the surrounding code, data flow, and access patterns.
-* **Dataframe 5:** **Repositories & Code Projects** – When a Git Hosting integration is connected, this allows to link directly the exposed API Services with the right Code Projects in Repositories, including the Code Owners.
